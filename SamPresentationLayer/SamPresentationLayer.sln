@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamDesktop", "SamDesktop\SamDesktop.csproj", "{713D11A1-FD9F-4A35-BD84-26804FA411EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamWeb", "SamWeb\SamWeb.csproj", "{9F90BCFC-EA44-4E43-A12A-9A8CE3378B42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamClient", "SamClient\SamClient.csproj", "{414271B6-F2CA-4D06-B229-465CE67972E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{713D11A1-FD9F-4A35-BD84-26804FA411EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713D11A1-FD9F-4A35-BD84-26804FA411EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713D11A1-FD9F-4A35-BD84-26804FA411EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713D11A1-FD9F-4A35-BD84-26804FA411EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F90BCFC-EA44-4E43-A12A-9A8CE3378B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F90BCFC-EA44-4E43-A12A-9A8CE3378B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F90BCFC-EA44-4E43-A12A-9A8CE3378B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F90BCFC-EA44-4E43-A12A-9A8CE3378B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414271B6-F2CA-4D06-B229-465CE67972E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414271B6-F2CA-4D06-B229-465CE67972E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414271B6-F2CA-4D06-B229-465CE67972E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414271B6-F2CA-4D06-B229-465CE67972E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

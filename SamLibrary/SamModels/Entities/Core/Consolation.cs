@@ -1,0 +1,51 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace SamModels.Entities.Core
+{
+    public class Consolation
+    {
+        public int ID { get; set; }
+
+        [Required]
+        public int ObitID { get; set; }
+
+        [Required]
+        public int CustomerID { get; set; }
+
+        [Required]
+        public int TemplateID { get; set; }
+
+        /// <summary>
+        /// This field is a container for additional info for selected template, such as relationship
+        /// of deseaced person and audience. These informations whill be stored as a JSON object.
+        /// </summary>
+        [MaxLength(256)]
+        public string TemplateInfo { get; set; }
+
+        [Required]
+        [MaxLength(64)]
+        public string Audience { get; set; }
+
+        [Required]
+        [MaxLength(64)]
+        public string From { get; set; }
+
+        [Required]
+        [MaxLength(16)]
+        public string Status { get; set; }
+
+        [Required]
+        [MaxLength(16)]
+        public string PaymentStatus { get; set; }
+
+        [Required]
+        public DateTime CreationTime { get; set; }
+
+        #region Navigation Props:
+        public virtual Obit Obit { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Template Template { get; set; }
+        #endregion
+    }
+}
