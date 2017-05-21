@@ -7,13 +7,13 @@ namespace SamDataAccess.Migrations.SamDbMigrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class IsActiveFieldAddedToTemplate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IsActiveFieldAddedToTemplate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705021552197_Initial"; }
+            get { return "201705211612315_IsActiveFieldAddedToTemplate"; }
         }
         
         string IMigrationMetadata.Source

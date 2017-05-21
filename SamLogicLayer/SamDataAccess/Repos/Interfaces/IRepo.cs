@@ -11,6 +11,7 @@ namespace SamDataAccess.Repos.Interfaces
         where C : DbContext
         where T : class
     {
+        #region Queries:
         T Get(params object[] id);
         List<T> GetAll();
         int Count();
@@ -21,5 +22,10 @@ namespace SamDataAccess.Repos.Interfaces
         void RemoveWithSave(T entity);
         void RemoveWithSave(params object[] id);
         void Save();
+        #endregion
+
+        #region Methods:
+        void SetLogAction(Action<string> action);
+        #endregion
     }
 }

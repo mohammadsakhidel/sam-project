@@ -9,6 +9,7 @@ using System.Data.Entity;
 using SamModels.Entities.Core;
 using SamUtils.Enums;
 using SamModels.Entities.Blobs;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SamDataAccess.Contexts
 {
@@ -63,6 +64,13 @@ namespace SamDataAccess.Contexts
 
             #region Blob Entities:
             modelBuilder.Entity<Blob>().ToTable("Blobs", DbSchemaName.blob.ToString());
+            #endregion
+
+            #region More Configurations:
+            modelBuilder.Entity<Province>().Property(p => p.ID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<City>().Property(c => c.ID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             #endregion
 
             base.OnModelCreating(modelBuilder);

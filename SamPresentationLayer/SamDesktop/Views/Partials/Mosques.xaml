@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="SamDesktop.Views.Partials.Mosques"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamDesktop.Views.Partials"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
+             xmlns:cnv="clr-namespace:SamDesktop.Code.Converters"
+             Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:MosquesVM />
+    </UserControl.DataContext>
+
+    <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition  Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosques}" />
+
+            <Border Grid.Row="1" Style="{StaticResource frame}" Margin="{StaticResource padding_container_top}">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
+                    <ComboBox x:Name="cmbProvince" Width="150" ItemsSource="{Binding Provinces}" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="cmbProvince_SelectionChanged"></ComboBox>
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="16 0 0 0"></Label>
+                    <ComboBox x:Name="cmbCity" Width="150" ItemsSource="{Binding Cities}" DisplayMemberPath="Name" SelectedValuePath="ID"></ComboBox>
+                    <ram:FlatButton x:Name="btnSearch" Style="{StaticResource small_action_button_search}" Margin="{StaticResource padding_container_hor}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Search}"
+                                    Click="btnSearch_Click" IsEnabled="{Binding ElementName=cmbCity, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                </StackPanel>
+            </Border>
+
+            <DataGrid x:Name="dgMosques" Grid.Row="2" Margin="{StaticResource padding_container_ver}"
+                      ItemsSource="{Binding Mosques}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding ID}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ID}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Name}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.MosqueName}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding ImamName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ImamName}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding ImamCellPhone}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ImamCellPhone}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding InterfaceName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.InterfaceName}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding InterfaceCellPhone}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.InterfaceCellPhone}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Address}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Address}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Location}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Location}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding PhoneNumber}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PhoneNumber}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CreationTime}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreationTime}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Creator}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreatorUser}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Border Grid.Row="3" Style="{StaticResource page_footer}">
+                <StackPanel Orientation="Horizontal">
+                    <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewMosque}"
+                                    Click="btnNew_Click" />
+                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_widget_hor}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}"
+                                    Click="btnEdit_Click"/>
+                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_widget_hor}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}"
+                                    Click="btnDelete_Click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </toolkit:BusyIndicator>
+</UserControl>

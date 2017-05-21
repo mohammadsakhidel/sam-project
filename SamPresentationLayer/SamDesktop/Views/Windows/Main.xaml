@@ -1,0 +1,107 @@
+﻿<Window x:Class="SamDesktop.Views.Windows.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SamDesktop.Views.Windows"
+        xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
+        xmlns:cnv="clr-namespace:SamDesktop.Code.Converters"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource main_window}"
+        Title="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppTitle}"
+        Loaded="Window_Loaded">
+    <Window.DataContext>
+        <vm:MainVM />
+    </Window.DataContext>
+    <Window.Resources>
+        <cnv:SelectedSectionConverter x:Key="ssc" />
+    </Window.Resources>
+
+    <Border Style="{StaticResource main_window_content}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Border Style="{StaticResource header}">
+                <Image Style="{StaticResource header_logo}" />
+            </Border>
+
+            <!--Middle-->
+            <Border Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--Sidebar-->
+                    <Border Style="{StaticResource sidebar}">
+                        <ScrollViewer Style="{StaticResource sidebar_scroll}">
+                            <StackPanel>
+
+                                <!--Basic Info-->
+                                <Button Style="{StaticResource sidebar_section_title}" 
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BasicInfo}" />
+                                <Border Style="{StaticResource sidebar_section}">
+                                    <StackPanel>
+                                        <Button x:Name="btnMosques" Style="{StaticResource sidebar_item}" Click="SectionItem_Clicked" Tag="Mosques"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosques}" />
+                                        <Button x:Name="btnTemplates" Style="{StaticResource sidebar_item}" Click="SectionItem_Clicked" Tag="Templates"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Templates}" />
+                                    </StackPanel>
+                                </Border>
+
+                                <!--Maintenance-->
+                                <Button Style="{StaticResource sidebar_section_title}" 
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Maintenance}"/>
+                                <Border Style="{StaticResource sidebar_section}">
+                                    <StackPanel>
+                                        <Button x:Name="btnMonitoring" Style="{StaticResource sidebar_item}" Tag="Monitoring" Click="SectionItem_Clicked"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Monitoring}" />
+                                        <Button x:Name="btnSettings" Style="{StaticResource sidebar_item}" Tag="Settings" Click="SectionItem_Clicked"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Settings}" />
+                                    </StackPanel>
+                                </Border>
+
+                                <!--Users-->
+                                <Button Style="{StaticResource sidebar_section_title}" 
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Users}"/>
+                                <Border Style="{StaticResource sidebar_section}">
+                                    <StackPanel>
+                                        <Button x:Name="btnAccounts" Style="{StaticResource sidebar_item}" Tag="Accounts" Click="SectionItem_Clicked"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Accounts}" />
+                                        <Button x:Name="btnAccessLevels" Style="{StaticResource sidebar_item}" Tag="AccessLevels" Click="SectionItem_Clicked"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AccessLevels}" />
+                                    </StackPanel>
+                                </Border>
+
+                                <Button x:Name="btnTest" Click="btnTest_Click">Test Button</Button>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                    <GridSplitter Style="{StaticResource sidebar_splitter}"></GridSplitter>
+
+                    <!--Content-->
+                    <Border Grid.Column="1" Style="{StaticResource content_container}">
+                        <ContentControl Content="{Binding SelectedSectionContent}">
+                        </ContentControl>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+            <!--Footer-->
+            <Border Style="{StaticResource footer}" Grid.Row="2">
+                <TextBlock Style="{StaticResource footer_text}"
+                           Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.FooterText}" />
+            </Border>
+
+        </Grid>
+    </Border>
+
+</Window>

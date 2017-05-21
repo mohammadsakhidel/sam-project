@@ -12,6 +12,10 @@ namespace SamModels.Entities.Core
         public int ID { get; set; }
 
         [Required]
+        [MaxLength(32)]
+        public string Name { get; set; }
+
+        [Required]
         public int TemplateCategoryID { get; set; }
 
         [Required]
@@ -35,6 +39,9 @@ namespace SamModels.Entities.Core
 
         [Required]
         public int HeightRatio { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; }
 
         [Required]
         public DateTime CreationTime { get; set; }

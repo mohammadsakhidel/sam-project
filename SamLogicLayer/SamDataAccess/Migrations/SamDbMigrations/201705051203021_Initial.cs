@@ -25,7 +25,7 @@ namespace SamDataAccess.Migrations.SamDbMigrations
                 "core.Cities",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        ID = c.Int(nullable: false),
                         ProvinceID = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 32),
                     })
@@ -37,7 +37,7 @@ namespace SamDataAccess.Migrations.SamDbMigrations
                 "core.Provinces",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        ID = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 32),
                     })
                 .PrimaryKey(t => t.ID);

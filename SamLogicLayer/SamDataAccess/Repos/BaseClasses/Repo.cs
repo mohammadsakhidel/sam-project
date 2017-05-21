@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace SamDataAccess.Repos.BaseClasses
 {
-    public abstract class Repo<C, T> : IRepo<C, T>
+    public abstract class Repo<C, T> : IRepo<C, T>, IDisposable
         where C : DbContext
         where T : class
     {
         #region Fields:
-        DbContext context;
-        DbSet<T> set;
+        protected DbContext context;
+        protected DbSet<T> set;
         #endregion
 
         #region CTors:
@@ -31,56 +31,56 @@ namespace SamDataAccess.Repos.BaseClasses
         #endregion
 
         #region IRepo Implementation:
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             set.Add(entity);
         }
 
-        public void AddWithSave(T entity)
+        public virtual void AddWithSave(T entity)
         {
             Add(entity);
             Save();
         }
 
-        public int Count()
+        public virtual int Count()
         {
             return set.Count();
         }
 
-        public T Get(params object[] id)
+        public virtual T Get(params object[] id)
         {
             return set.Find(id);
         }
 
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return set.ToList();
         }
 
-        public void Remove(params object[] id)
+        public virtual void Remove(params object[] id)
         {
             var entity = Get(id);
             Remove(entity);
         }
 
-        public void Remove(T entity)
+        public virtual void Remove(T entity)
         {
             set.Remove(entity);
         }
 
-        public void RemoveWithSave(params object[] id)
+        public virtual void RemoveWithSave(params object[] id)
         {
             Remove(id);
             Save();
         }
 
-        public void RemoveWithSave(T entity)
+        public virtual void RemoveWithSave(T entity)
         {
             Remove(entity);
             Save();
         }
 
-        public void Save()
+        public virtual void Save()
         {
             context.SaveChanges();
         }
@@ -88,6 +88,11 @@ namespace SamDataAccess.Repos.BaseClasses
         public void Dispose()
         {
             context.Dispose();
+        }
+
+        public void SetLogAction(Action<string> action)
+        {
+            this.context.Database.Log = action;
         }
         #endregion
     }

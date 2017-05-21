@@ -45,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\CityDto.cs" />
+    <Compile Include="DTOs\MosqueDto.cs" />
+    <Compile Include="DTOs\ProvinceDto.cs" />
+    <Compile Include="DTOs\TemplateDto.cs" />
     <Compile Include="Entities\Blobs\Blob.cs" />
     <Compile Include="Entities\Blobs\ImageBlob.cs" />
     <Compile Include="Entities\Core\City.cs" />
@@ -60,7 +64,9 @@
     <Compile Include="Entities\Core\TemplateExtraField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

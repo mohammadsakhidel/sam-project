@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="SamDesktop.Views.Partials.Templates"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamDesktop.Views.Partials"
+             xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:TemplatesVM />
+    </UserControl.DataContext>
+
+    <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition  Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Templates}" />
+
+            <DataGrid x:Name="dgTemplates" Grid.Row="1" Margin="{StaticResource padding_container_ver}" ItemsSource="{Binding Templates}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding ID}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ID}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Name}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateName}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding TemplateCategoryName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Category}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Price, Converter={StaticResource priceConverter}}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Price}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn>
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding Converter="{StaticResource connectorConverter}" ConverterParameter=":">
+                                <Binding Path="WidthRatio" />
+                                <Binding Path="HeightRatio" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.WidthHeightRatio}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding IsActive, Converter={StaticResource boolConverter}}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Active}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CreationTime}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreationTime}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Creator}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreatorUser}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Border Grid.Row="3" Style="{StaticResource page_footer}">
+                <StackPanel Orientation="Horizontal">
+                    <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" />
+                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_widget_hor}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" />
+                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_widget_hor}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" />
+                </StackPanel>
+            </Border>
+
+        </Grid>
+    </toolkit:BusyIndicator>
+
+</UserControl>
