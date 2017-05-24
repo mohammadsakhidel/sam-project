@@ -72,7 +72,7 @@ namespace SamDesktop.Views.Partials
                 var city = cmbCity.SelectedItem as CityDto;
                 if (city != null)
                 {
-                    LoadRecords(city.ID);
+                    await LoadRecords(city.ID);
                 }
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ namespace SamDesktop.Views.Partials
         #endregion
 
         #region Private Methods:
-        private async void LoadRecords(int cityId)
+        private async Task LoadRecords(int cityId)
         {
             progress.IsBusy = true;
             using (var client = HttpUtil.CreateClient())

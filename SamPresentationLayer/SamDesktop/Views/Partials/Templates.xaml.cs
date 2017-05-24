@@ -1,5 +1,6 @@
 ﻿using SamDesktop.Code.Utils;
 using SamDesktop.Code.ViewModels;
+using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,11 @@ namespace SamDesktop.Views.Partials
         #endregion
 
         #region Event Handlers:
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                LoadRecords();
+                await LoadRecords();
             }
             catch (Exception ex)
             {
@@ -42,10 +43,23 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var createTemplateWindow = new CreateTemplate();
+                createTemplateWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
         #endregion
 
         #region Private Methods:
-        private async void LoadRecords()
+        private async Task LoadRecords()
         {
             progress.IsBusy = true;
             using (var client = HttpUtil.CreateClient())
@@ -59,5 +73,6 @@ namespace SamDesktop.Views.Partials
         }
         #endregion
 
+        
     }
 }

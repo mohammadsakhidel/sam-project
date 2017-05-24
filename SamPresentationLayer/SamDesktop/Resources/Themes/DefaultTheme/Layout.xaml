@@ -12,8 +12,27 @@
         <Setter Property="FontWeight" Value="Normal"></Setter>
     </Style>
 
+    <Style x:Key="dialog_window" TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource color_accent}"></Setter>
+        <Setter Property="MinWidth" Value="600"></Setter>
+        <Setter Property="MinHeight" Value="400"></Setter>
+        <Setter Property="WindowState" Value="Normal"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource ff_content}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_normal}"></Setter>
+        <Setter Property="FontWeight" Value="Normal"></Setter>
+    </Style>
+
     <Style x:Key="main_window_content" TargetType="FrameworkElement">
         <Setter Property="FlowDirection" Value="RightToLeft"></Setter>
+    </Style>
+
+    <Style x:Key="dialog_window_content" TargetType="Border">
+        <Setter Property="FlowDirection" Value="RightToLeft"></Setter>
+        <Setter Property="Margin" Value="{StaticResource padding_container}"></Setter>
+        <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_darker}"></Setter>
+        <Setter Property="Padding" Value="{StaticResource padding_container}"></Setter>
     </Style>
 
     <Style x:Key="header" TargetType="Border">
@@ -119,6 +138,13 @@
         <Setter Property="BorderBrush" Value="{StaticResource color_neutral_dark}"></Setter>
         <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="Padding" Value="{StaticResource padding_container}"></Setter>
+        <Setter Property="CornerRadius" Value="3"></Setter>
+    </Style>
+
+    <Style x:Key="dark_frame" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource color_neutral_dark}"></Setter>
+        <Setter Property="Padding" Value="{StaticResource padding_container}"></Setter>
+        <Setter Property="CornerRadius" Value="3"></Setter>
     </Style>
 
 </ResourceDictionary>

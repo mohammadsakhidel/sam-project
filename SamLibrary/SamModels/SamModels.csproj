@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,7 +49,9 @@
     <Compile Include="DTOs\CityDto.cs" />
     <Compile Include="DTOs\MosqueDto.cs" />
     <Compile Include="DTOs\ProvinceDto.cs" />
+    <Compile Include="DTOs\TemplateCategoryDto.cs" />
     <Compile Include="DTOs\TemplateDto.cs" />
+    <Compile Include="DTOs\TemplateExtraFieldDto.cs" />
     <Compile Include="Entities\Blobs\Blob.cs" />
     <Compile Include="Entities\Blobs\ImageBlob.cs" />
     <Compile Include="Entities\Core\City.cs" />
@@ -64,9 +67,7 @@
     <Compile Include="Entities\Core\TemplateExtraField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

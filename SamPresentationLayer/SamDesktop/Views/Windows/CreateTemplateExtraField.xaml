@@ -1,0 +1,34 @@
+﻿<Window x:Class="SamDesktop.Views.Windows.CreateTemplateExtraField"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SamDesktop.Views.Windows"
+        xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
+        xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+        Style="{StaticResource dialog_window}"
+        Width="600" Height="400" WindowStartupLocation="CenterScreen">
+    
+    <Border Style="{StaticResource dialog_window_content}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewField}" />
+
+            <uc:ExtraFieldEditor x:Name="ucExtraFieldEditor" Grid.Row="1" Margin="{StaticResource padding_container}" />
+
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                <ram:FlatButton x:Name="btnSave" Style="{StaticResource action_button_ok}" Margin="{StaticResource padding_container_end}"
+                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OK}" Click="btnSave_Click" IsDefault="True"/>
+                <ram:FlatButton x:Name="btnCancel" Style="{StaticResource action_button_cancel}"
+                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Cancel}" IsCancel="True"/>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+    
+</Window>

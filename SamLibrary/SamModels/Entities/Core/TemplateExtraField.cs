@@ -23,26 +23,30 @@ namespace SamModels.Entities.Core
         public string DisplayName { get; set; }
 
         [Required]
-        public int X { get; set; }
+        public double X { get; set; }
 
         [Required]
-        public int Y { get; set; }
+        public double Y { get; set; }
 
         [MaxLength(64)]
         public string FontFamily { get; set; }
 
-        public double FontSize { get; set; }
+        [MaxLength(10)]
+        public string FontSize { get; set; }
 
         public bool? Bold { get; set; }
+
+        [MaxLength(10)]
+        public string TextColor { get; set; }
 
         [MaxLength(4)]
         public string FlowDirection { get; set; }
 
         [Required]
-        public int BoxWidth { get; set; }
+        public double BoxWidth { get; set; }
 
         [Required]
-        public int BoxHeight { get; set; }
+        public double BoxHeight { get; set; }
 
         [MaxLength(16)]
         public string HorizontalContentAlignment { get; set; }

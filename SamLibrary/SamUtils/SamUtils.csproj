@@ -40,13 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AspectRatio.cs" />
+    <Compile Include="Classes\FontSizePresenter.cs" />
+    <Compile Include="Classes\TextAlignmentPresenter.cs" />
+    <Compile Include="Constants\Collections.cs" />
     <Compile Include="Enums\ConsolationStatus.cs" />
     <Compile Include="Enums\ContentAlignment.cs" />
     <Compile Include="Enums\DbSchemaName.cs" />
     <Compile Include="Enums\FlowDirection.cs" />
+    <Compile Include="Enums\FontSize.cs" />
     <Compile Include="Enums\PaymentStatus.cs" />
+    <Compile Include="Enums\TextAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

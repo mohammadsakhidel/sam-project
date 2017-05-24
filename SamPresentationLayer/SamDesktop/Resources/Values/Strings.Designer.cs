@@ -97,11 +97,38 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to چیدمان.
+        /// </summary>
+        internal static string Alignment {
+            get {
+                return ResourceManager.GetString("Alignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سیستم اطلاع رسانی مساجد (سام).
         /// </summary>
         internal static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ابعاد.
+        /// </summary>
+        internal static string AspectRatio {
+            get {
+                return ResourceManager.GetString("AspectRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تصویر پس زمینه.
+        /// </summary>
+        internal static string BackgroundImage {
+            get {
+                return ResourceManager.GetString("BackgroundImage", resourceCulture);
             }
         }
         
@@ -115,6 +142,33 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نوشته ضخیم.
+        /// </summary>
+        internal static string Bold {
+            get {
+                return ResourceManager.GetString("Bold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پایین.
+        /// </summary>
+        internal static string Bottom {
+            get {
+                return ResourceManager.GetString("Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to انصراف.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to دسته.
         /// </summary>
         internal static string Category {
@@ -124,11 +178,29 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to وسط.
+        /// </summary>
+        internal static string Center {
+            get {
+                return ResourceManager.GetString("Center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شهر.
         /// </summary>
         internal static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایجاد الگوی جدید.
+        /// </summary>
+        internal static string CreateTemplate {
+            get {
+                return ResourceManager.GetString("CreateTemplate", resourceCulture);
             }
         }
         
@@ -160,6 +232,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نام جهت نمایش.
+        /// </summary>
+        internal static string DisplayName {
+            get {
+                return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش.
         /// </summary>
         internal static string Edit {
@@ -169,11 +250,38 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش فیلد الگو.
+        /// </summary>
+        internal static string EditField {
+            get {
+                return ResourceManager.GetString("EditField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فونت.
+        /// </summary>
+        internal static string Font {
+            get {
+                return ResourceManager.GetString("Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to طراحی و تولید: شرکت آرت استون ایرانیان.
         /// </summary>
         internal static string FooterText {
             get {
                 return ResourceManager.GetString("FooterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بسیار بزرگ.
+        /// </summary>
+        internal static string Huge {
+            get {
+                return ResourceManager.GetString("Huge", resourceCulture);
             }
         }
         
@@ -219,6 +327,42 @@ namespace SamDesktop.Resources.Values {
         internal static string InterfaceName {
             get {
                 return ResourceManager.GetString("InterfaceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بزرگ.
+        /// </summary>
+        internal static string Large {
+            get {
+                return ResourceManager.GetString("Large", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام لاتین.
+        /// </summary>
+        internal static string LatinName {
+            get {
+                return ResourceManager.GetString("LatinName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to چپ.
+        /// </summary>
+        internal static string Left {
+            get {
+                return ResourceManager.GetString("Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to چپ به راست.
+        /// </summary>
+        internal static string LeftToRightDirection {
+            get {
+                return ResourceManager.GetString("LeftToRightDirection", resourceCulture);
             }
         }
         
@@ -286,6 +430,24 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to دسته جدید.
+        /// </summary>
+        internal static string NewCategory {
+            get {
+                return ResourceManager.GetString("NewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فیلد جدید.
+        /// </summary>
+        internal static string NewField {
+            get {
+                return ResourceManager.GetString("NewField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مسجد جدید.
         /// </summary>
         internal static string NewMosque {
@@ -300,6 +462,24 @@ namespace SamDesktop.Resources.Values {
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to معمولی.
+        /// </summary>
+        internal static string Normal {
+            get {
+                return ResourceManager.GetString("Normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید.
+        /// </summary>
+        internal static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         
@@ -331,6 +511,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to هزینه (ریال).
+        /// </summary>
+        internal static string PriceInUnit {
+            get {
+                return ResourceManager.GetString("PriceInUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ریال.
         /// </summary>
         internal static string PriceUnit {
@@ -349,6 +538,24 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to راست.
+        /// </summary>
+        internal static string Right {
+            get {
+                return ResourceManager.GetString("Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ذخیره.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to جستجو.
         /// </summary>
         internal static string Search {
@@ -358,11 +565,47 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انتخاب فایل.
+        /// </summary>
+        internal static string SelectFile {
+            get {
+                return ResourceManager.GetString("SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تنظیمات سیستم.
         /// </summary>
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کوچک.
+        /// </summary>
+        internal static string Small {
+            get {
+                return ResourceManager.GetString("Small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to طراحی الگو.
+        /// </summary>
+        internal static string TemplateDesign {
+            get {
+                return ResourceManager.GetString("TemplateDesign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مشخصات الگو.
+        /// </summary>
+        internal static string TemplateInfo {
+            get {
+                return ResourceManager.GetString("TemplateInfo", resourceCulture);
             }
         }
         
@@ -385,6 +628,60 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to این متن در نحوه نمایش الگو تأثیری نخواهد داشت و تنها برای جستجوی الگو استفاده خواهد شد..
+        /// </summary>
+        internal static string TemplateTextComment {
+            get {
+                return ResourceManager.GetString("TemplateTextComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متن.
+        /// </summary>
+        internal static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رنگ متن.
+        /// </summary>
+        internal static string TextColor {
+            get {
+                return ResourceManager.GetString("TextColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بسیار کوچک.
+        /// </summary>
+        internal static string Tiny {
+            get {
+                return ResourceManager.GetString("Tiny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بالا.
+        /// </summary>
+        internal static string Top {
+            get {
+                return ResourceManager.GetString("Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کاربران.
         /// </summary>
         internal static string Users {
@@ -399,6 +696,15 @@ namespace SamDesktop.Resources.Values {
         internal static string WidthHeightRatio {
             get {
                 return ResourceManager.GetString("WidthHeightRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شکستن محتوا.
+        /// </summary>
+        internal static string WrapContent {
+            get {
+                return ResourceManager.GetString("WrapContent", resourceCulture);
             }
         }
         

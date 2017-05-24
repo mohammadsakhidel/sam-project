@@ -31,7 +31,7 @@ namespace SamAPI.Controllers
         {
             try
             {
-                System.Threading.Thread.Sleep(2000);
+                System.Threading.Thread.Sleep(1000);
                 var templates = templateRepo.GetAll();
                 var dtos = templates.Select(t => Mapper.Map<Template, TemplateDto>(t)).ToList();
                 return Ok(dtos);

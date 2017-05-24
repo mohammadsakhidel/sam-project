@@ -18,6 +18,7 @@ namespace SamAPI
             {
                 cfg.CreateMap<Mosque, MosqueDto>();
                 cfg.CreateMap<Template, TemplateDto>().ForMember(dest => dest.TemplateCategoryName, opt => opt.MapFrom(src => src.Category.Name));
+                cfg.CreateMap<TemplateCategory, TemplateCategoryDto>();
             });
             #endregion
 

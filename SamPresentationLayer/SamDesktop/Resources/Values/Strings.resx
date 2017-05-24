@@ -132,6 +132,12 @@
   <data name="AppName" xml:space="preserve">
     <value>سیستم اطلاع رسانی مساجد (سام)</value>
   </data>
+  <data name="AspectRatio" xml:space="preserve">
+    <value>ابعاد</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>تصویر پس زمینه</value>
+  </data>
   <data name="BasicInfo" xml:space="preserve">
     <value>اطلاعات پایه</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="City" xml:space="preserve">
     <value>شهر</value>
+  </data>
+  <data name="CreateTemplate" xml:space="preserve">
+    <value>ایجاد الگوی جدید</value>
   </data>
   <data name="CreationTime" xml:space="preserve">
     <value>زمان ایجاد</value>
@@ -192,6 +201,9 @@
   <data name="New" xml:space="preserve">
     <value>جدید</value>
   </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>دسته جدید</value>
+  </data>
   <data name="NewMosque" xml:space="preserve">
     <value>مسجد جدید</value>
   </data>
@@ -207,23 +219,47 @@
   <data name="Price" xml:space="preserve">
     <value>هزینه</value>
   </data>
+  <data name="PriceInUnit" xml:space="preserve">
+    <value>هزینه (ریال)</value>
+  </data>
   <data name="PriceUnit" xml:space="preserve">
     <value>ریال</value>
   </data>
   <data name="Province" xml:space="preserve">
     <value>استان</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>
   </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>انتخاب فایل</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>تنظیمات سیستم</value>
+  </data>
+  <data name="TemplateDesign" xml:space="preserve">
+    <value>طراحی الگو</value>
+  </data>
+  <data name="TemplateInfo" xml:space="preserve">
+    <value>مشخصات الگو</value>
   </data>
   <data name="TemplateName" xml:space="preserve">
     <value>نام الگو</value>
   </data>
   <data name="Templates" xml:space="preserve">
     <value>الگوهای تسلیت</value>
+  </data>
+  <data name="TemplateTextComment" xml:space="preserve">
+    <value>این متن در نحوه نمایش الگو تأثیری نخواهد داشت و تنها برای جستجوی الگو استفاده خواهد شد.</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>متن</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>عنوان</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>کاربران</value>
@@ -233,5 +269,71 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>بله</value>
+  </data>
+  <data name="Alignment" xml:space="preserve">
+    <value>چیدمان</value>
+  </data>
+  <data name="Bold" xml:space="preserve">
+    <value>نوشته ضخیم</value>
+  </data>
+  <data name="Bottom" xml:space="preserve">
+    <value>پایین</value>
+  </data>
+  <data name="Center" xml:space="preserve">
+    <value>وسط</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>نام جهت نمایش</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>فونت</value>
+  </data>
+  <data name="Huge" xml:space="preserve">
+    <value>بسیار بزرگ</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>بزرگ</value>
+  </data>
+  <data name="LatinName" xml:space="preserve">
+    <value>نام لاتین</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>چپ</value>
+  </data>
+  <data name="LeftToRightDirection" xml:space="preserve">
+    <value>چپ به راست</value>
+  </data>
+  <data name="NewField" xml:space="preserve">
+    <value>فیلد جدید</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>معمولی</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>راست</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>کوچک</value>
+  </data>
+  <data name="TextColor" xml:space="preserve">
+    <value>رنگ متن</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>بسیار کوچک</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>بالا</value>
+  </data>
+  <data name="WrapContent" xml:space="preserve">
+    <value>شکستن محتوا</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>انصراف</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>تأیید</value>
+  </data>
+  <data name="EditField" xml:space="preserve">
+    <value>ویرایش فیلد الگو</value>
   </data>
 </root>

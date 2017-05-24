@@ -14,5 +14,10 @@ namespace SamModels.DTOs
         public int ProvinceID { get; set; }
 
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

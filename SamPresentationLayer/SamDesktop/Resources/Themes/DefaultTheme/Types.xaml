@@ -101,10 +101,37 @@
         -->
     </Style>
 
-    <Style TargetType="{x:Type ComboBox}">
+    <Style TargetType="{x:Type TabItem}">
+        <Setter Property="FontSize" Value="{StaticResource font_bit_smaller}"></Setter>
+        <Setter Property="FontWeight" Value="Normal"></Setter>
+        <Setter Property="Padding" Value="10 1"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Template" Value="{StaticResource textbox_template}"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_darker}"></Setter>
+        <Setter Property="Padding" Value="{StaticResource padding_textbox}"></Setter>
         <Setter Property="FontSize" Value="{StaticResource font_bit_smaller}"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        <Setter Property="Height" Value="25"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="Template" Value="{StaticResource combobox_template}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ListView}">
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_darker}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ListViewItem}">
+        <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_dark}"></Setter>
+        <Setter Property="Padding" Value="6 3"></Setter>
     </Style>
 
 </ResourceDictionary>

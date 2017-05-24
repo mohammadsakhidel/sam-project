@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="SamDesktop.Views.Partials.ExtraFieldEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamDesktop.Views.Partials"
+             xmlns:consts="clr-namespace:SamDesktop.Code.Constants"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!--Row 0 ::: DisplayName-->
+        <Label Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DisplayName}" />
+        <TextBox x:Name="tbDisplayName" Grid.Column="1" />
+
+        <!--Row 2 ::: Name-->
+        <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.LatinName}" />
+        <ComboBox x:Name="cmbName" Grid.Row="2" Grid.Column="1" Style="{StaticResource editable_combobox}" FlowDirection="LeftToRight">
+            <ComboBoxItem>Audience</ComboBoxItem>
+            <ComboBoxItem>From</ComboBoxItem>
+        </ComboBox>
+
+        <!--Row 4 ::: Font Fmaily-->
+        <Label Grid.Row="4" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Font}" />
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="cmbFontFamily" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" />
+            <ComboBox x:Name="cmbFontSize" ItemsSource="{Binding Source={x:Static consts:Collections.FontSizes}}" SelectedValuePath="Size"
+                      Grid.Column="1" Margin="{StaticResource padding_widget_start}" Width="90"/>
+            <toolkit:ColorPicker x:Name="colorText" Grid.Column="2" Margin="{StaticResource padding_widget_start}" Width="60" />
+            <CheckBox x:Name="chBold" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Bold}"
+                      Grid.Column="3" Margin="{StaticResource padding_widget_start}" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!--Row 6 ::: Alignment-->
+        <Label Grid.Row="6" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Alignment}" />
+        <Grid Grid.Row="6" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="cmbHorizontalAlignment" ItemsSource="{Binding Source={x:Static consts:Collections.HorizontalAlignments}}" SelectedValuePath="Alignment" />
+            <ComboBox x:Name="cmbVerticalAlignment" ItemsSource="{Binding Source={x:Static consts:Collections.VerticalAlignments}}" SelectedValuePath="Alignment"
+                      Grid.Column="1" Margin="{StaticResource padding_widget_start}" />
+            <CheckBox x:Name="chLeftToRightDirection" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.LeftToRightDirection}"
+                      Grid.Column="2" Margin="{StaticResource padding_widget_start}" VerticalAlignment="Center"/>
+            <CheckBox x:Name="chWrapContent" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.WrapContent}"
+                      Grid.Column="3" Margin="{StaticResource padding_widget_start}" VerticalAlignment="Center"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

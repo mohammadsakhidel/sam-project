@@ -17,4 +17,16 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type toolkit:ColorPicker}">
+        <Setter Property="ColorMode" Value="ColorCanvas"></Setter>
+        <Setter Property="ShowAdvancedButton" Value="False"></Setter>
+        <Setter Property="ShowAvailableColors" Value="False"></Setter>
+        <Setter Property="ShowDropDownButton" Value="False"></Setter>
+        <Setter Property="ShowRecentColors" Value="False"></Setter>
+        <Setter Property="ShowStandardColors" Value="False"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_darker}"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
 </ResourceDictionary>
