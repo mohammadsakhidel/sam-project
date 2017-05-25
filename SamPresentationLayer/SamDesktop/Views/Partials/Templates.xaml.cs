@@ -1,6 +1,7 @@
 ﻿using SamDesktop.Code.Constants;
 using SamDesktop.Code.Utils;
 using SamDesktop.Code.ViewModels;
+using SamDesktop.Resources.Values;
 using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using System;
@@ -45,15 +46,66 @@ namespace SamDesktop.Views.Partials
             }
         }
 
-        private void btnNew_Click(object sender, RoutedEventArgs e)
+        private async void btnNew_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var createTemplateWindow = new CreateTemplate();
-                createTemplateWindow.ShowDialog();
+                var res = createTemplateWindow.ShowDialog();
+                if (res.HasValue && res.Value)
+                {
+                    await LoadRecords();
+                }
             }
             catch (Exception ex)
             {
+                ExceptionManager.Handle(ex);
+            }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dgTemplates.SelectedItem != null)
+                {
+                    var templateToEdit = dgTemplates.SelectedItem as TemplateDto;
+                    var editTemplateWindow = new EditTemplate(templateToEdit);
+                    editTemplateWindow.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dgTemplates.SelectedItem != null)
+                {
+                    var result = UxUtil.ShowQuestion(Messages.AreYouSureToDelete);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var templateToDelete = dgTemplates.SelectedItem as TemplateDto;
+                        #region Call Server To Delete:
+                        progress.IsBusy = true;
+                        using (var hc = HttpUtil.CreateClient())
+                        {
+                            var response = await hc.DeleteAsync($"{ApiActions.templates_delete}/{templateToDelete.ID}");
+                            response.EnsureSuccessStatusCode();
+                            UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                            await LoadRecords();
+                        }
+                        #endregion
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }
@@ -73,7 +125,5 @@ namespace SamDesktop.Views.Partials
             }
         }
         #endregion
-
-        
     }
 }

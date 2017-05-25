@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AreYouSureToDelete" xml:space="preserve">
+    <value>آیا نسبت به اجرای عملیات حذف اطمینان دارید؟</value>
+  </data>
   <data name="FillBeforeDesignTemplate" xml:space="preserve">
     <value>قبل از اینکه بتوانید الگو را طراحی کنید لازم است تصویر پس زمینه و ابعاد الگو را مشخص کنید.</value>
   </data>

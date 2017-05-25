@@ -18,13 +18,13 @@ namespace SamAPI.Controllers
     public class TemplatesController : ApiController
     {
         #region Fields:
-        ITemplateRepo templateRepo;
+        ITemplateRepo _templateRepo;
         #endregion
 
         #region Ctors:
         public TemplatesController(ITemplateRepo templateRepo)
         {
-            this.templateRepo = templateRepo;
+            this._templateRepo = templateRepo;
         }
         #endregion
 
@@ -35,7 +35,7 @@ namespace SamAPI.Controllers
             try
             {
                 System.Threading.Thread.Sleep(1000);
-                var templates = templateRepo.GetAll();
+                var templates = _templateRepo.GetAll();
                 var dtos = templates.Select(t => Mapper.Map<Template, TemplateDto>(t)).ToList();
                 return Ok(dtos);
             }
@@ -74,8 +74,33 @@ namespace SamAPI.Controllers
                 template.Creator = "Dummy User";
                 #endregion
 
-                templateRepo.AddWithSave(template, backgroundBlob);
+                _templateRepo.AddWithSave(template, backgroundBlob);
 
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
+
+        #region PUT:
+        [HttpPut]
+        public IHttpActionResult Update(TemplateDto model)
+        {
+            return Ok();
+        }
+        #endregion
+
+        #region DELETE:
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            try
+            {
+                System.Threading.Thread.Sleep(2000);
+                _templateRepo.RemoveAllDependencies(id);
                 return Ok();
             }
             catch (Exception ex)

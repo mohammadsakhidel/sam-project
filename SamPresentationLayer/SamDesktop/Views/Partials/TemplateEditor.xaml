@@ -59,16 +59,14 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <ComboBox Template="{DynamicResource combobox_template}" ItemsSource="{Binding TemplateCategories}" 
-                                      SelectedItem="{Binding TemplateCategory, Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged" />
+                            <ComboBox ItemsSource="{Binding TemplateCategories}" SelectedItem="{Binding TemplateCategory, Mode=TwoWay}" />
                             <ram:FlatButton Style="{StaticResource small_action_button_add}" Grid.Column="1" Margin="4 0 0 0"
                                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewCategory}" />
                         </Grid>
 
                         <!--Row 4 ::: Aspect Ratio:-->
                         <Label Grid.Row="4" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AspectRatio}" />
-                        <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding AspectRatios}" 
-                                  SelectedValue="{Binding AspectRatio, Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged" />
+                        <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding AspectRatios}" SelectedValue="{Binding AspectRatio, Mode=TwoWay}" SelectedValuePath="DisplayName" />
 
                         <!--Row 6 ::: Background Image:-->
                         <Label Grid.Row="6" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BackgroundImage}" />

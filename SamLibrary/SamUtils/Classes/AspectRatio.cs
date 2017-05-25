@@ -7,10 +7,17 @@ namespace SamUtils.Classes
         public int WidthRatio { get; set; }
         public int HeightRatio { get; set; }
         public AspectRatioOrientation Orientation { get; set; }
+        public string DisplayName
+        {
+            get
+            {
+                return $"{Orientation.ToString()}, {(Math.Max(WidthRatio, HeightRatio)).ToString()}:{(Math.Min(WidthRatio, HeightRatio)).ToString()}";
+            }
+        }
 
         public override string ToString()
         {
-            return $"{Orientation.ToString()}, {(Math.Max(WidthRatio, HeightRatio)).ToString()}:{(Math.Min(WidthRatio, HeightRatio)).ToString()}";
+            return DisplayName;
         }
     }
 

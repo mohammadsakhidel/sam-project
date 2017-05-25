@@ -15,13 +15,13 @@ namespace SamAPI.Controllers
     public class MosquesController : ApiController
     {
         #region Fields:
-        IMosqueRepo mosqueRepo;
+        IMosqueRepo _mosqueRepo;
         #endregion
 
         #region Ctors:
         public MosquesController(IMosqueRepo mosqueRepo)
         {
-            this.mosqueRepo = mosqueRepo;
+            this._mosqueRepo = mosqueRepo;
         }
         #endregion
 
@@ -31,7 +31,7 @@ namespace SamAPI.Controllers
         {
             try
             {
-                var mosque = mosqueRepo.Get(id);
+                var mosque = _mosqueRepo.Get(id);
                 var mosqueDto = Mapper.Map<Mosque, MosqueDto>(mosque);
                 return Ok(mosqueDto);
             }
@@ -46,7 +46,7 @@ namespace SamAPI.Controllers
         {
             try
             {
-                var mosques = mosqueRepo.FindByCity(cityId);
+                var mosques = _mosqueRepo.FindByCity(cityId);
                 var mosqueDtos = mosques.Select(m => Mapper.Map<Mosque, MosqueDto>(m)).ToList();
                 return Ok(mosqueDtos);
             }

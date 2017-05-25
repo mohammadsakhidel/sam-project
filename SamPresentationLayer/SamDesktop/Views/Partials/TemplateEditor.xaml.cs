@@ -18,6 +18,8 @@ using RamancoLibrary.Utilities;
 using System.Windows.Input;
 using System.Drawing.Imaging;
 using SamDesktop.Code.Constants;
+using System.Linq;
+using SamUtils.Classes;
 
 namespace SamDesktop.Views.Partials
 {
@@ -28,6 +30,8 @@ namespace SamDesktop.Views.Partials
         Border _selectedBox;
         System.Windows.Point _mouseDownPoint;
         string _mouseDownSourceName;
+
+        List<TemplateCategoryDto> _categories = null;
         #endregion
 
         #region Ctors:
@@ -37,27 +41,55 @@ namespace SamDesktop.Views.Partials
         }
         #endregion
 
+        #region Props:
+        private TemplateDto templateToEdit = null;
+        public TemplateDto TemplateToEdit
+        {
+            get
+            {
+                return templateToEdit;
+            }
+            set
+            {
+                templateToEdit = value;
+            }
+        }
+        #endregion
+
         #region Event Handlers:
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                #region load categories:
+                #region load data from server:
                 progress.IsBusy = true;
                 using (var hc = HttpUtil.CreateClient())
                 {
-                    var response = await hc.GetAsync(ApiActions.categories_all);
-                    response.EnsureSuccessStatusCode();
-                    var categories = await response.Content.ReadAsAsync<List<TemplateCategoryDto>>();
-                    ((TemplateEditorVM)DataContext).TemplateCategories = new ObservableCollection<TemplateCategoryDto>(categories);
+                    #region get categories:
+                    var catResponse = await hc.GetAsync(ApiActions.categories_all);
+                    catResponse.EnsureSuccessStatusCode();
+                    _categories = await catResponse.Content.ReadAsAsync<List<TemplateCategoryDto>>();
+                    ((TemplateEditorVM)DataContext).TemplateCategories = new ObservableCollection<TemplateCategoryDto>(_categories);
+                    #endregion
+
+                    #region get editing template background image & load template:
+                    if (TemplateToEdit != null)
+                    {
+                        var bgBytes = await hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{TemplateToEdit.BackgroundImageID}");
+                        LoadTemplate(bgBytes);
+                    }
+                    #endregion
+
                     progress.IsBusy = false;
                 }
                 #endregion
 
+                #region set parent window size changed event handler:
                 Window.GetWindow(this).SizeChanged += (o, ee) =>
                 {
                     DrawDesigner();
                 };
+                #endregion
             }
             catch (Exception ex)
             {
@@ -98,12 +130,21 @@ namespace SamDesktop.Views.Partials
                         progress.IsBusy = false;
                         UxUtil.ShowMessage(Messages.SuccessfullyDone);
                         ClearInputs();
+                        Window.GetWindow(this).DialogResult = true;
                     }
                 }
                 #endregion
                 #region CALL API ::: Update Template:
                 else
                 {
+                    using (var hc = HttpUtil.CreateClient())
+                    {
+                        var response = await hc.PutAsJsonAsync(ApiActions.templates_update, templateDto);
+                        response.EnsureSuccessStatusCode();
+                        progress.IsBusy = false;
+                        UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                        Window.GetWindow(this).DialogResult = true;
+                    }
                 }
                 #endregion
             }
@@ -112,10 +153,6 @@ namespace SamDesktop.Views.Partials
                 progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
-        }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            e.Handled = true;
         }
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -475,19 +512,23 @@ namespace SamDesktop.Views.Partials
             ClearDesigner();
             tabDesigner.SelectedIndex = 0;
         }
-        #endregion
 
-        #region Props:
-        private TemplateDto templateToEdit = null;
-        public TemplateDto TemplateToEdit
+        /// <summary>
+        /// This method should be called after categories list loaded.
+        /// </summary>
+        private void LoadTemplate(byte[] backgroundImageBytes)
         {
-            get
+            if (TemplateToEdit != null)
             {
-                return templateToEdit;
-            }
-            set
-            {
-                templateToEdit = value;
+                var vm = DataContext as TemplateEditorVM;
+                vm.Name = TemplateToEdit.Name;
+                vm.TemplateCategory = _categories != null ? _categories.SingleOrDefault(c => c.ID == TemplateToEdit.TemplateCategoryID) : null;
+                vm.BackgroundImage = IOUtils.ByteArrayToBitmap(backgroundImageBytes);
+                vm.Text = TemplateToEdit.Text;
+                vm.Price = TemplateToEdit.Price;
+                vm.AspectRatio = vm.AspectRatios.SingleOrDefault(r => r.WidthRatio == TemplateToEdit.WidthRatio && r.HeightRatio == TemplateToEdit.HeightRatio);
+                vm.IsActive = TemplateToEdit.IsActive;
+                vm.Fields = new ObservableCollection<TemplateFieldDto>(TemplateToEdit.TemplateFields);
             }
         }
         #endregion

@@ -342,4 +342,10 @@
   <data name="ErrorMessageBoxCaption" xml:space="preserve">
     <value>خطا</value>
   </data>
+  <data name="EditTemplate" xml:space="preserve">
+    <value>ویرایش الگو</value>
+  </data>
+  <data name="QuestionMessageBoxCaption" xml:space="preserve">
+    <value>جهت ادامه پاسخ دهید</value>
+  </data>
 </root>

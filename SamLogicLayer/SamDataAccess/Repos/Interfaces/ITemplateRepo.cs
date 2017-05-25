@@ -13,6 +13,7 @@ namespace SamDataAccess.Repos.Interfaces
     {
         #region Extensions:
         void AddWithSave(Template template, ImageBlob backgroundImage);
+        void RemoveAllDependencies(int id);
         #endregion
     }
 }

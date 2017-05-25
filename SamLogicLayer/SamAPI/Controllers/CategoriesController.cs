@@ -15,13 +15,13 @@ namespace SamAPI.Controllers
     public class CategoriesController : ApiController
     {
         #region Fields:
-        ITemplateCategoryRepo categoryRepo;
+        ITemplateCategoryRepo _categoryRepo;
         #endregion
 
         #region Ctors:
         public CategoriesController(ITemplateCategoryRepo categoryRepo)
         {
-            this.categoryRepo = categoryRepo;
+            this._categoryRepo = categoryRepo;
         }
         #endregion
 
@@ -32,7 +32,7 @@ namespace SamAPI.Controllers
             try
             {
                 System.Threading.Thread.Sleep(1000);
-                var all = categoryRepo.GetAll();
+                var all = _categoryRepo.GetAll();
                 var dtos = all.Select(o => Mapper.Map<TemplateCategory, TemplateCategoryDto>(o)).ToList();
                 return Ok(dtos);
             }

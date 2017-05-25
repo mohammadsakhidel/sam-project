@@ -19,5 +19,10 @@ namespace SamDesktop.Code.Utils
         {
             return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.ErrorMessageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        public static MessageBoxResult ShowQuestion(string message)
+        {
+            return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.QuestionMessageBoxCaption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+        }
     }
 }

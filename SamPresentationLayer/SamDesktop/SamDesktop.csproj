@@ -181,6 +181,9 @@
     <Compile Include="Views\Windows\CreateTemplateField.xaml.cs">
       <DependentUpon>CreateTemplateField.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\EditTemplate.xaml.cs">
+      <DependentUpon>EditTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\EditTemplateField.xaml.cs">
       <DependentUpon>EditTemplateField.xaml</DependentUpon>
     </Compile>
@@ -307,6 +310,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\CreateTemplateField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\EditTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

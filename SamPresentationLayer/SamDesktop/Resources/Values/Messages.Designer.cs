@@ -61,6 +61,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آیا نسبت به اجرای عملیات حذف اطمینان دارید؟.
+        /// </summary>
+        internal static string AreYouSureToDelete {
+            get {
+                return ResourceManager.GetString("AreYouSureToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قبل از اینکه بتوانید الگو را طراحی کنید لازم است تصویر پس زمینه و ابعاد الگو را مشخص کنید..
         /// </summary>
         internal static string FillBeforeDesignTemplate {

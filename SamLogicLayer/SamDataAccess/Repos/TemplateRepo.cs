@@ -15,11 +15,13 @@ namespace SamDataAccess.Repos
 {
     public class TemplateRepo : Repo<SamDbContext, Template>, ITemplateRepo
     {
+        #region Overrides:
         public override List<Template> GetAll()
         {
             return set.Include(t => t.Category)
                 .Include(t => t.TemplateFields).ToList();
         }
+        #endregion
 
         #region Extensions:
         public void AddWithSave(Template template, ImageBlob backgroundImage)
@@ -30,6 +32,27 @@ namespace SamDataAccess.Repos
                 context.Templates.Add(template);
                 Save();
                 ts.Complete();
+            }
+        }
+
+        public void RemoveAllDependencies(int id)
+        {
+            using (var ts = new TransactionScope())
+            {
+                var entity = Get(id);
+                if (entity != null)
+                {
+                    // remove backgroudn image:
+                    var blob = context.Blobs.Find(entity.BackgroundImageID);
+                    if (blob != null)
+                        context.Blobs.Remove(blob);
+
+                    //remove template and fields:
+                    context.Templates.Remove(entity);
+
+                    Save();
+                    ts.Complete();
+                }
             }
         }
         #endregion

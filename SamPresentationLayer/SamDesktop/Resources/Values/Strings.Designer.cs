@@ -259,6 +259,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش الگو.
+        /// </summary>
+        internal static string EditTemplate {
+            get {
+                return ResourceManager.GetString("EditTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to خطا.
         /// </summary>
         internal static string ErrorMessageBoxCaption {
@@ -552,6 +561,15 @@ namespace SamDesktop.Resources.Values {
         internal static string Province {
             get {
                 return ResourceManager.GetString("Province", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جهت ادامه پاسخ دهید.
+        /// </summary>
+        internal static string QuestionMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("QuestionMessageBoxCaption", resourceCulture);
             }
         }
         
