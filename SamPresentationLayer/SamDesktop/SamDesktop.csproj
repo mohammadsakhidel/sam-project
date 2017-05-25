@@ -40,8 +40,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoCC\bin\Debug\RamancoCC.dll</HintPath>
     </Reference>
-    <Reference Include="RamancoLibrary">
-      <HintPath>..\..\..\UrmiaMunicipalityGitProject\Namgozari\Web_Namgozari\Bin\RamancoLibrary.dll</HintPath>
+    <Reference Include="RamancoLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SamModels">
       <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>
@@ -119,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Constants\ApiActions.cs" />
     <Compile Include="Code\Constants\Collections.cs" />
     <Compile Include="Code\Converters\BoolConverter.cs" />
     <Compile Include="Code\Converters\ConnectorConverter.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Code\Utils\HttpUtil.cs" />
     <Compile Include="Code\Utils\PathUtil.cs" />
+    <Compile Include="Code\Utils\UxUtil.cs" />
     <Compile Include="Code\Utils\VersatileUtil.cs" />
     <Compile Include="Code\ViewModels\MainVM.cs" />
     <Compile Include="Code\ViewModels\MosquesVM.cs" />
@@ -154,8 +157,8 @@
     <Compile Include="Views\Partials\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Partials\ExtraFieldEditor.xaml.cs">
-      <DependentUpon>ExtraFieldEditor.xaml</DependentUpon>
+    <Compile Include="Views\Partials\TemplateFieldEditor.xaml.cs">
+      <DependentUpon>TemplateFieldEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Partials\Monitoring.xaml.cs">
       <DependentUpon>Monitoring.xaml</DependentUpon>
@@ -175,11 +178,11 @@
     <Compile Include="Views\Windows\CreateTemplate.xaml.cs">
       <DependentUpon>CreateTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\CreateTemplateExtraField.xaml.cs">
-      <DependentUpon>CreateTemplateExtraField.xaml</DependentUpon>
+    <Compile Include="Views\Windows\CreateTemplateField.xaml.cs">
+      <DependentUpon>CreateTemplateField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\EditTemplateExtraField.xaml.cs">
-      <DependentUpon>EditTemplateExtraField.xaml</DependentUpon>
+    <Compile Include="Views\Windows\EditTemplateField.xaml.cs">
+      <DependentUpon>EditTemplateField.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -275,7 +278,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Partials\ExtraFieldEditor.xaml">
+    <Page Include="Views\Partials\TemplateFieldEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -303,11 +306,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\CreateTemplateExtraField.xaml">
+    <Page Include="Views\Windows\CreateTemplateField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\EditTemplateExtraField.xaml">
+    <Page Include="Views\Windows\EditTemplateField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

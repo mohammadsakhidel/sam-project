@@ -18,12 +18,12 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class EditTemplateExtraField : Window
+    public partial class EditTemplateField : Window
     {
-        TemplateExtraFieldDto _fieldToEdit;
+        TemplateFieldDto _fieldToEdit;
 
         #region Ctors:
-        public EditTemplateExtraField(TemplateExtraFieldDto fieldToEdit)
+        public EditTemplateField(TemplateFieldDto fieldToEdit)
         {
             InitializeComponent();
             _fieldToEdit = fieldToEdit;
@@ -35,7 +35,7 @@ namespace SamDesktop.Views.Windows
         {
             try
             {
-                ucExtraFieldEditor.FieldToEdit = _fieldToEdit;
+                ucTemplateFieldEditor.FieldToEdit = _fieldToEdit;
             }
             catch (Exception ex)
             {
@@ -46,10 +46,10 @@ namespace SamDesktop.Views.Windows
         {
             try
             {
-                if (!ucExtraFieldEditor.IsValid())
+                if (!ucTemplateFieldEditor.IsValid())
                     throw new ValidationException(Messages.FillRequiredFields);
 
-                ExtraField = ucExtraFieldEditor.GetExtraField();
+                Field = ucTemplateFieldEditor.GetTemplateField();
                 DialogResult = true;
                 Close();
             }
@@ -61,7 +61,7 @@ namespace SamDesktop.Views.Windows
         #endregion
 
         #region Porps:
-        public TemplateExtraFieldDto ExtraField { get; set; }
+        public TemplateFieldDto Field { get; set; }
         #endregion
     }
 }

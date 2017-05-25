@@ -18,17 +18,17 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class CreateTemplateExtraField : Window
+    public partial class CreateTemplateField : Window
     {
         #region Ctors:
-        public CreateTemplateExtraField()
+        public CreateTemplateField()
         {
             InitializeComponent();
         }
         #endregion
 
         #region Porps:
-        public TemplateExtraFieldDto ExtraField { get; set; }
+        public TemplateFieldDto Field { get; set; }
         #endregion
 
         #region Event Handlers:
@@ -36,14 +36,14 @@ namespace SamDesktop.Views.Windows
         {
             try
             {
-                if (!ucExtraFieldEditor.IsValid())
+                if (!ucTemplateFieldEditor.IsValid())
                     throw new ValidationException(Messages.FillRequiredFields);
 
-                ExtraField = ucExtraFieldEditor.GetExtraField();
-                ExtraField.X = 0;
-                ExtraField.Y = 0;
-                ExtraField.BoxWidth = 0;
-                ExtraField.BoxHeight = 0;
+                Field = ucTemplateFieldEditor.GetTemplateField();
+                Field.X = 0;
+                Field.Y = 0;
+                Field.BoxWidth = 0;
+                Field.BoxHeight = 0;
                 DialogResult = true;
                 Close();
             }

@@ -357,7 +357,7 @@
             <elementDefinition Id="cc7de082-45cc-4826-a9c2-b5535f50cb40" />
           </association>
           <association Id="99502bbd-ab25-4673-b50b-9a8934fd632b" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
-            <classMoniker Id="f4fa4f44-0db8-4d2e-a26f-c2664ee9b7f2" LastKnownName="TemplateExtraField" />
+            <classMoniker Id="f4fa4f44-0db8-4d2e-a26f-c2664ee9b7f2" LastKnownName="TemplateField" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="6385e74a-db9f-4e50-86e9-3509d613b551" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -406,7 +406,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="f4fa4f44-0db8-4d2e-a26f-c2664ee9b7f2" name="TemplateExtraField" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="f4fa4f44-0db8-4d2e-a26f-c2664ee9b7f2" name="TemplateField" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b7775d85-c328-4f05-8dcd-e37b3408b8fb" />
       </class>
     </logicalClassDesignerModelHasTypes>

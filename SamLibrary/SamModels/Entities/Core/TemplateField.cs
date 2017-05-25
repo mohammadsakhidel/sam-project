@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SamModels.Entities.Core
 {
-    public class TemplateExtraField
+    public class TemplateField
     {
         public int ID { get; set; }
 

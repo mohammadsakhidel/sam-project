@@ -1,4 +1,5 @@
 ﻿using SamDataAccess.Contexts;
+using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,8 @@ namespace SamDataAccess.Repos.Interfaces
 {
     public interface ITemplateRepo : IRepo<SamDbContext, Template>
     {
+        #region Extensions:
+        void AddWithSave(Template template, ImageBlob backgroundImage);
+        #endregion
     }
 }

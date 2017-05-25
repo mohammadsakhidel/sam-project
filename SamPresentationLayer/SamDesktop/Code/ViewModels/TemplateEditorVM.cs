@@ -109,14 +109,14 @@ namespace SamDesktop.Code.ViewModels
             }
         }
 
-        private ObservableCollection<TemplateExtraFieldDto> extraFields;
-        public ObservableCollection<TemplateExtraFieldDto> ExtraFields
+        private ObservableCollection<TemplateFieldDto> fields;
+        public ObservableCollection<TemplateFieldDto> Fields
         {
-            get { return extraFields; }
+            get { return fields; }
             set
             {
-                extraFields = value;
-                RaisePropertyChanged("ExtraFields");
+                fields = value;
+                RaisePropertyChanged("Fields");
             }
         }
         #endregion

@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http.Formatting;
 using SamModels.DTOs;
+using SamDesktop.Code.Constants;
 
 namespace SamDesktop.Views.Partials
 {
@@ -111,7 +112,7 @@ namespace SamDesktop.Views.Partials
             progress.IsBusy = true;
             using (var client = HttpUtil.CreateClient())
             {
-                var response = await client.GetAsync($"mosques/findbycity?cityid={cityId}");
+                var response = await client.GetAsync($"{ApiActions.mosques_findbycity}?cityid={cityId}");
                 response.EnsureSuccessStatusCode();
                 var list = await response.Content.ReadAsAsync<List<MosqueDto>>();
                 ((MosquesVM)DataContext).Mosques = new ObservableCollection<MosqueDto>(list);

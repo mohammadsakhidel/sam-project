@@ -145,7 +145,7 @@
       </nodes>
     </associationConnector>
     <classShape Id="59f90ca5-68b9-463f-bc32-d6d545058b19" isExpanded="false" absoluteBounds="0.875, 5.375, 1.5, 0.5" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
-      <classMoniker Id="f4fa4f44-0db8-4d2e-a26f-c2664ee9b7f2" LastKnownName="TemplateExtraField" />
+      <classMoniker Id="f4fa4f44-0db8-4d2e-a26f-c2664ee9b7f2" LastKnownName="TemplateField" />
       <nestedChildShapes>
         <AttributeElementListCompartment Id="18904cc9-af81-45dd-ab30-4817ad6dffdc" absoluteBounds="0.89000000000000012, 5.765, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
         <OperationElementListCompartment Id="39462866-9479-4680-b082-2d430e0f24d1" absoluteBounds="0.89000000000000012, 5.97617186754942, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />

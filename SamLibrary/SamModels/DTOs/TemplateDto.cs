@@ -19,6 +19,8 @@ namespace SamModels.DTOs
 
         public string BackgroundImageID { get; set; }
 
+        public string BackgroundImageBase64 { get; set; }
+
         /// <summary>
         /// This field is a desciptive text for background image and extra fields that
         /// will be used in searches and text messages but not in displayed consolation.
@@ -37,5 +39,7 @@ namespace SamModels.DTOs
         public DateTime CreationTime { get; set; }
 
         public string Creator { get; set; }
+
+        public TemplateFieldDto[] TemplateFields { get; set; }
     }
 }

@@ -13,14 +13,6 @@ namespace SamModels.Entities.Blobs
         public string ID { get; set; }
 
         [Required]
-        [MaxLength(64)]
-        public string Name { get; set; }
-
-        [Required]
-        [MaxLength(8)]
-        public string Extension { get; set; }
-
-        [Required]
         public byte[] Bytes { get; set; }
 
         [Required]

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using AutoMapper.Configuration;
+using SamAPI.App_Start;
 
 namespace SamAPI
 {
@@ -13,14 +14,7 @@ namespace SamAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            #region AutoMapper Configs:
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Mosque, MosqueDto>();
-                cfg.CreateMap<Template, TemplateDto>().ForMember(dest => dest.TemplateCategoryName, opt => opt.MapFrom(src => src.Category.Name));
-                cfg.CreateMap<TemplateCategory, TemplateCategoryDto>();
-            });
-            #endregion
+            AutoMapperConfig.InitializeMapper();
 
             config.MapHttpAttributeRoutes();
 

@@ -34,7 +34,7 @@ namespace SamDataAccess.Contexts
         public DbSet<Obit> Obits { get; set; }
         public DbSet<Consolation> Consolations { get; set; }
         public DbSet<Template> Templates { get; set; }
-        public DbSet<TemplateExtraField> TemplateExtraFields { get; set; }
+        public DbSet<TemplateField> TemplateFields { get; set; }
         public DbSet<TemplateCategory> TemplateCategories { get; set; }
         public DbSet<ObitHolding> ObitHoldings { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -55,7 +55,7 @@ namespace SamDataAccess.Contexts
             modelBuilder.Entity<Obit>().ToTable("Obits", DbSchemaName.core.ToString());
             modelBuilder.Entity<Consolation>().ToTable("Consolations", DbSchemaName.core.ToString());
             modelBuilder.Entity<Template>().ToTable("Templates", DbSchemaName.core.ToString());
-            modelBuilder.Entity<TemplateExtraField>().ToTable("TemplateExtraFields", DbSchemaName.core.ToString());
+            modelBuilder.Entity<TemplateField>().ToTable("TemplateFields", DbSchemaName.core.ToString());
             modelBuilder.Entity<TemplateCategory>().ToTable("TemplateCategories", DbSchemaName.core.ToString());
             modelBuilder.Entity<ObitHolding>().ToTable("ObitHoldings", DbSchemaName.core.ToString());
             modelBuilder.Entity<Customer>().ToTable("Customers", DbSchemaName.core.ToString());

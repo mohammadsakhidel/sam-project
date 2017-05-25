@@ -259,6 +259,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خطا.
+        /// </summary>
+        internal static string ErrorMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("ErrorMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فونت.
         /// </summary>
         internal static string Font {
@@ -381,6 +390,15 @@ namespace SamDesktop.Resources.Values {
         internal static string Maintenance {
             get {
                 return ResourceManager.GetString("Maintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیام.
+        /// </summary>
+        internal static string MessageBoxCaption {
+            get {
+                return ResourceManager.GetString("MessageBoxCaption", resourceCulture);
             }
         }
         

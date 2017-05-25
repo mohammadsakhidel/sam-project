@@ -20,7 +20,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabControl x:Name="tabDesigner" SelectionChanged="TabControl_SelectionChanged">
                 <!--Template Fields:-->
                 <TabItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateInfo}">
                     <Grid Margin="{StaticResource padding_container}">
@@ -125,15 +125,15 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Orientation="Horizontal" Margin="{StaticResource padding_widget_bottom}">
-                                    <ram:FlatButton x:Name="btnNewExtraField" Style="{StaticResource small_action_button_add}" Margin="{StaticResource padding_widget_end}"
+                                    <ram:FlatButton x:Name="btnNewTemplateField" Style="{StaticResource small_action_button_add}" Margin="{StaticResource padding_widget_end}"
                                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewField}"
-                                                    Click="btnNewExtraField_Click"/>
-                                    <ram:FlatButton x:Name="btnDeleteExtraField" Style="{StaticResource small_action_button_delete}"
+                                                    Click="btnNewTemplateField_Click"/>
+                                    <ram:FlatButton x:Name="btnDeleteTemplateField" Style="{StaticResource small_action_button_delete}"
                                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}"
-                                                    Click="btnDeleteExtraField_Click"/>
+                                                    Click="btnDeleteTemplateField_Click"/>
                                 </StackPanel>
-                                <ListView x:Name="lvExtraFields" Grid.Row="1" ItemsSource="{Binding ExtraFields}" 
-                                          DisplayMemberPath="DisplayName" SelectedValuePath="ID" MouseDoubleClick="lvExtraFields_MouseDoubleClick" />
+                                <ListView x:Name="lvTemplateFields" Grid.Row="1" ItemsSource="{Binding Fields}" 
+                                          DisplayMemberPath="DisplayName" SelectedValuePath="ID" MouseDoubleClick="lvTemplateFields_MouseDoubleClick" />
                             </Grid>
                         </Border>
                         <GridSplitter Style="{StaticResource template_designer_splitter}" />
@@ -149,7 +149,6 @@
                 <ram:FlatButton x:Name="btnSave" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Save}"
                             Style="{StaticResource action_button_ok}" Click="btnSave_Click"/>
             </StackPanel>
-
         </Grid>
     </toolkit:BusyIndicator>
 

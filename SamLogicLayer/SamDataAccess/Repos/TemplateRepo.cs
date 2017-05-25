@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Transactions;
+using SamModels.Entities.Blobs;
 
 namespace SamDataAccess.Repos
 {
@@ -15,7 +17,21 @@ namespace SamDataAccess.Repos
     {
         public override List<Template> GetAll()
         {
-            return set.Include(t => t.Category).ToList();
+            return set.Include(t => t.Category)
+                .Include(t => t.TemplateFields).ToList();
         }
+
+        #region Extensions:
+        public void AddWithSave(Template template, ImageBlob backgroundImage)
+        {
+            using (var ts = new TransactionScope())
+            {
+                context.Blobs.Add(backgroundImage);
+                context.Templates.Add(template);
+                Save();
+                ts.Complete();
+            }
+        }
+        #endregion
     }
 }

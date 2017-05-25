@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SamModels.DTOs
 {
-    public class TemplateExtraFieldDto
+    public class TemplateFieldDto
     {
         public int ID { get; set; }
 

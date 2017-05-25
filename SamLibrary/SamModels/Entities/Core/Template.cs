@@ -51,7 +51,7 @@ namespace SamModels.Entities.Core
         public string Creator { get; set; }
 
         #region Navigation Props:
-        public virtual ICollection<TemplateExtraField> ExtraFields { get; set; }
+        public virtual ICollection<TemplateField> TemplateFields { get; set; }
         public virtual TemplateCategory Category { get; set; }
         #endregion
     }

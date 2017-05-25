@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using RamancoLibrary.Utilities;
 using System.Windows.Input;
+using System.Drawing.Imaging;
+using SamDesktop.Code.Constants;
 
 namespace SamDesktop.Views.Partials
 {
@@ -44,7 +46,7 @@ namespace SamDesktop.Views.Partials
                 progress.IsBusy = true;
                 using (var hc = HttpUtil.CreateClient())
                 {
-                    var response = await hc.GetAsync("categories/all");
+                    var response = await hc.GetAsync(ApiActions.categories_all);
                     response.EnsureSuccessStatusCode();
                     var categories = await response.Content.ReadAsAsync<List<TemplateCategoryDto>>();
                     ((TemplateEditorVM)DataContext).TemplateCategories = new ObservableCollection<TemplateCategoryDto>(categories);
@@ -52,7 +54,8 @@ namespace SamDesktop.Views.Partials
                 }
                 #endregion
 
-                Window.GetWindow(this).SizeChanged += (o, ee) => {
+                Window.GetWindow(this).SizeChanged += (o, ee) =>
+                {
                     DrawDesigner();
                 };
             }
@@ -62,15 +65,51 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var vm = (TemplateEditorVM)DataContext;
-                
+                if (!ValidateInputs())
+                    throw new ValidationException(Messages.FillRequiredFields);
+
+                var isEditing = TemplateToEdit != null;
+                var vm = DataContext as TemplateEditorVM;
+                progress.IsBusy = true;
+
+                #region Gather Inputs:
+                var templateDto = TemplateToEdit ?? new TemplateDto();
+                templateDto.Name = vm.Name;
+                templateDto.TemplateCategoryID = vm.TemplateCategory.ID;
+                templateDto.BackgroundImageBase64 = Convert.ToBase64String(IOUtils.BitmapToByteArray(new Bitmap(vm.BackgroundImage), ImageFormat.Jpeg));
+                templateDto.Text = vm.Text;
+                templateDto.Price = vm.Price;
+                templateDto.WidthRatio = vm.AspectRatio.WidthRatio;
+                templateDto.HeightRatio = vm.AspectRatio.HeightRatio;
+                templateDto.IsActive = vm.IsActive;
+                templateDto.TemplateFields = vm.Fields != null && vm.Fields.Count > 0 ? (new List<TemplateFieldDto>(vm.Fields)).ToArray() : null;
+                #endregion
+                #region CALL API ::: Craete Template:
+                if (!isEditing)
+                {
+                    using (var hc = HttpUtil.CreateClient())
+                    {
+                        var response = await hc.PostAsJsonAsync(ApiActions.templates_create, templateDto);
+                        response.EnsureSuccessStatusCode();
+                        progress.IsBusy = false;
+                        UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                        ClearInputs();
+                    }
+                }
+                #endregion
+                #region CALL API ::: Update Template:
+                else
+                {
+                }
+                #endregion
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }
@@ -121,18 +160,18 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnNewExtraField_Click(object sender, RoutedEventArgs e)
+        private void btnNewTemplateField_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var window = new CreateTemplateExtraField();
+                var window = new CreateTemplateField();
                 var res = window.ShowDialog();
                 if (res.HasValue && res.Value)
                 {
-                    var field = window.ExtraField;
-                    var fields = ((TemplateEditorVM)DataContext).ExtraFields ?? new ObservableCollection<TemplateExtraFieldDto>();
+                    var field = window.Field;
+                    var fields = ((TemplateEditorVM)DataContext).Fields ?? new ObservableCollection<TemplateFieldDto>();
                     fields.Add(field);
-                    ((TemplateEditorVM)DataContext).ExtraFields = fields;
+                    ((TemplateEditorVM)DataContext).Fields = fields;
                     DrawDesigner();
                 }
             }
@@ -141,21 +180,21 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void lvExtraFields_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void lvTemplateFields_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                if (lvExtraFields.Items.Count > 0 && lvExtraFields.SelectedItem != null)
+                if (lvTemplateFields.Items.Count > 0 && lvTemplateFields.SelectedItem != null)
                 {
-                    var index = lvExtraFields.SelectedIndex;
-                    var window = new EditTemplateExtraField(lvExtraFields.SelectedItem as TemplateExtraFieldDto);
+                    var index = lvTemplateFields.SelectedIndex;
+                    var window = new EditTemplateField(lvTemplateFields.SelectedItem as TemplateFieldDto);
                     var res = window.ShowDialog();
                     if (res.HasValue && res.Value)
                     {
-                        var field = window.ExtraField;
-                        var fields = ((TemplateEditorVM)DataContext).ExtraFields ?? new ObservableCollection<TemplateExtraFieldDto>();
+                        var field = window.Field;
+                        var fields = ((TemplateEditorVM)DataContext).Fields ?? new ObservableCollection<TemplateFieldDto>();
                         fields[index] = field;
-                        ((TemplateEditorVM)DataContext).ExtraFields = fields;
+                        ((TemplateEditorVM)DataContext).Fields = fields;
                         DrawDesigner();
                     }
                 }
@@ -165,13 +204,13 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnDeleteExtraField_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteTemplateField_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (lvExtraFields.SelectedItem != null)
+                if (lvTemplateFields.SelectedItem != null)
                 {
-                    ((TemplateEditorVM)DataContext).ExtraFields.Remove(lvExtraFields.SelectedItem as TemplateExtraFieldDto);
+                    ((TemplateEditorVM)DataContext).Fields.Remove(lvTemplateFields.SelectedItem as TemplateFieldDto);
                     DrawDesigner();
                 }
             }
@@ -204,8 +243,8 @@ namespace SamDesktop.Views.Partials
                         Canvas.SetLeft(_selectedBox, newX);
                         Canvas.SetTop(_selectedBox, newY);
 
-                        ((TemplateExtraFieldDto)_selectedBox.Tag).X = newX / _canvas.ActualWidth * 100;
-                        ((TemplateExtraFieldDto)_selectedBox.Tag).Y = newY / _canvas.ActualHeight * 100;
+                        ((TemplateFieldDto)_selectedBox.Tag).X = newX / _canvas.ActualWidth * 100;
+                        ((TemplateFieldDto)_selectedBox.Tag).Y = newY / _canvas.ActualHeight * 100;
                     }
                     else if (_mouseDownSourceName == "top")
                     {
@@ -215,8 +254,8 @@ namespace SamDesktop.Views.Partials
                         Canvas.SetTop(_selectedBox, newTop);
                         _selectedBox.Height += boxTop - newTop;
 
-                        ((TemplateExtraFieldDto)_selectedBox.Tag).Y = newTop / _canvas.ActualHeight * 100;
-                        ((TemplateExtraFieldDto)_selectedBox.Tag).BoxHeight = _selectedBox.Height * 100 / _canvas.ActualHeight;
+                        ((TemplateFieldDto)_selectedBox.Tag).Y = newTop / _canvas.ActualHeight * 100;
+                        ((TemplateFieldDto)_selectedBox.Tag).BoxHeight = _selectedBox.Height * 100 / _canvas.ActualHeight;
                     }
                     else if (_mouseDownSourceName == "left")
                     {
@@ -226,8 +265,8 @@ namespace SamDesktop.Views.Partials
                         Canvas.SetLeft(_selectedBox, newLeft);
                         _selectedBox.Width += boxLeft - newLeft;
 
-                        ((TemplateExtraFieldDto)_selectedBox.Tag).X = newLeft / _canvas.ActualWidth * 100;
-                        ((TemplateExtraFieldDto)_selectedBox.Tag).BoxWidth = _selectedBox.Width * 100 / _canvas.ActualWidth;
+                        ((TemplateFieldDto)_selectedBox.Tag).X = newLeft / _canvas.ActualWidth * 100;
+                        ((TemplateFieldDto)_selectedBox.Tag).BoxWidth = _selectedBox.Width * 100 / _canvas.ActualWidth;
                     }
                 }
             }
@@ -292,11 +331,11 @@ namespace SamDesktop.Views.Partials
                 _canvas.MouseUp += _canvas_MouseUp;
                 #endregion
                 #region Draw Field Boxes:
-                if (vm.ExtraFields != null)
+                if (vm.Fields != null)
                 {
                     _canvas.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
                     _canvas.Arrange(new Rect(0, 0, canvasContainer.Width, canvasContainer.Height));
-                    foreach (var field in vm.ExtraFields)
+                    foreach (var field in vm.Fields)
                     {
                         var boxWidth = (field.BoxWidth > 0 ? field.BoxWidth * _canvas.ActualWidth / 100 : 90);
                         var boxHeight = (field.BoxHeight > 0 ? field.BoxHeight * _canvas.ActualHeight / 100 : 25);
@@ -319,8 +358,11 @@ namespace SamDesktop.Views.Partials
                 #endregion
             }
         }
-
-        private Border GetDrawableBox(TemplateExtraFieldDto field, double width, double height)
+        private void ClearDesigner()
+        {
+            pallet.Child = null;
+        }
+        private Border GetDrawableBox(TemplateFieldDto field, double width, double height)
         {
             #region TextBlock And MainBox:
             var textblock = new TextBlock();
@@ -377,7 +419,6 @@ namespace SamDesktop.Views.Partials
 
             return boxContainer;
         }
-
         private VerticalAlignment ToVerticalAlignment(string alignment)
         {
             if (alignment == SamUtils.Enums.TextAlignment.center.ToString())
@@ -389,7 +430,6 @@ namespace SamDesktop.Views.Partials
 
             return VerticalAlignment.Center;
         }
-
         private HorizontalAlignment ToHorizontalAlignment(string alignment)
         {
             if (alignment == SamUtils.Enums.TextAlignment.center.ToString())
@@ -401,7 +441,55 @@ namespace SamDesktop.Views.Partials
 
             return HorizontalAlignment.Center;
         }
+        private bool ValidateInputs()
+        {
+            var vm = (TemplateEditorVM)DataContext;
 
+            if (string.IsNullOrEmpty(vm.Name))
+                return false;
+            if (vm.TemplateCategory == null)
+                return false;
+            if (vm.BackgroundImage == null)
+                return false;
+            if (string.IsNullOrEmpty(vm.Text))
+                return false;
+            if (vm.Price <= 0)
+                return false;
+            if (vm.AspectRatio == null)
+                return false;
+
+            return true;
+        }
+        private void ClearInputs()
+        {
+            var vm = DataContext as TemplateEditorVM;
+            vm.Name = "";
+            vm.TemplateCategory = null;
+            vm.BackgroundImage = null;
+            vm.Text = "";
+            vm.Price = 0;
+            vm.AspectRatio = null;
+            vm.IsActive = false;
+            vm.Fields = null;
+            tbBackgroundImageFileName.Clear();
+            ClearDesigner();
+            tabDesigner.SelectedIndex = 0;
+        }
+        #endregion
+
+        #region Props:
+        private TemplateDto templateToEdit = null;
+        public TemplateDto TemplateToEdit
+        {
+            get
+            {
+                return templateToEdit;
+            }
+            set
+            {
+                templateToEdit = value;
+            }
+        }
         #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using SamDesktop.Code.Utils;
+﻿using SamDesktop.Code.Constants;
+using SamDesktop.Code.Utils;
 using SamDesktop.Code.ViewModels;
 using SamDesktop.Views.Windows;
 using SamModels.DTOs;
@@ -64,7 +65,7 @@ namespace SamDesktop.Views.Partials
             progress.IsBusy = true;
             using (var client = HttpUtil.CreateClient())
             {
-                var response = await client.GetAsync("templates/all");
+                var response = await client.GetAsync(ApiActions.templates_all);
                 response.EnsureSuccessStatusCode();
                 var list = await response.Content.ReadAsAsync<List<TemplateDto>>();
                 ((TemplatesVM)DataContext).Templates = new ObservableCollection<TemplateDto>(list);

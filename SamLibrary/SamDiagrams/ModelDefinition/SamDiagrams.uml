@@ -638,7 +638,7 @@
             isAbstract="false">
             <classMoniker
               Id="b7775d85-c328-4f05-8dcd-e37b3408b8fb"
-              LastKnownName="TemplateExtraField"
+              LastKnownName="TemplateField"
               LastKnownLocation="SamDiagrams.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -746,7 +746,7 @@
     <packageHasNamedElement>
       <class
         Id="b7775d85-c328-4f05-8dcd-e37b3408b8fb"
-        name="TemplateExtraField"
+        name="TemplateField"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />

@@ -13,7 +13,7 @@ namespace SamDataAccess.Repos.BaseClasses
         where T : class
     {
         #region Fields:
-        protected DbContext context;
+        protected C context;
         protected DbSet<T> set;
         #endregion
 

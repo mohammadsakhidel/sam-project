@@ -77,5 +77,14 @@ namespace SamDesktop.Resources.Values {
                 return ResourceManager.GetString("FillRequiredFields", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عملیات با موفقیت انجام شد..
+        /// </summary>
+        internal static string SuccessfullyDone {
+            get {
+                return ResourceManager.GetString("SuccessfullyDone", resourceCulture);
+            }
+        }
     }
 }

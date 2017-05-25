@@ -18,18 +18,18 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Partials
 {
-    public partial class ExtraFieldEditor : UserControl
+    public partial class TemplateFieldEditor : UserControl
     {
         #region Ctors:
-        public ExtraFieldEditor()
+        public TemplateFieldEditor()
         {
             InitializeComponent();
         }
         #endregion
 
         #region Props:
-        private TemplateExtraFieldDto fieldToEdit = null;
-        public TemplateExtraFieldDto FieldToEdit
+        private TemplateFieldDto fieldToEdit = null;
+        public TemplateFieldDto FieldToEdit
         {
             get
             {
@@ -66,20 +66,20 @@ namespace SamDesktop.Views.Partials
             chLeftToRightDirection.IsChecked = FieldToEdit.FlowDirection == SamUtils.Enums.FlowDirection.ltr.ToString();
             chWrapContent.IsChecked = FieldToEdit.WrapContent.HasValue && FieldToEdit.WrapContent.Value;
         }
-        public TemplateExtraFieldDto GetExtraField()
+        public TemplateFieldDto GetTemplateField()
         {
-            var extraField = FieldToEdit ?? new TemplateExtraFieldDto();
-            extraField.Name = cmbName.Text;
-            extraField.DisplayName = tbDisplayName.Text;
-            extraField.FontFamily = (cmbFontFamily.SelectedItem != null ? cmbFontFamily.Text : null);
-            extraField.FontSize = (cmbFontSize.SelectedItem != null ? ((FontSizePresenter)cmbFontSize.SelectedItem).Size.ToString() : null);
-            extraField.Bold = chBold.IsChecked;
-            extraField.TextColor = colorText.SelectedColor.HasValue ? string.Format("#{0:X2}{1:X2}{2:X2}", colorText.SelectedColor.Value.R, colorText.SelectedColor.Value.G, colorText.SelectedColor.Value.B) : null;
-            extraField.FlowDirection = chLeftToRightDirection.IsChecked.HasValue && chLeftToRightDirection.IsChecked.Value ? SamUtils.Enums.FlowDirection.ltr.ToString() : SamUtils.Enums.FlowDirection.rtl.ToString();
-            extraField.HorizontalContentAlignment = (cmbHorizontalAlignment.SelectedItem != null ? ((TextAlignmentPresenter)cmbHorizontalAlignment.SelectedItem).Alignment.ToString() : null);
-            extraField.VerticalContentAlignment = (cmbVerticalAlignment.SelectedItem != null ? ((TextAlignmentPresenter)cmbVerticalAlignment.SelectedItem).Alignment.ToString() : null);
-            extraField.WrapContent = chWrapContent.IsChecked.HasValue && chWrapContent.IsChecked.Value;
-            return extraField;
+            var templateField = FieldToEdit ?? new TemplateFieldDto();
+            templateField.Name = cmbName.Text;
+            templateField.DisplayName = tbDisplayName.Text;
+            templateField.FontFamily = (cmbFontFamily.SelectedItem != null ? cmbFontFamily.Text : null);
+            templateField.FontSize = (cmbFontSize.SelectedItem != null ? ((FontSizePresenter)cmbFontSize.SelectedItem).Size.ToString() : null);
+            templateField.Bold = chBold.IsChecked;
+            templateField.TextColor = colorText.SelectedColor.HasValue ? string.Format("#{0:X2}{1:X2}{2:X2}", colorText.SelectedColor.Value.R, colorText.SelectedColor.Value.G, colorText.SelectedColor.Value.B) : null;
+            templateField.FlowDirection = chLeftToRightDirection.IsChecked.HasValue && chLeftToRightDirection.IsChecked.Value ? SamUtils.Enums.FlowDirection.ltr.ToString() : SamUtils.Enums.FlowDirection.rtl.ToString();
+            templateField.HorizontalContentAlignment = (cmbHorizontalAlignment.SelectedItem != null ? ((TextAlignmentPresenter)cmbHorizontalAlignment.SelectedItem).Alignment.ToString() : null);
+            templateField.VerticalContentAlignment = (cmbVerticalAlignment.SelectedItem != null ? ((TextAlignmentPresenter)cmbVerticalAlignment.SelectedItem).Alignment.ToString() : null);
+            templateField.WrapContent = chWrapContent.IsChecked.HasValue && chWrapContent.IsChecked.Value;
+            return templateField;
         }
         public bool IsValid()
         {

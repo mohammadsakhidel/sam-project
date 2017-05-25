@@ -13,7 +13,7 @@ namespace SamDesktop.Code.Utils
     {
         public static void Handle(Exception ex)
         {
-            MessageBox.Show($"{ex.GetType().FullName}:{Environment.NewLine}{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            UxUtil.ShowError($"{ex.GetType().FullName}:{Environment.NewLine}{ex.Message}");
         }
     }
 }

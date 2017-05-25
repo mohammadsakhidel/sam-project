@@ -51,7 +51,7 @@
     <Compile Include="DTOs\ProvinceDto.cs" />
     <Compile Include="DTOs\TemplateCategoryDto.cs" />
     <Compile Include="DTOs\TemplateDto.cs" />
-    <Compile Include="DTOs\TemplateExtraFieldDto.cs" />
+    <Compile Include="DTOs\TemplateFieldDto.cs" />
     <Compile Include="Entities\Blobs\Blob.cs" />
     <Compile Include="Entities\Blobs\ImageBlob.cs" />
     <Compile Include="Entities\Core\City.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="Entities\Core\Template.cs" />
     <Compile Include="Entities\Core\ObitHolding.cs" />
     <Compile Include="Entities\Core\TemplateCategory.cs" />
-    <Compile Include="Entities\Core\TemplateExtraField.cs" />
+    <Compile Include="Entities\Core\TemplateField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
