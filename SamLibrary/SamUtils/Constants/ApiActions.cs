@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamDesktop.Code.Constants
+namespace SamUtils.Constants
 {
     public class ApiActions
     {
@@ -15,5 +15,9 @@ namespace SamDesktop.Code.Constants
         public const string templates_update = "templates/update";
         public const string templates_delete = "templates/delete";
         public const string blobs_getimage = "blobs/getimage";
+        public const string obits_get = "obits/get";
+        public const string obits_getholdings = "obits/getholdings";
+        public const string obits_create = "obits/create";
+        public const string obits_update = "obits/update";
     }
 }

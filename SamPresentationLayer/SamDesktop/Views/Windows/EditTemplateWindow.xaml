@@ -1,4 +1,4 @@
-﻿<Window x:Class="SamDesktop.Views.Windows.CreateTemplate"
+﻿<Window x:Class="SamDesktop.Views.Windows.EditTemplateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,10 +17,10 @@
             </Grid.RowDefinitions>
 
             <Label Style="{StaticResource page_header}" Margin="{StaticResource padding_widget_bottom}"
-                   Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreateTemplate}" />
+                   Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.EditTemplate}" />
 
             <uc:TemplateEditor Grid.Row="1" x:Name="templateEditor" />
         </Grid>
     </Border>
-
+    
 </Window>

@@ -16,12 +16,12 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class EditTemplate : Window
+    public partial class EditTemplateWindow : Window
     {
         TemplateDto _templateToEdit;
 
         #region Ctors:
-        public EditTemplate(TemplateDto templateToEdit)
+        public EditTemplateWindow(TemplateDto templateToEdit)
         {
             InitializeComponent();
             _templateToEdit = templateToEdit;

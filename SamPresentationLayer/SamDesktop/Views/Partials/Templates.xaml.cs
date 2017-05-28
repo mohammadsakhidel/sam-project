@@ -1,4 +1,4 @@
-﻿using SamDesktop.Code.Constants;
+﻿using SamUtils.Constants;
 using SamDesktop.Code.Utils;
 using SamDesktop.Code.ViewModels;
 using SamDesktop.Resources.Values;
@@ -50,7 +50,7 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                var createTemplateWindow = new CreateTemplate();
+                var createTemplateWindow = new CreateTemplateWindow();
                 var res = createTemplateWindow.ShowDialog();
                 if (res.HasValue && res.Value)
                 {
@@ -70,7 +70,7 @@ namespace SamDesktop.Views.Partials
                 if (dgTemplates.SelectedItem != null)
                 {
                     var templateToEdit = dgTemplates.SelectedItem as TemplateDto;
-                    var editTemplateWindow = new EditTemplate(templateToEdit);
+                    var editTemplateWindow = new EditTemplateWindow(templateToEdit);
                     editTemplateWindow.ShowDialog();
                 }
             }

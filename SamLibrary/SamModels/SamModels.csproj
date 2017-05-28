@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="DTOs\CityDto.cs" />
     <Compile Include="DTOs\MosqueDto.cs" />
+    <Compile Include="DTOs\ObitDto.cs" />
+    <Compile Include="DTOs\ObitHoldingDto.cs" />
     <Compile Include="DTOs\ProvinceDto.cs" />
     <Compile Include="DTOs\TemplateCategoryDto.cs" />
     <Compile Include="DTOs\TemplateDto.cs" />
@@ -59,7 +61,6 @@
     <Compile Include="Entities\Core\Mosque.cs" />
     <Compile Include="Entities\Core\Obit.cs" />
     <Compile Include="Entities\Core\Consolation.cs" />
-    <Compile Include="Entities\Core\DeceasedPerson.cs" />
     <Compile Include="Entities\Core\Province.cs" />
     <Compile Include="Entities\Core\Template.cs" />
     <Compile Include="Entities\Core\ObitHolding.cs" />

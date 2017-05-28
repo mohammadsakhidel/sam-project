@@ -77,10 +77,12 @@
                 <StackPanel Orientation="Horizontal">
                     <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}" Click="btnNew_Click"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" />
-                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_widget_hor}"
-                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click" />
-                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_widget_hor}"
-                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click" />
+                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click"
+                                    IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
+                                    IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                 </StackPanel>
             </Border>
 

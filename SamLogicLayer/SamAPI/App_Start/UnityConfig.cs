@@ -18,6 +18,7 @@ namespace SamAPI
             container.RegisterType<ITemplateRepo, TemplateRepo>();
             container.RegisterType<ITemplateCategoryRepo, TemplateCategoryRepo>();
             container.RegisterType<IBlobRepo, BlobRepo>();
+            container.RegisterType<IObitRepo, ObitRepo>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

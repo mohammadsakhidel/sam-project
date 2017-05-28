@@ -8,6 +8,7 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
              xmlns:cnv="clr-namespace:SamDesktop.Code.Converters"
+             xmlns:utils="clr-namespace:SamDesktop.Code.Utils"
              Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:MosquesVM />
@@ -27,7 +28,8 @@
             <Border Grid.Row="1" Style="{StaticResource frame}" Margin="{StaticResource padding_container_top}">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
-                    <ComboBox x:Name="cmbProvince" Width="150" ItemsSource="{Binding Provinces}" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="cmbProvince_SelectionChanged"></ComboBox>
+                    <ComboBox x:Name="cmbProvince" Width="150" ItemsSource="{Binding Provinces}" DisplayMemberPath="Name" SelectedValuePath="ID" 
+                              SelectionChanged="cmbProvince_SelectionChanged"></ComboBox>
                     <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="16 0 0 0"></Label>
                     <ComboBox x:Name="cmbCity" Width="150" ItemsSource="{Binding Cities}" DisplayMemberPath="Name" SelectedValuePath="ID"></ComboBox>
                     <ram:FlatButton x:Name="btnSearch" Style="{StaticResource small_action_button_search}" Margin="{StaticResource padding_container_hor}"
@@ -102,12 +104,15 @@
                     <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewMosque}"
                                     Click="btnNew_Click" />
-                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_widget_hor}"
+                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}"
-                                    Click="btnEdit_Click"/>
-                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_widget_hor}"
+                                    Click="btnEdit_Click" IsEnabled="{Binding ElementName=dgMosques, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}"
-                                    Click="btnDelete_Click"/>
+                                    Click="btnDelete_Click" IsEnabled="{Binding ElementName=dgMosques, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                    <ram:FlatButton x:Name="btnObits" Style="{StaticResource action_button_calendar}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Obits}"
+                                    Click="btnObits_Click" IsEnabled="{Binding ElementName=dgMosques, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                 </StackPanel>
             </Border>
         </Grid>

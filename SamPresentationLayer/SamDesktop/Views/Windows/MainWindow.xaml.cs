@@ -18,9 +18,9 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class Main : Window
+    public partial class MainWindow : Window
     {
-        public Main()
+        public MainWindow()
         {
             InitializeComponent();
         }

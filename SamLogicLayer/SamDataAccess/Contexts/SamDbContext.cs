@@ -38,7 +38,6 @@ namespace SamDataAccess.Contexts
         public DbSet<TemplateCategory> TemplateCategories { get; set; }
         public DbSet<ObitHolding> ObitHoldings { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<DeceasedPerson> DeceasedPersons { get; set; }
         #endregion
 
         #region Blobs DbSets:
@@ -59,7 +58,6 @@ namespace SamDataAccess.Contexts
             modelBuilder.Entity<TemplateCategory>().ToTable("TemplateCategories", DbSchemaName.core.ToString());
             modelBuilder.Entity<ObitHolding>().ToTable("ObitHoldings", DbSchemaName.core.ToString());
             modelBuilder.Entity<Customer>().ToTable("Customers", DbSchemaName.core.ToString());
-            modelBuilder.Entity<DeceasedPerson>().ToTable("DeceasedPersons", DbSchemaName.core.ToString());
             #endregion
 
             #region Blob Entities:

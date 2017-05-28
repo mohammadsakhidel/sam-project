@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="SamDesktop.Views.Partials.ObitEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamDesktop.Views.Partials"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:persian="http://schemas.microsoft.com/wpf/2008/toolkit"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
+             Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:ObitEditorVM />
+    </UserControl.DataContext>
+    
+    <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <!--Row 0 ::: Title-->
+            <Label Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Title}" />
+            <TextBox x:Name="tbTitle" Grid.Column="1" />
+
+            <!--Row 2 ::: ObitType-->
+            <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitType}" />
+            <ComboBox x:Name="cmbObitType" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ObitTypes}" DisplayMemberPath="Value" SelectedValuePath="Key" />
+
+            <!--Row 4 ::: ObitHoldings-->
+            <GroupBox Grid.Row="4" Grid.ColumnSpan="2" Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitHolding}" Margin="{StaticResource padding_widget_ver}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="{StaticResource padding_container}">
+                        <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Date}" />
+                        <persian:DatePicker x:Name="datePicker" />
+                        <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BeginHour}"
+                               Margin="{StaticResource padding_container_start}"/>
+                        <toolkit:MaskedTextBox x:Name="tbBeginHour" Mask="99:99" Width="50" />
+                        <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.EndHour}"
+                               Margin="{StaticResource padding_container_start}"/>
+                        <toolkit:MaskedTextBox x:Name="tbEndHour"  Mask="99:99" Width="50" />
+                        <ram:FlatButton x:Name="btnAddHolding" Style="{StaticResource small_action_button_add}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Add}"
+                                        Margin="{StaticResource padding_container_start}" Click="btnAddHolding_Click" />
+                    </StackPanel>
+
+                    <DataGrid x:Name="dgRecords" Grid.Row="1" ItemsSource="{Binding ObitHoldings}" MouseDoubleClick="dgRecords_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding BeginTime, Converter={StaticResource shortDateConverter}}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BeginHour}" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding BeginTime, Converter={StaticResource shortTimeConverter}}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BeginHour}" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding EndTime, Converter={StaticResource shortTimeConverter}}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.EndHour}" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+
+            <!--Row 5 ::: OK Cancel Buttons-->
+            <StackPanel Grid.Row="5" HorizontalAlignment="Center" Orientation="Horizontal">
+                <ram:FlatButton x:Name="btnSave" Style="{StaticResource action_button_ok}" Margin="{StaticResource padding_container_end}"
+                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OK}" Click="btnSave_Click" IsDefault="True"/>
+                <ram:FlatButton x:Name="btnCancel" Style="{StaticResource action_button_cancel}"
+                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Cancel}" IsCancel="True"/>
+            </StackPanel>
+
+        </Grid>
+    </toolkit:BusyIndicator>
+    
+</UserControl>

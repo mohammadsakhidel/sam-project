@@ -1,4 +1,5 @@
 ﻿using RamancoLibrary.Utilities;
+using SamDesktop.Resources;
 using SamDesktop.Resources.Values;
 using System;
 using System.Collections.Generic;
@@ -16,18 +17,41 @@ namespace SamDesktop.Code.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var regex = new Regex(@"^\w+\.\w+$");
-            if (!regex.IsMatch(parameter.ToString()))
-                throw new Exception("Invalid converter parameter for ResourceConverter.");
+            try
+            {
+                if ((value == null || value.GetType() != typeof(string)) && parameter != null && !string.IsNullOrEmpty(parameter.ToString()))
+                {
+                    var regex = new Regex(@"^\w+\.\w+$");
+                    if (!regex.IsMatch(parameter.ToString()))
+                        throw new Exception("Invalid converter parameter for ResourceConverter.");
 
-            var pair = parameter.ToString().Split('.');
-            var className = pair[0];
-            var propName = pair[1];
+                    var pair = parameter.ToString().Split('.');
+                    var className = pair[0];
+                    var propName = pair[1];
 
-            var resManager = new System.Resources.ResourceManager($"SamDesktop.Resources.Values.{className}", Assembly.GetExecutingAssembly());
+                    var val = ResourceManager.GetValue(propName, className);
+                    return val;
+                }
+                else if (value != null && !string.IsNullOrEmpty(value.ToString()))
+                {
+                    var prefix = parameter != null && !string.IsNullOrEmpty(parameter.ToString()) ? parameter.ToString() : "Strings.";
+                    var pairStr = $"{prefix}{value.ToString()}";
+                    var pair = pairStr.Split('.');
+                    var className = pair[0];
+                    var propName = pair[1];
 
-            var val = resManager.GetString(propName, System.Threading.Thread.CurrentThread.CurrentUICulture);
-            return val;
+                    var val = ResourceManager.GetValue(propName, className);
+                    return val;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

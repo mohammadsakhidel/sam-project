@@ -1,0 +1,26 @@
+﻿<Window x:Class="SamDesktop.Views.Windows.CreateObitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SamDesktop.Views.Windows"
+        xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
+        xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+        Style="{StaticResource dialog_window}"
+        Width="650" Height="530" WindowStartupLocation="CenterScreen">
+
+    <Border Style="{StaticResource dialog_window_content}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreateObit}" />
+
+            <uc:ObitEditor x:Name="ucObitEditor" Grid.Row="1" Margin="{StaticResource padding_container}" />
+
+        </Grid>
+    </Border>
+
+</Window>

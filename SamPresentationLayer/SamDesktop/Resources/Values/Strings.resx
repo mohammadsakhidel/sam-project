@@ -348,4 +348,34 @@
   <data name="QuestionMessageBoxCaption" xml:space="preserve">
     <value>جهت ادامه پاسخ دهید</value>
   </data>
+  <data name="Obits" xml:space="preserve">
+    <value>مراسم ها</value>
+  </data>
+  <data name="Mosque" xml:space="preserve">
+    <value>مسجد</value>
+  </data>
+  <data name="BeginHour" xml:space="preserve">
+    <value>ساعت شروع</value>
+  </data>
+  <data name="EndHour" xml:space="preserve">
+    <value>ساعت پایان</value>
+  </data>
+  <data name="ObitType" xml:space="preserve">
+    <value>نوع مراسم</value>
+  </data>
+  <data name="CreateObit" xml:space="preserve">
+    <value>ثبت مراسم جدید</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>افزودن</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="ObitHolding" xml:space="preserve">
+    <value>زمان برگزاری مراسم</value>
+  </data>
+  <data name="EditObit" xml:space="preserve">
+    <value>ویرایش مراسم</value>
+  </data>
 </root>

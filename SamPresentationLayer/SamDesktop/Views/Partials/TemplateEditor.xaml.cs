@@ -17,7 +17,7 @@ using System.Windows.Media;
 using RamancoLibrary.Utilities;
 using System.Windows.Input;
 using System.Drawing.Imaging;
-using SamDesktop.Code.Constants;
+using SamUtils.Constants;
 using System.Linq;
 using SamUtils.Classes;
 
@@ -201,7 +201,7 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                var window = new CreateTemplateField();
+                var window = new CreateTemplateFieldWindow();
                 var res = window.ShowDialog();
                 if (res.HasValue && res.Value)
                 {
@@ -224,7 +224,7 @@ namespace SamDesktop.Views.Partials
                 if (lvTemplateFields.Items.Count > 0 && lvTemplateFields.SelectedItem != null)
                 {
                     var index = lvTemplateFields.SelectedIndex;
-                    var window = new EditTemplateField(lvTemplateFields.SelectedItem as TemplateFieldDto);
+                    var window = new EditTemplateFieldWindow(lvTemplateFields.SelectedItem as TemplateFieldDto);
                     var res = window.ShowDialog();
                     if (res.HasValue && res.Value)
                     {

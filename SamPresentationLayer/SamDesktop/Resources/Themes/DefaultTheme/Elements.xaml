@@ -75,6 +75,10 @@
         <Setter Property="IconSource" Value="Images/ic_cancel_dark.png"></Setter>
     </Style>
 
+    <Style x:Key="action_button_calendar" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_calendar_dark.png"></Setter>
+    </Style>
+
     <Style x:Key="small_action_button_search" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
         <Setter Property="IconSource" Value="Images/ic_search_dark.png"></Setter>
     </Style>
@@ -89,6 +93,14 @@
     
     <Style x:Key="small_action_button_delete" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
         <Setter Property="IconSource" Value="Images/ic_delete_dark.png"></Setter>
+    </Style>
+
+    <Style x:Key="small_action_button_previous" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_previous_dark.png"></Setter>
+    </Style>
+
+    <Style x:Key="small_action_button_next" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_next_dark.png"></Setter>
     </Style>
 
     <Style x:Key="form_label" TargetType="Label">

@@ -18,10 +18,10 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class CreateTemplateField : Window
+    public partial class CreateTemplateFieldWindow : Window
     {
         #region Ctors:
-        public CreateTemplateField()
+        public CreateTemplateFieldWindow()
         {
             InitializeComponent();
         }

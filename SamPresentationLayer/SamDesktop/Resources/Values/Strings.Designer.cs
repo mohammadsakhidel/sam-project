@@ -88,6 +88,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to افزودن.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آدرس.
         /// </summary>
         internal static string Address {
@@ -138,6 +147,15 @@ namespace SamDesktop.Resources.Values {
         internal static string BasicInfo {
             get {
                 return ResourceManager.GetString("BasicInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ساعت شروع.
+        /// </summary>
+        internal static string BeginHour {
+            get {
+                return ResourceManager.GetString("BeginHour", resourceCulture);
             }
         }
         
@@ -196,6 +214,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ثبت مراسم جدید.
+        /// </summary>
+        internal static string CreateObit {
+            get {
+                return ResourceManager.GetString("CreateObit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ایجاد الگوی جدید.
         /// </summary>
         internal static string CreateTemplate {
@@ -219,6 +246,15 @@ namespace SamDesktop.Resources.Values {
         internal static string CreatorUser {
             get {
                 return ResourceManager.GetString("CreatorUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاریخ.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -259,11 +295,29 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش مراسم.
+        /// </summary>
+        internal static string EditObit {
+            get {
+                return ResourceManager.GetString("EditObit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش الگو.
         /// </summary>
         internal static string EditTemplate {
             get {
                 return ResourceManager.GetString("EditTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ساعت پایان.
+        /// </summary>
+        internal static string EndHour {
+            get {
+                return ResourceManager.GetString("EndHour", resourceCulture);
             }
         }
         
@@ -421,6 +475,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مسجد.
+        /// </summary>
+        internal static string Mosque {
+            get {
+                return ResourceManager.GetString("Mosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام مسجد.
         /// </summary>
         internal static string MosqueName {
@@ -498,6 +561,33 @@ namespace SamDesktop.Resources.Values {
         internal static string Normal {
             get {
                 return ResourceManager.GetString("Normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زمان برگزاری مراسم.
+        /// </summary>
+        internal static string ObitHolding {
+            get {
+                return ResourceManager.GetString("ObitHolding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مراسم ها.
+        /// </summary>
+        internal static string Obits {
+            get {
+                return ResourceManager.GetString("Obits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نوع مراسم.
+        /// </summary>
+        internal static string ObitType {
+            get {
+                return ResourceManager.GetString("ObitType", resourceCulture);
             }
         }
         

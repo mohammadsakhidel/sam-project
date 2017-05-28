@@ -88,6 +88,15 @@ namespace SamDesktop.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مقادیر وارد شده معتبر نیستند، لطفاً اصلاح کرده و مجدداً تلاش کنید..
+        /// </summary>
+        internal static string InvalidInputValues {
+            get {
+                return ResourceManager.GetString("InvalidInputValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات با موفقیت انجام شد..
         /// </summary>
         internal static string SuccessfullyDone {

@@ -18,12 +18,12 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class EditTemplateField : Window
+    public partial class EditTemplateFieldWindow : Window
     {
         TemplateFieldDto _fieldToEdit;
 
         #region Ctors:
-        public EditTemplateField(TemplateFieldDto fieldToEdit)
+        public EditTemplateFieldWindow(TemplateFieldDto fieldToEdit)
         {
             InitializeComponent();
             _fieldToEdit = fieldToEdit;

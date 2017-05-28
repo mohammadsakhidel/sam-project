@@ -34,6 +34,17 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<TemplateCategory, TemplateCategoryDto>();
                 cfg.CreateMap<TemplateCategoryDto, TemplateCategory>();
                 #endregion
+
+                #region Obit:
+                cfg.CreateMap<Obit, ObitDto>();
+                cfg.CreateMap<ObitDto, Obit>();
+                #endregion
+
+                #region ObitHolding:
+                cfg.CreateMap<ObitHolding, ObitHoldingDto>()
+                   .ForMember(dest => dest.Obit, opt => opt.Ignore());
+                cfg.CreateMap<ObitHoldingDto, ObitHolding>();
+                #endregion
             });
         }
     }

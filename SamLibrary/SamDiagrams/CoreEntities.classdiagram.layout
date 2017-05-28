@@ -84,21 +84,6 @@
         <classShapeMoniker Id="a24608b3-7ec3-4642-8078-bead831152da" />
       </nodes>
     </associationConnector>
-    <classShape Id="2e614124-3fde-4670-b6b8-e38abb693690" isExpanded="false" absoluteBounds="5.375, 1.125, 1.5, 0.5" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
-      <classMoniker Id="97e95da8-8abc-448f-bc04-a30bc8acdee2" LastKnownName="DeceasedPerson" />
-      <nestedChildShapes>
-        <AttributeElementListCompartment Id="416fa870-3719-4d9f-ba76-5cba2ba4d241" absoluteBounds="5.39, 1.5150000000000001, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-        <OperationElementListCompartment Id="1be18f65-c2a9-4937-b9a5-26777f4bbfe9" absoluteBounds="5.39, 1.7261718675494193, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(4.625 : 2.38214285714286); (4.91666666666667 : 2.38214285714286); (4.91666666666667 : 1.375); (5.375 : 1.375)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="*">
-      <associationMoniker Id="01011c54-dff9-4cd0-84cc-9fe9b5723056" />
-      <relativeChildShapes />
-      <nodes>
-        <classShapeMoniker Id="a01e8f05-7da9-4f2e-b94f-2a8fff4297f5" />
-        <classShapeMoniker Id="2e614124-3fde-4670-b6b8-e38abb693690" />
-      </nodes>
-    </associationConnector>
     <classShape Id="19737a15-2903-4301-a479-810551568f19" isExpanded="false" absoluteBounds="5.375, 3.375, 1.5, 0.5" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
       <classMoniker Id="dcdebf53-304e-46af-b76b-5d7edca440bd" LastKnownName="ObitHolding" />
       <nestedChildShapes>

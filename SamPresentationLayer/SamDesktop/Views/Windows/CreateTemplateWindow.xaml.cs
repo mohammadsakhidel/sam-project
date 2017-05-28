@@ -16,10 +16,10 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class CreateTemplate : Window
+    public partial class CreateTemplateWindow : Window
     {
         #region CTOR:
-        public CreateTemplate()
+        public CreateTemplateWindow()
         {
             InitializeComponent();
         }

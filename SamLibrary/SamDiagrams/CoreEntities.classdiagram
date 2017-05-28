@@ -202,32 +202,6 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="04790244-5896-4044-89c6-52ba276c4c32" />
           </association>
-          <association Id="01011c54-dff9-4cd0-84cc-9fe9b5723056" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
-            <classMoniker Id="97e95da8-8abc-448f-bc04-a30bc8acdee2" LastKnownName="DeceasedPerson" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="853bb6e3-b637-4d6e-94c9-8b4cee1d9307" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="fa1ac842-8769-46c5-8be4-8c3259837722" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="cf4e0544-b55a-4dfc-8f5f-59f595faee42" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="088ac43a-fb3d-4555-8a08-14848c034d5c" name="Lower" value="*">
-                      <elementDefinition Id="c706177a-517f-4290-8b19-e1ec1897f1a8" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="726a4b16-b340-433f-8e1d-a2ea0cce8019" name="Upper" value="*">
-                      <elementDefinition Id="f0ea5686-05ea-419a-ba8f-04d788383800" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="793fd2b0-6dd5-4aea-a25a-b8091407b3c1" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="16713982-c33d-4fad-8b05-b49e71bc15cd" />
-          </association>
           <association Id="3baa097f-fcb0-4436-921e-06d22d0a2010" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
             <classMoniker Id="dcdebf53-304e-46af-b76b-5d7edca440bd" LastKnownName="ObitHolding" />
             <relationshipOwnedElementsInternal>
@@ -383,11 +357,6 @@
             <elementDefinition Id="cc4b54dc-531d-4357-a43b-41edd2e40360" />
           </association>
         </targetEnds>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="97e95da8-8abc-448f-bc04-a30bc8acdee2" name="DeceasedPerson" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="ba66acbb-179c-41fd-bf99-4e8a5261c568" />
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>

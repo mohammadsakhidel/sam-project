@@ -20,7 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http.Formatting;
 using SamModels.DTOs;
-using SamDesktop.Code.Constants;
+using SamUtils.Constants;
 
 namespace SamDesktop.Views.Partials
 {
@@ -38,7 +38,7 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                var provinces = CityUtil.GetProvinces(PathUtil.GetCitiesFilePath());
+                var provinces = CityUtil.GetProvinces();
                 var vm = DataContext as MosquesVM;
                 vm.Provinces = new ObservableCollection<ProvinceDto>(provinces);
             }
@@ -47,7 +47,6 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void cmbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -55,7 +54,7 @@ namespace SamDesktop.Views.Partials
                 if (cmbProvince.SelectedItem != null)
                 {
                     var prov = (ProvinceDto)cmbProvince.SelectedItem;
-                    var cities = CityUtil.GetProvinceCities(prov.ID, PathUtil.GetCitiesFilePath());
+                    var cities = CityUtil.GetProvinceCities(prov.ID);
                     var vm = DataContext as MosquesVM;
                     vm.Cities = new ObservableCollection<CityDto>(cities);
                 }
@@ -65,7 +64,6 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private async void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -82,7 +80,6 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -94,15 +91,29 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void btnObits_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dgMosques.SelectedItem != null)
+                {
+                    var mosque = dgMosques.SelectedItem as MosqueDto;
+                    var window = new SamDesktop.Views.Windows.ObitsWindow(mosque);
+                    window.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
         }
         #endregion
 

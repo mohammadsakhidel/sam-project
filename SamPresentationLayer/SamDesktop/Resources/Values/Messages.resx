@@ -126,6 +126,9 @@
   <data name="FillRequiredFields" xml:space="preserve">
     <value>لطفاً مقدار فیلدهای اجباری را مشخص نمایید.</value>
   </data>
+  <data name="InvalidInputValues" xml:space="preserve">
+    <value>مقادیر وارد شده معتبر نیستند، لطفاً اصلاح کرده و مجدداً تلاش کنید.</value>
+  </data>
   <data name="SuccessfullyDone" xml:space="preserve">
     <value>عملیات با موفقیت انجام شد.</value>
   </data>
