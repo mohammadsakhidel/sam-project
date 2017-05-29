@@ -102,5 +102,24 @@ namespace SamAPI.Controllers
             }
         }
         #endregion
+
+        #region DELETE ACTIONS:
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            try
+            {
+                Thread.Sleep(2000);
+
+                _obitRepo.RemoveWithSave(id);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
     }
 }

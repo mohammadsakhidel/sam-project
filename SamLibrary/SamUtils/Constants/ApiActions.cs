@@ -19,5 +19,6 @@ namespace SamUtils.Constants
         public const string obits_getholdings = "obits/getholdings";
         public const string obits_create = "obits/create";
         public const string obits_update = "obits/update";
+        public const string obits_delete = "obits/delete";
     }
 }

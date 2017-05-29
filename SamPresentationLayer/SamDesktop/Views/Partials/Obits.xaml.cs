@@ -113,14 +113,32 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
+                if (dgRecords.SelectedItem != null)
+                {
+                    var result = UxUtil.ShowQuestion(Messages.AreYouSureToDelete);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var obitToDeleteId = (dgRecords.SelectedItem as ObitHoldingDto).ObitID;
+                        #region Call Server To Delete:
+                        progress.IsBusy = true;
+                        using (var hc = HttpUtil.CreateClient())
+                        {
+                            var response = await hc.DeleteAsync($"{ApiActions.obits_delete}/{obitToDeleteId}");
+                            response.EnsureSuccessStatusCode();
+                            UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                            await LoadObits(SelectedMosque.ID, ucPersianDateNavigator.GetMiladyDate().Value);
+                        }
+                        #endregion
+                    }
+                }
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }
