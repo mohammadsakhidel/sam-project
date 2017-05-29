@@ -113,6 +113,10 @@
     <Compile Include="Migrations\SamDbMigrations\201705281425190_DeceasedPersons_Droped.Designer.cs">
       <DependentUpon>201705281425190_DeceasedPersons_Droped.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201705290347098_Blob_ThumbBytesAddedToImages.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201705290347098_Blob_ThumbBytesAddedToImages.Designer.cs">
+      <DependentUpon>201705290347098_Blob_ThumbBytesAddedToImages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201705281425190_DeceasedPersons_Droped.resx">
       <DependentUpon>201705281425190_DeceasedPersons_Droped.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201705290347098_Blob_ThumbBytesAddedToImages.resx">
+      <DependentUpon>201705290347098_Blob_ThumbBytesAddedToImages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

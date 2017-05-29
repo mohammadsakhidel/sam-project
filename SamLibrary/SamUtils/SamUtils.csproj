@@ -49,6 +49,7 @@
     <Compile Include="Constants\ApiActions.cs" />
     <Compile Include="Constants\Collections.cs" />
     <Compile Include="Constants\StringFormats.cs" />
+    <Compile Include="Constants\Values.cs" />
     <Compile Include="Enums\ConsolationStatus.cs" />
     <Compile Include="Enums\ContentAlignment.cs" />
     <Compile Include="Enums\DbSchemaName.cs" />

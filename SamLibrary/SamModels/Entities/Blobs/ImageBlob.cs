@@ -9,6 +9,8 @@ namespace SamModels.Entities.Blobs
 {
     public class ImageBlob : Blob
     {
+        public byte[] ThumbImageBytes { get; set; }
+
         [MaxLength(8)]
         public string ImageFormat { get; set; }
 

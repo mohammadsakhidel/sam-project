@@ -5,9 +5,11 @@ using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
+using SamUtils.Constants;
 using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -55,6 +57,8 @@ namespace SamAPI.Controllers
                 #region Prepare Background Image Blob:
                 var backgroundBytes = Convert.FromBase64String(model.BackgroundImageBase64);
                 var backgroundBitmap = IOUtils.ByteArrayToBitmap(backgroundBytes);
+                var resizer = new ImageResizer(backgroundBitmap.Width, backgroundBitmap.Height, ResizeType.LongerFix, Values.thumbnail_size);
+                var backgroundThumb = ImageUtils.GetThumbnailImage(backgroundBitmap, resizer.NewWidth, resizer.NewHeight);
                 var backgroundBlob = new ImageBlob
                 {
                     // blob:
@@ -62,6 +66,7 @@ namespace SamAPI.Controllers
                     Bytes = backgroundBytes,
                     CreationTime = DateTimeUtils.Now,
                     // imageblob:
+                    ThumbImageBytes = IOUtils.BitmapToByteArray(backgroundThumb, ImageFormat.Jpeg),
                     ImageWidth = backgroundBitmap.Width,
                     ImageHeight = backgroundBitmap.Height
                 };
