@@ -4,7 +4,7 @@
     @Strings.CreateConsolationTemplateInfoStep
 </h2>
 
-@using (Ajax.BeginForm("Create_TemplateInfoStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin", OnSuccess = "onSuccess" }))
+@using (Ajax.BeginForm("Create_TemplateInfoStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }))
 {
     foreach (var field in Model.Fields)
     {

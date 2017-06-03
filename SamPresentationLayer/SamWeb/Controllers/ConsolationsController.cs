@@ -52,6 +52,10 @@ namespace SamWeb.Controllers
             try
             {
                 var obits = await GetMosqueObitsFromApi(mosqueId);
+                foreach (var obit in obits)
+                {
+                    obit.ObitTypeDisplay = ResourceManager.GetValue($"ObitType_{obit.ObitType}", "Enums");
+                }
                 return Json(obits, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

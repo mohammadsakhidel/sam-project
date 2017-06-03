@@ -35,7 +35,9 @@ namespace SamAPI.Controllers
                 #region Create Consolation:
                 var consolation = Mapper.Map<ConsolationDto, Consolation>(model);
                 consolation.CreationTime = DateTimeUtils.Now;
-                _consolationRepo.Create(consolation);
+                consolation.Customer.IsMember = false;
+                _consolationRepo.Add(consolation);
+                _consolationRepo.Save();
                 #endregion
 
                 return Ok();

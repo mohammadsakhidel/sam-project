@@ -4,7 +4,9 @@
     @Strings.CreateConsolationTemplateSelectionStep
 </h2>
 
-@using (Ajax.BeginForm("Create_TemplateSelectionStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin", OnSuccess = "onSuccess" }))
+@using (Ajax.BeginForm("Create_TemplateSelectionStep", "Consolations", null,
+    new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+    new { @id = "frm_template" }))
 {
     <div class="panel-group">
         @if (Model.Categories != null && Model.Categories.Any())
@@ -105,7 +107,7 @@
         $('#cs_' + $(this).data('categoryId')).val(false);
     });
 
-    var onSuccess = function (result) {
+    $('form#frm_template').submit(function () {
         try {
             if (TemplateSelectionStep.TemplateID > 0) {
                 setLocal("TemplateID", TemplateSelectionStep.TemplateID);
@@ -113,6 +115,6 @@
         } catch (e) {
             alert(e.message);
         }
-    };
+    });
 
 </script>

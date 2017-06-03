@@ -36,7 +36,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                System.Threading.Thread.Sleep(1000);
                 var templates = _templateRepo.GetAll();
                 var dtos = templates.Select(t => Mapper.Map<Template, TemplateDto>(t)).ToList();
                 return Ok(dtos);
@@ -52,7 +51,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                System.Threading.Thread.Sleep(1000);
                 var template = _templateRepo.Get(id);
                 var dto = Mapper.Map<Template, TemplateDto>(template);
                 return Ok(dto);
@@ -120,7 +118,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                System.Threading.Thread.Sleep(2000);
                 _templateRepo.RemoveAllDependencies(id);
                 return Ok();
             }

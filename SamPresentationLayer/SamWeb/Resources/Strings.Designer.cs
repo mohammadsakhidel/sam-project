@@ -151,6 +151,15 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پایان عملیات.
+        /// </summary>
+        public static string CreateConsolationSuccessStep {
+            get {
+                return ResourceManager.GetString("CreateConsolationSuccessStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to محتوای پیام تسلیت.
         /// </summary>
         public static string CreateConsolationTemplateInfoStep {

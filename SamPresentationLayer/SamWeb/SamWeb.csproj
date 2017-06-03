@@ -214,7 +214,7 @@
     <Content Include="Content\SamThemes\DefaultTheme\Fonts\Vazir.ttf" />
     <Content Include="Content\SamThemes\DefaultTheme\Fonts\Vazir.woff" />
     <Content Include="Content\SamThemes\DefaultTheme\Fonts\Vazir.woff2" />
-    <None Include="Properties\PublishProfiles\tttt.pubxml" />
+    <None Include="Properties\PublishProfiles\sam_publish.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -250,11 +250,17 @@
     <Compile Include="Models\ViewModels\CreateConsolationTemplateInfoStep.cs" />
     <Compile Include="Models\ViewModels\CreateConsolationTemplateSelectionStepVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Enums.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Enums.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ResourceManager.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -285,6 +291,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Enums.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Enums.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>

@@ -47,7 +47,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(2000);
                 var mosques = _mosqueRepo.FindByCity(cityId);
                 var mosqueDtos = mosques.Select(m => Mapper.Map<Mosque, MosqueDto>(m)).ToList();
                 return Ok(mosqueDtos);

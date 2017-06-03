@@ -14,12 +14,11 @@ namespace SamWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Create", "Consolations");
         }
 
         public JsonResult GetProvinceCities(int id)
         {
-            Thread.Sleep(2000);
             return Json(CityUtil.GetProvinceCities(id), JsonRequestBehavior.AllowGet);
         }
     }

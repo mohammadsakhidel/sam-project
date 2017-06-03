@@ -10,6 +10,5 @@ namespace SamDataAccess.Repos.Interfaces
 {
     public interface IConsolationRepo : IRepo<SamDbContext, Consolation>
     {
-        void Create(Consolation consolation);
     }
 }

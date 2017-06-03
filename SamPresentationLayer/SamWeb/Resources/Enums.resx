@@ -117,70 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppDescription" xml:space="preserve">
-    <value>سامانه اطلاع رسانی مساجد</value>
+  <data name="ObitType_chehelom" xml:space="preserve">
+    <value>مجلس چهلم</value>
   </data>
-  <data name="AppName" xml:space="preserve">
-    <value>سام</value>
+  <data name="ObitType_haftom" xml:space="preserve">
+    <value>روز هفتم</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>بازگشت</value>
+  <data name="ObitType_salgard" xml:space="preserve">
+    <value>سالگرد</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>انصراف</value>
+  <data name="ObitType_sayer" xml:space="preserve">
+    <value>سایر</value>
   </data>
-  <data name="CellPhoneNumber" xml:space="preserve">
-    <value>شماره موبایل</value>
+  <data name="ObitType_sevom" xml:space="preserve">
+    <value>روز سوم</value>
   </data>
-  <data name="City" xml:space="preserve">
-    <value>شهر</value>
-  </data>
-  <data name="ConfirmAndContinue" xml:space="preserve">
-    <value>تأیید و ادامه</value>
-  </data>
-  <data name="ConfirmAndPay" xml:space="preserve">
-    <value>تأیید و پرداخت</value>
-  </data>
-  <data name="CreateConsolationCustomerInfoStep" xml:space="preserve">
-    <value>مشخصات شما</value>
-  </data>
-  <data name="CreateConsolationObitSelectionStep" xml:space="preserve">
-    <value>انتخاب مجلس ترحیم</value>
-  </data>
-  <data name="CreateConsolationSuccessStep" xml:space="preserve">
-    <value>پایان عملیات</value>
-  </data>
-  <data name="CreateConsolationTemplateInfoStep" xml:space="preserve">
-    <value>محتوای پیام تسلیت</value>
-  </data>
-  <data name="CreateConsolationTemplateSelectionStep" xml:space="preserve">
-    <value>انتخاب الگوی پیام تسلیت</value>
-  </data>
-  <data name="FullName" xml:space="preserve">
-    <value>نام و نام خانوادگی</value>
-  </data>
-  <data name="Mosque" xml:space="preserve">
-    <value>مسجد</value>
-  </data>
-  <data name="Obit" xml:space="preserve">
+  <data name="ObitType_tarhim" xml:space="preserve">
     <value>مجلس ترحیم</value>
   </data>
-  <data name="Off" xml:space="preserve">
-    <value>خیر</value>
-  </data>
-  <data name="On" xml:space="preserve">
-    <value>بله</value>
-  </data>
-  <data name="PriceUnit" xml:space="preserve">
-    <value>ریال</value>
-  </data>
-  <data name="Province" xml:space="preserve">
-    <value>استان</value>
-  </data>
-  <data name="RegisterConsolation" xml:space="preserve">
-    <value>ثبت پیام تسلیت</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>انتخاب</value>
+  <data name="ObitType_yadbood" xml:space="preserve">
+    <value>مجلس یادبود</value>
   </data>
 </root>

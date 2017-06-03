@@ -33,7 +33,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(1000);
                 var obits = _obitRepo.GetAllFromDate(mosqueId, DateTimeUtils.Now);
                 var dtos = obits.Select(o => Mapper.Map<Obit, ObitDto>(o));
                 return Ok(dtos);
@@ -49,7 +48,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(1000);
                 var obits = _obitRepo.Get(mosqueId, date);
                 var dtos = obits.Select(o => Mapper.Map<Obit, ObitDto>(o));
                 return Ok(dtos);
@@ -65,7 +63,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(1000);
                 var holdings = _obitRepo.GetHoldings(mosqueId, date);
                 var dtos = holdings.Select(o => Mapper.Map<ObitHolding, ObitHoldingDto>(o, opt => opt.AfterMap((src, dest) =>
                 {
@@ -86,7 +83,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(2000);
                 var obit = Mapper.Map<ObitDto, Obit>(model);
                 obit.CreationTime = DateTimeUtils.Now;
                 _obitRepo.AddWithSave(obit);
@@ -105,8 +101,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(2000);
-
                 var newObit = Mapper.Map<ObitDto, Obit>(model);
                 _obitRepo.UpdateWithSave(newObit);
 
@@ -125,8 +119,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(2000);
-
                 _obitRepo.RemoveWithSave(id);
 
                 return Ok();

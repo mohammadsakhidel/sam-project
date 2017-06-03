@@ -31,7 +31,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                System.Threading.Thread.Sleep(1000);
                 var all = _categoryRepo.GetAll();
                 var dtos = all.Select(o => Mapper.Map<TemplateCategory, TemplateCategoryDto>(o)).ToList();
                 return Ok(dtos);

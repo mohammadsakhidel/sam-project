@@ -4,7 +4,9 @@
     @Strings.CreateConsolationObitSelectionStep
 </h2>
 
-@using (Ajax.BeginForm("Create_ObitSelectionStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin", OnSuccess = "onSuccess" }))
+@using (Ajax.BeginForm("Create_ObitSelectionStep", "Consolations", null,
+    new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+    new { @id = "frm_obit" }))
 {
     <div class="form-group">
         <label for="ProvinceID" class="control-label">@Strings.Province</label>
@@ -131,7 +133,7 @@
             try {
                 $('#ObitID').html('<option></option>');
                 $.each(data, function (key, val) {
-                    $('#ObitID').append('<option value="' + val.ID + '">' + val.Title + '</option>');
+                    $('#ObitID').append('<option value="' + val.ID + '">' + val.Title + ' : ' + val.ObitTypeDisplay + '</option>');
                 });
                 $('#ObitID').removeProp('disabled');
             } catch (e) {
@@ -154,7 +156,7 @@
         }
     });
 
-    var onSuccess = function (result) {
+    $('form#frm_obit').submit(function () {
         try {
             if (ObitSelectionStep.ObitID > 0) {
                 setLocal("ObitID", ObitSelectionStep.ObitID);
@@ -162,6 +164,6 @@
         } catch (e) {
             alert(e.message);
         }
-    };
+    });
 
 </script>

@@ -23,5 +23,9 @@ namespace SamModels.DTOs
         #region Navigation Props:
         public List<ObitHoldingDto> ObitHoldings { get; set; }
         #endregion
+
+        #region Extensions:
+        public string ObitTypeDisplay { get; set; }
+        #endregion
     }
 }
