@@ -16,6 +16,9 @@ namespace SamModels.Entities.Core
         public string Name { get; set; }
 
         [Required]
+        public int Order { get; set; }
+
+        [Required]
         public int TemplateCategoryID { get; set; }
 
         [Required]

@@ -46,6 +46,22 @@ namespace SamAPI.Controllers
                 return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            try
+            {
+                System.Threading.Thread.Sleep(1000);
+                var template = _templateRepo.Get(id);
+                var dto = Mapper.Map<Template, TemplateDto>(template);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
         #endregion
 
         #region POST:
@@ -94,7 +110,7 @@ namespace SamAPI.Controllers
         [HttpPut]
         public IHttpActionResult Update(TemplateDto model)
         {
-            return Ok();
+            throw new NotImplementedException();
         }
         #endregion
 

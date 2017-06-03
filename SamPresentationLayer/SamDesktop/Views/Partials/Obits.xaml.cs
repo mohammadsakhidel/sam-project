@@ -5,9 +5,11 @@ using SamDesktop.Resources.Values;
 using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using SamUtils.Constants;
+using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -54,7 +56,6 @@ namespace SamDesktop.Views.Partials
                     lblInfo.Content = $"{Strings.Province}: {province.Name}\t {Strings.City}: {city.Name}\t {Strings.Mosque}: {SelectedMosque.Name}";
                     #endregion
                 }
-
                 ucPersianDateNavigator.SetMiladyDate(DateTimeUtils.Now);
             }
             catch (Exception ex)
@@ -152,7 +153,7 @@ namespace SamDesktop.Views.Partials
                 progress.IsBusy = true;
                 using (var hc = HttpUtil.CreateClient())
                 {
-                    var response = await hc.GetAsync($"{ApiActions.obits_getholdings}?mosqueId={mosqueId}&date={miladyDate.ToString(StringFormats.date_short)}");
+                    var response = await hc.GetAsync($"{ApiActions.obits_getholdings}?mosqueId={mosqueId}&date={miladyDate.ToString(StringFormats.date_short, new CultureInfo("en"))}");
                     response.EnsureSuccessStatusCode();
                     var obitHoldings = await response.Content.ReadAsAsync<List<ObitHoldingDto>>();
                     var vm = DataContext as ObitsVM;

@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using System.Net.Http.Formatting;
 using SamModels.DTOs;
 using SamUtils.Constants;
+using SamUtils.Utils;
 
 namespace SamDesktop.Views.Partials
 {
@@ -38,7 +39,7 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                var provinces = CityUtil.GetProvinces();
+                var provinces = CityUtil.Provinces;
                 var vm = DataContext as MosquesVM;
                 vm.Provinces = new ObservableCollection<ProvinceDto>(provinces);
             }

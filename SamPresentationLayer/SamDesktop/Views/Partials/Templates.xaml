@@ -34,7 +34,12 @@
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateName}" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding TemplateCategoryName}">
+                    <DataGridTextColumn Binding="{Binding Order}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Order}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Category.Name}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Category}" />
                         </DataGridTextColumn.Header>

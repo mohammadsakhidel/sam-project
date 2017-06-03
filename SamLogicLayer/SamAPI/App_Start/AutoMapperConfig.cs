@@ -20,8 +20,7 @@ namespace SamAPI.App_Start
                 #endregion
 
                 #region Template:
-                cfg.CreateMap<Template, TemplateDto>()
-                    .ForMember(dest => dest.TemplateCategoryName, opt => opt.MapFrom(src => src.Category.Name));
+                cfg.CreateMap<Template, TemplateDto>();
                 cfg.CreateMap<TemplateDto, Template>();
                 #endregion
 
@@ -44,6 +43,16 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<ObitHolding, ObitHoldingDto>()
                    .ForMember(dest => dest.Obit, opt => opt.Ignore());
                 cfg.CreateMap<ObitHoldingDto, ObitHolding>();
+                #endregion
+
+                #region Customer:
+                cfg.CreateMap<Customer, CustomerDto>();
+                cfg.CreateMap<CustomerDto, Customer>();
+                #endregion
+
+                #region Consolation:
+                cfg.CreateMap<Consolation, ConsolationDto>();
+                cfg.CreateMap<ConsolationDto, Consolation>();
                 #endregion
             });
         }

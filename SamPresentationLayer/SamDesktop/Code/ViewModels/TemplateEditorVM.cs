@@ -43,6 +43,17 @@ namespace SamDesktop.Code.ViewModels
             }
         }
 
+        private int order;
+        public int Order
+        {
+            get { return order; }
+            set
+            {
+                order = value;
+                RaisePropertyChanged("Order");
+            }
+        }
+
         private TemplateCategoryDto templateCategory;
         public TemplateCategoryDto TemplateCategory
         {

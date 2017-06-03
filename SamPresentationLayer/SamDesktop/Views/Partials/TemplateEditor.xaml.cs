@@ -20,6 +20,7 @@ using System.Drawing.Imaging;
 using SamUtils.Constants;
 using System.Linq;
 using SamUtils.Classes;
+using SamUtils.Utils;
 
 namespace SamDesktop.Views.Partials
 {
@@ -111,6 +112,7 @@ namespace SamDesktop.Views.Partials
                 #region Gather Inputs:
                 var templateDto = TemplateToEdit ?? new TemplateDto();
                 templateDto.Name = vm.Name;
+                templateDto.Order = vm.Order;
                 templateDto.TemplateCategoryID = vm.TemplateCategory.ID;
                 templateDto.BackgroundImageBase64 = Convert.ToBase64String(IOUtils.BitmapToByteArray(new Bitmap(vm.BackgroundImage), ImageFormat.Jpeg));
                 templateDto.Text = vm.Text;
@@ -492,6 +494,8 @@ namespace SamDesktop.Views.Partials
                 return false;
             if (vm.Price <= 0)
                 return false;
+            if (vm.Order <= 0)
+                return false;
             if (vm.AspectRatio == null)
                 return false;
 
@@ -501,6 +505,7 @@ namespace SamDesktop.Views.Partials
         {
             var vm = DataContext as TemplateEditorVM;
             vm.Name = "";
+            vm.Order = 0;
             vm.TemplateCategory = null;
             vm.BackgroundImage = null;
             vm.Text = "";
@@ -522,6 +527,7 @@ namespace SamDesktop.Views.Partials
             {
                 var vm = DataContext as TemplateEditorVM;
                 vm.Name = TemplateToEdit.Name;
+                vm.Order = TemplateToEdit.Order;
                 vm.TemplateCategory = _categories != null ? _categories.SingleOrDefault(c => c.ID == TemplateToEdit.TemplateCategoryID) : null;
                 vm.BackgroundImage = IOUtils.ByteArrayToBitmap(backgroundImageBytes);
                 vm.Text = TemplateToEdit.Text;

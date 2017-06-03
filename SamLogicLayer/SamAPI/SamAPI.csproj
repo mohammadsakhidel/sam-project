@@ -76,7 +76,8 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RamancoLibrary">
+    <Reference Include="RamancoLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SamModels">
@@ -135,6 +136,7 @@
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Controllers\BlobsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ConsolationsController.cs" />
     <Compile Include="Controllers\MosquesController.cs" />
     <Compile Include="Controllers\ObitsController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />

@@ -1,0 +1,49 @@
+﻿@model CreateConsolationTemplateInfoStep
+
+<h2 class="step-title">
+    @Strings.CreateConsolationTemplateInfoStep
+</h2>
+
+@using (Ajax.BeginForm("Create_TemplateInfoStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin", OnSuccess = "onSuccess" }))
+{
+    foreach (var field in Model.Fields)
+    {
+        <div class="form-group">
+            <label for="@($"tf_{field.Name}")" class="control-label">@field.DisplayName</label>
+            <div>
+                @Html.TextBox($"tf_{field.Name}", field.Value, new { @class = "form-control" })
+                <span class="small text-muted">@field.Description</span>
+                @Html.Hidden($"tfdc_{field.Name}", field.Description)
+                @Html.Hidden($"tfdn_{field.Name}", field.DisplayName)
+            </div>
+        </div>
+    }
+
+    @Html.Hidden("ObitID")
+    @Html.Hidden("TemplateID")
+    @Html.Hidden("FullName")
+    @Html.Hidden("CellPhoneNumber")
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            @Strings.ConfirmAndPay
+        </button>
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+            <span class="glyphicon glyphicon-remove"></span>
+            @Strings.Cancel
+        </a>
+    </div>
+
+    <div class="text-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+<script>
+    $(function () {
+        $('#ObitID').val(getLocal("ObitID"));
+        $('#TemplateID').val(getLocal("TemplateID"));
+        $('#FullName').val(getLocal("FullName"));
+        $('#CellPhoneNumber').val(getLocal("CellPhoneNumber"));
+    });
+</script>

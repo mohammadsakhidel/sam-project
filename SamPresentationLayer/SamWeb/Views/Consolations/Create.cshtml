@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+@section head {
+    @Scripts.Render("~/bundles/js/jquery-cookie")
+}
+
+<div id="wizard" style="position: relative;">
+
+    <div id="wizard_step">
+        @Html.Partial("Partials/_CreateConsolationWizard_ObitSelectionStep")
+    </div>
+
+    <div id="loading" class="wizard-loading" style="display: none;">
+        <div class="loader-bg"></div>
+        <div id="loader" class="loader"></div>
+    </div>
+
+</div>
+
+<script>
+    function onBegin() {
+        var wizardHeight = $('#wizard').height();
+        var wizardWidth = $('#wizard').width();
+        var loaderHeight = $('#loader').height();
+        var loaderWidth = $('#loader').width();
+        var top = wizardHeight / 2 - loaderHeight / 2;
+        var left = wizardWidth / 2 - loaderWidth / 2;
+        $('#loader').css('top', top).css('left', left);
+    }
+
+    function setLocal(key, val) {
+        if (sessionStorage) {
+            sessionStorage.setItem(key, val);
+        } else {
+            Cookies.set(key, val);
+        }
+    }
+
+    function getLocal(key) {
+        if (sessionStorage) {
+            return sessionStorage.getItem(key);
+        } else {
+            return Cookies.get(key);
+        }
+    }
+</script>

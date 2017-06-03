@@ -34,6 +34,7 @@
       <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,6 +49,7 @@
     <Compile Include="Classes\TextAlignmentPresenter.cs" />
     <Compile Include="Constants\ApiActions.cs" />
     <Compile Include="Constants\Collections.cs" />
+    <Compile Include="Constants\Patterns.cs" />
     <Compile Include="Constants\StringFormats.cs" />
     <Compile Include="Constants\Values.cs" />
     <Compile Include="Enums\ConsolationStatus.cs" />
@@ -59,9 +61,16 @@
     <Compile Include="Enums\PaymentStatus.cs" />
     <Compile Include="Enums\TextAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\CityUtil.cs" />
+    <Compile Include="Utils\HttpUtil.cs" />
     <Compile Include="Utils\IDGenerator.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SamModels\SamModels.csproj">
+      <Project>{f56a2c88-d748-4d2b-8f45-cfa0c436f107}</Project>
+      <Name>SamModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

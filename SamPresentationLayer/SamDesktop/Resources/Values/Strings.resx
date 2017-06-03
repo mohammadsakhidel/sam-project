@@ -378,4 +378,10 @@
   <data name="EditObit" xml:space="preserve">
     <value>ویرایش مراسم</value>
   </data>
+  <data name="Order" xml:space="preserve">
+    <value>ترتیب</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>شرح</value>
+  </data>
 </root>

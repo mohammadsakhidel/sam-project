@@ -48,6 +48,7 @@ namespace SamDesktop.Views.Partials
         {
             cmbName.Text = FieldToEdit.Name;
             tbDisplayName.Text = FieldToEdit.DisplayName;
+            tbDescription.Text = FieldToEdit.Description;
             if (!String.IsNullOrEmpty(FieldToEdit.FontFamily))
                 cmbFontFamily.Text = FieldToEdit.FontFamily;
             if (!String.IsNullOrEmpty(FieldToEdit.FontSize))
@@ -71,6 +72,7 @@ namespace SamDesktop.Views.Partials
             var templateField = FieldToEdit ?? new TemplateFieldDto();
             templateField.Name = cmbName.Text;
             templateField.DisplayName = tbDisplayName.Text;
+            templateField.Description = tbDescription.Text;
             templateField.FontFamily = (cmbFontFamily.SelectedItem != null ? cmbFontFamily.Text : null);
             templateField.FontSize = (cmbFontSize.SelectedItem != null ? ((FontSizePresenter)cmbFontSize.SelectedItem).Size.ToString() : null);
             templateField.Bold = chBold.IsChecked;

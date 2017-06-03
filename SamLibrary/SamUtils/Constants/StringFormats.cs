@@ -9,5 +9,6 @@ namespace SamUtils.Constants
     public class StringFormats
     {
         public const string date_short = "yyyy-MM-dd";
+        public const string price = "N0";
     }
 }

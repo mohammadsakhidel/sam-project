@@ -10,24 +10,31 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
 
-namespace SamDesktop.Code.Utils
+namespace SamUtils.Utils
 {
     public class CityUtil
     {
-        public static List<ProvinceDto> GetProvinces()
+        public static List<ProvinceDto> Provinces
         {
-            var xml = GetXmlContent();
-            var doc = XDocument.Parse(xml);
-            var provinces = doc.Root.Elements().Select(el => new ProvinceDto() {
-                ID = Convert.ToInt32(el.Attribute("ID").Value),
-                Name = el.Attribute("Name").Value.ToString()
-            }).ToList();
-            return provinces;
+            get
+            {
+                if (Func_GetXMLContent == null)
+                    throw new ArgumentException("GetXMLContent Function is not specified.");
+
+                var xml = Func_GetXMLContent.Invoke();
+                var doc = XDocument.Parse(xml);
+                var provinces = doc.Root.Elements().Select(el => new ProvinceDto()
+                {
+                    ID = Convert.ToInt32(el.Attribute("ID").Value),
+                    Name = el.Attribute("Name").Value.ToString()
+                }).ToList();
+                return provinces;
+            }
         }
 
         public static List<CityDto> GetProvinceCities(int provId)
         {
-            var xml = GetXmlContent();
+            var xml = Func_GetXMLContent.Invoke();
             var doc = XDocument.Parse(xml);
             var list = doc.Root.Elements()
                 .SingleOrDefault(p => Convert.ToInt32(p.Attribute("ID").Value) == provId)
@@ -40,7 +47,7 @@ namespace SamDesktop.Code.Utils
 
         public static ProvinceDto GetProvince(int cityId)
         {
-            var xml = GetXmlContent();
+            var xml = Func_GetXMLContent.Invoke();
             var doc = XDocument.Parse(xml);
             var province = doc.Root.Elements()
                 .FirstOrDefault(p => p.Elements().Any(c => Convert.ToInt32(c.Attribute("ID").Value) == cityId));
@@ -52,7 +59,7 @@ namespace SamDesktop.Code.Utils
 
         public static CityDto GetCity(int cityId)
         {
-            var xml = GetXmlContent();
+            var xml = Func_GetXMLContent.Invoke();
             var doc = XDocument.Parse(xml);
             var city = doc.Root.Descendants("City").SingleOrDefault(c => Convert.ToInt32(c.Attribute("ID").Value) == cityId);
             return new CityDto
@@ -62,15 +69,6 @@ namespace SamDesktop.Code.Utils
             };
         }
 
-        private static string GetXmlContent()
-        {
-            using (var stream = typeof(CityUtil).Assembly.GetManifestResourceStream("SamDesktop.Resources.XML.ir-cities.xml"))
-            {
-                using (var sr = new StreamReader(stream))
-                {
-                    return sr.ReadToEnd();
-                }
-            }
-        }
+        public static Func<string> Func_GetXMLContent { get; set; }
     }
 }

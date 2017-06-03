@@ -5,6 +5,7 @@ using SamDesktop.Code.ViewModels;
 using SamDesktop.Resources.Values;
 using SamModels.DTOs;
 using SamUtils.Constants;
+using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,7 +47,8 @@ namespace SamDesktop.Views.Partials
                 var isEditing = ObitToEdit != null;
                 if (!isEditing)
                 {
-                    var shamsiNow = DateTimeUtils.ToShamsi(DateTimeUtils.Now);
+                    var now = DateTimeUtils.Now;
+                    var shamsiNow = DateTimeUtils.ToShamsi(now.Year, now.Month, now.Day);
                     datePicker.SelectedDate = new DateTime(shamsiNow.Year, shamsiNow.Month, shamsiNow.Day);
                 }
                 else

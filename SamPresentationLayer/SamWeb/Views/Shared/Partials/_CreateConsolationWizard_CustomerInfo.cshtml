@@ -1,0 +1,54 @@
+﻿@model CreateConsolationCustomerInfoStep
+
+<h2 class="step-title">
+    @Strings.CreateConsolationCustomerInfoStep
+</h2>
+
+@using (Ajax.BeginForm("Create_CustomerInfoStep", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin", OnSuccess = "onSuccess" }, new { @id = "frm_customer_info" }))
+{
+    <div class="form-group">
+        <label for="FullName" class="control-label">@Strings.FullName</label>
+        <div>
+            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+        </div>
+        <span class="text-muted small">@Messages.Hint_FullName</span>
+    </div>
+
+    <div class="form-group">
+        <label for="CellPhoneNumber" class="control-label">@Strings.CellPhoneNumber</label>
+        <div>
+            @Html.TextBoxFor(model => model.CellPhoneNumber, new { @class = "form-control" })
+        </div>
+        <span class="text-muted small">@Messages.Hint_CellPhoneNumber</span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            @Strings.ConfirmAndContinue
+        </button>
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+            <span class="glyphicon glyphicon-remove"></span>
+            @Strings.Cancel
+        </a>
+    </div>
+
+    <div class="text-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+
+<script>
+    $('form#frm_customer_info').submit(function () {
+        try {
+            var fullName = $('#FullName').val();
+            var cellPhoneNumber = $('#CellPhoneNumber').val();
+            if ($.trim(fullName) != '', $.trim(cellPhoneNumber) != '') {
+                setLocal("FullName", fullName);
+                setLocal("CellPhoneNumber", cellPhoneNumber);
+            }
+        } catch (e) {
+            alert(e.message);
+        }
+    });
+</script>

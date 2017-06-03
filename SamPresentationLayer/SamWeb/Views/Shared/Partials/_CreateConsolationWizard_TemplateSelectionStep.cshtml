@@ -1,0 +1,118 @@
+﻿@model CreateConsolationTemplateSelectionStepVM
+
+<h2 class="step-title">
+    @Strings.CreateConsolationTemplateSelectionStep
+</h2>
+
+@using (Ajax.BeginForm("Create_TemplateSelectionStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin", OnSuccess = "onSuccess" }))
+{
+    <div class="panel-group">
+        @if (Model.Categories != null && Model.Categories.Any())
+            {
+                foreach (var category in Model.Categories)
+                {
+                    var catState = Model.CategoryStates != null ? Model.CategoryStates.SingleOrDefault(cs => cs.Item1 == category.ID) : null;
+                    <input type="hidden" name="@($"cs_{category.ID}")" id="@($"cs_{category.ID}")" value="@(catState != null && catState.Item2 ? catState.Item2.ToString() : "false")" />
+
+                    <div class="panel panel-default" style="margin-top: 8px;">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="@($"#cat_{category.ID}")">@category.Name</a>
+                        </h4>
+                    </div>
+                    <div id="@($"cat_{category.ID}")" class="@("panel-collapse collapse" + (catState != null && catState.Item2 ? " in" : ""))" data-category-id="@category.ID">
+                        <div class="panel-body">
+                            @if (Model.Templates != null)
+                            {
+                                foreach (var template in Model.Templates.Where(t => t.TemplateCategoryID == category.ID).ToList())
+                                {
+                                    <div class="template-select-item">
+                                        <img src="@($"{System.Configuration.ConfigurationManager.AppSettings["api_host"]}/blobs/getimage/{template.BackgroundImageID}?thumb=true")" />
+                                        <div class="template-title">
+                                            <h5>@template.Name</h5>
+                                            <label>@template.Price.ToString(SamUtils.Constants.StringFormats.price) @Strings.PriceUnit</label>
+                                        </div>
+                                        <div style="float: left; margin: 13px 0 0 0;">
+                                            <input type="hidden" value="@template.ID" disabled="disabled" />
+                                            <input id="@($"chTemplate_{template.ID}")" type="checkbox" data-toggle="toggle" data-on="@Strings.On" data-off="@Strings.Off" style="width: 40px;" />
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    @Html.HiddenFor(model => model.TemplateID)
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            @Strings.ConfirmAndContinue
+        </button>
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+            <span class="glyphicon glyphicon-remove"></span>
+            @Strings.Cancel
+        </a>
+    </div>
+
+    <div class="text-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+
+<script>
+
+    var TemplateSelectionStep = {};
+    TemplateSelectionStep.TemplateID = -1;
+
+    $(function () {
+        $('.template-select-item input[type="checkbox"]').bootstrapToggle();
+    });
+
+    $('.template-select-item input[type="checkbox"]').change(function () {
+        try {
+            if ($(this).prop('checked')) {
+                var selectedTemplateId = $(this).prop('id').split('_')[1];
+                var senderId = $(this).prop('id');
+                var all = $('.panel-body input[type="checkbox"]');
+                all.each(function (index) {
+                    if ($(this).prop('id') != senderId) {
+                        $(this).bootstrapToggle('off');
+                    }
+                });
+
+                TemplateSelectionStep.TemplateID = Number(selectedTemplateId);
+                $('input#TemplateID').val(selectedTemplateId);
+            } else {
+                TemplateSelectionStep.TemplateID = -1;
+                $('input#TemplateID').val('');
+            }
+        } catch (e) {
+            alert(e.message);
+        }
+    });
+
+    $(".collapse").on('shown.bs.collapse', function () {
+        $('#cs_' + $(this).data('categoryId')).val(true);
+    });
+
+    $(".collapse").on('hidden.bs.collapse', function () {
+        $('#cs_' + $(this).data('categoryId')).val(false);
+    });
+
+    var onSuccess = function (result) {
+        try {
+            if (TemplateSelectionStep.TemplateID > 0) {
+                setLocal("TemplateID", TemplateSelectionStep.TemplateID);
+            }
+        } catch (e) {
+            alert(e.message);
+        }
+    };
+
+</script>

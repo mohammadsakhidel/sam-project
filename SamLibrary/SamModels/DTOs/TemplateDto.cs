@@ -13,6 +13,8 @@ namespace SamModels.DTOs
 
         public string Name { get; set; }
 
+        public int Order { get; set; }
+
         public int TemplateCategoryID { get; set; }
 
         public string TemplateCategoryName { get; set; }
@@ -41,5 +43,7 @@ namespace SamModels.DTOs
         public string Creator { get; set; }
 
         public TemplateFieldDto[] TemplateFields { get; set; }
+
+        public TemplateCategoryDto Category { get; set; }
     }
 }

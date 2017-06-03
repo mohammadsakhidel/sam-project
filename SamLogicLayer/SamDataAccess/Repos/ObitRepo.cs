@@ -24,6 +24,17 @@ namespace SamDataAccess.Repos
             return obits.Include(o => o.ObitHoldings).ToList();
         }
 
+        public List<Obit> GetAllFromDate(int mosqueId, DateTime date)
+        {
+            var obits = from o in set
+                        where o.MosqueID == mosqueId &&
+                              (from h in o.ObitHoldings
+                               where DbFunctions.TruncateTime(h.BeginTime) >= DbFunctions.TruncateTime(date) || DbFunctions.TruncateTime(h.EndTime) >= DbFunctions.TruncateTime(date)
+                               select h).Any()
+                        select o;
+            return obits.Include(o => o.ObitHoldings).ToList();
+        }
+
         public List<ObitHolding> GetHoldings(int mosqueId, DateTime date)
         {
             var holdings = from h in context.ObitHoldings

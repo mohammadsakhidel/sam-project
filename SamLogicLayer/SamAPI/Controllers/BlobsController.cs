@@ -28,7 +28,7 @@ namespace SamAPI.Controllers
 
         #region GET:
         [HttpGet]
-        public HttpResponseMessage GetImage(string id)
+        public HttpResponseMessage GetImage(string id, bool? thumb = false)
         {
             try
             {
@@ -36,8 +36,9 @@ namespace SamAPI.Controllers
                 if (blob == null || !(blob is ImageBlob))
                     return new HttpResponseMessage(HttpStatusCode.NotFound);
 
+                var imgBlob = (ImageBlob)blob;
                 HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-                result.Content = new ByteArrayContent(blob.Bytes);
+                result.Content = new ByteArrayContent(thumb.HasValue && thumb.Value ? imgBlob.ThumbImageBytes : imgBlob.Bytes);
                 result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
                 return result;
             }

@@ -1,0 +1,100 @@
+﻿/*
+    <!--Primary-->
+    <SolidColorBrush x:Key="color_primary" Color="#f2c812"/>
+    <SolidColorBrush x:Key="color_primary_light" Color="#fce16a"/>
+    <SolidColorBrush x:Key="color_primary_dark" Color="#db8c27"/>
+
+    <!--Accent-->
+    <SolidColorBrush x:Key="color_accent" Color="#282829"/>
+    <SolidColorBrush x:Key="color_accent_light" Color="#3c3f41" />
+
+    <!--Neutral-->
+    <SolidColorBrush x:Key="color_neutral" Color="#ffffff"/>
+    <SolidColorBrush x:Key="color_neutral_dark" Color="#e6e7e8"/>
+    <SolidColorBrush x:Key="color_neutral_darker" Color="#cccccc"/>
+    <SolidColorBrush x:Key="color_neutral_darkest" Color="#959595" />
+
+    <!--Others-->
+    <SolidColorBrush x:Key="color_disabled" Color="#e6e7e8"/>
+    <SolidColorBrush x:Key="color_disabled_contrast" Color="#676767"/>
+    <SolidColorBrush x:Key="color_required_field" Color="#ff0000" />
+*/
+
+@font-face {
+  font-family: '_samim';
+  src: url('Fonts/Samim.eot'); /* IE9 Compat Modes */
+  src: url('Fonts/Samim.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Fonts/Samim.woff') format('woff'), /* Pretty Modern Browsers */
+       url('Fonts/Samim.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: '_vazir';
+  src: url('Fonts/Vazir.eot'); /* IE9 Compat Modes */
+  src: url('Fonts/Vazir.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Fonts/Vazir.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Fonts/Vazir.woff') format('woff'), /* Pretty Modern Browsers */
+       url('Fonts/Vazir.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+body {
+    direction: rtl;
+    font-family: _samim;
+}
+
+nav.navbar {
+    background: #fff;
+    border-bottom: solid 1px #e6e7e8;
+    padding: 0;
+    border-radius: 0;
+    margin: 0;
+    height: 70px;
+}
+
+    nav.navbar .logo {
+        height: 70px;
+        width: 70px;
+        float: right;
+        background-image: url(Images/logo.png);
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    nav.navbar .title {
+        font-family: _vazir;
+        float: right;
+        color: #282829;
+        margin: 10px 10px 0 0;
+    }
+
+        nav.navbar .title > h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 18pt;
+            font-weight: bold;
+        }
+
+        nav.navbar .title > h2 {
+            font-size: 10pt;
+            font-weight: bold;
+            color: #cccccc;
+            margin-top: 10px;
+        }
+
+button.navbar-toggle {
+    float: left !important;
+    padding: 3px;
+    margin: 25px 0 0 0;
+    background-color: #282829;
+}
+
+.icon-bar {
+    background-color: #fff !important;
+}
+
+.main-body {
+    padding: 16px;
+}

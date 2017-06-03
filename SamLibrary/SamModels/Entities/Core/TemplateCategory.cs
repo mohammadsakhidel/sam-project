@@ -15,6 +15,9 @@ namespace SamModels.Entities.Core
         [MaxLength(64)]
         public string Name { get; set; }
 
+        [Required]
+        public int Order { get; set; }
+
         [MaxLength(256)]
         public string Description { get; set; }
 

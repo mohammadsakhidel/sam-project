@@ -21,6 +21,12 @@ namespace SamDataAccess.Repos
             return set.Include(t => t.Category)
                 .Include(t => t.TemplateFields).ToList();
         }
+
+        public override Template Get(params object[] id)
+        {
+            var _id = Convert.ToInt32(id[0]);
+            return set.Include(t => t.TemplateFields).SingleOrDefault(t => t.ID == _id);
+        }
         #endregion
 
         #region Extensions:

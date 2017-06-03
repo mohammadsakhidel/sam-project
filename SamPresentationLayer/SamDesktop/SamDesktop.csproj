@@ -135,9 +135,7 @@
     <Compile Include="Code\Converters\ShortTimeConverter.cs" />
     <Compile Include="Code\Enums\AppSection.cs" />
     <Compile Include="Code\Exceptions\ValidationException.cs" />
-    <Compile Include="Code\Utils\CityUtil.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />
-    <Compile Include="Code\Utils\HttpUtil.cs" />
     <Compile Include="Code\Utils\PathUtil.cs" />
     <Compile Include="Code\Utils\UxUtil.cs" />
     <Compile Include="Code\Utils\VersatileUtil.cs" />

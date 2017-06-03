@@ -20,6 +20,8 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="{StaticResource grid_row_spacing}" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -35,9 +37,13 @@
             <ComboBoxItem>From</ComboBoxItem>
         </ComboBox>
 
-        <!--Row 4 ::: Font Fmaily-->
-        <Label Grid.Row="4" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Font}" />
-        <Grid Grid.Row="4" Grid.Column="1">
+        <!--Row 4 ::: Description-->
+        <Label Grid.Row="4" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Description}" />
+        <TextBox x:Name="tbDescription" Grid.Row="4" Grid.Column="1" />
+
+        <!--Row 6 ::: Font Fmaily-->
+        <Label Grid.Row="6" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Font}" />
+        <Grid Grid.Row="6" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
@@ -53,9 +59,9 @@
                       Grid.Column="3" Margin="{StaticResource padding_widget_start}" VerticalAlignment="Center"/>
         </Grid>
 
-        <!--Row 6 ::: Alignment-->
-        <Label Grid.Row="6" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Alignment}" />
-        <Grid Grid.Row="6" Grid.Column="1">
+        <!--Row 8 ::: Alignment-->
+        <Label Grid.Row="8" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Alignment}" />
+        <Grid Grid.Row="8" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

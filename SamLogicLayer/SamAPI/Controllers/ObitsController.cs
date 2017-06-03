@@ -29,6 +29,22 @@ namespace SamAPI.Controllers
 
         #region GET ACTIONS:
         [HttpGet]
+        public IHttpActionResult GetAllObits(int mosqueId)
+        {
+            try
+            {
+                Thread.Sleep(1000);
+                var obits = _obitRepo.GetAllFromDate(mosqueId, DateTimeUtils.Now);
+                var dtos = obits.Select(o => Mapper.Map<Obit, ObitDto>(o));
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+
+        [HttpGet]
         public IHttpActionResult GetObits(int mosqueId, DateTime date)
         {
             try

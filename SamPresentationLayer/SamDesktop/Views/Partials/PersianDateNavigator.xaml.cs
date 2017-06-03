@@ -1,6 +1,7 @@
 ﻿using RamancoLibrary.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,20 +40,7 @@ namespace SamDesktop.Views.Partials
             var selectedDate = persianDatePicker.SelectedDate;
             if (selectedDate.HasValue)
             {
-                return DateTimeUtils.FromShamsi(selectedDate.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public DateTime? GetPersianDate()
-        {
-            var selectedDate = persianDatePicker.SelectedDate;
-            if (selectedDate.HasValue)
-            {
-                return selectedDate.Value;
+                return new DateTime(selectedDate.Value.Year, selectedDate.Value.Month, selectedDate.Value.Day);
             }
             else
             {
@@ -62,14 +50,8 @@ namespace SamDesktop.Views.Partials
 
         public void SetMiladyDate(DateTime miladyDate)
         {
-            var shamsi = DateTimeUtils.ToShamsi(miladyDate);
+            var shamsi = DateTimeUtils.ToShamsi(miladyDate.Year, miladyDate.Month, miladyDate.Day);
             persianDatePicker.SelectedDate = new DateTime(shamsi.Year, shamsi.Month, shamsi.Day);
-        }
-
-        public void SetPersianDate(DateTime persianDate)
-        {
-            var miladyDate = DateTimeUtils.FromShamsi(persianDate);
-            SetMiladyDate(miladyDate);
         }
         #endregion
 

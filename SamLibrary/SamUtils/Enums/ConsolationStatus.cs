@@ -9,6 +9,7 @@ namespace SamUtils.Enums
     public enum ConsolationStatus
     {
         pending = 1,
-        confirmed = 2
+        confirmed = 2,
+        synced = 3
     }
 }

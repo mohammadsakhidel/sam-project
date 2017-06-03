@@ -22,6 +22,9 @@ namespace SamModels.Entities.Core
         [MaxLength(32)]
         public string DisplayName { get; set; }
 
+        [MaxLength(128)]
+        public string Description { get; set; }
+
         [Required]
         public double X { get; set; }
 

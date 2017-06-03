@@ -12,12 +12,8 @@ namespace SamModels.Entities.Core
         public int ID { get; set; }
 
         [Required]
-        [MaxLength(32)]
-        public string Name { get; set; }
-
-        [Required]
-        [MaxLength(32)]
-        public string Surname { get; set; }
+        [MaxLength(64)]
+        public string FullName { get; set; }
 
         public bool? Gender { get; set; }
 
@@ -30,6 +26,7 @@ namespace SamModels.Entities.Core
         public DateTime? RegistrationTime { get; set; }
 
         [MaxLength(16)]
+        [Required]
         public string CellPhoneNumber { get; set; }
     }
 }

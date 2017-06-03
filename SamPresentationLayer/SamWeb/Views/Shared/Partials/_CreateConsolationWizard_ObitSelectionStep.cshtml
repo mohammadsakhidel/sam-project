@@ -1,0 +1,167 @@
+﻿@model CreateConsolationObitSelectionStepVM
+
+<h2 class="step-title">
+    @Strings.CreateConsolationObitSelectionStep
+</h2>
+
+@using (Ajax.BeginForm("Create_ObitSelectionStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin", OnSuccess = "onSuccess" }))
+{
+    <div class="form-group">
+        <label for="ProvinceID" class="control-label">@Strings.Province</label>
+        <div>
+            @{
+                var provinces = SamUtils.Utils.CityUtil.Provinces.Select(p => new SelectListItem { Text = p.Name, Value = p.ID.ToString() }).ToList();
+                provinces.Insert(0, new SelectListItem());
+            }
+            @Html.DropDownListFor(model => model.ProvinceID, provinces, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="CityID" class="control-label">@Strings.City</label>
+        <div>
+            @{
+                var cities = Model != null && Model.Cities != null ? Model.Cities.Select(c => new SelectListItem { Text = c.Name, Value = c.ID.ToString() }).ToList() : new List<SelectListItem>();
+                if (cities.Any())
+                {
+                    cities.Insert(0, new SelectListItem { Text = "", Value = "" });
+                }
+            }
+            @Html.DropDownListFor(model => model.CityID, cities, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="MosqueID" class="control-label">@Strings.Mosque</label>
+        <div>
+            @{
+                var mosques = Model != null && Model.Mosques != null ? Model.Mosques.Select(m => new SelectListItem { Text = m.Name, Value = m.ID.ToString() }).ToList() : new List<SelectListItem>();
+                if (mosques.Any())
+                {
+                    mosques.Insert(0, new SelectListItem { Text = "", Value = "" });
+                }
+            }
+            @Html.DropDownListFor(model => model.MosqueID, mosques, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="ObitID" class="control-label">@Strings.Obit</label>
+        <div>
+            @{
+                var obits = Model != null && Model.Obits != null ? Model.Obits.Select(m => new SelectListItem { Text = m.Title, Value = m.ID.ToString() }).ToList() : new List<SelectListItem>();
+                if (obits.Any())
+                {
+                    obits.Insert(0, new SelectListItem { Text = "", Value = "" });
+                }
+            }
+            @Html.DropDownListFor(model => model.ObitID, obits, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            @Strings.ConfirmAndContinue
+        </button>
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+            <span class="glyphicon glyphicon-remove"></span>
+            @Strings.Cancel
+        </a>
+    </div>
+
+    <div class="text-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+
+<script>
+    var ObitSelectionStep = {};
+    ObitSelectionStep.ObitID = -1;
+
+    $('#ProvinceID').change(function () {
+        $('#CityID').prop('disabled', 'disabled');
+        var provinceId = $(this).val();
+        $.ajax({
+            url: '/home/getprovincecities/' + provinceId,
+            type: 'GET'
+        }).success(function (data) {
+            try {
+                $('#CityID').html('<option></option>');
+                $.each(data, function (key, val) {
+                    $('#CityID').append('<option value="' + val.ID + '">' + val.Name + '</option>');
+                });
+                $('#CityID').removeProp('disabled');
+            } catch (e) {
+                alert(e.message);
+            }
+        }).error(function (data) {
+            alert('@Messages.SomthingWrongHappend');
+        });
+    });
+
+    $('#CityID').change(function () {
+        $('#MosqueID').prop('disabled', 'disabled');
+        var cityId = $(this).val();
+        $.ajax({
+            url: '/consolations/getcitymosques/' + cityId,
+            type: 'GET'
+        }).success(function (data) {
+            try {
+                $('#MosqueID').html('<option></option>');
+                $.each(data, function (key, val) {
+                    $('#MosqueID').append('<option value="' + val.ID + '">' + val.Name + ': ' + val.Address + '</option>');
+                });
+                $('#MosqueID').removeProp('disabled');
+            } catch (e) {
+                alert(e.message);
+            }
+        }).error(function (data) {
+            alert('@Messages.SomthingWrongHappend');
+        });
+    });
+
+    $('#MosqueID').change(function () {
+        $('#ObitID').prop('disabled', 'disabled');
+        var mosqueId = $(this).val();
+        $.ajax({
+            url: '/consolations/getallobits?mosqueId=' + mosqueId,
+            type: 'GET'
+        }).success(function (data) {
+            try {
+                $('#ObitID').html('<option></option>');
+                $.each(data, function (key, val) {
+                    $('#ObitID').append('<option value="' + val.ID + '">' + val.Title + '</option>');
+                });
+                $('#ObitID').removeProp('disabled');
+            } catch (e) {
+                alert(e.message);
+            }
+        }).error(function (data) {
+            alert('@Messages.SomthingWrongHappend');
+        });
+    });
+
+    $('#ObitID').change(function () {
+        try {
+            if ($(this).val() != '') {
+                ObitSelectionStep.ObitID = Number($(this).val());
+            } else {
+                ObitSelectionStep.ObitID = -1;
+            }
+        } catch (e) {
+            alert(e.message);
+        }
+    });
+
+    var onSuccess = function (result) {
+        try {
+            if (ObitSelectionStep.ObitID > 0) {
+                setLocal("ObitID", ObitSelectionStep.ObitID);
+            }
+        } catch (e) {
+            alert(e.message);
+        }
+    };
+
+</script>

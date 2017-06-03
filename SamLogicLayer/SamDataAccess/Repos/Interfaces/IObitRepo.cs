@@ -12,6 +12,8 @@ namespace SamDataAccess.Repos.Interfaces
     {
         List<Obit> Get(int mosqueId, DateTime date);
 
+        List<Obit> GetAllFromDate(int mosqueId, DateTime date);
+
         List<ObitHolding> GetHoldings(int mosqueId, DateTime date);
 
         void UpdateWithSave(Obit newObit);

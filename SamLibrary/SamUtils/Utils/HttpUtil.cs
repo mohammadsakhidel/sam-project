@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamDesktop.Code.Utils
+namespace SamUtils.Utils
 {
     public class HttpUtil
     {
