@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SamDesktop.Views.Windows"
         xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
-        xmlns:cnv="clr-namespace:SamDesktop.Code.Converters"
+        xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Style="{StaticResource main_window}"
         Title="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppTitle}"

@@ -1,4 +1,4 @@
-﻿using SamDesktop.Code.Constants;
+﻿using SamUxLib.Code.Constants;
 using SamModels.DTOs;
 using SamUtils.Classes;
 using System;

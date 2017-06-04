@@ -1,6 +1,6 @@
-﻿using SamDesktop.Code.Exceptions;
-using SamDesktop.Code.Utils;
-using SamDesktop.Resources.Values;
+﻿using SamUxLib.Code.Exceptions;
+using SamUxLib.Code.Utils;
+using SamUxLib.Resources.Values;
 using SamModels.DTOs;
 using System;
 using System.Collections.Generic;

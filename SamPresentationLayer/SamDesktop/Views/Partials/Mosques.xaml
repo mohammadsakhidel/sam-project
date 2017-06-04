@@ -7,8 +7,8 @@
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
-             xmlns:cnv="clr-namespace:SamDesktop.Code.Converters"
-             xmlns:utils="clr-namespace:SamDesktop.Code.Utils"
+             xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
+             xmlns:utils="clr-namespace:SamUxLib.Code.Utils;assembly=SamUxLib"
              Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:MosquesVM />

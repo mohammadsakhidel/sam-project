@@ -1,4 +1,4 @@
-﻿using SamDesktop.Code.Utils;
+﻿using SamUxLib.Code.Utils;
 using SamDesktop.Code.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,8 +7,8 @@ using System.Windows.Controls;
 using SamModels.DTOs;
 using System.Net.Http;
 using System.Collections.ObjectModel;
-using SamDesktop.Code.Exceptions;
-using SamDesktop.Resources.Values;
+using SamUxLib.Code.Exceptions;
+using SamUxLib.Resources.Values;
 using Microsoft.Win32;
 using System.Drawing;
 using SamDesktop.Views.Windows;

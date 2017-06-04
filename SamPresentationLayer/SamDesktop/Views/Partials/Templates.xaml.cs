@@ -1,7 +1,7 @@
 ﻿using SamUtils.Constants;
-using SamDesktop.Code.Utils;
+using SamUxLib.Code.Utils;
 using SamDesktop.Code.ViewModels;
-using SamDesktop.Resources.Values;
+using SamUxLib.Resources.Values;
 using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using System;

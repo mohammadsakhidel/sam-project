@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A3E7C54-3305-4BEB-9E13-B967A6183C94}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SamUxLib</RootNamespace>
+    <AssemblyName>SamUxLib</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="RamancoCC">
+      <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoCC\bin\Debug\RamancoCC.dll</HintPath>
+    </Reference>
+    <Reference Include="RamancoLibrary">
+      <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="SamUtils">
+      <HintPath>..\..\SamLibrary\SamUtils\bin\Debug\SamUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Libs\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\Constants\Collections.cs" />
+    <Compile Include="Code\Converters\BoolConverter.cs" />
+    <Compile Include="Code\Converters\ConnectorConverter.cs" />
+    <Compile Include="Code\Converters\NotNullConverter.cs" />
+    <Compile Include="Code\Converters\PriceConverter.cs" />
+    <Compile Include="Code\Converters\ResourceConverter.cs" />
+    <Compile Include="Code\Converters\SelectedSectionConverter.cs" />
+    <Compile Include="Code\Converters\ShortDateConverter.cs" />
+    <Compile Include="Code\Converters\ShortTimeConverter.cs" />
+    <Compile Include="Code\Exceptions\ValidationException.cs" />
+    <Compile Include="Code\Utils\ExceptionManager.cs" />
+    <Compile Include="Code\Utils\UxUtil.cs" />
+    <Compile Include="Code\Utils\VersatileUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ResourceManager.cs" />
+    <Compile Include="Resources\Values\Enums.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Enums.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Values\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Values\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\Themes\DefaultTheme\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\ControlTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\DataTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\Dimens.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\Elements.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\Layout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\ToolkitStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DefaultTheme\Types.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Samim-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Samim.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Shabnam-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Shabnam-Light.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Shabnam.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_add_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_add_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_calendar_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_cancel_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_delete_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_edit_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_edit_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_next_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_ok_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_open_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_previous_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_search_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\Themes\DefaultTheme\Images\PSDs\header.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Libs\WPFToolkit.dll" />
+    <EmbeddedResource Include="Resources\XML\ir-cities.xml" />
+    <Resource Include="Resources\XML\ir-cities.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Values\Enums.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Enums.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Values\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Values\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

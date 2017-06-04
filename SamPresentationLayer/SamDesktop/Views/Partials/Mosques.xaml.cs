@@ -1,4 +1,4 @@
-﻿using SamDesktop.Code.Utils;
+﻿using SamUxLib.Code.Utils;
 using SamDesktop.Code.ViewModels;
 using SamModels.Entities.Core;
 using System;

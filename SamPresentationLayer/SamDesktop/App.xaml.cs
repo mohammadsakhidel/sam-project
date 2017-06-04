@@ -1,4 +1,4 @@
-﻿using SamDesktop.Code.Utils;
+﻿using SamUxLib.Code.Utils;
 using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Reflection;
+using SamUxLib.Resources.Values;
 
 namespace SamDesktop
 {
@@ -29,7 +31,7 @@ namespace SamDesktop
             CityUtil.Func_GetXMLContent = () => {
                 try
                 {
-                    using (var stream = typeof(SamDesktop.App).Assembly.GetManifestResourceStream("SamDesktop.Resources.XML.ir-cities.xml"))
+                    using (var stream = typeof(Strings).Assembly.GetManifestResourceStream("SamUxLib.Resources.XML.ir-cities.xml"))
                     {
                         using (var sr = new StreamReader(stream))
                         {

@@ -1,4 +1,4 @@
-﻿using SamDesktop.Resources;
+﻿using SamUxLib.Resources;
 using SamModels.DTOs;
 using SamUtils.Enums;
 using System;

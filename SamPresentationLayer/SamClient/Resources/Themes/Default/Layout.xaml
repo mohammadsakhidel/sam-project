@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="main_window" TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="Width" Value="800"></Setter>
+        <Setter Property="Height" Value="500"></Setter>
+        <Setter Property="WindowState" Value="Normal"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource ff_content}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_normal}"></Setter>
+        <Setter Property="FontWeight" Value="Normal"></Setter>
+    </Style>
+
+    <Style x:Key="dialog_window" TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource color_accent}"></Setter>
+        <Setter Property="MinWidth" Value="600"></Setter>
+        <Setter Property="MinHeight" Value="400"></Setter>
+        <Setter Property="WindowState" Value="Normal"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource ff_content}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_normal}"></Setter>
+        <Setter Property="FontWeight" Value="Normal"></Setter>
+    </Style>
+
+    <Style x:Key="main_window_content" TargetType="FrameworkElement">
+        <Setter Property="FlowDirection" Value="RightToLeft"></Setter>
+    </Style>
+</ResourceDictionary>

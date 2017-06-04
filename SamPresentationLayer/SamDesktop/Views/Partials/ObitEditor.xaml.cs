@@ -1,8 +1,8 @@
 ﻿using RamancoLibrary.Utilities;
-using SamDesktop.Code.Exceptions;
-using SamDesktop.Code.Utils;
+using SamUxLib.Code.Exceptions;
+using SamUxLib.Code.Utils;
 using SamDesktop.Code.ViewModels;
-using SamDesktop.Resources.Values;
+using SamUxLib.Resources.Values;
 using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Utils;

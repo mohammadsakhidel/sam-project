@@ -1,5 +1,5 @@
 ﻿using SamDesktop.Code.Enums;
-using SamDesktop.Code.Utils;
+using SamUxLib.Code.Utils;
 using SamDesktop.Code.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -79,7 +79,7 @@ namespace SamDesktop.Views.Windows
         {
             try
             {
-                
+                MessageBox.Show(SamUxLib.Resources.Values.Messages.AreYouSureToDelete);
             }
             catch (Exception ex)
             {

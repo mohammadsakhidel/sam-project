@@ -124,21 +124,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\Constants\Collections.cs" />
-    <Compile Include="Code\Converters\BoolConverter.cs" />
-    <Compile Include="Code\Converters\ConnectorConverter.cs" />
-    <Compile Include="Code\Converters\NotNullConverter.cs" />
-    <Compile Include="Code\Converters\PriceConverter.cs" />
-    <Compile Include="Code\Converters\ResourceConverter.cs" />
-    <Compile Include="Code\Converters\SelectedSectionConverter.cs" />
-    <Compile Include="Code\Converters\ShortDateConverter.cs" />
-    <Compile Include="Code\Converters\ShortTimeConverter.cs" />
     <Compile Include="Code\Enums\AppSection.cs" />
-    <Compile Include="Code\Exceptions\ValidationException.cs" />
-    <Compile Include="Code\Utils\ExceptionManager.cs" />
-    <Compile Include="Code\Utils\PathUtil.cs" />
-    <Compile Include="Code\Utils\UxUtil.cs" />
-    <Compile Include="Code\Utils\VersatileUtil.cs" />
     <Compile Include="Code\ViewModels\MainVM.cs" />
     <Compile Include="Code\ViewModels\MosquesVM.cs" />
     <Compile Include="Code\ViewModels\ObitEditorVM.cs" />
@@ -146,22 +132,6 @@
     <Compile Include="Code\ViewModels\TemplatesVM.cs" />
     <Compile Include="Code\ViewModels\TemplateEditorVM.cs" />
     <Compile Include="Code\ViewModels\ViewModelBase.cs" />
-    <Compile Include="Resources\Values\Enums.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Enums.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Values\Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ResourceManager.cs" />
-    <Compile Include="Resources\Values\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Partials\AccessLevels.xaml.cs">
       <DependentUpon>AccessLevels.xaml</DependentUpon>
     </Compile>
@@ -238,74 +208,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Values\Enums.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Enums.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Values\Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Values\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\Themes\DefaultTheme\Images\PSDs\header.psd" />
-    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Samim-Bold.ttf" />
-    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Samim.ttf" />
-    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Shabnam-Bold.ttf" />
-    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Shabnam-Light.ttf" />
-    <Resource Include="Resources\Themes\DefaultTheme\Fonts\Shabnam.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_add_light.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Resources\Themes\DefaultTheme\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\ControlTemplates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\DataTemplates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\Dimens.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\Elements.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\ToolkitStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\Types.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\Fonts.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Themes\DefaultTheme\Layout.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Partials\AccessLevels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -384,33 +297,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Themes\DefaultTheme\Images\header.png" />
+    <Content Include="Libs\WPFToolkit.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_edit_light.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_add_dark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_edit_dark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_search_dark.png" />
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_delete_dark.png" />
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_ok_dark.png" />
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_open_dark.png" />
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_cancel_dark.png" />
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_calendar_dark.png" />
-    <Resource Include="Resources\XML\ir-cities.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\XML\ir-cities.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Libs\WPFToolkit.dll" />
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_next_dark.png" />
-    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_previous_dark.png" />
+    <ProjectReference Include="..\SamUxLib\SamUxLib.csproj">
+      <Project>{6a3e7c54-3305-4beb-9e13-b967a6183c94}</Project>
+      <Name>SamUxLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
