@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SamUtils.Enums
 {
-    public enum ContentAlignment
+    public enum ContentAlignmenttt
     {
         left = 1,
         right = 2,

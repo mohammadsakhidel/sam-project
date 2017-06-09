@@ -129,6 +129,9 @@
   <data name="InvalidInputValues" xml:space="preserve">
     <value>مقادیر وارد شده معتبر نیستند، لطفاً اصلاح کرده و مجدداً تلاش کنید.</value>
   </data>
+  <data name="SetSettingsBeforeSync" xml:space="preserve">
+    <value>قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید.</value>
+  </data>
   <data name="SuccessfullyDone" xml:space="preserve">
     <value>عملیات با موفقیت انجام شد.</value>
   </data>

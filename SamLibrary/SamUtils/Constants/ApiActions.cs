@@ -23,5 +23,6 @@ namespace SamUtils.Constants
         public const string obits_delete = "obits/delete";
         public const string obits_getallobits = "obits/getallobits";
         public const string consolations_create = "consolations/create";
+        public const string consolations_getupdates = "consolations/getupdates";
     }
 }

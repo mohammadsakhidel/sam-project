@@ -23,7 +23,7 @@
                 <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/ControlTemplates.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/DataTemplates.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Types.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Elements.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Styles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Layout.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/ToolkitStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>

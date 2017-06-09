@@ -337,7 +337,7 @@
     <value>انتخاب فایل</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>تنظیمات سیستم</value>
+    <value>تنظیمات</value>
   </data>
   <data name="Small" xml:space="preserve">
     <value>کوچک</value>
@@ -383,5 +383,32 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>بله</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>تنظیمات سیستم</value>
+  </data>
+  <data name="Consolations" xml:space="preserve">
+    <value>پیام های تسلیت</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>نمایش</value>
+  </data>
+  <data name="SyncWithServer" xml:space="preserve">
+    <value>همگام سازی با سرور</value>
+  </data>
+  <data name="LastUpdateTime" xml:space="preserve">
+    <value>آخرین بروزرسانی</value>
+  </data>
+  <data name="Consolator" xml:space="preserve">
+    <value>ثبت کننده پیام</value>
+  </data>
+  <data name="Obit" xml:space="preserve">
+    <value>مراسم</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>الگوی پیام</value>
   </data>
 </root>

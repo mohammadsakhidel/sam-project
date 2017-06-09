@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="SamUxLib.UserControls.PersianDateNavigator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamUxLib.UserControls"
+             xmlns:persian="http://schemas.microsoft.com/wpf/2008/toolkit"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC">
+
+    <StackPanel Orientation="Horizontal">
+
+        <ram:FlatButton x:Name="btnPrevious" Style="{StaticResource small_action_button_previous}"
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Previous}"
+                        Click="btnPrevious_Click" />
+
+        <persian:DatePicker x:Name="persianDatePicker" Margin="{StaticResource padding_container_hor}" 
+                            SelectedDateChanged="persianDatePicker_SelectedDateChanged" VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"  />
+
+        <ram:FlatButton x:Name="btnNext" Style="{StaticResource small_action_button_next}"
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Next}"
+                        Click="btnNext_Click" />
+
+    </StackPanel>
+    
+</UserControl>

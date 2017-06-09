@@ -30,6 +30,8 @@ namespace SamModels.DTOs
 
         #region Navigation:
         public CustomerDto Customer { get; set; }
+        public ObitDto Obit { get; set; }
+        public TemplateDto Template { get; set; }
         #endregion
     }
 }

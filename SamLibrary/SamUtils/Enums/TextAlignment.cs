@@ -10,8 +10,8 @@ namespace SamUtils.Enums
     {
         top = 1,
         right = 2,
-        left = 3,
-        bottom = 4,
-        center = 5
+        left = 4,
+        bottom = 8,
+        center = 16
     }
 }

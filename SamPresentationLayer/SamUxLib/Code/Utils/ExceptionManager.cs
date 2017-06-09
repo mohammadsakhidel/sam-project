@@ -13,7 +13,9 @@ namespace SamUxLib.Code.Utils
     {
         public static void Handle(Exception ex)
         {
-            UxUtil.ShowError($"{ex.GetType().FullName}:{Environment.NewLine}{ex.Message}");
+            Dispatcher.CurrentDispatcher.Invoke(() => {
+                UxUtil.ShowError($"{ex.GetType().FullName}:{Environment.NewLine}{ex.Message}");
+            });
         }
     }
 }

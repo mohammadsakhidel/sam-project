@@ -112,6 +112,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PersianDateNavigator.xaml.cs">
+      <DependentUpon>PersianDateNavigator.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\Themes\DefaultTheme\Colors.xaml">
@@ -130,7 +133,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Themes\DefaultTheme\Elements.xaml">
+    <Page Include="Resources\Themes\DefaultTheme\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -147,6 +150,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Themes\DefaultTheme\Types.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PersianDateNavigator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -211,6 +218,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Libs\WPFToolkit.dll" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_play_dark.png" />
     <EmbeddedResource Include="Resources\XML\ir-cities.xml" />
     <Resource Include="Resources\XML\ir-cities.sql" />
   </ItemGroup>

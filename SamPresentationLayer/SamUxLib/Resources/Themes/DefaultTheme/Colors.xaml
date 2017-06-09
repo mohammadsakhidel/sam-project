@@ -20,5 +20,6 @@
     <SolidColorBrush x:Key="color_disabled" Color="#e6e7e8"/>
     <SolidColorBrush x:Key="color_disabled_contrast" Color="#676767"/>
     <SolidColorBrush x:Key="color_required_field" Color="#ff0000" />
+    <SolidColorBrush x:Key="color_player_bg" Color="#000" />
 
 </ResourceDictionary>

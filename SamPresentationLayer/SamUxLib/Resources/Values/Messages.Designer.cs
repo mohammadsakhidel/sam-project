@@ -97,6 +97,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید..
+        /// </summary>
+        public static string SetSettingsBeforeSync {
+            get {
+                return ResourceManager.GetString("SetSettingsBeforeSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات با موفقیت انجام شد..
         /// </summary>
         public static string SuccessfullyDone {

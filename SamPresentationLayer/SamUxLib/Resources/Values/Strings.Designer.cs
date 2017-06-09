@@ -214,6 +214,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پیام های تسلیت.
+        /// </summary>
+        public static string Consolations {
+            get {
+                return ResourceManager.GetString("Consolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ثبت کننده پیام.
+        /// </summary>
+        public static string Consolator {
+            get {
+                return ResourceManager.GetString("Consolator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ثبت مراسم جدید.
         /// </summary>
         public static string CreateObit {
@@ -421,6 +439,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آخرین بروزرسانی.
+        /// </summary>
+        public static string LastUpdateTime {
+            get {
+                return ResourceManager.GetString("LastUpdateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام لاتین.
         /// </summary>
         public static string LatinName {
@@ -574,6 +601,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مراسم.
+        /// </summary>
+        public static string Obit {
+            get {
+                return ResourceManager.GetString("Obit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to زمان برگزاری مراسم.
         /// </summary>
         public static string ObitHolding {
@@ -624,6 +660,15 @@ namespace SamUxLib.Resources.Values {
         public static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش.
+        /// </summary>
+        public static string Play {
+            get {
+                return ResourceManager.GetString("Play", resourceCulture);
             }
         }
         
@@ -718,7 +763,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تنظیمات سیستم.
+        ///   Looks up a localized string similar to تنظیمات.
         /// </summary>
         public static string Settings {
             get {
@@ -732,6 +777,42 @@ namespace SamUxLib.Resources.Values {
         public static string Small {
             get {
                 return ResourceManager.GetString("Small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وضعیت.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to همگام سازی با سرور.
+        /// </summary>
+        public static string SyncWithServer {
+            get {
+                return ResourceManager.GetString("SyncWithServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تنظیمات سیستم.
+        /// </summary>
+        public static string SystemSettings {
+            get {
+                return ResourceManager.GetString("SystemSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الگوی پیام.
+        /// </summary>
+        public static string Template {
+            get {
+                return ResourceManager.GetString("Template", resourceCulture);
             }
         }
         

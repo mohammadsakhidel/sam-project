@@ -78,6 +78,22 @@
         <Setter Property="IconSource" Value="Images/ic_calendar_dark.png"></Setter>
     </Style>
 
+    <Style x:Key="action_button_download" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_download_dark.png"></Setter>
+    </Style>
+
+    <Style x:Key="action_button_play" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_play_dark.png"></Setter>
+    </Style>
+
+    <Style x:Key="small_action_button_download" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_download_dark.png"></Setter>
+    </Style>
+
+    <Style x:Key="small_action_button_play" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_play_dark.png"></Setter>
+    </Style>
+
     <Style x:Key="small_action_button_search" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
         <Setter Property="IconSource" Value="Images/ic_search_dark.png"></Setter>
     </Style>

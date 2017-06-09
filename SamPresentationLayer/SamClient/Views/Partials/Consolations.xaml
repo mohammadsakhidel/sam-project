@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="SamClient.Views.Partials.Consolations"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamClient.Views.Partials"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             xmlns:uxuc="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib"
+             Loaded="UserControl_Loaded">
+
+    <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition  Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <ram:FlatButton x:Name="btnDownload" Style="{StaticResource small_action_button_download}" Click="btnDownload_Click"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SyncWithServer}" />
+                    <ram:FlatButton x:Name="btnPlay" Style="{StaticResource small_action_button_play}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Play}" Click="btnPlay_Click" />
+                </StackPanel>
+            </Grid>
+            
+            <DataGrid x:Name="dgConsolations" Grid.Row="1" Margin="{StaticResource padding_container_ver}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding ID}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ID}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Obit.Title}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Obit}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Customer.FullName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolator}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Template.Name}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Template}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Status}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Status}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CreationTime}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreationTime}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Border Grid.Row="2" Style="{StaticResource page_footer}">
+                <Grid>
+                    <uxuc:PersianDateNavigator x:Name="ucPersianDateNavigator" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               OnChange="ucPersianDateNavigator_OnChange"/>
+
+                    <Label x:Name="lblLastUpdateTime" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                           Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.LastUpdateTime}"
+                           FontSize="{StaticResource font_small}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </toolkit:BusyIndicator>
+
+</UserControl>

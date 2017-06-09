@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="SamClient.Views.Partials.ClientSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamClient.Views.Partials"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             Loaded="UserControl_Loaded">
+
+    <Grid Margin="{StaticResource padding_widget}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
+            <ComboBox x:Name="cmbProvinces" SelectionChanged="cmbProvinces_SelectionChanged" SelectedValuePath="ID"  />
+
+            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}"></Label>
+            <ComboBox x:Name="cmbCities" SelectionChanged="cmbCities_SelectionChanged" SelectedValuePath="ID" />
+
+            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}"></Label>
+            <ComboBox x:Name="cmbMosques" SelectedValuePath="ID" />
+        </StackPanel>
+
+        <ram:FlatButton x:Name="btnSave" Style="{StaticResource action_button_ok}" Grid.Row="1" Click="btnSave_Click"
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Save}"
+                        HorizontalAlignment="Left" />
+
+    </Grid>
+    
+</UserControl>

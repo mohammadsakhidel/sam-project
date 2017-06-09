@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="DTOs\CityDto.cs" />
     <Compile Include="DTOs\ConsolationDto.cs" />
+    <Compile Include="DTOs\ConsolationsUpdatePackDto.cs" />
     <Compile Include="DTOs\CustomerDto.cs" />
     <Compile Include="DTOs\MosqueDto.cs" />
     <Compile Include="DTOs\ObitDto.cs" />

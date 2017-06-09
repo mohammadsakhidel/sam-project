@@ -4,18 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SamClient.Views.Windows"
-        Style="{StaticResource main_window}" WindowStartupLocation="CenterScreen">
+        xmlns:uc="clr-namespace:SamClient.Views.Partials"
+        Style="{StaticResource main_window}" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
 
     <Border Style="{StaticResource main_window_content}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <GroupBox></GroupBox>
+        <DockPanel LastChildFill="True">
+            <Border Style="{StaticResource header}" DockPanel.Dock="Top">
+                <Image Style="{StaticResource header_logo}" />
+            </Border>
             
-        </Grid>
+            <Grid Margin="{StaticResource padding_container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--Sidebar-->
+                <GroupBox Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Settings}">
+                    <uc:ClientSettings />
+                </GroupBox>
+                
+                <!--Content-->
+                <Border Grid.Column="1" Margin="{StaticResource padding_container_start}">
+                    <uc:Consolations />
+                </Border>
+
+            </Grid>
+        </DockPanel>
     </Border>
     
 </Window>

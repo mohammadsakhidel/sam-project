@@ -26,6 +26,30 @@ namespace SamAPI.Controllers
         }
         #endregion
 
+        #region Get Actions:
+        [HttpGet]
+        public IHttpActionResult GetUpdates(int mosqueId, DateTime? lastUpdatetime = (DateTime?)null)
+        {
+            try
+            {
+                var queryTime = DateTimeUtils.Now;
+                var lastUpdateTimeValue = lastUpdatetime.HasValue ? lastUpdatetime.Value : DateTimeUtils.Now.AddMonths(-1);
+                var consolations = _consolationRepo.GetUpdates(mosqueId, lastUpdateTimeValue, queryTime);
+                var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c)).ToList();
+                var updates = new ConsolationsUpdatePackDto
+                {
+                    QueryTime = queryTime,
+                    Consolations = dtos
+                };
+                return Ok(updates);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
+
         #region POST Actions:
         [HttpPost]
         public IHttpActionResult Create(ConsolationDto model)
