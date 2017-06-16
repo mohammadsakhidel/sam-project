@@ -23,11 +23,9 @@ namespace SamModels.Entities.Core
         [MaxLength(256)]
         public string TemplateInfo { get; set; }
 
-        [Required]
         [MaxLength(64)]
         public string Audience { get; set; }
 
-        [Required]
         [MaxLength(64)]
         public string From { get; set; }
 

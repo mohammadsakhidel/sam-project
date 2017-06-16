@@ -129,6 +129,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imageviewer.css" />
     <Content Include="Content\SamThemes\DefaultTheme\elements.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\Images\loading_48.gif" />
     <Content Include="Content\SamThemes\DefaultTheme\Images\logo.png" />
@@ -216,6 +217,7 @@
     <Content Include="Content\SamThemes\DefaultTheme\Fonts\Vazir.woff2" />
     <None Include="Properties\PublishProfiles\sam_publish.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\imageviewer.min.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />

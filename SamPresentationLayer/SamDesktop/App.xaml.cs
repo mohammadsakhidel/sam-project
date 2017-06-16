@@ -21,7 +21,6 @@ namespace SamDesktop
 
         protected override void OnStartup(StartupEventArgs e)
         {
-
             #region Culture Setting, Used by Persian Wpf Toolkit:
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(PERSIAN_CULTURE_ID);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;

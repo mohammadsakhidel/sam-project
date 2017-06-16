@@ -129,6 +129,10 @@
     <Compile Include="Migrations\SamDbMigrations\201706021456338_TemplateField_DescPropAdded.Designer.cs">
       <DependentUpon>201706021456338_TemplateField_DescPropAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201706160905365_Consolation_AudienceFromNullable.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201706160905365_Consolation_AudienceFromNullable.Designer.cs">
+      <DependentUpon>201706160905365_Consolation_AudienceFromNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -197,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201706021456338_TemplateField_DescPropAdded.resx">
       <DependentUpon>201706021456338_TemplateField_DescPropAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201706160905365_Consolation_AudienceFromNullable.resx">
+      <DependentUpon>201706160905365_Consolation_AudienceFromNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

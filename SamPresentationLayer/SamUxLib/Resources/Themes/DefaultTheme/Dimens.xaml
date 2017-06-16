@@ -11,11 +11,11 @@
     <sys:Double x:Key="font_small">10</sys:Double>
     <sys:Double x:Key="font_tiny">9</sys:Double>
 
-    <sys:Double x:Key="font_consolation_tiny">14</sys:Double>
-    <sys:Double x:Key="font_consolation_small">20</sys:Double>
-    <sys:Double x:Key="font_consolation_normal">24</sys:Double>
-    <sys:Double x:Key="font_consolation_large">28</sys:Double>
-    <sys:Double x:Key="font_consolation_huge">32</sys:Double>
+    <sys:Double x:Key="font_consolation_tiny">16</sys:Double>
+    <sys:Double x:Key="font_consolation_small">22</sys:Double>
+    <sys:Double x:Key="font_consolation_normal">30</sys:Double>
+    <sys:Double x:Key="font_consolation_large">40</sys:Double>
+    <sys:Double x:Key="font_consolation_huge">50</sys:Double>
 
     <Thickness x:Key="padding_container">12</Thickness>
     <Thickness x:Key="padding_container_ver">0 12</Thickness>

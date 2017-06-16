@@ -28,7 +28,7 @@ namespace SamClient.Views.Windows
         #region Fields:
         Canvas _container;
         Consolation _current;
-        int _defaultDuration = 5000;
+        int _defaultDuration = 10000;
         #endregion
 
         #region Ctors:
@@ -65,6 +65,10 @@ namespace SamClient.Views.Windows
                         using (var brep = new BlobRepo())
                         {
                             var next = crep.GetNext(_current?.ID);
+
+                            if (next == null)
+                                next = crep.GetNext(null);
+
                             if (next != null)
                             {
                                 var blob = brep.Get(next.Template.BackgroundImageID);

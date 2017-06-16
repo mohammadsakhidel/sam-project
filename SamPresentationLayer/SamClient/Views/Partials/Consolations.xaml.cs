@@ -16,8 +16,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Transactions;
 using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -44,12 +47,32 @@ namespace SamClient.Views.Partials
             try
             {
                 ucPersianDateNavigator.SetMiladyDate(DateTimeUtils.Now);
+
+                #region Timer:
+                var t = new Timer(20000);
+                t.Elapsed += (s, e2) =>
+                {
+                    try
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            ButtonAutomationPeer peer = new ButtonAutomationPeer(btnDownload);
+                            var invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+
+                            invokeProv.Invoke();
+                        });
+                    }
+                    catch { }
+                };
+                t.Start();
+                #endregion
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
+
         private void ucPersianDateNavigator_OnChange(object sender, SamUxLib.UserControls.DateChangedEventArgs e)
         {
             try
@@ -110,7 +133,8 @@ namespace SamClient.Views.Partials
                                 if (!brep.Exists(consolation.Template.BackgroundImageID))
                                 {
                                     var bgBytes = await hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{consolation.Template.BackgroundImageID}");
-                                    var blob = new ImageBlob {
+                                    var blob = new ImageBlob
+                                    {
                                         ID = consolation.Template.BackgroundImageID,
                                         Bytes = bgBytes,
                                         CreationTime = DateTimeUtils.Now
@@ -129,7 +153,10 @@ namespace SamClient.Views.Partials
                             ts.Complete();
                         }
                         progress.IsBusy = false;
-                        UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                        //UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                        #region Reload:
+                        LoadConsolations(ucPersianDateNavigator.GetMiladyDate().HasValue ? ucPersianDateNavigator.GetMiladyDate().Value : DateTimeUtils.Now);
+                        #endregion
                     }
                 }
             }

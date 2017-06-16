@@ -22,10 +22,25 @@ namespace SamClient.Models.Repos
                 .ToList();
             return items;
         }
-
         public Consolation GetNext(int? currentId)
         {
-            return set.Where(c => !currentId.HasValue || c.ID != currentId.Value).OrderByDescending(c => c.CreationTime).FirstOrDefault();
+            Consolation next = null;
+            var current = (currentId.HasValue ? Get(currentId.Value) : null);
+            
+            if (current == null)
+            {
+                next = set.OrderByDescending(c => c.CreationTime).FirstOrDefault();
+            }
+            else
+            {
+                next = set.Where(c => c.ID != current.ID && c.CreationTime < current.CreationTime)
+                          .OrderByDescending(c => c.CreationTime).FirstOrDefault();
+
+                if (next == null)
+                    next = GetNext(null);
+            }
+
+            return next;
         }
         #endregion
     }
