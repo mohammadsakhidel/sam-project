@@ -79,7 +79,7 @@
                                     </StackPanel>
                                 </Border>
 
-                                <Button x:Name="btnTest" Click="btnTest_Click">Test Button</Button>
+                                <Button x:Name="btnTest" Click="btnTest_Click" Visibility="Hidden">Test Button</Button>
 
                             </StackPanel>
                         </ScrollViewer>

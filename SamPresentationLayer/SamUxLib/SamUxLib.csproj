@@ -215,9 +215,12 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\Themes\DefaultTheme\Images\PSDs\header.psd" />
+    <None Include="Resources\Themes\DefaultTheme\Images\PSDs\sam_client_icon.psd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Libs\WPFToolkit.dll" />
+    <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.ico" />
+    <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_play_dark.png" />
     <EmbeddedResource Include="Resources\XML\ir-cities.xml" />

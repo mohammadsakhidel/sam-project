@@ -14,7 +14,11 @@ namespace SamClient.Models.Repos
         #region Extensions:
         public List<Consolation> GetAll(DateTime date)
         {
-            var items = set.Where(c => DbFunctions.TruncateTime(c.CreationTime) == DbFunctions.TruncateTime(date))
+            var setting = context.ClientSettings.Find(1);
+            if (setting == null)
+                throw new Exception("Client Settings Not Found!");
+
+            var items = set.Where(c => c.Obit.MosqueID == setting.MosqueID && DbFunctions.TruncateTime(c.CreationTime) == DbFunctions.TruncateTime(date))
                 .Include(c => c.Obit)
                 .Include(c => c.Customer)
                 .Include(c => c.Template)
@@ -24,16 +28,20 @@ namespace SamClient.Models.Repos
         }
         public Consolation GetNext(int? currentId)
         {
+            var setting = context.ClientSettings.Find(1);
+            if (setting == null)
+                throw new Exception("Client Settings Not Found!");
+
             Consolation next = null;
             var current = (currentId.HasValue ? Get(currentId.Value) : null);
             
             if (current == null)
             {
-                next = set.OrderByDescending(c => c.CreationTime).FirstOrDefault();
+                next = set.Where(c => c.Obit.MosqueID == setting.MosqueID).OrderByDescending(c => c.CreationTime).FirstOrDefault();
             }
             else
             {
-                next = set.Where(c => c.ID != current.ID && c.CreationTime < current.CreationTime)
+                next = set.Where(c => c.Obit.MosqueID == setting.MosqueID && c.ID != current.ID && c.CreationTime < current.CreationTime)
                           .OrderByDescending(c => c.CreationTime).FirstOrDefault();
 
                 if (next == null)

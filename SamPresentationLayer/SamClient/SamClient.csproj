@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>sam_client_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
@@ -232,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libs\Transitionals.dll" />
+    <Resource Include="sam_client_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Partials\ClientSettings.xaml">

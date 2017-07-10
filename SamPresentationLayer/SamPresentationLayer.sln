@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamClient", "SamClient\SamC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamUxLib", "SamUxLib\SamUxLib.csproj", "{6A3E7C54-3305-4BEB-9E13-B967A6183C94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamSyncAgent", "SamSyncAgent\SamSyncAgent.csproj", "{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6A3E7C54-3305-4BEB-9E13-B967A6183C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A3E7C54-3305-4BEB-9E13-B967A6183C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A3E7C54-3305-4BEB-9E13-B967A6183C94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
