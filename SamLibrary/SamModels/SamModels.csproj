@@ -54,6 +54,7 @@
     <Compile Include="DTOs\ObitDto.cs" />
     <Compile Include="DTOs\ObitHoldingDto.cs" />
     <Compile Include="DTOs\ProvinceDto.cs" />
+    <Compile Include="DTOs\SignInDto.cs" />
     <Compile Include="DTOs\TemplateCategoryDto.cs" />
     <Compile Include="DTOs\TemplateDto.cs" />
     <Compile Include="DTOs\TemplateFieldDto.cs" />

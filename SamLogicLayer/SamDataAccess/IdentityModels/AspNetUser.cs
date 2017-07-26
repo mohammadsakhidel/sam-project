@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,25 @@ namespace SamDataAccess.IdentityModels
         }
         #endregion
 
+        #region Props:
+        [MaxLength(32)]
+        [Required]
+        public string FirstName { get; set; }
+
+        [MaxLength(32)]
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
+        public bool Gender { get; set; }
+
+        public int? BirthYear { get; set; }
+
+        [Required]
         public bool IsApproved { get; set; }
+
+        [MaxLength(1024)]
+        public string AccessLevel { get; set; }
+        #endregion
     }
 }
