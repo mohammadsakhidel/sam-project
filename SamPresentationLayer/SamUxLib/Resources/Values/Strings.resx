@@ -423,4 +423,13 @@
   <data name="UserName" xml:space="preserve">
     <value>نام کاربری</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>کاربر</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>مدیر سیستم</value>
+  </data>
+  <data name="MosquesAndObits" xml:space="preserve">
+    <value>مساجد و مراسمات</value>
+  </data>
 </root>

@@ -27,7 +27,10 @@
 
             <!--Header-->
             <Border Style="{StaticResource header}">
-                <Image Style="{StaticResource header_logo}" />
+                <Grid>
+                    <Image Style="{StaticResource header_logo}" />
+                    <Label x:Name="lblUserName" Style="{StaticResource header_username}"></Label>
+                </Grid>
             </Border>
 
             <!--Middle-->
@@ -49,7 +52,7 @@
                                 <Border Style="{StaticResource sidebar_section}">
                                     <StackPanel>
                                         <Button x:Name="btnMosques" Style="{StaticResource sidebar_item}" Click="SectionItem_Clicked" Tag="Mosques"
-                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosques}" />
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.MosquesAndObits}" />
                                         <Button x:Name="btnTemplates" Style="{StaticResource sidebar_item}" Click="SectionItem_Clicked" Tag="Templates"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Templates}" />
                                     </StackPanel>

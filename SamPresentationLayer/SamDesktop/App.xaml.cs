@@ -55,7 +55,26 @@ namespace SamDesktop
         #endregion
 
         #region Static Props:
-        public static JwtToken UserToken { get; set; }
+        private static JwtToken _userToken;
+        public static JwtToken UserToken
+        {
+            get
+            {
+                return _userToken;
+            }
+            set
+            {
+                _userToken = value;
+
+                UserName = _userToken.Payload[JwtToken.ARG_USERNAME];
+                FullName = $"{_userToken.Payload[JwtToken.ARG_FIRST_NAME]} {_userToken.Payload[JwtToken.ARG_SURNAME]}";
+                Roles = _userToken.Payload[JwtToken.ARG_ROLE].Split(new string[] { SamUtils.Constants.Values.list_separator }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            }
+        }
+
+        public static string UserName { get; set; }
+        public static string FullName { get; set; }
+        public static List<string> Roles { get; set; }
         #endregion
     }
 }

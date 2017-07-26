@@ -299,5 +299,11 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
+
+    <ControlTemplate x:Key="label_box_template" TargetType="{x:Type Label}">
+        <Border Background="{TemplateBinding Background}" CornerRadius="3" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}">
+            <Label Margin="0" Padding="0" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}"></Label>
+        </Border>
+    </ControlTemplate>
+
 </ResourceDictionary>

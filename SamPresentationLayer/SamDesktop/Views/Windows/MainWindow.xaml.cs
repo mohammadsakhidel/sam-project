@@ -15,6 +15,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SamUxLib.Resources.Values;
+using RamancoLibrary.Security.Tokens;
+using SamUtils.Enums;
 
 namespace SamDesktop.Views.Windows
 {
@@ -39,7 +42,7 @@ namespace SamDesktop.Views.Windows
         {
             try
             {
-
+                lblUserName.Content = $"{Strings.User}: {(App.Roles.Contains(RoleType.admin.ToString()) ? Strings.Administrator : App.FullName)}";
             }
             catch (Exception ex)
             {
