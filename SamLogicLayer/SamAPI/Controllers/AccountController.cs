@@ -107,7 +107,9 @@ namespace SamAPI.Controllers
                 var token = new JwtToken(header, payload, secKey);
                 #endregion
 
-                return Request.CreateResponse(HttpStatusCode.OK, token.EncodedToken);
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(token.EncodedToken);
+                return response;
             }
             catch (Exception ex)
             {

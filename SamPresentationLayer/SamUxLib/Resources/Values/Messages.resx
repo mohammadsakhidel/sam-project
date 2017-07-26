@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountDisabled" xml:space="preserve">
+    <value>کاربر گرامی، حساب کاربری شما غیرفعال شده است، لطفاً با واحد پشتیبانی سیستم تماس بگیرید.</value>
+  </data>
   <data name="AreYouSureToDelete" xml:space="preserve">
     <value>آیا نسبت به اجرای عملیات حذف اطمینان دارید؟</value>
   </data>
@@ -128,6 +131,12 @@
   </data>
   <data name="InvalidInputValues" xml:space="preserve">
     <value>مقادیر وارد شده معتبر نیستند، لطفاً اصلاح کرده و مجدداً تلاش کنید.</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>گذرواژه وارد شده صحیح نیست، لطفاً مجدداً تلاش کنید.</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>نام کاربری وارد شده صحیح نیست، لطفاً پس از اصلاح مجدداً تلاش کنید.</value>
   </data>
   <data name="SetSettingsBeforeSync" xml:space="preserve">
     <value>قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید.</value>

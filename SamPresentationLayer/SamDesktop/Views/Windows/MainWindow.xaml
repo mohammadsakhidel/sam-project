@@ -8,7 +8,7 @@
         xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Style="{StaticResource main_window}"
-        Title="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppTitle}"
+        Title="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppName}"
         Loaded="Window_Loaded">
     <Window.DataContext>
         <vm:MainVM />

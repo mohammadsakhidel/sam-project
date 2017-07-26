@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using SamModels.DTOs;
 using System.Net.Http;
 using System.Collections.ObjectModel;
-using SamUxLib.Code.Exceptions;
+using SamUtils.Objects.Exceptions;
 using SamUxLib.Resources.Values;
 using Microsoft.Win32;
 using System.Drawing;

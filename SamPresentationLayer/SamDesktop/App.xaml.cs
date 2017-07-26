@@ -11,14 +11,18 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Reflection;
 using SamUxLib.Resources.Values;
+using RamancoLibrary.Security.Tokens;
 
 namespace SamDesktop
 {
     public partial class App : Application
     {
+        #region Consts:
         const int PERSIAN_CULTURE_ID = 1065;
         const int ENGLISH_CULTURE_ID = 1033;
+        #endregion
 
+        #region Overrides:
         protected override void OnStartup(StartupEventArgs e)
         {
             #region Culture Setting, Used by Persian Wpf Toolkit:
@@ -48,5 +52,10 @@ namespace SamDesktop
 
             base.OnStartup(e);
         }
+        #endregion
+
+        #region Static Props:
+        public static JwtToken UserToken { get; set; }
+        #endregion
     }
 }

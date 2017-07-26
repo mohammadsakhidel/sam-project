@@ -20,7 +20,7 @@ using System.Net.Http;
 using SamClient.Models;
 using SamClient.Models.Repos;
 using SamUxLib.Resources.Values;
-using SamUxLib.Code.Exceptions;
+using SamUtils.Objects.Exceptions;
 using System.Transactions;
 using SamModels.Entities.Core;
 using AutoMapper;

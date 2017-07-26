@@ -1,4 +1,4 @@
-﻿using SamUxLib.Code.Exceptions;
+﻿using SamUtils.Objects.Exceptions;
 using SamUxLib.Code.Utils;
 using SamUxLib.Resources.Values;
 using SamModels.DTOs;

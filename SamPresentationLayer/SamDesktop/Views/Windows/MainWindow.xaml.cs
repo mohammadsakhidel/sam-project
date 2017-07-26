@@ -22,7 +22,16 @@ namespace SamDesktop.Views.Windows
     {
         public MainWindow()
         {
-            InitializeComponent();
+            var loginWindow = new LoginWindow();
+            var res = loginWindow.ShowDialog();
+            if (res.HasValue && res.Value)
+            {
+                InitializeComponent();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
         }
 
         #region Event Handlers:

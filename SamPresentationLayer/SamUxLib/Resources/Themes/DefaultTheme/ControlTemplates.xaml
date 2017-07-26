@@ -78,6 +78,39 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="passwordbox_template" TargetType="{x:Type PasswordBox}">
+        <Border x:Name="border" 
+                BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" 
+                SnapsToDevicePixels="True" Padding="{TemplateBinding Padding}"
+                CornerRadius="3">
+            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="0" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="BorderBrush" Value="{StaticResource color_primary_light}"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" Value="true"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="BorderBrush" Value="{StaticResource color_primary}"></Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="combobox_template" TargetType="{x:Type ComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="True">
             <Grid.ColumnDefinitions>

@@ -136,7 +136,7 @@
     <value>چیدمان</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>سیستم اطلاع رسانی مساجد (سام)</value>
+    <value>سامانه اطلاع رسانی مساجد (سام)</value>
   </data>
   <data name="AspectRatio" xml:space="preserve">
     <value>ابعاد</value>
@@ -410,5 +410,17 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>الگوی پیام</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="LoginToSystem" xml:space="preserve">
+    <value>ورود به سیستم</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>گذرواژه</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>نام کاربری</value>
   </data>
 </root>

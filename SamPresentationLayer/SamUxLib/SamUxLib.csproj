@@ -91,7 +91,6 @@
     <Compile Include="Code\Converters\SelectedSectionConverter.cs" />
     <Compile Include="Code\Converters\ShortDateConverter.cs" />
     <Compile Include="Code\Converters\ShortTimeConverter.cs" />
-    <Compile Include="Code\Exceptions\ValidationException.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Code\Utils\UxUtil.cs" />
     <Compile Include="Code\Utils\VersatileUtil.cs" />

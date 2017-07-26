@@ -61,6 +61,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کاربر گرامی، حساب کاربری شما غیرفعال شده است، لطفاً با واحد پشتیبانی سیستم تماس بگیرید..
+        /// </summary>
+        public static string AccountDisabled {
+            get {
+                return ResourceManager.GetString("AccountDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آیا نسبت به اجرای عملیات حذف اطمینان دارید؟.
         /// </summary>
         public static string AreYouSureToDelete {
@@ -93,6 +102,24 @@ namespace SamUxLib.Resources.Values {
         public static string InvalidInputValues {
             get {
                 return ResourceManager.GetString("InvalidInputValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گذرواژه وارد شده صحیح نیست، لطفاً مجدداً تلاش کنید..
+        /// </summary>
+        public static string InvalidPassword {
+            get {
+                return ResourceManager.GetString("InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام کاربری وارد شده صحیح نیست، لطفاً پس از اصلاح مجدداً تلاش کنید..
+        /// </summary>
+        public static string InvalidUserName {
+            get {
+                return ResourceManager.GetString("InvalidUserName", resourceCulture);
             }
         }
         

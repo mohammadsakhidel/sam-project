@@ -115,7 +115,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سیستم اطلاع رسانی مساجد (سام).
+        ///   Looks up a localized string similar to سامانه اطلاع رسانی مساجد (سام).
         /// </summary>
         public static string AppName {
             get {
@@ -484,6 +484,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ورود.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ورود به سیستم.
+        /// </summary>
+        public static string LoginToSystem {
+            get {
+                return ResourceManager.GetString("LoginToSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نگهداری سیستم.
         /// </summary>
         public static string Maintenance {
@@ -651,6 +669,15 @@ namespace SamUxLib.Resources.Values {
         public static string Order {
             get {
                 return ResourceManager.GetString("Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گذرواژه.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
@@ -903,6 +930,15 @@ namespace SamUxLib.Resources.Values {
         public static string Top {
             get {
                 return ResourceManager.GetString("Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام کاربری.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

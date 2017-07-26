@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamUxLib.Code.Exceptions
+namespace SamUtils.Objects.Exceptions
 {
     public class ValidationException : Exception
     {
