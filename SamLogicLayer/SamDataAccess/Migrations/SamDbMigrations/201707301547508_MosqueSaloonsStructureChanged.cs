@@ -3,7 +3,7 @@ namespace SamDataAccess.Migrations.SamDbMigrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MosquesSaloonsStructureChanged : DbMigration
+    public partial class MosqueSaloonsStructureChanged : DbMigration
     {
         public override void Up()
         {
@@ -16,7 +16,7 @@ namespace SamDataAccess.Migrations.SamDbMigrations
                         Name = c.String(nullable: false, maxLength: 32),
                         EndpointIP = c.String(maxLength: 16),
                     })
-                .PrimaryKey(t => t.ID)
+                .PrimaryKey(t => new { t.ID, t.MosqueID })
                 .ForeignKey("core.Mosques", t => t.MosqueID, cascadeDelete: true)
                 .Index(t => t.MosqueID);
             

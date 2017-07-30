@@ -112,7 +112,8 @@ namespace SamDesktop.Views.Partials
                 return new Tuple<bool, string>(false, SamUxLib.Resources.Values.Messages.FillRequiredFields);
 
             var rgxCellPhone = new Regex(Patterns.cellphone);
-            if (!rgxCellPhone.IsMatch(tbImamCellPhone.Text) || !rgxCellPhone.IsMatch(tbInterfaceCellPhone.Text))
+            if ((!string.IsNullOrEmpty(tbImamCellPhone.Text) && !rgxCellPhone.IsMatch(tbImamCellPhone.Text)) || 
+                (!string.IsNullOrEmpty(tbInterfaceCellPhone.Text) && !rgxCellPhone.IsMatch(tbInterfaceCellPhone.Text)))
                 return new Tuple<bool, string>(false, SamUxLib.Resources.Values.Messages.InvalidCellPhone);
 
             var rgxPhoneNumber = new Regex(Patterns.phone_number);

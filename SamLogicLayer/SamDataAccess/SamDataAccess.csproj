@@ -141,9 +141,9 @@
     <Compile Include="Migrations\SamDbMigrations\201707250339562_USER_FieldsAdded.Designer.cs">
       <DependentUpon>201707250339562_USER_FieldsAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201707301505043_MosquesSaloonsStructureChanged.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201707301505043_MosquesSaloonsStructureChanged.Designer.cs">
-      <DependentUpon>201707301505043_MosquesSaloonsStructureChanged.cs</DependentUpon>
+    <Compile Include="Migrations\SamDbMigrations\201707301547508_MosqueSaloonsStructureChanged.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201707301547508_MosqueSaloonsStructureChanged.Designer.cs">
+      <DependentUpon>201707301547508_MosqueSaloonsStructureChanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,8 +222,8 @@
     <EmbeddedResource Include="Migrations\SamDbMigrations\201707250339562_USER_FieldsAdded.resx">
       <DependentUpon>201707250339562_USER_FieldsAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201707301505043_MosquesSaloonsStructureChanged.resx">
-      <DependentUpon>201707301505043_MosquesSaloonsStructureChanged.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201707301547508_MosqueSaloonsStructureChanged.resx">
+      <DependentUpon>201707301547508_MosqueSaloonsStructureChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
