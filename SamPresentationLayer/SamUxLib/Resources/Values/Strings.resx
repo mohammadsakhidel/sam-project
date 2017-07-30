@@ -447,4 +447,7 @@
   <data name="Saloons" xml:space="preserve">
     <value>سالن ها</value>
   </data>
+  <data name="EditMosque" xml:space="preserve">
+    <value>ویرایش اطلاعات مسجد</value>
+  </data>
 </root>

@@ -10,6 +10,8 @@ namespace SamUtils.Constants
     {
         public const string mosques_findbycity = "mosques/findbycity";
         public const string mosques_create = "mosques/create";
+        public const string mosques_update = "mosques/update";
+        public const string mosques_delete = "mosques/delete";
         public const string categories_all = "categories/all";
         public const string templates_all = "templates/all";
         public const string templates_create = "templates/create";

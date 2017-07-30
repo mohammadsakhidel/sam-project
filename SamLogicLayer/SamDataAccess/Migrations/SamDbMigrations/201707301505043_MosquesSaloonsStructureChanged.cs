@@ -3,15 +3,15 @@ namespace SamDataAccess.Migrations.SamDbMigrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Mosque_SaloonsAdded : DbMigration
+    public partial class MosquesSaloonsStructureChanged : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Saloons",
+                "core.Saloons",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        ID = c.String(nullable: false, maxLength: 16),
                         MosqueID = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 32),
                         EndpointIP = c.String(maxLength: 16),
@@ -20,13 +20,15 @@ namespace SamDataAccess.Migrations.SamDbMigrations
                 .ForeignKey("core.Mosques", t => t.MosqueID, cascadeDelete: true)
                 .Index(t => t.MosqueID);
             
+            AddColumn("core.Mosques", "LastUpdateTime", c => c.DateTime());
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Saloons", "MosqueID", "core.Mosques");
-            DropIndex("dbo.Saloons", new[] { "MosqueID" });
-            DropTable("dbo.Saloons");
+            DropForeignKey("core.Saloons", "MosqueID", "core.Mosques");
+            DropIndex("core.Saloons", new[] { "MosqueID" });
+            DropColumn("core.Mosques", "LastUpdateTime");
+            DropTable("core.Saloons");
         }
     }
 }

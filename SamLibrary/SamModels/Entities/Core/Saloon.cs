@@ -10,7 +10,9 @@ namespace SamModels.Entities.Core
     public class Saloon
     {
         #region Props:
-        public int ID { get; set; }
+        [Required]
+        [MaxLength(16)]
+        public string ID { get; set; }
 
         [Required]
         public int MosqueID { get; set; }

@@ -42,6 +42,8 @@ namespace SamModels.Entities.Core
         [Required]
         public DateTime CreationTime { get; set; }
 
+        public DateTime? LastUpdateTime { get; set; }
+
         [Required]
         [MaxLength(32)]
         public string Creator { get; set; }

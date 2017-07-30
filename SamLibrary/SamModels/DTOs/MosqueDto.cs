@@ -31,6 +31,8 @@ namespace SamModels.DTOs
 
         public DateTime CreationTime { get; set; }
 
+        public DateTime? LastUpdateTime { get; set; }
+
         public string Creator { get; set; }
         #endregion
 

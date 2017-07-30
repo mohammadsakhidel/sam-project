@@ -46,6 +46,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RamancoLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="SamModels">
       <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>
     </Reference>
@@ -137,9 +141,9 @@
     <Compile Include="Migrations\SamDbMigrations\201707250339562_USER_FieldsAdded.Designer.cs">
       <DependentUpon>201707250339562_USER_FieldsAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201707291412221_Mosque_SaloonsAdded.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201707291412221_Mosque_SaloonsAdded.Designer.cs">
-      <DependentUpon>201707291412221_Mosque_SaloonsAdded.cs</DependentUpon>
+    <Compile Include="Migrations\SamDbMigrations\201707301505043_MosquesSaloonsStructureChanged.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201707301505043_MosquesSaloonsStructureChanged.Designer.cs">
+      <DependentUpon>201707301505043_MosquesSaloonsStructureChanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -218,8 +222,8 @@
     <EmbeddedResource Include="Migrations\SamDbMigrations\201707250339562_USER_FieldsAdded.resx">
       <DependentUpon>201707250339562_USER_FieldsAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201707291412221_Mosque_SaloonsAdded.resx">
-      <DependentUpon>201707291412221_Mosque_SaloonsAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201707301505043_MosquesSaloonsStructureChanged.resx">
+      <DependentUpon>201707301505043_MosquesSaloonsStructureChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

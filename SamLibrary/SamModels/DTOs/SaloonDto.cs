@@ -9,7 +9,7 @@ namespace SamModels.DTOs
     public class SaloonDto
     {
         #region Props:
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         public int MosqueID { get; set; }
 

@@ -56,11 +56,13 @@ namespace SamDataAccess.Repos
                 obit.ObitType = newObit.ObitType;
 
                 //remove old holdings:
-                context.ObitHoldings.RemoveRange(obit.ObitHoldings);
+                if (obit.ObitHoldings != null)
+                    context.ObitHoldings.RemoveRange(obit.ObitHoldings);
 
                 foreach (var h in newObit.ObitHoldings)
                 {
-                    obit.ObitHoldings.Add(new ObitHolding {
+                    obit.ObitHoldings.Add(new ObitHolding
+                    {
                         BeginTime = h.BeginTime,
                         EndTime = h.EndTime
                     });

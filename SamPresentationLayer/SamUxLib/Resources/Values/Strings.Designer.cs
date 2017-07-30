@@ -340,6 +340,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش اطلاعات مسجد.
+        /// </summary>
+        public static string EditMosque {
+            get {
+                return ResourceManager.GetString("EditMosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش مراسم.
         /// </summary>
         public static string EditObit {

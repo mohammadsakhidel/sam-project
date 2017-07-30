@@ -4,9 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SamDesktop.Views.Windows"
-        mc:Ignorable="d"
-        Title="EditMosqueWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+        xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Style="{StaticResource dialog_window}"
+        Width="800" Height="630" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+
+    <Border Style="{StaticResource dialog_window_content}">
+        <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.EditMosque}" />
+
+                <uc:MosqueEditor x:Name="ucMosqueEditor" Grid.Row="1" Margin="{StaticResource padding_widget_ver}" />
+
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <ram:FlatButton x:Name="btnSave" Style="{StaticResource action_button_ok}" Margin="{StaticResource padding_container_end}"
+                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OK}" Click="btnSave_Click" IsDefault="True"/>
+                    <ram:FlatButton x:Name="btnCancel" Style="{StaticResource action_button_cancel}"
+                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Cancel}" IsCancel="True"/>
+                </StackPanel>
+            </Grid>
+        </toolkit:BusyIndicator>
+    </Border>
+
 </Window>

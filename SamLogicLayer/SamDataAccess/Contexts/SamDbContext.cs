@@ -31,6 +31,7 @@ namespace SamDataAccess.Contexts
         public DbSet<Province> Provinces { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Mosque> Mosques { get; set; }
+        public DbSet<Saloon> Saloons { get; set; }
         public DbSet<Obit> Obits { get; set; }
         public DbSet<Consolation> Consolations { get; set; }
         public DbSet<Template> Templates { get; set; }
@@ -51,6 +52,7 @@ namespace SamDataAccess.Contexts
             modelBuilder.Entity<Province>().ToTable("Provinces", DbSchemaName.core.ToString());
             modelBuilder.Entity<City>().ToTable("Cities", DbSchemaName.core.ToString());
             modelBuilder.Entity<Mosque>().ToTable("Mosques", DbSchemaName.core.ToString());
+            modelBuilder.Entity<Saloon>().ToTable("Saloons", DbSchemaName.core.ToString());
             modelBuilder.Entity<Obit>().ToTable("Obits", DbSchemaName.core.ToString());
             modelBuilder.Entity<Consolation>().ToTable("Consolations", DbSchemaName.core.ToString());
             modelBuilder.Entity<Template>().ToTable("Templates", DbSchemaName.core.ToString());

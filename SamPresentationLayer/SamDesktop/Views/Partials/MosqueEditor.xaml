@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:SamDesktop.Views.Partials"
              xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
-             Loaded="UserControl_Loaded"
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600">
 
     <TabControl>
@@ -112,17 +111,23 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="{StaticResource grid_row_spacing}" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <!--Row 0 ::: Saloon Name-->
-                    <Label Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SaloonName}" />
-                    <TextBox x:Name="tbSaloonName" Grid.Column="1" />
+                    <!--Row 0 ::: Saloon ID-->
+                    <Label Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ID}" />
+                    <TextBox x:Name="tbSaloonID" Grid.Column="1" />
 
-                    <!--Row 2 ::: IP-->
-                    <CheckBox x:Name="chSaloonHasIP" Grid.Row="2" Style="{StaticResource form_label_checkbox}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.IP}" />
-                    <TextBox x:Name="tbSaloonIP" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding ElementName=chSaloonHasIP, Path=IsChecked}" />
+                    <!--Row 2 ::: Saloon Name-->
+                    <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SaloonName}" />
+                    <TextBox x:Name="tbSaloonName" Grid.Row="2" Grid.Column="1" />
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+                    <!--Row 4 ::: IP-->
+                    <CheckBox x:Name="chSaloonHasIP" Grid.Row="4" Style="{StaticResource form_label_checkbox}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.IP}" />
+                    <TextBox x:Name="tbSaloonIP" Grid.Row="4" Grid.Column="1" IsEnabled="{Binding ElementName=chSaloonHasIP, Path=IsChecked}" />
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
                         <ram:FlatButton Style="{StaticResource small_action_button_add}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Add}"
                                         x:Name="btnAddSaloon"  Click="btnAddSaloon_Click" />
                     </StackPanel>
@@ -133,6 +138,11 @@
                     <DataGrid x:Name="dgSaloons" Margin="{StaticResource padding_widget}"
                               MouseDoubleClick="dgSaloons_MouseDoubleClick">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding ID}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ID}" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Name}">
                                 <DataGridTextColumn.Header>
                                     <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SaloonName}" />

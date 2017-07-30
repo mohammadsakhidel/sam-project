@@ -11,5 +11,6 @@ namespace SamDataAccess.Repos.Interfaces
     public interface IMosqueRepo : IRepo<SamDbContext, Mosque>
     {
         List<Mosque> FindByCity(int cityId);
+        void UpdateWidthSave(Mosque mosque);
     }
 }

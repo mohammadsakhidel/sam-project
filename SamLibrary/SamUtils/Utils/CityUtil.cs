@@ -61,11 +61,13 @@ namespace SamUtils.Utils
         {
             var xml = Func_GetXMLContent.Invoke();
             var doc = XDocument.Parse(xml);
-            var city = doc.Root.Descendants("City").SingleOrDefault(c => Convert.ToInt32(c.Attribute("ID").Value) == cityId);
+            var city = doc.Root.Descendants("City")
+                .SingleOrDefault(c => Convert.ToInt32(c.Attribute("ID").Value) == cityId);
             return new CityDto
             {
                 ID = Convert.ToInt32(city.Attribute("ID").Value),
-                Name = city.Attribute("Name").Value.ToString()
+                Name = city.Attribute("Name").Value.ToString(),
+                ProvinceID = Convert.ToInt32(city.Parent.Attribute("ID").Value)
             };
         }
 

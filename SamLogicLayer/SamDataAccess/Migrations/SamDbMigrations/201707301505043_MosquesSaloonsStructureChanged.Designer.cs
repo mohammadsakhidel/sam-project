@@ -7,13 +7,13 @@ namespace SamDataAccess.Migrations.SamDbMigrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Mosque_SaloonsAdded : IMigrationMetadata
+    public sealed partial class MosquesSaloonsStructureChanged : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Mosque_SaloonsAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MosquesSaloonsStructureChanged));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707291412221_Mosque_SaloonsAdded"; }
+            get { return "201707301505043_MosquesSaloonsStructureChanged"; }
         }
         
         string IMigrationMetadata.Source

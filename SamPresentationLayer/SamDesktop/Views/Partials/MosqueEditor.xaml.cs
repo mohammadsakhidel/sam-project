@@ -7,6 +7,7 @@ using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -30,6 +31,8 @@ namespace SamDesktop.Views.Partials
         {
             _mosque = new MosqueDto();
             InitializeComponent();
+
+            LoadCities();
         }
         #endregion
 
@@ -78,10 +81,9 @@ namespace SamDesktop.Views.Partials
             // specifications:
             if (_mosque.CityID > 0)
             {
-                var city = CityUtil.GetCity(_mosque.CityID);
-                var prov = CityUtil.GetProvince(city.ProvinceID);
+                var prov = CityUtil.GetProvince(_mosque.CityID);
                 cmbProvince.SelectedItem = ((IEnumerable<ProvinceDto>)cmbProvince.ItemsSource).SingleOrDefault(p => p.ID == prov.ID);
-                cmbCity.SelectedItem = ((IEnumerable<CityDto>)cmbCity.ItemsSource).SingleOrDefault(c => c.ID == city.ID);
+                cmbCity.SelectedItem = ((IEnumerable<CityDto>)cmbCity.ItemsSource).SingleOrDefault(c => c.ID == _mosque.CityID);
             }
             tbName.Text = _mosque.Name;
             tbImamName.Text = _mosque.ImamName;
@@ -93,8 +95,8 @@ namespace SamDesktop.Views.Partials
             if (!string.IsNullOrEmpty(_mosque.Location))
             {
                 var loc = new RamancoLibrary.Objects.Location(_mosque.Location);
-                tbLatitude.Text = loc.Latitude.ToString();
-                tbLongitude.Text = loc.Longitude.ToString();
+                tbLatitude.Text = loc.Latitude.ToString(CultureInfo.InvariantCulture);
+                tbLongitude.Text = loc.Longitude.ToString(CultureInfo.InvariantCulture);
             }
 
             // saloons:
@@ -119,10 +121,7 @@ namespace SamDesktop.Views.Partials
 
             return new Tuple<bool, string>(true, "");
         }
-        #endregion
-
-        #region Event Handlers:
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void LoadCities()
         {
             try
             {
@@ -134,6 +133,9 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
+        #endregion
+
+        #region Event Handlers:
         private void cmbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -155,7 +157,7 @@ namespace SamDesktop.Views.Partials
             try
             {
                 #region Validation:
-                if (String.IsNullOrEmpty(tbSaloonName.Text))
+                if (String.IsNullOrEmpty(tbSaloonName.Text) || string.IsNullOrWhiteSpace(tbSaloonID.Text))
                     throw new ValidationException(SamUxLib.Resources.Values.Messages.FillRequiredFields);
 
                 if (chSaloonHasIP.IsChecked.HasValue && chSaloonHasIP.IsChecked.Value
@@ -167,6 +169,7 @@ namespace SamDesktop.Views.Partials
                 var saloons = (dgSaloons.ItemsSource != null ? ((ObservableCollection<SaloonDto>)dgSaloons.ItemsSource).ToList() : new List<SaloonDto>());
                 saloons.Add(new SaloonDto
                 {
+                    ID = tbSaloonID.Text,
                     Name = tbSaloonName.Text,
                     EndpointIP = tbSaloonIP.Text
                 });
@@ -174,8 +177,10 @@ namespace SamDesktop.Views.Partials
                 #endregion
 
                 #region Clear:
+                tbSaloonID.Text = "";
                 tbSaloonName.Text = "";
                 tbSaloonIP.Text = "";
+                chSaloonHasIP.IsChecked = false;
                 #endregion
             }
             catch (Exception ex)

@@ -60,6 +60,7 @@ namespace SamAPI.Controllers
         #endregion
 
         #region POST ACTIONS:
+        [HttpPost]
         public IHttpActionResult Create(MosqueDto model)
         {
             try
@@ -67,6 +68,22 @@ namespace SamAPI.Controllers
                 var mosque = Mapper.Map<MosqueDto, Mosque>(model);
                 mosque.CreationTime = DateTimeUtils.Now;
                 _mosqueRepo.AddWithSave(mosque);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+
+        [HttpPost]
+        public IHttpActionResult Update(MosqueDto model)
+        {
+            try
+            {
+                var newMosque = Mapper.Map<MosqueDto, Mosque>(model);
+                _mosqueRepo.UpdateWidthSave(newMosque);
+
                 return Ok();
             }
             catch (Exception ex)
