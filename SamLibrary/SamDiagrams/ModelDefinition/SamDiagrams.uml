@@ -289,6 +289,55 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="e545444a-f508-4bcd-b525-11f8e70f4ede"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="89282a20-8028-481f-9e73-d144b014f2e5"
+              LastKnownName="Saloon"
+              LastKnownLocation="SamDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1858e1c2-45d1-42c7-a813-df84da52123e"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9b41c2bf-1e40-4b0c-b731-7f3ee9d88384"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="8a574bef-6981-4899-91cc-1c115dece2c4"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="416ad656-c008-417e-b6b5-451f4f57fcac"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -747,6 +796,14 @@
       <class
         Id="b7775d85-c328-4f05-8dcd-e37b3408b8fb"
         name="TemplateField"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="89282a20-8028-481f-9e73-d144b014f2e5"
+        name="Saloon"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />

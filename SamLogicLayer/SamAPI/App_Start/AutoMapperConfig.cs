@@ -19,6 +19,12 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<MosqueDto, Mosque>();
                 #endregion
 
+                #region Saloon:
+                cfg.CreateMap<Saloon, SaloonDto>()
+                    .ForMember(dest => dest.Mosque, opt => opt.Ignore());
+                cfg.CreateMap<SaloonDto, Saloon>();
+                #endregion
+
                 #region Template:
                 cfg.CreateMap<Template, TemplateDto>();
                 cfg.CreateMap<TemplateDto, Template>();

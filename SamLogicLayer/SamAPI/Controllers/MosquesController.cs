@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
@@ -26,7 +27,7 @@ namespace SamAPI.Controllers
         }
         #endregion
 
-        #region GET:
+        #region GET ACTIONS:
         [HttpGet]
         public IHttpActionResult Find(int id)
         {
@@ -50,6 +51,23 @@ namespace SamAPI.Controllers
                 var mosques = _mosqueRepo.FindByCity(cityId);
                 var mosqueDtos = mosques.Select(m => Mapper.Map<Mosque, MosqueDto>(m)).ToList();
                 return Ok(mosqueDtos);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
+
+        #region POST ACTIONS:
+        public IHttpActionResult Create(MosqueDto model)
+        {
+            try
+            {
+                var mosque = Mapper.Map<MosqueDto, Mosque>(model);
+                mosque.CreationTime = DateTimeUtils.Now;
+                _mosqueRepo.AddWithSave(mosque);
+                return Ok();
             }
             catch (Exception ex)
             {

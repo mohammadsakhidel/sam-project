@@ -223,6 +223,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات ارتباط.
+        /// </summary>
+        public static string ConnectionInfo {
+            get {
+                return ResourceManager.GetString("ConnectionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پیام های تسلیت.
         /// </summary>
         public static string Consolations {
@@ -435,6 +444,15 @@ namespace SamUxLib.Resources.Values {
         public static string InterfaceName {
             get {
                 return ResourceManager.GetString("InterfaceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آی پی.
+        /// </summary>
+        public static string IP {
+            get {
+                return ResourceManager.GetString("IP", resourceCulture);
             }
         }
         
@@ -700,7 +718,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to شماره تلفن.
+        ///   Looks up a localized string similar to شماره تماس.
         /// </summary>
         public static string PhoneNumber {
             get {
@@ -781,6 +799,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نام سالن.
+        /// </summary>
+        public static string SaloonName {
+            get {
+                return ResourceManager.GetString("SaloonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سالن ها.
+        /// </summary>
+        public static string Saloons {
+            get {
+                return ResourceManager.GetString("Saloons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ذخیره.
         /// </summary>
         public static string Save {
@@ -822,6 +858,15 @@ namespace SamUxLib.Resources.Values {
         public static string Small {
             get {
                 return ResourceManager.GetString("Small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مشخصات.
+        /// </summary>
+        public static string Specifications {
+            get {
+                return ResourceManager.GetString("Specifications", resourceCulture);
             }
         }
         

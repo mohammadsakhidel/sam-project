@@ -169,6 +169,32 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="af58e6d3-b737-476e-b072-d9c52e408fa0" />
           </association>
+          <association Id="668d62e3-abc1-4362-9665-f11ad34aa592" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9e2f306a-421e-451f-8192-c21fd8c5ea1b" LastKnownName="Saloon" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="51e1f1b7-d612-4982-bbb6-d2fe2d5b2302" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1858e1c2-45d1-42c7-a813-df84da52123e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="106c795b-7099-4ab7-9659-2b9db0fb0a11" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="ecd90016-9d72-4155-8a61-69febea69da0" name="Lower" value="*">
+                      <elementDefinition Id="8a574bef-6981-4899-91cc-1c115dece2c4" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="eddbd1ff-667f-4b42-a2a1-03c751cd8933" name="Upper" value="*">
+                      <elementDefinition Id="416ad656-c008-417e-b6b5-451f4f57fcac" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="9b41c2bf-1e40-4b0c-b731-7f3ee9d88384" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e545444a-f508-4bcd-b525-11f8e70f4ede" />
+          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -377,6 +403,11 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="f4fa4f44-0db8-4d2e-a26f-c2664ee9b7f2" name="TemplateField" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b7775d85-c328-4f05-8dcd-e37b3408b8fb" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9e2f306a-421e-451f-8192-c21fd8c5ea1b" name="Saloon" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="89282a20-8028-481f-9e73-d144b014f2e5" />
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

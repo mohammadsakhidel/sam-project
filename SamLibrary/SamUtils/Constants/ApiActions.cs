@@ -9,6 +9,7 @@ namespace SamUtils.Constants
     public class ApiActions
     {
         public const string mosques_findbycity = "mosques/findbycity";
+        public const string mosques_create = "mosques/create";
         public const string categories_all = "categories/all";
         public const string templates_all = "templates/all";
         public const string templates_create = "templates/create";

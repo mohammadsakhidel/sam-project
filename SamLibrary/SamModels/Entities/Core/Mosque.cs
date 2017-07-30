@@ -6,6 +6,7 @@ namespace SamModels.Entities.Core
 {
     public class Mosque
     {
+        #region Props:
         public int ID { get; set; }
 
         [Required]
@@ -44,10 +45,12 @@ namespace SamModels.Entities.Core
         [Required]
         [MaxLength(32)]
         public string Creator { get; set; }
+        #endregion
 
         #region Navigation Props:
         public virtual City City { get; set; }
         public virtual ICollection<Obit> Obits { get; set; }
+        public virtual ICollection<Saloon> Saloons { get; set; }
         #endregion
     }
 }

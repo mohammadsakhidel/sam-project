@@ -304,7 +304,7 @@
     <value>ترتیب</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
-    <value>شماره تلفن</value>
+    <value>شماره تماس</value>
   </data>
   <data name="PleaseWait" xml:space="preserve">
     <value>لطفاً صبر کنید...</value>
@@ -431,5 +431,20 @@
   </data>
   <data name="MosquesAndObits" xml:space="preserve">
     <value>مساجد و مراسمات</value>
+  </data>
+  <data name="ConnectionInfo" xml:space="preserve">
+    <value>اطلاعات ارتباط</value>
+  </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>مشخصات</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>آی پی</value>
+  </data>
+  <data name="SaloonName" xml:space="preserve">
+    <value>نام سالن</value>
+  </data>
+  <data name="Saloons" xml:space="preserve">
+    <value>سالن ها</value>
   </data>
 </root>

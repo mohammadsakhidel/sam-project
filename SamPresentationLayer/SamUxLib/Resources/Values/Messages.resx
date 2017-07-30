@@ -129,11 +129,17 @@
   <data name="FillRequiredFields" xml:space="preserve">
     <value>لطفاً مقدار فیلدهای اجباری را مشخص نمایید.</value>
   </data>
+  <data name="InvalidCellPhone" xml:space="preserve">
+    <value>فرمت شماره همراه وارد شده صحیح نمی باشد.</value>
+  </data>
   <data name="InvalidInputValues" xml:space="preserve">
     <value>مقادیر وارد شده معتبر نیستند، لطفاً اصلاح کرده و مجدداً تلاش کنید.</value>
   </data>
   <data name="InvalidPassword" xml:space="preserve">
     <value>گذرواژه وارد شده صحیح نیست، لطفاً مجدداً تلاش کنید.</value>
+  </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>فرمت شماره تلفن وارد شده صحیح نمی باشد.</value>
   </data>
   <data name="InvalidUserName" xml:space="preserve">
     <value>نام کاربری وارد شده صحیح نیست، لطفاً پس از اصلاح مجدداً تلاش کنید.</value>

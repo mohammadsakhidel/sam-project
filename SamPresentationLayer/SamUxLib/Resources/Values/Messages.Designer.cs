@@ -97,6 +97,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فرمت شماره همراه وارد شده صحیح نمی باشد..
+        /// </summary>
+        public static string InvalidCellPhone {
+            get {
+                return ResourceManager.GetString("InvalidCellPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مقادیر وارد شده معتبر نیستند، لطفاً اصلاح کرده و مجدداً تلاش کنید..
         /// </summary>
         public static string InvalidInputValues {
@@ -111,6 +120,15 @@ namespace SamUxLib.Resources.Values {
         public static string InvalidPassword {
             get {
                 return ResourceManager.GetString("InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فرمت شماره تلفن وارد شده صحیح نمی باشد..
+        /// </summary>
+        public static string InvalidPhoneNumber {
+            get {
+                return ResourceManager.GetString("InvalidPhoneNumber", resourceCulture);
             }
         }
         

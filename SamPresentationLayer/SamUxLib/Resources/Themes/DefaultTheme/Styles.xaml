@@ -123,6 +123,12 @@
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
     </Style>
 
+    <Style x:Key="form_label_checkbox" TargetType="CheckBox">
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="{StaticResource padding_widget_end}"></Setter>
+    </Style>
+
     <Style x:Key="form_label_required" TargetType="Label" BasedOn="{StaticResource form_label}">
         <Setter Property="Foreground" Value="{StaticResource color_required_field}"></Setter>
     </Style>

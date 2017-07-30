@@ -138,6 +138,9 @@
     <Compile Include="Views\Partials\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Partials\MosqueEditor.xaml.cs">
+      <DependentUpon>MosqueEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Partials\ObitEditor.xaml.cs">
       <DependentUpon>ObitEditor.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,9 @@
     <Compile Include="Views\Partials\Templates.xaml.cs">
       <DependentUpon>Templates.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\CreateMosqueWindow.xaml.cs">
+      <DependentUpon>CreateMosqueWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\CreateObitWindow.xaml.cs">
       <DependentUpon>CreateObitWindow.xaml</DependentUpon>
     </Compile>
@@ -173,6 +179,9 @@
     </Compile>
     <Compile Include="Views\Windows\CreateTemplateFieldWindow.xaml.cs">
       <DependentUpon>CreateTemplateFieldWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\EditMosqueWindow.xaml.cs">
+      <DependentUpon>EditMosqueWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\EditObitWindow.xaml.cs">
       <DependentUpon>EditObitWindow.xaml</DependentUpon>
@@ -230,6 +239,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Partials\MosqueEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Partials\ObitEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,6 +279,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\CreateMosqueWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\CreateObitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -275,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\CreateTemplateFieldWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\EditMosqueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

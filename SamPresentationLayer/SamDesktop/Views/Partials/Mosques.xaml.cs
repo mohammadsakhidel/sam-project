@@ -22,6 +22,8 @@ using System.Net.Http.Formatting;
 using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Utils;
+using SamDesktop.Views.Windows;
+using SamUxLib.Resources.Values;
 
 namespace SamDesktop.Views.Partials
 {
@@ -81,24 +83,79 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnNew_Click(object sender, RoutedEventArgs e)
+        private async void btnNew_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                MessageBox.Show("NNN");
+                var window = new CreateMosqueWindow();
+                var result = window.ShowDialog();
+                if (result.HasValue && result.Value)
+                {
+                    var city = cmbCity.SelectedItem as CityDto;
+                    if (city != null)
+                    {
+                        await LoadRecords(city.ID);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private async void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                var mosque = dgMosques.SelectedItem as MosqueDto;
+                if (mosque != null)
+                {
+                    var window = new EditMosqueWindow(mosque);
+                    var result = window.ShowDialog();
+                    if (result.HasValue && result.Value)
+                    {
+                        var city = cmbCity.SelectedItem as CityDto;
+                        if (city != null)
+                        {
+                            await LoadRecords(city.ID);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (dgMosques.SelectedItem != null)
+                {
+                    var result = UxUtil.ShowQuestion(Messages.AreYouSureToDelete);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var mosqueToDelete = dgMosques.SelectedItem as MosqueDto;
+                        #region Call Server To Delete:
+                        progress.IsBusy = true;
+                        using (var hc = HttpUtil.CreateClient())
+                        {
+                            MessageBox.Show("call server here...");
+                            //var response = await hc.DeleteAsync($"{ApiActions.templates_delete}/{templateToDelete.ID}");
+                            //response.EnsureSuccessStatusCode();
+                            //UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                            //await LoadRecords();
+                        }
+                        #endregion
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                progress.IsBusy = false;
+                ExceptionManager.Handle(ex);
+            }
         }
         private void btnObits_Click(object sender, RoutedEventArgs e)
         {

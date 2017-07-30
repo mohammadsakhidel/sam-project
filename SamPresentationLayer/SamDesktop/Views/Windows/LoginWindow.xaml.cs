@@ -46,7 +46,15 @@ namespace SamDesktop.Views.Windows
                     };
                     var response = await hc.PostAsJsonAsync(ApiActions.account_validateuser, dto);
                     progress.IsBusy = false;
-                    if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var token = await response.Content.ReadAsStringAsync();
+                        App.UserToken = new JwtToken(token);
+                        this.DialogResult = true;
+                        this.Close();
+                    }
+                    else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
                         throw new AccessException(SamUxLib.Resources.Values.Messages.InvalidUserName);
                     }
@@ -58,21 +66,14 @@ namespace SamDesktop.Views.Windows
                     {
                         throw new AccessException(SamUxLib.Resources.Values.Messages.AccountDisabled);
                     }
-                    else if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var token = await response.Content.ReadAsStringAsync();
-                        App.UserToken = new JwtToken(token);
-                        this.DialogResult = true;
-                        this.Close();
-                    }
                 }
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -84,7 +85,6 @@ namespace SamDesktop.Views.Windows
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             try

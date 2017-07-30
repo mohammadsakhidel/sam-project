@@ -8,6 +8,7 @@ namespace SamModels.DTOs
 {
     public class MosqueDto
     {
+        #region Props:
         public int ID { get; set; }
 
         public string Name { get; set; }
@@ -31,10 +32,17 @@ namespace SamModels.DTOs
         public DateTime CreationTime { get; set; }
 
         public string Creator { get; set; }
+        #endregion
 
+        #region Navigations:
+        public List<SaloonDto> Saloons { get; set; }
+        #endregion
+
+        #region Overrides:
         public override string ToString()
         {
             return Name;
         }
+        #endregion
     }
 }
