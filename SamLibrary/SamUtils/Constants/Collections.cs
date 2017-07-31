@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SamUtils.Enums;
-using SamUtils.Classes;
+using SamUtils.Objects.Presenters;
 
 namespace SamUtils.Constants
 {

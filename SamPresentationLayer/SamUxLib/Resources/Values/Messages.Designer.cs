@@ -151,6 +151,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تعیین حداقل یک سالن برای مسجد الزامی است..
+        /// </summary>
+        public static string SpecifyAtLeastOneSaloon {
+            get {
+                return ResourceManager.GetString("SpecifyAtLeastOneSaloon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات با موفقیت انجام شد..
         /// </summary>
         public static string SuccessfullyDone {

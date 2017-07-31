@@ -49,5 +49,10 @@ namespace SamDataAccess.Repos
                 Save();
             }
         }
+
+        public Saloon FindSaloon(int mosqueId, string saloonId)
+        {
+            return context.Saloons.Find(saloonId, mosqueId);
+        }
     }
 }

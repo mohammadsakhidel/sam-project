@@ -120,6 +120,9 @@ namespace SamDesktop.Views.Partials
             if (!rgxPhoneNumber.IsMatch(tbPhoneNumber.Text))
                 return new Tuple<bool, string>(false, SamUxLib.Resources.Values.Messages.InvalidPhoneNumber);
 
+            if (dgSaloons.Items.Count == 0)
+                return new Tuple<bool, string>(false, SamUxLib.Resources.Values.Messages.SpecifyAtLeastOneSaloon);
+
             return new Tuple<bool, string>(true, "");
         }
         private void LoadCities()

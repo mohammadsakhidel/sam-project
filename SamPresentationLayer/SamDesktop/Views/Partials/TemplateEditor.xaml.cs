@@ -19,7 +19,7 @@ using System.Windows.Input;
 using System.Drawing.Imaging;
 using SamUtils.Constants;
 using System.Linq;
-using SamUtils.Classes;
+using SamUtils.Objects.Presenters;
 using SamUtils.Utils;
 
 namespace SamDesktop.Views.Partials

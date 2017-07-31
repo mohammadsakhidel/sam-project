@@ -18,12 +18,14 @@ namespace SamAPI.Controllers
     {
         #region Fields:
         IObitRepo _obitRepo;
+        IMosqueRepo _mosqueRepo;
         #endregion
 
         #region Ctors:
-        public ObitsController(IObitRepo obitRepo)
+        public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo)
         {
             _obitRepo = obitRepo;
+            _mosqueRepo = mosqueRepo;
         }
         #endregion
 
@@ -67,6 +69,7 @@ namespace SamAPI.Controllers
                 var dtos = holdings.Select(o => Mapper.Map<ObitHolding, ObitHoldingDto>(o, opt => opt.AfterMap((src, dest) =>
                 {
                     dest.Obit = Mapper.Map<Obit, ObitDto>(src.Obit);
+                    dest.SaloonName = _mosqueRepo.FindSaloon(mosqueId, src.SaloonID)?.Name;
                 })));
                 return Ok(dtos);
             }

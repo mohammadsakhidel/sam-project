@@ -20,6 +20,10 @@ namespace SamModels.Entities.Core
         [Required]
         public DateTime EndTime { get; set; }
 
+        [Required]
+        [MaxLength(16)]
+        public string SaloonID { get; set; }
+
         #region Navigation Props:
         public virtual Obit Obit { get; set; }
         #endregion

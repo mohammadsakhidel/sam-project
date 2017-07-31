@@ -145,6 +145,10 @@
     <Compile Include="Migrations\SamDbMigrations\201707301547508_MosqueSaloonsStructureChanged.Designer.cs">
       <DependentUpon>201707301547508_MosqueSaloonsStructureChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201707311522448_ObitHolding_SaloonIDAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201707311522448_ObitHolding_SaloonIDAdded.Designer.cs">
+      <DependentUpon>201707311522448_ObitHolding_SaloonIDAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -224,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201707301547508_MosqueSaloonsStructureChanged.resx">
       <DependentUpon>201707301547508_MosqueSaloonsStructureChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201707311522448_ObitHolding_SaloonIDAdded.resx">
+      <DependentUpon>201707311522448_ObitHolding_SaloonIDAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

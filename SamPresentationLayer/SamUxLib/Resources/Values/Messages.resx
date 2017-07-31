@@ -147,6 +147,9 @@
   <data name="SetSettingsBeforeSync" xml:space="preserve">
     <value>قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید.</value>
   </data>
+  <data name="SpecifyAtLeastOneSaloon" xml:space="preserve">
+    <value>تعیین حداقل یک سالن برای مسجد الزامی است.</value>
+  </data>
   <data name="SuccessfullyDone" xml:space="preserve">
     <value>عملیات با موفقیت انجام شد.</value>
   </data>

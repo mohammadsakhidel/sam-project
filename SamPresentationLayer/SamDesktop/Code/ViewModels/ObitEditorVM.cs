@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SamUtils.Objects.Presenters;
 
 namespace SamDesktop.Code.ViewModels
 {
@@ -25,18 +26,32 @@ namespace SamDesktop.Code.ViewModels
         }
         #endregion
 
+        #region Saloons:
+        private ObservableCollection<SaloonDto> saloons;
+        public ObservableCollection<SaloonDto> Saloons
+        {
+            get { return saloons; }
+            set
+            {
+                saloons = value;
+                RaisePropertyChanged("Saloons");
+            }
+        }
+        #endregion
+
         #region ObitTypes:
-        public ObservableCollection<KeyValuePair<string, string>> ObitTypes
+        public ObservableCollection<ObitTypePresenter> ObitTypes
         {
             get
             {
-                List<KeyValuePair<string, string>> coll = new List<KeyValuePair<string, string>>();
+                List<ObitTypePresenter> coll = new List<ObitTypePresenter>();
                 var values = Enum.GetValues(typeof(ObitType));
                 foreach (var val in values)
                 {
-                    coll.Add(new KeyValuePair<string, string>(((ObitType)val).ToString(), ResourceManager.GetValue($"ObitType_{(ObitType)val}", "Enums")));
+                    var kv = new ObitTypePresenter(((ObitType)val).ToString(), ResourceManager.GetValue($"ObitType_{(ObitType)val}", "Enums"));
+                    coll.Add(kv);
                 }
-                return new ObservableCollection<KeyValuePair<string, string>>(coll);
+                return new ObservableCollection<ObitTypePresenter>(coll);
             }
         }
         #endregion

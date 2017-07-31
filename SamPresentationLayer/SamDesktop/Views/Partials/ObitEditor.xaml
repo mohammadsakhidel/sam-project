@@ -34,7 +34,7 @@
 
             <!--Row 2 ::: ObitType-->
             <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitType}" />
-            <ComboBox x:Name="cmbObitType" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ObitTypes}" DisplayMemberPath="Value" SelectedValuePath="Key" />
+            <ComboBox x:Name="cmbObitType" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ObitTypes}" SelectedValuePath="Key" />
 
             <!--Row 4 ::: ObitHoldings-->
             <GroupBox Grid.Row="4" Grid.ColumnSpan="2" Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitHolding}" Margin="{StaticResource padding_widget_ver}">
@@ -44,24 +44,49 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource padding_container}">
+                    <Grid Margin="{StaticResource padding_container}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--ROW 0-->
                         <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Date}" />
-                        <persian:DatePicker x:Name="datePicker" />
-                        <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BeginHour}"
+                        <persian:DatePicker Grid.Column="1" x:Name="datePicker" />
+                        <Label Grid.Column="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BeginHour}"
                                Margin="{StaticResource padding_container_start}"/>
-                        <toolkit:MaskedTextBox x:Name="tbBeginHour" Mask="99:99" Width="50" />
-                        <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.EndHour}"
+                        <toolkit:MaskedTextBox Grid.Column="3" x:Name="tbBeginHour" Mask="99:99" Width="50" />
+                        <Label Grid.Column="4" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.EndHour}"
                                Margin="{StaticResource padding_container_start}"/>
-                        <toolkit:MaskedTextBox x:Name="tbEndHour"  Mask="99:99" Width="50" />
-                        <ram:FlatButton x:Name="btnAddHolding" Style="{StaticResource small_action_button_add}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Add}"
-                                        Margin="{StaticResource padding_container_start}" Click="btnAddHolding_Click" />
-                    </StackPanel>
+                        <toolkit:MaskedTextBox Grid.Column="5" x:Name="tbEndHour"  Mask="99:99" Width="50" />
+                        
+                        <!--ROW 2-->
+                        <Label Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Saloon}" />
+                        <ComboBox x:Name="cmbSaloon" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Saloons}" DisplayMemberPath="Name" />
+                        <ram:FlatButton Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" x:Name="btnAddHolding" Style="{StaticResource small_action_button_add}" 
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Add}"
+                                        Margin="{StaticResource padding_container_start}" Click="btnAddHolding_Click" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    </Grid>
 
                     <DataGrid x:Name="dgRecords" Grid.Row="1" ItemsSource="{Binding ObitHoldings}" MouseDoubleClick="dgRecords_MouseDoubleClick">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding SaloonID}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Saloon}" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding BeginTime, Converter={StaticResource shortDateConverter}}">
                                 <DataGridTextColumn.Header>
-                                    <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BeginHour}" />
+                                    <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Date}" />
                                 </DataGridTextColumn.Header>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding BeginTime, Converter={StaticResource shortTimeConverter}}">

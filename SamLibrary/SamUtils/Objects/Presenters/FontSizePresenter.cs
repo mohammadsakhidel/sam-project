@@ -1,7 +1,7 @@
 ﻿
 using SamUtils.Enums;
 
-namespace SamUtils.Classes
+namespace SamUtils.Objects.Presenters
 {
     public class FontSizePresenter
     {

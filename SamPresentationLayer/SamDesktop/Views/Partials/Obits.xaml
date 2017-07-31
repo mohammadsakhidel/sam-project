@@ -35,7 +35,7 @@
 
             <DataGrid x:Name="dgRecords" Grid.Row="2" Margin="{StaticResource padding_container_ver}" ItemsSource="{Binding ObitHoldings}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Obit.ID}">
+                    <DataGridTextColumn Binding="{Binding ID}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ID}" />
                         </DataGridTextColumn.Header>
@@ -48,6 +48,11 @@
                     <DataGridTextColumn Binding="{Binding Obit.ObitType, Converter={StaticResource rc}, ConverterParameter=Enums.ObitType_}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitType}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding SaloonName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Saloon}" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding BeginTime, Converter={StaticResource shortTimeConverter}}">

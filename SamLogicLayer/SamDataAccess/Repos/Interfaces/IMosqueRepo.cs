@@ -12,5 +12,6 @@ namespace SamDataAccess.Repos.Interfaces
     {
         List<Mosque> FindByCity(int cityId);
         void UpdateWidthSave(Mosque mosque);
+        Saloon FindSaloon(int mosqueId, string saloonId);
     }
 }

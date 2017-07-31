@@ -44,9 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\AspectRatio.cs" />
-    <Compile Include="Classes\FontSizePresenter.cs" />
-    <Compile Include="Classes\TextAlignmentPresenter.cs" />
+    <Compile Include="Objects\Presenters\AspectRatio.cs" />
+    <Compile Include="Objects\Presenters\FontSizePresenter.cs" />
+    <Compile Include="Objects\Presenters\ObitTypePresenter.cs" />
+    <Compile Include="Objects\Presenters\TextAlignmentPresenter.cs" />
     <Compile Include="Constants\ApiActions.cs" />
     <Compile Include="Constants\Collections.cs" />
     <Compile Include="Constants\Patterns.cs" />
@@ -74,6 +75,7 @@
       <Name>SamModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

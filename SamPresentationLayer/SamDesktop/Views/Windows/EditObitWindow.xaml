@@ -7,7 +7,7 @@
         xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
         xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
         Style="{StaticResource dialog_window}"
-        Width="650" Height="530" WindowStartupLocation="CenterScreen">
+        Width="650" Height="550" WindowStartupLocation="CenterScreen">
 
     <Border Style="{StaticResource dialog_window_content}">
         <Grid>

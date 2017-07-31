@@ -450,4 +450,7 @@
   <data name="EditMosque" xml:space="preserve">
     <value>ویرایش اطلاعات مسجد</value>
   </data>
+  <data name="Saloon" xml:space="preserve">
+    <value>سالن</value>
+  </data>
 </root>

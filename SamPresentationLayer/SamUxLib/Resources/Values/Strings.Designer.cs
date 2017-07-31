@@ -808,6 +808,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سالن.
+        /// </summary>
+        public static string Saloon {
+            get {
+                return ResourceManager.GetString("Saloon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام سالن.
         /// </summary>
         public static string SaloonName {

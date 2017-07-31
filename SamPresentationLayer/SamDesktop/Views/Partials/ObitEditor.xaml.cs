@@ -36,7 +36,26 @@ namespace SamDesktop.Views.Partials
 
         #region Props:
         public ObitDto ObitToEdit { get; set; }
-        public MosqueDto Mosque { get; set; }
+
+        private MosqueDto mosque;
+        public MosqueDto Mosque
+        {
+            get
+            {
+                return mosque;
+            }
+            set
+            {
+                mosque = value;
+
+                var vm = DataContext as ObitEditorVM;
+                if (vm != null)
+                {
+                    vm.Saloons = new ObservableCollection<SaloonDto>(mosque.Saloons);
+                    cmbSaloon.SelectedItem = mosque.Saloons.Any() ? mosque.Saloons.First() : null;
+                }
+            }
+        }
         #endregion
 
         #region Event Handler:
@@ -66,11 +85,12 @@ namespace SamDesktop.Views.Partials
             try
             {
                 #region Validate Inputs:
-                if (!datePicker.SelectedDate.HasValue || !tbBeginHour.IsMaskCompleted || !tbEndHour.IsMaskCompleted)
+                if (cmbSaloon.SelectedItem == null || !datePicker.SelectedDate.HasValue || !tbBeginHour.IsMaskCompleted || !tbEndHour.IsMaskCompleted)
                     throw new ValidationException(Messages.FillRequiredFields);
                 #endregion
 
                 #region Gather Inputs:
+                var saloon = cmbSaloon.SelectedItem as SaloonDto;
                 var selectedDate = datePicker.SelectedDate.Value;
                 var beginTimeStr = tbBeginHour.Text.Split(':');
                 var beginTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, Convert.ToInt32(beginTimeStr[0]), Convert.ToInt32(beginTimeStr[1]), 0);
@@ -81,10 +101,18 @@ namespace SamDesktop.Views.Partials
                     throw new ValidationException(Messages.InvalidInputValues);
                 #endregion
 
+                #region Add To DataGrid:
                 var vm = DataContext as ObitEditorVM;
-                var holdings = vm.ObitHoldings ?? new System.Collections.ObjectModel.ObservableCollection<ObitHoldingDto>();
-                holdings.Add(new ObitHoldingDto { BeginTime = beginTime, EndTime = endTime });
+                var holdings = vm.ObitHoldings ?? new ObservableCollection<ObitHoldingDto>();
+                holdings.Add(new ObitHoldingDto { BeginTime = beginTime, EndTime = endTime, SaloonID = saloon.ID, SaloonName = saloon.Name });
                 vm.ObitHoldings = holdings;
+                #endregion
+
+                #region Clear Inputs:
+                datePicker.SelectedDate = null;
+                tbBeginHour.Clear();
+                tbEndHour.Clear();
+                #endregion
             }
             catch (Exception ex)
             {
@@ -163,7 +191,7 @@ namespace SamDesktop.Views.Partials
             {
                 var vm = DataContext as ObitEditorVM;
                 tbTitle.Text = ObitToEdit.Title;
-                cmbObitType.SelectedItem = vm.ObitTypes.SingleOrDefault(t => t.Key == ObitToEdit.ObitType);
+                cmbObitType.SelectedValue = ObitToEdit.ObitType;
                 vm.ObitHoldings = ObitToEdit.ObitHoldings != null && ObitToEdit.ObitHoldings.Any() ? new ObservableCollection<ObitHoldingDto>(ObitToEdit.ObitHoldings) : null;
             }
         }

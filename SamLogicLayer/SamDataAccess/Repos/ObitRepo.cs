@@ -61,11 +61,7 @@ namespace SamDataAccess.Repos
 
                 foreach (var h in newObit.ObitHoldings)
                 {
-                    obit.ObitHoldings.Add(new ObitHolding
-                    {
-                        BeginTime = h.BeginTime,
-                        EndTime = h.EndTime
-                    });
+                    obit.ObitHoldings.Add(h);
                 }
 
                 Save();

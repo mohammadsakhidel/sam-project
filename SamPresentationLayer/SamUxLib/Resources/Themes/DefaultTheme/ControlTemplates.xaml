@@ -146,7 +146,7 @@
                     </Grid.RowDefinitions>
 
                     <Label x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
-                           Foreground="{TemplateBinding Foreground}" Padding="0"
+                           Foreground="{TemplateBinding Foreground}" Padding="0" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                               Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" 
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="False" 
                               Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
