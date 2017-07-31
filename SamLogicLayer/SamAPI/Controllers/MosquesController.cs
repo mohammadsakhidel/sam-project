@@ -75,8 +75,10 @@ namespace SamAPI.Controllers
                 return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
             }
         }
+        #endregion
 
-        [HttpPost]
+        #region PUT ACTIONS:
+        [HttpPut]
         public IHttpActionResult Update(MosqueDto model)
         {
             try
@@ -84,6 +86,22 @@ namespace SamAPI.Controllers
                 var newMosque = Mapper.Map<MosqueDto, Mosque>(model);
                 _mosqueRepo.UpdateWidthSave(newMosque);
 
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
+
+        #region DELETE ACTIONS:
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            try
+            {
+                _mosqueRepo.RemoveWithSave(id);
                 return Ok();
             }
             catch (Exception ex)

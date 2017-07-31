@@ -127,7 +127,7 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -141,11 +141,14 @@ namespace SamDesktop.Views.Partials
                         progress.IsBusy = true;
                         using (var hc = HttpUtil.CreateClient())
                         {
-                            MessageBox.Show("call server here...");
-                            //var response = await hc.DeleteAsync($"{ApiActions.templates_delete}/{templateToDelete.ID}");
-                            //response.EnsureSuccessStatusCode();
-                            //UxUtil.ShowMessage(Messages.SuccessfullyDone);
-                            //await LoadRecords();
+                            var response = await hc.DeleteAsync($"{ApiActions.mosques_delete}/{mosqueToDelete.ID}");
+                            response.EnsureSuccessStatusCode();
+                            UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                            var city = cmbCity.SelectedItem as CityDto;
+                            if (city != null)
+                            {
+                                await LoadRecords(city.ID);
+                            }
                         }
                         #endregion
                     }

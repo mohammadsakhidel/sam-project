@@ -64,7 +64,7 @@ namespace SamDesktop.Views.Windows
                     var mosque = ucMosqueEditor.Mosque;
                     mosque.Creator = App.UserName;
                     // call api:
-                    var response = await hc.PostAsJsonAsync(ApiActions.mosques_update, mosque);
+                    var response = await hc.PutAsJsonAsync(ApiActions.mosques_update, mosque);
                     response.EnsureSuccessStatusCode();
                     // ui reaction:
                     progress.IsBusy = false;
