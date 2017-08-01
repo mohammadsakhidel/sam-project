@@ -72,7 +72,8 @@
 
                         <!--Row 6 ::: Aspect Ratio:-->
                         <Label Grid.Row="6" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AspectRatio}" />
-                        <ComboBox Grid.Row="6" Grid.Column="1" ItemsSource="{Binding AspectRatios}" SelectedItem="{Binding AspectRatio}" />
+                        <ComboBox x:Name="cmbAspectRatio" Grid.Row="6" Grid.Column="1" SelectedItem="{Binding AspectRatio, Mode=TwoWay}" 
+                                  ItemsSource="{Binding AspectRatios}" SelectedValuePath="ID" />
 
                         <!--Row 8 ::: Background Image:-->
                         <Label Grid.Row="8" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BackgroundImage}" />

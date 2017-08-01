@@ -4,6 +4,13 @@ namespace SamUtils.Objects.Presenters
 {
     public class AspectRatio
     {
+        public string ID
+        {
+            get
+            {
+                return $"{WidthRatio}:{HeightRatio}";
+            }
+        }
         public int WidthRatio { get; set; }
         public int HeightRatio { get; set; }
         public AspectRatioOrientation Orientation { get; set; }

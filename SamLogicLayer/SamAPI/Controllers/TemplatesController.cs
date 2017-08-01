@@ -90,7 +90,6 @@ namespace SamAPI.Controllers
                 var template = Mapper.Map<TemplateDto, Template>(model);
                 template.BackgroundImageID = backgroundBlob.ID;
                 template.CreationTime = DateTimeUtils.Now;
-                template.Creator = "Dummy User";
                 #endregion
 
                 _templateRepo.AddWithSave(template, backgroundBlob);
@@ -108,7 +107,39 @@ namespace SamAPI.Controllers
         [HttpPut]
         public IHttpActionResult Update(TemplateDto model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region Prepare Background Image Blob:
+                ImageBlob backgroundBlob = null;
+                if (!string.IsNullOrEmpty(model.BackgroundImageBase64))
+                {
+                    var backgroundBytes = Convert.FromBase64String(model.BackgroundImageBase64);
+                    var backgroundBitmap = IOUtils.ByteArrayToBitmap(backgroundBytes);
+                    var resizer = new ImageResizer(backgroundBitmap.Width, backgroundBitmap.Height, ResizeType.LongerFix, Values.thumbnail_size);
+                    var backgroundThumb = ImageUtils.GetThumbnailImage(backgroundBitmap, resizer.NewWidth, resizer.NewHeight);
+                    backgroundBlob = new ImageBlob
+                    {
+                        // blob:
+                        ID = IDGenerator.GenerateImageID(),
+                        Bytes = backgroundBytes,
+                        CreationTime = DateTimeUtils.Now,
+                        // imageblob:
+                        ThumbImageBytes = IOUtils.BitmapToByteArray(backgroundThumb, ImageFormat.Jpeg),
+                        ImageWidth = backgroundBitmap.Width,
+                        ImageHeight = backgroundBitmap.Height
+                    };
+                }
+                #endregion
+
+                var template = Mapper.Map<TemplateDto, Template>(model);
+                _templateRepo.UpdateWithSave(template, backgroundBlob);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
         }
         #endregion
 

@@ -31,6 +31,7 @@ namespace SamDesktop.Views.Partials
         Border _selectedBox;
         System.Windows.Point _mouseDownPoint;
         string _mouseDownSourceName;
+        bool newBackgroundImageSelected = false;
 
         List<TemplateCategoryDto> _categories = null;
         #endregion
@@ -114,13 +115,14 @@ namespace SamDesktop.Views.Partials
                 templateDto.Name = vm.Name;
                 templateDto.Order = vm.Order;
                 templateDto.TemplateCategoryID = vm.TemplateCategory.ID;
-                templateDto.BackgroundImageBase64 = Convert.ToBase64String(IOUtils.BitmapToByteArray(new Bitmap(vm.BackgroundImage), ImageFormat.Jpeg));
+                templateDto.BackgroundImageBase64 = isEditing && !newBackgroundImageSelected ? "" : Convert.ToBase64String(IOUtils.BitmapToByteArray(new Bitmap(vm.BackgroundImage), ImageFormat.Jpeg));
                 templateDto.Text = vm.Text;
                 templateDto.Price = vm.Price;
                 templateDto.WidthRatio = vm.AspectRatio.WidthRatio;
                 templateDto.HeightRatio = vm.AspectRatio.HeightRatio;
                 templateDto.IsActive = vm.IsActive;
                 templateDto.TemplateFields = vm.Fields != null && vm.Fields.Count > 0 ? (new List<TemplateFieldDto>(vm.Fields)).ToArray() : null;
+                templateDto.Creator = App.UserName;
                 #endregion
                 #region CALL API ::: Craete Template:
                 if (!isEditing)
@@ -189,6 +191,7 @@ namespace SamDesktop.Views.Partials
                 var res = openfiledialog.ShowDialog();
                 if (res.HasValue && res.Value)
                 {
+                    newBackgroundImageSelected = true;
                     Bitmap backgroundImage = new Bitmap(openfiledialog.FileName);
                     ((TemplateEditorVM)DataContext).BackgroundImage = backgroundImage;
                     tbBackgroundImageFileName.Text = openfiledialog.FileName;
@@ -532,7 +535,7 @@ namespace SamDesktop.Views.Partials
                 vm.BackgroundImage = IOUtils.ByteArrayToBitmap(backgroundImageBytes);
                 vm.Text = TemplateToEdit.Text;
                 vm.Price = TemplateToEdit.Price;
-                vm.AspectRatio = vm.AspectRatios.SingleOrDefault(r => r.WidthRatio == TemplateToEdit.WidthRatio && r.HeightRatio == TemplateToEdit.HeightRatio);
+                cmbAspectRatio.SelectedValue = vm.AspectRatios.SingleOrDefault(r => r.WidthRatio == TemplateToEdit.WidthRatio && r.HeightRatio == TemplateToEdit.HeightRatio)?.ID;
                 vm.IsActive = TemplateToEdit.IsActive;
                 vm.Fields = new ObservableCollection<TemplateFieldDto>(TemplateToEdit.TemplateFields);
             }
