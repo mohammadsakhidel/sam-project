@@ -4,9 +4,79 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamDesktop.Views.Partials"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label>Accounts</Label>
-    </Grid>
+             xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:AccountsVM />
+    </UserControl.DataContext>
+
+    <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition  Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Accounts}" />
+
+            <DataGrid x:Name="dgAccounts" Grid.Row="1" Margin="{StaticResource padding_container_ver}" ItemsSource="{Binding Accounts}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn>
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Name}" />
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding Converter="{StaticResource connectorConverter}">
+                                <Binding Path="FirstName"></Binding>
+                                <Binding Path="Surname"></Binding>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding UserName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.UserName}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding RoleDisplayName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Role}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding IsApproved}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Status}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CreationTime}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreationTime}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Creator}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreatorUser}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Border Grid.Row="3" Style="{StaticResource page_footer}">
+                <StackPanel Orientation="Horizontal">
+                    <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}" Click="btnNew_Click"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" />
+                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click"
+                                    IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
+                                    IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+    </toolkit:BusyIndicator>
+
 </UserControl>

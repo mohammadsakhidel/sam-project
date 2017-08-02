@@ -192,7 +192,7 @@ namespace SamWeb.Controllers
             using (var hc = HttpUtil.CreateClient())
             {
                 var response = await hc.PostAsJsonAsync<ConsolationDto>(ApiActions.consolations_create, dto);
-                response.EnsureSuccessStatusCode();
+                HttpUtil.EnsureSuccessStatusCode(response);
                 return PartialView("Partials/_CreateConsolationWizard_SuccessStep");
             }
 
@@ -206,7 +206,7 @@ namespace SamWeb.Controllers
             using (var hc = HttpUtil.CreateClient())
             {
                 var response = await hc.GetAsync($"{ApiActions.mosques_findbycity}?cityId={cityId}");
-                response.EnsureSuccessStatusCode();
+                HttpUtil.EnsureSuccessStatusCode(response);
                 var mosques = await response.Content.ReadAsAsync<List<MosqueDto>>();
                 return mosques;
             }
@@ -217,7 +217,7 @@ namespace SamWeb.Controllers
             using (var hc = HttpUtil.CreateClient())
             {
                 var response = await hc.GetAsync($"{ApiActions.obits_getallobits}?mosqueId={mosqueId}");
-                response.EnsureSuccessStatusCode();
+                HttpUtil.EnsureSuccessStatusCode(response);
                 var obits = await response.Content.ReadAsAsync<List<ObitDto>>();
                 return obits;
             }
@@ -228,7 +228,7 @@ namespace SamWeb.Controllers
             using (var hc = HttpUtil.CreateClient())
             {
                 var response = await hc.GetAsync(ApiActions.templates_all);
-                response.EnsureSuccessStatusCode();
+                HttpUtil.EnsureSuccessStatusCode(response);
                 var templates = await response.Content.ReadAsAsync<List<TemplateDto>>();
                 return templates;
             }
@@ -239,7 +239,7 @@ namespace SamWeb.Controllers
             using (var hc = HttpUtil.CreateClient())
             {
                 var response = await hc.GetAsync($"{ApiActions.templates_get}/{templateId}");
-                response.EnsureSuccessStatusCode();
+                HttpUtil.EnsureSuccessStatusCode(response);
                 var template = await response.Content.ReadAsAsync<TemplateDto>();
                 return template;
             }

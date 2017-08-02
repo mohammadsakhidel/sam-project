@@ -142,6 +142,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ورود به سیستم ناموفق بود، لطفاً مجدداً تلاش کنید..
+        /// </summary>
+        public static string LoginFailedTryAgain {
+            get {
+                return ResourceManager.GetString("LoginFailedTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید..
         /// </summary>
         public static string SetSettingsBeforeSync {

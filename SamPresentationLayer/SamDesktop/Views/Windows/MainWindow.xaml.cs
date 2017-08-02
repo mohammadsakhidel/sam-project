@@ -42,7 +42,7 @@ namespace SamDesktop.Views.Windows
         {
             try
             {
-                lblUserName.Content = $"{Strings.User}: {(App.Roles.Contains(RoleType.admin.ToString()) ? Strings.Administrator : App.FullName)}";
+                lblUserName.Content = $"{Strings.User}: {(App.Role.Equals(RoleType.admin.ToString()) ? Strings.Administrator : App.FullName)}";
             }
             catch (Exception ex)
             {

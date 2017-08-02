@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ErrorCodes.cs" />
+    <Compile Include="Objects\API\ApiOperationResult.cs" />
+    <Compile Include="Objects\Exceptions\HttpException.cs" />
     <Compile Include="Objects\Presenters\AspectRatio.cs" />
     <Compile Include="Objects\Presenters\FontSizePresenter.cs" />
     <Compile Include="Objects\Presenters\ObitTypePresenter.cs" />

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,17 @@ namespace SamDataAccess.IdentityModels
         public AspNetRole(string roleName) : base(roleName)
         {
         }
+        #endregion
+
+        #region Props:
+        [MaxLength(16)]
+        public string Type { get; set; }
+
+        [MaxLength(32)]
+        public string DisplayName { get; set; }
+
+        [MaxLength(1024)]
+        public string AccessLevel { get; set; }
         #endregion
     }
 }

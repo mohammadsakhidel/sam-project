@@ -125,6 +125,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Enums\AppSection.cs" />
+    <Compile Include="Code\ViewModels\AccountsVM.cs" />
     <Compile Include="Code\ViewModels\MainVM.cs" />
     <Compile Include="Code\ViewModels\MosquesVM.cs" />
     <Compile Include="Code\ViewModels\ObitEditorVM.cs" />

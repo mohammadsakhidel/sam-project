@@ -1,6 +1,7 @@
 ﻿using RamancoLibrary.Security.Tokens;
 using SamModels.DTOs;
 using SamUtils.Constants;
+using SamUtils.Objects.API;
 using SamUtils.Objects.Exceptions;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;
@@ -45,31 +46,40 @@ namespace SamDesktop.Views.Windows
                         Password = tbPassword.Password
                     };
                     var response = await hc.PostAsJsonAsync(ApiActions.account_validateuser, dto);
+                    HttpUtil.EnsureSuccessStatusCode(response);
                     progress.IsBusy = false;
 
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    #region Process Response:
+                    var apiResult = await response.Content.ReadAsAsync<ApiOperationResult>();
+                    if (apiResult.Succeeded)
                     {
-                        var token = await response.Content.ReadAsStringAsync();
+                        var token = apiResult.Data;
                         App.UserToken = new JwtToken(token);
                         this.DialogResult = true;
                         this.Close();
                     }
-                    else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    else if (apiResult.ErrorCode == ErrorCodes.invalid_username)
                     {
                         throw new AccessException(SamUxLib.Resources.Values.Messages.InvalidUserName);
                     }
-                    else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    else if (apiResult.ErrorCode == ErrorCodes.invalid_password)
                     {
                         throw new AccessException(SamUxLib.Resources.Values.Messages.InvalidPassword);
                     }
-                    else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    else if (apiResult.ErrorCode == ErrorCodes.account_blocked)
                     {
                         throw new AccessException(SamUxLib.Resources.Values.Messages.AccountDisabled);
                     }
+                    else
+                    {
+                        throw new AccessException(SamUxLib.Resources.Values.Messages.LoginFailedTryAgain);
+                    }
+                    #endregion
                 }
             }
             catch (Exception ex)
             {
+                var typ = ex.GetType();
                 progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }

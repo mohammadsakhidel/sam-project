@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SamDataAccess.IdentityModels;
 using SamModels.DTOs;
 using SamModels.Entities.Core;
 using System;
@@ -59,6 +60,11 @@ namespace SamAPI.App_Start
                 #region Consolation:
                 cfg.CreateMap<Consolation, ConsolationDto>();
                 cfg.CreateMap<ConsolationDto, Consolation>();
+                #endregion
+
+                #region Consolation:
+                cfg.CreateMap<AspNetUser, IdentityUserDto>();
+                cfg.CreateMap<IdentityUserDto, AspNetUser>();
                 #endregion
             });
         }

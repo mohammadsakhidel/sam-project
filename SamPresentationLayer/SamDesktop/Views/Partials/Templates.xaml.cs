@@ -96,7 +96,7 @@ namespace SamDesktop.Views.Partials
                         using (var hc = HttpUtil.CreateClient())
                         {
                             var response = await hc.DeleteAsync($"{ApiActions.templates_delete}/{templateToDelete.ID}");
-                            response.EnsureSuccessStatusCode();
+                            HttpUtil.EnsureSuccessStatusCode(response);
                             UxUtil.ShowMessage(Messages.SuccessfullyDone);
                             await LoadRecords();
                         }
@@ -119,7 +119,7 @@ namespace SamDesktop.Views.Partials
             using (var client = HttpUtil.CreateClient())
             {
                 var response = await client.GetAsync(ApiActions.templates_all);
-                response.EnsureSuccessStatusCode();
+                HttpUtil.EnsureSuccessStatusCode(response);
                 var list = await response.Content.ReadAsAsync<List<TemplateDto>>();
                 ((TemplatesVM)DataContext).Templates = new ObservableCollection<TemplateDto>(list);
                 progress.IsBusy = false;

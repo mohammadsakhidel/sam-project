@@ -145,12 +145,12 @@ namespace SamDesktop.Views.Partials
                     if (!isEditing)
                     {
                         var response = await hc.PostAsJsonAsync(ApiActions.obits_create, formObit);
-                        response.EnsureSuccessStatusCode();
+                        HttpUtil.EnsureSuccessStatusCode(response);
                     }
                     else
                     {
                         var response = await hc.PutAsJsonAsync(ApiActions.obits_update, formObit);
-                        response.EnsureSuccessStatusCode();
+                        HttpUtil.EnsureSuccessStatusCode(response);
                     }
                     progress.IsBusy = false;
                     UxUtil.ShowMessage(Messages.SuccessfullyDone);

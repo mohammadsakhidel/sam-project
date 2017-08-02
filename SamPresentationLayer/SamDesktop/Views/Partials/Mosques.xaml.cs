@@ -142,7 +142,7 @@ namespace SamDesktop.Views.Partials
                         using (var hc = HttpUtil.CreateClient())
                         {
                             var response = await hc.DeleteAsync($"{ApiActions.mosques_delete}/{mosqueToDelete.ID}");
-                            response.EnsureSuccessStatusCode();
+                            HttpUtil.EnsureSuccessStatusCode(response);
                             UxUtil.ShowMessage(Messages.SuccessfullyDone);
                             var city = cmbCity.SelectedItem as CityDto;
                             if (city != null)
@@ -185,7 +185,7 @@ namespace SamDesktop.Views.Partials
             using (var client = HttpUtil.CreateClient())
             {
                 var response = await client.GetAsync($"{ApiActions.mosques_findbycity}?cityid={cityId}");
-                response.EnsureSuccessStatusCode();
+                HttpUtil.EnsureSuccessStatusCode(response);
                 var list = await response.Content.ReadAsAsync<List<MosqueDto>>();
                 ((MosquesVM)DataContext).Mosques = new ObservableCollection<MosqueDto>(list);
                 progress.IsBusy = false;

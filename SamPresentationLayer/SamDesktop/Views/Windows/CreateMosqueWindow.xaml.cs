@@ -48,7 +48,7 @@ namespace SamDesktop.Views.Windows
                     mosque.Creator = App.UserName;
                     // call api:
                     var response = await hc.PostAsJsonAsync(ApiActions.mosques_create, mosque);
-                    response.EnsureSuccessStatusCode();
+                    HttpUtil.EnsureSuccessStatusCode(response);
                     // ui reaction:
                     progress.IsBusy = false;
                     UxUtil.ShowMessage(SamUxLib.Resources.Values.Messages.SuccessfullyDone);

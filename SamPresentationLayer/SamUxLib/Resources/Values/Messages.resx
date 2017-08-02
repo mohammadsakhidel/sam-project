@@ -144,6 +144,9 @@
   <data name="InvalidUserName" xml:space="preserve">
     <value>نام کاربری وارد شده صحیح نیست، لطفاً پس از اصلاح مجدداً تلاش کنید.</value>
   </data>
+  <data name="LoginFailedTryAgain" xml:space="preserve">
+    <value>ورود به سیستم ناموفق بود، لطفاً مجدداً تلاش کنید.</value>
+  </data>
   <data name="SetSettingsBeforeSync" xml:space="preserve">
     <value>قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید.</value>
   </data>

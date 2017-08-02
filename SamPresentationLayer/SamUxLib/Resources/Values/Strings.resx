@@ -453,4 +453,10 @@
   <data name="Saloon" xml:space="preserve">
     <value>سالن</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>نقش</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>حساب کاربری جدید</value>
+  </data>
 </root>

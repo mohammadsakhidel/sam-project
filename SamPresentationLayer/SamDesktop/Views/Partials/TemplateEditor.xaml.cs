@@ -69,7 +69,7 @@ namespace SamDesktop.Views.Partials
                 {
                     #region get categories:
                     var catResponse = await hc.GetAsync(ApiActions.categories_all);
-                    catResponse.EnsureSuccessStatusCode();
+                    HttpUtil.EnsureSuccessStatusCode(catResponse);
                     _categories = await catResponse.Content.ReadAsAsync<List<TemplateCategoryDto>>();
                     ((TemplateEditorVM)DataContext).TemplateCategories = new ObservableCollection<TemplateCategoryDto>(_categories);
                     #endregion
@@ -130,7 +130,7 @@ namespace SamDesktop.Views.Partials
                     using (var hc = HttpUtil.CreateClient())
                     {
                         var response = await hc.PostAsJsonAsync(ApiActions.templates_create, templateDto);
-                        response.EnsureSuccessStatusCode();
+                        HttpUtil.EnsureSuccessStatusCode(response);
                         progress.IsBusy = false;
                         UxUtil.ShowMessage(Messages.SuccessfullyDone);
                         ClearInputs();
@@ -144,7 +144,7 @@ namespace SamDesktop.Views.Partials
                     using (var hc = HttpUtil.CreateClient())
                     {
                         var response = await hc.PutAsJsonAsync(ApiActions.templates_update, templateDto);
-                        response.EnsureSuccessStatusCode();
+                        HttpUtil.EnsureSuccessStatusCode(response);
                         progress.IsBusy = false;
                         UxUtil.ShowMessage(Messages.SuccessfullyDone);
                         Window.GetWindow(this).DialogResult = true;

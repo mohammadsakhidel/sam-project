@@ -149,6 +149,14 @@
     <Compile Include="Migrations\SamDbMigrations\201707311522448_ObitHolding_SaloonIDAdded.Designer.cs">
       <DependentUpon>201707311522448_ObitHolding_SaloonIDAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708020453297_IdentityUserRoleStructureChanged.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708020453297_IdentityUserRoleStructureChanged.Designer.cs">
+      <DependentUpon>201708020453297_IdentityUserRoleStructureChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708021000278_AspNetUser_CreattorFieldsAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708021000278_AspNetUser_CreattorFieldsAdded.Designer.cs">
+      <DependentUpon>201708021000278_AspNetUser_CreattorFieldsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -231,6 +239,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201707311522448_ObitHolding_SaloonIDAdded.resx">
       <DependentUpon>201707311522448_ObitHolding_SaloonIDAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708020453297_IdentityUserRoleStructureChanged.resx">
+      <DependentUpon>201708020453297_IdentityUserRoleStructureChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708021000278_AspNetUser_CreattorFieldsAdded.resx">
+      <DependentUpon>201708021000278_AspNetUser_CreattorFieldsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

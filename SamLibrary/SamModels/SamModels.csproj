@@ -50,6 +50,7 @@
     <Compile Include="DTOs\ConsolationDto.cs" />
     <Compile Include="DTOs\ConsolationsUpdatePackDto.cs" />
     <Compile Include="DTOs\CustomerDto.cs" />
+    <Compile Include="DTOs\IdentityRoleDto.cs" />
     <Compile Include="DTOs\MosqueDto.cs" />
     <Compile Include="DTOs\ObitDto.cs" />
     <Compile Include="DTOs\ObitHoldingDto.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="DTOs\TemplateCategoryDto.cs" />
     <Compile Include="DTOs\TemplateDto.cs" />
     <Compile Include="DTOs\TemplateFieldDto.cs" />
+    <Compile Include="DTOs\IdentityUserDto.cs" />
     <Compile Include="Entities\Blobs\Blob.cs" />
     <Compile Include="Entities\Blobs\ImageBlob.cs" />
     <Compile Include="Entities\Core\City.cs" />

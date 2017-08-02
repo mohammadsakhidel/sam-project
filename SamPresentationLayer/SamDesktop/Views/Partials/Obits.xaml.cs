@@ -129,7 +129,7 @@ namespace SamDesktop.Views.Partials
                         using (var hc = HttpUtil.CreateClient())
                         {
                             var response = await hc.DeleteAsync($"{ApiActions.obits_delete}/{obitToDeleteId}");
-                            response.EnsureSuccessStatusCode();
+                            HttpUtil.EnsureSuccessStatusCode(response);
                             UxUtil.ShowMessage(Messages.SuccessfullyDone);
                             await LoadObits(SelectedMosque.ID, ucPersianDateNavigator.GetMiladyDate().Value);
                         }
@@ -154,7 +154,7 @@ namespace SamDesktop.Views.Partials
                 using (var hc = HttpUtil.CreateClient())
                 {
                     var response = await hc.GetAsync($"{ApiActions.obits_getholdings}?mosqueId={mosqueId}&date={miladyDate.ToString(StringFormats.date_short, new CultureInfo("en"))}");
-                    response.EnsureSuccessStatusCode();
+                    HttpUtil.EnsureSuccessStatusCode(response);
                     var obitHoldings = await response.Content.ReadAsAsync<List<ObitHoldingDto>>();
                     var vm = DataContext as ObitsVM;
                     vm.ObitHoldings = new ObservableCollection<ObitHoldingDto>(obitHoldings);

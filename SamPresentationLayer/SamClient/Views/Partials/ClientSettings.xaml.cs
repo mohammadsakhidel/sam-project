@@ -97,7 +97,7 @@ namespace SamClient.Views.Partials
                     using (var hc = HttpUtil.CreateClient())
                     {
                         var response = await hc.GetAsync($"{ApiActions.mosques_findbycity}?cityId={city.ID}");
-                        response.EnsureSuccessStatusCode();
+                        HttpUtil.EnsureSuccessStatusCode(response);
                         var mosques = await response.Content.ReadAsAsync<List<MosqueDto>>();
                         cmbMosques.ItemsSource = mosques;
                         cmbMosques.IsEnabled = true;

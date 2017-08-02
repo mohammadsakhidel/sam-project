@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SamUtils.Objects.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace SamUtils.Utils
             var client = new HttpClient();
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["api_host"]);
             return client;
+        }
+
+        public static void EnsureSuccessStatusCode(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+                throw new HttpException(response);
         }
     }
 }

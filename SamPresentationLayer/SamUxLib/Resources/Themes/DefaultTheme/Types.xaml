@@ -135,7 +135,7 @@
         <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
         <Setter Property="BorderThickness" Value="2"></Setter>
         <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
-        <!--<Setter Property="Template" Value="{StaticResource combobox_template}"></Setter>-->
+        <Setter Property="Template" Value="{StaticResource combobox_template}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type ListView}">
