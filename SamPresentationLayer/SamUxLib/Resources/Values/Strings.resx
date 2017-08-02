@@ -459,4 +459,19 @@
   <data name="NewUser" xml:space="preserve">
     <value>حساب کاربری جدید</value>
   </data>
+  <data name="CellPhoneNumber" xml:space="preserve">
+    <value>شماره همراه</value>
+  </data>
+  <data name="ApprovedAccount" xml:space="preserve">
+    <value>حساب کاربری فعال</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>ویرایش حساب کاربری</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
 </root>

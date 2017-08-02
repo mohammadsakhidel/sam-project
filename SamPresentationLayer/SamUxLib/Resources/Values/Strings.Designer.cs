@@ -133,6 +133,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حساب کاربری فعال.
+        /// </summary>
+        public static string ApprovedAccount {
+            get {
+                return ResourceManager.GetString("ApprovedAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ابعاد.
         /// </summary>
         public static string AspectRatio {
@@ -201,6 +210,15 @@ namespace SamUxLib.Resources.Values {
         public static string Category {
             get {
                 return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شماره همراه.
+        /// </summary>
+        public static string CellPhoneNumber {
+            get {
+                return ResourceManager.GetString("CellPhoneNumber", resourceCulture);
             }
         }
         
@@ -367,6 +385,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش حساب کاربری.
+        /// </summary>
+        public static string EditUser {
+            get {
+                return ResourceManager.GetString("EditUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ساعت پایان.
         /// </summary>
         public static string EndHour {
@@ -381,6 +408,15 @@ namespace SamUxLib.Resources.Values {
         public static string ErrorMessageBoxCaption {
             get {
                 return ResourceManager.GetString("ErrorMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
             }
         }
         
@@ -912,6 +948,15 @@ namespace SamUxLib.Resources.Values {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام خانوادگی.
+        /// </summary>
+        public static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
             }
         }
         

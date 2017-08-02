@@ -1,8 +1,10 @@
 ﻿using SamDesktop.Code.ViewModels;
+using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,15 +46,15 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private async void btnNew_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                using (var hc = HttpUtil.CreateClient())
+                var window = new CreateUserWindow();
+                var res = window.ShowDialog();
+                if (res.HasValue && res.Value)
                 {
-                    var res = await hc.PostAsJsonAsync("account/create", new IdentityUserDto { UserName = "samadaamin" });
-                    HttpUtil.EnsureSuccessStatusCode(res);
+                    await LoadRecords();
                 }
             }
             catch (Exception ex)
@@ -60,24 +62,48 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private async void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
+                var selectedUser = dgAccounts.SelectedItem as IdentityUserDto;
+                if (selectedUser != null)
+                {
+                    var window = new EditUserWindow(selectedUser);
+                    var res = window.ShowDialog();
+                    if (res.HasValue && res.Value)
+                    {
+                        await LoadRecords();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
+                var selectedUser = dgAccounts.SelectedItem as IdentityUserDto;
+                if (selectedUser != null)
+                {
+                    var result = UxUtil.ShowQuestion(Messages.AreYouSureToDelete);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        #region Call Server To Delete:
+                        progress.IsBusy = true;
+                        using (var hc = HttpUtil.CreateClient())
+                        {
+                            var response = await hc.DeleteAsync($"{ApiActions.account_delete}/{selectedUser.Id}");
+                            HttpUtil.EnsureSuccessStatusCode(response);
+                            UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                            await LoadRecords();
+                        }
+                        #endregion
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -4,9 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamDesktop.Views.Partials"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="{StaticResource padding_container}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!--Row 0 ::: FirstName-->
+        <Label Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.FirstName}" />
+        <TextBox x:Name="tbFirstName" Grid.Column="1" />
+
+        <!--Row 2 ::: Surname-->
+        <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Surname}" />
+        <TextBox x:Name="tbSurname" Grid.Row="2" Grid.Column="1" />
+
+        <!--Row 4 ::: UserName-->
+        <Label Grid.Row="4" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.UserName}" />
+        <TextBox x:Name="tbUserName" Grid.Row="4" Grid.Column="1" />
+
+        <!--Row 6 ::: Password-->
+        <Label Grid.Row="6" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Password}" />
+        <TextBox x:Name="tbPassword" Grid.Row="6" Grid.Column="1" />
+
+        <!--Row 8 ::: Role-->
+        <Label Grid.Row="8" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Role}" />
+        <ComboBox x:Name="cmbRole" Grid.Row="8" Grid.Column="1" DisplayMemberPath="DisplayName" SelectedValuePath="Name" />
+
+        <!--Row 10 ::: PhoneNumber-->
+        <Label Grid.Row="10" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CellPhoneNumber}" />
+        <TextBox x:Name="tbPhoneNumber" Grid.Row="10" Grid.Column="1" />
+
+        <!--Row 12 ::: IsApproved-->
+        <CheckBox x:Name="chIsApproved" Grid.Row="12" Grid.Column="1" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ApprovedAccount}" />
     </Grid>
 </UserControl>

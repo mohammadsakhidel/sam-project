@@ -40,7 +40,6 @@ namespace SamAPI.Controllers
         {
             try
             {
-                Thread.Sleep(2500);
                 var um = _identityRepo.GetUserManager();
                 var rm = _identityRepo.GetRoleManager();
                 var users = um.Users.ToList();
@@ -54,6 +53,22 @@ namespace SamAPI.Controllers
                         dto.RoleDisplayName = userRole.DisplayName;
                     }
                 })));
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult Roles()
+        {
+            try
+            {
+                var rm = _identityRepo.GetRoleManager();
+                var roles = rm.Roles.ToList();
+                var dtos = roles.Select(r => Mapper.Map<AspNetRole, IdentityRoleDto>(r));
                 return Ok(dtos);
             }
             catch (Exception ex)
@@ -101,7 +116,7 @@ namespace SamAPI.Controllers
                                 Name = RoleType.admin.ToString(),
                                 Type = RoleType.admin.ToString(),
                                 AccessLevel = "everywhere",
-                                DisplayName = "Admin Role"
+                                DisplayName = "Administrator"
                             };
                             roleManager.Create(role);
                         }

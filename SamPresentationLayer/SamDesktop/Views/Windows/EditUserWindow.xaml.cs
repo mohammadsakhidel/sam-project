@@ -1,4 +1,5 @@
-﻿using SamUxLib.Code.Utils;
+﻿using SamModels.DTOs;
+using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,13 @@ using System.Windows.Shapes;
 
 namespace SamDesktop.Views.Windows
 {
-    public partial class CreateUserWindow : Window
+    public partial class EditUserWindow : Window
     {
         #region Ctors:
-        public CreateUserWindow()
+        public EditUserWindow(IdentityUserDto user)
         {
             InitializeComponent();
+            ucUserEditor.User = user;
         }
         #endregion
 
@@ -29,17 +31,13 @@ namespace SamDesktop.Views.Windows
         {
             try
             {
-                
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
-        #endregion
-
-        #region Methods:
-
         #endregion
     }
 }
