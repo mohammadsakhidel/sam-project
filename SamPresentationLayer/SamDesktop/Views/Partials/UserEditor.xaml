@@ -25,6 +25,8 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="{StaticResource grid_row_spacing}" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <!--Row 0 ::: FirstName-->
@@ -41,17 +43,21 @@
 
         <!--Row 6 ::: Password-->
         <Label Grid.Row="6" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Password}" />
-        <TextBox x:Name="tbPassword" Grid.Row="6" Grid.Column="1" />
+        <PasswordBox x:Name="tbPassword" Grid.Row="6" Grid.Column="1" />
 
-        <!--Row 8 ::: Role-->
-        <Label Grid.Row="8" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Role}" />
-        <ComboBox x:Name="cmbRole" Grid.Row="8" Grid.Column="1" DisplayMemberPath="DisplayName" SelectedValuePath="Name" />
+        <!--Row 8 ::: Password-->
+        <Label Grid.Row="8" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PasswordConfirm}" />
+        <PasswordBox x:Name="tbPasswordConfirm" Grid.Row="8" Grid.Column="1" />
 
-        <!--Row 10 ::: PhoneNumber-->
-        <Label Grid.Row="10" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CellPhoneNumber}" />
-        <TextBox x:Name="tbPhoneNumber" Grid.Row="10" Grid.Column="1" />
+        <!--Row 10 ::: Role-->
+        <Label Grid.Row="10" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Role}" />
+        <ComboBox x:Name="cmbRole" Grid.Row="10" Grid.Column="1" DisplayMemberPath="DisplayName" SelectedValuePath="Name" />
 
-        <!--Row 12 ::: IsApproved-->
-        <CheckBox x:Name="chIsApproved" Grid.Row="12" Grid.Column="1" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ApprovedAccount}" />
+        <!--Row 12 ::: PhoneNumber-->
+        <Label Grid.Row="12" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CellPhoneNumber}" />
+        <TextBox x:Name="tbPhoneNumber" Grid.Row="12" Grid.Column="1" />
+
+        <!--Row 14 ::: IsApproved-->
+        <CheckBox x:Name="chIsApproved" Grid.Row="14" Grid.Column="1" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ApprovedAccount}" />
     </Grid>
 </UserControl>

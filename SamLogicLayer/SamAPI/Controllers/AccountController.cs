@@ -11,6 +11,7 @@ using SamUtils.Enums;
 using SamUtils.Objects.API;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -102,7 +103,8 @@ namespace SamAPI.Controllers
                             IsApproved = true,
                             FirstName = "Admin",
                             Surname = "User",
-                            Gender = true
+                            Creator = "System",
+                            CreationTime = DateTimeUtils.Now
                         };
                         userManager.Create(newAdminUser, dto.Password);
                         #endregion
@@ -154,7 +156,7 @@ namespace SamAPI.Controllers
                 var payload = JwtToken.GetDefaultJwtPayload(Values.jwt_issure, Collections.ApiClients.First().Key, DateTimeUtils.Now.ToString(StringFormats.jwt_date_time));
                 payload.Add(JwtToken.ARG_FIRST_NAME, user.FirstName);
                 payload.Add(JwtToken.ARG_SURNAME, user.Surname);
-                payload.Add(JwtToken.ARG_GENDER, (user.Gender ? "male" : "female"));
+                payload.Add(JwtToken.ARG_GENDER, (user.Gender.HasValue ? (user.Gender.Value ? "male" : "female") : ""));
                 payload.Add(JwtToken.ARG_YEAR_OF_BIRTH, (user.BirthYear.HasValue ? user.BirthYear.Value.ToString() : ""));
                 payload.Add(JwtToken.ARG_USERNAME, user.UserName);
                 payload.Add(JwtToken.ARG_ROLE, userRole?.Name);
@@ -179,7 +181,6 @@ namespace SamAPI.Controllers
             try
             {
                 var userManager = _identityRepo.GetUserManager();
-                var roleManager = _identityRepo.GetRoleManager();
 
                 #region Validation:
                 // user exists?
@@ -204,7 +205,8 @@ namespace SamAPI.Controllers
                     newUser.PhoneNumber = dto.PhoneNumber;
                     newUser.FirstName = dto.FirstName;
                     newUser.Surname = dto.Surname;
-                    newUser.Gender = dto.Gender;
+                    newUser.Creator = dto.Creator;
+                    newUser.CreationTime = DateTimeUtils.Now;
 
                     var resUser = userManager.Create(newUser, dto.PlainPassword);
                     if (!resUser.Succeeded)
@@ -219,6 +221,105 @@ namespace SamAPI.Controllers
 
                     scope.Complete();
                 }
+                #endregion
+
+                return Ok(new ApiOperationResult { Succeeded = true });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
+
+        #region PUT ACTIONS:
+        [HttpPut]
+        public IHttpActionResult Update(IdentityUserDto dto)
+        {
+            try
+            {
+                var userManager = _identityRepo.GetUserManager();
+                var toBeEditedUser = userManager.FindById(dto.Id);
+                if (toBeEditedUser == null)
+                    return NotFound();
+
+                #region Validation:
+                if (toBeEditedUser.UserName == Values.def_admin_name && dto.UserName != Values.def_admin_name)
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.sysadmin_username_changing });
+
+                // user exists?
+                var existingUser = userManager.FindByName(dto.UserName);
+                if (existingUser != null && existingUser.UserName != toBeEditedUser.UserName)
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.duplicate_username });
+
+                // valid username & password:
+                if (!(new Regex(Patterns.username)).IsMatch(dto.UserName))
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.invalid_username });
+                if (!string.IsNullOrEmpty(dto.PlainPassword) && !(new Regex(Patterns.password)).IsMatch(dto.PlainPassword))
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.invalid_password });
+                #endregion
+
+                #region Update Data:
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    #region Update User Info:
+                    toBeEditedUser.UserName = dto.UserName;
+                    toBeEditedUser.IsApproved = dto.IsApproved;
+                    toBeEditedUser.Email = dto.Email;
+                    toBeEditedUser.PhoneNumber = dto.PhoneNumber;
+                    toBeEditedUser.FirstName = dto.FirstName;
+                    toBeEditedUser.Surname = dto.Surname;
+                    #endregion
+
+                    #region Update Role:
+                    userManager.RemoveFromRoles(toBeEditedUser.Id, userManager.GetRoles(toBeEditedUser.Id).ToArray());
+                    var resRole = userManager.AddToRole(toBeEditedUser.Id, dto.RoleName);
+                    if (!resRole.Succeeded)
+                        return Ok(new ApiOperationResult { Succeeded = false, ErrorMessage = "Identity Role Assignment Failed!" });
+                    #endregion
+
+                    #region Reset Password:
+                    if (!string.IsNullOrEmpty(dto.PlainPassword))
+                    {
+                        var resReset1 = userManager.RemovePassword(toBeEditedUser.Id);
+                        var resReset2 = userManager.AddPassword(toBeEditedUser.Id, dto.PlainPassword);
+                        if (!resReset1.Succeeded || !resReset2.Succeeded)
+                            return Ok(new ApiOperationResult { Succeeded = false, ErrorMessage = "Reset Password Failed!" });
+                    }
+                    #endregion
+
+                    userManager.Update(toBeEditedUser);
+                    scope.Complete();
+                }
+                #endregion
+
+                return Ok(new ApiOperationResult { Succeeded = true });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
+
+        #region DELETE ACTIONS:
+        [HttpDelete]
+        public IHttpActionResult Delete(string id)
+        {
+            try
+            {
+                var userManager = _identityRepo.GetUserManager();
+                var userToDelete = userManager.FindById(id);
+                if (userToDelete == null)
+                    return NotFound();
+
+                #region Validation:
+                if (userToDelete.UserName == Values.def_admin_name)
+                    throw new Exception("You can't delete built in system administrator.");
+                #endregion
+
+                #region Delete Data:
+                userManager.Delete(userToDelete);
                 #endregion
 
                 return Ok(new ApiOperationResult { Succeeded = true });

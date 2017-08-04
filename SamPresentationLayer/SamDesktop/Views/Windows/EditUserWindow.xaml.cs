@@ -1,8 +1,14 @@
 ﻿using SamModels.DTOs;
+using SamUtils.Constants;
+using SamUtils.Objects.API;
+using SamUtils.Objects.Exceptions;
+using SamUtils.Utils;
 using SamUxLib.Code.Utils;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,16 +33,63 @@ namespace SamDesktop.Views.Windows
         #endregion
 
         #region Event Handlers:
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                throw new NotImplementedException();
+                #region Validation:
+                var validationResult = ucUserEditor.IsValid();
+                if (!validationResult.Item1)
+                    throw new ValidationException(validationResult.Item2);
+                #endregion
+
+                #region Call Server:
+                progress.IsBusy = true;
+                using (var hc = HttpUtil.CreateClient())
+                {
+                    // get user:
+                    var user = ucUserEditor.User;
+                    // call api:
+                    var response = await hc.PutAsJsonAsync(ApiActions.account_update, user);
+                    HttpUtil.EnsureSuccessStatusCode(response);
+                    var apiResult = await response.Content.ReadAsAsync<ApiOperationResult>();
+                    #region ui reaction:
+                    if (apiResult.Succeeded)
+                    {
+                        progress.IsBusy = false;
+                        UxUtil.ShowMessage(SamUxLib.Resources.Values.Messages.SuccessfullyDone);
+                        DialogResult = true;
+                        Close();
+                    }
+                    else
+                    {
+                        HandleErrorCode(apiResult.ErrorCode);
+                    }
+                    #endregion
+                }
+                #endregion
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
+        }
+        #endregion
+
+        #region Methods:
+        void HandleErrorCode(string errCode)
+        {
+            if (errCode == ErrorCodes.duplicate_username)
+                throw new Exception(Messages.DuplicateUserName);
+            else if (errCode == ErrorCodes.invalid_username)
+                throw new Exception(Messages.InvalidUserNameFormat);
+            else if (errCode == ErrorCodes.invalid_password)
+                throw new Exception(Messages.InvalidPasswordFormat);
+            else if (errCode == ErrorCodes.sysadmin_username_changing)
+                throw new Exception(Messages.SysAdminUserNameImutable);
+            else
+                throw new Exception(Messages.ErrorOccurredTryAgain);
         }
         #endregion
     }

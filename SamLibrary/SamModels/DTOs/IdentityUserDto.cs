@@ -15,8 +15,8 @@ namespace SamModels.DTOs
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public bool Gender { get; set; }
-        public int BirthYear { get; set; }
+        public bool? Gender { get; set; }
+        public int? BirthYear { get; set; }
         public string PlainPassword { get; set; }
         public string RoleName { get; set; }
         public string RoleDisplayName { get; set; }

@@ -79,6 +79,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نام کاربری وارد شده قبلا ثبت شده است..
+        /// </summary>
+        public static string DuplicateUserName {
+            get {
+                return ResourceManager.GetString("DuplicateUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطایی رخ داده است، لطفاً مجدداً تلاش کنید..
+        /// </summary>
+        public static string ErrorOccurredTryAgain {
+            get {
+                return ResourceManager.GetString("ErrorOccurredTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قبل از اینکه بتوانید الگو را طراحی کنید لازم است تصویر پس زمینه و ابعاد الگو را مشخص کنید..
         /// </summary>
         public static string FillBeforeDesignTemplate {
@@ -124,6 +142,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تکرار رمز عبور صحیح نیست..
+        /// </summary>
+        public static string InvalidPasswordConfirmation {
+            get {
+                return ResourceManager.GetString("InvalidPasswordConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فرمت گذرواژه وارد شده صحیح نیست..
+        /// </summary>
+        public static string InvalidPasswordFormat {
+            get {
+                return ResourceManager.GetString("InvalidPasswordFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فرمت شماره تلفن وارد شده صحیح نمی باشد..
         /// </summary>
         public static string InvalidPhoneNumber {
@@ -138,6 +174,15 @@ namespace SamUxLib.Resources.Values {
         public static string InvalidUserName {
             get {
                 return ResourceManager.GetString("InvalidUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فرمت نام کاربری وارد شده صحیح نیست..
+        /// </summary>
+        public static string InvalidUserNameFormat {
+            get {
+                return ResourceManager.GetString("InvalidUserNameFormat", resourceCulture);
             }
         }
         
@@ -174,6 +219,15 @@ namespace SamUxLib.Resources.Values {
         public static string SuccessfullyDone {
             get {
                 return ResourceManager.GetString("SuccessfullyDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام کاربری مدیر پیش فرض سیستم قابل تغییر نمی باشد..
+        /// </summary>
+        public static string SysAdminUserNameImutable {
+            get {
+                return ResourceManager.GetString("SysAdminUserNameImutable", resourceCulture);
             }
         }
     }

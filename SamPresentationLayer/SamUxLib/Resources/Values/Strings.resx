@@ -474,4 +474,10 @@
   <data name="Surname" xml:space="preserve">
     <value>نام خانوادگی</value>
   </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>تکرار گذرواژه</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>فعال</value>
+  </data>
 </root>

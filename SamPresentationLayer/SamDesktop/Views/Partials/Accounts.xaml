@@ -45,9 +45,9 @@
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Role}" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding IsApproved}">
+                    <DataGridTextColumn Binding="{Binding IsApproved, Converter={StaticResource boolConverter}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Status}" />
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Approved}" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding CreationTime}">

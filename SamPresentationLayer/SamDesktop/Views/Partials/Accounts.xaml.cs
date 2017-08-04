@@ -107,6 +107,7 @@ namespace SamDesktop.Views.Partials
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }

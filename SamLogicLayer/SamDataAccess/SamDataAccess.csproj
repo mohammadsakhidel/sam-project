@@ -157,6 +157,10 @@
     <Compile Include="Migrations\SamDbMigrations\201708021000278_AspNetUser_CreattorFieldsAdded.Designer.cs">
       <DependentUpon>201708021000278_AspNetUser_CreattorFieldsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708040640007_USER_GenderFieldChanged.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708040640007_USER_GenderFieldChanged.Designer.cs">
+      <DependentUpon>201708040640007_USER_GenderFieldChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -245,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201708021000278_AspNetUser_CreattorFieldsAdded.resx">
       <DependentUpon>201708021000278_AspNetUser_CreattorFieldsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708040640007_USER_GenderFieldChanged.resx">
+      <DependentUpon>201708040640007_USER_GenderFieldChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

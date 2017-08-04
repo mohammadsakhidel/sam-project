@@ -30,8 +30,7 @@ namespace SamDataAccess.IdentityModels
         [Required]
         public string Surname { get; set; }
 
-        [Required]
-        public bool Gender { get; set; }
+        public bool? Gender { get; set; }
 
         public int? BirthYear { get; set; }
 

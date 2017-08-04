@@ -30,6 +30,7 @@ namespace SamUtils.Constants
         public const string account_validateuser = "account/validateuser";
         public const string account_all = "account/all";
         public const string account_create = "account/create";
+        public const string account_update = "account/update";
         public const string account_delete = "account/delete";
         public const string account_roles = "account/roles";
     }
