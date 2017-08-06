@@ -25,7 +25,7 @@ namespace SamUxLib.Code.Utils
                 {
                     var jsonString = await httpex.Response.Content.ReadAsStringAsync();
                     dynamic serverException = JsonConvert.DeserializeObject<dynamic>(jsonString);
-                    message = serverException.ExceptionMessage;
+                    message = serverException.ExceptionMessage != null ? serverException.ExceptionMessage : "Error Occurred!";
                 }
                 else
                 {

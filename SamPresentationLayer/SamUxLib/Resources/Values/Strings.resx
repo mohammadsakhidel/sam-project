@@ -480,4 +480,37 @@
   <data name="Approved" xml:space="preserve">
     <value>فعال</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="AccessLevel" xml:space="preserve">
+    <value>سطح دسترسی</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>ایجاد</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>خواندن</value>
+  </data>
+  <data name="section_accounts" xml:space="preserve">
+    <value>حساب های کاربری</value>
+  </data>
+  <data name="section_mosques" xml:space="preserve">
+    <value>مساجد</value>
+  </data>
+  <data name="section_obits" xml:space="preserve">
+    <value>مراسمات</value>
+  </data>
+  <data name="section_roles" xml:space="preserve">
+    <value>نقش ها</value>
+  </data>
+  <data name="section_templates" xml:space="preserve">
+    <value>الگوها</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>بروزرسانی</value>
+  </data>
+  <data name="NewRole" xml:space="preserve">
+    <value>نقش جدید</value>
+  </data>
 </root>

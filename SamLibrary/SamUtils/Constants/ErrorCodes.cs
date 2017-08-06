@@ -17,6 +17,8 @@ namespace SamUtils.Constants
         public const string duplicate_username = "ER003";
         public const string sysadmin_username_changing = "ER004";
         public const string sysadmin_user_delete = "ER005";
+        public const string role_exists = "ER006";
+        public const string sysadmin_rolename_changing = "ER007";
 
     }
 }

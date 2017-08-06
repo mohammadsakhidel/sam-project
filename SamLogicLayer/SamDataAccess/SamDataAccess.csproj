@@ -161,6 +161,14 @@
     <Compile Include="Migrations\SamDbMigrations\201708040640007_USER_GenderFieldChanged.Designer.cs">
       <DependentUpon>201708040640007_USER_GenderFieldChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708050435537_Role_CreatorAndCreationTimeFieldsAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708050435537_Role_CreatorAndCreationTimeFieldsAdded.Designer.cs">
+      <DependentUpon>201708050435537_Role_CreatorAndCreationTimeFieldsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708060825146_Role_AcessLengthUnlimited.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708060825146_Role_AcessLengthUnlimited.Designer.cs">
+      <DependentUpon>201708060825146_Role_AcessLengthUnlimited.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -252,6 +260,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201708040640007_USER_GenderFieldChanged.resx">
       <DependentUpon>201708040640007_USER_GenderFieldChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708050435537_Role_CreatorAndCreationTimeFieldsAdded.resx">
+      <DependentUpon>201708050435537_Role_CreatorAndCreationTimeFieldsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708060825146_Role_AcessLengthUnlimited.resx">
+      <DependentUpon>201708060825146_Role_AcessLengthUnlimited.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

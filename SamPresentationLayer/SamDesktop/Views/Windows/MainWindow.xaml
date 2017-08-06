@@ -77,7 +77,7 @@
                                     <StackPanel>
                                         <Button x:Name="btnAccounts" Style="{StaticResource sidebar_item}" Tag="Accounts" Click="SectionItem_Clicked"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Accounts}" />
-                                        <Button x:Name="btnAccessLevels" Style="{StaticResource sidebar_item}" Tag="AccessLevels" Click="SectionItem_Clicked"
+                                        <Button x:Name="btnAccessLevels" Style="{StaticResource sidebar_item}" Tag="Roles" Click="SectionItem_Clicked"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AccessLevels}" />
                                     </StackPanel>
                                 </Border>

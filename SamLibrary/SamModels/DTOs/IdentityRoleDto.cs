@@ -13,5 +13,7 @@ namespace SamModels.DTOs
         public string Type { get; set; }
         public string DisplayName { get; set; }
         public string AccessLevel { get; set; }
+        public DateTime CreationTime { get; set; }
+        public string Creator { get; set; }
     }
 }

@@ -79,7 +79,6 @@ namespace SamDesktop.Views.Windows
             }
             catch (Exception ex)
             {
-                var typ = ex.GetType();
                 progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }

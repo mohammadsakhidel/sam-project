@@ -125,6 +125,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Enums\AppSection.cs" />
+    <Compile Include="Code\ViewModels\RolesVM.cs" />
     <Compile Include="Code\ViewModels\AccountsVM.cs" />
     <Compile Include="Code\ViewModels\MainVM.cs" />
     <Compile Include="Code\ViewModels\MosquesVM.cs" />
@@ -133,8 +134,11 @@
     <Compile Include="Code\ViewModels\TemplatesVM.cs" />
     <Compile Include="Code\ViewModels\TemplateEditorVM.cs" />
     <Compile Include="Code\ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\Partials\AccessLevels.xaml.cs">
-      <DependentUpon>AccessLevels.xaml</DependentUpon>
+    <Compile Include="Views\Partials\RoleEditor.xaml.cs">
+      <DependentUpon>RoleEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Partials\Roles.xaml.cs">
+      <DependentUpon>Roles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Partials\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
@@ -178,6 +182,9 @@
     <Compile Include="Views\Windows\CreateObitWindow.xaml.cs">
       <DependentUpon>CreateObitWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\CreateRoleWindow.xaml.cs">
+      <DependentUpon>CreateRoleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\CreateTemplateWindow.xaml.cs">
       <DependentUpon>CreateTemplateWindow.xaml</DependentUpon>
     </Compile>
@@ -192,6 +199,9 @@
     </Compile>
     <Compile Include="Views\Windows\EditObitWindow.xaml.cs">
       <DependentUpon>EditObitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\EditRoleWindow.xaml.cs">
+      <DependentUpon>EditRoleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\EditTemplateWindow.xaml.cs">
       <DependentUpon>EditTemplateWindow.xaml</DependentUpon>
@@ -241,7 +251,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Partials\AccessLevels.xaml">
+    <Page Include="Views\Partials\RoleEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Partials\Roles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,6 +315,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\CreateRoleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\CreateTemplateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,6 +336,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\EditObitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\EditRoleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

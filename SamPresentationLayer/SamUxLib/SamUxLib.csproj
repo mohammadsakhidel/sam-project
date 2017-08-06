@@ -92,7 +92,9 @@
     <Compile Include="Code\Converters\NotNullConverter.cs" />
     <Compile Include="Code\Converters\PriceConverter.cs" />
     <Compile Include="Code\Converters\ResourceConverter.cs" />
+    <Compile Include="Code\Converters\SectionNameDisplayConverter.cs" />
     <Compile Include="Code\Converters\SelectedSectionConverter.cs" />
+    <Compile Include="Code\Converters\ShortDateTimeConverter.cs" />
     <Compile Include="Code\Converters\ShortDateConverter.cs" />
     <Compile Include="Code\Converters\ShortTimeConverter.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />

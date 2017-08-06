@@ -117,8 +117,10 @@ namespace SamAPI.Controllers
                             {
                                 Name = RoleType.admin.ToString(),
                                 Type = RoleType.admin.ToString(),
-                                AccessLevel = "everywhere",
-                                DisplayName = "Administrator"
+                                AccessLevel = "Everywhere",
+                                DisplayName = "Administrator",
+                                CreationTime = DateTimeUtils.Now,
+                                Creator = "System"
                             };
                             roleManager.Create(role);
                         }
@@ -230,6 +232,42 @@ namespace SamAPI.Controllers
                 return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
             }
         }
+
+        [HttpPost]
+        public IHttpActionResult CreateRole(IdentityRoleDto dto)
+        {
+            try
+            {
+                var roleManager = _identityRepo.GetRoleManager();
+
+                #region Validation:
+                // role exists?
+                if (roleManager.RoleExists(dto.Name))
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.role_exists });
+                #endregion
+
+                #region Create Role:
+                var role = new AspNetRole()
+                {
+                    Name = dto.Name,
+                    Type = RoleType.oprator.ToString(),
+                    AccessLevel = dto.AccessLevel,
+                    DisplayName = dto.DisplayName,
+                    CreationTime = DateTimeUtils.Now,
+                    Creator = dto.Creator
+                };
+                var resCreate = roleManager.Create(role);
+                if (!resCreate.Succeeded)
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorMessage = "Role Creation Failed!" });
+                #endregion
+
+                return Ok(new ApiOperationResult { Succeeded = true });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
         #endregion
 
         #region PUT ACTIONS:
@@ -300,6 +338,42 @@ namespace SamAPI.Controllers
                 return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
             }
         }
+
+        [HttpPut]
+        public IHttpActionResult UpdateRole(IdentityRoleDto dto)
+        {
+            try
+            {
+                var roleManager = _identityRepo.GetRoleManager();
+                var toBeEditedRole = roleManager.FindById(dto.Id);
+                if (toBeEditedRole == null)
+                    return NotFound();
+
+                #region Validation:
+                if (toBeEditedRole.Type == RoleType.admin.ToString() && dto.Name != toBeEditedRole.Name)
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.sysadmin_rolename_changing });
+
+                // user exists?
+                var existingRole = roleManager.FindByName(dto.Name);
+                if (existingRole != null && existingRole.Name != toBeEditedRole.Name)
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.role_exists });
+                #endregion
+
+                #region Update Role Info:
+                toBeEditedRole.Name = dto.Name;
+                toBeEditedRole.DisplayName = dto.DisplayName;
+                toBeEditedRole.Type = dto.Type;
+                toBeEditedRole.AccessLevel = dto.AccessLevel;
+                #endregion
+
+                roleManager.Update(toBeEditedRole);
+                return Ok(new ApiOperationResult { Succeeded = true });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
         #endregion
 
         #region DELETE ACTIONS:
@@ -320,6 +394,33 @@ namespace SamAPI.Controllers
 
                 #region Delete Data:
                 userManager.Delete(userToDelete);
+                #endregion
+
+                return Ok(new ApiOperationResult { Succeeded = true });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteRole(string id)
+        {
+            try
+            {
+                var roleManager = _identityRepo.GetRoleManager();
+                var roleToDelete = roleManager.FindById(id);
+                if (roleToDelete == null)
+                    return NotFound();
+
+                #region Validation:
+                if (roleToDelete.Type == RoleType.admin.ToString())
+                    throw new Exception("You can't delete built in administrator role.");
+                #endregion
+
+                #region Delete Data:
+                roleManager.Delete(roleToDelete);
                 #endregion
 
                 return Ok(new ApiOperationResult { Succeeded = true });

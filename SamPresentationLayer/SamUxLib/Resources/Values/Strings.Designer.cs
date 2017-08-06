@@ -61,6 +61,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سطح دسترسی.
+        /// </summary>
+        public static string AccessLevel {
+            get {
+                return ResourceManager.GetString("AccessLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سطوح دسترسی.
         /// </summary>
         public static string AccessLevels {
@@ -273,6 +282,15 @@ namespace SamUxLib.Resources.Values {
         public static string Consolator {
             get {
                 return ResourceManager.GetString("Consolator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایجاد.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
             }
         }
         
@@ -691,6 +709,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نقش جدید.
+        /// </summary>
+        public static string NewRole {
+            get {
+                return ResourceManager.GetString("NewRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حساب کاربری جدید.
         /// </summary>
         public static string NewUser {
@@ -862,6 +889,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خواندن.
+        /// </summary>
+        public static string Read {
+            get {
+                return ResourceManager.GetString("Read", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to راست.
         /// </summary>
         public static string Right {
@@ -921,6 +957,51 @@ namespace SamUxLib.Resources.Values {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حساب های کاربری.
+        /// </summary>
+        public static string section_accounts {
+            get {
+                return ResourceManager.GetString("section_accounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مساجد.
+        /// </summary>
+        public static string section_mosques {
+            get {
+                return ResourceManager.GetString("section_mosques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مراسمات.
+        /// </summary>
+        public static string section_obits {
+            get {
+                return ResourceManager.GetString("section_obits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نقش ها.
+        /// </summary>
+        public static string section_roles {
+            get {
+                return ResourceManager.GetString("section_roles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الگوها.
+        /// </summary>
+        public static string section_templates {
+            get {
+                return ResourceManager.GetString("section_templates", resourceCulture);
             }
         }
         
@@ -1092,6 +1173,24 @@ namespace SamUxLib.Resources.Values {
         public static string Top {
             get {
                 return ResourceManager.GetString("Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نوع.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بروزرسانی.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

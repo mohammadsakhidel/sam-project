@@ -28,8 +28,14 @@ namespace SamDataAccess.IdentityModels
         [MaxLength(32)]
         public string DisplayName { get; set; }
 
-        [MaxLength(1024)]
         public string AccessLevel { get; set; }
+
+        [Required]
+        public DateTime CreationTime { get; set; }
+
+        [Required]
+        [MaxLength(32)]
+        public string Creator { get; set; }
         #endregion
     }
 }

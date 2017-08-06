@@ -79,6 +79,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نقشی با این نام قبلا ثبت شده است..
+        /// </summary>
+        public static string DuplicateRoleName {
+            get {
+                return ResourceManager.GetString("DuplicateRoleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام کاربری وارد شده قبلا ثبت شده است..
         /// </summary>
         public static string DuplicateUserName {
@@ -169,6 +178,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عنوان وارد شده برای نقش دارای فرمت صحیح نیست..
+        /// </summary>
+        public static string InvalidRoleNameFormat {
+            get {
+                return ResourceManager.GetString("InvalidRoleNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام کاربری وارد شده صحیح نیست، لطفاً پس از اصلاح مجدداً تلاش کنید..
         /// </summary>
         public static string InvalidUserName {
@@ -219,6 +237,15 @@ namespace SamUxLib.Resources.Values {
         public static string SuccessfullyDone {
             get {
                 return ResourceManager.GetString("SuccessfullyDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام نقش مدیر پیش فرض سیستم قابل تغییر نمی باشد..
+        /// </summary>
+        public static string SysAdminRoleNameImutable {
+            get {
+                return ResourceManager.GetString("SysAdminRoleNameImutable", resourceCulture);
             }
         }
         

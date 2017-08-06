@@ -33,5 +33,8 @@ namespace SamUtils.Constants
         public const string account_update = "account/update";
         public const string account_delete = "account/delete";
         public const string account_roles = "account/roles";
+        public const string account_createrole = "account/createrole";
+        public const string account_updaterole = "account/updaterole";
+        public const string account_deleterole = "account/deleterole";
     }
 }

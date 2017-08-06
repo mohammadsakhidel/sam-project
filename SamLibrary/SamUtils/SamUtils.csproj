@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RamancoLibrary">
       <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
     </Reference>
@@ -47,6 +51,7 @@
     <Compile Include="Constants\ErrorCodes.cs" />
     <Compile Include="Objects\API\ApiOperationResult.cs" />
     <Compile Include="Objects\Exceptions\HttpException.cs" />
+    <Compile Include="Objects\Presenters\SectionAccessLevel.cs" />
     <Compile Include="Objects\Presenters\AspectRatio.cs" />
     <Compile Include="Objects\Presenters\FontSizePresenter.cs" />
     <Compile Include="Objects\Presenters\ObitTypePresenter.cs" />
@@ -68,6 +73,7 @@
     <Compile Include="Objects\Exceptions\AccessException.cs" />
     <Compile Include="Objects\Exceptions\ValidationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\AccessUtil.cs" />
     <Compile Include="Utils\CityUtil.cs" />
     <Compile Include="Utils\HttpUtil.cs" />
     <Compile Include="Utils\IDGenerator.cs" />
@@ -78,7 +84,9 @@
       <Name>SamModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -123,6 +123,9 @@
   <data name="AreYouSureToDelete" xml:space="preserve">
     <value>آیا نسبت به اجرای عملیات حذف اطمینان دارید؟</value>
   </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value>نقشی با این نام قبلا ثبت شده است.</value>
+  </data>
   <data name="DuplicateUserName" xml:space="preserve">
     <value>نام کاربری وارد شده قبلا ثبت شده است.</value>
   </data>
@@ -153,6 +156,9 @@
   <data name="InvalidPhoneNumber" xml:space="preserve">
     <value>فرمت شماره تلفن وارد شده صحیح نمی باشد.</value>
   </data>
+  <data name="InvalidRoleNameFormat" xml:space="preserve">
+    <value>عنوان وارد شده برای نقش دارای فرمت صحیح نیست.</value>
+  </data>
   <data name="InvalidUserName" xml:space="preserve">
     <value>نام کاربری وارد شده صحیح نیست، لطفاً پس از اصلاح مجدداً تلاش کنید.</value>
   </data>
@@ -170,6 +176,9 @@
   </data>
   <data name="SuccessfullyDone" xml:space="preserve">
     <value>عملیات با موفقیت انجام شد.</value>
+  </data>
+  <data name="SysAdminRoleNameImutable" xml:space="preserve">
+    <value>نام نقش مدیر پیش فرض سیستم قابل تغییر نمی باشد.</value>
   </data>
   <data name="SysAdminUserNameImutable" xml:space="preserve">
     <value>نام کاربری مدیر پیش فرض سیستم قابل تغییر نمی باشد.</value>
