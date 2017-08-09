@@ -40,6 +40,8 @@ namespace SamModels.Entities.Core
         [Required]
         public DateTime CreationTime { get; set; }
 
+        public DateTime? LastUpdateTime { get; set; }
+
         #region Navigation Props:
         public virtual Obit Obit { get; set; }
         public virtual Customer Customer { get; set; }

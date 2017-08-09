@@ -28,6 +28,8 @@ namespace SamModels.DTOs
 
         public DateTime CreationTime { get; set; }
 
+        public DateTime? LastUpdateTime { get; set; }
+
         #region Navigation:
         public CustomerDto Customer { get; set; }
         public ObitDto Obit { get; set; }

@@ -8,7 +8,10 @@ namespace SamModels.DTOs
 {
     public class ConsolationsUpdatePackDto
     {
-        public List<ConsolationDto> Consolations { get; set; }
+        public MosqueDto Mosque { get; set; }
+        public ObitDto[] Obits { get; set; }
+        public TemplateDto[] Templates { get; set; }
+        public ConsolationDto[] Consolations { get; set; }
         public DateTime QueryTime { get; set; }
     }
 }

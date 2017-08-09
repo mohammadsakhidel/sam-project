@@ -26,7 +26,6 @@ namespace SamUtils.Constants
         public const string obits_delete = "obits/delete";
         public const string obits_getallobits = "obits/getallobits";
         public const string consolations_create = "consolations/create";
-        public const string consolations_getupdates = "consolations/getupdates";
         public const string account_validateuser = "account/validateuser";
         public const string account_all = "account/all";
         public const string account_create = "account/create";
@@ -36,5 +35,6 @@ namespace SamUtils.Constants
         public const string account_createrole = "account/createrole";
         public const string account_updaterole = "account/updaterole";
         public const string account_deleterole = "account/deleterole";
+        public const string sync_getupdates = "sync/getupdates";
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Transactions;
 using SamModels.Entities.Blobs;
+using RamancoLibrary.Utilities;
 
 namespace SamDataAccess.Repos
 {
@@ -18,8 +19,7 @@ namespace SamDataAccess.Repos
         #region Overrides:
         public override List<Template> GetAll()
         {
-            return set.Include(t => t.Category)
-                .Include(t => t.TemplateFields).ToList();
+            return set.Include(t => t.TemplateFields).ToList();
         }
 
         public override Template Get(params object[] id)
@@ -73,6 +73,7 @@ namespace SamDataAccess.Repos
                 oldTemplate.Name = newTemplate.Name;
                 oldTemplate.IsActive = newTemplate.IsActive;
                 oldTemplate.Order = newTemplate.Order;
+                oldTemplate.LastUpdateTime = DateTimeUtils.Now;
                 #endregion
 
                 #region Update Template Fields:

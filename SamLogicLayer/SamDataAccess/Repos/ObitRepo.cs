@@ -1,4 +1,5 @@
-﻿using SamDataAccess.Contexts;
+﻿using RamancoLibrary.Utilities;
+using SamDataAccess.Contexts;
 using SamDataAccess.Repos.BaseClasses;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.Entities.Core;
@@ -54,6 +55,7 @@ namespace SamDataAccess.Repos
             {
                 obit.Title = newObit.Title;
                 obit.ObitType = newObit.ObitType;
+                obit.LastUpdateTime = DateTimeUtils.Now;
 
                 //remove old holdings:
                 if (obit.ObitHoldings != null)

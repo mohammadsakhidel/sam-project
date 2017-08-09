@@ -42,6 +42,8 @@ namespace SamModels.DTOs
 
         public string Creator { get; set; }
 
+        public DateTime? LastUpdateTime { get; set; }
+
         public TemplateFieldDto[] TemplateFields { get; set; }
 
         public TemplateCategoryDto Category { get; set; }

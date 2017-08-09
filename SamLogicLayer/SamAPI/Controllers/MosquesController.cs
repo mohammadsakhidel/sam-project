@@ -67,6 +67,7 @@ namespace SamAPI.Controllers
             {
                 var mosque = Mapper.Map<MosqueDto, Mosque>(model);
                 mosque.CreationTime = DateTimeUtils.Now;
+                mosque.LastUpdateTime = mosque.CreationTime;
                 _mosqueRepo.AddWithSave(mosque);
                 return Ok();
             }

@@ -23,6 +23,8 @@ namespace SamModels.Entities.Core
         [Required]
         public DateTime CreationTime { get; set; }
 
+        public DateTime? LastUpdateTime { get; set; }
+
         #region Navigation Props:
         public virtual Mosque Mosque { get; set; }
         public virtual ICollection<Consolation> Consolations { get; set; }

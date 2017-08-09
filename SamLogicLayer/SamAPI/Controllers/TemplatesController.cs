@@ -90,6 +90,7 @@ namespace SamAPI.Controllers
                 var template = Mapper.Map<TemplateDto, Template>(model);
                 template.BackgroundImageID = backgroundBlob.ID;
                 template.CreationTime = DateTimeUtils.Now;
+                template.LastUpdateTime = template.CreationTime;
                 #endregion
 
                 _templateRepo.AddWithSave(template, backgroundBlob);

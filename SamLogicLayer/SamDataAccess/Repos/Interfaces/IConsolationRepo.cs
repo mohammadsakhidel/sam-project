@@ -10,6 +10,6 @@ namespace SamDataAccess.Repos.Interfaces
 {
     public interface IConsolationRepo : IRepo<SamDbContext, Consolation>
     {
-        List<Consolation> GetUpdates(int mosqueId, DateTime lastUpdatetime, DateTime queryTime);
+        Tuple<Mosque, Obit[], Template[], Consolation[]> GetUpdates(int mosqueId, DateTime? clientLastUpdatetime, DateTime queryTime);
     }
 }

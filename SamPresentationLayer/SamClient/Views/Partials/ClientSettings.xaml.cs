@@ -17,13 +17,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http;
-using SamClient.Models;
-using SamClient.Models.Repos;
 using SamUxLib.Resources.Values;
 using SamUtils.Objects.Exceptions;
 using System.Transactions;
 using SamModels.Entities.Core;
 using AutoMapper;
+using SamClient.Models.Repos;
+using ClientModels.Models;
 
 namespace SamClient.Views.Partials
 {
@@ -53,7 +53,8 @@ namespace SamClient.Views.Partials
                         var mosque = mrepo.Get(settings.MosqueID);
                         if (mosque != null)
                         {
-                            cmbProvinces.SelectedValue = mosque.City.ProvinceID;
+                            var city = CityUtil.GetCity(mosque.CityID);
+                            cmbProvinces.SelectedValue = city.ProvinceID;
                             cmbCities.SelectedValue = mosque.CityID;
                             cmbMosques.SelectedValue = mosque.ID;
                         }

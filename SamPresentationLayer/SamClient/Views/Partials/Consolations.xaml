@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:SamClient.Views.Partials"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
-             xmlns:uxuc="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib"
-             Loaded="UserControl_Loaded">
+             xmlns:uxuc="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib">
 
     <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
         <Grid>
@@ -20,8 +19,6 @@
             <Grid>
                 <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <ram:FlatButton x:Name="btnDownload" Style="{StaticResource small_action_button_download}" Click="btnDownload_Click"
-                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SyncWithServer}" />
                     <ram:FlatButton x:Name="btnPlay" Style="{StaticResource small_action_button_play}" Margin="{StaticResource padding_container_start}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Play}" Click="btnPlay_Click" />
                 </StackPanel>

@@ -150,36 +150,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Migrations\201706051346200_Initial.cs" />
-    <Compile Include="Migrations\201706051346200_Initial.Designer.cs">
-      <DependentUpon>201706051346200_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706060833568_ClientSetting_LastUpdateTimeAdded.cs" />
-    <Compile Include="Migrations\201706060833568_ClientSetting_LastUpdateTimeAdded.Designer.cs">
-      <DependentUpon>201706060833568_ClientSetting_LastUpdateTimeAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706081303411_Blobs_Added.cs" />
-    <Compile Include="Migrations\201706081303411_Blobs_Added.Designer.cs">
-      <DependentUpon>201706081303411_Blobs_Added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706160910249_Consolation_FieldsChanged.cs" />
-    <Compile Include="Migrations\201706160910249_Consolation_FieldsChanged.Designer.cs">
-      <DependentUpon>201706160910249_Consolation_FieldsChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ClientSetting.cs" />
-    <Compile Include="Models\Repos\BaseClasses\Repo.cs" />
-    <Compile Include="Models\Repos\BlobRepo.cs" />
-    <Compile Include="Models\Repos\CityRepo.cs" />
-    <Compile Include="Models\Repos\ClientSettingRepo.cs" />
-    <Compile Include="Models\Repos\ConsolationRepo.cs" />
-    <Compile Include="Models\Repos\CustomerRepo.cs" />
-    <Compile Include="Models\Repos\MosqueRepo.cs" />
-    <Compile Include="Models\Repos\ObitRepo.cs" />
-    <Compile Include="Models\Repos\ProvinceRepo.cs" />
-    <Compile Include="Models\Repos\TemplateCategoryRepo.cs" />
-    <Compile Include="Models\Repos\TemplateRepo.cs" />
-    <Compile Include="Models\SamClientDbContext.cs" />
     <Compile Include="Views\Partials\ClientSettings.xaml.cs">
       <DependentUpon>ClientSettings.xaml</DependentUpon>
     </Compile>
@@ -207,18 +177,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201706051346200_Initial.resx">
-      <DependentUpon>201706051346200_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706060833568_ClientSetting_LastUpdateTimeAdded.resx">
-      <DependentUpon>201706060833568_ClientSetting_LastUpdateTimeAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706081303411_Blobs_Added.resx">
-      <DependentUpon>201706081303411_Blobs_Added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706160910249_Consolation_FieldsChanged.resx">
-      <DependentUpon>201706160910249_Consolation_FieldsChanged.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -256,6 +214,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SamClientDataAccess\SamClientDataAccess.csproj">
+      <Project>{7c4f3e6f-dbd8-41bb-be79-acc4dfd8ae2c}</Project>
+      <Name>SamClientDataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SamUxLib\SamUxLib.csproj">
       <Project>{6a3e7c54-3305-4beb-9e13-b967a6183c94}</Project>
       <Name>SamUxLib</Name>

@@ -144,6 +144,7 @@
     <Compile Include="Controllers\ConsolationsController.cs" />
     <Compile Include="Controllers\MosquesController.cs" />
     <Compile Include="Controllers\ObitsController.cs" />
+    <Compile Include="Controllers\SyncController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

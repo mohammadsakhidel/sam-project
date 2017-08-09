@@ -53,6 +53,8 @@ namespace SamModels.Entities.Core
         [MaxLength(32)]
         public string Creator { get; set; }
 
+        public DateTime? LastUpdateTime { get; set; }
+
         #region Navigation Props:
         public virtual ICollection<TemplateField> TemplateFields { get; set; }
         public virtual TemplateCategory Category { get; set; }

@@ -88,6 +88,7 @@ namespace SamAPI.Controllers
             {
                 var obit = Mapper.Map<ObitDto, Obit>(model);
                 obit.CreationTime = DateTimeUtils.Now;
+                obit.LastUpdateTime = obit.CreationTime;
                 _obitRepo.AddWithSave(obit);
                 return Ok();
             }

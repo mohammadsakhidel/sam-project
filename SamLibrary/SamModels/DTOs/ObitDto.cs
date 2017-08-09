@@ -18,6 +18,8 @@ namespace SamModels.DTOs
         public int MosqueID { get; set; }
 
         public DateTime CreationTime { get; set; }
+
+        public DateTime? LastUpdateTime { get; set; }
         #endregion
 
         #region Navigation Props:

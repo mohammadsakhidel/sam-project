@@ -169,6 +169,10 @@
     <Compile Include="Migrations\SamDbMigrations\201708060825146_Role_AcessLengthUnlimited.Designer.cs">
       <DependentUpon>201708060825146_Role_AcessLengthUnlimited.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708091016485_NeededFieldsForSyncingAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708091016485_NeededFieldsForSyncingAdded.Designer.cs">
+      <DependentUpon>201708091016485_NeededFieldsForSyncingAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -266,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201708060825146_Role_AcessLengthUnlimited.resx">
       <DependentUpon>201708060825146_Role_AcessLengthUnlimited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708091016485_NeededFieldsForSyncingAdded.resx">
+      <DependentUpon>201708091016485_NeededFieldsForSyncingAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using RamancoLibrary.Utilities;
-using SamClient.Models.Repos;
 using SamClient.Views.Windows;
 using SamModels.DTOs;
 using SamModels.Entities.Blobs;
@@ -29,6 +28,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SamClientDataAccess.Repos;
+using SamClient.Models.Repos;
 
 namespace SamClient.Views.Partials
 {
@@ -42,37 +43,6 @@ namespace SamClient.Views.Partials
         #endregion
 
         #region Event Handlers:
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                ucPersianDateNavigator.SetMiladyDate(DateTimeUtils.Now);
-
-                #region Timer:
-                var t = new Timer(20000);
-                t.Elapsed += (s, e2) =>
-                {
-                    try
-                    {
-                        Dispatcher.Invoke(() =>
-                        {
-                            ButtonAutomationPeer peer = new ButtonAutomationPeer(btnDownload);
-                            var invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
-
-                            invokeProv.Invoke();
-                        });
-                    }
-                    catch { }
-                };
-                t.Start();
-                #endregion
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
-            }
-        }
-
         private void ucPersianDateNavigator_OnChange(object sender, SamUxLib.UserControls.DateChangedEventArgs e)
         {
             try
@@ -84,88 +54,88 @@ namespace SamClient.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private async void btnDownload_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                using (var srep = new ClientSettingRepo())
-                using (var crep = new ConsolationRepo())
-                using (var orep = new ObitRepo())
-                using (var urep = new CustomerRepo())
-                using (var trep = new TemplateRepo())
-                using (var erep = new TemplateCategoryRepo())
-                using (var brep = new BlobRepo())
-                {
-                    var setting = srep.Get(1);
-                    if (setting == null)
-                        throw new ValidationException(Messages.SetSettingsBeforeSync);
+        //private async void btnDownload_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        using (var srep = new ClientSettingRepo())
+        //        using (var crep = new ConsolationRepo())
+        //        using (var orep = new ObitRepo())
+        //        using (var urep = new CustomerRepo())
+        //        using (var trep = new TemplateRepo())
+        //        using (var erep = new TemplateCategoryRepo())
+        //        using (var brep = new BlobRepo())
+        //        {
+        //            var setting = srep.Get(1);
+        //            if (setting == null)
+        //                throw new ValidationException(Messages.SetSettingsBeforeSync);
 
-                    progress.IsBusy = true;
-                    using (var hc = HttpUtil.CreateClient())
-                    {
-                        var response = await hc.GetAsync($"{ApiActions.consolations_getupdates}?mosqueId={setting.MosqueID}");
-                        var updatePack = await response.Content.ReadAsAsync<ConsolationsUpdatePackDto>();
-                        var dtos = updatePack.Consolations;
-                        var consolations = dtos.Select(dto => Mapper.Map<ConsolationDto, Consolation>(dto)).ToList();
-                        using (var ts = new TransactionScope())
-                        {
-                            foreach (var consolation in consolations)
-                            {
-                                #region Add Obit:
-                                if (!orep.Exists(consolation.ObitID))
-                                    orep.AddWithSave(consolation.Obit);
-                                consolation.Obit = null;
-                                #endregion
-                                #region Add Customer:
-                                if (!urep.Exists(consolation.CustomerID))
-                                    urep.AddWithSave(consolation.Customer);
-                                consolation.Customer = null;
-                                #endregion
-                                #region Add Template:
-                                if (!erep.Exists(consolation.Template.TemplateCategoryID))
-                                    erep.AddWithSave(consolation.Template.Category);
-                                consolation.Template.Category = null;
+        //            progress.IsBusy = true;
+        //            using (var hc = HttpUtil.CreateClient())
+        //            {
+        //                var response = await hc.GetAsync($"{ApiActions.consolations_getupdates}?mosqueId={setting.MosqueID}");
+        //                var updatePack = await response.Content.ReadAsAsync<ConsolationsUpdatePackDto>();
+        //                var dtos = updatePack.Consolations;
+        //                var consolations = dtos.Select(dto => Mapper.Map<ConsolationDto, Consolation>(dto)).ToList();
+        //                using (var ts = new TransactionScope())
+        //                {
+        //                    foreach (var consolation in consolations)
+        //                    {
+        //                        #region Add Obit:
+        //                        if (!orep.Exists(consolation.ObitID))
+        //                            orep.AddWithSave(consolation.Obit);
+        //                        consolation.Obit = null;
+        //                        #endregion
+        //                        #region Add Customer:
+        //                        if (!urep.Exists(consolation.CustomerID))
+        //                            urep.AddWithSave(consolation.Customer);
+        //                        consolation.Customer = null;
+        //                        #endregion
+        //                        #region Add Template:
+        //                        if (!erep.Exists(consolation.Template.TemplateCategoryID))
+        //                            erep.AddWithSave(consolation.Template.Category);
+        //                        consolation.Template.Category = null;
 
-                                if (!trep.Exists(consolation.TemplateID))
-                                    trep.AddWithSave(consolation.Template);
+        //                        if (!trep.Exists(consolation.TemplateID))
+        //                            trep.AddWithSave(consolation.Template);
 
-                                #region download image:
-                                if (!brep.Exists(consolation.Template.BackgroundImageID))
-                                {
-                                    var bgBytes = await hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{consolation.Template.BackgroundImageID}");
-                                    var blob = new ImageBlob
-                                    {
-                                        ID = consolation.Template.BackgroundImageID,
-                                        Bytes = bgBytes,
-                                        CreationTime = DateTimeUtils.Now
-                                    };
-                                    brep.AddWithSave(blob);
-                                }
-                                #endregion
+        //                        #region download image:
+        //                        if (!brep.Exists(consolation.Template.BackgroundImageID))
+        //                        {
+        //                            var bgBytes = await hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{consolation.Template.BackgroundImageID}");
+        //                            var blob = new ImageBlob
+        //                            {
+        //                                ID = consolation.Template.BackgroundImageID,
+        //                                Bytes = bgBytes,
+        //                                CreationTime = DateTimeUtils.Now
+        //                            };
+        //                            brep.AddWithSave(blob);
+        //                        }
+        //                        #endregion
 
-                                consolation.Template = null;
-                                #endregion
-                                #region Add Consolation:
-                                if (!crep.Exists(consolation.ID))
-                                    crep.AddWithSave(consolation);
-                                #endregion
-                            }
-                            ts.Complete();
-                        }
-                        progress.IsBusy = false;
-                        //UxUtil.ShowMessage(Messages.SuccessfullyDone);
-                        #region Reload:
-                        LoadConsolations(ucPersianDateNavigator.GetMiladyDate().HasValue ? ucPersianDateNavigator.GetMiladyDate().Value : DateTimeUtils.Now);
-                        #endregion
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                progress.IsBusy = false;
-                ExceptionManager.Handle(ex);
-            }
-        }
+        //                        consolation.Template = null;
+        //                        #endregion
+        //                        #region Add Consolation:
+        //                        if (!crep.Exists(consolation.ID))
+        //                            crep.AddWithSave(consolation);
+        //                        #endregion
+        //                    }
+        //                    ts.Complete();
+        //                }
+        //                progress.IsBusy = false;
+        //                //UxUtil.ShowMessage(Messages.SuccessfullyDone);
+        //                #region Reload:
+        //                LoadConsolations(ucPersianDateNavigator.GetMiladyDate().HasValue ? ucPersianDateNavigator.GetMiladyDate().Value : DateTimeUtils.Now);
+        //                #endregion
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        progress.IsBusy = false;
+        //        ExceptionManager.Handle(ex);
+        //    }
+        //}
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
             try

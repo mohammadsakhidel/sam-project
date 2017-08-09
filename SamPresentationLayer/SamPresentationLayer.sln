@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamUxLib", "SamUxLib\SamUxL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamSyncAgent", "SamSyncAgent\SamSyncAgent.csproj", "{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamClientDataAccess", "SamClientDataAccess\SamClientDataAccess.csproj", "{7C4F3E6F-DBD8-41BB-BE79-ACC4DFD8AE2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF3D2CA-5F29-4F7D-AE8B-BBBC088526E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C4F3E6F-DBD8-41BB-BE79-ACC4DFD8AE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C4F3E6F-DBD8-41BB-BE79-ACC4DFD8AE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C4F3E6F-DBD8-41BB-BE79-ACC4DFD8AE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C4F3E6F-DBD8-41BB-BE79-ACC4DFD8AE2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
