@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RamancoLibrary.Utilities;
-using SamClient.Models.Repos;
+using SamClientDataAccess.Repos;
 using SamClientDataAccess.Repos;
 using SamModels.Entities.Core;
 using SamUxLib.Code.Utils;

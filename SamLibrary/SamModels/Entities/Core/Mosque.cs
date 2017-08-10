@@ -50,7 +50,6 @@ namespace SamModels.Entities.Core
         #endregion
 
         #region Navigation Props:
-        public virtual City City { get; set; }
         public virtual ICollection<Obit> Obits { get; set; }
         public virtual ICollection<Saloon> Saloons { get; set; }
         #endregion

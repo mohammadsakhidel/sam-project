@@ -11,12 +11,13 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Data.Entity;
 using RamancoLibrary.Utilities;
+using SamModels.Entities.Blobs;
 
 namespace SamDataAccess.Repos
 {
     public class ConsolationRepo : Repo<SamDbContext, Consolation>, IConsolationRepo
     {
-        public Tuple<Mosque, Obit[], Template[], Consolation[]> GetUpdates(int mosqueId, DateTime? clientLastUpdatetime, DateTime queryTime)
+        public Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]> GetUpdates(int mosqueId, DateTime? clientLastUpdatetime, DateTime queryTime)
         {
             var confirmed = ConsolationStatus.confirmed.ToString();
 
@@ -47,6 +48,14 @@ namespace SamDataAccess.Repos
                             select t;
             #endregion
 
+            #region blobs updates:
+            var blobs = from b in context.Blobs.OfType<ImageBlob>()
+                        where (clientLastUpdatetime == null
+                              || (b.CreationTime <= queryTime && b.CreationTime > clientLastUpdatetime.Value)
+                              || (b.LastUpdateTime != null && (b.LastUpdateTime.Value <= queryTime && b.LastUpdateTime.Value > clientLastUpdatetime.Value)))
+                        select b;
+            #endregion
+
             #region consolation updates:
             var consolations = from c in context.Consolations
                                join o in context.Obits
@@ -59,7 +68,7 @@ namespace SamDataAccess.Repos
                                select c;
             #endregion
 
-            return new Tuple<Mosque, Obit[], Template[], Consolation[]>(mosque, obits.ToArray(), templates.ToArray(), consolations.ToArray());
+            return new Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]>(mosque, obits.ToArray(), templates.ToArray(), blobs.ToArray(), consolations.ToArray());
         }
     }
 }

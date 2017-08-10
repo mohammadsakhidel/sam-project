@@ -51,6 +51,7 @@
     <Compile Include="DTOs\ConsolationsUpdatePackDto.cs" />
     <Compile Include="DTOs\CustomerDto.cs" />
     <Compile Include="DTOs\IdentityRoleDto.cs" />
+    <Compile Include="DTOs\ImageBlobDto.cs" />
     <Compile Include="DTOs\MosqueDto.cs" />
     <Compile Include="DTOs\ObitDto.cs" />
     <Compile Include="DTOs\ObitHoldingDto.cs" />

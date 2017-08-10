@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SamDataAccess.IdentityModels;
 using SamModels.DTOs;
+using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,19 @@ namespace SamAPI.App_Start
                 #region TemplateField:
                 cfg.CreateMap<TemplateFieldDto, TemplateField>();
                 cfg.CreateMap<TemplateField, TemplateFieldDto>();
+                #endregion
+
+                #region ImageBlob:
+                cfg.CreateMap<ImageBlob, ImageBlobDto>().AfterMap((mdl, dto) =>
+                {
+                    dto.BytesEncoded = Convert.ToBase64String(mdl.Bytes);
+                    dto.ThumbImageBytesEncoded = Convert.ToBase64String(mdl.ThumbImageBytes);
+                });
+                cfg.CreateMap<ImageBlobDto, ImageBlob>().AfterMap((dto, mdl) =>
+                {
+                    mdl.Bytes = Convert.FromBase64String(dto.BytesEncoded);
+                    mdl.ThumbImageBytes = Convert.FromBase64String(dto.ThumbImageBytesEncoded);
+                });
                 #endregion
 
                 #region TemplateCategory:

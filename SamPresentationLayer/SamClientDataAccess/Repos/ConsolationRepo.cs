@@ -8,10 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamClient.Models.Repos
+namespace SamClientDataAccess.Repos
 {
     public class ConsolationRepo : Repo<SamClientDbContext, Consolation>
     {
+        #region Ctors:
+        public ConsolationRepo() : base()
+        {
+
+        }
+        public ConsolationRepo(SamClientDbContext context) : base(context)
+        {
+
+        }
+        #endregion
+
         #region Extensions:
         public List<Consolation> GetAll(DateTime date)
         {
@@ -50,6 +61,22 @@ namespace SamClient.Models.Repos
             }
 
             return next;
+        }
+        public void AddOrUpdate(Consolation consolation)
+        {
+            var exists = set.Where(c => c.ID == consolation.ID).Any();
+            if (!exists)
+            {
+                Add(consolation);
+            }
+            else
+            {
+                Update(consolation);
+            }
+        }
+        public void Update(Consolation newConsolation)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

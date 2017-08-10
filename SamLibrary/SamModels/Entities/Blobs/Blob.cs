@@ -17,5 +17,6 @@ namespace SamModels.Entities.Blobs
 
         [Required]
         public DateTime CreationTime { get; set; }
+        public DateTime? LastUpdateTime { get; set; }
     }
 }

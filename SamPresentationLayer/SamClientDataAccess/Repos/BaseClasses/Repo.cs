@@ -16,6 +16,16 @@ namespace SamClientDataAccess.Repos.BaseClasses
         protected DbSet<T> set;
         #endregion
 
+        #region Props:
+        public C Context
+        {
+            get
+            {
+                return context;
+            }
+        }
+        #endregion
+
         #region CTors:
         public Repo()
         {

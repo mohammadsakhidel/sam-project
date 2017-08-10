@@ -11,6 +11,7 @@ namespace SamModels.DTOs
         public MosqueDto Mosque { get; set; }
         public ObitDto[] Obits { get; set; }
         public TemplateDto[] Templates { get; set; }
+        public ImageBlobDto[] ImageBlobs { get; set; }
         public ConsolationDto[] Consolations { get; set; }
         public DateTime QueryTime { get; set; }
     }

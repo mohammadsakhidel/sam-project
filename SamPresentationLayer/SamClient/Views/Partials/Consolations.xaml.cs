@@ -29,7 +29,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SamClientDataAccess.Repos;
-using SamClient.Models.Repos;
+using SamClientDataAccess.Repos;
 
 namespace SamClient.Views.Partials
 {

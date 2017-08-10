@@ -38,6 +38,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RamancoLibrary">
+      <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="SamModels">
       <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>
     </Reference>
@@ -57,6 +60,14 @@
     <Compile Include="Migrations\201708071541153_Initial.cs" />
     <Compile Include="Migrations\201708071541153_Initial.Designer.cs">
       <DependentUpon>201708071541153_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708100526213_SyncRelatedFieldsAdded.cs" />
+    <Compile Include="Migrations\201708100526213_SyncRelatedFieldsAdded.Designer.cs">
+      <DependentUpon>201708100526213_SyncRelatedFieldsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101402446_SomeSyncingFieldsAdded.cs" />
+    <Compile Include="Migrations\201708101402446_SomeSyncingFieldsAdded.Designer.cs">
+      <DependentUpon>201708101402446_SomeSyncingFieldsAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +90,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708071541153_Initial.resx">
       <DependentUpon>201708071541153_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708100526213_SyncRelatedFieldsAdded.resx">
+      <DependentUpon>201708100526213_SyncRelatedFieldsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101402446_SomeSyncingFieldsAdded.resx">
+      <DependentUpon>201708101402446_SomeSyncingFieldsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -69,6 +69,7 @@ namespace SamAPI.Controllers
             try
             {
                 #region Prepare Background Image Blob:
+                var now = DateTimeUtils.Now;
                 var backgroundBytes = Convert.FromBase64String(model.BackgroundImageBase64);
                 var backgroundBitmap = IOUtils.ByteArrayToBitmap(backgroundBytes);
                 var resizer = new ImageResizer(backgroundBitmap.Width, backgroundBitmap.Height, ResizeType.LongerFix, Values.thumbnail_size);
@@ -78,7 +79,8 @@ namespace SamAPI.Controllers
                     // blob:
                     ID = IDGenerator.GenerateImageID(),
                     Bytes = backgroundBytes,
-                    CreationTime = DateTimeUtils.Now,
+                    CreationTime = now,
+                    LastUpdateTime = now,
                     // imageblob:
                     ThumbImageBytes = IOUtils.BitmapToByteArray(backgroundThumb, ImageFormat.Jpeg),
                     ImageWidth = backgroundBitmap.Width,
@@ -114,6 +116,7 @@ namespace SamAPI.Controllers
                 ImageBlob backgroundBlob = null;
                 if (!string.IsNullOrEmpty(model.BackgroundImageBase64))
                 {
+                    var now = DateTimeUtils.Now;
                     var backgroundBytes = Convert.FromBase64String(model.BackgroundImageBase64);
                     var backgroundBitmap = IOUtils.ByteArrayToBitmap(backgroundBytes);
                     var resizer = new ImageResizer(backgroundBitmap.Width, backgroundBitmap.Height, ResizeType.LongerFix, Values.thumbnail_size);
@@ -123,7 +126,8 @@ namespace SamAPI.Controllers
                         // blob:
                         ID = IDGenerator.GenerateImageID(),
                         Bytes = backgroundBytes,
-                        CreationTime = DateTimeUtils.Now,
+                        CreationTime = now,
+                        LastUpdateTime = now,
                         // imageblob:
                         ThumbImageBytes = IOUtils.BitmapToByteArray(backgroundThumb, ImageFormat.Jpeg),
                         ImageWidth = backgroundBitmap.Width,

@@ -1,4 +1,5 @@
 ﻿using SamDataAccess.Contexts;
+using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace SamDataAccess.Repos.Interfaces
 {
     public interface IConsolationRepo : IRepo<SamDbContext, Consolation>
     {
-        Tuple<Mosque, Obit[], Template[], Consolation[]> GetUpdates(int mosqueId, DateTime? clientLastUpdatetime, DateTime queryTime);
+        Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]> GetUpdates(int mosqueId, DateTime? clientLastUpdatetime, DateTime queryTime);
     }
 }

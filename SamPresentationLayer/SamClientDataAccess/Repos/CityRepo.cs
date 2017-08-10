@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamClient.Models.Repos
+namespace SamClientDataAccess.Repos
 {
     public class CityRepo : Repo<SamClientDbContext, City>
     {

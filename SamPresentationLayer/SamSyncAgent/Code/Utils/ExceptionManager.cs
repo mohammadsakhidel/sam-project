@@ -13,5 +13,10 @@ namespace SamSyncAgent.Code.Utils
         {
             logger.WriteEntry(ex.Message);
         }
+
+        public static void Handle(Exception ex, EventLog logger, string source)
+        {
+            logger.WriteEntry($"{source}: {ex.Message}");
+        }
     }
 }
