@@ -76,7 +76,18 @@ namespace SamClientDataAccess.Repos
         }
         public void Update(Consolation newConsolation)
         {
-            throw new NotImplementedException();
+            var consolation = Get(newConsolation.ID);
+            if (consolation != null)
+            {
+                consolation.TemplateID = newConsolation.TemplateID;
+                consolation.TemplateInfo = newConsolation.TemplateInfo;
+                consolation.Audience = newConsolation.Audience;
+                consolation.From = newConsolation.From;
+                consolation.Status = newConsolation.Status;
+                consolation.PaymentStatus = newConsolation.PaymentStatus;
+                consolation.CreationTime = newConsolation.CreationTime;
+                consolation.LastUpdateTime = newConsolation.LastUpdateTime;
+            }
         }
         #endregion
     }

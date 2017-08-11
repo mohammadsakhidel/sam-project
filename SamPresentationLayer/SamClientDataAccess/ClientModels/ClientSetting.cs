@@ -20,6 +20,12 @@ namespace ClientModels.Models
         [MaxLength(16)]
         public string SaloonID { get; set; }
 
+        [Required]
+        public int DownloadIntervalMilliSeconds { get; set; }
+
+        [Required]
+        public int DownloadDelayMilliSeconds { get; set; }
+
         public DateTime? LastUpdateTime { get; set; }
         #endregion
     }

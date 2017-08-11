@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ClientModels.Models;
 using SamClientDataAccess.Repos;
 using SamModels.DTOs;
 using SamModels.Entities.Blobs;
@@ -33,12 +34,11 @@ namespace SamSyncAgent
 
         #region VARS:
         List<Timer> _timers;
-        int _mosqueId = 0;
+        ClientSetting setting = null;
         #endregion
 
         #region CONSTS:
-        const int DOWNLOAD_TIMER_INTERVAL = 300000;
-        const int DOWNLOAD_TIMER_DELAY = 10000;
+        const int MIN_DOWNLOAD_INTERVAL = 10000;
         #endregion
 
         #region START & STOP:
@@ -66,11 +66,11 @@ namespace SamSyncAgent
                 var allowStart = false;
                 using (var srepo = new ClientSettingRepo())
                 {
-                    var setting = srepo.Get();
-                    if (setting != null && setting.MosqueID > 0 && !string.IsNullOrEmpty(setting.SaloonID))
+                    setting = srepo.Get();
+                    var isValidSetting = IsSettingValid(setting);
+                    if (isValidSetting)
                     {
                         allowStart = true;
-                        _mosqueId = setting.MosqueID;
                     }
                 }
                 #endregion
@@ -81,7 +81,7 @@ namespace SamSyncAgent
                     _timers = new List<Timer>();
 
                     #region Create Timers:
-                    var downloadTimer = new Timer(DownloadTimerCallback, null, DOWNLOAD_TIMER_DELAY, DOWNLOAD_TIMER_INTERVAL);
+                    var downloadTimer = new Timer(DownloadTimerCallback, null, setting.DownloadDelayMilliSeconds, setting.DownloadIntervalMilliSeconds);
                     _timers.Add(downloadTimer);
                     #endregion
 
@@ -126,7 +126,8 @@ namespace SamSyncAgent
             {
                 using (var hc = HttpUtil.CreateClient())
                 {
-                    var response = await hc.GetAsync($"{ApiActions.sync_getupdates}?mosqueid={_mosqueId}");
+                    var url = $"{ApiActions.sync_getupdates}?mosqueid={setting.MosqueID}&saloonid={setting.SaloonID}{(setting.LastUpdateTime.HasValue ? $"&lastupdate={setting.LastUpdateTime.Value.ToString(StringFormats.url_date_time)}" : "")}";
+                    var response = await hc.GetAsync(url);
                     response.EnsureSuccessStatusCode();
                     var dto = await response.Content.ReadAsAsync<ConsolationsUpdatePackDto>();
 
@@ -141,40 +142,54 @@ namespace SamSyncAgent
                     {
                         #region update mosque:
                         var mosque = Mapper.Map<MosqueDto, Mosque>(dto.Mosque);
-                        mosqueRepo.AddOrUpdate(mosque);
+                        if (mosque != null)
+                        {
+                            mosqueRepo.AddOrUpdate(mosque);
+                        }
                         #endregion
                         #region update obits:
-                        foreach (var obitDto in dto.Obits)
+                        if (dto.Obits != null && dto.Obits.Any())
                         {
-                            var obit = Mapper.Map<ObitDto, Obit>(obitDto);
-                            obitRepo.AddOrUpdate(obit);
+                            foreach (var obitDto in dto.Obits)
+                            {
+                                var obit = Mapper.Map<ObitDto, Obit>(obitDto);
+                                obitRepo.AddOrUpdate(obit);
+                            }
                         }
                         #endregion
                         #region update blobs:
-                        foreach (var imageBlobDto in dto.ImageBlobs)
+                        if (dto.ImageBlobs != null && dto.ImageBlobs.Any())
                         {
-                            var imageBlob = Mapper.Map<ImageBlobDto, ImageBlob>(imageBlobDto);
-                            blobRepo.AddOrUpdateImage(imageBlob);
+                            foreach (var imageBlobDto in dto.ImageBlobs)
+                            {
+                                var imageBlob = Mapper.Map<ImageBlobDto, ImageBlob>(imageBlobDto);
+                                blobRepo.AddOrUpdateImage(imageBlob);
+                            }
                         }
                         #endregion
                         #region update templates:
-                        foreach (var templateDto in dto.Templates)
+                        if (dto.Templates != null && dto.Templates.Any())
                         {
-                            var template = Mapper.Map<TemplateDto, Template>(templateDto);
-                            templateRepo.AddOrUpdate(template);
+                            foreach (var templateDto in dto.Templates)
+                            {
+                                var template = Mapper.Map<TemplateDto, Template>(templateDto);
+                                templateRepo.AddOrUpdate(template);
+                            }
                         }
                         #endregion
                         #region update consolations:
-                        foreach (var consolationDto in dto.Consolations)
+                        if (dto.Consolations != null && dto.Consolations.Any())
                         {
-                            var consolation = Mapper.Map<ConsolationDto, Consolation>(consolationDto);
-                            consolationRepo.AddOrUpdate(consolation);
+                            foreach (var consolationDto in dto.Consolations)
+                            {
+                                var consolation = Mapper.Map<ConsolationDto, Consolation>(consolationDto);
+                                consolationRepo.AddOrUpdate(consolation);
+                            }
                         }
                         #endregion
                         #region update last update time:
                         var setting = settingRepo.Get();
                         setting.LastUpdateTime = dto.QueryTime;
-                        settingRepo.Save();
                         #endregion
 
                         #region Commit:
@@ -198,6 +213,22 @@ namespace SamSyncAgent
         private void Log(string message)
         {
             logger.WriteEntry(message);
+        }
+        private bool IsSettingValid(ClientSetting setting)
+        {
+            if (setting == null)
+                return false;
+
+            if (setting.MosqueID <= 0)
+                return false;
+
+            if (string.IsNullOrEmpty(setting.SaloonID))
+                return false;
+
+            if (setting.DownloadIntervalMilliSeconds < MIN_DOWNLOAD_INTERVAL)
+                return false;
+
+            return true;
         }
         private void InitializeMapper()
         {

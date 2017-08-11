@@ -5,8 +5,10 @@ using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
+using SamUtils.Constants;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -29,12 +31,16 @@ namespace SamAPI.Controllers
 
         #region Get Actions:
         [HttpGet]
-        public IHttpActionResult GetUpdates(int mosqueId, DateTime? lastUpdateTime = null)
+        public IHttpActionResult GetUpdates(int mosqueId, string saloonId, string lastUpdate)
         {
             try
             {
+                DateTime? lastUpdateTimeDateTime = null;
+                if (!string.IsNullOrEmpty(lastUpdate))
+                    lastUpdateTimeDateTime = DateTime.ParseExact(lastUpdate, StringFormats.url_date_time, CultureInfo.InvariantCulture);
+
                 var queryTime = DateTimeUtils.Now;
-                var updates = _consolationRepo.GetUpdates(mosqueId, lastUpdateTime, queryTime);
+                var updates = _consolationRepo.GetUpdates(mosqueId, saloonId, lastUpdateTimeDateTime, queryTime);
 
                 var mosqueDto = Mapper.Map<Mosque, MosqueDto>(updates.Item1);
                 var obitDtos = updates.Item2.Select(obit => Mapper.Map<Obit, ObitDto>(obit)).ToArray();

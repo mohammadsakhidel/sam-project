@@ -10,6 +10,7 @@ namespace SamUtils.Constants
     {
         public const string date_short = "yyyy-MM-dd";
         public const string jwt_date_time = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'";
+        public const string url_date_time = "yyyyMMddHHmmssfff";
         public const string price = "N0";
     }
 }

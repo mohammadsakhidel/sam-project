@@ -50,10 +50,7 @@ namespace SamClientDataAccess.Repos
                 if (obit.ObitHoldings != null)
                     context.ObitHoldings.RemoveRange(obit.ObitHoldings);
 
-                foreach (var h in newObit.ObitHoldings)
-                {
-                    obit.ObitHoldings.Add(h);
-                }
+                obit.ObitHoldings = newObit.ObitHoldings;
             }
         }
         #endregion

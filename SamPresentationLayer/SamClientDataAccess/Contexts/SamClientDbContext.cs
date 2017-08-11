@@ -28,6 +28,7 @@ namespace SamClientDataAccess.Contexts
         public DbSet<Obit> Obits { get; set; }
         public DbSet<ObitHolding> ObitHoldings { get; set; }
         public DbSet<Template> Templates { get; set; }
+        public DbSet<TemplateCategory> TemplateCategories { get; set; }
         public DbSet<TemplateField> TemplateFields { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Blob> Blobs { get; set; }
@@ -43,6 +44,7 @@ namespace SamClientDataAccess.Contexts
             modelBuilder.Entity<Obit>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<ObitHolding>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Template>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<TemplateCategory>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<TemplateField>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Customer>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Blob>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);

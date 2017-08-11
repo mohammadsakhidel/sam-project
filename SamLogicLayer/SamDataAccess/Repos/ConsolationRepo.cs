@@ -17,9 +17,10 @@ namespace SamDataAccess.Repos
 {
     public class ConsolationRepo : Repo<SamDbContext, Consolation>, IConsolationRepo
     {
-        public Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]> GetUpdates(int mosqueId, DateTime? clientLastUpdatetime, DateTime queryTime)
+        public Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]> GetUpdates(int mosqueId, string saloonId, DateTime? clientLastUpdatetime, DateTime queryTime)
         {
             var confirmed = ConsolationStatus.confirmed.ToString();
+            var canceled = ConsolationStatus.canceled.ToString();
 
             #region mosque updates:
             var mosque = (from m in context.Mosques
@@ -33,6 +34,7 @@ namespace SamDataAccess.Repos
             #region obits updates:
             var obits = from o in context.Obits.Include(o => o.ObitHoldings)
                         where o.MosqueID == mosqueId &&
+                              o.ObitHoldings.Where(h => h.SaloonID == saloonId).Any() &&
                               (clientLastUpdatetime == null
                               || (o.CreationTime <= queryTime && o.CreationTime > clientLastUpdatetime.Value)
                               || (o.LastUpdateTime != null && (o.LastUpdateTime.Value <= queryTime && o.LastUpdateTime.Value > clientLastUpdatetime.Value)))
@@ -60,8 +62,10 @@ namespace SamDataAccess.Repos
             var consolations = from c in context.Consolations
                                join o in context.Obits
                                on c.ObitID equals o.ID
-                               where o.MosqueID == mosqueId &&
-                                     c.Status == confirmed &&
+                               join h in context.ObitHoldings
+                               on o.ID equals h.ObitID
+                               where o.MosqueID == mosqueId && h.SaloonID == saloonId &&
+                                     (c.Status == confirmed || c.Status == canceled) &&
                                      (clientLastUpdatetime == null
                                      || (o.CreationTime <= queryTime && o.CreationTime > clientLastUpdatetime.Value)
                                      || (o.LastUpdateTime != null && (o.LastUpdateTime.Value <= queryTime && o.LastUpdateTime.Value > clientLastUpdatetime.Value)))
