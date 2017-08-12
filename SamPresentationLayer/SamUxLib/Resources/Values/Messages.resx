@@ -168,6 +168,9 @@
   <data name="LoginFailedTryAgain" xml:space="preserve">
     <value>ورود به سیستم ناموفق بود، لطفاً مجدداً تلاش کنید.</value>
   </data>
+  <data name="MinIntervalIncorrect" xml:space="preserve">
+    <value>مقدار وارد شده برای فاصله زمانی مجاز نیست.</value>
+  </data>
   <data name="SetSettingsBeforeSync" xml:space="preserve">
     <value>قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید.</value>
   </data>

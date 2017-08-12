@@ -5,28 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamClient.Views.Partials"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
-             Loaded="UserControl_Loaded">
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <Grid Margin="{StaticResource padding_widget}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="{StaticResource grid_row_spacing}" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <StackPanel>
-            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
-            <ComboBox x:Name="cmbProvinces" SelectionChanged="cmbProvinces_SelectionChanged" SelectedValuePath="ID"  />
+        <!--ROW 0-->
+        <Label Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
+        <ComboBox Grid.Column="1" x:Name="cmbProvinces" SelectionChanged="cmbProvinces_SelectionChanged" SelectedValuePath="ID"  />
 
-            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}"></Label>
-            <ComboBox x:Name="cmbCities" SelectionChanged="cmbCities_SelectionChanged" SelectedValuePath="ID" />
+        <!--ROW 2-->
+        <Label Style="{StaticResource form_label}" Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}"></Label>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cmbCities" SelectionChanged="cmbCities_SelectionChanged" SelectedValuePath="ID" />
 
-            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}"></Label>
-            <ComboBox x:Name="cmbMosques" SelectedValuePath="ID" />
-        </StackPanel>
+        <!--ROW 4-->
+        <Label Style="{StaticResource form_label}" Grid.Row="4" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}"></Label>
+        <ComboBox Grid.Row="4" Grid.Column="1" x:Name="cmbMosques" SelectedValuePath="ID" SelectionChanged="cmbMosques_SelectionChanged" />
 
-        <ram:FlatButton x:Name="btnSave" Style="{StaticResource action_button_ok}" Grid.Row="1" Click="btnSave_Click"
-                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Save}"
-                        HorizontalAlignment="Left" />
+        <!--ROW 6-->
+        <Label Style="{StaticResource form_label}" Grid.Row="6" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Saloon}"></Label>
+        <ComboBox Grid.Row="6" Grid.Column="1" x:Name="cmbSaloons" SelectedValuePath="ID" DisplayMemberPath="Name" />
+
+        <!--ROW 8-->
+        <Label Style="{StaticResource form_label}" Grid.Row="8" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DownloadIntervalSeconds}"></Label>
+        <TextBox Grid.Row="8" Grid.Column="1" x:Name="tbDownloadIntervalSeconds" />
+
+        <!--ROW 10-->
+        <Label Style="{StaticResource form_label}" Grid.Row="10" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DownloadDelaySeconds}"></Label>
+        <TextBox Grid.Row="10" Grid.Column="1" x:Name="tbDownloadDelaySeconds" />
 
     </Grid>
     

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SamClient"
              xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
-             StartupUri="Views/Windows/Main.xaml">
+             StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <cnv:ResourceConverter x:Key="rc" />

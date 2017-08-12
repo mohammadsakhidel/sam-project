@@ -33,40 +33,106 @@ namespace SamClient.Views.Partials
         public ClientSettings()
         {
             InitializeComponent();
+            LoadProvinces();
         }
         #endregion
 
-        #region Event Handlers:
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        #region Props:
+        private ClientSetting _clientSetting;
+        public ClientSetting ClientSetting
+        {
+            get
+            {
+                UpdateModel();
+                return _clientSetting;
+            }
+            set
+            {
+                _clientSetting = value;
+                UpdateForm();
+            }
+        }
+
+        private MosqueDto _selectedMosque;
+        public MosqueDto SelectedMosque
+        {
+            get
+            {
+                UpdateModel();
+                return _selectedMosque;
+            }
+        }
+
+        public int ProvinceID
+        {
+            set
+            {
+                cmbProvinces.SelectedValue = value;
+            }
+        }
+
+        public int CityID
+        {
+            set
+            {
+                cmbCities.SelectedValue = value;
+            }
+        }
+        #endregion
+
+        #region Methods:
+        private void LoadProvinces()
         {
             try
             {
                 cmbProvinces.ItemsSource = CityUtil.Provinces;
-
-                #region Load Current Settings:
-                using (var srepo = new ClientSettingRepo())
-                using (var mrepo = new MosqueRepo())
-                {
-                    var settings = srepo.Get(1);
-                    if (settings != null)
-                    {
-                        var mosque = mrepo.Get(settings.MosqueID);
-                        if (mosque != null)
-                        {
-                            var city = CityUtil.GetCity(mosque.CityID);
-                            cmbProvinces.SelectedValue = city.ProvinceID;
-                            cmbCities.SelectedValue = mosque.CityID;
-                            cmbMosques.SelectedValue = mosque.ID;
-                        }
-                    }
-                }
-                #endregion
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
+        private void UpdateForm()
+        {
+            if (_clientSetting != null)
+            {
+                cmbMosques.SelectedValue = _clientSetting.MosqueID;
+                cmbSaloons.SelectedValue = _clientSetting.SaloonID;
+                tbDownloadIntervalSeconds.Text = (_clientSetting.DownloadIntervalMilliSeconds / 1000).ToString();
+                tbDownloadDelaySeconds.Text = (_clientSetting.DownloadDelayMilliSeconds / 1000).ToString();
+            }
+        }
+        private void UpdateModel()
+        {
+            if (_clientSetting == null)
+                _clientSetting = new ClientSetting();
+
+            _clientSetting.ID = 1;
+
+            _selectedMosque = cmbMosques.SelectedItem as MosqueDto;
+            _clientSetting.MosqueID = _selectedMosque != null ? _selectedMosque.ID : -1;
+
+            var selectedSaloon = cmbSaloons.SelectedItem as SaloonDto;
+            _clientSetting.SaloonID = selectedSaloon != null ? selectedSaloon.ID : "";
+
+            _clientSetting.DownloadIntervalMilliSeconds = Convert.ToInt32(tbDownloadIntervalSeconds.Text) * 1000;
+            _clientSetting.DownloadDelayMilliSeconds = Convert.ToInt32(tbDownloadDelaySeconds.Text) * 1000;
+        }
+        public Tuple<bool, string> IsValid()
+        {
+            UpdateModel();
+
+            if (_clientSetting == null || _clientSetting.MosqueID < 0 || string.IsNullOrEmpty(_clientSetting.SaloonID))
+                return new Tuple<bool, string>(false, Messages.FillRequiredFields);
+
+            if (!ClientSetting.IsSettingValid(_clientSetting))
+                return new Tuple<bool, string>(false, Messages.InvalidInputValues);
+
+            return new Tuple<bool, string>(true, "");
+        }
+        #endregion
+
+        #region Event Handlers:
         private void cmbProvinces_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -107,73 +173,19 @@ namespace SamClient.Views.Partials
             }
             catch (Exception ex)
             {
+                cmbMosques.IsEnabled = true;
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void cmbMosques_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                #region Validate Inputs:
-                if (cmbMosques.SelectedItem == null || cmbProvinces.SelectedItem == null || cmbCities.SelectedItem == null)
-                    throw new ValidationException(Messages.FillRequiredFields);
-                #endregion
-
-                #region Save Settings:
-                using (var ts = new TransactionScope())
-                using (var srep = new ClientSettingRepo())
-                using (var prep = new ProvinceRepo())
-                using (var crep = new CityRepo())
-                using (var mrep = new MosqueRepo())
+                var selectedMosque = cmbMosques.SelectedItem as MosqueDto;
+                if (selectedMosque != null)
                 {
-                    #region Save Province If Not Exists:
-                    var selectedProvince = cmbProvinces.SelectedItem as ProvinceDto;
-                    if (!prep.Exists(selectedProvince.ID))
-                    {
-                        var province = new Province { ID = selectedProvince.ID, Name = selectedProvince.Name };
-                        prep.Add(province);
-                        prep.Save();
-                    }
-                    #endregion
-
-                    #region Save City If Not Exists:
-                    var selectedCity = cmbCities.SelectedItem as CityDto;
-                    if (!crep.Exists(selectedCity.ID))
-                    {
-                        var city = new City { ID = selectedCity.ID, ProvinceID = selectedProvince.ID, Name = selectedCity.Name };
-                        crep.Add(city);
-                        crep.Save();
-                    }
-                    #endregion
-
-                    #region Save Mosque If Not Exists:
-                    var selectedMosque = cmbMosques.SelectedItem as MosqueDto;
-                    var mosqueExists = mrep.Exists(selectedMosque.ID);
-                    var mosque = mosqueExists ? mrep.Get(selectedMosque.ID) : new Mosque();
-                    mosque = Mapper.Map<MosqueDto, Mosque>(selectedMosque);
-                    if (!mosqueExists)
-                        mrep.Add(mosque);
-                    mrep.Save();
-                    #endregion
-
-                    #region Save Settings:
-                    if (srep.Exists(1))
-                    {
-                        var setting = srep.Get(1);
-                        setting.MosqueID = ((MosqueDto)cmbMosques.SelectedItem).ID;
-                    }
-                    else
-                    {
-                        var setting = new ClientSetting { ID = 1, MosqueID = ((MosqueDto)cmbMosques.SelectedItem).ID };
-                        srep.Add(setting);
-                    }
-                    srep.Save();
-                    #endregion
-
-                    ts.Complete();
-                    UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                    cmbSaloons.ItemsSource = selectedMosque.Saloons;
                 }
-                #endregion
             }
             catch (Exception ex)
             {

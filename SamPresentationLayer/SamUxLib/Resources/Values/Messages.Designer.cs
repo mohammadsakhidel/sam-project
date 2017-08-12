@@ -214,6 +214,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مقدار وارد شده برای فاصله زمانی مجاز نیست..
+        /// </summary>
+        public static string MinIntervalIncorrect {
+            get {
+                return ResourceManager.GetString("MinIntervalIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید..
         /// </summary>
         public static string SetSettingsBeforeSync {

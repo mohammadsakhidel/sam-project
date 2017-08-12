@@ -156,8 +156,11 @@
     <Compile Include="Views\Partials\Consolations.xaml.cs">
       <DependentUpon>Consolations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\Main.xaml.cs">
-      <DependentUpon>Main.xaml</DependentUpon>
+    <Compile Include="Views\Windows\ClientSettingsWindow.xaml.cs">
+      <DependentUpon>ClientSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
@@ -204,7 +207,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\Main.xaml">
+    <Page Include="Views\Windows\ClientSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

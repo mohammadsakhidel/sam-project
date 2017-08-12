@@ -26,5 +26,17 @@ namespace SamClientDataAccess.Repos
         {
             return set.SingleOrDefault(s => s.ID == 1);
         }
+
+        public void Update(ClientSetting newSetting)
+        {
+            var setting = Get();
+            if (setting != null)
+            {
+                setting.MosqueID = newSetting.MosqueID;
+                setting.SaloonID = newSetting.SaloonID;
+                setting.DownloadIntervalMilliSeconds = newSetting.DownloadIntervalMilliSeconds;
+                setting.DownloadDelayMilliSeconds = newSetting.DownloadDelayMilliSeconds;
+            }
+        }
     }
 }

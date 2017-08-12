@@ -37,10 +37,6 @@ namespace SamSyncAgent
         ClientSetting setting = null;
         #endregion
 
-        #region CONSTS:
-        const int MIN_DOWNLOAD_INTERVAL = 10000;
-        #endregion
-
         #region START & STOP:
         protected override void OnStart(string[] args)
         {
@@ -67,7 +63,7 @@ namespace SamSyncAgent
                 using (var srepo = new ClientSettingRepo())
                 {
                     setting = srepo.Get();
-                    var isValidSetting = IsSettingValid(setting);
+                    var isValidSetting = ClientSetting.IsSettingValid(setting);
                     if (isValidSetting)
                     {
                         allowStart = true;
@@ -75,7 +71,7 @@ namespace SamSyncAgent
                 }
                 #endregion
 
-                #region Start:
+                #region Start Timers:
                 if (allowStart)
                 {
                     _timers = new List<Timer>();
@@ -213,22 +209,6 @@ namespace SamSyncAgent
         private void Log(string message)
         {
             logger.WriteEntry(message);
-        }
-        private bool IsSettingValid(ClientSetting setting)
-        {
-            if (setting == null)
-                return false;
-
-            if (setting.MosqueID <= 0)
-                return false;
-
-            if (string.IsNullOrEmpty(setting.SaloonID))
-                return false;
-
-            if (setting.DownloadIntervalMilliSeconds < MIN_DOWNLOAD_INTERVAL)
-                return false;
-
-            return true;
         }
         private void InitializeMapper()
         {

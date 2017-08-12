@@ -28,5 +28,28 @@ namespace ClientModels.Models
 
         public DateTime? LastUpdateTime { get; set; }
         #endregion
+
+        #region Consts:
+        public const int MIN_DOWNLOAD_INTERVAL = 10000;
+        #endregion
+
+        #region Static Methods:
+        public static bool IsSettingValid(ClientSetting setting)
+        {
+            if (setting == null)
+                return false;
+
+            if (setting.MosqueID <= 0)
+                return false;
+
+            if (string.IsNullOrEmpty(setting.SaloonID))
+                return false;
+
+            if (setting.DownloadIntervalMilliSeconds < MIN_DOWNLOAD_INTERVAL)
+                return false;
+
+            return true;
+        }
+        #endregion
     }
 }

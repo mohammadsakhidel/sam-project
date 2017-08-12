@@ -224,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Libs\WPFToolkit.dll" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_close_window.png" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.ico" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />
@@ -244,6 +245,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SamClientDataAccess\SamClientDataAccess.csproj">
+      <Project>{7c4f3e6f-dbd8-41bb-be79-acc4dfd8ae2c}</Project>
+      <Name>SamClientDataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

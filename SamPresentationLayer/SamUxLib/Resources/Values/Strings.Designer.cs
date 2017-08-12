@@ -259,6 +259,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تنظیمات کلاینت.
+        /// </summary>
+        public static string ClientSettings {
+            get {
+                return ResourceManager.GetString("ClientSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اطلاعات ارتباط.
         /// </summary>
         public static string ConnectionInfo {
@@ -363,6 +372,24 @@ namespace SamUxLib.Resources.Values {
         public static string DisplayName {
             get {
                 return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأخیر اولیه بروزرسانی (ثانیه).
+        /// </summary>
+        public static string DownloadDelaySeconds {
+            get {
+                return ResourceManager.GetString("DownloadDelaySeconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فاصله بروزرسانی ها (ثانیه).
+        /// </summary>
+        public static string DownloadIntervalSeconds {
+            get {
+                return ResourceManager.GetString("DownloadIntervalSeconds", resourceCulture);
             }
         }
         
