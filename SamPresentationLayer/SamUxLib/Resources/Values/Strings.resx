@@ -522,4 +522,13 @@
   <data name="DownloadIntervalSeconds" xml:space="preserve">
     <value>فاصله بروزرسانی ها (ثانیه)</value>
   </data>
+  <data name="AppShortName" xml:space="preserve">
+    <value>سام</value>
+  </data>
+  <data name="AppShortNameDesc" xml:space="preserve">
+    <value>سامانه اطلاع رسانی مساجد</value>
+  </data>
+  <data name="WindowsServices" xml:space="preserve">
+    <value>سرویس های پس زمینه</value>
+  </data>
 </root>

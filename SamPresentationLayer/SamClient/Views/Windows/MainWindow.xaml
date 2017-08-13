@@ -47,13 +47,50 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Width="180" Background="{StaticResource color_accent}"></Border>
+                <!--Side Bar-->
+                <Border Style="{StaticResource client_main_window_sidebar}">
+                    <Grid Margin="{StaticResource padding_container_ver}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <!--Header-->
+                        <StackPanel>
+                            <Image Style="{StaticResource client_header_logo}" />
+                            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppShortName}"
+                                   Style="{StaticResource client_header_app_name}" />
+                            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppShortNameDesc}"
+                                   Style="{StaticResource client_header_app_name_desc}" />
+                        </StackPanel>
 
+                        <!--Mosque Info-->
+                        <StackPanel Grid.Row="2" Margin="{StaticResource padding_container}">
+                            <TextBlock x:Name="lblMosqueName" Style="{StaticResource client_sidebar_mosquename}" />
+                            <TextBlock x:Name="lblMosqueAddress" Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppShortNameDesc}"
+                                   Style="{StaticResource client_sidebar_mosqueaddress}" />
+                        </StackPanel>
+                        
+                        <!--Action Buttons-->
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="{StaticResource padding_container_hor}">
+                            <ram:ImageButton x:Name="btnSettings" Style="{StaticResource client_sidebar_action_settings}" Click="btnSettings_Click"
+                                             ToolTip="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ClientSettings}" />
+                            <ram:ImageButton x:Name="btnServices" Style="{StaticResource client_sidebar_action_services}" Click="btnServices_Click"
+                                             ToolTip="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.WindowsServices}" />
+                            <ram:ImageButton x:Name="btnSlideShow" Style="{StaticResource client_sidebar_action_slideshow}" Click="btnSlideShow_Click"
+                                             ToolTip="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Play}" />
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+                
+                <!--Content-->
+                <Border x:Name="brdMainContent" Grid.Column="1" Margin="{StaticResource padding_container}"></Border>
             </Grid>
         </Border>
         
-        
-
     </Grid>
 
 </Window>

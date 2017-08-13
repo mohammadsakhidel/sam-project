@@ -160,6 +160,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سام.
+        /// </summary>
+        public static string AppShortName {
+            get {
+                return ResourceManager.GetString("AppShortName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سامانه اطلاع رسانی مساجد.
+        /// </summary>
+        public static string AppShortNameDesc {
+            get {
+                return ResourceManager.GetString("AppShortNameDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ابعاد.
         /// </summary>
         public static string AspectRatio {
@@ -1254,6 +1272,15 @@ namespace SamUxLib.Resources.Values {
         public static string WidthHeightRatio {
             get {
                 return ResourceManager.GetString("WidthHeightRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سرویس های پس زمینه.
+        /// </summary>
+        public static string WindowsServices {
+            get {
+                return ResourceManager.GetString("WindowsServices", resourceCulture);
             }
         }
         

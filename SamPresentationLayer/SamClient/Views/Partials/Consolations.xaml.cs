@@ -29,15 +29,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SamClientDataAccess.Repos;
-using SamClientDataAccess.Repos;
 
 namespace SamClient.Views.Partials
 {
     public partial class Consolations : UserControl
     {
+        #region Fields:
+        MainWindow _mainWindow;
+        #endregion
+
         #region Ctors:
-        public Consolations()
+        public Consolations(MainWindow mainWindow)
         {
+            _mainWindow = mainWindow;
             InitializeComponent();
         }
         #endregion

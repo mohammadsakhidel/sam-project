@@ -122,7 +122,7 @@ namespace SamSyncAgent
             {
                 using (var hc = HttpUtil.CreateClient())
                 {
-                    var url = $"{ApiActions.sync_getupdates}?mosqueid={setting.MosqueID}&saloonid={setting.SaloonID}{(setting.LastUpdateTime.HasValue ? $"&lastupdate={setting.LastUpdateTime.Value.ToString(StringFormats.url_date_time)}" : "")}";
+                    var url = $"{ApiActions.sync_getupdates}?mosqueid={setting.MosqueID}&saloonid={setting.SaloonID}{$"&lastupdate={(setting.LastUpdateTime.HasValue ? setting.LastUpdateTime.Value.ToString(StringFormats.url_date_time) : "")}"}";
                     var response = await hc.GetAsync(url);
                     response.EnsureSuccessStatusCode();
                     var dto = await response.Content.ReadAsAsync<ConsolationsUpdatePackDto>();
@@ -184,7 +184,7 @@ namespace SamSyncAgent
                         }
                         #endregion
                         #region update last update time:
-                        var setting = settingRepo.Get();
+                        setting = settingRepo.Get();
                         setting.LastUpdateTime = dto.QueryTime;
                         #endregion
 

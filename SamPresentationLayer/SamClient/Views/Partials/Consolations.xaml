@@ -16,13 +16,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Grid>
-                <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <ram:FlatButton x:Name="btnPlay" Style="{StaticResource small_action_button_play}" Margin="{StaticResource padding_container_start}"
-                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Play}" Click="btnPlay_Click" />
-                </StackPanel>
-            </Grid>
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
             
             <DataGrid x:Name="dgConsolations" Grid.Row="1" Margin="{StaticResource padding_container_ver}">
                 <DataGrid.Columns>
@@ -62,11 +56,7 @@
             <Border Grid.Row="2" Style="{StaticResource page_footer}">
                 <Grid>
                     <uxuc:PersianDateNavigator x:Name="ucPersianDateNavigator" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                               OnChange="ucPersianDateNavigator_OnChange"/>
-
-                    <Label x:Name="lblLastUpdateTime" HorizontalAlignment="Left" VerticalAlignment="Center" 
-                           Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.LastUpdateTime}"
-                           FontSize="{StaticResource font_small}" />
+                                               OnChange="ucPersianDateNavigator_OnChange" />
                 </Grid>
             </Border>
         </Grid>

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ErrorCodes.cs" />
+    <Compile Include="Constants\WindowsServices.cs" />
     <Compile Include="Objects\API\ApiOperationResult.cs" />
     <Compile Include="Objects\Exceptions\HttpException.cs" />
     <Compile Include="Objects\Presenters\SectionAccessLevel.cs" />

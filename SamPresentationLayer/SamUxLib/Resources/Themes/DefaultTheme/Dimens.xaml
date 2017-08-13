@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
 
+    <sys:Double x:Key="font_xxxlarge">30</sys:Double>
+    <sys:Double x:Key="font_xxlarge">25</sys:Double>
     <sys:Double x:Key="font_xlarge">20</sys:Double>
     <sys:Double x:Key="font_larger">17</sys:Double>
     <sys:Double x:Key="font_large">16</sys:Double>

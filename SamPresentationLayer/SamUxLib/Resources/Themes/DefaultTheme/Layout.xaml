@@ -75,6 +75,12 @@
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
     </Style>
 
+    <Style x:Key="client_header_logo" BasedOn="{StaticResource image}" TargetType="Image">
+        <Setter Property="Source" Value="Images/client_header.png"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+
     <Style x:Key="header_username" TargetType="Label">
         <Setter Property="HorizontalAlignment" Value="Right"></Setter>
         <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
@@ -107,7 +113,7 @@
     <Style x:Key="sidebar_section" TargetType="Border">
         <Setter Property="Padding" Value="0 8"></Setter>
     </Style>
-    
+
     <Style x:Key="sidebar_section_title" TargetType="Button">
         <Setter Property="Template" Value="{StaticResource sidebar_section_title_template}"></Setter>
         <Setter Property="Background" Value="{StaticResource color_primary}"></Setter>
@@ -191,7 +197,7 @@
     </Style>
 
     <Style x:Key="custom_window_border_top" TargetType="Border" BasedOn="{StaticResource custom_window_border}">
-        
+
     </Style>
 
     <Style x:Key="custom_window_border_end" TargetType="Border" BasedOn="{StaticResource custom_window_border}">
@@ -219,8 +225,70 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#e81123"></Setter>
+                <Setter Property="ImageSource" Value="Images/ic_close_window_hover.png"></Setter>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="client_main_window_sidebar" TargetType="Border">
+        <Setter Property="Width" Value="180"></Setter>
+        <Setter Property="Background" Value="{StaticResource color_accent}"></Setter>
+    </Style>
+
+    <Style x:Key="client_header_app_name" TargetType="Label">
+        <Setter Property="Foreground" Value="{StaticResource color_primary_light}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_xxxlarge}"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Margin" Value="{StaticResource padding_widget_top}"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style x:Key="client_header_app_name_desc" TargetType="Label">
+        <Setter Property="Foreground" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_bit_larger}"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style x:Key="client_sidebar_mosquename" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource color_primary_light}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_bit_larger}"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <Style x:Key="client_sidebar_mosqueaddress" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_bit_smaller}"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+    </Style>
+
+    <Style x:Key="client_sidebar_action" TargetType="{x:Type ram:ImageButton}">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Width" Value="20"></Setter>
+        <Setter Property="Height" Value="20"></Setter>
+        <Setter Property="ImageWidth" Value="18"></Setter>
+        <Setter Property="ImageHeight" Value="18"></Setter>
+        <Setter Property="Margin" Value="{StaticResource padding_widget_end}"></Setter>
+    </Style>
+
+    <Style x:Key="client_sidebar_action_settings" TargetType="{x:Type ram:ImageButton}" BasedOn="{StaticResource client_sidebar_action}">
+        <Setter Property="ImageSource" Value="Images/ic_settings_light.png"></Setter>
+    </Style>
+
+    <Style x:Key="client_sidebar_action_services" TargetType="{x:Type ram:ImageButton}" BasedOn="{StaticResource client_sidebar_action}">
+        <Style.Triggers>
+            <Trigger Property="Tag" Value="running">
+                <Setter Property="ImageSource" Value="Images/ic_services_running.png"></Setter>
+            </Trigger>
+            <Trigger Property="Tag" Value="stopped">
+                <Setter Property="ImageSource" Value="Images/ic_services_stopped.png"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="client_sidebar_action_slideshow" TargetType="{x:Type ram:ImageButton}" BasedOn="{StaticResource client_sidebar_action}">
+        <Setter Property="ImageSource" Value="Images/ic_slideshow_light.png"></Setter>
     </Style>
 
 </ResourceDictionary>
