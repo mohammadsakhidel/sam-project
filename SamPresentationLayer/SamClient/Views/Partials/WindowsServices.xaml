@@ -4,10 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamClient.Views.Partials"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <Label>Services</Label>
-        <Button x:Name="btnBack" Click="btnBack_Click">BAck</Button>
-    </StackPanel>
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition  Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.WindowsServices}" />
+            <ram:FlatButton x:Name="btnBack" Click="btnBack_Click" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                Style="{StaticResource small_action_button_back}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Back}" />
+        </Grid>
+
+        <StackPanel Grid.Row="1" Margin="{StaticResource padding_container}">
+            <!--Sync Service-->
+            <Border Style="{StaticResource item}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Ellipse x:Name="elSyncService" Width="25" Height="25" />
+                    <Label Grid.Column="1" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SyncService}" />
+                    <ram:FlatButton x:Name="btnSyncServiceStatus" Grid.Column="2" VerticalAlignment="Center"
+                                    Style="{StaticResource small_action_button_service}" Click="btnSyncServiceStatus_Click" />
+
+                </Grid>
+            </Border>
+
+
+        </StackPanel>
+
+    </Grid>
+
 </UserControl>

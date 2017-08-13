@@ -549,4 +549,13 @@
   <data name="Quit" xml:space="preserve">
     <value>خروج از برنامه</value>
   </data>
+  <data name="StartService" xml:space="preserve">
+    <value>شروع سرویس</value>
+  </data>
+  <data name="StopService" xml:space="preserve">
+    <value>توقف سرویس</value>
+  </data>
+  <data name="SyncService" xml:space="preserve">
+    <value>سرویس همگام ساز</value>
+  </data>
 </root>

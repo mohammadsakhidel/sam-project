@@ -5,6 +5,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace SamUxLib.Code.Utils
 {
@@ -21,6 +22,41 @@ namespace SamUxLib.Code.Utils
         {
             ServiceController sc = new ServiceController(serviceName);
             return sc.Status;
+        }
+
+        public static Task StartServiceAsync(string serviceName)
+        {
+            var task = Task.Run(() =>
+            {
+                ServiceController sc = new ServiceController(serviceName);
+                if (sc.Status != ServiceControllerStatus.Running)
+                    sc.Start();
+
+                while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Running)
+                {
+                }
+            });
+
+            return task;
+        }
+
+        public static Task StopServiceAsync(string serviceName)
+        {
+            var task = Task.Run(() =>
+            {
+                ServiceController sc = new ServiceController(serviceName);
+                sc.Stop();
+
+                while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Stopped)
+                {
+                }
+            });
+            return task;
+        }
+
+        public static SolidColorBrush GetBrushFromColorCode(string colorCode)
+        {
+            return (SolidColorBrush)(new BrushConverter().ConvertFrom(colorCode));
         }
     }
 }

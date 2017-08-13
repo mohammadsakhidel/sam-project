@@ -136,6 +136,10 @@
         <Setter Property="IconSource" Value="Images/ic_back_dark.png"></Setter>
     </Style>
 
+    <Style x:Key="small_action_button_service" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
+        <Setter Property="IconSource" Value="Images/ic_services_dark.png"></Setter>
+    </Style>
+
     <Style x:Key="form_label" TargetType="Label">
         <Setter Property="HorizontalAlignment" Value="Right"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -284,4 +288,10 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="item" TargetType="Border">
+        <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_dark}"></Setter>
+        <Setter Property="Padding" Value="{StaticResource padding_widget_ver}"></Setter>
+    </Style>
+    
 </ResourceDictionary>

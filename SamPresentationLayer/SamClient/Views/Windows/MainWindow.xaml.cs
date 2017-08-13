@@ -76,7 +76,7 @@ namespace SamClient.Views.Windows
                 #region Update Services Status:
                 UpdateServicesStatus();
 
-                var timerServicesStatus = new Timer(4000);
+                var timerServicesStatus = new Timer(2000);
                 timerServicesStatus.Elapsed += (o, ee) =>
                 {
                     try
@@ -136,7 +136,7 @@ namespace SamClient.Views.Windows
         {
             try
             {
-
+                LoadContent(new Partials.WindowsServices(this));
             }
             catch (Exception ex)
             {
@@ -147,7 +147,8 @@ namespace SamClient.Views.Windows
         {
             try
             {
-
+                var player = new PlayerWindow();
+                player.Show();
             }
             catch (Exception ex)
             {

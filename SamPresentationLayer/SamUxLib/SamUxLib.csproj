@@ -239,6 +239,7 @@
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_services_light.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_consolations_light.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_back_dark.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_services_dark.png" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.ico" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />

@@ -1141,6 +1141,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شروع سرویس.
+        /// </summary>
+        public static string StartService {
+            get {
+                return ResourceManager.GetString("StartService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to وضعیت.
         /// </summary>
         public static string Status {
@@ -1150,11 +1159,29 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to توقف سرویس.
+        /// </summary>
+        public static string StopService {
+            get {
+                return ResourceManager.GetString("StopService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام خانوادگی.
         /// </summary>
         public static string Surname {
             get {
                 return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سرویس همگام ساز.
+        /// </summary>
+        public static string SyncService {
+            get {
+                return ResourceManager.GetString("SyncService", resourceCulture);
             }
         }
         

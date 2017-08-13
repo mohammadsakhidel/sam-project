@@ -193,7 +193,9 @@ namespace SamSyncAgent
                         scope.Complete();
                         #endregion
 
-                        Log($"Update Done.{Environment.NewLine}{(mosque != null ? "1" : "0")} Mosque, {dto.Obits.Count()} Obits, {dto.ImageBlobs.Count()} ImageBlobs, {dto.Templates.Count()} Templates & {dto.Consolations.Count()} Consolations Updated.{Environment.NewLine}Lat Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
+                        var hadUpdates = mosque != null || dto.Obits.Any() || dto.ImageBlobs.Any() || dto.Templates.Any() || dto.Consolations.Any();
+                        if (hadUpdates)
+                            Log($"Update Done.{Environment.NewLine}{(mosque != null ? "1" : "0")} Mosque, {dto.Obits.Count()} Obits, {dto.ImageBlobs.Count()} ImageBlobs, {dto.Templates.Count()} Templates & {dto.Consolations.Count()} Consolations Updated.{Environment.NewLine}Lat Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
                     }
                     #endregion
                 }
