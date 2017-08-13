@@ -118,6 +118,24 @@
         <Setter Property="IconSource" Value="Images/ic_next_dark.png"></Setter>
     </Style>
 
+    <Style x:Key="small_action_button_back" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource small_flat_button}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource color_neutral_darker}"></Setter>
+                </Trigger.Setters>
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource color_neutral_darker}"></Setter>
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+
+        <Setter Property="Background" Value="{StaticResource color_neutral_dark}"></Setter>
+        <Setter Property="IconSource" Value="Images/ic_back_dark.png"></Setter>
+    </Style>
+
     <Style x:Key="form_label" TargetType="Label">
         <Setter Property="HorizontalAlignment" Value="Right"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>

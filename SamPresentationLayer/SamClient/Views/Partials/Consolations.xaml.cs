@@ -47,6 +47,17 @@ namespace SamClient.Views.Partials
         #endregion
 
         #region Event Handlers:
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ucPersianDateNavigator.SetMiladyDate(DateTimeUtils.Now);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
         private void ucPersianDateNavigator_OnChange(object sender, SamUxLib.UserControls.DateChangedEventArgs e)
         {
             try

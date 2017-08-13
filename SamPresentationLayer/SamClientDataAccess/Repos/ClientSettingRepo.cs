@@ -36,6 +36,7 @@ namespace SamClientDataAccess.Repos
                 setting.SaloonID = newSetting.SaloonID;
                 setting.DownloadIntervalMilliSeconds = newSetting.DownloadIntervalMilliSeconds;
                 setting.DownloadDelayMilliSeconds = newSetting.DownloadDelayMilliSeconds;
+                setting.AutoSlideShow = newSetting.AutoSlideShow;
             }
         }
     }

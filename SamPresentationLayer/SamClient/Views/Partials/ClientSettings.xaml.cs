@@ -100,6 +100,7 @@ namespace SamClient.Views.Partials
                 cmbSaloons.SelectedValue = _clientSetting.SaloonID;
                 tbDownloadIntervalSeconds.Text = (_clientSetting.DownloadIntervalMilliSeconds / 1000).ToString();
                 tbDownloadDelaySeconds.Text = (_clientSetting.DownloadDelayMilliSeconds / 1000).ToString();
+                chAutoSlideShow.IsChecked = _clientSetting.AutoSlideShow;
             }
         }
         private void UpdateModel()
@@ -117,6 +118,7 @@ namespace SamClient.Views.Partials
 
             _clientSetting.DownloadIntervalMilliSeconds = Convert.ToInt32(tbDownloadIntervalSeconds.Text) * 1000;
             _clientSetting.DownloadDelayMilliSeconds = Convert.ToInt32(tbDownloadDelaySeconds.Text) * 1000;
+            _clientSetting.AutoSlideShow = chAutoSlideShow.IsChecked.HasValue && chAutoSlideShow.IsChecked.Value;
         }
         public Tuple<bool, string> IsValid()
         {

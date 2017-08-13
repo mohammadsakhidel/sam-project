@@ -6,12 +6,17 @@
         xmlns:local="clr-namespace:SamClient.Views.Windows"
         xmlns:uc="clr-namespace:SamClient.Views.Partials"
         xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+        xmlns:taskbar="http://www.hardcodet.net/taskbar"
+        xmlns:code="clr-namespace:SamClient.Code"
         Style="{StaticResource client_main_window}" 
         Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown" ShowInTaskbar="False">
+    <Window.CommandBindings>
+        <CommandBinding Command="code:CustomCommands.Maximize" Executed="MaximizeCommand_Executed" CanExecute="MaximizeCommand_CanExecute" />
+    </Window.CommandBindings>
 
     <!--Window Borders Simulator Grid-->
-    <Grid> 
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -29,16 +34,16 @@
                 <ram:ImageButton x:Name="btnCloseWindow" Style="{StaticResource custom_window_button_close}" Click="btnCloseWindow_Click"></ram:ImageButton>
             </StackPanel>
         </Border>
-        
+
         <!--Window Bottom Border-->
         <Border Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource custom_window_border_bottom}"></Border>
-        
+
         <!--Window Right Border-->
         <Border Grid.Column="0" Grid.Row="1" Style="{StaticResource custom_window_border_start}"></Border>
-        
+
         <!--Window Left Border-->
         <Border Grid.Column="2" Grid.Row="1" Style="{StaticResource custom_window_border_end}"></Border>
-        
+
         <!--Window Content-->
         <Border Style="{StaticResource client_main_window_content}" Grid.Column="1" Grid.Row="1">
             <Grid>
@@ -56,7 +61,7 @@
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <!--Header-->
                         <StackPanel>
                             <Image Style="{StaticResource client_header_logo}" />
@@ -72,7 +77,7 @@
                             <TextBlock x:Name="lblMosqueAddress" Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppShortNameDesc}"
                                    Style="{StaticResource client_sidebar_mosqueaddress}" />
                         </StackPanel>
-                        
+
                         <!--Action Buttons-->
                         <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="{StaticResource padding_container_hor}">
                             <ram:ImageButton x:Name="btnSettings" Style="{StaticResource client_sidebar_action_settings}" Click="btnSettings_Click"
@@ -85,12 +90,31 @@
 
                     </Grid>
                 </Border>
-                
+
                 <!--Content-->
                 <Border x:Name="brdMainContent" Grid.Column="1" Margin="{StaticResource padding_container}"></Border>
             </Grid>
         </Border>
-        
+
+        <taskbar:TaskbarIcon IconSource="/sam_client_icon.ico" LeftClickCommand="code:CustomCommands.Maximize"
+                             ToolTipText="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppName}">
+            <taskbar:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="taryOpenApp" Click="taryOpenApp_Click"
+                        Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OpenApplication}" />
+                    <MenuItem x:Name="tarySlideShow" Click="tarySlideShow_Click"
+                        Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SlideShow}" />
+                    <MenuItem x:Name="tarySettings" Click="tarySettings_Click"
+                        Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ClientSettings}" />
+                    
+                    <Separator />
+                    
+                    <MenuItem x:Name="taryQuit" Click="taryQuit_Click" 
+                              Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Quit}" />
+                </ContextMenu>
+            </taskbar:TaskbarIcon.ContextMenu>
+        </taskbar:TaskbarIcon>
+
     </Grid>
 
 </Window>

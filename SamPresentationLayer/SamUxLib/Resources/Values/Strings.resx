@@ -537,4 +537,16 @@
   <data name="Back" xml:space="preserve">
     <value>بازگشت</value>
   </data>
+  <data name="MosqueInfo" xml:space="preserve">
+    <value>اطلاعات مسجد</value>
+  </data>
+  <data name="AutoSlideShow" xml:space="preserve">
+    <value>نمایش خودکار پبام های تسلیت حین مراسم</value>
+  </data>
+  <data name="OpenApplication" xml:space="preserve">
+    <value>بازکردن برنامه</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>خروج از برنامه</value>
+  </data>
 </root>

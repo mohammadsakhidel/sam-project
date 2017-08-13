@@ -26,6 +26,9 @@ namespace ClientModels.Models
         [Required]
         public int DownloadDelayMilliSeconds { get; set; }
 
+        [Required]
+        public bool AutoSlideShow { get; set; }
+
         public DateTime? LastUpdateTime { get; set; }
         #endregion
 

@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:SamClient.Views.Partials"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
-             xmlns:uxuc="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib">
+             xmlns:uxuc="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib"
+             Loaded="UserControl_Loaded">
 
     <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
         <Grid>
@@ -19,7 +20,7 @@
             <Grid>
                 <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
                 <ram:FlatButton x:Name="btnBack" Click="btnBack_Click" VerticalAlignment="Center" HorizontalAlignment="Right"
-                                Style="{StaticResource small_action_button_previous}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Back}" />
+                                Style="{StaticResource small_action_button_back}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Back}" />
             </Grid>
             
             <DataGrid x:Name="dgConsolations" Grid.Row="1" Margin="{StaticResource padding_container_ver}">

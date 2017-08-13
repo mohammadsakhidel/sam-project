@@ -187,6 +187,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نمایش خودکار پبام های تسلیت حین مراسم.
+        /// </summary>
+        public static string AutoSlideShow {
+            get {
+                return ResourceManager.GetString("AutoSlideShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بازگشت.
         /// </summary>
         public static string Back {
@@ -691,6 +700,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات مسجد.
+        /// </summary>
+        public static string MosqueInfo {
+            get {
+                return ResourceManager.GetString("MosqueInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام مسجد.
         /// </summary>
         public static string MosqueName {
@@ -844,6 +862,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بازکردن برنامه.
+        /// </summary>
+        public static string OpenApplication {
+            get {
+                return ResourceManager.GetString("OpenApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ترتیب.
         /// </summary>
         public static string Order {
@@ -939,6 +966,15 @@ namespace SamUxLib.Resources.Values {
         public static string QuestionMessageBoxCaption {
             get {
                 return ResourceManager.GetString("QuestionMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خروج از برنامه.
+        /// </summary>
+        public static string Quit {
+            get {
+                return ResourceManager.GetString("Quit", resourceCulture);
             }
         }
         

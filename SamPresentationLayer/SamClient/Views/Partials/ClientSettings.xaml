@@ -7,49 +7,71 @@
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit">
 
-    <Grid Margin="{StaticResource padding_widget}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="{StaticResource grid_row_spacing}" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="{StaticResource grid_row_spacing}" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="{StaticResource grid_row_spacing}" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="{StaticResource grid_row_spacing}" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="{StaticResource grid_row_spacing}" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <TabControl Margin="{StaticResource padding_container_ver}">
+        <TabItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.MosqueInfo}">
+            <Grid Margin="{StaticResource padding_container}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-        <!--ROW 0-->
-        <Label Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
-        <ComboBox Grid.Column="1" x:Name="cmbProvinces" SelectionChanged="cmbProvinces_SelectionChanged" SelectedValuePath="ID"  />
+                <!--ROW 0-->
+                <Label Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
+                <ComboBox Grid.Column="1" x:Name="cmbProvinces" SelectionChanged="cmbProvinces_SelectionChanged" SelectedValuePath="ID"  />
 
-        <!--ROW 2-->
-        <Label Style="{StaticResource form_label}" Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}"></Label>
-        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cmbCities" SelectionChanged="cmbCities_SelectionChanged" SelectedValuePath="ID" />
+                <!--ROW 2-->
+                <Label Style="{StaticResource form_label}" Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}"></Label>
+                <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cmbCities" SelectionChanged="cmbCities_SelectionChanged" SelectedValuePath="ID" />
 
-        <!--ROW 4-->
-        <Label Style="{StaticResource form_label}" Grid.Row="4" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}"></Label>
-        <ComboBox Grid.Row="4" Grid.Column="1" x:Name="cmbMosques" SelectedValuePath="ID" SelectionChanged="cmbMosques_SelectionChanged" />
+                <!--ROW 4-->
+                <Label Style="{StaticResource form_label}" Grid.Row="4" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}"></Label>
+                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="cmbMosques" SelectedValuePath="ID" SelectionChanged="cmbMosques_SelectionChanged" />
 
-        <!--ROW 6-->
-        <Label Style="{StaticResource form_label}" Grid.Row="6" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Saloon}"></Label>
-        <ComboBox Grid.Row="6" Grid.Column="1" x:Name="cmbSaloons" SelectedValuePath="ID" DisplayMemberPath="Name" />
+                <!--ROW 6-->
+                <Label Style="{StaticResource form_label}" Grid.Row="6" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Saloon}"></Label>
+                <ComboBox Grid.Row="6" Grid.Column="1" x:Name="cmbSaloons" SelectedValuePath="ID" DisplayMemberPath="Name" />
+            </Grid>
+        </TabItem>
+        <TabItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Settings}">
+            <Grid Margin="{StaticResource padding_container}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-        <!--ROW 8-->
-        <Label Style="{StaticResource form_label}" Grid.Row="8" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DownloadIntervalSeconds}"></Label>
-        <TextBox Grid.Row="8" Grid.Column="1" x:Name="tbDownloadIntervalSeconds" />
+                <!--ROW 0-->
+                <Label Style="{StaticResource form_label}" Grid.Row="0" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DownloadIntervalSeconds}"></Label>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="tbDownloadIntervalSeconds" />
 
-        <!--ROW 10-->
-        <Label Style="{StaticResource form_label}" Grid.Row="10" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DownloadDelaySeconds}"></Label>
-        <TextBox Grid.Row="10" Grid.Column="1" x:Name="tbDownloadDelaySeconds" />
+                <!--ROW 2-->
+                <Label Style="{StaticResource form_label}" Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DownloadDelaySeconds}"></Label>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbDownloadDelaySeconds" />
+                
+                <!--ROW 4-->
+                <CheckBox Grid.Row="4" Grid.Column="1" x:Name="chAutoSlideShow" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AutoSlideShow}" />
 
-    </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
     
 </UserControl>

@@ -118,7 +118,7 @@ namespace SamClient.Views.Windows
         }
         private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            WindowState = WindowState.Minimized;
         }
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
@@ -148,6 +148,74 @@ namespace SamClient.Views.Windows
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void taryQuit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Application.Current.Shutdown();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void tarySettings_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var window = new ClientSettingsWindow();
+                window.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void tarySlideShow_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var player = new PlayerWindow();
+                player.Show();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void taryOpenApp_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                WindowState = WindowState.Normal;
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void MaximizeCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            try
+            {
+                e.CanExecute = true;
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void MaximizeCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                WindowState = WindowState.Normal;
             }
             catch (Exception ex)
             {
