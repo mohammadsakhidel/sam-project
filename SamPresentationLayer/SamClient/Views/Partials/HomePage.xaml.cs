@@ -1,4 +1,5 @@
 ﻿using SamClient.Views.Windows;
+using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,55 @@ namespace SamClient.Views.Partials
         {
             _mainWindow = mainWindow;
             InitializeComponent();
+        }
+        #endregion
+
+        #region Event Handlers:
+        private void btnConsolations_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _mainWindow.LoadContent(new Consolations(_mainWindow));
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void btnSlideShow_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var player = new PlayerWindow();
+                player.Show();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void btnServices_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _mainWindow.LoadContent(new WindowsServices(_mainWindow));
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var window = new ClientSettingsWindow();
+                window.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
         }
         #endregion
     }

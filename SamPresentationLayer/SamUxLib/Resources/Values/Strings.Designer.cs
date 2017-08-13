@@ -187,6 +187,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بازگشت.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تصویر پس زمینه.
         /// </summary>
         public static string BackgroundImage {
@@ -1065,6 +1074,15 @@ namespace SamUxLib.Resources.Values {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش پی در پی.
+        /// </summary>
+        public static string SlideShow {
+            get {
+                return ResourceManager.GetString("SlideShow", resourceCulture);
             }
         }
         

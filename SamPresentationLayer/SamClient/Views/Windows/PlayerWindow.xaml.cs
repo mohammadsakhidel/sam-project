@@ -24,7 +24,7 @@ using Transitionals.Transitions;
 
 namespace SamClient.Views.Windows
 {
-    public partial class Player : Window
+    public partial class PlayerWindow : Window
     {
         #region Fields:
         Canvas _container;
@@ -33,7 +33,7 @@ namespace SamClient.Views.Windows
         #endregion
 
         #region Ctors:
-        public Player()
+        public PlayerWindow()
         {
             InitializeComponent();
         }

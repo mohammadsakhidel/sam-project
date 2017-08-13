@@ -80,7 +80,7 @@
                             <ram:ImageButton x:Name="btnServices" Style="{StaticResource client_sidebar_action_services}" Click="btnServices_Click"
                                              ToolTip="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.WindowsServices}" />
                             <ram:ImageButton x:Name="btnSlideShow" Style="{StaticResource client_sidebar_action_slideshow}" Click="btnSlideShow_Click"
-                                             ToolTip="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Play}" />
+                                             ToolTip="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SlideShow}" />
                         </StackPanel>
 
                     </Grid>

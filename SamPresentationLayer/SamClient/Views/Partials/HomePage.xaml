@@ -4,9 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamClient.Views.Partials"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label>Home Page</Label>
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <ram:FlatButton x:Name="btnConsolations" Style="{StaticResource client_homepage_menuitem_consolations}" 
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}"
+                        Click="btnConsolations_Click"/>
+        <ram:FlatButton Grid.Column="1" x:Name="btnSlideShow" Style="{StaticResource client_homepage_menuitem_slideshow}" 
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SlideShow}"
+                        Click="btnSlideShow_Click"/>
+
+        <ram:FlatButton Grid.Row="1" x:Name="btnServices" Style="{StaticResource client_homepage_menuitem_services}" 
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.WindowsServices}"
+                        Click="btnServices_Click"/>
+        <ram:FlatButton Grid.Row="1" Grid.Column="1" x:Name="btnSettings" Style="{StaticResource client_homepage_menuitem_settings}" 
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ClientSettings}"
+                        Click="btnSettings_Click"/>
+
     </Grid>
 </UserControl>

@@ -206,5 +206,64 @@
         <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
         <Setter Property="IsEditable" Value="True"></Setter>
     </Style>
-    
+
+    <Style x:Key="client_homepage_menuitem" TargetType="{x:Type ram:FlatButton}">
+        <Setter Property="Width" Value="190"></Setter>
+        <Setter Property="Height" Value="44"></Setter>
+        <Setter Property="CornerRadius" Value="22"></Setter>
+        <Setter Property="IconHeight" Value="20"></Setter>
+        <Setter Property="IconWidth" Value="20"></Setter>
+        <Setter Property="Margin" Value="{StaticResource padding_container}"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="Padding" Value="10 0"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_bit_larger}"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource ff_subject}"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+
+    <Style x:Key="client_homepage_menuitem_slideshow" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource client_homepage_menuitem}">
+        <Setter Property="IconSource" Value="Images/ic_slideshow_light.png"></Setter>
+        <Setter Property="Background" Value="#00c45f"></Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#01a04e"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="client_homepage_menuitem_settings" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource client_homepage_menuitem}">
+        <Setter Property="IconSource" Value="Images/ic_settings_light.png"></Setter>
+        <Setter Property="Background" Value="#008fd2"></Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#016290"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="client_homepage_menuitem_services" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource client_homepage_menuitem}">
+        <Setter Property="IconSource" Value="Images/ic_services_light.png"></Setter>
+        <Setter Property="Background" Value="#f1b500"></Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#c49300"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="client_homepage_menuitem_consolations" TargetType="{x:Type ram:FlatButton}" BasedOn="{StaticResource client_homepage_menuitem}">
+        <Setter Property="IconSource" Value="Images/ic_consolations_light.png"></Setter>
+        <Setter Property="Background" Value="#f53343"></Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#c12431"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

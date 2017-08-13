@@ -16,7 +16,11 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
+            <Grid>
+                <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
+                <ram:FlatButton x:Name="btnBack" Click="btnBack_Click" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                Style="{StaticResource small_action_button_previous}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Back}" />
+            </Grid>
             
             <DataGrid x:Name="dgConsolations" Grid.Row="1" Margin="{StaticResource padding_container_ver}">
                 <DataGrid.Columns>

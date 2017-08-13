@@ -531,4 +531,10 @@
   <data name="WindowsServices" xml:space="preserve">
     <value>سرویس های پس زمینه</value>
   </data>
+  <data name="SlideShow" xml:space="preserve">
+    <value>نمایش پی در پی</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>بازگشت</value>
+  </data>
 </root>

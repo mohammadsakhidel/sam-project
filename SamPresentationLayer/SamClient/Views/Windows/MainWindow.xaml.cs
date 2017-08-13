@@ -166,7 +166,7 @@ namespace SamClient.Views.Windows
             const string RUNNING = "running";
             const string STOPPED = "stopped";
 
-            if (VersatileUtil.GetWindowsServiceStatus(WindowsServices.sync_service) != ServiceControllerStatus.Running)
+            if (VersatileUtil.GetWindowsServiceStatus(SamUtils.Constants.WindowsServices.sync_service) != ServiceControllerStatus.Running)
                 return STOPPED;
 
             return RUNNING;
