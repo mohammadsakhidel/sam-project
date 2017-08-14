@@ -34,11 +34,11 @@ namespace SamDataAccess.Repos
             #region obits updates:
             var obits = from o in context.Obits.Include(o => o.ObitHoldings)
                         where o.MosqueID == mosqueId &&
-                              o.ObitHoldings.Where(h => h.SaloonID == saloonId).Any() &&
+                              o.ObitHoldings.Any(h => h.SaloonID == saloonId) &&
                               (clientLastUpdatetime == null
                               || (o.CreationTime <= queryTime && o.CreationTime > clientLastUpdatetime.Value)
                               || (o.LastUpdateTime != null && (o.LastUpdateTime.Value <= queryTime && o.LastUpdateTime.Value > clientLastUpdatetime.Value)))
-                              && o.ObitHoldings.Where(h => h.BeginTime > DateTimeUtils.Now).Any()
+                              && o.ObitHoldings.Any(h => h.EndTime > DateTimeUtils.Now)
                         select o;
             #endregion
 
@@ -67,12 +67,12 @@ namespace SamDataAccess.Repos
                                where o.MosqueID == mosqueId && h.SaloonID == saloonId &&
                                      (c.Status == confirmed || c.Status == canceled) &&
                                      (clientLastUpdatetime == null
-                                     || (o.CreationTime <= queryTime && o.CreationTime > clientLastUpdatetime.Value)
-                                     || (o.LastUpdateTime != null && (o.LastUpdateTime.Value <= queryTime && o.LastUpdateTime.Value > clientLastUpdatetime.Value)))
+                                     || (c.CreationTime <= queryTime && c.CreationTime > clientLastUpdatetime.Value)
+                                     || (c.LastUpdateTime != null && (c.LastUpdateTime.Value <= queryTime && c.LastUpdateTime.Value > clientLastUpdatetime.Value)))
                                select c;
             #endregion
 
-            return new Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]>(mosque, obits.ToArray(), templates.ToArray(), blobs.ToArray(), consolations.ToArray());
+            return new Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]>(mosque, obits.Distinct().ToArray(), templates.Distinct().ToArray(), blobs.Distinct().ToArray(), consolations.Distinct().ToArray());
         }
     }
 }

@@ -177,6 +177,10 @@
     <Compile Include="Migrations\SamDbMigrations\201708101329044_SomeSyncFieldsAdded.Designer.cs">
       <DependentUpon>201708101329044_SomeSyncFieldsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708140836438_Consolation_TrackingNumberFieldAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708140836438_Consolation_TrackingNumberFieldAdded.Designer.cs">
+      <DependentUpon>201708140836438_Consolation_TrackingNumberFieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
@@ -280,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201708101329044_SomeSyncFieldsAdded.resx">
       <DependentUpon>201708101329044_SomeSyncFieldsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708140836438_Consolation_TrackingNumberFieldAdded.resx">
+      <DependentUpon>201708140836438_Consolation_TrackingNumberFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

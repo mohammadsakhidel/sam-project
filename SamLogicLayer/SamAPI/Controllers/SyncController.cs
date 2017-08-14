@@ -48,10 +48,10 @@ namespace SamAPI.Controllers
                 var imageBlobs = updates.Item4.Select(blob => Mapper.Map<ImageBlob, ImageBlobDto>(blob)).ToArray();
                 var consolationDtos = updates.Item5.Select(c => Mapper.Map<Consolation, ConsolationDto>(c, opts =>
                 {
-                    opts.BeforeMap((mdl, dto) =>
+                    opts.AfterMap((mdl, dto) =>
                     {
-                        mdl.Obit = null;
-                        mdl.Template = null;
+                        dto.Obit = null;
+                        dto.Template = null;
                     });
                 })).ToArray();
 

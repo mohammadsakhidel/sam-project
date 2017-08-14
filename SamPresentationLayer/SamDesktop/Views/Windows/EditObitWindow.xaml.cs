@@ -17,10 +17,11 @@ namespace SamDesktop.Views.Windows
 {
     public partial class EditObitWindow : Window
     {
-        public EditObitWindow(ObitDto obitToEdit)
+        public EditObitWindow(MosqueDto mosque, ObitDto obitToEdit)
         {
             InitializeComponent();
             ucObitEditor.ObitToEdit = obitToEdit;
+            ucObitEditor.Mosque = mosque;
         }
     }
 }

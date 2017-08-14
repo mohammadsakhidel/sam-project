@@ -4,6 +4,7 @@ using SamAPI.Code.Utils;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities.Core;
+using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,7 @@ namespace SamAPI.Controllers
             {
                 #region Create Consolation:
                 var consolation = Mapper.Map<ConsolationDto, Consolation>(model);
+                consolation.TrackingNumber = IDGenerator.GenerateTrackingNumber();
                 consolation.CreationTime = DateTimeUtils.Now;
                 consolation.LastUpdateTime = consolation.CreationTime;
                 consolation.Customer.IsMember = false;

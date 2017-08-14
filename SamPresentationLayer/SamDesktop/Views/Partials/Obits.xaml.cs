@@ -99,7 +99,7 @@ namespace SamDesktop.Views.Partials
                 if (dgRecords.SelectedItem != null)
                 {
                     var obitToEdit = ((ObitHoldingDto)dgRecords.SelectedItem).Obit;
-                    var window = new EditObitWindow(obitToEdit);
+                    var window = new EditObitWindow(SelectedMosque, obitToEdit);
                     var res = window.ShowDialog();
                     if (res.HasValue && res.Value)
                     {
@@ -111,6 +111,7 @@ namespace SamDesktop.Views.Partials
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }

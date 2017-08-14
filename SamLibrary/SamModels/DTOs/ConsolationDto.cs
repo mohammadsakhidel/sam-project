@@ -30,6 +30,8 @@ namespace SamModels.DTOs
 
         public DateTime? LastUpdateTime { get; set; }
 
+        public string TrackingNumber { get; set; }
+
         #region Navigation:
         public CustomerDto Customer { get; set; }
         public ObitDto Obit { get; set; }

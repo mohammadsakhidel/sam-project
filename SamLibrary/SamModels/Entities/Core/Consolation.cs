@@ -42,6 +42,10 @@ namespace SamModels.Entities.Core
 
         public DateTime? LastUpdateTime { get; set; }
 
+        [Required]
+        [MaxLength(16)]
+        public string TrackingNumber { get; set; }
+
         #region Navigation Props:
         public virtual Obit Obit { get; set; }
         public virtual Customer Customer { get; set; }
