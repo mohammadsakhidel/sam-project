@@ -29,7 +29,6 @@ namespace SamClient.Views.Windows
         #region Fields:
         Canvas _container;
         Consolation _current;
-        int _defaultDuration = 10000;
         #endregion
 
         #region Ctors:
@@ -65,27 +64,42 @@ namespace SamClient.Views.Windows
                         using (var crep = new ConsolationRepo())
                         using (var brep = new BlobRepo())
                         {
-                            var next = crep.GetNext(_current?.ID);
+                            #region find next consolation:
+                            var nextItem = crep.GetNext(_current?.ID);
+                            var nextConsolation = nextItem.Item1; ;
+                            var nextDuration = nextItem.Item2;
+                            #endregion
 
-                            if (next == null)
-                                next = crep.GetNext(null);
-
-                            if (next != null)
+                            #region show:
+                            if (nextConsolation != null)
                             {
-                                var blob = brep.Get(next.Template.BackgroundImageID);
+                                var blob = brep.Get(nextConsolation.Template.BackgroundImageID);
                                 if (blob != null)
                                 {
                                     var bg = IOUtils.ByteArrayToBitmap(blob.Bytes);
-                                    Dispatcher.Invoke(() => { ShowConsolation(next, bg); });
+                                    Dispatcher.Invoke(() =>
+                                    {
+                                        try
+                                        {
+                                            ShowConsolation(nextConsolation, bg);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ExceptionManager.Log(ex);
+                                        }
+                                    });
                                 }
                             }
+                            #endregion
 
-                            Thread.Sleep(_defaultDuration);
+                            #region Delay:
+                            Thread.Sleep(nextDuration);
+                            #endregion
                         }
                     }
                     catch (Exception ex)
                     {
-                        ExceptionManager.Handle(ex);
+                        ExceptionManager.Log(ex);
                     }
                 }
             });
@@ -113,7 +127,8 @@ namespace SamClient.Views.Windows
                 containerHeight = containerWidth * cHeight / cWidth;
             }
 
-            Dispatcher.Invoke(() => {
+            Dispatcher.Invoke(() =>
+            {
                 _container.Width = containerWidth;
                 _container.Height = containerHeight;
             });

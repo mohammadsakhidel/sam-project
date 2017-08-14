@@ -385,6 +385,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to زمان پیش فرض نمایش (ثانیه).
+        /// </summary>
+        public static string DefaultSlideShowDuration {
+            get {
+                return ResourceManager.GetString("DefaultSlideShowDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حذف.
         /// </summary>
         public static string Delete {

@@ -37,6 +37,7 @@ namespace SamClientDataAccess.Repos
                 setting.DownloadIntervalMilliSeconds = newSetting.DownloadIntervalMilliSeconds;
                 setting.DownloadDelayMilliSeconds = newSetting.DownloadDelayMilliSeconds;
                 setting.AutoSlideShow = newSetting.AutoSlideShow;
+                setting.DefaultSlideDurationMilliSeconds = newSetting.DefaultSlideDurationMilliSeconds;
             }
         }
     }

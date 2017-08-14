@@ -43,5 +43,10 @@ namespace SamUxLib.Code.Utils
                 UxUtil.ShowError($"{ex.GetType().FullName}:{Environment.NewLine}{message}");
             });
         }
+
+        public static void Log(Exception ex)
+        {
+            // log exception here
+        }
     }
 }

@@ -101,6 +101,7 @@ namespace SamClient.Views.Partials
                 tbDownloadIntervalSeconds.Text = (_clientSetting.DownloadIntervalMilliSeconds / 1000).ToString();
                 tbDownloadDelaySeconds.Text = (_clientSetting.DownloadDelayMilliSeconds / 1000).ToString();
                 chAutoSlideShow.IsChecked = _clientSetting.AutoSlideShow;
+                tbDefaultSlideShowDuration.Text = (_clientSetting.DefaultSlideDurationMilliSeconds / 1000).ToString();
             }
         }
         private void UpdateModel()
@@ -119,6 +120,7 @@ namespace SamClient.Views.Partials
             _clientSetting.DownloadIntervalMilliSeconds = Convert.ToInt32(tbDownloadIntervalSeconds.Text) * 1000;
             _clientSetting.DownloadDelayMilliSeconds = Convert.ToInt32(tbDownloadDelaySeconds.Text) * 1000;
             _clientSetting.AutoSlideShow = chAutoSlideShow.IsChecked.HasValue && chAutoSlideShow.IsChecked.Value;
+            _clientSetting.DefaultSlideDurationMilliSeconds = Convert.ToInt32(tbDefaultSlideShowDuration.Text) * 1000;
         }
         public Tuple<bool, string> IsValid()
         {

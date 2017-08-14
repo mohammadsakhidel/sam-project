@@ -558,4 +558,7 @@
   <data name="SyncService" xml:space="preserve">
     <value>سرویس همگام ساز</value>
   </data>
+  <data name="DefaultSlideShowDuration" xml:space="preserve">
+    <value>زمان پیش فرض نمایش (ثانیه)</value>
+  </data>
 </root>

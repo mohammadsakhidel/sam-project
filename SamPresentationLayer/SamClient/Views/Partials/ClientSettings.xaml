@@ -53,6 +53,8 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="{StaticResource grid_row_spacing}" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -66,12 +68,16 @@
                 <!--ROW 2-->
                 <Label Style="{StaticResource form_label}" Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DownloadDelaySeconds}"></Label>
                 <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbDownloadDelaySeconds" />
-                
+
                 <!--ROW 4-->
                 <CheckBox Grid.Row="4" Grid.Column="1" x:Name="chAutoSlideShow" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AutoSlideShow}" />
+
+                <!--ROW 6-->
+                <Label Style="{StaticResource form_label}" Grid.Row="6" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DefaultSlideShowDuration}"></Label>
+                <TextBox Grid.Row="6" Grid.Column="1" x:Name="tbDefaultSlideShowDuration" />
 
             </Grid>
         </TabItem>
     </TabControl>
-    
+
 </UserControl>

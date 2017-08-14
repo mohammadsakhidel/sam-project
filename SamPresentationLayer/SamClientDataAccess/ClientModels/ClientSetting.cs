@@ -29,11 +29,15 @@ namespace ClientModels.Models
         [Required]
         public bool AutoSlideShow { get; set; }
 
+        [Required]
+        public int DefaultSlideDurationMilliSeconds { get; set; }
+
         public DateTime? LastUpdateTime { get; set; }
         #endregion
 
         #region Consts:
         public const int MIN_DOWNLOAD_INTERVAL = 10000;
+        public const int MIN_SLIDE_DURATION_MILLS = 8000;
         #endregion
 
         #region Static Methods:
@@ -49,6 +53,9 @@ namespace ClientModels.Models
                 return false;
 
             if (setting.DownloadIntervalMilliSeconds < MIN_DOWNLOAD_INTERVAL)
+                return false;
+
+            if (setting.DefaultSlideDurationMilliSeconds < MIN_SLIDE_DURATION_MILLS)
                 return false;
 
             return true;
