@@ -323,6 +323,32 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="ab29d6dc-828e-4b73-aa0e-719dcc7f2cb6" />
           </association>
+          <association Id="d9f3fbf2-09b8-4be9-bfba-9bfbc9dcb681" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="874027d1-9277-463b-902d-0772e20e17b7" LastKnownName="Displays" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6c28581b-cb51-48c3-a983-beac4b1bf6ee" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="63fe6500-5c49-430b-a995-a1b56fa509c5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1f84cbe8-0e3d-4326-a753-bba330f26eb0" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="6d8bb32f-45d5-4ba6-a0eb-9f4e04e48056" name="Lower" value="*">
+                      <elementDefinition Id="01a3432d-bac1-4da2-b9f8-9d2386df8f12" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="f0e47225-4af7-4b57-8fd8-41d842a6a377" name="Upper" value="*">
+                      <elementDefinition Id="9b8c5198-f5e3-470f-92ba-36efcef5589c" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="15515f0a-42f3-4d44-b6fb-bdbd7f51ef0c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a5cbb508-333f-4064-abf2-e9c5ac060c34" />
+          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -408,6 +434,11 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="9e2f306a-421e-451f-8192-c21fd8c5ea1b" name="Saloon" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="89282a20-8028-481f-9e73-d144b014f2e5" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="874027d1-9277-463b-902d-0772e20e17b7" name="Displays" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="49ee925a-de5d-4a6f-8b3f-026da0cd13c2" />
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

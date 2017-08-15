@@ -33,6 +33,8 @@ namespace ClientModels.Models
         public int DefaultSlideDurationMilliSeconds { get; set; }
 
         public DateTime? LastUpdateTime { get; set; }
+
+        public DateTime? LastDisplaysUploadTime { get; set; }
         #endregion
 
         #region Consts:

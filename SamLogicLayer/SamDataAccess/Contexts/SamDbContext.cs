@@ -34,6 +34,7 @@ namespace SamDataAccess.Contexts
         public DbSet<Saloon> Saloons { get; set; }
         public DbSet<Obit> Obits { get; set; }
         public DbSet<Consolation> Consolations { get; set; }
+        public DbSet<Display> Displays { get; set; }
         public DbSet<Template> Templates { get; set; }
         public DbSet<TemplateField> TemplateFields { get; set; }
         public DbSet<TemplateCategory> TemplateCategories { get; set; }
@@ -55,6 +56,7 @@ namespace SamDataAccess.Contexts
             modelBuilder.Entity<Saloon>().ToTable("Saloons", DbSchemaName.core.ToString());
             modelBuilder.Entity<Obit>().ToTable("Obits", DbSchemaName.core.ToString());
             modelBuilder.Entity<Consolation>().ToTable("Consolations", DbSchemaName.core.ToString());
+            modelBuilder.Entity<Display>().ToTable("Displays", DbSchemaName.core.ToString());
             modelBuilder.Entity<Template>().ToTable("Templates", DbSchemaName.core.ToString());
             modelBuilder.Entity<TemplateField>().ToTable("TemplateFields", DbSchemaName.core.ToString());
             modelBuilder.Entity<TemplateCategory>().ToTable("TemplateCategories", DbSchemaName.core.ToString());

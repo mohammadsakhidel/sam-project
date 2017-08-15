@@ -3,6 +3,7 @@ using RamancoLibrary.Utilities;
 using SamClientDataAccess.Repos;
 using SamClientDataAccess.Repos;
 using SamModels.Entities.Core;
+using SamUtils.Enums;
 using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,8 @@ namespace SamClient.Views.Windows
                     try
                     {
                         using (var crep = new ConsolationRepo())
-                        using (var brep = new BlobRepo())
+                        using (var brep = new BlobRepo(crep.Context))
+                        using (var drep = new DisplayRepo(crep.Context))
                         {
                             #region find next consolation:
                             var nextItem = crep.GetNext(_current?.ID);
@@ -94,6 +96,21 @@ namespace SamClient.Views.Windows
 
                             #region Delay:
                             Thread.Sleep(nextDuration);
+                            #endregion
+
+                            #region save display:
+                            if (nextConsolation != null)
+                            {
+                                var display = new Display
+                                {
+                                    ConsolationID = nextConsolation.ID,
+                                    DurationMilliSeconds = nextDuration,
+                                    SyncStatus = DisplaySyncStatus.pending.ToString(),
+                                    TimeOfDisplay = DateTime.Now,
+                                    CreationTime = DateTime.Now
+                                };
+                                drep.AddWithSave(display);
+                            }
                             #endregion
                         }
                     }

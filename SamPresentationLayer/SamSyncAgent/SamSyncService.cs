@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using ClientModels.Models;
+using RamancoLibrary.Utilities;
 using SamClientDataAccess.Repos;
 using SamModels.DTOs;
 using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
 using SamSyncAgent.Code.Utils;
 using SamUtils.Constants;
+using SamUtils.Enums;
 using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,11 @@ namespace SamSyncAgent
         #region VARS:
         List<Timer> _timers;
         ClientSetting setting = null;
+        #endregion
+
+        #region Constants:
+        int DISPLAY_TIMER_DELAY_MILLS = 30000;
+        int DISPLAY_TIMER_INTERVAL_MILLS = 60000;
         #endregion
 
         #region START & STOP:
@@ -76,9 +83,14 @@ namespace SamSyncAgent
                 {
                     _timers = new List<Timer>();
 
-                    #region Create Timers:
+                    #region Download Timer:
                     var downloadTimer = new Timer(DownloadTimerCallback, null, setting.DownloadDelayMilliSeconds, setting.DownloadIntervalMilliSeconds);
                     _timers.Add(downloadTimer);
+                    #endregion
+
+                    #region Update Displays Timer:
+                    var displayTimer = new Timer(DisplayTimerCallback, null, DISPLAY_TIMER_DELAY_MILLS, DISPLAY_TIMER_INTERVAL_MILLS);
+                    _timers.Add(displayTimer);
                     #endregion
 
                     Log("Sam sync timers started.");
@@ -205,6 +217,44 @@ namespace SamSyncAgent
                 ExceptionManager.Handle(ex, logger, "DOWNLOAD ERROR");
             }
         }
+
+        private async void DisplayTimerCallback(object state)
+        {
+            try
+            {
+                using (var srepo = new ClientSettingRepo())
+                using (var drepo = new DisplayRepo(srepo.Context))
+                using (var hc = HttpUtil.CreateClient())
+                {
+                    #region get displays to upload:
+                    var setting = srepo.Get();
+                    var uploadTime = DateTimeUtils.Now;
+                    var displays = drepo.GetPendingDisplays(setting.LastDisplaysUploadTime, uploadTime);
+                    var dtos = displays.Select(d => Mapper.Map<Display, DisplayDto>(d)).ToArray();
+                    #endregion
+
+                    #region upload:
+                    var response = await hc.PostAsJsonAsync<DisplayDto[]>(ApiActions.sync_updatedisplays, dtos);
+                    response.EnsureSuccessStatusCode();
+                    #endregion
+
+                    #region update display status to synced:
+                    setting.LastDisplaysUploadTime = uploadTime;
+
+                    foreach (var display in displays)
+                    {
+                        display.SyncStatus = DisplaySyncStatus.synced.ToString();
+                    }
+
+                    srepo.Save();
+                    #endregion
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex, logger, "DISPLAY UPLOAD ERROR");
+            }
+        }
         #endregion
 
         #region Methods:
@@ -274,6 +324,11 @@ namespace SamSyncAgent
                 #region Consolation:
                 cfg.CreateMap<Consolation, ConsolationDto>();
                 cfg.CreateMap<ConsolationDto, Consolation>();
+                #endregion
+
+                #region Display:
+                cfg.CreateMap<Display, DisplayDto>();
+                cfg.CreateMap<DisplayDto, Display>();
                 #endregion
             });
         }

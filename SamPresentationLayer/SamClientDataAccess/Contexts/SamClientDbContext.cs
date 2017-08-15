@@ -20,11 +20,12 @@ namespace SamClientDataAccess.Contexts
         }
         #endregion
 
-        #region Props:
+        #region DbSets:
         public DbSet<Mosque> Mosques { get; set; }
         public DbSet<Saloon> Saloons { get; set; }
         public DbSet<ClientSetting> ClientSettings { get; set; }
         public DbSet<Consolation> Consolations { get; set; }
+        public DbSet<Display> Displays { get; set; }
         public DbSet<Obit> Obits { get; set; }
         public DbSet<ObitHolding> ObitHoldings { get; set; }
         public DbSet<Template> Templates { get; set; }

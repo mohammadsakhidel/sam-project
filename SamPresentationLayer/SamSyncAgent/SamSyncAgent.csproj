@@ -49,6 +49,10 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RamancoLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="SamModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>

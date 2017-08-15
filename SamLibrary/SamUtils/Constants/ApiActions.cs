@@ -37,5 +37,6 @@ namespace SamUtils.Constants
         public const string account_updaterole = "account/updaterole";
         public const string account_deleterole = "account/deleterole";
         public const string sync_getupdates = "sync/getupdates";
+        public const string sync_updatedisplays = "sync/updatedisplays";
     }
 }

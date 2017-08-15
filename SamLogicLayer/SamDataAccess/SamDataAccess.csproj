@@ -181,12 +181,22 @@
     <Compile Include="Migrations\SamDbMigrations\201708140836438_Consolation_TrackingNumberFieldAdded.Designer.cs">
       <DependentUpon>201708140836438_Consolation_TrackingNumberFieldAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708141742271_DisplayEntityAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708141742271_DisplayEntityAdded.Designer.cs">
+      <DependentUpon>201708141742271_DisplayEntityAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201708150545099_DisplaySyncStatusFieldAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201708150545099_DisplaySyncStatusFieldAdded.Designer.cs">
+      <DependentUpon>201708150545099_DisplaySyncStatusFieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\DisplayRepo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
     <Compile Include="Repos\ConsolationRepo.cs" />
     <Compile Include="Repos\IdentityRepo.cs" />
     <Compile Include="Repos\Interfaces\IBlobRepo.cs" />
+    <Compile Include="Repos\Interfaces\IDisplayRepo.cs" />
     <Compile Include="Repos\Interfaces\IConsolationRepo.cs" />
     <Compile Include="Repos\Interfaces\IIdentityRepo.cs" />
     <Compile Include="Repos\Interfaces\IObitRepo.cs" />
@@ -287,6 +297,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201708140836438_Consolation_TrackingNumberFieldAdded.resx">
       <DependentUpon>201708140836438_Consolation_TrackingNumberFieldAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708141742271_DisplayEntityAdded.resx">
+      <DependentUpon>201708141742271_DisplayEntityAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201708150545099_DisplaySyncStatusFieldAdded.resx">
+      <DependentUpon>201708150545099_DisplaySyncStatusFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

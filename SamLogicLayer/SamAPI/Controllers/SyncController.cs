@@ -20,12 +20,14 @@ namespace SamAPI.Controllers
     {
         #region Fields:
         IConsolationRepo _consolationRepo;
+        IDisplayRepo _displayRepo;
         #endregion
 
         #region Ctors:
-        public SyncController(IConsolationRepo consolationRepo)
+        public SyncController(IConsolationRepo consolationRepo, IDisplayRepo displayRepo)
         {
             _consolationRepo = consolationRepo;
+            _displayRepo = displayRepo;
         }
         #endregion
 
@@ -66,6 +68,28 @@ namespace SamAPI.Controllers
                 };
 
                 return Ok(updateDtos);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
+
+        #region Post Actions:
+        [HttpPost]
+        public IHttpActionResult UpdateDisplays(DisplayDto[] displays)
+        {
+            try
+            {
+                foreach (var displayDto in displays)
+                {
+                    var display = Mapper.Map<DisplayDto, Display>(displayDto);
+                    _displayRepo.Add(display);
+                }
+                _displayRepo.Save();
+
+                return Ok();
             }
             catch (Exception ex)
             {

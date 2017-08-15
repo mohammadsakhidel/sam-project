@@ -76,6 +76,11 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<ConsolationDto, Consolation>();
                 #endregion
 
+                #region Display:
+                cfg.CreateMap<Display, DisplayDto>();
+                cfg.CreateMap<DisplayDto, Display>();
+                #endregion
+
                 #region AspNetUser:
                 cfg.CreateMap<AspNetUser, IdentityUserDto>();
                 cfg.CreateMap<IdentityUserDto, AspNetUser>();

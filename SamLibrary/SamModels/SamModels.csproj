@@ -50,6 +50,7 @@
     <Compile Include="DTOs\ConsolationDto.cs" />
     <Compile Include="DTOs\ConsolationsUpdatePackDto.cs" />
     <Compile Include="DTOs\CustomerDto.cs" />
+    <Compile Include="DTOs\DisplayDto.cs" />
     <Compile Include="DTOs\IdentityRoleDto.cs" />
     <Compile Include="DTOs\ImageBlobDto.cs" />
     <Compile Include="DTOs\MosqueDto.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Entities\Blobs\Blob.cs" />
     <Compile Include="Entities\Blobs\ImageBlob.cs" />
     <Compile Include="Entities\Core\City.cs" />
+    <Compile Include="Entities\Core\Display.cs" />
     <Compile Include="Entities\Core\Customer.cs" />
     <Compile Include="Entities\Core\Mosque.cs" />
     <Compile Include="Entities\Core\Obit.cs" />

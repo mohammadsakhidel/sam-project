@@ -618,6 +618,55 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="a5cbb508-333f-4064-abf2-e9c5ac060c34"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="49ee925a-de5d-4a6f-8b3f-026da0cd13c2"
+              LastKnownName="Displays"
+              LastKnownLocation="SamDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="63fe6500-5c49-430b-a995-a1b56fa509c5"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="15515f0a-42f3-4d44-b6fb-bdbd7f51ef0c"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="01a3432d-bac1-4da2-b9f8-9d2386df8f12"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="9b8c5198-f5e3-470f-92ba-36efcef5589c"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -804,6 +853,14 @@
       <class
         Id="89282a20-8028-481f-9e73-d144b014f2e5"
         name="Saloon"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="49ee925a-de5d-4a6f-8b3f-026da0cd13c2"
+        name="Displays"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
