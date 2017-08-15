@@ -9,7 +9,7 @@
         xmlns:taskbar="http://www.hardcodet.net/taskbar"
         xmlns:code="clr-namespace:SamClient.Code"
         Style="{StaticResource client_main_window}" 
-        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded" Unloaded="Window_Unloaded" WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown" ShowInTaskbar="False">
     <Window.CommandBindings>
         <CommandBinding Command="code:CustomCommands.Maximize" Executed="MaximizeCommand_Executed" CanExecute="MaximizeCommand_CanExecute" />

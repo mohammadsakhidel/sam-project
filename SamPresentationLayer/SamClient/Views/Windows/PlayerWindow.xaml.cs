@@ -30,6 +30,8 @@ namespace SamClient.Views.Windows
         #region Fields:
         Canvas _container;
         Consolation _current;
+        Task _displayTask;
+        CancellationTokenSource _displayCancelation;
         #endregion
 
         #region Ctors:
@@ -51,14 +53,27 @@ namespace SamClient.Views.Windows
                 ExceptionManager.Handle(ex);
             }
         }
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                StopPlaying();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
         #endregion
 
         #region Methods:
         private void Play()
         {
-            Task.Run(() =>
+            _displayCancelation = new CancellationTokenSource();
+            CancellationToken token = _displayCancelation.Token;
+            _displayTask = Task.Run(() =>
             {
-                while (true)
+                while (!token.IsCancellationRequested)
                 {
                     try
                     {
@@ -119,7 +134,15 @@ namespace SamClient.Views.Windows
                         ExceptionManager.Log(ex);
                     }
                 }
-            });
+            }, token);
+        }
+        private void StopPlaying()
+        {
+            if (_displayTask != null && _displayTask.Status == TaskStatus.Running)
+            {
+                _displayCancelation.Cancel();
+                _displayTask.Wait();
+            }
         }
         private void ShowConsolation(Consolation consolation, Bitmap backgroundImage)
         {

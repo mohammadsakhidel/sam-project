@@ -25,6 +25,10 @@ namespace SamClient.Views.Windows
 {
     public partial class MainWindow : Window
     {
+        #region Fields:
+        List<Timer> _timers;
+        #endregion
+
         #region Ctors:
         public MainWindow()
         {
@@ -76,8 +80,10 @@ namespace SamClient.Views.Windows
                 #region Update Services Status:
                 UpdateServicesStatus();
 
-                var timerServicesStatus = new Timer(2000);
-                timerServicesStatus.Elapsed += (o, ee) =>
+                _timers = new List<Timer>();
+
+                var serviceStatusUpdateTimer = new Timer(2000);
+                serviceStatusUpdateTimer.Elapsed += (o, ee) =>
                 {
                     try
                     {
@@ -94,10 +100,28 @@ namespace SamClient.Views.Windows
                         });
                     }
                 };
-                timerServicesStatus.Enabled = true;
+                serviceStatusUpdateTimer.Enabled = true;
+                _timers.Add(serviceStatusUpdateTimer);
                 #endregion
 
                 LoadContent(new HomePage(this));
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (_timers != null && _timers.Any())
+                {
+                    foreach (var t in _timers)
+                    {
+                        t.Dispose();
+                    }
+                }
             }
             catch (Exception ex)
             {

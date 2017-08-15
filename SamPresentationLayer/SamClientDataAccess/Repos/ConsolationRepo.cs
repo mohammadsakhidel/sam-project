@@ -98,6 +98,8 @@ namespace SamClientDataAccess.Repos
                 var remainingTime = holding.EndTime - now;
                 if (remainingCount > 0)
                     durationMills = (int)(remainingTime.TotalMilliseconds / remainingCount);
+                else
+                    durationMills = setting.DefaultSlideDurationMilliSeconds;
 
                 if (durationMills < ClientSetting.MIN_SLIDE_DURATION_MILLS)
                     durationMills = ClientSetting.MIN_SLIDE_DURATION_MILLS;
