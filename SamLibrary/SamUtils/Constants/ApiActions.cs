@@ -27,6 +27,7 @@ namespace SamUtils.Constants
         public const string obits_delete = "obits/delete";
         public const string obits_getallobits = "obits/getallobits";
         public const string consolations_create = "consolations/create";
+        public const string consolations_filter = "consolations/filter";
         public const string account_validateuser = "account/validateuser";
         public const string account_all = "account/all";
         public const string account_create = "account/create";

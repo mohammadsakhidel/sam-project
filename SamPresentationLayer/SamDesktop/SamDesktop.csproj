@@ -126,6 +126,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Enums\AppSection.cs" />
+    <Compile Include="Code\ViewModels\ConsolationsVM.cs" />
     <Compile Include="Code\ViewModels\RolesVM.cs" />
     <Compile Include="Code\ViewModels\AccountsVM.cs" />
     <Compile Include="Code\ViewModels\MainVM.cs" />
@@ -135,6 +136,9 @@
     <Compile Include="Code\ViewModels\TemplatesVM.cs" />
     <Compile Include="Code\ViewModels\TemplateEditorVM.cs" />
     <Compile Include="Code\ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Partials\Consolations.xaml.cs">
+      <DependentUpon>Consolations.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Partials\RoleEditor.xaml.cs">
       <DependentUpon>RoleEditor.xaml</DependentUpon>
     </Compile>
@@ -252,6 +256,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Partials\Consolations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Partials\RoleEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

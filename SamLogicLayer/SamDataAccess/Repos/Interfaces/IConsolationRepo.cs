@@ -12,5 +12,7 @@ namespace SamDataAccess.Repos.Interfaces
     public interface IConsolationRepo : IRepo<SamDbContext, Consolation>
     {
         Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]> GetUpdates(int mosqueId, string saloonId, DateTime? clientLastUpdatetime, DateTime queryTime);
+
+        List<Consolation> Filter(int cityId, string status, int count);
     }
 }

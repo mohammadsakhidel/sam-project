@@ -561,4 +561,34 @@
   <data name="DefaultSlideShowDuration" xml:space="preserve">
     <value>زمان پیش فرض نمایش (ثانیه)</value>
   </data>
+  <data name="Filter" xml:space="preserve">
+    <value>فیلتر</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>همه</value>
+  </data>
+  <data name="ObitHoldingTime" xml:space="preserve">
+    <value>زمان برگزاری مراسم</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>فرستنده</value>
+  </data>
+  <data name="SendTime" xml:space="preserve">
+    <value>زمان ارسال</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>از</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>تا</value>
+  </data>
+  <data name="CancelConfirmation" xml:space="preserve">
+    <value>لغو تأیید</value>
+  </data>
+  <data name="CancelDisplay" xml:space="preserve">
+    <value>لغو نمایش</value>
+  </data>
+  <data name="ConfirmToDisplay" xml:space="preserve">
+    <value>تأیید جهت نمایش</value>
+  </data>
 </root>

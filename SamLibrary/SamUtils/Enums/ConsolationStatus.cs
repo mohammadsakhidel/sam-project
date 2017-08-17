@@ -10,7 +10,7 @@ namespace SamUtils.Enums
     {
         pending = 1,
         confirmed = 2,
-        synced = 3,
-        canceled = 4
+        canceled = 3,
+        displayed = 4
     }
 }

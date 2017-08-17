@@ -18,7 +18,6 @@ namespace SamDataAccess.Contexts
         #region Ctors:
         public SamDbContext() : base("name=SamDbConnection")
         {
-
         }
 
         public SamDbContext(string connectionString) : base(connectionString)

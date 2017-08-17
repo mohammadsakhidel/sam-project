@@ -51,5 +51,28 @@ namespace SamAPI.Controllers
             }
         }
         #endregion
+
+        #region GET Actions:
+        [HttpGet]
+        public IHttpActionResult Filter(int cityId = 0, string status = "", int count = 30)
+        {
+            try
+            {
+                var consolations = _consolationRepo.Filter(cityId, status, count);
+                var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c, opts =>
+                {
+                    opts.AfterMap((mdl, dto) =>
+                    {
+                        dto.Template = Mapper.Map<Template, TemplateDto>(mdl.Template);
+                    });
+                })).ToList();
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+            }
+        }
+        #endregion
     }
 }

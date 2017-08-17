@@ -133,6 +133,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to همه.
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سامانه اطلاع رسانی مساجد (سام).
         /// </summary>
         public static string AppName {
@@ -259,6 +268,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لغو تأیید.
+        /// </summary>
+        public static string CancelConfirmation {
+            get {
+                return ResourceManager.GetString("CancelConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لغو نمایش.
+        /// </summary>
+        public static string CancelDisplay {
+            get {
+                return ResourceManager.GetString("CancelDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to دسته.
         /// </summary>
         public static string Category {
@@ -300,6 +327,15 @@ namespace SamUxLib.Resources.Values {
         public static string ClientSettings {
             get {
                 return ResourceManager.GetString("ClientSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید جهت نمایش.
+        /// </summary>
+        public static string ConfirmToDisplay {
+            get {
+                return ResourceManager.GetString("ConfirmToDisplay", resourceCulture);
             }
         }
         
@@ -511,6 +547,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فیلتر.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام.
         /// </summary>
         public static string FirstName {
@@ -534,6 +579,15 @@ namespace SamUxLib.Resources.Values {
         public static string FooterText {
             get {
                 return ResourceManager.GetString("FooterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to از.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
             }
         }
         
@@ -844,6 +898,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to زمان برگزاری مراسم.
+        /// </summary>
+        public static string ObitHoldingTime {
+            get {
+                return ResourceManager.GetString("ObitHoldingTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مراسم ها.
         /// </summary>
         public static string Obits {
@@ -1114,6 +1177,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فرستنده.
+        /// </summary>
+        public static string Sender {
+            get {
+                return ResourceManager.GetString("Sender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زمان ارسال.
+        /// </summary>
+        public static string SendTime {
+            get {
+                return ResourceManager.GetString("SendTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تنظیمات.
         /// </summary>
         public static string Settings {
@@ -1299,6 +1380,15 @@ namespace SamUxLib.Resources.Values {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تا.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
             }
         }
         

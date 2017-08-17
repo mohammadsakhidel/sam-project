@@ -37,7 +37,7 @@
     <Thickness x:Key="padding_widget_hlf_ver">0 3</Thickness>
     <Thickness x:Key="padding_widget_hlf_hor">3 0</Thickness>
     <Thickness x:Key="padding_action_button">5 5 10 5</Thickness>
-    <Thickness x:Key="padding_small_action_button">5 2 10 2</Thickness>
+    <Thickness x:Key="padding_small_action_button">5 4 10 4</Thickness>
     <Thickness x:Key="padding_textbox">3 1</Thickness>
 
     <GridLength x:Key="grid_row_spacing">8</GridLength>

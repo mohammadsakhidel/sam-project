@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConsolationStatus_canceled" xml:space="preserve">
+    <value>لغو شده</value>
+  </data>
+  <data name="ConsolationStatus_confirmed" xml:space="preserve">
+    <value>تأیید شده</value>
+  </data>
+  <data name="ConsolationStatus_displayed" xml:space="preserve">
+    <value>نمایش یافته</value>
+  </data>
+  <data name="ConsolationStatus_pending" xml:space="preserve">
+    <value>منتظر تأیید</value>
+  </data>
+  <data name="ConsolationStatus_synced" xml:space="preserve">
+    <value>ارسال شده جهت نمایش</value>
+  </data>
   <data name="ObitType_chehelom" xml:space="preserve">
     <value>مجلس چهلم</value>
   </data>

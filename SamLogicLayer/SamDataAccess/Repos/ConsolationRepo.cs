@@ -74,5 +74,15 @@ namespace SamDataAccess.Repos
 
             return new Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]>(mosque, obits.Distinct().ToArray(), templates.Distinct().ToArray(), blobs.Distinct().ToArray(), consolations.Distinct().ToArray());
         }
+
+        public List<Consolation> Filter(int cityId, string status, int count)
+        {
+            var query = from c in context.Consolations.Include(c => c.Obit.Mosque)
+                        where (string.IsNullOrEmpty(status) || c.Status == status)
+                              && (cityId <= 0 || cityId == c.Obit.Mosque.CityID)
+                        orderby c.CreationTime descending
+                        select c;
+            return query.Take(count).ToList();
+        }
     }
 }

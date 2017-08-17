@@ -23,6 +23,7 @@ namespace SamModels.DTOs
         #endregion
 
         #region Navigation Props:
+        public MosqueDto Mosque { get; set; }
         public List<ObitHoldingDto> ObitHoldings { get; set; }
         #endregion
 

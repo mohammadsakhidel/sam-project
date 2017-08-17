@@ -20,18 +20,17 @@ namespace SamUxLib.Code.Utils
 
             if (ex is HttpException)
             {
-                //var httpex = (HttpException)ex;
-                //if (httpex.Response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
-                //{
-                //    var jsonString = await httpex.Response.Content.ReadAsStringAsync();
-                //    dynamic serverException = JsonConvert.DeserializeObject<dynamic>(jsonString);
-                //    message = serverException.ExceptionMessage != null ? serverException.ExceptionMessage : "Error Occurred!";
-                //}
-                //else
-                //{
-                //    message = ex.Message;
-                //}
-                message = ex.Message;
+                var httpex = (HttpException)ex;
+                if (httpex.Response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                {
+                    var jsonString = await httpex.Response.Content.ReadAsStringAsync();
+                    dynamic serverException = JsonConvert.DeserializeObject<dynamic>(jsonString);
+                    message = serverException != null && serverException.ExceptionMessage != null ? serverException.ExceptionMessage : "Error Occurred!";
+                }
+                else
+                {
+                    message = ex.Message;
+                }
             }
             else
             {
@@ -47,6 +46,14 @@ namespace SamUxLib.Code.Utils
         public static void Log(Exception ex)
         {
             // log exception here
+        }
+
+        public static string ConverterException<T>(Exception ex)
+        {
+            if (typeof(T) == typeof(string))
+                return ex.Message;
+            else
+                return null;
         }
     }
 }

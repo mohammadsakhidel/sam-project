@@ -61,6 +61,51 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لغو شده.
+        /// </summary>
+        public static string ConsolationStatus_canceled {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید شده.
+        /// </summary>
+        public static string ConsolationStatus_confirmed {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_confirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش یافته.
+        /// </summary>
+        public static string ConsolationStatus_displayed {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_displayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر تأیید.
+        /// </summary>
+        public static string ConsolationStatus_pending {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال شده جهت نمایش.
+        /// </summary>
+        public static string ConsolationStatus_synced {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_synced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مجلس چهلم.
         /// </summary>
         public static string ObitType_chehelom {
