@@ -591,4 +591,7 @@
   <data name="ConfirmToDisplay" xml:space="preserve">
     <value>تأیید جهت نمایش</value>
   </data>
+  <data name="EditConsolation" xml:space="preserve">
+    <value>ویرایش پیام تسلیت</value>
+  </data>
 </root>

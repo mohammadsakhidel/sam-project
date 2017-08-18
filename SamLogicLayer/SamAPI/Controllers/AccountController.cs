@@ -58,7 +58,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
 
@@ -74,14 +74,14 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion
 
         #region POST ACTION:
         [HttpPost]
-        public HttpResponseMessage ValidateUser(SignInDto dto)
+        public IHttpActionResult ValidateUser(SignInDto dto)
         {
             try
             {
@@ -139,14 +139,14 @@ namespace SamAPI.Controllers
                 var user = userManager.FindByName(dto.UserName);
                 // is username valid?
                 if (user == null)
-                    return Request.CreateResponse(HttpStatusCode.OK, new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.invalid_username });
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.invalid_username });
                 // is user approved?
                 if (!user.IsApproved)
-                    return Request.CreateResponse(HttpStatusCode.OK, new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.account_blocked });
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.account_blocked });
                 // is password valid?
                 var isPassValid = userManager.CheckPassword(user, dto.Password);
                 if (!isPassValid)
-                    return Request.CreateResponse(HttpStatusCode.OK, new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.invalid_password });
+                    return Ok(new ApiOperationResult { Succeeded = false, ErrorCode = ErrorCodes.invalid_password });
 
                 var userRoleId = user.Roles.FirstOrDefault()?.RoleId;
                 var userRole = roleManager.FindById(userRoleId);
@@ -169,11 +169,11 @@ namespace SamAPI.Controllers
                 var token = new JwtToken(header, payload, secKey);
                 #endregion
 
-                return Request.CreateResponse(HttpStatusCode.OK, new ApiOperationResult { Succeeded = true, Data = token.EncodedToken });
+                return Ok(new ApiOperationResult { Succeeded = true, Data = token.EncodedToken });
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, ExceptionManager.GetProperApiMessage(ex));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
 
@@ -229,7 +229,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
 
@@ -265,7 +265,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion
@@ -335,7 +335,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
 
@@ -371,7 +371,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion
@@ -400,7 +400,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
 
@@ -427,7 +427,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion

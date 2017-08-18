@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="RamancoCC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -199,6 +203,9 @@
     <Compile Include="Views\Windows\CreateUserWindow.xaml.cs">
       <DependentUpon>CreateUserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\EditConsolationWindow.xaml.cs">
+      <DependentUpon>EditConsolationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\EditMosqueWindow.xaml.cs">
       <DependentUpon>EditMosqueWindow.xaml</DependentUpon>
     </Compile>
@@ -339,6 +346,10 @@
     <Page Include="Views\Windows\CreateUserWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\EditConsolationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\EditMosqueWindow.xaml">
       <SubType>Designer</SubType>

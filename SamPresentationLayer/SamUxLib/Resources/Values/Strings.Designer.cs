@@ -484,6 +484,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش پیام تسلیت.
+        /// </summary>
+        public static string EditConsolation {
+            get {
+                return ResourceManager.GetString("EditConsolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش فیلد الگو.
         /// </summary>
         public static string EditField {

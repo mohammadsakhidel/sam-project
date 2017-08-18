@@ -1,4 +1,5 @@
 ﻿using SamDesktop.Code.ViewModels;
+using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Enums;
@@ -26,6 +27,10 @@ namespace SamDesktop.Views.Partials
 {
     public partial class Consolations : UserControl
     {
+        #region Fields:
+        int _defaultListCount = 50;
+        #endregion
+
         #region Ctors:
         public Consolations()
         {
@@ -111,19 +116,30 @@ namespace SamDesktop.Views.Partials
             {
                 var selectedCity = cmbCity.SelectedIndex > 0 ? cmbCity.SelectedItem as CityDto : null;
                 var selectedStatus = cmbStatus.SelectedIndex > 0 ? cmbStatus.SelectedValue.ToString() : "";
-                await LoadRecords(selectedCity != null ? selectedCity.ID : 0, selectedStatus, 50);
+                await LoadRecords(selectedCity != null ? selectedCity.ID : 0, selectedStatus, _defaultListCount);
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
-        private void EditConsolationButton_Click(object sender, RoutedEventArgs e)
+        private async void EditConsolationButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var btn = e.Source as Button;
-                MessageBox.Show(btn.Tag.ToString());
+                var consolationToEdit = btn.Tag as ConsolationDto;
+                if (consolationToEdit != null)
+                {
+                    var editWindow = new EditConsolationWindow(consolationToEdit);
+                    var res = editWindow.ShowDialog();
+                    if (res.HasValue && res.Value)
+                    {
+                        var selectedCity = cmbCity.SelectedIndex > 0 ? cmbCity.SelectedItem as CityDto : null;
+                        var selectedStatus = cmbStatus.SelectedIndex > 0 ? cmbStatus.SelectedValue.ToString() : "";
+                        await LoadRecords(selectedCity != null ? selectedCity.ID : 0, selectedStatus, _defaultListCount);
+                    }
+                }
             }
             catch (Exception ex)
             {

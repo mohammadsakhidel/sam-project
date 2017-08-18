@@ -21,6 +21,7 @@ namespace SamDataAccess.Repos
         {
             var confirmed = ConsolationStatus.confirmed.ToString();
             var canceled = ConsolationStatus.canceled.ToString();
+            var displayed = ConsolationStatus.displayed.ToString();
 
             #region mosque updates:
             var mosque = (from m in context.Mosques
@@ -65,7 +66,7 @@ namespace SamDataAccess.Repos
                                join h in context.ObitHoldings
                                on o.ID equals h.ObitID
                                where o.MosqueID == mosqueId && h.SaloonID == saloonId &&
-                                     (c.Status == confirmed || c.Status == canceled) &&
+                                     (c.Status == confirmed || c.Status == canceled || c.Status == displayed) &&
                                      (clientLastUpdatetime == null
                                      || (c.CreationTime <= queryTime && c.CreationTime > clientLastUpdatetime.Value)
                                      || (c.LastUpdateTime != null && (c.LastUpdateTime.Value <= queryTime && c.LastUpdateTime.Value > clientLastUpdatetime.Value)))

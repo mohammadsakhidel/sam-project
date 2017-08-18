@@ -92,7 +92,7 @@
                                     </ram:FlatButton>
                                     <ram:FlatButton Style="{StaticResource small_action_button_edit}" Click="EditConsolationButton_Click"
                                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}"
-                                                    Tag="{Binding Path=ID}" />
+                                                    Tag="{Binding}" />
                                 </StackPanel>
                             </Grid>
                         </Border>

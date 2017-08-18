@@ -28,23 +28,23 @@ namespace SamAPI.Controllers
 
         #region GET:
         [HttpGet]
-        public HttpResponseMessage GetImage(string id, bool? thumb = false)
+        public IHttpActionResult GetImage(string id, bool? thumb = false)
         {
             try
             {
                 var blob = _blobRepo.Get(id);
                 if (blob == null || !(blob is ImageBlob))
-                    return new HttpResponseMessage(HttpStatusCode.NotFound);
+                    return NotFound();
 
                 var imgBlob = (ImageBlob)blob;
                 HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(thumb.HasValue && thumb.Value ? imgBlob.ThumbImageBytes : imgBlob.Bytes);
                 result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
-                return result;
+                return ResponseMessage(result);
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion

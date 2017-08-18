@@ -36,7 +36,6 @@ namespace SamSyncAgent
 
         #region VARS:
         List<Timer> _timers;
-        ClientSetting setting = null;
         #endregion
 
         #region Constants:
@@ -67,6 +66,7 @@ namespace SamSyncAgent
 
                 #region Check Starting Prereqs:
                 var allowStart = false;
+                ClientSetting setting;
                 using (var srepo = new ClientSettingRepo())
                 {
                     setting = srepo.Get();
@@ -132,20 +132,21 @@ namespace SamSyncAgent
         {
             try
             {
+                using (var settingRepo = new ClientSettingRepo())
                 using (var hc = HttpUtil.CreateClient())
                 {
+                    var setting = settingRepo.Get();
                     var url = $"{ApiActions.sync_getupdates}?mosqueid={setting.MosqueID}&saloonid={setting.SaloonID}{$"&lastupdate={(setting.LastUpdateTime.HasValue ? setting.LastUpdateTime.Value.ToString(StringFormats.url_date_time) : "")}"}";
                     var response = await hc.GetAsync(url);
                     response.EnsureSuccessStatusCode();
                     var dto = await response.Content.ReadAsAsync<ConsolationsUpdatePackDto>();
 
                     #region update data:
-                    using (var scope = new TransactionScope())
-                    using (var settingRepo = new ClientSettingRepo())
+                    using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                     using (var mosqueRepo = new MosqueRepo(settingRepo.Context))
                     using (var obitRepo = new ObitRepo(settingRepo.Context))
-                    using (var templateRepo = new TemplateRepo(settingRepo.Context))
                     using (var blobRepo = new BlobRepo(settingRepo.Context))
+                    using (var templateRepo = new TemplateRepo(settingRepo.Context))
                     using (var consolationRepo = new ConsolationRepo(settingRepo.Context))
                     {
                         #region update mosque:
@@ -201,7 +202,8 @@ namespace SamSyncAgent
                         #endregion
 
                         #region Commit:
-                        settingRepo.Save(); //because all repos user a same context.
+                        settingRepo.Save(); // all repos share a same context
+
                         scope.Complete();
                         #endregion
 

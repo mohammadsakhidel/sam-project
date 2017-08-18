@@ -39,7 +39,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
 
@@ -54,7 +54,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion
@@ -73,7 +73,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion
@@ -91,7 +91,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion
@@ -107,7 +107,7 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(ExceptionManager.GetProperApiMessage(ex)));
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
         #endregion
