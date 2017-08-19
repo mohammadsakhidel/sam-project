@@ -594,4 +594,7 @@
   <data name="EditConsolation" xml:space="preserve">
     <value>ویرایش پیام تسلیت</value>
   </data>
+  <data name="Count" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
 </root>

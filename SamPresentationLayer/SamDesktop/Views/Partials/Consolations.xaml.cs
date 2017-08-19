@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,7 +29,8 @@ namespace SamDesktop.Views.Partials
     public partial class Consolations : UserControl
     {
         #region Fields:
-        int _defaultListCount = 50;
+        int _autoRefreshInterval = 30000;
+        List<System.Timers.Timer> _timers;
         #endregion
 
         #region Ctors:
@@ -45,10 +47,13 @@ namespace SamDesktop.Views.Partials
             {
                 var vm = DataContext as ConsolationsVM;
 
+                #region load provices combo items:
                 var provinces = CityUtil.Provinces;
                 provinces.Insert(0, new ProvinceDto { ID = 0, Name = ResourceManager.GetValue("All") });
                 vm.Provinces = new ObservableCollection<ProvinceDto>(provinces);
+                #endregion
 
+                #region load statuses combo items:
                 var kvPairs = Enum.GetValues(typeof(ConsolationStatus))
                     .Cast<ConsolationStatus>().ToList()
                     .Select(s => new KeyValuePair<string, string>(s.ToString(),
@@ -56,13 +61,37 @@ namespace SamDesktop.Views.Partials
                     .ToList();
                 kvPairs.Insert(0, new KeyValuePair<string, string>("", ResourceManager.GetValue("All")));
                 vm.Statuses = new ObservableCollection<KeyValuePair<string, string>>(kvPairs);
+                #endregion
 
+                #region start auto refresh timer:
+                _timers = new List<System.Timers.Timer>();
+
+                var autoRefreshTimer = new System.Timers.Timer(_autoRefreshInterval);
+                autoRefreshTimer.Elapsed += (oo, ee) =>
+                {
+                    try
+                    {
+                        Dispatcher.Invoke(async () =>
+                        {
+                            await FilterRecords();
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionManager.Handle(ex);
+                    }
+                };
+                autoRefreshTimer.Enabled = true;
+
+                _timers.Add(autoRefreshTimer);
+                #endregion
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
+
         private void cmbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -114,9 +143,7 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                var selectedCity = cmbCity.SelectedIndex > 0 ? cmbCity.SelectedItem as CityDto : null;
-                var selectedStatus = cmbStatus.SelectedIndex > 0 ? cmbStatus.SelectedValue.ToString() : "";
-                await LoadRecords(selectedCity != null ? selectedCity.ID : 0, selectedStatus, _defaultListCount);
+                await FilterRecords();
             }
             catch (Exception ex)
             {
@@ -135,9 +162,7 @@ namespace SamDesktop.Views.Partials
                     var res = editWindow.ShowDialog();
                     if (res.HasValue && res.Value)
                     {
-                        var selectedCity = cmbCity.SelectedIndex > 0 ? cmbCity.SelectedItem as CityDto : null;
-                        var selectedStatus = cmbStatus.SelectedIndex > 0 ? cmbStatus.SelectedValue.ToString() : "";
-                        await LoadRecords(selectedCity != null ? selectedCity.ID : 0, selectedStatus, _defaultListCount);
+                        await FilterRecords();
                     }
                 }
             }
@@ -149,6 +174,13 @@ namespace SamDesktop.Views.Partials
         #endregion
 
         #region Methods:
+        private async Task FilterRecords()
+        {
+            var selectedCity = cmbCity.SelectedIndex > 0 ? cmbCity.SelectedItem as CityDto : null;
+            var selectedStatus = cmbStatus.SelectedIndex > 0 ? cmbStatus.SelectedValue.ToString() : "";
+            var count = Convert.ToInt32((cmbCount.SelectedItem as ComboBoxItem).Content.ToString());
+            await LoadRecords(selectedCity != null ? selectedCity.ID : 0, selectedStatus, count);
+        }
         private async Task LoadRecords(int cityId, string status, int count)
         {
             progress.IsBusy = true;
@@ -163,10 +195,5 @@ namespace SamDesktop.Views.Partials
             }
         }
         #endregion
-
-        private void FlatButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

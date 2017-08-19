@@ -91,8 +91,7 @@ namespace SamAPI.Controllers
                 #region CREATE FIRTS ADMIN USER:
                 var adminRole = roleManager.FindByName(RoleType.admin.ToString());
                 var adminUsers = adminRole != null ? adminRole.Users : null;
-                if ((adminRole == null || !adminUsers.Any()) &&
-                    dto.UserName.ToLower() == Values.def_admin_name)
+                if ((adminRole == null || !adminUsers.Any()) && dto.UserName.ToLower() == Values.def_admin_name)
                 {
                     using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                     {
@@ -310,10 +309,13 @@ namespace SamAPI.Controllers
                     #endregion
 
                     #region Update Role:
-                    userManager.RemoveFromRoles(toBeEditedUser.Id, userManager.GetRoles(toBeEditedUser.Id).ToArray());
-                    var resRole = userManager.AddToRole(toBeEditedUser.Id, dto.RoleName);
-                    if (!resRole.Succeeded)
-                        return Ok(new ApiOperationResult { Succeeded = false, ErrorMessage = "Identity Role Assignment Failed!" });
+                    if (!userManager.IsInRole(toBeEditedUser.Id, dto.RoleName))
+                    {
+                        userManager.RemoveFromRoles(toBeEditedUser.Id, userManager.GetRoles(toBeEditedUser.Id).ToArray());
+                        var resRole = userManager.AddToRole(toBeEditedUser.Id, dto.RoleName);
+                        if (!resRole.Succeeded)
+                            return Ok(new ApiOperationResult { Succeeded = false, ErrorMessage = "Identity Role Assignment Failed!" });
+                    }
                     #endregion
 
                     #region Reset Password:

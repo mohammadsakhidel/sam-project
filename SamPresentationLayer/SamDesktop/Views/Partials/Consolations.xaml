@@ -38,13 +38,21 @@
                     <ComboBox x:Name="cmbProvince" Width="130" ItemsSource="{Binding Provinces}" DisplayMemberPath="Name" SelectedValuePath="ID" 
                               SelectionChanged="cmbProvince_SelectionChanged" SelectedIndex="0"></ComboBox>
 
-                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="16 0 0 0"></Label>
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="{StaticResource padding_container_start}"></Label>
                     <ComboBox x:Name="cmbCity" Width="130" ItemsSource="{Binding Cities}" DisplayMemberPath="Name" 
                               SelectedValuePath="ID" SelectedIndex="0"></ComboBox>
 
-                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="16 0 0 0"></Label>
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="{StaticResource padding_container_start}"></Label>
                     <ComboBox x:Name="cmbStatus" Width="120" ItemsSource="{Binding Statuses}" 
                               SelectedIndex="0" DisplayMemberPath="Value" SelectedValuePath="Key"></ComboBox>
+
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Count}" Margin="{StaticResource padding_container_start}"></Label>
+                    <ComboBox x:Name="cmbCount" Width="70" SelectedIndex="0">
+                        <ComboBoxItem Content="50" />
+                        <ComboBoxItem Content="100" />
+                        <ComboBoxItem Content="200" />
+                        <ComboBoxItem Content="500" />
+                    </ComboBox>
 
                     <ram:FlatButton x:Name="btnFilter" Style="{StaticResource small_action_button_search}" Margin="{StaticResource padding_container_hor}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Filter}"
@@ -98,5 +106,4 @@
             </ListBox>
         </Grid>
     </toolkit:BusyIndicator>
-
 </UserControl>
