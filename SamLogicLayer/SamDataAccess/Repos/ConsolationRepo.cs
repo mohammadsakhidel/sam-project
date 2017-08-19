@@ -39,7 +39,7 @@ namespace SamDataAccess.Repos
                               (clientLastUpdatetime == null
                               || (o.CreationTime <= queryTime && o.CreationTime > clientLastUpdatetime.Value)
                               || (o.LastUpdateTime != null && (o.LastUpdateTime.Value <= queryTime && o.LastUpdateTime.Value > clientLastUpdatetime.Value)))
-                              && o.ObitHoldings.Any(h => h.EndTime > DateTimeUtils.Now)
+                              && o.ObitHoldings.Any(h => h.EndTime > queryTime)
                         select o;
             #endregion
 
@@ -65,7 +65,7 @@ namespace SamDataAccess.Repos
                                on c.ObitID equals o.ID
                                join h in context.ObitHoldings
                                on o.ID equals h.ObitID
-                               where o.MosqueID == mosqueId && h.SaloonID == saloonId &&
+                               where o.MosqueID == mosqueId && h.SaloonID == saloonId  && h.EndTime > queryTime &&
                                      (c.Status == confirmed || c.Status == canceled || c.Status == displayed) &&
                                      (clientLastUpdatetime == null
                                      || (c.CreationTime <= queryTime && c.CreationTime > clientLastUpdatetime.Value)
@@ -84,6 +84,14 @@ namespace SamDataAccess.Repos
                         orderby c.CreationTime descending
                         select c;
             return query.Take(count).ToList();
+        }
+
+        public bool IsDisplayed(int id)
+        {
+            var query = from d in context.Displays
+                        where d.ConsolationID == id
+                        select d.ID;
+            return query.Any();
         }
     }
 }

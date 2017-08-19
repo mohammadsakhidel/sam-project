@@ -123,7 +123,7 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private async void EditConsolationButton_Click(object sender, RoutedEventArgs e)
+        private async void ChangeConsolation_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -163,5 +163,10 @@ namespace SamDesktop.Views.Partials
             }
         }
         #endregion
+
+        private void FlatButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

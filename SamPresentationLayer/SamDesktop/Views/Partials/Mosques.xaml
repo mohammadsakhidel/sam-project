@@ -13,7 +13,6 @@
     <UserControl.DataContext>
         <vm:MosquesVM />
     </UserControl.DataContext>
-
     <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
         <Grid>
             <Grid.RowDefinitions>

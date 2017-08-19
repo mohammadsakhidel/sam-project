@@ -5,6 +5,7 @@ using SamAPI.Code.Utils;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities.Core;
+using SamUtils.Enums;
 using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
@@ -80,7 +81,7 @@ namespace SamAPI.Controllers
 
         #region PUT ACTIONS:
         [HttpPut]
-        public IHttpActionResult UpdateFields(int id, Dictionary<string, string> fields)
+        public IHttpActionResult Update(int id, string newStatus, Dictionary<string, string> fields)
         {
             try
             {
@@ -96,6 +97,23 @@ namespace SamAPI.Controllers
 
                 var json = JsonConvert.SerializeObject(fields);
                 consolationToEdit.TemplateInfo = json;
+                #endregion
+
+                #region update status:
+                var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), newStatus);
+                if (newstatus == ConsolationStatus.confirmed)
+                {
+                    //future: verify payment if no problem then change the status to cofirmed.
+                    if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                    {
+                        var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
+                        consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                    }
+                }
+                else if (newstatus == ConsolationStatus.canceled)
+                {
+                    consolationToEdit.Status = newstatus.ToString();
+                }
                 #endregion
 
                 consolationToEdit.LastUpdateTime = DateTimeUtils.Now;

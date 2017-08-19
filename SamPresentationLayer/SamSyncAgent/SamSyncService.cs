@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -219,7 +220,6 @@ namespace SamSyncAgent
                 ExceptionManager.Handle(ex, logger, "DOWNLOAD ERROR");
             }
         }
-
         private async void DisplayTimerCallback(object state)
         {
             try

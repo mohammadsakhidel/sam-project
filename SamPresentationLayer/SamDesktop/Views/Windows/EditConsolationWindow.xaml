@@ -7,9 +7,14 @@
         xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
         xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
         Style="{StaticResource dialog_window}"
         Width="750" Height="500" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
+    <Window.Resources>
+        <cnv:ConsolationStatusActionStyleConverter x:Key="consolationStatusActionStyleConverter" />
+        <cnv:ConsolationStatusActionNameConverter x:Key="consolationStatusActionNameConverter" />
+    </Window.Resources>
 
     <Border Style="{StaticResource dialog_window_content}">
         <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
@@ -20,7 +25,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.EditConsolation}" />
+                <Label Style="{StaticResource page_header}" Content="{Binding Path=Status, Converter={StaticResource consolationStatusActionNameConverter}}" />
 
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
                     <Grid x:Name="gridFields" Margin="{StaticResource padding_container}">
@@ -32,12 +37,22 @@
                 </ScrollViewer>
 
                 <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
-                    <ram:FlatButton x:Name="btnSave" Style="{StaticResource action_button_ok}" Margin="{StaticResource padding_container_end}"
-                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OK}" Click="btnSave_Click" IsDefault="True"/>
+                    <ram:FlatButton Content="{Binding Path=Status, Converter={StaticResource consolationStatusActionNameConverter}}" 
+                                    x:Name="btnSave" Margin="{StaticResource padding_container_end}" Click="btnSave_Click">
+                        <ram:FlatButton.Style>
+                            <MultiBinding Converter="{StaticResource consolationStatusActionStyleConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="Status" />
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </ram:FlatButton.Style>
+                    </ram:FlatButton>
                     <ram:FlatButton x:Name="btnCancel" Style="{StaticResource action_button_cancel}"
                             Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Cancel}" IsCancel="True"/>
                 </StackPanel>
             </Grid>
         </toolkit:BusyIndicator>
     </Border>
+    
 </Window>

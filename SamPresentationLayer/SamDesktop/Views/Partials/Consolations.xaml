@@ -80,7 +80,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="{StaticResource padding_widget}">
                                     <ram:FlatButton Content="{Binding Path=Status, Converter={StaticResource consolationStatusActionNameConverter}}"
-                                                    Tag="{Binding Path=ID}" Margin="{StaticResource padding_widget_end}">
+                                                    Tag="{Binding}" Margin="{StaticResource padding_widget_end}" Click="ChangeConsolation_Click">
                                         <ram:FlatButton.Style>
                                             <MultiBinding Converter="{StaticResource consolationStatusActionStyleConverter}">
                                                 <MultiBinding.Bindings>
@@ -90,9 +90,6 @@
                                             </MultiBinding>
                                         </ram:FlatButton.Style>
                                     </ram:FlatButton>
-                                    <ram:FlatButton Style="{StaticResource small_action_button_edit}" Click="EditConsolationButton_Click"
-                                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}"
-                                                    Tag="{Binding}" />
                                 </StackPanel>
                             </Grid>
                         </Border>

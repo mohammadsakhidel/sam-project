@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SamModels.DTOs;
 using SamUtils.Constants;
+using SamUtils.Enums;
 using SamUtils.Objects.Exceptions;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;
@@ -31,8 +32,9 @@ namespace SamDesktop.Views.Windows
         #region Ctors:
         public EditConsolationWindow(ConsolationDto consolationToEdit)
         {
-            _consolationToEdit = consolationToEdit;
             InitializeComponent();
+            _consolationToEdit = consolationToEdit;
+            this.DataContext = consolationToEdit;
         }
         #endregion
 
@@ -74,7 +76,13 @@ namespace SamDesktop.Views.Windows
                 progress.IsBusy = true;
                 using (var hc = HttpUtil.CreateClient())
                 {
-                    var url = $"{ApiActions.consolations_updatefields}/{_consolationToEdit.ID}";
+                    var confirmed = ConsolationStatus.confirmed.ToString();
+                    var pending = ConsolationStatus.pending.ToString();
+                    var canceled = ConsolationStatus.canceled.ToString();
+                    var displayed = ConsolationStatus.displayed.ToString();
+
+                    var newstatus = (_consolationToEdit.Status == confirmed || _consolationToEdit.Status == displayed ? canceled : (_consolationToEdit.Status == pending || _consolationToEdit.Status == canceled ? confirmed : ""));
+                    var url = $"{ApiActions.consolations_update}/{_consolationToEdit.ID}?newstatus={newstatus}";
                     var response = await hc.PutAsJsonAsync(url, fieldsDic);
                     response.EnsureSuccessStatusCode();
                     progress.IsBusy = false;
@@ -122,7 +130,8 @@ namespace SamDesktop.Views.Windows
                     gridFields.Children.Add(label);
                     #endregion
                     #region add textbox:
-                    var textbox = new TextBox() {
+                    var textbox = new TextBox()
+                    {
                         Tag = key,
                         Text = dic[key],
                         AcceptsReturn = true,
