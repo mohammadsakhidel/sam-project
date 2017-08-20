@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">SamAndroid</string>
+    <string name="app_name">سام</string>
+    <string name="actionbar_app_name">اپلیکیشن سام</string>
+    <string name="guide">راهنمای استفاده</string>
+    <string name="about_us">درباره ما</string>
+    <string name="launcher_title">سام</string>
+    <string name="launcher_title_desc">سامانه اطلاع رسانی مساجد</string>
+    <string name="launcher_footer">کاری از: شرکت آرت استون ایرانیان</string>
 </resources>

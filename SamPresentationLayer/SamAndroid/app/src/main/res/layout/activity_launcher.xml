@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme.LauncherActivityBack"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ramanco.samandroid.activities.LauncherActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView style="@style/AppTheme.LauncherActivityLogo" />
+
+        <TextView
+            style="@style/AppTheme.LauncherActivityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/launcher_title" />
+
+        <TextView
+            style="@style/AppTheme.LauncherActivityTitleDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/launcher_title_desc" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/AppTheme.LauncherActivityFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/launcher_footer" />
+
+</RelativeLayout>
