@@ -1,4 +1,4 @@
-package com.ramanco.samandroid.code.utils;
+package com.ramanco.samandroid.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

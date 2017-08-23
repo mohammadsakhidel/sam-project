@@ -1,4 +1,4 @@
-package com.ramanco.samandroid.code.utils;
+package com.ramanco.samandroid.utils;
 
 import android.app.Activity;
 import android.content.Context;

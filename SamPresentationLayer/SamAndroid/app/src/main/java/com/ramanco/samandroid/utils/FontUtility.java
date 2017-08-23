@@ -1,4 +1,4 @@
-package com.ramanco.samandroid.code.utils;
+package com.ramanco.samandroid.utils;
 
 import java.lang.reflect.Field;
 import android.content.Context;

@@ -3,8 +3,8 @@ package com.ramanco.samandroid.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import com.ramanco.samandroid.R;
-import com.ramanco.samandroid.code.utils.ExceptionManager;
-import com.ramanco.samandroid.code.utils.PrefUtil;
+import com.ramanco.samandroid.utils.ExceptionManager;
+import com.ramanco.samandroid.utils.PrefUtil;
 
 public class LauncherActivity extends BaseActivity {
 

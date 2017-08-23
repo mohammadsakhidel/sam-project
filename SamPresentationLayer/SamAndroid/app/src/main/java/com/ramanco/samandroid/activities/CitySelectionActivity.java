@@ -5,10 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
-import com.ramanco.samandroid.code.utils.ExceptionManager;
+import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.fragments.CitySelectionFragment;
 
 public class CitySelectionActivity extends AppCompatActivity {

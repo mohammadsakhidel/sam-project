@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_margin"
-    tools:context="com.ramanco.samandroid.fragments.CitySelectionFragment">
+    tools:context="com.ramanco.samandroid.fragments.MosqueSelectionFragment">
 
     <LinearLayout
         android:id="@+id/ly_search"
@@ -16,20 +15,20 @@
             style="@style/AppTheme.TextView.Comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/select_city" />
+            android:text="@string/select_mosque" />
 
         <com.rey.material.widget.EditText
-            android:id="@+id/et_city"
+            android:id="@+id/et_search"
             style="@style/AppTheme.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/widget_margin"
-            android:hint="@string/search_city" />
+            android:hint="@string/search_mosque" />
 
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lv_cities"
+        android:id="@+id/lv_items"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/ly_search"

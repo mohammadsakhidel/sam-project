@@ -1,23 +1,20 @@
 package com.ramanco.samandroid.activities;
 
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationMenu;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.ramanco.samandroid.R;
-import com.ramanco.samandroid.code.utils.ExceptionManager;
-import com.ramanco.samandroid.code.utils.FontUtility;
+import com.ramanco.samandroid.utils.ExceptionManager;
+import com.ramanco.samandroid.utils.FontUtility;
 import com.ramanco.samandroid.fragments.HistoryFragment;
 import com.ramanco.samandroid.fragments.SendConsolationFragment;
 import com.ramanco.samandroid.fragments.SettingsFragment;

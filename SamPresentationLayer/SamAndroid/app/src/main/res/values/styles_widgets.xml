@@ -34,7 +34,15 @@
 
     <style name="AppTheme.SimpleListItem">
         <item name="android:padding">@dimen/widget_margin</item>
+    </style>
+
+    <style name="AppTheme.SimpleListItemTitle">
         <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <style name="AppTheme.SimpleListItemDesc">
+        <item name="android:textSize">@dimen/font_size_tiny</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
     </style>
 
 </resources>

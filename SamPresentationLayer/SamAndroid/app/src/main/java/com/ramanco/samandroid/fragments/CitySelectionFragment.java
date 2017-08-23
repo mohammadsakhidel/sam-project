@@ -5,41 +5,26 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.adapters.PairAdapter;
-import com.ramanco.samandroid.code.objects.KeyValuePair;
-import com.ramanco.samandroid.code.utils.CityUtil;
-import com.ramanco.samandroid.code.utils.ExceptionManager;
-import com.ramanco.samandroid.code.utils.PrefUtil;
+import com.ramanco.samandroid.objects.KeyValuePair;
+import com.ramanco.samandroid.utils.CityUtil;
+import com.ramanco.samandroid.utils.ExceptionManager;
+import com.ramanco.samandroid.utils.PrefUtil;
 import com.rey.material.widget.EditText;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.StringTokenizer;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class CitySelectionFragment extends Fragment {

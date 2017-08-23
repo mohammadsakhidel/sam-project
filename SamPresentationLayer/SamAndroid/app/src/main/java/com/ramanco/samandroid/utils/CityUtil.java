@@ -1,9 +1,9 @@
-package com.ramanco.samandroid.code.utils;
+package com.ramanco.samandroid.utils;
 
 import android.content.Context;
 
 import com.ramanco.samandroid.R;
-import com.ramanco.samandroid.code.objects.KeyValuePair;
+import com.ramanco.samandroid.objects.KeyValuePair;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

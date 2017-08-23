@@ -1,4 +1,4 @@
-package com.ramanco.samandroid.code.objects;
+package com.ramanco.samandroid.objects;
 
 import android.support.annotation.NonNull;
 

@@ -1,9 +1,9 @@
-package com.ramanco.samandroid.code.base;
+package com.ramanco.samandroid.objects;
 
 import android.app.Application;
 
-import com.ramanco.samandroid.code.utils.ExceptionManager;
-import com.ramanco.samandroid.code.utils.FontUtility;
+import com.ramanco.samandroid.utils.ExceptionManager;
+import com.ramanco.samandroid.utils.FontUtility;
 
 public class AppContext extends Application {
 
