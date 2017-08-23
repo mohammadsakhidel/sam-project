@@ -17,4 +17,8 @@ public class ExceptionManager {
     public static void Handle(final Context context, final Exception ex) {
         Toast.makeText(context, String.format("EXCEPTION MANAGER:\n%s", ex.getMessage()), Toast.LENGTH_SHORT).show();
     }
+
+    public static void HandleListException(Context context, Exception ex) {
+        Toast.makeText(context, String.format("EXCEPTION IN ADAPTER GET VIEW:\n%s", ex.getMessage()), Toast.LENGTH_SHORT).show();
+    }
 }

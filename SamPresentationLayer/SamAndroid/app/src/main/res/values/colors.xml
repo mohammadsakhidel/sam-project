@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#f2c812</color>
     <color name="colorPrimaryDark">#e39717</color>
+    <color name="colorPrimaryLight">#f4d54d</color>
     <color name="colorAccent">#282829</color>
     <!-- Text Color -->
     <color name="colorTextPrimary">#000</color>
@@ -12,4 +13,7 @@
     <color name="colorNeutralDark">#eeeeee</color>
     <color name="colorNeutralDarker">#b9b9b9</color>
     <color name="colorNeutralBlack">#2b2b2b</color>
+    <!--Button Colors-->
+    <color name="colorButtonPrimary">#f38e19</color>
+    <color name="colorButtonPrimaryContrast">#fff</color>
 </resources>

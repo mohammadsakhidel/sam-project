@@ -1,11 +1,10 @@
 package com.ramanco.samandroid.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.code.utils.ExceptionManager;
+import com.ramanco.samandroid.code.utils.PrefUtil;
 
 public class LauncherActivity extends BaseActivity {
 
@@ -31,9 +30,20 @@ public class LauncherActivity extends BaseActivity {
                             @Override
                             public void run() {
                                 try {
-                                    Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
-                                    LauncherActivity.this.startActivity(intent);
-                                    finish();
+                                    int cityId = PrefUtil.getCityID(LauncherActivity.this);
+                                    if (cityId > 0) {
+                                        //region start main activity:
+                                        Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
+                                        LauncherActivity.this.startActivity(intent);
+                                        finish();
+                                        //endregion
+                                    } else {
+                                        //region start city selection activity:
+                                        Intent intent = new Intent(LauncherActivity.this, CitySelectionActivity.class);
+                                        LauncherActivity.this.startActivity(intent);
+                                        finish();
+                                        //endregion
+                                    }
                                 } catch (Exception ex) {
                                     ExceptionManager.Handle(LauncherActivity.this, ex);
                                 }

@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_margin"
+    tools:context="com.ramanco.samandroid.fragments.CitySelectionFragment">
+
+    <TextView
+        style="@style/AppTheme.TextView.Comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_city" />
+
+    <com.rey.material.widget.EditText
+        android:id="@+id/et_city"
+        style="@style/AppTheme.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/widget_margin"
+        android:layout_marginEnd="@dimen/widget_margin"
+        android:layout_marginBottom="@dimen/widget_margin"
+        android:layout_marginTop="@dimen/widget_margin_max"
+        android:hint="@string/search_city" />
+
+    <ListView
+        android:id="@+id/lv_cities"
+        android:layout_below="@+id/et_city"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

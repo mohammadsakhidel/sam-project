@@ -1,6 +1,4 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <!--Font size-->
     <dimen name="font_size_xhuge">40sp</dimen>
     <dimen name="font_size_huge">35sp</dimen>
@@ -16,4 +14,9 @@
     <!--Marins-->
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="container_margin">16dp</dimen>
+    <dimen name="activity_margin">24dp</dimen>
+    <dimen name="widget_margin_max">24dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

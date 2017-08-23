@@ -6,4 +6,11 @@
     <string name="launcher_title">سام</string>
     <string name="launcher_title_desc">سامانه اطلاع رسانی مساجد</string>
     <string name="launcher_footer">کاری از: شرکت آرت استون ایرانیان</string>
+    <string name="search">جستجو</string>
+    <string name="settings">تنظیمات</string>
+    <string name="send_consolation">ارسال پیام تسلیت</string>
+    <string name="consolation_history">تاریخچه پیام</string>
+    <string name="drawer_title">سامانه اطلاع رسانی مساجد</string>
+    <string name="search_city">جستجوی شهر</string>
+    <string name="select_city">لطفاً شهر مورد نظر خود را انتخاب نمایید.</string>
 </resources>

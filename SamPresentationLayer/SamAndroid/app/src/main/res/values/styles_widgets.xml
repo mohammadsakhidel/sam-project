@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.EditText" parent="Material.Widget.EditText.Light">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">1</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorHint">@color/colorTextSecondary</item>
+        <item name="et_supportMode">none</item>
+        <item name="et_labelEnable">true</item>
+        <item name="et_labelPadding">2dp</item>
+        <item name="et_labelTextColor">@color/colorPrimary</item>
+        <item name="et_dividerHeight">2dp</item>
+        <item name="et_dividerPadding">4dp</item>
+        <item name="et_dividerColor">@drawable/bg_edit_text</item>
+    </style>
+
+    <style name="AppTheme.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/font_size_bit_smaller</item>
+    </style>
+
+    <style name="AppTheme.PrimaryButton" parent="AppTheme.Button">
+        <item name="android:textColor">@color/colorButtonPrimaryContrast</item>
+        <!--<item name="rd_backgroundColor">@color/colorButtonPrimary</item>-->
+    </style>
+
+    <style name="AppTheme.TextView" />
+
+    <style name="AppTheme.TextView.Comment">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">@dimen/font_size_bit_smaller</item>
+    </style>
+
+    <style name="AppTheme.SimpleListItem">
+        <item name="android:padding">@dimen/widget_margin</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+</resources>

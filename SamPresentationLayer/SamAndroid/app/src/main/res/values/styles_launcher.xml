@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.LauncherActivityBack">
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.LauncherActivityLogo">
+        <item name="android:src">@drawable/img_launcher_logo</item>
+        <item name="android:layout_width">128dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="AppTheme.LauncherActivityTitle">
+        <item name="android:typeface">serif</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/font_size_xxlarge</item>
+        <item name="android:layout_marginBottom">@dimen/widget_margin</item>
+    </style>
+
+    <style name="AppTheme.LauncherActivityTitleDesc">
+        <item name="android:textColor">@color/colorNeutral</item>
+        <item name="android:textSize">@dimen/font_size_bit_larger</item>
+    </style>
+
+    <style name="AppTheme.LauncherActivityFooter">
+        <item name="android:textColor">@color/colorNeutral</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">@dimen/container_margin</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+</resources>
