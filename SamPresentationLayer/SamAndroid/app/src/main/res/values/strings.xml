@@ -21,4 +21,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="address">آدرس</string>
+    <string name="search_obit_desc">مراسم مورد نظر خود را از طریق جستجوی نام فرد مورد نظر انتخاب نمایید:</string>
+    <string name="search_obit">جستجوی مراسم</string>
+    <string name="obit_type">نوع مراسم</string>
+    <string name="step_mosque_selection">گام ۱: انتخاب مسجد</string>
+    <string name="step_obit_selection">گام ۲: انتخاب مراسم</string>
+    <string name="skip">رد شو</string>
 </resources>

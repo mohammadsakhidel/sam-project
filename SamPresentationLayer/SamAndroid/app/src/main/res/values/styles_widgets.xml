@@ -45,4 +45,26 @@
         <item name="android:textColor">@color/colorTextSecondary</item>
     </style>
 
+    <style name="AppTheme.TextView.StepHeader">
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">@dimen/font_size_bit_larger</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:paddingBottom">@dimen/widget_margin_half</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.PrimarySmallRoundedButton">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textSize">@dimen/font_size_bit_smaller</item>
+        <item name="android:background">@drawable/bg_small_rounded_button</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:textColor">@color/colorButtonPrimaryContrast</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

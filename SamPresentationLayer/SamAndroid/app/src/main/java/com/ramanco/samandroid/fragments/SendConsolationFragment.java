@@ -18,6 +18,7 @@ import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.activities.CitySelectionActivity;
 import com.ramanco.samandroid.adapters.PairAdapter;
 import com.ramanco.samandroid.api.dtos.MosqueDto;
+import com.ramanco.samandroid.api.dtos.ObitDto;
 import com.ramanco.samandroid.api.endpoints.MosquesApiEndpoint;
 import com.ramanco.samandroid.exceptions.CallServerException;
 import com.ramanco.samandroid.objects.KeyValuePair;
@@ -39,7 +40,8 @@ public class SendConsolationFragment extends Fragment {
     //endregion
 
     //region Fields:
-    private  MosqueDto mosque;
+    private MosqueDto selectedMosque;
+    private ObitDto selectedObit;
     //endregion
 
     //region Overrides:
@@ -78,26 +80,43 @@ public class SendConsolationFragment extends Fragment {
     //endregion
 
     //region Methods:
-    private void showMosqueSelectionStep() {
-        final MosqueSelectionFragment fragment = new MosqueSelectionFragment();
-        fragment.setOnMosqueSelectionAction(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    mosque = fragment.getSelectedMosque();
-                    showObitSelectionStep();
-                } catch (Exception ex) {
-                    ExceptionManager.Handle(getActivity(), ex);
-                }
-            }
-        });
+    public void showMosqueSelectionStep() {
+        MosqueSelectionFragment fragment = new MosqueSelectionFragment();
+        fragment.setParentView(this);
+
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_placeholder, fragment);
         transaction.commit();
     }
-    private void showObitSelectionStep() {
-        Toast.makeText(getActivity(), "Go To Obit selection Step!", Toast.LENGTH_SHORT).show();
+    public void showObitSelectionStep() {
+        ObitSelectionFragment fragment = new ObitSelectionFragment();
+        fragment.setParentView(this);
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_placeholder, fragment);
+        transaction.commit();
     }
+    //endregion
+
+    //region Getters & Setters:
+
+    public MosqueDto getSelectedMosque() {
+        return selectedMosque;
+    }
+
+    public void setSelectedMosque(MosqueDto selectedMosque) {
+        this.selectedMosque = selectedMosque;
+    }
+
+    public ObitDto getSelectedObit() {
+        return selectedObit;
+    }
+
+    public void setSelectedObit(ObitDto selectedObit) {
+        this.selectedObit = selectedObit;
+    }
+
     //endregion
 }
