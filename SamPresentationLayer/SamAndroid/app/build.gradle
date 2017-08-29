@@ -36,4 +36,6 @@ dependencies {
     compile 'joda-time:joda-time:2.9.4'
     compile 'com.github.rey5137:material:1.2.2'
     compile 'info.hoang8f:fbutton:1.0.5'
+    compile 'se.emilsjolander:stickylistheaders:2.7.0'
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
 }

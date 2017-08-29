@@ -46,4 +46,9 @@
         app:headerLayout="@layout/drawer_nav_header"
         app:menu="@menu/drawer_nav_menu" />
 
+    <FrameLayout
+        android:id="@+id/ly_image_viewer_fragment_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.v4.widget.DrawerLayout>

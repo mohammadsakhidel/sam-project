@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_margin"
     tools:context="com.ramanco.samandroid.fragments.SendConsolationFragment">
 
     <FrameLayout
         android:id="@+id/fragment_placeholder"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ImageButton android:id="@+id/btn_next" style="@style/AppTheme.NextStepButton" />
+
+    <ImageButton android:id="@+id/btn_prev" style="@style/AppTheme.PreviousStepButton" />
 
 </RelativeLayout>

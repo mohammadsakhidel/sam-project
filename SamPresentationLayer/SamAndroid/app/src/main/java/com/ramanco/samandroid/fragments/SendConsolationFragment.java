@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.ramanco.samandroid.activities.CitySelectionActivity;
 import com.ramanco.samandroid.adapters.PairAdapter;
 import com.ramanco.samandroid.api.dtos.MosqueDto;
 import com.ramanco.samandroid.api.dtos.ObitDto;
+import com.ramanco.samandroid.api.dtos.TemplateDto;
 import com.ramanco.samandroid.api.endpoints.MosquesApiEndpoint;
 import com.ramanco.samandroid.exceptions.CallServerException;
 import com.ramanco.samandroid.objects.KeyValuePair;
@@ -42,6 +44,11 @@ public class SendConsolationFragment extends Fragment {
     //region Fields:
     private MosqueDto selectedMosque;
     private ObitDto selectedObit;
+    private TemplateDto selectedTemplate;
+    private boolean nextVisible = false;
+    private boolean prevVisible = false;
+    private Runnable onNextClickListener;
+    private Runnable onPreviousClickListener;
     //endregion
 
     //region Overrides:
@@ -69,7 +76,35 @@ public class SendConsolationFragment extends Fragment {
 
         try {
 
+            updateNavButtonsStat();
             showMosqueSelectionStep();
+
+            //region next prev on click:
+            ImageButton btnNext = (ImageButton) fragmentView.findViewById(R.id.btn_next);
+            ImageButton btnPrev = (ImageButton) fragmentView.findViewById(R.id.btn_prev);
+            btnNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        if (getOnNextClickListener() != null)
+                            onNextClickListener.run();
+                    } catch (Exception ex) {
+                        ExceptionManager.Handle(getActivity(), ex);
+                    }
+                }
+            });
+            btnPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        if (getOnPreviousClickListener() != null)
+                            onPreviousClickListener.run();
+                    } catch (Exception ex) {
+                        ExceptionManager.Handle(getActivity(), ex);
+                    }
+                }
+            });
+            //endregion
 
         } catch (Exception ex) {
             ExceptionManager.Handle(getActivity(), ex);
@@ -80,6 +115,17 @@ public class SendConsolationFragment extends Fragment {
     //endregion
 
     //region Methods:
+    private void updateNavButtonsStat() {
+        View v = getView();
+        if (v != null) {
+            ImageButton btnNext = (ImageButton) v.findViewById(R.id.btn_next);
+            ImageButton btnPrev = (ImageButton) v.findViewById(R.id.btn_prev);
+
+            btnNext.setVisibility((isNextVisible() ? View.VISIBLE : View.INVISIBLE));
+            btnPrev.setVisibility((isPrevVisible() ? View.VISIBLE : View.INVISIBLE));
+        }
+    }
+
     public void showMosqueSelectionStep() {
         MosqueSelectionFragment fragment = new MosqueSelectionFragment();
         fragment.setParentView(this);
@@ -89,6 +135,7 @@ public class SendConsolationFragment extends Fragment {
         transaction.replace(R.id.fragment_placeholder, fragment);
         transaction.commit();
     }
+
     public void showObitSelectionStep() {
         ObitSelectionFragment fragment = new ObitSelectionFragment();
         fragment.setParentView(this);
@@ -98,10 +145,23 @@ public class SendConsolationFragment extends Fragment {
         transaction.replace(R.id.fragment_placeholder, fragment);
         transaction.commit();
     }
+
+    public void showTemplateSelectionStep() {
+        TemplateSelectionFragment fragment = new TemplateSelectionFragment();
+        fragment.setParentView(this);
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_placeholder, fragment);
+        transaction.commit();
+    }
+
+    public void showTemplateFieldsStep() {
+        Toast.makeText(getActivity(), "show template fields fragment", Toast.LENGTH_SHORT).show();
+    }
     //endregion
 
     //region Getters & Setters:
-
     public MosqueDto getSelectedMosque() {
         return selectedMosque;
     }
@@ -118,5 +178,48 @@ public class SendConsolationFragment extends Fragment {
         this.selectedObit = selectedObit;
     }
 
+    public boolean isNextVisible() {
+        return nextVisible;
+    }
+
+    public void setNextVisible(boolean nextVisible) {
+        this.nextVisible = nextVisible;
+        updateNavButtonsStat();
+    }
+
+    public boolean isPrevVisible() {
+        return prevVisible;
+    }
+
+    public void setPrevVisible(boolean prevVisible) {
+        this.prevVisible = prevVisible;
+        updateNavButtonsStat();
+    }
+
+    public Runnable getOnNextClickListener() {
+        return onNextClickListener;
+    }
+
+    public void setOnNextClickListener(Runnable onNextClickListener) {
+        this.onNextClickListener = onNextClickListener;
+    }
+
+    public Runnable getOnPreviousClickListener() {
+        return onPreviousClickListener;
+    }
+
+    public void setOnPreviousClickListener(Runnable onPreviousClickListener) {
+        this.onPreviousClickListener = onPreviousClickListener;
+    }
+
+    public TemplateDto getSelectedTemplate() {
+        return selectedTemplate;
+    }
+
+    public void setSelectedTemplate(TemplateDto selectedTemplate) {
+        this.selectedTemplate = selectedTemplate;
+    }
+
     //endregion
+
 }

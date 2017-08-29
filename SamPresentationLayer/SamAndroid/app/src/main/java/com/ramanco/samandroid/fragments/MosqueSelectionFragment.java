@@ -96,20 +96,21 @@ public class MosqueSelectionFragment extends Fragment {
             });
             //endregion
 
-            //region set on click listeners:
-            Button btnSkip = (Button) fragmentView.findViewById(R.id.btn_skip);
-            btnSkip.setOnClickListener(new View.OnClickListener() {
+            //region nav buttons:
+            parentView.setNextVisible(true);
+            parentView.setOnNextClickListener(new Runnable() {
                 @Override
-                public void onClick(View v) {
+                public void run() {
                     try {
-                        if (parentView != null) {
-                            parentView.showObitSelectionStep();
-                        }
+                        parentView.setSelectedMosque(null);
+                        parentView.showObitSelectionStep();
                     } catch (Exception ex) {
                         ExceptionManager.Handle(getActivity(), ex);
                     }
                 }
             });
+
+            parentView.setPrevVisible(false);
             //endregion
 
         } catch (Exception ex) {

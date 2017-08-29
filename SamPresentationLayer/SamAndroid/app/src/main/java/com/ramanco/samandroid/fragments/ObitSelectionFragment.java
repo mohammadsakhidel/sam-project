@@ -65,7 +65,7 @@ public class ObitSelectionFragment extends Fragment {
                         ObitDto obit = (ObitDto) pair.getTag();
                         if (parentView != null) {
                             parentView.setSelectedObit(obit);
-                            Toast.makeText(getActivity(), "go to the next step...", Toast.LENGTH_SHORT).show();
+                            parentView.showTemplateSelectionStep();
                         }
                     } catch (Exception ex) {
                         ExceptionManager.Handle(getActivity(), ex);
@@ -90,6 +90,21 @@ public class ObitSelectionFragment extends Fragment {
                 public void afterTextChanged(Editable s) {
                     try {
                         filterObits(s.toString());
+                    } catch (Exception ex) {
+                        ExceptionManager.Handle(getActivity(), ex);
+                    }
+                }
+            });
+            //endregion
+
+            //region nav buttons:
+            parentView.setNextVisible(false);
+            parentView.setPrevVisible(true);
+            parentView.setOnPreviousClickListener(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        parentView.showMosqueSelectionStep();
                     } catch (Exception ex) {
                         ExceptionManager.Handle(getActivity(), ex);
                     }
@@ -158,7 +173,6 @@ public class ObitSelectionFragment extends Fragment {
     }
 
     private void searchObitsAsync(final String query) {
-        progress = UxUtil.showProgress(getActivity());
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -177,17 +191,14 @@ public class ObitSelectionFragment extends Fragment {
                                 View fragmentView = getView();
                                 if (fragmentView != null) {
                                     fillListView(fragmentView, pairs);
-                                    progress.dismiss();
                                 }
                             } catch (Exception ex) {
-                                progress.dismiss();
                                 ExceptionManager.Handle(getActivity(), ex);
                             }
                         }
                     });
                     //endregion
                 } catch (Exception ex) {
-                    progress.dismiss();
                     ExceptionManager.Handle(getActivity(), ex);
                 }
             }

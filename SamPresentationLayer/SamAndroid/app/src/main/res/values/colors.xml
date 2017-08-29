@@ -17,4 +17,7 @@
     <color name="colorButtonPrimary">#f8f8f8</color>
     <color name="colorButtonPrimaryDark">#c7c8ca</color>
     <color name="colorButtonPrimaryContrast">#4d4d4f</color>
+    <color name="colorStickyListHeader">#d48500</color>
+    <color name="colorStickyListHeaderContrast">#fff</color>
+    <color name="colorSelect">#8cddee</color>
 </resources>

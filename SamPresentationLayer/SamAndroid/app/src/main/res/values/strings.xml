@@ -14,12 +14,9 @@
     <string name="search_city">جستجوی شهر</string>
     <string name="select_city">لطفاً شهر مورد نظر خود را انتخاب نمایید.</string>
     <string name="connecting_server">در حال ارتباط با سرور</string>
-    <string name="please_wait">لطفاً صبور باشید...</string>
-    <string name="select_mosque">لطفاً مسجد محل برگزاری را انتخاب نمایید:</string>
+    <string name="please_wait">لطفاً صبور باشید…</string>
+    <string name="select_mosque">لطفاً مسجد محل برگزاری را انتخاب نمایید، در صورتی که اطلاع ندارید به گام بعدی بروید:</string>
     <string name="search_mosque">جستجوی مسجد</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="address">آدرس</string>
     <string name="search_obit_desc">مراسم مورد نظر خود را از طریق جستجوی نام فرد مورد نظر انتخاب نمایید:</string>
     <string name="search_obit">جستجوی مراسم</string>
@@ -27,4 +24,9 @@
     <string name="step_mosque_selection">گام ۱: انتخاب مسجد</string>
     <string name="step_obit_selection">گام ۲: انتخاب مراسم</string>
     <string name="skip">رد شو</string>
+    <string name="step_template_selection">گام ۳: انتخاب الگوی پیام</string>
+    <string name="select_template">لطفاً الگوی مورد نظر خود را از لیست زیر انتخاب نمایید:</string>
+    <string name="price">قیمت</string>
+    <string name="price_unit">ریال</string>
+    <string name="operation_failed">خطا در انجام عملیات</string>
 </resources>

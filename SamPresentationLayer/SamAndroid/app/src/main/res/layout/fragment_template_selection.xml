@@ -2,43 +2,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ramanco.samandroid.fragments.MosqueSelectionFragment"
-    android:layout_margin="@dimen/activity_margin">
+    tools:context="com.ramanco.samandroid.fragments.TemplateSelectionFragment">
 
     <LinearLayout
         android:id="@+id/ly_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_margin">
 
         <TextView
             style="@style/AppTheme.TextView.StepHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/step_mosque_selection" />
+            android:text="@string/step_template_selection" />
 
         <TextView
             style="@style/AppTheme.TextView.Comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/select_mosque" />
-
-        <com.rey.material.widget.EditText
-            android:id="@+id/et_search"
-            style="@style/AppTheme.EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/widget_margin_half"
-            android:hint="@string/search_mosque" />
+            android:text="@string/select_template" />
 
     </LinearLayout>
 
-    <ListView
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
         android:id="@+id/lv_items"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/ly_search"
-        android:layout_marginTop="@dimen/widget_margin"/>
+        android:layout_marginTop="@dimen/widget_margin" />
 
 </RelativeLayout>
