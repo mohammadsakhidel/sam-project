@@ -61,7 +61,7 @@ public class StickyPairAdapter extends ArrayAdapter<KeyValuePair> implements Sti
             }
 
         } catch (Exception ex) {
-            ExceptionManager.HandleListException(context, ex);
+            ExceptionManager.handleListException(context, ex);
         }
 
         return convertView;

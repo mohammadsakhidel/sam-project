@@ -3,7 +3,7 @@ package com.ramanco.samandroid.api.dtos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-class TemplateFieldDto {
+public class TemplateFieldDto {
 
     @SerializedName("ID")
     @Expose

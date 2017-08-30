@@ -29,4 +29,9 @@
     <string name="price">قیمت</string>
     <string name="price_unit">ریال</string>
     <string name="operation_failed">خطا در انجام عملیات</string>
+    <string name="step_template_fields">گام ۴: محتوای پیام تسلیت</string>
+    <string name="fill_template_fields">جهت نمایش پیام تسلیت، لطفاً مشخصات زیر را با توجه به مثال ها تعیین نمایید:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

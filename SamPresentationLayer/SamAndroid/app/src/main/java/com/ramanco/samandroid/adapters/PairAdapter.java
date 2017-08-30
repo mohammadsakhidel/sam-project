@@ -53,7 +53,7 @@ public class PairAdapter extends ArrayAdapter<KeyValuePair> {
             }
 
         } catch (Exception ex) {
-            ExceptionManager.HandleListException(context, ex);
+            ExceptionManager.handleListException(context, ex);
         }
 
         return convertView;

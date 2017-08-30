@@ -1,7 +1,6 @@
 package com.ramanco.samandroid.fragments;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,29 +9,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.activities.CitySelectionActivity;
-import com.ramanco.samandroid.adapters.PairAdapter;
 import com.ramanco.samandroid.api.dtos.MosqueDto;
 import com.ramanco.samandroid.api.dtos.ObitDto;
 import com.ramanco.samandroid.api.dtos.TemplateDto;
-import com.ramanco.samandroid.api.endpoints.MosquesApiEndpoint;
-import com.ramanco.samandroid.exceptions.CallServerException;
-import com.ramanco.samandroid.objects.KeyValuePair;
-import com.ramanco.samandroid.utils.ApiUtil;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.utils.PrefUtil;
-import com.ramanco.samandroid.utils.UxUtil;
-
-import java.io.IOException;
-
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class SendConsolationFragment extends Fragment {
 
@@ -45,6 +31,7 @@ public class SendConsolationFragment extends Fragment {
     private MosqueDto selectedMosque;
     private ObitDto selectedObit;
     private TemplateDto selectedTemplate;
+    private String templateInfo;
     private boolean nextVisible = false;
     private boolean prevVisible = false;
     private Runnable onNextClickListener;
@@ -66,7 +53,7 @@ public class SendConsolationFragment extends Fragment {
             //endregion
 
         } catch (Exception ex) {
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
     }
 
@@ -89,7 +76,7 @@ public class SendConsolationFragment extends Fragment {
                         if (getOnNextClickListener() != null)
                             onNextClickListener.run();
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -100,14 +87,14 @@ public class SendConsolationFragment extends Fragment {
                         if (getOnPreviousClickListener() != null)
                             onPreviousClickListener.run();
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
             //endregion
 
         } catch (Exception ex) {
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
 
         return fragmentView;
@@ -157,7 +144,23 @@ public class SendConsolationFragment extends Fragment {
     }
 
     public void showTemplateFieldsStep() {
-        Toast.makeText(getActivity(), "show template fields fragment", Toast.LENGTH_SHORT).show();
+        TemplateFieldsFragment fragment = new TemplateFieldsFragment();
+        fragment.setParentView(this);
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_placeholder, fragment);
+        transaction.commit();
+    }
+
+    public void showFinishStep(){
+        PreviewStepFragment fragment = new PreviewStepFragment();
+        fragment.setParentView(this);
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_placeholder, fragment);
+        transaction.commit();
     }
     //endregion
 
@@ -218,6 +221,14 @@ public class SendConsolationFragment extends Fragment {
 
     public void setSelectedTemplate(TemplateDto selectedTemplate) {
         this.selectedTemplate = selectedTemplate;
+    }
+
+    public String getTemplateInfo() {
+        return templateInfo;
+    }
+
+    public void setTemplateInfo(String templateInfo) {
+        this.templateInfo = templateInfo;
     }
 
     //endregion

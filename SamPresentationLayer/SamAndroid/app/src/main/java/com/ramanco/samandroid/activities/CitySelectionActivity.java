@@ -34,13 +34,13 @@ public class CitySelectionActivity extends AppCompatActivity {
                         finish();
                         //endregion
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(CitySelectionActivity.this, ex);
+                        ExceptionManager.handle(CitySelectionActivity.this, ex);
                     }
                 }
             });
 
         } catch (Exception ex) {
-            ExceptionManager.Handle(this, ex);
+            ExceptionManager.handle(this, ex);
         }
     }
 }

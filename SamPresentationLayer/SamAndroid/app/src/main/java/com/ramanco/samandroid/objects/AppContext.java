@@ -17,7 +17,7 @@ public class AppContext extends Application {
             FontUtility.overrideFont(getApplicationContext(), "SERIF", "Shabnam.ttf");
 
         } catch (Exception e) {
-            ExceptionManager.Handle(this, e);
+            ExceptionManager.handle(this, e);
         }
 
     }

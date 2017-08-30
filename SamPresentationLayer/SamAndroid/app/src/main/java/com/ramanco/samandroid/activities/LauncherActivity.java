@@ -45,19 +45,19 @@ public class LauncherActivity extends BaseActivity {
                                         //endregion
                                     }
                                 } catch (Exception ex) {
-                                    ExceptionManager.Handle(LauncherActivity.this, ex);
+                                    ExceptionManager.handle(LauncherActivity.this, ex);
                                 }
                             }
                         });
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(LauncherActivity.this, ex);
+                        ExceptionManager.handle(LauncherActivity.this, ex);
                     }
                 }
             }).start();
             //endregion
 
         } catch (Exception ex) {
-            ExceptionManager.Handle(this, ex);
+            ExceptionManager.handle(this, ex);
         }
     }
     //endregion

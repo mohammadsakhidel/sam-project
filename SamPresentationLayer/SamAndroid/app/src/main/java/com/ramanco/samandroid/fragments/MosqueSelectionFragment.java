@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.ramanco.samandroid.R;
@@ -67,7 +66,7 @@ public class MosqueSelectionFragment extends Fragment {
                             parentView.showObitSelectionStep();
                         }
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -90,7 +89,7 @@ public class MosqueSelectionFragment extends Fragment {
                     try {
                         filterMosques(s.toString());
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -105,7 +104,7 @@ public class MosqueSelectionFragment extends Fragment {
                         parentView.setSelectedMosque(null);
                         parentView.showObitSelectionStep();
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -116,7 +115,7 @@ public class MosqueSelectionFragment extends Fragment {
         } catch (Exception ex) {
             if (progress != null)
                 progress.dismiss();
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
 
         return fragmentView;
@@ -163,14 +162,14 @@ public class MosqueSelectionFragment extends Fragment {
                                 }
                             } catch (Exception ex) {
                                 progress.dismiss();
-                                ExceptionManager.Handle(getActivity(), ex);
+                                ExceptionManager.handle(getActivity(), ex);
                             }
                         }
                     });
                     //endregion
                 } catch (Exception ex) {
                     progress.dismiss();
-                    ExceptionManager.Handle(getActivity(), ex);
+                    ExceptionManager.handle(getActivity(), ex);
                 }
             }
         }).start();

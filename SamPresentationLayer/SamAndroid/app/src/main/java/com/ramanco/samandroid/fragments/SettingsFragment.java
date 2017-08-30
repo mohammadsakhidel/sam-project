@@ -26,7 +26,7 @@ public class SettingsFragment extends Fragment {
         try {
 
         } catch (Exception ex) {
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
 
         return fragmentView;

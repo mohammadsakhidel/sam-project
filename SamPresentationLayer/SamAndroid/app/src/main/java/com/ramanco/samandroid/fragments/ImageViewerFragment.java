@@ -80,14 +80,14 @@ public class ImageViewerFragment extends Fragment {
                         if (stackCount > 0)
                             fm.popBackStack();
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
             //endregion
 
         } catch (Exception ex) {
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
 
         return view;

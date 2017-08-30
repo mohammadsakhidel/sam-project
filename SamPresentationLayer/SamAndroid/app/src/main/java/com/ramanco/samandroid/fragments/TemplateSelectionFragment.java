@@ -3,34 +3,25 @@ package com.ramanco.samandroid.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.adapters.TemplateAdapter;
-import com.ramanco.samandroid.api.dtos.MosqueDto;
 import com.ramanco.samandroid.api.dtos.TemplateCategoryDto;
 import com.ramanco.samandroid.api.dtos.TemplateDto;
-import com.ramanco.samandroid.api.endpoints.MosquesApiEndpoint;
 import com.ramanco.samandroid.api.endpoints.TemplatesApiEndpoint;
 import com.ramanco.samandroid.exceptions.CallServerException;
-import com.ramanco.samandroid.objects.KeyValuePair;
 import com.ramanco.samandroid.objects.StickyHeader;
 import com.ramanco.samandroid.utils.ApiUtil;
 import com.ramanco.samandroid.utils.ExceptionManager;
-import com.ramanco.samandroid.utils.PrefUtil;
 import com.ramanco.samandroid.utils.UxUtil;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -70,7 +61,7 @@ public class TemplateSelectionFragment extends Fragment {
                         parentView.setSelectedTemplate(template);
                         parentView.showTemplateFieldsStep();
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -85,13 +76,13 @@ public class TemplateSelectionFragment extends Fragment {
                     try {
                         parentView.showObitSelectionStep();
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
             //endregion
         } catch (Exception ex) {
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
 
         return fragmentView;
@@ -129,14 +120,14 @@ public class TemplateSelectionFragment extends Fragment {
                                 progress.dismiss();
                             } catch (Exception ex) {
                                 progress.dismiss();
-                                ExceptionManager.Handle(getActivity(), ex);
+                                ExceptionManager.handle(getActivity(), ex);
                             }
                         }
                     });
                     //endregion
                 } catch (Exception ex) {
                     progress.dismiss();
-                    ExceptionManager.Handle(getActivity(), ex);
+                    ExceptionManager.handle(getActivity(), ex);
                 }
             }
         }).start();

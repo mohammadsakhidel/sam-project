@@ -14,7 +14,6 @@ import android.view.MenuItem;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.utils.ExceptionManager;
-import com.ramanco.samandroid.utils.FontUtility;
 import com.ramanco.samandroid.fragments.HistoryFragment;
 import com.ramanco.samandroid.fragments.SendConsolationFragment;
 import com.ramanco.samandroid.fragments.SettingsFragment;
@@ -68,7 +67,7 @@ public class MainActivity extends BaseActivity {
                         //endregion
                         return true;
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(MainActivity.this, ex);
+                        ExceptionManager.handle(MainActivity.this, ex);
                         return false;
                     }
                 }
@@ -82,7 +81,7 @@ public class MainActivity extends BaseActivity {
             //endregion
 
         } catch (Exception ex) {
-            ExceptionManager.Handle(this, ex);
+            ExceptionManager.handle(this, ex);
         }
     }
     //endregion

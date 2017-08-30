@@ -11,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.adapters.PairAdapter;
-import com.ramanco.samandroid.api.dtos.MosqueDto;
 import com.ramanco.samandroid.api.dtos.ObitDto;
 import com.ramanco.samandroid.api.endpoints.ObitsApiEndpoint;
 import com.ramanco.samandroid.exceptions.CallServerException;
@@ -68,7 +66,7 @@ public class ObitSelectionFragment extends Fragment {
                             parentView.showTemplateSelectionStep();
                         }
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -91,7 +89,7 @@ public class ObitSelectionFragment extends Fragment {
                     try {
                         filterObits(s.toString());
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -106,7 +104,7 @@ public class ObitSelectionFragment extends Fragment {
                     try {
                         parentView.showMosqueSelectionStep();
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
@@ -115,7 +113,7 @@ public class ObitSelectionFragment extends Fragment {
         } catch (Exception ex) {
             if (progress != null)
                 progress.dismiss();
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
 
         return fragmentView;
@@ -159,14 +157,14 @@ public class ObitSelectionFragment extends Fragment {
                                 }
                             } catch (Exception ex) {
                                 progress.dismiss();
-                                ExceptionManager.Handle(getActivity(), ex);
+                                ExceptionManager.handle(getActivity(), ex);
                             }
                         }
                     });
                     //endregion
                 } catch (Exception ex) {
                     progress.dismiss();
-                    ExceptionManager.Handle(getActivity(), ex);
+                    ExceptionManager.handle(getActivity(), ex);
                 }
             }
         }).start();
@@ -193,13 +191,13 @@ public class ObitSelectionFragment extends Fragment {
                                     fillListView(fragmentView, pairs);
                                 }
                             } catch (Exception ex) {
-                                ExceptionManager.Handle(getActivity(), ex);
+                                ExceptionManager.handle(getActivity(), ex);
                             }
                         }
                     });
                     //endregion
                 } catch (Exception ex) {
-                    ExceptionManager.Handle(getActivity(), ex);
+                    ExceptionManager.handle(getActivity(), ex);
                 }
             }
         }).start();

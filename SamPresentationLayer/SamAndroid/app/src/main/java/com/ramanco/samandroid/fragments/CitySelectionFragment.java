@@ -64,13 +64,13 @@ public class CitySelectionFragment extends Fragment {
                     try {
                         filterCities(s.toString());
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(getActivity(), ex);
+                        ExceptionManager.handle(getActivity(), ex);
                     }
                 }
             });
             //endregion
         } catch (Exception ex) {
-            ExceptionManager.Handle(getActivity(), ex);
+            ExceptionManager.handle(getActivity(), ex);
         }
 
         return fragmentView;
@@ -93,7 +93,7 @@ public class CitySelectionFragment extends Fragment {
                         onCitySelectRunnable.run();
                     }
                 } catch (Exception ex) {
-                    ExceptionManager.Handle(getActivity(), ex);
+                    ExceptionManager.handle(getActivity(), ex);
                 }
             }
         });

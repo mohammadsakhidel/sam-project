@@ -1,13 +1,11 @@
 package com.ramanco.samandroid.adapters;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +20,6 @@ import com.ramanco.samandroid.api.dtos.TemplateDto;
 import com.ramanco.samandroid.consts.ApiActions;
 import com.ramanco.samandroid.consts.Configs;
 import com.ramanco.samandroid.fragments.ImageViewerFragment;
-import com.ramanco.samandroid.objects.KeyValuePair;
 import com.ramanco.samandroid.objects.StickyHeader;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.utils.UxUtil;
@@ -34,7 +31,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import retrofit2.http.Url;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 public class TemplateAdapter extends ArrayAdapter<TemplateDto> implements StickyListHeadersAdapter {
@@ -66,7 +62,7 @@ public class TemplateAdapter extends ArrayAdapter<TemplateDto> implements Sticky
                 } catch (Exception ex) {
                     if (progress != null)
                         progress.dismiss();
-                    ExceptionManager.Handle(context, ex);
+                    ExceptionManager.handle(context, ex);
                 }
             }
 
@@ -81,7 +77,7 @@ public class TemplateAdapter extends ArrayAdapter<TemplateDto> implements Sticky
                 } catch (Exception ex) {
                     if (progress != null)
                         progress.dismiss();
-                    ExceptionManager.Handle(context, ex);
+                    ExceptionManager.handle(context, ex);
                 }
             }
 
@@ -120,7 +116,7 @@ public class TemplateAdapter extends ArrayAdapter<TemplateDto> implements Sticky
                         loadTemplateImage(imageUrl.toString());
                         //endregion
                     } catch (Exception ex) {
-                        ExceptionManager.Handle(context, ex);
+                        ExceptionManager.handle(context, ex);
                     }
                 }
             });
@@ -140,7 +136,7 @@ public class TemplateAdapter extends ArrayAdapter<TemplateDto> implements Sticky
             //endregion
 
         } catch (Exception ex) {
-            ExceptionManager.HandleListException(context, ex);
+            ExceptionManager.handleListException(context, ex);
         }
 
         return convertView;
