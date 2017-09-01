@@ -46,6 +46,21 @@ namespace SamAPI.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult Search(string query)
+        {
+            try
+            {
+                var obits = _obitRepo.Search(query, DateTimeUtils.Now);
+                var dtos = obits.Select(o => Mapper.Map<Obit, ObitDto>(o));
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
         public IHttpActionResult GetObits(int mosqueId, DateTime date)
         {
             try

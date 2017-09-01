@@ -4,17 +4,25 @@ using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
+using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
 using SamUtils.Enums;
 using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
 using System.Web.Http;
-
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace SamAPI.Controllers
 {
@@ -22,12 +30,14 @@ namespace SamAPI.Controllers
     {
         #region Fields:
         IConsolationRepo _consolationRepo;
+        IBlobRepo _blobRepo;
         #endregion
 
         #region Ctors:
-        public ConsolationsController(IConsolationRepo consolationRepo)
+        public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo)
         {
             _consolationRepo = consolationRepo;
+            _blobRepo = blobRepo;
         }
         #endregion
 
@@ -71,6 +81,43 @@ namespace SamAPI.Controllers
                     });
                 })).ToList();
                 return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetPreview(int id, bool? thumb = false)
+        {
+            try
+            {
+                var consolation = _consolationRepo.Get(id);
+                if (consolation == null)
+                    return NotFound();
+
+                var blob = _blobRepo.Get(consolation.Template.BackgroundImageID);
+                if (blob == null || !(blob is ImageBlob))
+                    return NotFound();
+
+                #region generate preview image:
+                var imgBlob = (ImageBlob)blob;
+                var imgBytes = thumb.HasValue && thumb.Value ? imgBlob.ThumbImageBytes : imgBlob.Bytes;
+                var imgBitmap = IOUtils.ByteArrayToBitmap(imgBytes);
+                var tempBitmap = GeneratePreview(consolation, imgBitmap);
+                var previewBitmap = new Bitmap(tempBitmap);
+                tempBitmap.Dispose();
+                tempBitmap = null;
+                var previewBytes = IOUtils.BitmapToByteArray(previewBitmap, System.Drawing.Imaging.ImageFormat.Jpeg);
+                #endregion
+
+                #region Return As Image:
+                HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                result.Content = new ByteArrayContent(previewBytes);
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
+                return ResponseMessage(result);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -125,6 +172,112 @@ namespace SamAPI.Controllers
             {
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
+        }
+        #endregion
+
+        #region Methods:
+        private Bitmap GeneratePreview(Consolation consolation, Bitmap backgroundImage, int targetScreenWidth = 0, int targetScreenHeight = 0)
+        {
+            Bitmap bitmap = null;
+            Thread t = new Thread(() =>
+            {
+                #region Set Container Size:
+                var container = new Canvas();
+                var screenWidth = targetScreenWidth > 0 ? targetScreenWidth : backgroundImage.Width;
+                var screenHeight = targetScreenHeight > 0 ? targetScreenHeight : backgroundImage.Height;
+                double screenRatio = screenWidth / screenHeight;
+                double cWidth = consolation.Template.WidthRatio;
+                double cHeight = consolation.Template.HeightRatio;
+                double cRatio = cWidth / cHeight;
+                double containerWidth = 0.0;
+                double containerHeight = 0.0;
+                if (screenRatio > cRatio)
+                {
+                    containerHeight = screenHeight;
+                    containerWidth = containerHeight * cWidth / cHeight;
+                }
+                else
+                {
+                    containerWidth = screenWidth;
+                    containerHeight = containerWidth * cHeight / cWidth;
+                }
+
+                container.Width = containerWidth;
+                container.Height = containerHeight;
+                #endregion
+                #region Set Background and Fields:
+                container.Background = new ImageBrush(ImageUtils.ToBitmapSource(backgroundImage));
+                //fiedls:
+                var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
+                foreach (var field in consolation.Template.TemplateFields)
+                {
+                    var textBlock = new TextBlock();
+                    textBlock.Text = info.ContainsKey(field.Name) ? info[field.Name] : "";
+                    textBlock.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom(field.TextColor));
+                    textBlock.FontWeight = field.Bold.HasValue && field.Bold.Value ? FontWeights.Bold : FontWeights.Normal;
+                    textBlock.TextWrapping = field.WrapContent.HasValue && field.WrapContent.Value ? TextWrapping.Wrap : TextWrapping.NoWrap;
+                    textBlock.HorizontalAlignment = StringToHorizontalAlignment(field.HorizontalContentAlignment);
+                    textBlock.VerticalAlignment = StringToVerticalAlignment(field.VerticalContentAlignment);
+                    textBlock.FontFamily = new System.Windows.Media.FontFamily(field.FontFamily);
+                    textBlock.FontSize = StringToFontSize(field.FontSize);
+
+                    var box = new Border();
+                    box.Width = field.BoxWidth * container.Width / 100;
+                    box.Height = field.BoxHeight * container.Height / 100;
+                    Canvas.SetLeft(box, container.Width * field.X / 100);
+                    Canvas.SetTop(box, container.Height * field.Y / 100);
+
+                    box.Child = textBlock;
+                    container.Children.Add(box);
+                }
+                #endregion
+
+                Viewbox viewbox = new Viewbox();
+                viewbox.Child = container;
+                viewbox.Measure(new System.Windows.Size(container.Width, container.Height));
+                viewbox.Arrange(new Rect(0, 0, container.Width, container.Height));
+                viewbox.UpdateLayout();
+
+                bitmap = ImageUtils.DrawWpfControl(viewbox, (int)container.Width, (int)container.Height);
+            });
+
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+            t.Join();
+
+            return bitmap;
+        }
+        private HorizontalAlignment StringToHorizontalAlignment(string text)
+        {
+            if (text == SamUtils.Enums.TextAlignment.center.ToString())
+                return HorizontalAlignment.Center;
+            else if (text == SamUtils.Enums.TextAlignment.left.ToString())
+                return HorizontalAlignment.Left;
+            else if (text == SamUtils.Enums.TextAlignment.right.ToString())
+                return HorizontalAlignment.Right;
+
+            return HorizontalAlignment.Center;
+        }
+        private VerticalAlignment StringToVerticalAlignment(string text)
+        {
+            if (text == SamUtils.Enums.TextAlignment.center.ToString())
+                return VerticalAlignment.Center;
+            else if (text == SamUtils.Enums.TextAlignment.top.ToString())
+                return VerticalAlignment.Top;
+            else if (text == SamUtils.Enums.TextAlignment.bottom.ToString())
+                return VerticalAlignment.Bottom;
+
+            return VerticalAlignment.Center;
+        }
+        private double StringToFontSize(string text)
+        {
+            var dic = new Dictionary<string, double>();
+            dic.Add("tiny", 20);
+            dic.Add("small", 40);
+            dic.Add("normal", 60);
+            dic.Add("large", 80);
+            dic.Add("huge", 100);
+            return dic.ContainsKey(text) ? dic[text] : dic["normal"];
         }
         #endregion
     }

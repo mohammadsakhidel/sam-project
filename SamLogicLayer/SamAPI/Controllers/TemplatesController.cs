@@ -13,6 +13,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace SamAPI.Controllers
@@ -21,12 +22,14 @@ namespace SamAPI.Controllers
     {
         #region Fields:
         ITemplateRepo _templateRepo;
+        IBlobRepo _blobRepo;
         #endregion
 
         #region Ctors:
-        public TemplatesController(ITemplateRepo templateRepo)
+        public TemplatesController(ITemplateRepo templateRepo, IBlobRepo blobRepo)
         {
-            this._templateRepo = templateRepo;
+            _templateRepo = templateRepo;
+            _blobRepo = blobRepo;
         }
         #endregion
 

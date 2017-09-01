@@ -48,6 +48,17 @@ namespace SamDataAccess.Repos
             return holdings.Include(h => h.Obit).ToList();
         }
 
+        public List<Obit> Search(string query, DateTime date)
+        {
+            var obits = from o in set
+                        where (o.Title.Contains(query) || query.Contains(o.Title)) &&
+                              (from h in o.ObitHoldings
+                               where DbFunctions.TruncateTime(h.BeginTime) >= DbFunctions.TruncateTime(date) || DbFunctions.TruncateTime(h.EndTime) >= DbFunctions.TruncateTime(date)
+                               select h).Any()
+                        select o;
+            return obits.Include(o => o.ObitHoldings).ToList();
+        }
+
         public void UpdateWithSave(Obit newObit)
         {
             var obit = Get(newObit.ID);
