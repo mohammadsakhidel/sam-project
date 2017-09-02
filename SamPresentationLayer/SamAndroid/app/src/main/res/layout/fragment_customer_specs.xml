@@ -1,0 +1,57 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_margin"
+    tools:context="com.ramanco.samandroid.fragments.CustomerSpecsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/container_margin">
+
+        <TextView
+            style="@style/AppTheme.TextView.StepHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customer_info" />
+
+        <TextView
+            style="@style/AppTheme.TextView.Comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_margin"
+            android:text="@string/customer_info_desc" />
+
+        <com.rey.material.widget.EditText
+            android:id="@+id/et_fullname"
+            style="@style/AppTheme.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_margin"
+            android:hint="@string/fullname" />
+        <TextView
+            style="@style/AppTheme.TextView.Comment.Form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_margin_half"
+            android:text="@string/fullname_desc" />
+
+        <com.rey.material.widget.EditText
+            android:id="@+id/et_cellphone"
+            style="@style/AppTheme.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_margin"
+            android:hint="@string/cellphone_number" />
+        <TextView
+            style="@style/AppTheme.TextView.Comment.Form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_margin_half"
+            android:text="@string/cellphone_number_desc" />
+
+    </LinearLayout>
+
+</ScrollView>

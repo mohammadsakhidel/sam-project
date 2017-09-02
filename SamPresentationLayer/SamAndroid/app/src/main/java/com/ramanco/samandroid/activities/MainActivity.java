@@ -2,6 +2,7 @@ package com.ramanco.samandroid.activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,12 +12,17 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.ramanco.samandroid.R;
+import com.ramanco.samandroid.api.dtos.CustomerDto;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.fragments.HistoryFragment;
 import com.ramanco.samandroid.fragments.SendConsolationFragment;
 import com.ramanco.samandroid.fragments.SettingsFragment;
+import com.ramanco.samandroid.utils.PrefUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -37,6 +43,17 @@ public class MainActivity extends BaseActivity {
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, 0, 0);
             drawer.addDrawerListener(toggle);
             toggle.syncState();
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.drawer_nav_view);
+            View headerView = navigationView.getHeaderView(0);
+            if (headerView != null) {
+                String customerJson = PrefUtil.getCustomerInfo(this);
+                CustomerDto customer = new Gson().fromJson(customerJson, CustomerDto.class);
+                TextView tvUserName = (TextView) headerView.findViewById(R.id.tv_user_fullname);
+                tvUserName.setText(String.format("%s: %s",
+                        this.getResources().getString(R.string.user),
+                        customer.getFullName()));
+            }
             //endregion
 
             //region Bottom NavigationView:

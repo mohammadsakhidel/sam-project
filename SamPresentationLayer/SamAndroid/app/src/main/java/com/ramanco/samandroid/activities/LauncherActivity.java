@@ -2,6 +2,8 @@ package com.ramanco.samandroid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.utils.PrefUtil;
@@ -32,11 +34,22 @@ public class LauncherActivity extends BaseActivity {
                                 try {
                                     int cityId = PrefUtil.getCityID(LauncherActivity.this);
                                     if (cityId > 0) {
-                                        //region start main activity:
-                                        Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
-                                        LauncherActivity.this.startActivity(intent);
-                                        finish();
-                                        //endregion
+
+                                        String customerInfo = PrefUtil.getCustomerInfo(LauncherActivity.this);
+                                        if (TextUtils.isEmpty(customerInfo)) {
+                                            //region customer info step:
+                                            Intent intent = new Intent(LauncherActivity.this, CustomerInfoActivity.class);
+                                            LauncherActivity.this.startActivity(intent);
+                                            finish();
+                                            //endregion
+                                        } else {
+                                            //region start main activity:
+                                            Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
+                                            LauncherActivity.this.startActivity(intent);
+                                            finish();
+                                            //endregion
+                                        }
+
                                     } else {
                                         //region start city selection activity:
                                         Intent intent = new Intent(LauncherActivity.this, CitySelectionActivity.class);

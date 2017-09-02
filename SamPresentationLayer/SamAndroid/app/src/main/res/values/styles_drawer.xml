@@ -39,4 +39,12 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginTop">@dimen/widget_margin</item>
     </style>
+
+    <style name="AppTheme.DrawerNavigationViewHeaderUserName">
+        <item name="android:textColor">@color/colorNeutral</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/widget_margin</item>
+        <item name="android:padding">0dp</item>
+    </style>
 </resources>

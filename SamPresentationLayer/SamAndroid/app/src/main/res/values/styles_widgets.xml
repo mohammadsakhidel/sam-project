@@ -32,6 +32,10 @@
         <item name="android:textSize">@dimen/font_size_bit_smaller</item>
     </style>
 
+    <style name="AppTheme.TextView.Comment.Form">
+        <item name="android:textSize">@dimen/font_size_small</item>
+    </style>
+
     <style name="AppTheme.SimpleListItem">
         <item name="android:padding">@dimen/widget_margin</item>
     </style>
