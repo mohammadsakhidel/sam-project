@@ -12,12 +12,14 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Windows;
 using System.Windows.Controls;
@@ -57,7 +59,7 @@ namespace SamAPI.Controllers
                 _consolationRepo.Save();
                 #endregion
 
-                return Ok();
+                return Ok(consolation.ID);
             }
             catch (Exception ex)
             {
@@ -218,7 +220,14 @@ namespace SamAPI.Controllers
                     textBlock.TextWrapping = field.WrapContent.HasValue && field.WrapContent.Value ? TextWrapping.Wrap : TextWrapping.NoWrap;
                     textBlock.HorizontalAlignment = StringToHorizontalAlignment(field.HorizontalContentAlignment);
                     textBlock.VerticalAlignment = StringToVerticalAlignment(field.VerticalContentAlignment);
-                    textBlock.FontFamily = new System.Windows.Media.FontFamily(field.FontFamily);
+
+                    // font family:
+                    var fontsFolder = new Uri(HostingEnvironment.MapPath("~/Content/Fonts/#"));
+                    var fontFamilies = Fonts.GetFontFamilies(fontsFolder).ToList();
+                    var fontFamily = fontFamilies.Where(ff => ff.FamilyNames.Values.Contains(field.FontFamily)).FirstOrDefault();
+                    if (fontFamily != null)
+                        textBlock.FontFamily = fontFamily; 
+
                     textBlock.FontSize = StringToFontSize(field.FontSize);
 
                     var box = new Border();

@@ -186,7 +186,7 @@ namespace SamWeb.Controllers
                 From = model.Fields.SingleOrDefault(f => f.Name == "From")?.Value,
                 PaymentStatus = PaymentStatus.pending.ToString(),
                 Status = ConsolationStatus.pending.ToString(),
-                TemplateInfo =templateInfo
+                TemplateInfo = templateInfo
             };
 
             using (var hc = HttpUtil.CreateClient())
