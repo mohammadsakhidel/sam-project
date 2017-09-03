@@ -5,33 +5,35 @@ import com.google.gson.annotations.SerializedName;
 
 public class CustomerDto {
 
+    //region Fields:
     @Expose
     @SerializedName("ID")
-    public int id;
+    int id;
 
     @Expose
     @SerializedName("FullName")
-    public String fullName;
+    String fullName;
 
     @Expose
     @SerializedName("Gender")
-    public boolean gender;
+    boolean gender;
 
     @Expose
     @SerializedName("IsMember")
-    public boolean isMember;
+    boolean isMember;
 
     @Expose
     @SerializedName("UserName")
-    public String userName;
+    String userName;
 
     @Expose
     @SerializedName("RegistrationTime")
-    public String registrationTime;
+    String registrationTime;
 
     @Expose
     @SerializedName("CellPhoneNumber")
-    public String cellPhoneNumber;
+    String cellPhoneNumber;
+    //endregion
 
     //region Getters & Setters
 

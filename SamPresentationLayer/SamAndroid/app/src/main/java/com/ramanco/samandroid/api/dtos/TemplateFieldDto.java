@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class TemplateFieldDto {
 
+    //region FieldS:
     @SerializedName("ID")
     @Expose
     int id;
@@ -72,6 +73,7 @@ public class TemplateFieldDto {
     @SerializedName("WrapContent")
     @Expose
     boolean wrapContent;
+    //endregion
 
     //region Getters & Setters:
 

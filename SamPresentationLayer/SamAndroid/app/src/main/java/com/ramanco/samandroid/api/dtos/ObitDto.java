@@ -8,27 +8,27 @@ public class ObitDto {
     //region Fields:
     @SerializedName("ID")
     @Expose
-    public int id;
+    int id;
 
     @SerializedName("Title")
     @Expose
-    public String title;
+    String title;
 
     @SerializedName("ObitType")
     @Expose
-    public String obitType;
+    String obitType;
 
     @SerializedName("MosqueID")
     @Expose
-    public int mosqueID;
+    int mosqueID;
 
     @SerializedName("CreationTime")
     @Expose
-    public String creationTime;
+    String creationTime;
 
     @SerializedName("LastUpdateTime")
     @Expose
-    public String lastUpdateTime;
+    String lastUpdateTime;
     //endregion
 
     //region Getters & Setters:

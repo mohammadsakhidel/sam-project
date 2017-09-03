@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class TemplateDto {
 
+    //region Fields:
     @SerializedName("ID")
     @Expose
     int id;
@@ -72,6 +73,7 @@ public class TemplateDto {
     @SerializedName("Category")
     @Expose
     TemplateCategoryDto category;
+    //endregion
 
     //region Getters & Setters:
 

@@ -3,4 +3,5 @@
     <string name="msg_call_server_failed">خطا در ارتباط با سرور</string>
     <string name="msg_fill_required_fields">لطفاً مقادیر لازم را وارد کنید.</string>
     <string name="msg_invalid_cellphone">شماره همراه وارد شده معتبر نیست.</string>
+    <string name="msg_loading_image_failed">خطا در بارگذاری تصویر</string>
 </resources>

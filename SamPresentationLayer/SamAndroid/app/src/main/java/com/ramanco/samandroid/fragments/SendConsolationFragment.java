@@ -32,6 +32,7 @@ public class SendConsolationFragment extends Fragment {
     private ObitDto selectedObit;
     private TemplateDto selectedTemplate;
     private String templateInfo;
+    private int createdConsolationId;
     private boolean nextVisible = false;
     private boolean prevVisible = false;
     private Runnable onNextClickListener;
@@ -153,7 +154,7 @@ public class SendConsolationFragment extends Fragment {
         transaction.commit();
     }
 
-    public void showFinishStep(){
+    public void showPreviewStep(){
         PreviewStepFragment fragment = new PreviewStepFragment();
         fragment.setParentView(this);
 
@@ -229,6 +230,14 @@ public class SendConsolationFragment extends Fragment {
 
     public void setTemplateInfo(String templateInfo) {
         this.templateInfo = templateInfo;
+    }
+
+    public int getCreatedConsolationId() {
+        return createdConsolationId;
+    }
+
+    public void setCreatedConsolationId(int createdConsolationId) {
+        this.createdConsolationId = createdConsolationId;
     }
 
     //endregion

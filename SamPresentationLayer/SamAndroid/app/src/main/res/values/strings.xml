@@ -42,4 +42,6 @@
     <string name="cellphone_number_desc">جهت ارسال پیامک های اطلاع رسانی</string>
     <string name="ok">انجام شد</string>
     <string name="user">کاربر</string>
+    <string name="step_preview">پیش نمایش</string>
+    <string name="step_preview_desc">جهت بزرگنمایی تصویر را لمس نمایید.</string>
 </resources>
