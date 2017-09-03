@@ -149,19 +149,22 @@ namespace SamAPI.Controllers
                 #endregion
 
                 #region update status:
-                var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), newStatus);
-                if (newstatus == ConsolationStatus.confirmed)
+                if (!string.IsNullOrEmpty(newStatus))
                 {
-                    //future: verify payment if no problem then change the status to cofirmed.
-                    if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                    var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), newStatus);
+                    if (newstatus == ConsolationStatus.confirmed)
                     {
-                        var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
-                        consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                        //future: verify payment if no problem then change the status to cofirmed.
+                        if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                        {
+                            var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
+                            consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                        }
                     }
-                }
-                else if (newstatus == ConsolationStatus.canceled)
-                {
-                    consolationToEdit.Status = newstatus.ToString();
+                    else if (newstatus == ConsolationStatus.canceled)
+                    {
+                        consolationToEdit.Status = newstatus.ToString();
+                    }
                 }
                 #endregion
 
