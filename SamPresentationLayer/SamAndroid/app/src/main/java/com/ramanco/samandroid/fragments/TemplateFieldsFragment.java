@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.api.dtos.ConsolationDto;
 import com.ramanco.samandroid.api.dtos.CustomerDto;
@@ -35,6 +36,7 @@ import com.ramanco.samandroid.utils.UxUtil;
 import com.ramanco.samandroid.utils.VersatileUtility;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,17 +78,7 @@ public class TemplateFieldsFragment extends Fragment {
                 }
             });
 
-            parentView.setNextVisible(true);
-            parentView.setOnNextClickListener(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        go();
-                    } catch (Exception ex) {
-                        ExceptionManager.handle(getActivity(), ex);
-                    }
-                }
-            });
+            parentView.setNextVisible(false);
             //endregion
 
         } catch (Exception ex) {
@@ -139,8 +131,13 @@ public class TemplateFieldsFragment extends Fragment {
 
         ViewGroup lyFields = (ViewGroup) fragmentView.findViewById(R.id.ly_fields);
         TemplateFieldDto[] fields = parentView.getSelectedTemplate().getTemplateFields();
+        Map<String, String> values = null;
+        if (!TextUtils.isEmpty(parentView.getTemplateInfo())) {
+            Type type = new TypeToken<Map<String, String>>(){}.getType();
+            values = new Gson().fromJson(parentView.getTemplateInfo(), type);
+        }
         for (TemplateFieldDto field : fields) {
-            //display name text view:
+            //region display name text view:
             TextView txtDisplayName = new TextView(getActivity());
             txtDisplayName.setText(String.format("%s:", field.getDisplayName()));
             LinearLayout.LayoutParams txtDisplayNameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -153,6 +150,8 @@ public class TemplateFieldsFragment extends Fragment {
 
             //region edit text:
             EditText etValue = new EditText(getActivity());
+            if (values != null)
+                etValue.setText(values.get(field.getName()));
             etValue.setSingleLine();
             etValue.setLines(1);
             etValue.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorTextPrimary));
@@ -233,11 +232,22 @@ public class TemplateFieldsFragment extends Fragment {
                         //endregion
                         //region call api:
                         ConsolationsApiEndpoint endpoint = ApiUtil.createEndpoint(ConsolationsApiEndpoint.class);
-                        Response<Integer> response = endpoint.create(dto).execute();
-                        if (!response.isSuccessful())
-                            throw new CallServerException(getActivity());
+                        if (parentView.getCreatedConsolationId() <= 0) {
+                            //region create:
+                            Response<Integer> response = endpoint.create(dto).execute();
+                            if (!response.isSuccessful())
+                                throw new CallServerException(getActivity());
 
-                        final int consolationId = response.body();
+                            final int consolationId = response.body();
+                            parentView.setCreatedConsolationId(consolationId);
+                            //endregion
+                        } else {
+                            //region update:
+                            Response<Void> response = endpoint.update(parentView.getCreatedConsolationId(), nameValues, "").execute();
+                            if (!response.isSuccessful())
+                                throw new CallServerException(getActivity());
+                            //endregion
+                        }
                         //endregion
                         //region show next:
                         getActivity().runOnUiThread(new Runnable() {
@@ -245,9 +255,7 @@ public class TemplateFieldsFragment extends Fragment {
                             public void run() {
                                 try {
                                     progress.dismiss();
-
                                     parentView.setTemplateInfo(templateInfo);
-                                    parentView.setCreatedConsolationId(consolationId);
                                     parentView.showPreviewStep();
                                 } catch (Exception ex) {
                                     ExceptionManager.handle(getActivity(), ex);

@@ -2,6 +2,7 @@ package com.ramanco.samandroid.fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 import com.ramanco.samandroid.R;
@@ -20,10 +22,13 @@ import com.ramanco.samandroid.consts.ApiActions;
 import com.ramanco.samandroid.consts.Configs;
 import com.ramanco.samandroid.exceptions.ImageLoadingException;
 import com.ramanco.samandroid.utils.ApiUtil;
+import com.ramanco.samandroid.utils.DateTimeUtility;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.utils.UxUtil;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import org.joda.time.DateTimeUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -50,6 +55,30 @@ public class PreviewStepFragment extends Fragment {
 
             loadPreviewImageAsync(fragmentView);
 
+            //region nav buttons:
+            parentView.setPrevVisible(true);
+            parentView.setOnPreviousClickListener(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        parentView.showTemplateFieldsStep();
+                    } catch (Exception ex) {
+                        ExceptionManager.handle(getActivity(), ex);
+                    }
+                }
+            });
+
+            parentView.setNextVisible(false);
+            //endregion
+
+            //region hide keyboard:
+            View focused = getActivity().getCurrentFocus();
+            if (focused != null) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(focused.getWindowToken(), 0);
+            }
+            //endregion
+
         } catch (Exception ex) {
             ExceptionManager.handle(getActivity(), ex);
         }
@@ -70,8 +99,9 @@ public class PreviewStepFragment extends Fragment {
 
     //region Methods:
     private void loadPreviewImageAsync(final View fragmentView) throws MalformedURLException {
-        URL url = new URL(new URL(Configs.API_BASE_ADDRESS), String.format("%s/%s", ApiActions.consolations_getpreview,
-                Integer.toString(parentView.getCreatedConsolationId())));
+        URL url = new URL(new URL(Configs.API_BASE_ADDRESS), String.format("%s/%s?ts=%s", ApiActions.consolations_getpreview,
+                Integer.toString(parentView.getCreatedConsolationId()),
+                Long.toString(DateTimeUtility.getUTCNow().getTime())));
         final ProgressDialog progress = UxUtil.showProgress(getActivity());
 
         //region create target:
