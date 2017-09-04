@@ -3,6 +3,7 @@ using SamDataAccess.Contexts;
 using SamDataAccess.Repos;
 using SamDataAccess.Repos.BaseClasses;
 using SamDataAccess.Repos.Interfaces;
+using SmsLib.Objects;
 using System.Web.Http;
 using Unity.WebApi;
 
@@ -22,6 +23,7 @@ namespace SamAPI
             container.RegisterType<IConsolationRepo, ConsolationRepo>();
             container.RegisterType<IDisplayRepo, DisplayRepo>();
             container.RegisterType<IIdentityRepo, IdentityRepo>();
+            container.RegisterType<ISmsManager, SmsDotIrSmsManager>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

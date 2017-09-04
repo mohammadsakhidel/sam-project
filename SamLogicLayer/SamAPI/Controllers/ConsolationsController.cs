@@ -2,12 +2,14 @@
 using Newtonsoft.Json;
 using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
+using SamAPI.Resources;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
 using SamUtils.Enums;
 using SamUtils.Utils;
+using SmsLib.Objects;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -33,13 +35,15 @@ namespace SamAPI.Controllers
         #region Fields:
         IConsolationRepo _consolationRepo;
         IBlobRepo _blobRepo;
+        ISmsManager _smsManager;
         #endregion
 
         #region Ctors:
-        public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo)
+        public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo, ISmsManager smsManager)
         {
             _consolationRepo = consolationRepo;
             _blobRepo = blobRepo;
+            _smsManager = smsManager;
         }
         #endregion
 
@@ -57,6 +61,11 @@ namespace SamAPI.Controllers
                 consolation.Customer.IsMember = false;
                 _consolationRepo.Add(consolation);
                 _consolationRepo.Save();
+                #endregion
+
+                #region Send SMS To Customer:
+                string messageText = SmsMessages.ConsolationCreationSms;
+                _smsManager.SendAsync(messageText, new string[] { model.Customer.CellPhoneNumber });
                 #endregion
 
                 return Ok(consolation.ID);
