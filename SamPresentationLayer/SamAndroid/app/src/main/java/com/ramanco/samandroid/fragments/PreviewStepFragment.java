@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.activities.BaseActivity;
@@ -77,6 +79,20 @@ public class PreviewStepFragment extends Fragment {
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(focused.getWindowToken(), 0);
             }
+            //endregion
+
+            //region confirm button click:
+            Button btnConfirm = (Button) fragmentView.findViewById(R.id.btn_confirm);
+            btnConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Toast.makeText(getActivity(), "ارسال جهت پرداخت....", Toast.LENGTH_SHORT).show();
+                    } catch (Exception ex) {
+                        ExceptionManager.handle(getActivity(), ex);
+                    }
+                }
+            });
             //endregion
 
         } catch (Exception ex) {

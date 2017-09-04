@@ -94,6 +94,17 @@
         <item name="android:paddingStart">0dp</item>
     </style>
 
+    <style name="AppTheme.BottomButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_bottom_button</item>
+        <item name="android:textColor">@color/btnColorConfirmButtonContrast</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">@dimen/font_size_bit_larger</item>
+        <item name="android:paddingTop">@dimen/widget_margin</item>
+        <item name="android:paddingBottom">@dimen/widget_margin</item>
+    </style>
+
     <style name="AppTheme.StickyListHeader">
         <item name="android:textSize">@dimen/font_size_small</item>
         <item name="android:typeface">serif</item>
@@ -115,4 +126,5 @@
         <item name="android:src">@drawable/ic_zoom_in_white_24dp</item>
     </style>
 
+    <color name="btnColorConfirmButtonContrast">#fff</color>
 </resources>

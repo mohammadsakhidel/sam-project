@@ -20,4 +20,6 @@
     <color name="colorStickyListHeader">#d48500</color>
     <color name="colorStickyListHeaderContrast">#fff</color>
     <color name="colorSelect">#8cddee</color>
+    <color name="btnColorConfirmButton">#00c560</color>
+    <color name="btnColorConfirmButtonDark">#34a054</color>
 </resources>

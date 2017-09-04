@@ -1,46 +1,59 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ramanco.samandroid.fragments.PreviewStepFragment">
 
-    <LinearLayout
-        android:id="@+id/ly_search"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_confirm">
 
         <LinearLayout
+            android:id="@+id/ly_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/AppTheme.TextView.StepHeader"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/step_preview" />
+                android:layout_margin="@dimen/activity_margin"
+                android:orientation="vertical">
 
-            <TextView
-                style="@style/AppTheme.TextView.Comment"
+                <TextView
+                    style="@style/AppTheme.TextView.StepHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/step_preview" />
+
+                <TextView
+                    style="@style/AppTheme.TextView.Comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/step_preview_desc" />
+
+            </LinearLayout>
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/step_preview_desc" />
+                android:layout_marginEnd="@dimen/activity_margin"
+                android:layout_marginStart="@dimen/activity_margin"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="16dp" />
 
         </LinearLayout>
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/img_preview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_margin"
-            android:layout_marginStart="@dimen/activity_margin"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            app:riv_corner_radius="16dp" />
+    </ScrollView>
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_confirm"
+        style="@style/AppTheme.BottomButton"
+        android:layout_alignParentBottom="true"
+        android:text="@string/confirm_and_pay" />
 
-</ScrollView>
+</RelativeLayout>
