@@ -16,10 +16,15 @@ import retrofit2.http.Query;
 public interface ConsolationsApiEndpoint {
 
     @POST(ApiActions.consolations_create)
-    Call<Integer> create(@Body ConsolationDto dto);
+    Call<Map<String, Object>> create(@Body ConsolationDto dto);
+
+    @POST(ApiActions.consolations_find)
+    Call<ConsolationDto[]> find(@Body String[] trackingNumbers);
 
     @PUT(ApiActions.consolations_update + "/{id}")
-    Call<Void> update(@Path("id") int id, @Body Map<String, String> fields, @Query("newstatus") String newStatus);
+    Call<Void> update(@Path("id") int id, @Body Map<String, String> fields,
+                      @Query("newstatus") String newStatus, @Query("obitid") int obitId,
+                      @Query("templateid") int templateId);
 
 }
 

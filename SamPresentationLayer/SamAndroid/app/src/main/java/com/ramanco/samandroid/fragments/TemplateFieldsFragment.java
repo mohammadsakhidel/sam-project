@@ -37,6 +37,7 @@ import com.ramanco.samandroid.utils.VersatileUtility;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,7 +134,8 @@ public class TemplateFieldsFragment extends Fragment {
         TemplateFieldDto[] fields = parentView.getSelectedTemplate().getTemplateFields();
         Map<String, String> values = null;
         if (!TextUtils.isEmpty(parentView.getTemplateInfo())) {
-            Type type = new TypeToken<Map<String, String>>(){}.getType();
+            Type type = new TypeToken<Map<String, String>>() {
+            }.getType();
             values = new Gson().fromJson(parentView.getTemplateInfo(), type);
         }
         for (TemplateFieldDto field : fields) {
@@ -234,16 +236,27 @@ public class TemplateFieldsFragment extends Fragment {
                         ConsolationsApiEndpoint endpoint = ApiUtil.createEndpoint(ConsolationsApiEndpoint.class);
                         if (parentView.getCreatedConsolationId() <= 0) {
                             //region create:
-                            Response<Integer> response = endpoint.create(dto).execute();
+                            Response<Map<String, Object>> response = endpoint.create(dto).execute();
                             if (!response.isSuccessful())
                                 throw new CallServerException(getActivity());
 
-                            final int consolationId = response.body();
+                            Map<String, Object> data = response.body();
+                            final int consolationId = (int) data.get("ID");
                             parentView.setCreatedConsolationId(consolationId);
+                            //endregion
+                            //region save tracking number to prefs:
+                            String trackingNumber = data.get("TrackingNumber").toString();
+                            List<String> trackingNumbers = PrefUtil.getTrackingNumbers(getActivity());
+                            if (trackingNumbers == null)
+                                trackingNumbers = new ArrayList<>();
+                            trackingNumbers.add(trackingNumber);
+                            PrefUtil.setTrackingNumbers(getActivity(), trackingNumbers);
                             //endregion
                         } else {
                             //region update:
-                            Response<Void> response = endpoint.update(parentView.getCreatedConsolationId(), nameValues, "").execute();
+                            Response<Void> response = endpoint.update(parentView.getCreatedConsolationId(),
+                                    nameValues, "", parentView.getSelectedObit().getId(),
+                                    parentView.getSelectedTemplate().getId()).execute();
                             if (!response.isSuccessful())
                                 throw new CallServerException(getActivity());
                             //endregion

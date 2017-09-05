@@ -10,9 +10,12 @@
       <w>getimage</w>
       <w>getpreview</w>
       <w>newstatus</w>
+      <w>nums</w>
+      <w>obitid</w>
       <w>samandroid</w>
       <w>samim</w>
       <w>shabnam</w>
+      <w>templateid</w>
     </words>
   </dictionary>
 </component>

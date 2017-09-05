@@ -9,4 +9,5 @@ public class ApiActions {
     public static final String consolations_create = "consolations/create";
     public static final String consolations_update = "consolations/update";
     public static final String consolations_getpreview = "consolations/getpreview";
+    public static final String consolations_find = "consolations/find";
 }
