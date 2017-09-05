@@ -16,5 +16,7 @@ namespace SamDataAccess.Repos.Interfaces
         List<Consolation> Filter(int cityId, string status, int count);
 
         bool IsDisplayed(int id);
+
+        List<Consolation> Find(string[] trackingNumbers);
     }
 }

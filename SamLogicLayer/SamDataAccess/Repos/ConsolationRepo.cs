@@ -93,5 +93,10 @@ namespace SamDataAccess.Repos
                         select d.ID;
             return query.Any();
         }
+
+        public List<Consolation> Find(string[] trackingNumbers)
+        {
+            return set.Where(c => trackingNumbers.Contains(c.TrackingNumber)).ToList();
+        }
     }
 }

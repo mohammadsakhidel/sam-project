@@ -62,7 +62,8 @@ namespace SamAPI.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to * سام *
-        ///کاربر گرامی، پیام تسلیت شما در سیستم ثبت گردید، پس از انجام مراحل پرداخت و تأیید نهایی، در مسجد به نمایش در خواهد آمد..
+        ///کاربر گرامی، پیام تسلیت شما در سیستم ثبت گردید، پس از انجام مراحل پرداخت و تأیید نهایی، در مسجد به نمایش در خواهد آمد.
+        ///کد رهگیری: {0}.
         /// </summary>
         public static string ConsolationCreationSms {
             get {

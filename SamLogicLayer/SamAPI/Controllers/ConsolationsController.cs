@@ -64,11 +64,30 @@ namespace SamAPI.Controllers
                 #endregion
 
                 #region Send SMS To Customer:
-                string messageText = SmsMessages.ConsolationCreationSms;
-                _smsManager.SendAsync(messageText, new string[] { model.Customer.CellPhoneNumber });
+                try
+                {
+                    string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
+                    _smsManager.SendAsync(messageText, new string[] { model.Customer.CellPhoneNumber });
+                }
+                catch { }
                 #endregion
 
-                return Ok(consolation.ID);
+                return Ok(new { ID = consolation.ID, TrackingNumber = consolation.TrackingNumber });
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpPost]
+        public IHttpActionResult Find([FromBody] string[] trackingNumbers)
+        {
+            try
+            {
+                var consolations = _consolationRepo.Find(trackingNumbers);
+                var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c)).ToList();
+                return Ok(dtos);
             }
             catch (Exception ex)
             {
@@ -84,13 +103,7 @@ namespace SamAPI.Controllers
             try
             {
                 var consolations = _consolationRepo.Filter(cityId, status, count);
-                var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c, opts =>
-                {
-                    opts.AfterMap((mdl, dto) =>
-                    {
-                        dto.Template = Mapper.Map<Template, TemplateDto>(mdl.Template);
-                    });
-                })).ToList();
+                var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c)).ToList();
                 return Ok(dtos);
             }
             catch (Exception ex)
@@ -139,7 +152,8 @@ namespace SamAPI.Controllers
 
         #region PUT ACTIONS:
         [HttpPut]
-        public IHttpActionResult Update(int id, string newStatus, Dictionary<string, string> fields)
+        public IHttpActionResult Update(int id, string newStatus, Dictionary<string, string> fields,
+            int obitId = -1, int templateId = -1)
         {
             try
             {
@@ -148,6 +162,12 @@ namespace SamAPI.Controllers
                     return NotFound();
 
                 #region update fields:
+                if (obitId > 0)
+                    consolationToEdit.ObitID = obitId;
+
+                if (templateId > 0)
+                    consolationToEdit.TemplateID = templateId;
+
                 if (fields.ContainsKey("Audience"))
                     consolationToEdit.Audience = fields["Audience"];
                 if (fields.ContainsKey("From"))
@@ -163,11 +183,15 @@ namespace SamAPI.Controllers
                     var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), newStatus);
                     if (newstatus == ConsolationStatus.confirmed)
                     {
-                        //future: verify payment if no problem then change the status to cofirmed.
+                        // TODO: verify payment if no problem then change the status to cofirmed.
                         if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
                         {
                             var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
                             consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                        }
+                        else
+                        {
+                            consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
                         }
                     }
                     else if (newstatus == ConsolationStatus.canceled)
@@ -238,7 +262,7 @@ namespace SamAPI.Controllers
                     var fontFamilies = Fonts.GetFontFamilies(fontsFolder).ToList();
                     var fontFamily = fontFamilies.Where(ff => ff.FamilyNames.Values.Contains(field.FontFamily)).FirstOrDefault();
                     if (fontFamily != null)
-                        textBlock.FontFamily = fontFamily; 
+                        textBlock.FontFamily = fontFamily;
 
                     textBlock.FontSize = StringToFontSize(field.FontSize);
 
