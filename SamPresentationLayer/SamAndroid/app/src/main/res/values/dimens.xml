@@ -21,4 +21,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="widget_margin_half">4dp</dimen>
     <dimen name="list_view_image_size">80dp</dimen>
+    <dimen name="list_view_rounded_image_size">64dp</dimen>
+    <dimen name="list_view_rounded_image_radius">32dp</dimen>
 </resources>

@@ -57,4 +57,8 @@
     <string name="consolation_pending">منتظر تأیید</string>
     <string name="consolation_confirmed">تأیید شده</string>
     <string name="tracking">رهگیری پیام</string>
+    <string name="track_consolation_step_header">رهگیری پیام تسلیت</string>
+    <string name="track_consolation_step_desc">لطفاً کد رهگیری دریافتی را وارد نمایید:</string>
+    <string name="tracking_number">کد رهگیری</string>
+    <string name="msg_no_result_found">موردی یافت نشد</string>
 </resources>
