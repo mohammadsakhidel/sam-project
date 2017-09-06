@@ -37,6 +37,7 @@ public class SendConsolationFragment extends Fragment {
     private boolean prevVisible = false;
     private Runnable onNextClickListener;
     private Runnable onPreviousClickListener;
+    private boolean loadFromPreview = false;
     //endregion
 
     //region Overrides:
@@ -65,7 +66,10 @@ public class SendConsolationFragment extends Fragment {
         try {
 
             updateNavButtonsStat();
-            showMosqueSelectionStep();
+            if (!loadFromPreview)
+                showMosqueSelectionStep();
+            else
+                showPreviewStep();
 
             //region next prev on click:
             ImageButton btnNext = (ImageButton) fragmentView.findViewById(R.id.btn_next);
@@ -154,7 +158,7 @@ public class SendConsolationFragment extends Fragment {
         transaction.commit();
     }
 
-    public void showPreviewStep(){
+    public void showPreviewStep() {
         PreviewStepFragment fragment = new PreviewStepFragment();
         fragment.setParentView(this);
 
@@ -238,6 +242,14 @@ public class SendConsolationFragment extends Fragment {
 
     public void setCreatedConsolationId(int createdConsolationId) {
         this.createdConsolationId = createdConsolationId;
+    }
+
+    public boolean isLoadFromPreview() {
+        return loadFromPreview;
+    }
+
+    public void setLoadFromPreview(boolean loadFromPreview) {
+        this.loadFromPreview = loadFromPreview;
     }
 
     //endregion

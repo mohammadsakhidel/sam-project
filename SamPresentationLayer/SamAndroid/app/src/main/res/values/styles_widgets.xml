@@ -117,7 +117,16 @@
         <item name="android:layout_width">@dimen/list_view_image_size</item>
         <item name="android:layout_height">@dimen/list_view_image_size</item>
         <item name="android:scaleType">centerCrop</item>
-        <item name="android:background">@color/colorNeutralBlack</item>
+        <item name="android:background">@color/colorNeutralDark</item>
+    </style>
+
+    <style name="AppTheme.ListViewRoundedImageIcon">
+        <item name="android:layout_width">@dimen/list_view_rounded_image_size</item>
+        <item name="android:layout_height">@dimen/list_view_rounded_image_size</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="riv_corner_radius">@dimen/list_view_rounded_image_radius</item>
+        <item name="android:layout_margin">@dimen/widget_margin</item>
     </style>
 
     <style name="AppTheme.ListViewImageIconZoomIn">
@@ -126,5 +135,6 @@
         <item name="android:src">@drawable/ic_zoom_in_white_24dp</item>
     </style>
 
-    <color name="btnColorConfirmButtonContrast">#fff</color>
+    <dimen name="list_view_rounded_image_size">64dp</dimen>
+    <dimen name="list_view_rounded_image_radius">32dp</dimen>
 </resources>

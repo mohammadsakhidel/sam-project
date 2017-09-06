@@ -55,9 +55,17 @@ public class ConsolationDto {
     String trackingNumber;
     //endregion
 
-    //region navigations:
+    //region navigation:
+    @Expose
+    @SerializedName("Customer")
     CustomerDto customer;
+
+    @Expose
+    @SerializedName("Obit")
     ObitDto obit;
+
+    @Expose
+    @SerializedName("Template")
     TemplateDto template;
     //endregion
 

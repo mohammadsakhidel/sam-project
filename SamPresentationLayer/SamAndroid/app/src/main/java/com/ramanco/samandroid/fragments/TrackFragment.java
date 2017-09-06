@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.utils.ExceptionManager;
 
-public class SettingsFragment extends Fragment {
+public class TrackFragment extends Fragment {
 
 
-    public SettingsFragment() {
+    public TrackFragment() {
         // Required empty public constructor
     }
 
@@ -21,7 +21,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View fragmentView = inflater.inflate(R.layout.fragment_settings, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_track, container, false);
 
         try {
 

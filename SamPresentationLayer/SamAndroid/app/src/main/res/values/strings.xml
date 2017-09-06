@@ -45,4 +45,16 @@
     <string name="step_preview">پیش نمایش</string>
     <string name="step_preview_desc">جهت بزرگنمایی تصویر را لمس نمایید.</string>
     <string name="confirm_and_pay">تأیید و پرداخت مبلغ</string>
+    <string name="consolation_history_title">تاریخچه پیام های تسلیت ارسالی</string>
+    <string name="obit">مراسم</string>
+    <string name="cost">هزینه</string>
+    <string name="payment_failed">پرداخت ناموفق</string>
+    <string name="payment_succeeded">پرداخت شده</string>
+    <string name="payment_pending">منتظر پرداخت</string>
+    <string name="status">وضعیت</string>
+    <string name="consolation_canceled">لغو شده</string>
+    <string name="consolation_displayed">نمایش یافته</string>
+    <string name="consolation_pending">منتظر تأیید</string>
+    <string name="consolation_confirmed">تأیید شده</string>
+    <string name="tracking">رهگیری پیام</string>
 </resources>

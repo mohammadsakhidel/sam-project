@@ -21,7 +21,7 @@ import com.ramanco.samandroid.api.dtos.CustomerDto;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.fragments.HistoryFragment;
 import com.ramanco.samandroid.fragments.SendConsolationFragment;
-import com.ramanco.samandroid.fragments.SettingsFragment;
+import com.ramanco.samandroid.fragments.TrackFragment;
 import com.ramanco.samandroid.utils.PrefUtil;
 
 public class MainActivity extends BaseActivity {
@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity {
                                 fragment = new HistoryFragment();
                                 break;
                             case R.id.mi_settings:
-                                fragment = new SettingsFragment();
+                                fragment = new TrackFragment();
                                 break;
                         }
                         //endregion
@@ -104,14 +104,14 @@ public class MainActivity extends BaseActivity {
     //endregion
 
     //region Methods:
-    private void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.ly_main_content, fragment);
         fragmentTransaction.commit();
     }
 
-    private void setDefaultFragment(int defaultFragmentIndex, Fragment defaultFragment) {
+    public void setDefaultFragment(int defaultFragmentIndex, Fragment defaultFragment) {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         Menu navigationMenu = navigation.getMenu();
         MenuItem navigationMenuItem = navigationMenu.getItem(defaultFragmentIndex);
@@ -119,6 +119,12 @@ public class MainActivity extends BaseActivity {
         replaceFragment(defaultFragment);
     }
 
+    public void setBottomNavigationIndex(int index) {
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        Menu navigationMenu = navigation.getMenu();
+        MenuItem navigationMenuItem = navigationMenu.getItem(index);
+        navigationMenuItem.setChecked(true);
+    }
     //endregion
 
 }

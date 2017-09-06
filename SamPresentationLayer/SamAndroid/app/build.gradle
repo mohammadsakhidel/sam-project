@@ -19,6 +19,11 @@ android {
     }
 }
 
+repositories {
+    maven { url 'http://chuross.github.com/maven-repository/' }
+    //maven { url "https://jitpack.io" }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -37,4 +42,5 @@ dependencies {
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'com.github.chuross:expandablelayout:1.0.3'
 }

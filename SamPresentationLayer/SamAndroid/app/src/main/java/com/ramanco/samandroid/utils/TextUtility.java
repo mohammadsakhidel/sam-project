@@ -12,6 +12,8 @@ import android.util.Base64;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -27,6 +29,16 @@ public class TextUtility {
             res = res.append(tmp);
         }
         return res.toString();
+    }
+
+    public static List<String> removeEmpties(List<String> list) {
+        List<String> res = new ArrayList<>();
+        for (String s : list) {
+            if (!TextUtils.isEmpty(s)) {
+                res.add(s);
+            }
+        }
+        return res;
     }
 
     public static boolean isEmailValid(String email) {

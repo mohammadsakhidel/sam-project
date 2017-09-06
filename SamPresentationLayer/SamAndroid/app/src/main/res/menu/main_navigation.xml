@@ -7,6 +7,6 @@
         android:title="@string/consolation_history"
         android:icon="@drawable/ic_history_white_24dp" />
     <item android:id="@+id/mi_settings"
-        android:title="@string/settings"
+        android:title="@string/tracking"
         android:icon="@drawable/ic_settings_white_24dp" />
 </menu>

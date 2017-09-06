@@ -44,9 +44,9 @@ public class PrefUtil {
         if (preferences != null) {
             String listString = preferences.getString(PREF_TRACKING_NUMS, "");
             String[] array = listString.split(Patterns.STRING_LIST__SEP);
-            return Arrays.asList(array);
+            return new ArrayList<>(Arrays.asList(array));
         }
-        return null;
+        return new ArrayList<>();
     }
     //endregion
 
@@ -66,6 +66,7 @@ public class PrefUtil {
     }
 
     public static void setTrackingNumbers(Context context, List<String> trackingNumbers) {
+        trackingNumbers = TextUtility.removeEmpties(trackingNumbers);
         SharedPreferences preferences = context.getSharedPreferences(PREF_MAIN, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         String listString = TextUtility.concat(trackingNumbers.toArray(new String[trackingNumbers.size()]), ',', false);

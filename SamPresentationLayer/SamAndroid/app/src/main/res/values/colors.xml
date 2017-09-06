@@ -22,4 +22,10 @@
     <color name="colorSelect">#8cddee</color>
     <color name="btnColorConfirmButton">#00c560</color>
     <color name="btnColorConfirmButtonDark">#34a054</color>
+    <color name="btnColorConfirmButtonContrast">#fff</color>
+    <!--Status Color-->
+    <color name="colorStatusFailed">#c61b1b</color>
+    <color name="colorStatusOK">#17aa35</color>
+    <color name="colorStatusPending">#c6841b</color>
+    <color name="colorStatusOKDark">#055e17</color>
 </resources>

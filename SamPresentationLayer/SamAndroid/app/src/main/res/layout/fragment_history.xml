@@ -1,13 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ramanco.samandroid.fragments.HistoryFragment"
-    android:background="#FF9865">
+    tools:context="com.ramanco.samandroid.fragments.HistoryFragment">
 
     <TextView
+        android:id="@+id/tv_title"
+        style="@style/AppTheme.TextView.StepHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/activity_margin"
+        android:text="@string/consolation_history_title" />
+
+    <ListView
+        android:id="@+id/lv_items"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="History fragment" />
+        android:layout_below="@+id/tv_title" />
 
-</FrameLayout>
+</RelativeLayout>

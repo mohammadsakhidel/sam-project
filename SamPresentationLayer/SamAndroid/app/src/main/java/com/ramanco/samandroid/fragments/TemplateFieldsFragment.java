@@ -241,16 +241,18 @@ public class TemplateFieldsFragment extends Fragment {
                                 throw new CallServerException(getActivity());
 
                             Map<String, Object> data = response.body();
-                            final int consolationId = (int) data.get("ID");
+                            final int consolationId = ((Double) data.get("ID")).intValue();
                             parentView.setCreatedConsolationId(consolationId);
                             //endregion
                             //region save tracking number to prefs:
                             String trackingNumber = data.get("TrackingNumber").toString();
-                            List<String> trackingNumbers = PrefUtil.getTrackingNumbers(getActivity());
-                            if (trackingNumbers == null)
-                                trackingNumbers = new ArrayList<>();
-                            trackingNumbers.add(trackingNumber);
-                            PrefUtil.setTrackingNumbers(getActivity(), trackingNumbers);
+                            if (!TextUtils.isEmpty(trackingNumber.replace(" ", ""))) {
+                                List<String> trackingNumbers = PrefUtil.getTrackingNumbers(getActivity());
+                                if (trackingNumbers == null)
+                                    trackingNumbers = new ArrayList<>();
+                                trackingNumbers.add(trackingNumber);
+                                PrefUtil.setTrackingNumbers(getActivity(), trackingNumbers);
+                            }
                             //endregion
                         } else {
                             //region update:
