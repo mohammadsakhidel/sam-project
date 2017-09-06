@@ -127,12 +127,17 @@ namespace SamAPI.Controllers
 
                 #region generate preview image:
                 var imgBlob = (ImageBlob)blob;
-                var imgBytes = thumb.HasValue && thumb.Value ? imgBlob.ThumbImageBytes : imgBlob.Bytes;
+                var imgBytes = imgBlob.Bytes;
                 var imgBitmap = IOUtils.ByteArrayToBitmap(imgBytes);
                 var tempBitmap = GeneratePreview(consolation, imgBitmap);
                 var previewBitmap = new Bitmap(tempBitmap);
                 tempBitmap.Dispose();
                 tempBitmap = null;
+                if (thumb.HasValue && thumb.Value)
+                {
+                    var resizer = new ImageResizer(previewBitmap.Width, previewBitmap.Height, ResizeType.ShorterFix, 100);
+                    previewBitmap = ImageUtils.GetThumbnailImage(previewBitmap, resizer.NewWidth, resizer.NewHeight);
+                }
                 var previewBytes = IOUtils.BitmapToByteArray(previewBitmap, System.Drawing.Imaging.ImageFormat.Jpeg);
                 #endregion
 
