@@ -38,7 +38,7 @@ public class LauncherActivity extends BaseActivity {
                                         String customerInfo = PrefUtil.getCustomerInfo(LauncherActivity.this);
                                         if (TextUtils.isEmpty(customerInfo)) {
                                             //region customer info step:
-                                            Intent intent = new Intent(LauncherActivity.this, CustomerInfoActivity.class);
+                                            Intent intent = new Intent(LauncherActivity.this, OnStartupCustomerInfoActivity.class);
                                             LauncherActivity.this.startActivity(intent);
                                             finish();
                                             //endregion
@@ -52,7 +52,7 @@ public class LauncherActivity extends BaseActivity {
 
                                     } else {
                                         //region start city selection activity:
-                                        Intent intent = new Intent(LauncherActivity.this, CitySelectionActivity.class);
+                                        Intent intent = new Intent(LauncherActivity.this, OnStartupCitySelectionActivity.class);
                                         LauncherActivity.this.startActivity(intent);
                                         finish();
                                         //endregion

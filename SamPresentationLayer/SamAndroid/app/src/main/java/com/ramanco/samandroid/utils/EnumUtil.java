@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.enums.ConsolationStatus;
+import com.ramanco.samandroid.enums.ObitType;
 import com.ramanco.samandroid.enums.PaymentStatus;
 
 public class EnumUtil {
@@ -59,4 +60,23 @@ public class EnumUtil {
         return ContextCompat.getColor(context, R.color.colorTextPrimary);
     }
 
+    public static String getObitTypeText(Context context, ObitType obitType) {
+        switch (obitType) {
+            case chehelom:
+                return context.getResources().getString(R.string.obit_type_chehelom);
+            case haftom:
+                return context.getResources().getString(R.string.obit_type_haftom);
+            case salgard:
+                return context.getResources().getString(R.string.obit_type_salgard);
+            case sevom:
+                return context.getResources().getString(R.string.obit_type_sevom);
+            case tarhim:
+                return context.getResources().getString(R.string.obit_type_tarhim);
+            case yadbood:
+                return context.getResources().getString(R.string.obit_type_yadbood);
+            case sayer:
+                return context.getResources().getString(R.string.obit_type_sayer);
+        }
+        return "";
+    }
 }

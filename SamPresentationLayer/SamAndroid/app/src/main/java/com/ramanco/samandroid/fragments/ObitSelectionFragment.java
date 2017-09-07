@@ -16,9 +16,11 @@ import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.adapters.PairAdapter;
 import com.ramanco.samandroid.api.dtos.ObitDto;
 import com.ramanco.samandroid.api.endpoints.ObitsApiEndpoint;
+import com.ramanco.samandroid.enums.ObitType;
 import com.ramanco.samandroid.exceptions.CallServerException;
 import com.ramanco.samandroid.objects.KeyValuePair;
 import com.ramanco.samandroid.utils.ApiUtil;
+import com.ramanco.samandroid.utils.EnumUtil;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.utils.UxUtil;
 import com.rey.material.widget.EditText;
@@ -236,7 +238,7 @@ public class ObitSelectionFragment extends Fragment {
             KeyValuePair pair = new KeyValuePair(Integer.toString(o.getId()), o.getTitle());
             pair.setDesc(String.format("%s: %s",
                     getActivity().getResources().getString(R.string.obit_type),
-                    o.getObitType()));
+                    EnumUtil.getObitTypeText(getActivity(), ObitType.valueOf(o.getObitType()))));
             pair.setTag(o);
             pairs[i] = pair;
         }

@@ -50,4 +50,13 @@ public class CityUtil {
 
     }
 
+    public static KeyValuePair find(Context context, int cityId) throws IOException, SAXException, ParserConfigurationException {
+        List<KeyValuePair> all = getAllCities(context);
+        for (KeyValuePair kv : all) {
+            if (kv.getKey().equals(Integer.toString(cityId)))
+                return kv;
+        }
+        return null;
+    }
+
 }

@@ -19,8 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CitySelectionActivity" />
-        <activity android:name=".activities.CustomerInfoActivity"></activity>
+        <activity android:name=".activities.OnStartupCitySelectionActivity" />
+        <activity android:name=".activities.CitySelectionActivity" android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.OnStartupCustomerInfoActivity" />
+        <activity android:name=".activities.CustomerInfoActivity" android:parentActivityName=".activities.MainActivity" />
     </application>
 
 </manifest>

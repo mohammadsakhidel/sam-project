@@ -2,6 +2,7 @@
   <dictionary name="Sakhidel">
     <words>
       <w>attacher</w>
+      <w>chehelom</w>
       <w>cityid</w>
       <w>dtos</w>
       <w>findbycity</w>
@@ -9,13 +10,18 @@
       <w>getallobits</w>
       <w>getimage</w>
       <w>getpreview</w>
+      <w>haftom</w>
       <w>newstatus</w>
       <w>nums</w>
       <w>obitid</w>
+      <w>salgard</w>
       <w>samandroid</w>
       <w>samim</w>
+      <w>sevom</w>
       <w>shabnam</w>
+      <w>tarhim</w>
       <w>templateid</w>
+      <w>yadbood</w>
     </words>
   </dictionary>
 </component>

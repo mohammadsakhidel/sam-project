@@ -11,4 +11,24 @@
         <item name="android:layoutDirection">rtl</item>
     </style>
 
+    <style name="AppTheme.MainPageLogo">
+        <item name="android:layout_width">128dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:src">@drawable/img_main_page_logo</item>
+        <item name="android:tint">@color/colorPrimaryDark</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="AppTheme.MainPageWelcomeText">
+        <item name="android:textSize">@dimen/font_size_bit_smaller</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:layout_marginTop">@dimen/container_margin</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxWidth">256dp</item>
+        <item name="android:lineSpacingExtra">12dp</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
 </resources>

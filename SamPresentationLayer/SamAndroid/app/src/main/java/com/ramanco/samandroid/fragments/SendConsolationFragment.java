@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
-import com.ramanco.samandroid.activities.CitySelectionActivity;
+import com.ramanco.samandroid.activities.OnStartupCitySelectionActivity;
 import com.ramanco.samandroid.api.dtos.MosqueDto;
 import com.ramanco.samandroid.api.dtos.ObitDto;
 import com.ramanco.samandroid.api.dtos.TemplateDto;
@@ -49,7 +48,7 @@ public class SendConsolationFragment extends Fragment {
             //region check city id:
             int cityId = PrefUtil.getCityID(getActivity());
             if (cityId <= 0) {
-                Intent intent = new Intent(getActivity(), CitySelectionActivity.class);
+                Intent intent = new Intent(getActivity(), OnStartupCitySelectionActivity.class);
                 startActivity(intent);
             }
             //endregion

@@ -42,6 +42,19 @@ public class CustomerSpecsFragment extends Fragment {
         View fragmentView = inflater.inflate(R.layout.fragment_customer_specs, container, false);
 
         try {
+            //region load current:
+            String customerInfoJson = PrefUtil.getCustomerInfo(getActivity());
+            if (!TextUtils.isEmpty(customerInfoJson)) {
+                CustomerDto customer = new Gson().fromJson(customerInfoJson, CustomerDto.class);
+                if (customer != null) {
+                    EditText etFullName = (EditText) fragmentView.findViewById(R.id.et_fullname);
+                    EditText etCellPhone = (EditText) fragmentView.findViewById(R.id.et_cellphone);
+
+                    etFullName.setText(customer.getFullName());
+                    etCellPhone.setText(customer.getCellPhoneNumber());
+                }
+            }
+            //endregion
             setHasOptionsMenu(true);
         } catch (Exception ex) {
             ExceptionManager.handle(getActivity(), ex);
@@ -57,6 +70,8 @@ public class CustomerSpecsFragment extends Fragment {
         } catch (Exception ex) {
             ExceptionManager.handle(getActivity(), ex);
         }
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -98,11 +113,11 @@ public class CustomerSpecsFragment extends Fragment {
                 }
             }
 
-            return true;
         } catch (Exception ex) {
             ExceptionManager.handle(getActivity(), ex);
-            return false;
         }
+
+        return super.onOptionsItemSelected(item);
     }
     //endregion
 
