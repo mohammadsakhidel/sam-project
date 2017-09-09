@@ -14,7 +14,7 @@ namespace SamWeb.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Create", "Consolations");
+            return View();
         }
 
         public JsonResult GetProvinceCities(int id)

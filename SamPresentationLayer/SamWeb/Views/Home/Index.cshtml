@@ -1,6 +1,14 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-@Html.ActionLink(Strings.RegisterConsolation, "Create", "Consolations", null, new { @class = "btn btn-primary" })
+@Html.Partial("Partials/_HomeSlideshow")
+
+<div class="row">
+    <div class="col-md-6">
+        @Html.Frame(Strings.AboutSam, Strings.AboutSamExplanation)
+    </div>
+    <div class="col-md-6">
+        @Html.Frame(Strings.HowToUse, Strings.HowToUseExplanation)
+    </div>
+</div>

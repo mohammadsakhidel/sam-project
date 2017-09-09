@@ -135,6 +135,9 @@
     <Content Include="Content\SamThemes\DefaultTheme\Images\logo.png" />
     <Content Include="Content\SamThemes\DefaultTheme\layout.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\styles.min.css" />
+    <Content Include="Content\Slideshow\slide1.jpg" />
+    <Content Include="Content\Slideshow\slide2.jpg" />
+    <Content Include="Content\Slideshow\slide3.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -238,6 +241,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Code\Constants\Urls.cs" />
+    <Compile Include="Code\Extensions\HtmlHelpers.cs" />
     <Compile Include="Code\MvcExtensions\ModelBinders\CreateConsolationStep2ModelBinder.cs" />
     <Compile Include="Code\MvcExtensions\ModelBinders\CreateConsolationTemplateInfoStepModelBinder.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />
@@ -282,6 +286,7 @@
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_CustomerInfo.cshtml" />
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_TemplateInfoStep.cshtml" />
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_SuccessStep.cshtml" />
+    <Content Include="Views\Shared\Partials\_HomeSlideshow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

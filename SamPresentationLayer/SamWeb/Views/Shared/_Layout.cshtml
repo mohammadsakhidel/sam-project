@@ -25,24 +25,75 @@
                 </div>
 
                 <!--Collapse Button-->
-                <button type="button" class="navbar-toggle"
+                <button type="button" class="navbar-toggle visible-xs visible-sm hidden-md hidden-lg"
                         data-toggle="collapse" data-target="#navToCollapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
 
+                <!--Desktop Menu-->
+                <div class="desktop-menu hidden-xs hidden-sm visible-md visible-lg">
+                    <span>
+                        <label class="glyphicon glyphicon-download-alt"></label>
+                        <a>@Strings.DownloadApp</a>
+                    </span>
+                    <span>
+                        <label class="glyphicon glyphicon-send"></label>
+                        <a>@Strings.ContactUs</a>
+                    </span>
+                    <span>
+                        <label class="glyphicon glyphicon-info-sign"></label>
+                        <a>@Strings.MosqueBrowser</a>
+                    </span>
+                    <span>
+                        <label class="glyphicon glyphicon-search"></label>
+                        <a>@Strings.TrackConsolation</a>
+                    </span>
+                    <span>
+                        <label class="glyphicon glyphicon-plus"></label>
+                        @Html.ActionLink(@Strings.SendConsolation, "Create", "Consolations")
+                    </span>
+                </div>
+
             </div>
         </nav>
         <div class="clear"></div>
 
         <!--Collapsable Menu-->
-        <div id="navToCollapse" class="collapse">
+        <div id="navToCollapse" class="mobile-menu container collapse hidden-md hidden-lg">
+            <span>
+                <label class="glyphicon glyphicon-plus"></label>
+                @Html.ActionLink(@Strings.SendConsolation, "Create", "Consolations")
+            </span>
+            <span>
+                <label class="glyphicon glyphicon-search"></label>
+                <a>@Strings.TrackConsolation</a>
+            </span>
+            <span>
+                <label class="glyphicon glyphicon-info-sign"></label>
+                <a>@Strings.MosqueBrowser</a>
+            </span>
+            <span>
+                <label class="glyphicon glyphicon-send"></label>
+                <a>@Strings.ContactUs</a>
+            </span>
+            <span>
+                <label class="glyphicon glyphicon-download-alt"></label>
+                <a>@Strings.DownloadApp</a>
+            </span>
         </div>
 
         <!--Body-->
         <div class="container main-body">
             @RenderBody()
+        </div>
+
+        <!--Footer-->
+        <div class="container footer">
+            @Strings.Footer
+            &copy;
+            @DateTime.Now.Year
         </div>
     </body>
 </html>

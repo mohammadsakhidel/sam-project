@@ -61,6 +61,24 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to درباره پروژه سام.
+        /// </summary>
+        public static string AboutSam {
+            get {
+                return ResourceManager.GetString("AboutSam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمت [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AboutSamExplanation {
+            get {
+                return ResourceManager.GetString("AboutSamExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سامانه اطلاع رسانی مساجد.
         /// </summary>
         public static string AppDescription {
@@ -133,6 +151,15 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ارتباط با ما.
+        /// </summary>
+        public static string ContactUs {
+            get {
+                return ResourceManager.GetString("ContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مشخصات شما.
         /// </summary>
         public static string CreateConsolationCustomerInfoStep {
@@ -178,6 +205,24 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to دریافت اَپ موبایل.
+        /// </summary>
+        public static string DownloadApp {
+            get {
+                return ResourceManager.GetString("DownloadApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to محصول شرکت آرت استون ایرانیان.
+        /// </summary>
+        public static string Footer {
+            get {
+                return ResourceManager.GetString("Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام و نام خانوادگی.
         /// </summary>
         public static string FullName {
@@ -187,11 +232,38 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to راهنمای استفاده.
+        /// </summary>
+        public static string HowToUse {
+            get {
+                return ResourceManager.GetString("HowToUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه است [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HowToUseExplanation {
+            get {
+                return ResourceManager.GetString("HowToUseExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مسجد.
         /// </summary>
         public static string Mosque {
             get {
                 return ResourceManager.GetString("Mosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مساجد.
+        /// </summary>
+        public static string MosqueBrowser {
+            get {
+                return ResourceManager.GetString("MosqueBrowser", resourceCulture);
             }
         }
         
@@ -255,6 +327,24 @@ namespace SamWeb.Resources {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال پیام تسلیت.
+        /// </summary>
+        public static string SendConsolation {
+            get {
+                return ResourceManager.GetString("SendConsolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رهگیری پیام.
+        /// </summary>
+        public static string TrackConsolation {
+            get {
+                return ResourceManager.GetString("TrackConsolation", resourceCulture);
             }
         }
     }

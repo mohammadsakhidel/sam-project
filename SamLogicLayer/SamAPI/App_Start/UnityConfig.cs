@@ -21,6 +21,7 @@ namespace SamAPI
             container.RegisterType<IBlobRepo, BlobRepo>();
             container.RegisterType<IObitRepo, ObitRepo>();
             container.RegisterType<IConsolationRepo, ConsolationRepo>();
+            container.RegisterType<ICustomerRepo, CustomerRepo>();
             container.RegisterType<IDisplayRepo, DisplayRepo>();
             container.RegisterType<IIdentityRepo, IdentityRepo>();
             container.RegisterType<ISmsManager, SmsDotIrSmsManager>();

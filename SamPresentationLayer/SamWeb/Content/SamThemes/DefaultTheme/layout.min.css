@@ -21,20 +21,20 @@
 */
 
 @font-face {
-  font-family: '_samim';
-  src: url('Fonts/Samim.eot'); /* IE9 Compat Modes */
-  src: url('Fonts/Samim.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('Fonts/Samim.woff') format('woff'), /* Pretty Modern Browsers */
-       url('Fonts/Samim.ttf')  format('truetype'); /* Safari, Android, iOS */
+    font-family: '_samim';
+    src: url('Fonts/Samim.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/Samim.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/Samim.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Fonts/Samim.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
 @font-face {
-  font-family: '_vazir';
-  src: url('Fonts/Vazir.eot'); /* IE9 Compat Modes */
-  src: url('Fonts/Vazir.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('Fonts/Vazir.woff2') format('woff2'), /* Super Modern Browsers */
-       url('Fonts/Vazir.woff') format('woff'), /* Pretty Modern Browsers */
-       url('Fonts/Vazir.ttf')  format('truetype'); /* Safari, Android, iOS */
+    font-family: '_vazir';
+    src: url('Fonts/Vazir.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/Vazir.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/Vazir.woff2') format('woff2'), /* Super Modern Browsers */
+    url('Fonts/Vazir.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Fonts/Vazir.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
 body {
@@ -48,12 +48,12 @@ nav.navbar {
     padding: 0;
     border-radius: 0;
     margin: 0;
-    height: 70px;
+    height: 80px;
 }
 
     nav.navbar .logo {
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         float: right;
         background-image: url(Images/logo.png);
         background-size: cover;
@@ -67,7 +67,7 @@ nav.navbar {
         font-family: _vazir;
         float: right;
         color: #282829;
-        margin: 10px 10px 0 0;
+        margin: 15px 10px 0 0;
     }
 
         nav.navbar .title > h1 {
@@ -84,17 +84,72 @@ nav.navbar {
             margin-top: 10px;
         }
 
+    nav.navbar .desktop-menu {
+        float: left;
+        margin-top: 35px;
+    }
+
+        nav.navbar .desktop-menu > span {
+            float: left;
+            font-weight: bold;
+            margin-right: 20px;
+            display: block;
+            font-family: _vazir;
+        }
+
+            nav.navbar .desktop-menu > span > label {
+                color: #f2c812;
+                font-size: large;
+                margin-left: 5px;
+                margin-top: 1px;
+                display: block;
+                float: right;
+            }
+
+            nav.navbar .desktop-menu > span > a {
+                color: #282829;
+                display: block;
+                float: right;
+            }
+
+.mobile-menu > span {
+    font-weight: bold;
+    display: block;
+    font-family: _vazir;
+    background-color: #282829;
+    padding: 6px 6px;
+    border-bottom: solid 1px #fff;
+}
+
+    .mobile-menu > span > label {
+        color: #fff;
+        margin-left: 5px;
+    }
+
+    .mobile-menu > span > a {
+        color: #fff;
+    }
+
 button.navbar-toggle {
     float: left !important;
     padding: 3px;
     margin: 25px 0 0 0;
-    background-color: #282829;
+    background-color: #fff;
 }
 
 .icon-bar {
-    background-color: #fff !important;
+    background-color: #000 !important;
+    height: 3px !important;
 }
 
 .main-body {
-    padding: 16px;
+}
+
+.footer {
+    border-top: solid 1px #e6e7e8;
+    padding: 10px;
+    text-align: center;
+    color: #808080;
+    font-size: small;
+    margin-top: 16px;
 }

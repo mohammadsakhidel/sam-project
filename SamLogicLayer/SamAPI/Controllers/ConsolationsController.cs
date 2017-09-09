@@ -36,14 +36,17 @@ namespace SamAPI.Controllers
         IConsolationRepo _consolationRepo;
         IBlobRepo _blobRepo;
         ISmsManager _smsManager;
+        ICustomerRepo _customerRepo;
         #endregion
 
         #region Ctors:
-        public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo, ISmsManager smsManager)
+        public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo, 
+            ISmsManager smsManager, ICustomerRepo customerRepo)
         {
             _consolationRepo = consolationRepo;
             _blobRepo = blobRepo;
             _smsManager = smsManager;
+            _customerRepo = customerRepo;
         }
         #endregion
 
@@ -58,7 +61,18 @@ namespace SamAPI.Controllers
                 consolation.TrackingNumber = IDGenerator.GenerateTrackingNumber();
                 consolation.CreationTime = DateTimeUtils.Now;
                 consolation.LastUpdateTime = consolation.CreationTime;
-                consolation.Customer.IsMember = false;
+                #region Customer Info:
+                var customer = _customerRepo.Find(consolation.Customer.CellPhoneNumber);
+                if (customer != null)
+                {
+                    consolation.CustomerID = customer.ID;
+                    consolation.Customer = null;
+                }
+                else
+                {
+                    consolation.Customer.IsMember = false;
+                }
+                #endregion
                 _consolationRepo.Add(consolation);
                 _consolationRepo.Save();
                 #endregion
