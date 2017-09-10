@@ -1,4 +1,5 @@
 ﻿using SamDataAccess.Contexts;
+using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace SamDataAccess.Repos.Interfaces
     public interface IMosqueRepo : IRepo<SamDbContext, Mosque>
     {
         List<Mosque> FindByCity(int cityId);
-        void UpdateWidthSave(Mosque mosque);
+        void UpdateWidthSave(Mosque mosque, ImageBlob image);
         Saloon FindSaloon(int mosqueId, string saloonId);
+        void AddWithSave(Mosque mosque, ImageBlob image);
     }
 }

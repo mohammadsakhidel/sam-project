@@ -9,6 +9,8 @@ using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using RamancoLibrary.Utilities;
+using SamModels.Entities.Blobs;
+using System.Transactions;
 
 namespace SamDataAccess.Repos
 {
@@ -25,34 +27,74 @@ namespace SamDataAccess.Repos
             return set.Where(m => m.CityID == cityId).ToList();
         }
 
-        public void UpdateWidthSave(Mosque newMosque)
+        public void UpdateWidthSave(Mosque newMosque, ImageBlob image)
         {
             var mosque = Get(newMosque.ID);
             if (mosque != null)
             {
-                mosque.Name = newMosque.Name;
-                mosque.ImamName = newMosque.ImamName;
-                mosque.ImamCellPhone = newMosque.ImamCellPhone;
-                mosque.InterfaceName = newMosque.InterfaceName;
-                mosque.InterfaceCellPhone = newMosque.InterfaceCellPhone;
-                mosque.CityID = newMosque.CityID;
-                mosque.Address = newMosque.Address;
-                mosque.Location = newMosque.Location;
-                mosque.PhoneNumber = newMosque.PhoneNumber;
-                mosque.LastUpdateTime = DateTimeUtils.Now;
+                using (var ts = new TransactionScope())
+                {
+                    #region update fields:
+                    mosque.Name = newMosque.Name;
+                    mosque.ImamName = newMosque.ImamName;
+                    mosque.ImamCellPhone = newMosque.ImamCellPhone;
+                    mosque.InterfaceName = newMosque.InterfaceName;
+                    mosque.InterfaceCellPhone = newMosque.InterfaceCellPhone;
+                    mosque.CityID = newMosque.CityID;
+                    mosque.Address = newMosque.Address;
+                    mosque.Location = newMosque.Location;
+                    mosque.PhoneNumber = newMosque.PhoneNumber;
+                    mosque.LastUpdateTime = DateTimeUtils.Now;
+                    #endregion
+                    #region update image:
+                    #region remove old image if exists:
+                    if (!string.IsNullOrEmpty(mosque.ImageID))
+                    {
+                        var oldBlob = context.Blobs.SingleOrDefault(b => b.ID == mosque.ImageID);
+                        context.Blobs.Remove(oldBlob);
+                        mosque.ImageID = "";
+                    }
+                    #endregion
+                    if (image != null)
+                    {
+                        #region add and set new image:
+                        context.Blobs.Add(image);
+                        mosque.ImageID = image.ID;
+                        #endregion
+                    }
+                    #endregion
+                    #region update saloons:
+                    if (mosque.Saloons != null)
+                        context.Saloons.RemoveRange(mosque.Saloons);
 
-                // update saloons:
-                if (mosque.Saloons != null)
-                    context.Saloons.RemoveRange(mosque.Saloons);
+                    mosque.Saloons = newMosque.Saloons;
+                    #endregion
 
-                mosque.Saloons = newMosque.Saloons;
-                Save();
+                    Save();
+                    ts.Complete();
+                }
             }
         }
 
         public Saloon FindSaloon(int mosqueId, string saloonId)
         {
             return context.Saloons.Find(saloonId, mosqueId);
+        }
+
+        public void AddWithSave(Mosque mosque, ImageBlob image)
+        {
+            using (var ts = new TransactionScope())
+            {
+                if (image != null)
+                {
+                    context.Blobs.Add(image);
+                    mosque.ImageID = image.ID;
+                }
+                context.Mosques.Add(mosque);
+
+                Save();
+                ts.Complete();
+            }
         }
     }
 }

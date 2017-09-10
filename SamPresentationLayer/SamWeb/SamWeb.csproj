@@ -249,6 +249,7 @@
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Controllers\ConsolationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MosquesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +293,7 @@
     <Content Include="Views\Consolations\Track.cshtml" />
     <Content Include="Views\Shared\Partials\_ConsolationsList.cshtml" />
     <Content Include="Views\Shared\Partials\_Error.cshtml" />
+    <Content Include="Views\Mosques\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -8,7 +8,7 @@
         xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         Style="{StaticResource dialog_window}"
-        Width="800" Height="630" WindowStartupLocation="CenterScreen">
+        Width="820" Height="680" WindowStartupLocation="CenterScreen">
 
     <Border Style="{StaticResource dialog_window_content}">
         <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">

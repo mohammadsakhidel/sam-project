@@ -47,6 +47,9 @@ namespace SamModels.Entities.Core
         [Required]
         [MaxLength(32)]
         public string Creator { get; set; }
+
+        [MaxLength(32)]
+        public string ImageID { get; set; }
         #endregion
 
         #region Navigation Props:

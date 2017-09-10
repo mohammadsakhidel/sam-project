@@ -18,11 +18,13 @@
         <nav class="navbar">
             <div class="container">
 
-                <div class="logo"></div>
-                <div class="title">
-                    <h1>@Strings.AppName</h1>
-                    <h2>@Strings.AppDescription</h2>
-                </div>
+                <a class="logo-anchor" href="@Url.Action("Index", "Home")">
+                    <div class="logo"></div>
+                    <div class="title">
+                        <h1>@Strings.AppName</h1>
+                        <h2>@Strings.AppDescription</h2>
+                    </div>
+                </a>
 
                 <!--Collapse Button-->
                 <button type="button" class="navbar-toggle visible-xs visible-sm hidden-md hidden-lg"
@@ -44,7 +46,7 @@
                     </span>
                     <span>
                         <label class="glyphicon glyphicon-info-sign"></label>
-                        <a>@Strings.MosqueBrowser</a>
+                        @Html.ActionLink(@Strings.MosqueBrowser, "Index", "Mosques")
                     </span>
                     <span>
                         <label class="glyphicon glyphicon-search"></label>
@@ -68,11 +70,11 @@
             </span>
             <span>
                 <label class="glyphicon glyphicon-search"></label>
-                <a>@Strings.TrackConsolation</a>
+                @Html.ActionLink(@Strings.TrackConsolation, "Track", "Consolations")
             </span>
             <span>
                 <label class="glyphicon glyphicon-info-sign"></label>
-                <a>@Strings.MosqueBrowser</a>
+                @Html.ActionLink(@Strings.MosqueBrowser, "Index", "Mosques")
             </span>
             <span>
                 <label class="glyphicon glyphicon-send"></label>

@@ -51,6 +51,11 @@ nav.navbar {
     height: 80px;
 }
 
+    nav.navbar a.logo-anchor {
+        border: 0;
+        float: right;
+    }
+
     nav.navbar .logo {
         height: 80px;
         width: 80px;

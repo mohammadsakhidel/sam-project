@@ -29,6 +29,10 @@ namespace SamModels.DTOs
 
         public string PhoneNumber { get; set; }
 
+        public string ImageID { get; set; }
+
+        public string ImageBase64 { get; set; }
+
         public DateTime CreationTime { get; set; }
 
         public DateTime? LastUpdateTime { get; set; }

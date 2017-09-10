@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamDesktop.Views.Partials"
              xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
-             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
-             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600">
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC">
 
     <TabControl>
         <TabItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Specifications}">
@@ -16,6 +15,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="{StaticResource grid_row_spacing}" />
                     <RowDefinition Height="auto" />
@@ -68,9 +69,23 @@
                 <Label Grid.Row="12" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PhoneNumber}" />
                 <TextBox x:Name="tbPhoneNumber" Grid.Row="12" Grid.Column="1" />
 
-                <!--Row 14 ::: Location-->
-                <Label Grid.Row="14" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Location}" />
-                <Grid Grid.Row="14" Grid.Column="1" FlowDirection="LeftToRight">
+                <!--Row 14 ::: Image-->
+                <Label Grid.Row="14" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Image}" />
+                <StackPanel Grid.Row="14" Grid.Column="1" Orientation="Horizontal">
+                    <Image x:Name="imgMosqueImage" Grid.Row="2" Height="40" />
+                    <ram:FlatButton x:Name="btnSelectImage" Style="{StaticResource small_action_button_open}" 
+                                    Margin="{StaticResource padding_widget_start}" Click="btnSelectImage_Click"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SelectFile}"
+                                    VerticalAlignment="Center"/>
+                    <ram:FlatButton x:Name="btnRemoveImage" Style="{StaticResource small_action_button_delete}" 
+                                    Margin="{StaticResource padding_widget_start}" Click="btnRemoveImage_Click"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}"
+                                    VerticalAlignment="Center" IsEnabled="{Binding ElementName=imgMosqueImage, Path=Source, Converter={StaticResource notNullConverter}}"/>
+                </StackPanel>
+
+                <!--Row 16 ::: Location-->
+                <Label Grid.Row="16" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Location}" />
+                <Grid Grid.Row="16" Grid.Column="1" FlowDirection="LeftToRight">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="auto" />
@@ -82,9 +97,9 @@
                     <TextBox x:Name="tbLongitude" Grid.Column="2" />
                 </Grid>
 
-                <!--Row 16 ::: Address-->
-                <Label Grid.Row="16" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Address}" />
-                <TextBox x:Name="tbAddress" Grid.Row="16" Grid.Column="1" AcceptsReturn="True" Height="60" VerticalContentAlignment="Top" />
+                <!--Row 18 ::: Address-->
+                <Label Grid.Row="18" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Address}" />
+                <TextBox x:Name="tbAddress" Grid.Row="18" Grid.Column="1" AcceptsReturn="True" Height="60" VerticalContentAlignment="Top" />
 
             </Grid>
         </TabItem>

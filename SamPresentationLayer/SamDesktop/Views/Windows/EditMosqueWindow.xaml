@@ -8,7 +8,7 @@
         xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         Style="{StaticResource dialog_window}"
-        Width="800" Height="630" WindowStartupLocation="CenterScreen"
+        Width="820" Height="680" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
 
     <Border Style="{StaticResource dialog_window_content}">

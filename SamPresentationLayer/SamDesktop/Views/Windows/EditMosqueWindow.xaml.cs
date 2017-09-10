@@ -35,14 +35,28 @@ namespace SamDesktop.Views.Windows
         #endregion
 
         #region Event Handlers:
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
+                #region Get Mosque Image From Web:
+                if (!string.IsNullOrEmpty(_mosque.ImageID))
+                {
+                    progress.IsBusy = true;
+                    using (var hc = HttpUtil.CreateClient())
+                    {
+                        var bytes = await hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{_mosque.ImageID}");
+                        _mosque.ImageBase64 = Convert.ToBase64String(bytes);
+                        progress.IsBusy = false;
+                    }
+                }
+                #endregion
+
                 ucMosqueEditor.Mosque = _mosque;
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }

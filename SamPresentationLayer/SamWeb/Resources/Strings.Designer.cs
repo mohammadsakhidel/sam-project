@@ -295,7 +295,7 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مساجد.
+        ///   Looks up a localized string similar to مساجد عضو.
         /// </summary>
         public static string MosqueBrowser {
             get {

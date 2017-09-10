@@ -189,6 +189,10 @@
     <Compile Include="Migrations\SamDbMigrations\201708150545099_DisplaySyncStatusFieldAdded.Designer.cs">
       <DependentUpon>201708150545099_DisplaySyncStatusFieldAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201709101337035_Mosque_ImageIDFieldAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201709101337035_Mosque_ImageIDFieldAdded.Designer.cs">
+      <DependentUpon>201709101337035_Mosque_ImageIDFieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\CustomerRepo.cs" />
@@ -305,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201708150545099_DisplaySyncStatusFieldAdded.resx">
       <DependentUpon>201708150545099_DisplaySyncStatusFieldAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201709101337035_Mosque_ImageIDFieldAdded.resx">
+      <DependentUpon>201709101337035_Mosque_ImageIDFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

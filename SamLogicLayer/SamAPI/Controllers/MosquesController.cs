@@ -3,9 +3,13 @@ using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
+using SamModels.Entities.Blobs;
 using SamModels.Entities.Core;
+using SamUtils.Constants;
+using SamUtils.Utils;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -65,10 +69,34 @@ namespace SamAPI.Controllers
         {
             try
             {
+                #region Prepare Image Blob:
+                ImageBlob imageBlob = null;
+                if (!string.IsNullOrEmpty(model.ImageBase64))
+                {
+                    var now = DateTimeUtils.Now;
+                    var bytes = Convert.FromBase64String(model.ImageBase64);
+                    var bitmap = IOUtils.ByteArrayToBitmap(bytes);
+                    var resizer = new ImageResizer(bitmap.Width, bitmap.Height, ResizeType.LongerFix, Values.thumbnail_size);
+                    var thumbBitmap = ImageUtils.GetThumbnailImage(bitmap, resizer.NewWidth, resizer.NewHeight);
+                    imageBlob = new ImageBlob
+                    {
+                        // blob:
+                        ID = IDGenerator.GenerateImageID(),
+                        Bytes = bytes,
+                        CreationTime = now,
+                        LastUpdateTime = now,
+                        // imageblob:
+                        ThumbImageBytes = IOUtils.BitmapToByteArray(thumbBitmap, ImageFormat.Jpeg),
+                        ImageWidth = bitmap.Width,
+                        ImageHeight = bitmap.Height
+                    };
+                }
+                #endregion
+
                 var mosque = Mapper.Map<MosqueDto, Mosque>(model);
                 mosque.CreationTime = DateTimeUtils.Now;
                 mosque.LastUpdateTime = mosque.CreationTime;
-                _mosqueRepo.AddWithSave(mosque);
+                _mosqueRepo.AddWithSave(mosque, imageBlob);
                 return Ok();
             }
             catch (Exception ex)
@@ -84,8 +112,32 @@ namespace SamAPI.Controllers
         {
             try
             {
+                #region Prepare Background Image Blob:
+                ImageBlob imageBlob = null;
+                if (!string.IsNullOrEmpty(model.ImageBase64))
+                {
+                    var now = DateTimeUtils.Now;
+                    var bytes = Convert.FromBase64String(model.ImageBase64);
+                    var bitmap = IOUtils.ByteArrayToBitmap(bytes);
+                    var resizer = new ImageResizer(bitmap.Width, bitmap.Height, ResizeType.LongerFix, Values.thumbnail_size);
+                    var thumbBitmap = ImageUtils.GetThumbnailImage(bitmap, resizer.NewWidth, resizer.NewHeight);
+                    imageBlob = new ImageBlob
+                    {
+                        // blob:
+                        ID = IDGenerator.GenerateImageID(),
+                        Bytes = bytes,
+                        CreationTime = now,
+                        LastUpdateTime = now,
+                        // imageblob:
+                        ThumbImageBytes = IOUtils.BitmapToByteArray(thumbBitmap, ImageFormat.Jpeg),
+                        ImageWidth = bitmap.Width,
+                        ImageHeight = bitmap.Height
+                    };
+                }
+                #endregion
+
                 var newMosque = Mapper.Map<MosqueDto, Mosque>(model);
-                _mosqueRepo.UpdateWidthSave(newMosque);
+                _mosqueRepo.UpdateWidthSave(newMosque, imageBlob);
 
                 return Ok();
             }
