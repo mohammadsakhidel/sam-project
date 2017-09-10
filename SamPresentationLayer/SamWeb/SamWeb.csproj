@@ -130,6 +130,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\imageviewer.css" />
+    <Content Include="Content\SamThemes\DefaultTheme\bootstrap-custom.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\elements.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\Images\loading_48.gif" />
     <Content Include="Content\SamThemes\DefaultTheme\Images\logo.png" />
@@ -244,6 +245,7 @@
     <Compile Include="Code\Extensions\HtmlHelpers.cs" />
     <Compile Include="Code\MvcExtensions\ModelBinders\CreateConsolationStep2ModelBinder.cs" />
     <Compile Include="Code\MvcExtensions\ModelBinders\CreateConsolationTemplateInfoStepModelBinder.cs" />
+    <Compile Include="Code\Utils\EnumUtil.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Controllers\ConsolationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -287,6 +289,9 @@
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_TemplateInfoStep.cshtml" />
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_SuccessStep.cshtml" />
     <Content Include="Views\Shared\Partials\_HomeSlideshow.cshtml" />
+    <Content Include="Views\Consolations\Track.cshtml" />
+    <Content Include="Views\Shared\Partials\_ConsolationsList.cshtml" />
+    <Content Include="Views\Shared\Partials\_Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -296,6 +301,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Code\Attributes\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Enums.resx">

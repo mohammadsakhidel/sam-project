@@ -147,6 +147,18 @@
   <data name="ConfirmAndPay" xml:space="preserve">
     <value>تأیید و پرداخت</value>
   </data>
+  <data name="ConsolationStatus_Canceled" xml:space="preserve">
+    <value>لغو شده</value>
+  </data>
+  <data name="ConsolationStatus_Confirmed" xml:space="preserve">
+    <value>تأیید شده</value>
+  </data>
+  <data name="ConsolationStatus_Displayed" xml:space="preserve">
+    <value>نمایش یافته</value>
+  </data>
+  <data name="ConsolationStatus_Pending" xml:space="preserve">
+    <value>منتظر تأیید</value>
+  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>ارتباط با ما</value>
   </data>
@@ -187,13 +199,28 @@
     <value>مساجد</value>
   </data>
   <data name="Obit" xml:space="preserve">
-    <value>مجلس ترحیم</value>
+    <value>مراسم</value>
   </data>
   <data name="Off" xml:space="preserve">
     <value>خیر</value>
   </data>
   <data name="On" xml:space="preserve">
     <value>بله</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>وضعیت پرداخت</value>
+  </data>
+  <data name="PaymentStatus_Failed" xml:space="preserve">
+    <value>پرداخت ناموفق</value>
+  </data>
+  <data name="PaymentStatus_Pending" xml:space="preserve">
+    <value>منتظر پرداخت</value>
+  </data>
+  <data name="PaymentStatus_Succeeded" xml:space="preserve">
+    <value>منتظر تأیید نهایی</value>
+  </data>
+  <data name="PaymentStatus_Verified" xml:space="preserve">
+    <value>پرداخت شده</value>
   </data>
   <data name="PriceUnit" xml:space="preserve">
     <value>ریال</value>
@@ -204,13 +231,22 @@
   <data name="RegisterConsolation" xml:space="preserve">
     <value>ثبت پیام تسلیت</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
   <data name="Select" xml:space="preserve">
     <value>انتخاب</value>
   </data>
   <data name="SendConsolation" xml:space="preserve">
     <value>ارسال پیام تسلیت</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
   <data name="TrackConsolation" xml:space="preserve">
     <value>رهگیری پیام</value>
+  </data>
+  <data name="TrackingNumber" xml:space="preserve">
+    <value>کد رهگیری پیام</value>
   </data>
 </root>

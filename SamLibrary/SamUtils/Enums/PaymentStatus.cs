@@ -10,6 +10,7 @@ namespace SamUtils.Enums
     {
         pending = 1,
         failed = 2,
-        succeeded = 4
+        succeeded = 3,
+        verified = 4
     }
 }

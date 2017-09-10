@@ -106,6 +106,15 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to موردی جهت نمایش یافت نشد..
+        /// </summary>
+        public static string NoItem {
+            get {
+                return ResourceManager.GetString("NoItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً شماره موبایل خود را وارد کنید..
         /// </summary>
         public static string Required_CellPhoneNumber {

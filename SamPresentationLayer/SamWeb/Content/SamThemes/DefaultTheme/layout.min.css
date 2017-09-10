@@ -151,5 +151,8 @@ button.navbar-toggle {
     text-align: center;
     color: #808080;
     font-size: small;
-    margin-top: 16px;
+}
+
+.page-content {
+    padding: 24px 0;
 }

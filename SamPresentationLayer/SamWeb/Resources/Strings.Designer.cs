@@ -151,6 +151,42 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لغو شده.
+        /// </summary>
+        public static string ConsolationStatus_Canceled {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید شده.
+        /// </summary>
+        public static string ConsolationStatus_Confirmed {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Confirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش یافته.
+        /// </summary>
+        public static string ConsolationStatus_Displayed {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Displayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر تأیید.
+        /// </summary>
+        public static string ConsolationStatus_Pending {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ارتباط با ما.
         /// </summary>
         public static string ContactUs {
@@ -268,7 +304,7 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مجلس ترحیم.
+        ///   Looks up a localized string similar to مراسم.
         /// </summary>
         public static string Obit {
             get {
@@ -291,6 +327,51 @@ namespace SamWeb.Resources {
         public static string On {
             get {
                 return ResourceManager.GetString("On", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وضعیت پرداخت.
+        /// </summary>
+        public static string PaymentStatus {
+            get {
+                return ResourceManager.GetString("PaymentStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت ناموفق.
+        /// </summary>
+        public static string PaymentStatus_Failed {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر پرداخت.
+        /// </summary>
+        public static string PaymentStatus_Pending {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر تأیید نهایی.
+        /// </summary>
+        public static string PaymentStatus_Succeeded {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Succeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت شده.
+        /// </summary>
+        public static string PaymentStatus_Verified {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Verified", resourceCulture);
             }
         }
         
@@ -322,6 +403,15 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جستجو.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انتخاب.
         /// </summary>
         public static string Select {
@@ -340,11 +430,29 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to وضعیت.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to رهگیری پیام.
         /// </summary>
         public static string TrackConsolation {
             get {
                 return ResourceManager.GetString("TrackConsolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد رهگیری پیام.
+        /// </summary>
+        public static string TrackingNumber {
+            get {
+                return ResourceManager.GetString("TrackingNumber", resourceCulture);
             }
         }
     }

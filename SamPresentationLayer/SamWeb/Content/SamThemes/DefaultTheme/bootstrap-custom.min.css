@@ -1,0 +1,35 @@
+﻿/*Extra Small*/
+@media (max-width: 768px) {
+}
+
+/*Small*/
+@media (min-width: 769px) and (max-width: 991px ) {
+}
+
+/*Medium*/
+@media (min-width: 992px) and (max-width: 1199px) {
+    .rtl-md div {
+        float: right;
+    }
+
+    .form-label {
+        float: left;
+        margin: 6px 0 0 0;
+    }
+}
+
+/*Large*/
+@media (min-width: 1200px) {
+    .rtl-md div {
+        float: right;
+    }
+
+    .form-label {
+        float: left;
+        margin: 6px 0 0 0;
+    }
+}
+
+.alert .close {
+    float: left;
+}

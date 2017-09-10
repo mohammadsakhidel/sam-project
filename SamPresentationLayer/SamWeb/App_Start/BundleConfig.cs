@@ -40,7 +40,8 @@ namespace SamWeb
             bundles.Add(new StyleBundle("~/content/samthemes/defaulttheme/styles")
                 .Include("~/Content/SamThemes/DefaultTheme/layout.min.css")
                 .Include("~/Content/SamThemes/DefaultTheme/styles.min.css")
-                .Include("~/Content/SamThemes/DefaultTheme/elements.min.css"));
+                .Include("~/Content/SamThemes/DefaultTheme/elements.min.css")
+                .Include("~/Content/SamThemes/DefaultTheme/bootstrap-custom.min.css"));
             #endregion
 
             BundleTable.EnableOptimizations = true;

@@ -1,0 +1,50 @@
+﻿@model List<SamModels.DTOs.ConsolationDto>
+
+@{ 
+    var apiBaseUrl = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
+}
+
+@if (Model != null && Model.Any())
+{
+    foreach (var consolation in Model)
+    {
+        var previewThumbUrl = new Uri(apiBaseUrl, $"/consolations/getpreview/{consolation.ID}?thumb=true");
+        var highResPreviewUrl = new Uri(apiBaseUrl, $"/consolations/getpreview/{consolation.ID}?thumb=false");
+
+        <div id="@($"consolation_{consolation.ID}")" class="consolation-item">
+            <div class="thumb-container cursor">
+                <img src="@previewThumbUrl.ToString()" data-high-res-img="@highResPreviewUrl.ToString()" />
+            </div>
+            <div class="consolation-item-info">
+                <strong>@Strings.Obit: @consolation.Obit.Title</strong>
+                <br />
+                <span>
+                    @Strings.PaymentStatus:
+                    @SamWeb.Code.Utils.EnumUtil.PaymentStatusToString((SamUtils.Enums.PaymentStatus)Enum.Parse(typeof(SamUtils.Enums.PaymentStatus), consolation.PaymentStatus))
+                    (@consolation.Template.Price.ToString("N0") @Strings.PriceUnit)
+                </span>
+                <br />
+                <span>
+                    @Strings.Status:
+                    @SamWeb.Code.Utils.EnumUtil.ConsolationStatusToString((SamUtils.Enums.ConsolationStatus)Enum.Parse(typeof(SamUtils.Enums.ConsolationStatus), consolation.Status))
+                </span>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@Messages.NoItem</strong>
+    </div>
+}
+
+<script>
+    var viewer = ImageViewer();
+    $('.consolation-item > .thumb-container > img').click(function () {
+        var imgSrc = this.src, highResolutionImage = $(this).data('high-res-img');
+        viewer.show(imgSrc, highResolutionImage);
+    });
+</script>

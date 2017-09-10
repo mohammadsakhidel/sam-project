@@ -55,7 +55,7 @@
     }
 
     .template-select-item img {
-        float: right; 
+        float: right;
         margin: 0 0 0 16px;
         height: 60px;
         width: 60px;
@@ -64,7 +64,7 @@
     }
 
     .template-select-item div.template-title {
-        float: right; 
+        float: right;
     }
 
         .template-select-item div.template-title > label {
@@ -101,4 +101,46 @@
 .frame > div {
     padding: 12px 0 12px 0;
     line-height: 18pt;
+}
+
+.small-loading {
+    width: 24px;
+    height: 24px;
+    background: url(Images/loading_48.gif);
+    background-size: cover;
+    display: inline-block;
+    position: relative;
+    top: 8px;
+    right: 8px;
+}
+
+.thumb-container {
+
+    height: 75px;
+    overflow: hidden;
+    padding: 1px;
+    border: solid 1px #cccccc;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+    .thumb-container > img {
+        max-height: 100%;
+    }
+
+.consolation-item {
+    position: relative;
+}
+
+    .consolation-item > .thumb-container {
+        float: right;
+    }
+
+    .consolation-item > .consolation-item-info {
+        float: right;
+        margin: 10px 10px 0 0;
+    }
+
+.cursor {
+    cursor: pointer;
 }

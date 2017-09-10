@@ -33,6 +33,12 @@ namespace SamWeb.Controllers
         }
 
         [HttpGet]
+        public ActionResult Track()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public async Task<JsonResult> GetCityMosques(int id)
         {
             try
@@ -157,6 +163,7 @@ namespace SamWeb.Controllers
             #endregion
         }
 
+        [HttpPost]
         public async Task<PartialViewResult> Create_TemplateInfoStep(CreateConsolationTemplateInfoStep model)
         {
             Thread.Sleep(1000);
@@ -197,6 +204,21 @@ namespace SamWeb.Controllers
             }
 
             #endregion
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<PartialViewResult> Track(string trackingNumber)
+        {
+            try
+            {
+                var dtos = await FindByTrackingNumberFromApi(trackingNumber);
+                return PartialView("Partials/_ConsolationsList", dtos);
+            }
+            catch (Exception ex)
+            {
+                return PartialView("Partials/_Error", ex);
+            }
         }
         #endregion
 
@@ -242,6 +264,17 @@ namespace SamWeb.Controllers
                 HttpUtil.EnsureSuccessStatusCode(response);
                 var template = await response.Content.ReadAsAsync<TemplateDto>();
                 return template;
+            }
+        }
+
+        public async Task<List<ConsolationDto>> FindByTrackingNumberFromApi(string trackingNumber)
+        {
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var response = await hc.PostAsJsonAsync<string[]>($"{ApiActions.consolations_find}", new string[] { trackingNumber });
+                HttpUtil.EnsureSuccessStatusCode(response);
+                var consolations = await response.Content.ReadAsAsync<List<ConsolationDto>>();
+                return consolations;
             }
         }
         #endregion

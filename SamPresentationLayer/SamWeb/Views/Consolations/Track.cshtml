@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Track";
+}
+
+@section head {
+    <link href="~/Content/imageviewer.css" rel="stylesheet" />
+    <script src="~/Scripts/imageviewer.min.js"></script>
+}
+
+<div class="page-content">
+
+    <h2 class="step-title">
+        @Strings.TrackConsolation
+    </h2>
+
+    @using (Ajax.BeginForm("Track", "Consolations", new AjaxOptions { HttpMethod = "POST", LoadingElementId = "progress_track", UpdateTargetId = "target_track", OnBegin = "track_begin" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label class="control-label" for="TrackingNumber">@Strings.TrackingNumber:</label>
+            <div>
+                <input id="TrackingNumber" name="TrackingNumber" type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-search"></span>
+                @Strings.Search
+            </button>
+            <div id="progress_track" class="small-loading" style="display: none;"></div>
+        </div>
+
+        <div id="target_track"></div>
+    }
+
+</div>
+
+<script>
+    function track_begin() {
+        $('#target_track').html('');
+    }
+</script>

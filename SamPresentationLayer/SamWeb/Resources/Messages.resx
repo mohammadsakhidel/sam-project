@@ -132,6 +132,9 @@
   <data name="Invalid_CellPhoneNumber" xml:space="preserve">
     <value>شماره موبایل وارد شده معتبر نیست.</value>
   </data>
+  <data name="NoItem" xml:space="preserve">
+    <value>موردی جهت نمایش یافت نشد.</value>
+  </data>
   <data name="Required_CellPhoneNumber" xml:space="preserve">
     <value>لطفاً شماره موبایل خود را وارد کنید.</value>
   </data>

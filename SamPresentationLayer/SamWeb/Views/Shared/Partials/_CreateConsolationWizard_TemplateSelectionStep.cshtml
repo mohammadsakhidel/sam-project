@@ -5,8 +5,8 @@
 </h2>
 
 @using (Ajax.BeginForm("Create_TemplateSelectionStep", "Consolations", null,
-                new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
-                new { @id = "frm_template" }))
+                            new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+                            new { @id = "frm_template" }))
 {
     <div class="panel-group">
         @if (Model.Categories != null && Model.Categories.Any())
@@ -16,38 +16,39 @@
                 var catState = Model.CategoryStates != null ? Model.CategoryStates.SingleOrDefault(cs => cs.Item1 == category.ID) : null;
                 <input type="hidden" name="@($"cs_{category.ID}")" id="@($"cs_{category.ID}")" value="@(catState != null && catState.Item2 ? catState.Item2.ToString() : "false")" />
 
-                    <div class="panel panel-default" style="margin-top: 8px;">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="@($"#cat_{category.ID}")">@category.Name</a>
-                            </h4>
-                        </div>
-                        <div id="@($"cat_{category.ID}")" class="@("panel-collapse collapse" + (catState != null && catState.Item2 ? " in" : ""))" data-category-id="@category.ID">
-                            <div class="panel-body">
-                                @if (Model.Templates != null)
+                <div class="panel panel-default" style="margin-top: 8px;">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="@($"#cat_{category.ID}")">@category.Name</a>
+                        </h4>
+                    </div>
+                    <div id="@($"cat_{category.ID}")" class="@("panel-collapse collapse" + (catState != null && catState.Item2 ? " in" : ""))" data-category-id="@category.ID">
+                        <div class="panel-body">
+                            @if (Model.Templates != null)
+                            {
+                                foreach (var template in Model.Templates.Where(t => t.TemplateCategoryID == category.ID).ToList())
                                 {
-                                    foreach (var template in Model.Templates.Where(t => t.TemplateCategoryID == category.ID).ToList())
-                                    {
-                                        var templateBgUrl = $"{System.Configuration.ConfigurationManager.AppSettings["api_host"]}/blobs/getimage/{template.BackgroundImageID}";
+                                    var baseUrl = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
+                                    var templateBgUrl = new Uri(baseUrl, $"/blobs/getimage/{template.BackgroundImageID}");
 
-                                        <div class="template-select-item">
-                                            <img src="@($"{templateBgUrl}?thumb=true")" class="template-thumb"
-                                                 data-high-res-img="@($"{templateBgUrl}?thumb=false")" />
-                                            <div class="template-title">
-                                                <h5>@template.Name</h5>
-                                                <label>@template.Price.ToString(SamUtils.Constants.StringFormats.price) @Strings.PriceUnit</label>
-                                            </div>
-                                            <div class="template-select-button">
-                                                <input type="hidden" value="@template.ID" disabled="disabled" />
-                                                <input id="@($"chTemplate_{template.ID}")" type="checkbox" data-toggle="toggle" data-on="@Strings.On" data-off="@Strings.Off" style="width: 40px;" />
-                                            </div>
-                                            <div class="clear"></div>
+                                    <div class="template-select-item">
+                                        <img src="@($"{templateBgUrl.ToString()}?thumb=true")" class="template-thumb"
+                                             data-high-res-img="@($"{templateBgUrl.ToString()}?thumb=false")" />
+                                        <div class="template-title">
+                                            <h5>@template.Name</h5>
+                                            <label>@template.Price.ToString(SamUtils.Constants.StringFormats.price) @Strings.PriceUnit</label>
                                         </div>
-                                    }
+                                        <div class="template-select-button">
+                                            <input type="hidden" value="@template.ID" disabled="disabled" />
+                                            <input id="@($"chTemplate_{template.ID}")" type="checkbox" data-toggle="toggle" data-on="@Strings.On" data-off="@Strings.Off" style="width: 40px;" />
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
                                 }
-                            </div>
+                            }
                         </div>
                     </div>
+                </div>
             }
         }
     </div>
