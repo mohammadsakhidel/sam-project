@@ -9,5 +9,92 @@
         @Strings.MosqueBrowser
     </h2>
 
+    @using (Ajax.BeginForm("Index", "Mosques", new AjaxOptions { HttpMethod = "POST", LoadingElementId = "progress", UpdateTargetId = "target", OnBegin = "post_begin" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="ProvinceID" class="control-label">@Strings.Province</label>
+            <div>
+                @{
+                    var provinces = SamUtils.Utils.CityUtil.Provinces.Select(p => new SelectListItem { Text = p.Name, Value = p.ID.ToString() }).ToList();
+                    provinces.Insert(0, new SelectListItem());
+                }
+                @Html.DropDownList("ProvinceID", provinces, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="CityID" class="control-label">@Strings.City</label>
+            <div>
+                @Html.DropDownList("CityID", new List<SelectListItem>(), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="Name">@Strings.PartOfMosqueName:</label>
+            <div>
+                <input id="Name" name="Name" type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-search"></span>
+                @Strings.Search
+            </button>
+            <div id="progress" class="small-loading" style="display: none;"></div>
+        </div>
+
+        <div id="target"></div>
+    }
+
 </div>
 
+<script>
+    function post_begin() {
+        $('#target').html('');
+    }
+
+    $('#ProvinceID').change(function () {
+        $('#CityID').prop('disabled', 'disabled');
+        var provinceId = $(this).val();
+        $.ajax({
+            url: '/home/getprovincecities/' + provinceId,
+            type: 'GET'
+        }).success(function (data) {
+            try {
+                $('#CityID').html('<option></option>');
+                $.each(data, function (key, val) {
+                    $('#CityID').append('<option value="' + val.ID + '">' + val.Name + '</option>');
+                });
+                $('#CityID').removeProp('disabled');
+            } catch (e) {
+                alert(e.message);
+            }
+        }).error(function (data) {
+            alert('@Messages.SomthingWrongHappend');
+        });
+    });
+
+    $('#CityID').change(function () {
+        $('#MosqueID').prop('disabled', 'disabled');
+        var cityId = $(this).val();
+        $.ajax({
+            url: '/consolations/getcitymosques/' + cityId,
+            type: 'GET'
+        }).success(function (data) {
+            try {
+                $('#MosqueID').html('<option></option>');
+                $.each(data, function (key, val) {
+                    $('#MosqueID').append('<option value="' + val.ID + '">' + val.Name + ': ' + val.Address + '</option>');
+                });
+                $('#MosqueID').removeProp('disabled');
+            } catch (e) {
+                alert(e.message);
+            }
+        }).error(function (data) {
+            alert('@Messages.SomthingWrongHappend');
+        });
+    });
+</script>

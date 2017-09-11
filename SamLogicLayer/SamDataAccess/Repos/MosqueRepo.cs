@@ -96,5 +96,18 @@ namespace SamDataAccess.Repos
                 ts.Complete();
             }
         }
+
+        public List<Mosque> Search(int provinceId, int cityId, string name)
+        {
+            var query = from m in context.Mosques
+                        join c in context.Cities on m.CityID equals c.ID
+                        join p in context.Provinces on c.ProvinceID equals p.ID
+                        where (provinceId <= 0 || p.ID == provinceId) &&
+                              (cityId <= 0 || c.ID == cityId) &&
+                              (name == "" || m.Name.Contains(name))
+                        select m;
+
+            return query.ToList();
+        }
     }
 }

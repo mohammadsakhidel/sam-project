@@ -207,6 +207,9 @@
   <data name="On" xml:space="preserve">
     <value>بله</value>
   </data>
+  <data name="PartOfMosqueName" xml:space="preserve">
+    <value>قسمتی از نام مسجد</value>
+  </data>
   <data name="PaymentStatus" xml:space="preserve">
     <value>وضعیت پرداخت</value>
   </data>

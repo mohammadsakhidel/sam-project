@@ -115,7 +115,6 @@
 }
 
 .thumb-container {
-
     height: 75px;
     overflow: hidden;
     padding: 1px;
@@ -143,4 +142,32 @@
 
 .cursor {
     cursor: pointer;
+}
+
+.list-item {
+    padding: 10px 0;
+    border-bottom: dashed 1px #e6e7e8;
+}
+
+div.no-thumb {
+    width: 65px;
+    height: 25px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+img.thumb {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px;
+    width: 65px;
+    box-sizing: border-box;
+}
+
+    img.thumb:hover {
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+
+.float {
+    float: right;
 }

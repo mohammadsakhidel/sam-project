@@ -1,0 +1,27 @@
+﻿@model List<SamModels.DTOs.MosqueDto>
+
+@{
+    var baseUri = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
+}
+
+@foreach (var mosque in Model)
+{
+    <div class="list-item">
+        @if (!string.IsNullOrEmpty(mosque.ImageID))
+        {
+        <a style="border: 0;" href="@Url.Action("Details", "Mosques", new { @id = mosque.ID })">
+            <img class="thumb float" src="@($"{(new Uri(baseUri, $"{SamUtils.Constants.ApiActions.blobs_getimage}/{mosque.ImageID}?thumb=true"))}")" />
+        </a>
+        }
+        else
+        {
+        <div class="no-thumb float"></div>
+        }
+        <div class="float" style="margin-right: 10px;">
+            <a href="@Url.Action("Details", "Mosques", new { @id = mosque.ID })">@mosque.Name</a>
+            <br />
+            <small>@mosque.Address</small>
+        </div>
+        <div class="clear"></div>
+    </div>
+}

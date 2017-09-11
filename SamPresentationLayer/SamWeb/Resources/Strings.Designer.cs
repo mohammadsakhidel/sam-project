@@ -331,6 +331,15 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to قسمتی از نام مسجد.
+        /// </summary>
+        public static string PartOfMosqueName {
+            get {
+                return ResourceManager.GetString("PartOfMosqueName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to وضعیت پرداخت.
         /// </summary>
         public static string PaymentStatus {

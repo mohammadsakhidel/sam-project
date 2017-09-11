@@ -1,8 +1,18 @@
 ﻿@model Exception
 
-<div class="alert alert-danger">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>@Messages.SomthingWrongHappend</strong>
-    <br />
-    <span>@(Model.InnerException != null ? Model.InnerException.Message : Model.Message)</span>
-</div>
+@if (Model is SamUtils.Objects.Exceptions.ValidationException)
+{
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@Model.Message</strong>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@Messages.SomthingWrongHappend</strong>
+        <br />
+        <span>@(Model.InnerException != null ? Model.InnerException.Message : Model.Message)</span>
+    </div>
+}

@@ -61,6 +61,26 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult Search(string name = "", int provinceId = -1, int cityId = -1)
+        {
+            try
+            {
+                #region validate:
+                if (provinceId <= 0 && cityId <= 0 && string.IsNullOrEmpty(name))
+                    return Ok(Enumerable.Empty<MosqueDto>());
+                #endregion
+
+                var mosques = _mosqueRepo.Search(provinceId, cityId, name);
+                var dtos = mosques.Select(m => Mapper.Map<Mosque, MosqueDto>(m)).ToList();
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region POST ACTIONS:

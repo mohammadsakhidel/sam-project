@@ -115,6 +115,15 @@ namespace SamWeb.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید..
+        /// </summary>
+        public static string PleaseFillSomeConditions {
+            get {
+                return ResourceManager.GetString("PleaseFillSomeConditions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً شماره موبایل خود را وارد کنید..
         /// </summary>
         public static string Required_CellPhoneNumber {
