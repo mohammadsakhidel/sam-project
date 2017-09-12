@@ -4,6 +4,8 @@
     @Strings.CreateConsolationTemplateInfoStep
 </h2>
 
+<hr />
+
 @using (Ajax.BeginForm("Create_TemplateInfoStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }))
 {
     foreach (var field in Model.Fields)
@@ -27,7 +29,7 @@
     <div class="form-group">
         <button type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-ok"></span>
-            @Strings.ConfirmAndPay
+            @Strings.ConfirmAndPreview
         </button>
         <a class="btn btn-default" href="@Url.Action("Index", "Home")">
             <span class="glyphicon glyphicon-remove"></span>

@@ -4,9 +4,11 @@
     @Strings.CreateConsolationObitSelectionStep
 </h2>
 
+<hr />
+
 @using (Ajax.BeginForm("Create_ObitSelectionStep", "Consolations", null,
-    new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
-    new { @id = "frm_obit" }))
+                new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+                new { @id = "frm_obit" }))
 {
     <div class="form-group">
         <label for="ProvinceID" class="control-label">@Strings.Province</label>
@@ -75,72 +77,42 @@
     <div class="text-danger">
         @Html.ValidationSummary()
     </div>
-}
+                }
 
 <script>
     var ObitSelectionStep = {};
     ObitSelectionStep.ObitID = -1;
 
     $('#ProvinceID').change(function () {
-        $('#CityID').prop('disabled', 'disabled');
+        $('#CityID').prop('disabled', true);
         var provinceId = $(this).val();
         $.ajax({
             url: '/home/getprovincecities/' + provinceId,
-            type: 'GET'
-        }).success(function (data) {
-            try {
-                $('#CityID').html('<option></option>');
-                $.each(data, function (key, val) {
-                    $('#CityID').append('<option value="' + val.ID + '">' + val.Name + '</option>');
-                });
-                $('#CityID').removeProp('disabled');
-            } catch (e) {
-                alert(e.message);
-            }
-        }).error(function (data) {
-            alert('@Messages.SomthingWrongHappend');
+            type: 'GET',
+            success: onProvChangeSuccess,
+            error: onAjaxError
         });
     });
 
     $('#CityID').change(function () {
-        $('#MosqueID').prop('disabled', 'disabled');
+        $('#MosqueID').prop('disabled', true);
         var cityId = $(this).val();
         $.ajax({
             url: '/consolations/getcitymosques/' + cityId,
-            type: 'GET'
-        }).success(function (data) {
-            try {
-                $('#MosqueID').html('<option></option>');
-                $.each(data, function (key, val) {
-                    $('#MosqueID').append('<option value="' + val.ID + '">' + val.Name + ': ' + val.Address + '</option>');
-                });
-                $('#MosqueID').removeProp('disabled');
-            } catch (e) {
-                alert(e.message);
-            }
-        }).error(function (data) {
-            alert('@Messages.SomthingWrongHappend');
+            type: 'GET',
+            success: onCityChangeSuccess,
+            error: onAjaxError
         });
     });
 
     $('#MosqueID').change(function () {
-        $('#ObitID').prop('disabled', 'disabled');
+        $('#ObitID').prop('disabled', true);
         var mosqueId = $(this).val();
         $.ajax({
             url: '/consolations/getallobits?mosqueId=' + mosqueId,
-            type: 'GET'
-        }).success(function (data) {
-            try {
-                $('#ObitID').html('<option></option>');
-                $.each(data, function (key, val) {
-                    $('#ObitID').append('<option value="' + val.ID + '">' + val.Title + ' : ' + val.ObitTypeDisplay + '</option>');
-                });
-                $('#ObitID').removeProp('disabled');
-            } catch (e) {
-                alert(e.message);
-            }
-        }).error(function (data) {
-            alert('@Messages.SomthingWrongHappend');
+            type: 'GET',
+            success: onMosqueChangeSuccess,
+            error: onAjaxError
         });
     });
 
@@ -165,5 +137,45 @@
             alert(e.message);
         }
     });
+
+    function onProvChangeSuccess(data) {
+        try {
+            $('#CityID').html('<option></option>');
+            $.each(data, function (key, val) {
+                $('#CityID').append('<option value="' + val.ID + '">' + val.Name + '</option>');
+            });
+            $('#CityID').prop('disabled', false);
+        } catch (e) {
+            alert(e.message);
+        }
+    }
+
+    function onCityChangeSuccess(data) {
+        try {
+            $('#MosqueID').html('<option></option>');
+            $.each(data, function (key, val) {
+                $('#MosqueID').append('<option value="' + val.ID + '">' + val.Name + ': ' + val.Address + '</option>');
+            });
+            $('#MosqueID').prop('disabled', false);
+        } catch (e) {
+            alert(e.message);
+        }
+    }
+
+    function onMosqueChangeSuccess(data) {
+        try {
+            $('#ObitID').html('<option></option>');
+            $.each(data, function (key, val) {
+                $('#ObitID').append('<option value="' + val.ID + '">' + val.Title + ' : ' + val.ObitTypeDisplay + '</option>');
+            });
+            $('#ObitID').prop('disabled', false);
+        } catch (e) {
+            alert(e.message);
+        }
+    }
+
+    function onAjaxError(data) {
+        alert('@Messages.SomthingWrongHappend');
+    }
 
 </script>

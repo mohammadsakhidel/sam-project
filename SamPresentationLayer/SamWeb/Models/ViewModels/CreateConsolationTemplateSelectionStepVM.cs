@@ -1,6 +1,6 @@
 ﻿using SamModels.DTOs;
+using SamUxLib.Resources.Values;
 using SamWeb.Code.MvcExtensions.ModelBinders;
-using SamWeb.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

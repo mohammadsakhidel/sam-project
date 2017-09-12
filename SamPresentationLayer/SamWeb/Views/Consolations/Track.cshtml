@@ -1,9 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "Track";
-}
-
-@section head {
+﻿@section head {
     <link href="~/Content/imageviewer.css" rel="stylesheet" />
     <script src="~/Scripts/imageviewer.min.js"></script>
 }
@@ -13,6 +8,8 @@
     <h2 class="step-title">
         @Strings.TrackConsolation
     </h2>
+
+    <hr />
 
     @using (Ajax.BeginForm("Track", "Consolations", new AjaxOptions { HttpMethod = "POST", LoadingElementId = "progress_track", UpdateTargetId = "target_track", OnBegin = "track_begin" }))
     {

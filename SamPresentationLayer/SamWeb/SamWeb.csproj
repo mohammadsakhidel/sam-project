@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Jmelosegui.Mvc.GoogleMap, Version=0.8.0.0, Culture=neutral, PublicKeyToken=bf3d287218d508fe, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jmelosegui.Mvc.Googlemap.0.8.0.0\lib\net45\Jmelosegui.Mvc.GoogleMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -222,18 +226,25 @@
     <None Include="Properties\PublishProfiles\sam_publish.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\imageviewer.min.js" />
-    <Content Include="Scripts\jquery-1.12.4.js" />
-    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jmelosegui.googlemap.js" />
+    <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js.cookie.js" />
+    <Content Include="Scripts\markerclusterer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -253,28 +264,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\CreateConsolationPreviewStepVM.cs" />
     <Compile Include="Models\ViewModels\TemplateFieldPresenter.cs" />
     <Compile Include="Models\ViewModels\CreateConsolationCustomerInfoStep.cs" />
     <Compile Include="Models\ViewModels\CreateConsolationObitSelectionStepVM.cs" />
     <Compile Include="Models\ViewModels\CreateConsolationTemplateInfoStep.cs" />
     <Compile Include="Models\ViewModels\CreateConsolationTemplateSelectionStepVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Enums.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Enums.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ResourceManager.cs" />
-    <Compile Include="Resources\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -282,19 +278,19 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Views\Consolations\Create.cshtml" />
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_ObitSelectionStep.cshtml" />
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_TemplateSelectionStep.cshtml" />
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_CustomerInfo.cshtml" />
     <Content Include="Views\Shared\Partials\_CreateConsolationWizard_TemplateInfoStep.cshtml" />
-    <Content Include="Views\Shared\Partials\_CreateConsolationWizard_SuccessStep.cshtml" />
+    <Content Include="Views\Shared\Partials\_CreateConsolationWizard_PreviewStep.cshtml" />
     <Content Include="Views\Shared\Partials\_HomeSlideshow.cshtml" />
     <Content Include="Views\Consolations\Track.cshtml" />
     <Content Include="Views\Shared\Partials\_ConsolationsList.cshtml" />
     <Content Include="Views\Shared\Partials\_Error.cshtml" />
     <Content Include="Views\Mosques\Index.cshtml" />
     <Content Include="Views\Shared\Partials\_MosquesList.cshtml" />
+    <Content Include="Views\Mosques\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -307,18 +303,10 @@
     <Folder Include="Code\Attributes\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Enums.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Enums.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Messages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <ProjectReference Include="..\SamUxLib\SamUxLib.csproj">
+      <Project>{6a3e7c54-3305-4beb-9e13-b967a6183c94}</Project>
+      <Name>SamUxLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

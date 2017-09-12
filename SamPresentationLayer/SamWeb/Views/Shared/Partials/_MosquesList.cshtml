@@ -3,9 +3,10 @@
 @{
     var baseUri = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
 }
-
-@foreach (var mosque in Model)
+@if (Model.Any())
 {
+    foreach (var mosque in Model)
+    {
     <div class="list-item">
         @if (!string.IsNullOrEmpty(mosque.ImageID))
         {
@@ -23,5 +24,13 @@
             <small>@mosque.Address</small>
         </div>
         <div class="clear"></div>
+    </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@Messages.NoItem</strong>
     </div>
 }

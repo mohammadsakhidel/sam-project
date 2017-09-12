@@ -109,5 +109,10 @@ namespace SamDataAccess.Repos
 
             return query.ToList();
         }
+
+        public List<Mosque> GetLatests(int count)
+        {
+            return set.OrderByDescending(m => m.CreationTime).Take(count).ToList();
+        }
     }
 }

@@ -4,6 +4,8 @@
     @Strings.CreateConsolationTemplateSelectionStep
 </h2>
 
+<hr />
+
 @using (Ajax.BeginForm("Create_TemplateSelectionStep", "Consolations", null,
                             new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
                             new { @id = "frm_template" }))
@@ -40,7 +42,7 @@
                                         </div>
                                         <div class="template-select-button">
                                             <input type="hidden" value="@template.ID" disabled="disabled" />
-                                            <input id="@($"chTemplate_{template.ID}")" type="checkbox" data-toggle="toggle" data-on="@Strings.On" data-off="@Strings.Off" style="width: 40px;" />
+                                            <input id="@($"chTemplate_{template.ID}")" type="checkbox" data-toggle="toggle" data-on="@Strings.Select" data-off="@Strings.Select" />
                                         </div>
                                         <div class="clear"></div>
                                     </div>
@@ -77,7 +79,9 @@
     TemplateSelectionStep.TemplateID = -1;
 
     $(function () {
-        $('.template-select-item input[type="checkbox"]').bootstrapToggle();
+        $('.template-select-item input[type="checkbox"]').bootstrapToggle({
+            width: 80
+        });
 
         var viewer = ImageViewer();
         $('.template-select-item > img').click(function () {

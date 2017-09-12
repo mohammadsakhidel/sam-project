@@ -3,9 +3,10 @@ using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Enums;
 using SamUtils.Utils;
+using SamUxLib.Resources;
+using SamUxLib.Resources.Values;
 using SamWeb.Code.Utils;
 using SamWeb.Models.ViewModels;
-using SamWeb.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,135 +76,169 @@ namespace SamWeb.Controllers
         [HttpPost]
         public async Task<PartialViewResult> Create_ObitSelectionStep(CreateConsolationObitSelectionStepVM model)
         {
-            Thread.Sleep(1000);
-
-            #region Validation:
-            if (!ModelState.IsValid)
+            try
             {
-                #region set cities collection to maintain view state:
-                if (model.ProvinceID.HasValue)
-                    model.Cities = CityUtil.GetProvinceCities(model.ProvinceID.Value);
-                #endregion
+                Thread.Sleep(1000);
 
-                #region set mosques collection to maintain view state:
-                if (model.CityID.HasValue)
+                #region Validation:
+                if (!ModelState.IsValid)
                 {
-                    var mosques = await GetCityMosquesFromApi(model.CityID.Value);
-                    model.Mosques = mosques;
+                    #region set cities collection to maintain view state:
+                    if (model.ProvinceID.HasValue)
+                        model.Cities = CityUtil.GetProvinceCities(model.ProvinceID.Value);
+                    #endregion
+
+                    #region set mosques collection to maintain view state:
+                    if (model.CityID.HasValue)
+                    {
+                        var mosques = await GetCityMosquesFromApi(model.CityID.Value);
+                        model.Mosques = mosques;
+                    }
+                    #endregion
+
+                    #region set obits collection to maintain view state:
+                    if (model.MosqueID.HasValue)
+                    {
+                        var obits = await GetMosqueObitsFromApi(model.MosqueID.Value);
+                        model.Obits = obits;
+                    }
+                    #endregion
+
+                    return PartialView("Partials/_CreateConsolationWizard_ObitSelectionStep", model);
                 }
                 #endregion
 
-                #region set obits collection to maintain view state:
-                if (model.MosqueID.HasValue)
-                {
-                    var obits = await GetMosqueObitsFromApi(model.MosqueID.Value);
-                    model.Obits = obits;
-                }
+                #region Return Customer Info Step View:
+                var nextModel = new CreateConsolationCustomerInfoStep();
+                return PartialView("Partials/_CreateConsolationWizard_CustomerInfo", nextModel);
                 #endregion
-
-                return PartialView("Partials/_CreateConsolationWizard_ObitSelectionStep", model);
             }
-            #endregion
-
-            #region Return Customer Info Step View:
-            var nextModel = new CreateConsolationCustomerInfoStep();
-            return PartialView("Partials/_CreateConsolationWizard_CustomerInfo", nextModel);
-            #endregion
+            catch (Exception ex)
+            {
+                return PartialView("Partials/_Error", ex);
+            }
         }
 
         [HttpPost]
         public async Task<PartialViewResult> Create_CustomerInfoStep(CreateConsolationCustomerInfoStep model)
         {
-            Thread.Sleep(1000);
-
-            #region Validation:
-            if (!ModelState.IsValid)
+            try
             {
-                return PartialView("Partials/_CreateConsolationWizard_CustomerInfo", model);
+                Thread.Sleep(1000);
+
+                #region Validation:
+                if (!ModelState.IsValid)
+                {
+                    return PartialView("Partials/_CreateConsolationWizard_CustomerInfo", model);
+                }
+                #endregion
+
+                #region Return Template Selection Step View:
+                var templates = await GetTemplatesFromApi();
+                var nextModel = new CreateConsolationTemplateSelectionStepVM
+                {
+                    Categories = templates.GroupBy(t => t.TemplateCategoryID).Select(g => g.First().Category)
+                                        .OrderBy(c => c.Order).ToList(),
+                    Templates = templates.OrderBy(t => t.Order).ToList()
+                };
+                return PartialView("Partials/_CreateConsolationWizard_TemplateSelectionStep", nextModel);
+                #endregion
             }
-            #endregion
-
-            #region Return Template Selection Step View:
-            var templates = await GetTemplatesFromApi();
-            var nextModel = new CreateConsolationTemplateSelectionStepVM
+            catch (Exception ex)
             {
-                Categories = templates.GroupBy(t => t.TemplateCategoryID).Select(g => g.First().Category)
-                                    .OrderBy(c => c.Order).ToList(),
-                Templates = templates.OrderBy(t => t.Order).ToList()
-            };
-            return PartialView("Partials/_CreateConsolationWizard_TemplateSelectionStep", nextModel);
-            #endregion
+                return PartialView("Partials/_Error", ex);
+            }
         }
 
         [HttpPost]
         public async Task<PartialViewResult> Create_TemplateSelectionStep(CreateConsolationTemplateSelectionStepVM model)
         {
-            Thread.Sleep(1000);
-
-            #region Validation:
-            if (!ModelState.IsValid)
+            try
             {
-                var templates = await GetTemplatesFromApi();
-                var step2Model = new CreateConsolationTemplateSelectionStepVM
-                {
-                    Categories = templates.GroupBy(t => t.TemplateCategoryID).Select(g => g.First().Category)
-                                    .OrderBy(c => c.Order).ToList(),
-                    Templates = templates.OrderBy(t => t.Order).ToList(),
-                    CategoryStates = model.CategoryStates
-                };
-                return PartialView("Partials/_CreateConsolationWizard_TemplateSelectionStep", step2Model);
-            }
-            #endregion
+                Thread.Sleep(1000);
 
-            #region Return TemplateInfo step view:
-            var nextModel = new CreateConsolationTemplateInfoStep();
-            var template = await GetTemplateFromApi(model.TemplateID.Value);
-            nextModel.Fields = template.TemplateFields.Select(f => new TemplateFieldPresenter { Name = f.Name, DisplayName = f.DisplayName, Description = f.Description }).ToList();
-            return PartialView("Partials/_CreateConsolationWizard_TemplateInfoStep", nextModel);
-            #endregion
+                #region Validation:
+                if (!ModelState.IsValid)
+                {
+                    var templates = await GetTemplatesFromApi();
+                    var step2Model = new CreateConsolationTemplateSelectionStepVM
+                    {
+                        Categories = templates.GroupBy(t => t.TemplateCategoryID).Select(g => g.First().Category)
+                                        .OrderBy(c => c.Order).ToList(),
+                        Templates = templates.OrderBy(t => t.Order).ToList(),
+                        CategoryStates = model.CategoryStates
+                    };
+                    return PartialView("Partials/_CreateConsolationWizard_TemplateSelectionStep", step2Model);
+                }
+                #endregion
+
+                #region Return TemplateInfo step view:
+                var nextModel = new CreateConsolationTemplateInfoStep();
+                var template = await GetTemplateFromApi(model.TemplateID.Value);
+                nextModel.Fields = template.TemplateFields.Select(f => new TemplateFieldPresenter { Name = f.Name, DisplayName = f.DisplayName, Description = f.Description }).ToList();
+                return PartialView("Partials/_CreateConsolationWizard_TemplateInfoStep", nextModel);
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                return PartialView("Partials/_Error", ex);
+            }
         }
 
         [HttpPost]
         public async Task<PartialViewResult> Create_TemplateInfoStep(CreateConsolationTemplateInfoStep model)
         {
-            Thread.Sleep(1000);
-
-            #region Validation:
-            foreach (var field in model.Fields)
+            try
             {
-                if (String.IsNullOrEmpty(field.Value.Replace(" ", "")))
+                Thread.Sleep(1000);
+
+                #region Validation:
+                foreach (var field in model.Fields)
                 {
-                    ModelState.AddModelError("Fields", Messages.FillAllFields);
-                    break;
+                    if (String.IsNullOrEmpty(field.Value.Replace(" ", "")))
+                    {
+                        ModelState.AddModelError("Fields", Messages.FillAllFields);
+                        break;
+                    }
                 }
+                if (!ModelState.IsValid)
+                    return PartialView("Partials/_CreateConsolationWizard_TemplateInfoStep", model);
+                #endregion
+
+                #region Create Consolation:
+                var fieldValues = model.Fields.ToDictionary(f => f.Name, f => f.Value);
+                var templateInfo = JsonConvert.SerializeObject(fieldValues);
+                var dto = new ConsolationDto
+                {
+                    ObitID = model.ObitID,
+                    TemplateID = model.TemplateID,
+                    Customer = new CustomerDto { FullName = model.FullName, CellPhoneNumber = model.CellPhoneNumber },
+                    Audience = model.Fields.SingleOrDefault(f => f.Name == "Audience")?.Value,
+                    From = model.Fields.SingleOrDefault(f => f.Name == "From")?.Value,
+                    PaymentStatus = PaymentStatus.pending.ToString(),
+                    Status = ConsolationStatus.pending.ToString(),
+                    TemplateInfo = templateInfo
+                };
+
+                using (var hc = HttpUtil.CreateClient())
+                {
+                    var response = await hc.PostAsJsonAsync<ConsolationDto>(ApiActions.consolations_create, dto);
+                    HttpUtil.EnsureSuccessStatusCode(response);
+                    var info = await response.Content.ReadAsAsync<Dictionary<string, string>>();
+                    var consolationId = Convert.ToInt32(info["ID"]);
+                    // call api to get new xonsolation:
+                    var response2 = await hc.GetAsync($"{ApiActions.consolations_findbyid}/{consolationId}");
+                    response2.EnsureSuccessStatusCode();
+                    var createdConsolation = await response2.Content.ReadAsAsync<ConsolationDto>();
+                    var vm = new CreateConsolationPreviewStepVM { CreatedConsolation = createdConsolation };
+                    return PartialView("Partials/_CreateConsolationWizard_PreviewStep", vm);
+                }
+                #endregion
             }
-            if (!ModelState.IsValid)
-                return PartialView("Partials/_CreateConsolationWizard_TemplateInfoStep", model);
-            #endregion
-
-            #region Create Consolation:
-            var fieldValues = model.Fields.ToDictionary(f => f.Name, f => f.Value);
-            var templateInfo = JsonConvert.SerializeObject(fieldValues);
-            var dto = new ConsolationDto
+            catch (Exception ex)
             {
-                ObitID = model.ObitID,
-                TemplateID = model.TemplateID,
-                Customer = new CustomerDto { FullName = model.FullName, CellPhoneNumber = model.CellPhoneNumber },
-                Audience = model.Fields.SingleOrDefault(f => f.Name == "Audience")?.Value,
-                From = model.Fields.SingleOrDefault(f => f.Name == "From")?.Value,
-                PaymentStatus = PaymentStatus.pending.ToString(),
-                Status = ConsolationStatus.pending.ToString(),
-                TemplateInfo = templateInfo
-            };
-
-            using (var hc = HttpUtil.CreateClient())
-            {
-                var response = await hc.PostAsJsonAsync<ConsolationDto>(ApiActions.consolations_create, dto);
-                HttpUtil.EnsureSuccessStatusCode(response);
-                return PartialView("Partials/_CreateConsolationWizard_SuccessStep");
+                return PartialView("Partials/_Error", ex);
             }
-
-            #endregion
         }
 
         [HttpPost]

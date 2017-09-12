@@ -1,9 +1,19 @@
 ﻿/*Extra Small*/
 @media (max-width: 768px) {
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+      height: 200px;
+      width: auto;
+    }
 }
 
 /*Small*/
 @media (min-width: 769px) and (max-width: 991px ) {
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+      height: 200px;
+      width: auto;
+    }
 }
 
 /*Medium*/
@@ -26,7 +36,6 @@
 
     .form-label {
         float: left;
-        margin: 6px 0 0 0;
     }
 }
 

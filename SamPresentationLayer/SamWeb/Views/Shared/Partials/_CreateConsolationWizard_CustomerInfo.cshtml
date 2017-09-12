@@ -4,6 +4,8 @@
     @Strings.CreateConsolationCustomerInfoStep
 </h2>
 
+<hr />
+
 @using (Ajax.BeginForm("Create_CustomerInfoStep", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_customer_info" }))
 {
     <div class="form-group">

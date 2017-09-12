@@ -1,5 +1,5 @@
 ﻿using SamUtils.Enums;
-using SamWeb.Resources;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;

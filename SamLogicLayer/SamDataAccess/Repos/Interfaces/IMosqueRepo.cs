@@ -16,5 +16,6 @@ namespace SamDataAccess.Repos.Interfaces
         Saloon FindSaloon(int mosqueId, string saloonId);
         void AddWithSave(Mosque mosque, ImageBlob image);
         List<Mosque> Search(int provinceId, int cityId, string name);
+        List<Mosque> GetLatests(int count);
     }
 }

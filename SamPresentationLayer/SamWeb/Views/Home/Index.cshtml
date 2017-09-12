@@ -1,14 +1,12 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
-
-@Html.Partial("Partials/_HomeSlideshow")
+﻿@Html.Partial("Partials/_HomeSlideshow")
 
 <div class="row">
     <div class="col-md-6">
         @Html.Frame(Strings.AboutSam, Strings.AboutSamExplanation)
     </div>
     <div class="col-md-6">
-        @Html.Frame(Strings.HowToUse, Strings.HowToUseExplanation)
+        @Html.Frame(Strings.LatestMosques, 
+            Html.Partial("Partials/_MosquesList", ViewBag.Mosques as List<SamModels.DTOs.MosqueDto>)
+            .ToString(), true)
     </div>
 </div>

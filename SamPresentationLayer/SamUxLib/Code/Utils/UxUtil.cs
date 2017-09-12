@@ -24,5 +24,10 @@ namespace SamUxLib.Code.Utils
         {
             return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.QuestionMessageBoxCaption, MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
+
+        public static string GetHtmlDisplay(string value)
+        {
+            return !string.IsNullOrEmpty(value) ? System.Web.HttpUtility.HtmlEncode(value) : "-";
+        }
     }
 }

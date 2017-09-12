@@ -167,6 +167,24 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult FindByID(int id)
+        {
+            try
+            {
+                var consolation = _consolationRepo.Get(id);
+                if (consolation == null)
+                    return NotFound();
+
+                var dto = Mapper.Map<Consolation, ConsolationDto>(consolation);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region PUT ACTIONS:

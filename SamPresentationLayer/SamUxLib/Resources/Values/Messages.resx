@@ -123,6 +123,12 @@
   <data name="AreYouSureToDelete" xml:space="preserve">
     <value>آیا نسبت به اجرای عملیات حذف اطمینان دارید؟</value>
   </data>
+  <data name="ConsolationSuccessfullySent" xml:space="preserve">
+    <value>پیام تسلیت شما با موفقیت در سیستم ثبت شد و پس از تأیید نمایش داده خواهد شد. هرگونه تغییر وضعیت از طریق پیامک به اطلاع شما خواهد رسید.</value>
+  </data>
+  <data name="CreateConsolationPreviewStepExplanation" xml:space="preserve">
+    <value>کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:</value>
+  </data>
   <data name="DuplicateRoleName" xml:space="preserve">
     <value>نقشی با این نام قبلا ثبت شده است.</value>
   </data>
@@ -132,11 +138,20 @@
   <data name="ErrorOccurredTryAgain" xml:space="preserve">
     <value>خطایی رخ داده است، لطفاً مجدداً تلاش کنید.</value>
   </data>
+  <data name="FillAllFields" xml:space="preserve">
+    <value>لطفاً مقادیر فرم را پر کنید.</value>
+  </data>
   <data name="FillBeforeDesignTemplate" xml:space="preserve">
     <value>قبل از اینکه بتوانید الگو را طراحی کنید لازم است تصویر پس زمینه و ابعاد الگو را مشخص کنید.</value>
   </data>
   <data name="FillRequiredFields" xml:space="preserve">
     <value>لطفاً مقدار فیلدهای اجباری را مشخص نمایید.</value>
+  </data>
+  <data name="Hint_CellPhoneNumber" xml:space="preserve">
+    <value>جهت اطلاع رسانی وضعیت پیام استفاده خواهد شد.</value>
+  </data>
+  <data name="Hint_FullName" xml:space="preserve">
+    <value>این فیلد در پیام تسلیت نمایش داده نخواهد شد.</value>
   </data>
   <data name="InvalidCellPhone" xml:space="preserve">
     <value>فرمت شماره همراه وارد شده صحیح نمی باشد.</value>
@@ -165,14 +180,38 @@
   <data name="InvalidUserNameFormat" xml:space="preserve">
     <value>فرمت نام کاربری وارد شده صحیح نیست.</value>
   </data>
+  <data name="Invalid_CellPhoneNumber" xml:space="preserve">
+    <value>شماره موبایل وارد شده معتبر نیست.</value>
+  </data>
   <data name="LoginFailedTryAgain" xml:space="preserve">
     <value>ورود به سیستم ناموفق بود، لطفاً مجدداً تلاش کنید.</value>
   </data>
   <data name="MinIntervalIncorrect" xml:space="preserve">
     <value>مقدار وارد شده برای فاصله زمانی مجاز نیست.</value>
   </data>
+  <data name="NoItem" xml:space="preserve">
+    <value>موردی جهت نمایش یافت نشد.</value>
+  </data>
+  <data name="PleaseFillSomeConditions" xml:space="preserve">
+    <value>لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید.</value>
+  </data>
+  <data name="Required_CellPhoneNumber" xml:space="preserve">
+    <value>لطفاً شماره موبایل خود را وارد کنید.</value>
+  </data>
+  <data name="Required_FullName" xml:space="preserve">
+    <value>لطفاً نام و نام خانوادگی خود را وارد کنید.</value>
+  </data>
+  <data name="Required_Obit" xml:space="preserve">
+    <value>جهت ادامه لطفاً ابتدا مجلس ترحیم مورد نظر خود را انتخاب نمایید.</value>
+  </data>
+  <data name="Required_Template" xml:space="preserve">
+    <value>جهت ادامه لطفاً الگوی پیام تسلیت خود را انتخاب نمایید.</value>
+  </data>
   <data name="SetSettingsBeforeSync" xml:space="preserve">
     <value>قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید.</value>
+  </data>
+  <data name="SomthingWrongHappend" xml:space="preserve">
+    <value>متأسفانه مشکلی بروز کرده است، لطفاً مجدداً تلاش کنید.</value>
   </data>
   <data name="SpecifyAtLeastOneSaloon" xml:space="preserve">
     <value>تعیین حداقل یک سالن برای مسجد الزامی است.</value>

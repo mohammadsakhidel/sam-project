@@ -79,6 +79,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پیام تسلیت شما با موفقیت در سیستم ثبت شد و پس از تأیید نمایش داده خواهد شد. هرگونه تغییر وضعیت از طریق پیامک به اطلاع شما خواهد رسید..
+        /// </summary>
+        public static string ConsolationSuccessfullySent {
+            get {
+                return ResourceManager.GetString("ConsolationSuccessfullySent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:.
+        /// </summary>
+        public static string CreateConsolationPreviewStepExplanation {
+            get {
+                return ResourceManager.GetString("CreateConsolationPreviewStepExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نقشی با این نام قبلا ثبت شده است..
         /// </summary>
         public static string DuplicateRoleName {
@@ -106,6 +124,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً مقادیر فرم را پر کنید..
+        /// </summary>
+        public static string FillAllFields {
+            get {
+                return ResourceManager.GetString("FillAllFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قبل از اینکه بتوانید الگو را طراحی کنید لازم است تصویر پس زمینه و ابعاد الگو را مشخص کنید..
         /// </summary>
         public static string FillBeforeDesignTemplate {
@@ -120,6 +147,33 @@ namespace SamUxLib.Resources.Values {
         public static string FillRequiredFields {
             get {
                 return ResourceManager.GetString("FillRequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جهت اطلاع رسانی وضعیت پیام استفاده خواهد شد..
+        /// </summary>
+        public static string Hint_CellPhoneNumber {
+            get {
+                return ResourceManager.GetString("Hint_CellPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to این فیلد در پیام تسلیت نمایش داده نخواهد شد..
+        /// </summary>
+        public static string Hint_FullName {
+            get {
+                return ResourceManager.GetString("Hint_FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شماره موبایل وارد شده معتبر نیست..
+        /// </summary>
+        public static string Invalid_CellPhoneNumber {
+            get {
+                return ResourceManager.GetString("Invalid_CellPhoneNumber", resourceCulture);
             }
         }
         
@@ -223,11 +277,74 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to موردی جهت نمایش یافت نشد..
+        /// </summary>
+        public static string NoItem {
+            get {
+                return ResourceManager.GetString("NoItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید..
+        /// </summary>
+        public static string PleaseFillSomeConditions {
+            get {
+                return ResourceManager.GetString("PleaseFillSomeConditions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً شماره موبایل خود را وارد کنید..
+        /// </summary>
+        public static string Required_CellPhoneNumber {
+            get {
+                return ResourceManager.GetString("Required_CellPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً نام و نام خانوادگی خود را وارد کنید..
+        /// </summary>
+        public static string Required_FullName {
+            get {
+                return ResourceManager.GetString("Required_FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جهت ادامه لطفاً ابتدا مجلس ترحیم مورد نظر خود را انتخاب نمایید..
+        /// </summary>
+        public static string Required_Obit {
+            get {
+                return ResourceManager.GetString("Required_Obit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جهت ادامه لطفاً الگوی پیام تسلیت خود را انتخاب نمایید..
+        /// </summary>
+        public static string Required_Template {
+            get {
+                return ResourceManager.GetString("Required_Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قبل از همگام سازی می بایست تنظیمات کلاینت را ذخیره کنید..
         /// </summary>
         public static string SetSettingsBeforeSync {
             get {
                 return ResourceManager.GetString("SetSettingsBeforeSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متأسفانه مشکلی بروز کرده است، لطفاً مجدداً تلاش کنید..
+        /// </summary>
+        public static string SomthingWrongHappend {
+            get {
+                return ResourceManager.GetString("SomthingWrongHappend", resourceCulture);
             }
         }
         

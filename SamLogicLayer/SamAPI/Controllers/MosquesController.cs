@@ -81,6 +81,21 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult GetLatests(int count = 5)
+        {
+            try
+            {
+                var mosques = _mosqueRepo.GetLatests(count);
+                var mosqueDtos = mosques.Select(m => Mapper.Map<Mosque, MosqueDto>(m)).ToList();
+                return Ok(mosqueDtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region POST ACTIONS:

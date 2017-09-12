@@ -8,19 +8,19 @@ namespace SamWeb.Code.Extensions
 {
     public static class HtmlHelpers
     {
-        public static IHtmlString Frame(this HtmlHelper helper, string title, string content)
+        public static IHtmlString Frame(this HtmlHelper helper, string title, string content, bool allowHtml = false)
         {
             string html = "";
 
             html += "<div class=\"frame\">";
             #region title:
             html += "<h2>" + 
-                        helper.Encode(title) +
+                        (allowHtml ? title : helper.Encode(title)) +
                     "</h2>";
             #endregion
             #region content:
             html += "<div>" +
-                        helper.Encode(content) +
+                        (allowHtml ? content : helper.Encode(content)) +
                     "</div>";
             #endregion
             html += "</div>";

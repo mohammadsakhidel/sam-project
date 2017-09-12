@@ -14,6 +14,7 @@ namespace SamUtils.Constants
         public const string mosques_create = "mosques/create";
         public const string mosques_update = "mosques/update";
         public const string mosques_delete = "mosques/delete";
+        public const string mosques_getlatests = "mosques/getlatests";
         public const string categories_all = "categories/all";
         public const string templates_all = "templates/all";
         public const string templates_create = "templates/create";
@@ -31,6 +32,8 @@ namespace SamUtils.Constants
         public const string consolations_update = "consolations/update";
         public const string consolations_filter = "consolations/filter";
         public const string consolations_find = "consolations/find";
+        public const string consolations_findbyid = "consolations/findbyid";
+        public const string consolations_getpreview = "consolations/getpreview";
         public const string account_validateuser = "account/validateuser";
         public const string account_all = "account/all";
         public const string account_create = "account/create";

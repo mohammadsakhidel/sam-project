@@ -1,0 +1,115 @@
+﻿@using Jmelosegui.Mvc.GoogleMap
+@model SamModels.DTOs.MosqueDto
+
+@{
+    var city = SamUtils.Utils.CityUtil.GetCity(Model.CityID);
+    var province = SamUtils.Utils.CityUtil.GetProvince(city.ID);
+    var hasLocation = !string.IsNullOrEmpty(Model.Location);
+}
+
+@section head {
+    <link href="~/Content/imageviewer.css" rel="stylesheet" />
+    <script src="~/Scripts/imageviewer.min.js"></script>
+    @(Html.GoogleMap().ScriptRegistrar())
+}
+
+<div class="page-content">
+
+    <h2 class="step-title">
+        @Strings.MosqueDetails
+    </h2>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.ImageID))
+            {
+                var baseUrl = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
+                var thumbUrl = new Uri(baseUrl, $"{SamUtils.Constants.ApiActions.blobs_getimage}/{Model.ImageID}?thumb=true");
+                var imageUrl = new Uri(baseUrl, $"{SamUtils.Constants.ApiActions.blobs_getimage}/{Model.ImageID}?thumb=false");
+            <div style="text-align: center; margin-bottom: 15px;">
+                <img id="mosque_image" class="thumb" src="@thumbUrl"
+                     data-high-res-img="@imageUrl" style="height: 150px; width: auto;" />
+            </div>
+            }
+
+            <div class="form-group row rtl-md">
+                <div class="col-md-4">
+                    <span class="form-label">@Strings.MosqueName</span>
+                </div>
+                <div class="col-md-8">
+                    <label>@UxUtil.GetHtmlDisplay(Model.Name)</label>
+                </div>
+            </div>
+            <div class="form-group row rtl-md">
+                <div class="col-md-4">
+                    <span class="form-label">@Strings.Province</span>
+                </div>
+                <div class="col-md-8">
+                    <label>@UxUtil.GetHtmlDisplay(province.Name)</label>
+                </div>
+            </div>
+            <div class="form-group row rtl-md">
+                <div class="col-md-4">
+                    <span class="form-label">@Strings.City</span>
+                </div>
+                <div class="col-md-8">
+                    <label>@UxUtil.GetHtmlDisplay(city.Name)</label>
+                </div>
+            </div>
+            <div class="form-group row rtl-md">
+                <div class="col-md-4">
+                    <span class="form-label">@Strings.Address</span>
+                </div>
+                <div class="col-md-8">
+                    <label>@UxUtil.GetHtmlDisplay(Model.Address)</label>
+                </div>
+            </div>
+            <div class="form-group row rtl-md">
+                <div class="col-md-4">
+                    <span class="form-label">@Strings.ImamName</span>
+                </div>
+                <div class="col-md-8">
+                    <label>@UxUtil.GetHtmlDisplay(Model.ImamName)</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            @if (hasLocation)
+            {
+                var loc = new RamancoLibrary.Objects.Location(Model.Location);
+                @(Html.GoogleMap()
+                    .ApiKey(System.Configuration.ConfigurationManager.AppSettings["google_api_key"])
+                    .Name("mosque_location")
+                    .Height(400)
+                    .Markers(m =>
+                    {
+                        m.Add()
+                        .Latitude(loc.Latitude)
+                        .Longitude(loc.Longitude)
+                        .Title(Model.Name);
+                    })
+                    .Center(c =>
+                    {
+                        c.Latitude(loc.Latitude);
+                        c.Longitude(loc.Longitude);
+                    })
+                    .Zoom(15))
+
+            }
+        </div>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink(Strings.Back, "Index")
+</p>
+
+<script>
+    $('#mosque_image').click(function () {
+        var viewer = ImageViewer();
+        var imgSrc = this.src, highResolutionImage = $(this).data('high-res-img');
+        viewer.show(imgSrc, highResolutionImage);
+    });
+</script>

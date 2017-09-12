@@ -61,6 +61,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to درباره پروژه سام.
+        /// </summary>
+        public static string AboutSam {
+            get {
+                return ResourceManager.GetString("AboutSam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمت [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AboutSamExplanation {
+            get {
+                return ResourceManager.GetString("AboutSamExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سطح دسترسی.
         /// </summary>
         public static string AccessLevel {
@@ -142,7 +160,25 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سامانه اطلاع رسانی مساجد (سام).
+        ///   Looks up a localized string similar to مبلغ قابل پرداخت.
+        /// </summary>
+        public static string AmountToPay {
+            get {
+                return ResourceManager.GetString("AmountToPay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سامانه اطلاع رسانی مساجد.
+        /// </summary>
+        public static string AppDescription {
+            get {
+                return ResourceManager.GetString("AppDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سام.
         /// </summary>
         public static string AppName {
             get {
@@ -331,6 +367,33 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تأیید و ادامه.
+        /// </summary>
+        public static string ConfirmAndContinue {
+            get {
+                return ResourceManager.GetString("ConfirmAndContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید و پرداخت.
+        /// </summary>
+        public static string ConfirmAndPay {
+            get {
+                return ResourceManager.GetString("ConfirmAndPay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید و پیش نمایش.
+        /// </summary>
+        public static string ConfirmAndPreview {
+            get {
+                return ResourceManager.GetString("ConfirmAndPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تأیید جهت نمایش.
         /// </summary>
         public static string ConfirmToDisplay {
@@ -358,11 +421,56 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لغو شده.
+        /// </summary>
+        public static string ConsolationStatus_Canceled {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید شده.
+        /// </summary>
+        public static string ConsolationStatus_Confirmed {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Confirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش یافته.
+        /// </summary>
+        public static string ConsolationStatus_Displayed {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Displayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر تأیید.
+        /// </summary>
+        public static string ConsolationStatus_Pending {
+            get {
+                return ResourceManager.GetString("ConsolationStatus_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ثبت کننده پیام.
         /// </summary>
         public static string Consolator {
             get {
                 return ResourceManager.GetString("Consolator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارتباط با ما.
+        /// </summary>
+        public static string ContactUs {
+            get {
+                return ResourceManager.GetString("ContactUs", resourceCulture);
             }
         }
         
@@ -381,6 +489,60 @@ namespace SamUxLib.Resources.Values {
         public static string Create {
             get {
                 return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مشخصات شما.
+        /// </summary>
+        public static string CreateConsolationCustomerInfoStep {
+            get {
+                return ResourceManager.GetString("CreateConsolationCustomerInfoStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to انتخاب مجلس ترحیم.
+        /// </summary>
+        public static string CreateConsolationObitSelectionStep {
+            get {
+                return ResourceManager.GetString("CreateConsolationObitSelectionStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیش نمایش.
+        /// </summary>
+        public static string CreateConsolationPreviewStep {
+            get {
+                return ResourceManager.GetString("CreateConsolationPreviewStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پایان عملیات.
+        /// </summary>
+        public static string CreateConsolationSuccessStep {
+            get {
+                return ResourceManager.GetString("CreateConsolationSuccessStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to محتوای پیام تسلیت.
+        /// </summary>
+        public static string CreateConsolationTemplateInfoStep {
+            get {
+                return ResourceManager.GetString("CreateConsolationTemplateInfoStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to انتخاب الگوی پیام تسلیت.
+        /// </summary>
+        public static string CreateConsolationTemplateSelectionStep {
+            get {
+                return ResourceManager.GetString("CreateConsolationTemplateSelectionStep", resourceCulture);
             }
         }
         
@@ -462,6 +624,15 @@ namespace SamUxLib.Resources.Values {
         public static string DisplayName {
             get {
                 return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دریافت اَپ موبایل.
+        /// </summary>
+        public static string DownloadApp {
+            get {
+                return ResourceManager.GetString("DownloadApp", resourceCulture);
             }
         }
         
@@ -592,6 +763,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to محصول شرکت آرت استون ایرانیان.
+        /// </summary>
+        public static string Footer {
+            get {
+                return ResourceManager.GetString("Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to طراحی و تولید: شرکت آرت استون ایرانیان.
         /// </summary>
         public static string FooterText {
@@ -606,6 +786,33 @@ namespace SamUxLib.Resources.Values {
         public static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام و نام خانوادگی.
+        /// </summary>
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to راهنمای استفاده.
+        /// </summary>
+        public static string HowToUse {
+            get {
+                return ResourceManager.GetString("HowToUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه است [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HowToUseExplanation {
+            get {
+                return ResourceManager.GetString("HowToUseExplanation", resourceCulture);
             }
         }
         
@@ -700,6 +907,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آخرین مساجد تجهیز شده.
+        /// </summary>
+        public static string LatestMosques {
+            get {
+                return ResourceManager.GetString("LatestMosques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام لاتین.
         /// </summary>
         public static string LatinName {
@@ -786,6 +1002,24 @@ namespace SamUxLib.Resources.Values {
         public static string Mosque {
             get {
                 return ResourceManager.GetString("Mosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مساجد عضو.
+        /// </summary>
+        public static string MosqueBrowser {
+            get {
+                return ResourceManager.GetString("MosqueBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مشخصات مسجد.
+        /// </summary>
+        public static string MosqueDetails {
+            get {
+                return ResourceManager.GetString("MosqueDetails", resourceCulture);
             }
         }
         
@@ -952,11 +1186,29 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خیر.
+        /// </summary>
+        public static string Off {
+            get {
+                return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تأیید.
         /// </summary>
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بله.
+        /// </summary>
+        public static string On {
+            get {
+                return ResourceManager.GetString("On", resourceCulture);
             }
         }
         
@@ -979,6 +1231,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to قسمتی از نام مسجد.
+        /// </summary>
+        public static string PartOfMosqueName {
+            get {
+                return ResourceManager.GetString("PartOfMosqueName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گذرواژه.
         /// </summary>
         public static string Password {
@@ -993,6 +1254,51 @@ namespace SamUxLib.Resources.Values {
         public static string PasswordConfirm {
             get {
                 return ResourceManager.GetString("PasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وضعیت پرداخت.
+        /// </summary>
+        public static string PaymentStatus {
+            get {
+                return ResourceManager.GetString("PaymentStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت ناموفق.
+        /// </summary>
+        public static string PaymentStatus_Failed {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر پرداخت.
+        /// </summary>
+        public static string PaymentStatus_Pending {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منتظر تأیید نهایی.
+        /// </summary>
+        public static string PaymentStatus_Succeeded {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Succeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت شده.
+        /// </summary>
+        public static string PaymentStatus_Verified {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Verified", resourceCulture);
             }
         }
         
@@ -1083,6 +1389,15 @@ namespace SamUxLib.Resources.Values {
         public static string Read {
             get {
                 return ResourceManager.GetString("Read", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ثبت پیام تسلیت.
+        /// </summary>
+        public static string RegisterConsolation {
+            get {
+                return ResourceManager.GetString("RegisterConsolation", resourceCulture);
             }
         }
         
@@ -1195,11 +1510,29 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انتخاب.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انتخاب فایل.
         /// </summary>
         public static string SelectFile {
             get {
                 return ResourceManager.GetString("SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال پیام تسلیت.
+        /// </summary>
+        public static string SendConsolation {
+            get {
+                return ResourceManager.GetString("SendConsolation", resourceCulture);
             }
         }
         
@@ -1425,6 +1758,24 @@ namespace SamUxLib.Resources.Values {
         public static string Top {
             get {
                 return ResourceManager.GetString("Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رهگیری پیام.
+        /// </summary>
+        public static string TrackConsolation {
+            get {
+                return ResourceManager.GetString("TrackConsolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد رهگیری پیام.
+        /// </summary>
+        public static string TrackingNumber {
+            get {
+                return ResourceManager.GetString("TrackingNumber", resourceCulture);
             }
         }
         

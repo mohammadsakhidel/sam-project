@@ -136,7 +136,7 @@
     <value>چیدمان</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>سامانه اطلاع رسانی مساجد (سام)</value>
+    <value>سام</value>
   </data>
   <data name="AspectRatio" xml:space="preserve">
     <value>ابعاد</value>
@@ -599,5 +599,122 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>تصویر</value>
+  </data>
+  <data name="AboutSam" xml:space="preserve">
+    <value>درباره پروژه سام</value>
+  </data>
+  <data name="AboutSamExplanation" xml:space="preserve">
+    <value>متن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن درباره</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>سامانه اطلاع رسانی مساجد</value>
+  </data>
+  <data name="ConfirmAndContinue" xml:space="preserve">
+    <value>تأیید و ادامه</value>
+  </data>
+  <data name="ConfirmAndPay" xml:space="preserve">
+    <value>تأیید و پرداخت</value>
+  </data>
+  <data name="ConsolationStatus_Canceled" xml:space="preserve">
+    <value>لغو شده</value>
+  </data>
+  <data name="ConsolationStatus_Confirmed" xml:space="preserve">
+    <value>تأیید شده</value>
+  </data>
+  <data name="ConsolationStatus_Displayed" xml:space="preserve">
+    <value>نمایش یافته</value>
+  </data>
+  <data name="ConsolationStatus_Pending" xml:space="preserve">
+    <value>منتظر تأیید</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>ارتباط با ما</value>
+  </data>
+  <data name="CreateConsolationCustomerInfoStep" xml:space="preserve">
+    <value>مشخصات شما</value>
+  </data>
+  <data name="CreateConsolationObitSelectionStep" xml:space="preserve">
+    <value>انتخاب مجلس ترحیم</value>
+  </data>
+  <data name="CreateConsolationSuccessStep" xml:space="preserve">
+    <value>پایان عملیات</value>
+  </data>
+  <data name="CreateConsolationTemplateInfoStep" xml:space="preserve">
+    <value>محتوای پیام تسلیت</value>
+  </data>
+  <data name="CreateConsolationTemplateSelectionStep" xml:space="preserve">
+    <value>انتخاب الگوی پیام تسلیت</value>
+  </data>
+  <data name="DownloadApp" xml:space="preserve">
+    <value>دریافت اَپ موبایل</value>
+  </data>
+  <data name="Footer" xml:space="preserve">
+    <value>محصول شرکت آرت استون ایرانیان</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="HowToUse" xml:space="preserve">
+    <value>راهنمای استفاده</value>
+  </data>
+  <data name="HowToUseExplanation" xml:space="preserve">
+    <value>نحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفادهنحوه استفاده</value>
+  </data>
+  <data name="MosqueBrowser" xml:space="preserve">
+    <value>مساجد عضو</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>خیر</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>بله</value>
+  </data>
+  <data name="PartOfMosqueName" xml:space="preserve">
+    <value>قسمتی از نام مسجد</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>وضعیت پرداخت</value>
+  </data>
+  <data name="PaymentStatus_Failed" xml:space="preserve">
+    <value>پرداخت ناموفق</value>
+  </data>
+  <data name="PaymentStatus_Pending" xml:space="preserve">
+    <value>منتظر پرداخت</value>
+  </data>
+  <data name="PaymentStatus_Succeeded" xml:space="preserve">
+    <value>منتظر تأیید نهایی</value>
+  </data>
+  <data name="PaymentStatus_Verified" xml:space="preserve">
+    <value>پرداخت شده</value>
+  </data>
+  <data name="RegisterConsolation" xml:space="preserve">
+    <value>ثبت پیام تسلیت</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>انتخاب</value>
+  </data>
+  <data name="SendConsolation" xml:space="preserve">
+    <value>ارسال پیام تسلیت</value>
+  </data>
+  <data name="TrackConsolation" xml:space="preserve">
+    <value>رهگیری پیام</value>
+  </data>
+  <data name="TrackingNumber" xml:space="preserve">
+    <value>کد رهگیری پیام</value>
+  </data>
+  <data name="MosqueDetails" xml:space="preserve">
+    <value>مشخصات مسجد</value>
+  </data>
+  <data name="AmountToPay" xml:space="preserve">
+    <value>مبلغ قابل پرداخت</value>
+  </data>
+  <data name="ConfirmAndPreview" xml:space="preserve">
+    <value>تأیید و پیش نمایش</value>
+  </data>
+  <data name="CreateConsolationPreviewStep" xml:space="preserve">
+    <value>پیش نمایش</value>
+  </data>
+  <data name="LatestMosques" xml:space="preserve">
+    <value>آخرین مساجد تجهیز شده</value>
   </data>
 </root>

@@ -2,7 +2,7 @@
 using SamUtils.Constants;
 using SamUtils.Objects.Exceptions;
 using SamUtils.Utils;
-using SamWeb.Resources;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +15,26 @@ namespace SamWeb.Controllers
     public class MosquesController : Controller
     {
         #region Get Actions:
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async System.Threading.Tasks.Task<ActionResult> Details(int id)
+        {
+            #region Call Api:
+            MosqueDto model = null;
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var response = await hc.GetAsync($"{ApiActions.mosques_find}/{id}");
+                HttpUtil.EnsureSuccessStatusCode(response);
+                model = await response.Content.ReadAsAsync<MosqueDto>();
+            }
+            #endregion
+
+            return View(model);
         }
         #endregion
 

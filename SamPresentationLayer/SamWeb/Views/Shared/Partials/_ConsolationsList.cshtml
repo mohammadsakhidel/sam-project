@@ -42,8 +42,8 @@ else
 }
 
 <script>
-    var viewer = ImageViewer();
     $('.consolation-item > .thumb-container > img').click(function () {
+        var viewer = ImageViewer();
         var imgSrc = this.src, highResolutionImage = $(this).data('high-res-img');
         viewer.show(imgSrc, highResolutionImage);
     });
