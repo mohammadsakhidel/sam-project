@@ -129,6 +129,11 @@
   <data name="CreateConsolationPreviewStepExplanation" xml:space="preserve">
     <value>کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:</value>
   </data>
+  <data name="DeleteCategoryWarning" xml:space="preserve">
+    <value>با حذف دسته، تمامی الگوهای آن دسته حذف خواهد شد (شما قادر به حذف الگوهای استفاده شده نخواهید بود)
+
+آیا اطمینان دارید؟</value>
+  </data>
   <data name="DuplicateRoleName" xml:space="preserve">
     <value>نقشی با این نام قبلا ثبت شده است.</value>
   </data>
@@ -191,6 +196,9 @@
   </data>
   <data name="NoItem" xml:space="preserve">
     <value>موردی جهت نمایش یافت نشد.</value>
+  </data>
+  <data name="NotAllowedToDeleteItem" xml:space="preserve">
+    <value>حذف این مورد از سیستم مجاز نیست.</value>
   </data>
   <data name="PleaseFillSomeConditions" xml:space="preserve">
     <value>لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید.</value>

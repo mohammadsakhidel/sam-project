@@ -40,7 +40,6 @@ namespace SamDataAccess.Repos
                 ts.Complete();
             }
         }
-
         public void UpdateWithSave(Template newTemplate, ImageBlob backgroundImage)
         {
             using (var ts = new TransactionScope())
@@ -117,26 +116,9 @@ namespace SamDataAccess.Repos
                 ts.Complete();
             }
         }
-
-        public void RemoveAllDependencies(int id)
+        public bool HasAnyConsolations(int id)
         {
-            using (var ts = new TransactionScope())
-            {
-                var entity = Get(id);
-                if (entity != null)
-                {
-                    // remove backgroudn image:
-                    var blob = context.Blobs.Find(entity.BackgroundImageID);
-                    if (blob != null)
-                        context.Blobs.Remove(blob);
-
-                    //remove template and fields:
-                    context.Templates.Remove(entity);
-
-                    Save();
-                    ts.Complete();
-                }
-            }
+            return context.Consolations.Where(c => c.TemplateID == id).Any();
         }
         #endregion
     }

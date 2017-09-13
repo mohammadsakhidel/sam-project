@@ -1,6 +1,8 @@
-﻿using System;
+﻿using SamModels.Entities.Blobs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SamModels.Entities.Core
 {
@@ -55,6 +57,9 @@ namespace SamModels.Entities.Core
         #region Navigation Props:
         public virtual ICollection<Obit> Obits { get; set; }
         public virtual ICollection<Saloon> Saloons { get; set; }
+
+        [ForeignKey("ImageID")]
+        public virtual Blob Image { get; set; }
         #endregion
     }
 }

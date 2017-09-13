@@ -230,6 +230,9 @@
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\ManageCategoriesWindow.xaml.cs">
+      <DependentUpon>ManageCategoriesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\ObitsWindow.xaml.cs">
       <DependentUpon>ObitsWindow.xaml</DependentUpon>
     </Compile>
@@ -384,6 +387,10 @@
     <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\ManageCategoriesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ObitsWindow.xaml">
       <SubType>Designer</SubType>

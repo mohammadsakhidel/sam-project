@@ -1,6 +1,8 @@
-﻿using System;
+﻿using SamModels.Entities.Blobs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +60,9 @@ namespace SamModels.Entities.Core
         #region Navigation Props:
         public virtual ICollection<TemplateField> TemplateFields { get; set; }
         public virtual TemplateCategory Category { get; set; }
+
+        [ForeignKey("BackgroundImageID")]
+        public virtual Blob BackgroundImage { get; set; }
         #endregion
     }
 }

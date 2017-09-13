@@ -88,6 +88,9 @@
                     <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
                                     IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                    <ram:FlatButton x:Name="btnCategories" Style="{StaticResource small_action_button_open}" Click="btnCategories_Click"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateCategories}"
+                                    Margin="{StaticResource padding_container_start}"/>
                 </StackPanel>
             </Border>
 

@@ -369,4 +369,18 @@
         <Setter Property="Foreground" Value="{StaticResource color_neutral_darkest}"></Setter>
     </Style>
 
+    <Style x:Key="grid_button" TargetType="{x:Type ram:ImageButton}">
+        <Setter Property="ImageWidth" Value="20"></Setter>
+        <Setter Property="ImageHeight" Value="20"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+
+    <Style x:Key="grid_button_delete" TargetType="{x:Type ram:ImageButton}" BasedOn="{StaticResource grid_button}">
+        <Setter Property="ImageSource" Value="Images/ic_delete_dark.png"></Setter>
+    </Style>
+
+    <Style x:Key="grid_button_edit" TargetType="{x:Type ram:ImageButton}" BasedOn="{StaticResource grid_button}">
+        <Setter Property="ImageSource" Value="Images/ic_edit_dark.png"></Setter>
+    </Style>
+
 </ResourceDictionary>

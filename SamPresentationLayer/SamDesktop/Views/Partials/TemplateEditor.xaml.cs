@@ -341,6 +341,18 @@ namespace SamDesktop.Views.Partials
             }
             catch { }
         }
+        private void btnNewCategory_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var window = new ManageCategoriesWindow();
+                window.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
         #endregion
 
         #region Methods:

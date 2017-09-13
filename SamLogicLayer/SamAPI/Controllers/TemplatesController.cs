@@ -157,7 +157,16 @@ namespace SamAPI.Controllers
         {
             try
             {
-                _templateRepo.RemoveAllDependencies(id);
+                var templateToDelete = _templateRepo.Get(id);
+                if (templateToDelete == null)
+                    return NotFound();
+
+                #region Check if Delete is Allowed:
+                if (_templateRepo.HasAnyConsolations(id))
+                    return BadRequest();
+                #endregion
+
+                _templateRepo.RemoveWithSave(id);
                 return Ok();
             }
             catch (Exception ex)

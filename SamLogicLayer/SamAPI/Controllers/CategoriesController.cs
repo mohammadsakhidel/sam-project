@@ -41,5 +41,65 @@ namespace SamAPI.Controllers
             }
         }
         #endregion
+
+        #region POST:
+        [HttpPost]
+        public IHttpActionResult Create(TemplateCategoryDto model)
+        {
+            try
+            {
+                var category = Mapper.Map<TemplateCategoryDto, TemplateCategory>(model);
+                _categoryRepo.AddWithSave(category);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+        #endregion
+
+        #region PUT:
+        [HttpPut]
+        public IHttpActionResult Update(TemplateCategoryDto model)
+        {
+            try
+            {
+                var category = Mapper.Map<TemplateCategoryDto, TemplateCategory>(model);
+                _categoryRepo.UpdateWithSave(category);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+        #endregion
+
+        #region DELETE:
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            try
+            {
+                var categoryToDelete = _categoryRepo.Get(id);
+                if (categoryToDelete == null)
+                    return NotFound();
+
+                #region Check if Delete is Allowed:
+                if (categoryToDelete.Templates.Any())
+                    return BadRequest();
+                #endregion
+
+                _categoryRepo.RemoveWithSave(id);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+        #endregion
     }
 }

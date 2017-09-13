@@ -114,5 +114,26 @@ namespace SamDataAccess.Repos
         {
             return set.OrderByDescending(m => m.CreationTime).Take(count).ToList();
         }
+
+        public void RemoveAllDependencies(int id)
+        {
+            using (var ts = new TransactionScope())
+            {
+                var entity = Get(id);
+                if (entity != null)
+                {
+                    // remove backgroudn image:
+                    var blob = context.Blobs.Find(entity.ImageID);
+                    if (blob != null)
+                        context.Blobs.Remove(blob);
+
+                    //remove template and fields:
+                    context.Mosques.Remove(entity);
+
+                    Save();
+                    ts.Complete();
+                }
+            }
+        }
     }
 }

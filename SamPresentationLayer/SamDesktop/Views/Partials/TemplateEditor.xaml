@@ -62,8 +62,9 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <ComboBox ItemsSource="{Binding TemplateCategories}" SelectedItem="{Binding TemplateCategory, Mode=TwoWay}" />
-                            <ram:FlatButton Style="{StaticResource small_action_button_add}" Grid.Column="1" Margin="4 0 0 0"
-                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewCategory}" />
+                            <ram:FlatButton x:Name="btnNewCategory" Style="{StaticResource small_action_button_add}" Grid.Column="1" Margin="4 0 0 0"
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewCategory}"
+                                            Click="btnNewCategory_Click"/>
                         </Grid>
 
                         <!--Row 4 ::: Name:-->

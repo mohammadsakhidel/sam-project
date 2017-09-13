@@ -717,4 +717,13 @@
   <data name="LatestMosques" xml:space="preserve">
     <value>آخرین مساجد تجهیز شده</value>
   </data>
+  <data name="Operation" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="TemplateCategories" xml:space="preserve">
+    <value>دسته بندی الگوها</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>قابل مشاهده</value>
+  </data>
 </root>

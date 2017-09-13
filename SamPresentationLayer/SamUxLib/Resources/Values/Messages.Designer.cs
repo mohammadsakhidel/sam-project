@@ -97,6 +97,17 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to با حذف دسته، تمامی الگوهای آن دسته حذف خواهد شد (شما قادر به حذف الگوهای استفاده شده نخواهید بود)
+        ///
+        ///آیا اطمینان دارید؟.
+        /// </summary>
+        public static string DeleteCategoryWarning {
+            get {
+                return ResourceManager.GetString("DeleteCategoryWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نقشی با این نام قبلا ثبت شده است..
         /// </summary>
         public static string DuplicateRoleName {
@@ -282,6 +293,15 @@ namespace SamUxLib.Resources.Values {
         public static string NoItem {
             get {
                 return ResourceManager.GetString("NoItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حذف این مورد از سیستم مجاز نیست..
+        /// </summary>
+        public static string NotAllowedToDeleteItem {
+            get {
+                return ResourceManager.GetString("NotAllowedToDeleteItem", resourceCulture);
             }
         }
         

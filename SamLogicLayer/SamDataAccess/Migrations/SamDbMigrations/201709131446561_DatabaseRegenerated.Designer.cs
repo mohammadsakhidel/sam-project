@@ -7,13 +7,13 @@ namespace SamDataAccess.Migrations.SamDbMigrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ObitHolding_SaloonIDAdded : IMigrationMetadata
+    public sealed partial class DatabaseRegenerated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ObitHolding_SaloonIDAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DatabaseRegenerated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707311522448_ObitHolding_SaloonIDAdded"; }
+            get { return "201709131446561_DatabaseRegenerated"; }
         }
         
         string IMigrationMetadata.Source

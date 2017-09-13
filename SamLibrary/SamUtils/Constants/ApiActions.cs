@@ -16,6 +16,9 @@ namespace SamUtils.Constants
         public const string mosques_delete = "mosques/delete";
         public const string mosques_getlatests = "mosques/getlatests";
         public const string categories_all = "categories/all";
+        public const string categories_create = "categories/create";
+        public const string categories_update = "categories/update";
+        public const string categories_delete = "categories/delete";
         public const string templates_all = "templates/all";
         public const string templates_create = "templates/create";
         public const string templates_update = "templates/update";

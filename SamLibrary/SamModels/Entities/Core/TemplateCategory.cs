@@ -21,6 +21,9 @@ namespace SamModels.Entities.Core
         [MaxLength(256)]
         public string Description { get; set; }
 
+        [Required]
+        public bool Visible { get; set; } = true;
+
         #region Navigation Props:
         public virtual ICollection<Template> Templates { get; set; }
         #endregion

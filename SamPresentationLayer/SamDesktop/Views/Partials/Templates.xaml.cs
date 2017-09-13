@@ -46,7 +46,6 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private async void btnNew_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -63,7 +62,6 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -80,7 +78,6 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -96,6 +93,10 @@ namespace SamDesktop.Views.Partials
                         using (var hc = HttpUtil.CreateClient())
                         {
                             var response = await hc.DeleteAsync($"{ApiActions.templates_delete}/{templateToDelete.ID}");
+                            #region show not allowed delete message:
+                            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                                throw new Exception(Messages.NotAllowedToDeleteItem);
+                            #endregion
                             HttpUtil.EnsureSuccessStatusCode(response);
                             UxUtil.ShowMessage(Messages.SuccessfullyDone);
                             await LoadRecords();
@@ -107,6 +108,18 @@ namespace SamDesktop.Views.Partials
             catch (Exception ex)
             {
                 progress.IsBusy = false;
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void btnCategories_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var window = new ManageCategoriesWindow();
+                window.ShowDialog();
+            }
+            catch (Exception ex)
+            {
                 ExceptionManager.Handle(ex);
             }
         }

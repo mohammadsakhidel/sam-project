@@ -1222,6 +1222,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عملیات.
+        /// </summary>
+        public static string Operation {
+            get {
+                return ResourceManager.GetString("Operation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ترتیب.
         /// </summary>
         public static string Order {
@@ -1663,6 +1672,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to دسته بندی الگوها.
+        /// </summary>
+        public static string TemplateCategories {
+            get {
+                return ResourceManager.GetString("TemplateCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to طراحی الگو.
         /// </summary>
         public static string TemplateDesign {
@@ -1821,6 +1839,15 @@ namespace SamUxLib.Resources.Values {
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to قابل مشاهده.
+        /// </summary>
+        public static string Visible {
+            get {
+                return ResourceManager.GetString("Visible", resourceCulture);
             }
         }
         
