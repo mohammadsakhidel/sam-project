@@ -27,12 +27,14 @@ namespace SamAPI.Controllers
 
         #region GET:
         [HttpGet]
-        public IHttpActionResult All()
+        public IHttpActionResult All(bool onlyactives = true)
         {
             try
             {
-                var all = _categoryRepo.GetAll();
-                var dtos = all.Select(o => Mapper.Map<TemplateCategory, TemplateCategoryDto>(o)).ToList();
+                var all = _categoryRepo.GetAll(onlyactives);
+                var dtos = all.OrderBy(c => c.Order)
+                    .Select(o => Mapper.Map<TemplateCategory, TemplateCategoryDto>(o))
+                    .ToList();
                 return Ok(dtos);
             }
             catch (Exception ex)

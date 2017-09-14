@@ -131,7 +131,7 @@ namespace SamDesktop.Views.Partials
             progress.IsBusy = true;
             using (var client = HttpUtil.CreateClient())
             {
-                var response = await client.GetAsync(ApiActions.templates_all);
+                var response = await client.GetAsync($"{ApiActions.templates_all}?onlyactives=false");
                 HttpUtil.EnsureSuccessStatusCode(response);
                 var list = await response.Content.ReadAsAsync<List<TemplateDto>>();
                 ((TemplatesVM)DataContext).Templates = new ObservableCollection<TemplateDto>(list);

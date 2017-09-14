@@ -12,6 +12,11 @@ namespace SamDataAccess.Repos
 {
     public class TemplateCategoryRepo : Repo<SamDbContext, TemplateCategory>, ITemplateCategoryRepo
     {
+        public List<TemplateCategory> GetAll(bool onlyActives)
+        {
+            return set.Where(c => !onlyActives || c.Visible).ToList();
+        }
+
         public void UpdateWithSave(TemplateCategory newCategory)
         {
             var categoryToUpdate = Get(newCategory.ID);

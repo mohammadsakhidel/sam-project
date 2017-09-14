@@ -153,7 +153,7 @@ namespace SamDesktop.Views.Windows
             progress.IsBusy = true;
             using (var hc = HttpUtil.CreateClient())
             {
-                var response = await hc.GetAsync(ApiActions.categories_all);
+                var response = await hc.GetAsync($"{ApiActions.categories_all}?onlyactives=false");
                 response.EnsureSuccessStatusCode();
                 var categories = await response.Content.ReadAsAsync<List<TemplateCategoryDto>>();
                 dgItems.ItemsSource = categories;

@@ -15,6 +15,7 @@ namespace SamDataAccess.Repos.Interfaces
         void AddWithSave(Template template, ImageBlob backgroundImage);
         void UpdateWithSave(Template template, ImageBlob backgroundImage);
         bool HasAnyConsolations(int id);
+        List<Template> GetAll(bool onlyActives);
         #endregion
     }
 }

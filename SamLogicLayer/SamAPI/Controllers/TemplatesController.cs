@@ -35,12 +35,15 @@ namespace SamAPI.Controllers
 
         #region GET:
         [HttpGet]
-        public IHttpActionResult All()
+        public IHttpActionResult All(bool onlyactives = true)
         {
             try
             {
-                var templates = _templateRepo.GetAll();
-                var dtos = templates.Select(t => Mapper.Map<Template, TemplateDto>(t)).ToList();
+                var templates = _templateRepo.GetAll(onlyactives);
+                var dtos = templates
+                    .OrderBy(t => t.Order)
+                    .Select(t => Mapper.Map<Template, TemplateDto>(t))
+                    .ToList();
                 return Ok(dtos);
             }
             catch (Exception ex)

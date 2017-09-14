@@ -50,12 +50,20 @@
                     <Label Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Description}" />
                     <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" x:Name="tbDesc" />
 
-                    <ram:FlatButton x:Name="btnOK" Style="{StaticResource action_button_ok}" Grid.Column="5" Width="60" Grid.RowSpan="3"
+                    <ram:FlatButton x:Name="btnOK" Style="{StaticResource action_button_ok}" Grid.Column="5" Grid.RowSpan="3"
                                     Margin="{StaticResource padding_container_start}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OK}"
-                                    Click="btnOK_Click"/>
-                    <ram:FlatButton x:Name="btnCancel" Style="{StaticResource action_button_cancel}" Grid.Column="6" Width="60" Grid.RowSpan="3"
+                                    Click="btnOK_Click">
+                        <ram:FlatButton.LayoutTransform>
+                            <RotateTransform Angle="90" />
+                        </ram:FlatButton.LayoutTransform>
+                    </ram:FlatButton>
+                    <ram:FlatButton x:Name="btnCancel" Style="{StaticResource action_button_cancel}" Grid.Column="6" Grid.RowSpan="3"
                                     Margin="{StaticResource padding_container_start}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Cancel}"
-                                    Click="btnCancel_Click"/>
+                                    Click="btnCancel_Click">
+                        <ram:FlatButton.LayoutTransform>
+                            <RotateTransform Angle="90" />
+                        </ram:FlatButton.LayoutTransform>
+                    </ram:FlatButton>
 
                 </Grid>
 
