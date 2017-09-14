@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
@@ -34,6 +35,7 @@ import org.joda.time.DateTimeUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 public class PreviewStepFragment extends Fragment {
 
@@ -55,7 +57,29 @@ public class PreviewStepFragment extends Fragment {
 
         try {
 
+            double amountToPay = parentView.getSelectedTemplate().getPrice();
             loadPreviewImageAsync(fragmentView);
+
+            //region set description text:
+            TextView tvDescription = (TextView) fragmentView.findViewById(R.id.tv_preview_desc);
+            tvDescription.setText((amountToPay > 0
+                    ? getActivity().getResources().getString(R.string.step_preview_desc)
+                    : getActivity().getResources().getString(R.string.step_preview_desc_free)));
+            //endregion
+
+            //region set button text:
+            Button btnConfirm = (Button) fragmentView.findViewById(R.id.btn_confirm);
+            btnConfirm.setText(amountToPay > 0
+                    ? getResources().getString(R.string.confirm_and_pay)
+                    : getResources().getString(R.string.finish));
+            //endregion
+
+            //region set amount to pay text:
+            TextView tvAmountToPay = (TextView) fragmentView.findViewById(R.id.tv_amount_to_pay);
+            tvAmountToPay.setText(String.format(Locale.getDefault(), "%s: %,d",
+                    getResources().getString(R.string.amount_to_pay), (int) amountToPay));
+            tvAmountToPay.setVisibility((amountToPay > 0 ? View.VISIBLE : View.GONE));
+            //endregion
 
             //region nav buttons:
             parentView.setPrevVisible(true);
@@ -82,7 +106,6 @@ public class PreviewStepFragment extends Fragment {
             //endregion
 
             //region confirm button click:
-            Button btnConfirm = (Button) fragmentView.findViewById(R.id.btn_confirm);
             btnConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

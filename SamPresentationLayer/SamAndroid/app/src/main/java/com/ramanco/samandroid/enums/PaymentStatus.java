@@ -3,5 +3,7 @@ package com.ramanco.samandroid.enums;
 public enum PaymentStatus {
     pending,
     failed,
-    succeeded
+    succeeded,
+    verified,
+    free
 }

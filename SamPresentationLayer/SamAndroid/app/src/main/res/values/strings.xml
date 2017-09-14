@@ -43,7 +43,9 @@
     <string name="ok">انجام شد</string>
     <string name="user">کاربر</string>
     <string name="step_preview">پیش نمایش</string>
-    <string name="step_preview_desc">جهت بزرگنمایی تصویر را لمس نمایید.</string>
+    <string name="step_preview_desc">
+        کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت رفتن به سایت بانک برای پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:
+    </string>
     <string name="confirm_and_pay">تأیید و پرداخت مبلغ</string>
     <string name="consolation_history_title">تاریخچه پیام های تسلیت ارسالی</string>
     <string name="obit">مراسم</string>
@@ -70,4 +72,10 @@
     <string name="obit_type_tarhim">مجلس ترحیم</string>
     <string name="obit_type_yadbood">مجلس یادبود</string>
     <string name="obit_type_sayer">متفرقه</string>
+    <string name="payment_verified">تأیید شده نهایی</string>
+    <string name="payment_free">رایگان</string>
+    <string name="step_preview_desc_free">کاربر گرامی، پیام شما در سیستم ثبت گردید و در سریع ترین زمان مناسب نمایش خواهد یافت (بصورت رایگان). نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:</string>
+    <string name="back">بازگشت</string>
+    <string name="amount_to_pay">مبلغ قابل پرداخت</string>
+    <string name="finish">پایان</string>
 </resources>

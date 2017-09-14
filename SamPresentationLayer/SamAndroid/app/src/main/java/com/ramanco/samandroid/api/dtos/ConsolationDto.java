@@ -43,6 +43,10 @@ public class ConsolationDto {
     String paymentStatus;
 
     @Expose
+    @SerializedName("AmountToPay")
+    double amountToPay;
+
+    @Expose
     @SerializedName("CreationTime")
     String creationTime;
 
@@ -188,6 +192,14 @@ public class ConsolationDto {
 
     public void setTemplate(TemplateDto template) {
         this.template = template;
+    }
+
+    public double getAmountToPay() {
+        return amountToPay;
+    }
+
+    public void setAmountToPay(double amountToPay) {
+        this.amountToPay = amountToPay;
     }
 
     //endregion

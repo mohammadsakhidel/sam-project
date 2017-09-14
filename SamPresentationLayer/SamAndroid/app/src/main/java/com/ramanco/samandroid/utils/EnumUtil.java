@@ -18,6 +18,10 @@ public class EnumUtil {
                 return context.getResources().getString(R.string.payment_succeeded);
             case pending:
                 return context.getResources().getString(R.string.payment_pending);
+            case verified:
+                return context.getResources().getString(R.string.payment_verified);
+            case free:
+                return context.getResources().getString(R.string.payment_free);
         }
         return "";
     }
@@ -29,6 +33,10 @@ public class EnumUtil {
                 return ContextCompat.getColor(context, R.color.colorStatusOK);
             case pending:
                 return ContextCompat.getColor(context, R.color.colorStatusPending);
+            case verified:
+                return ContextCompat.getColor(context, R.color.colorStatusOK);
+            case free:
+                return ContextCompat.getColor(context, R.color.colorStatusOK);
         }
         return ContextCompat.getColor(context, R.color.colorTextPrimary);
     }

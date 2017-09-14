@@ -18,6 +18,10 @@ public class ObitDto {
     @Expose
     String obitType;
 
+    @SerializedName("DeceasedIdentifier")
+    @Expose
+    String deceasedIdentifier;
+
     @SerializedName("MosqueID")
     @Expose
     int mosqueID;
@@ -79,6 +83,14 @@ public class ObitDto {
 
     public void setLastUpdateTime(String lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getDeceasedIdentifier() {
+        return deceasedIdentifier;
+    }
+
+    public void setDeceasedIdentifier(String deceasedIdentifier) {
+        this.deceasedIdentifier = deceasedIdentifier;
     }
 
     //endregion
