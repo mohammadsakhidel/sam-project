@@ -46,6 +46,9 @@ namespace SamModels.Entities.Core
         [MaxLength(16)]
         public string TrackingNumber { get; set; }
 
+        [Required]
+        public double AmountToPay { get; set; }
+
         #region Navigation Props:
         public virtual Obit Obit { get; set; }
         public virtual Customer Customer { get; set; }

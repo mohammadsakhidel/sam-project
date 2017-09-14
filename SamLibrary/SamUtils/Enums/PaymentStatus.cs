@@ -11,6 +11,7 @@ namespace SamUtils.Enums
         pending = 1,
         failed = 2,
         succeeded = 3,
-        verified = 4
+        verified = 4,
+        free = 5
     }
 }

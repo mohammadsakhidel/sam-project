@@ -729,4 +729,13 @@
   <data name="DeceasedIdentifier" xml:space="preserve">
     <value>شناسه متوفی</value>
   </data>
+  <data name="Free" xml:space="preserve">
+    <value>رایگان</value>
+  </data>
+  <data name="PaymentStatus_Free" xml:space="preserve">
+    <value>رایگان</value>
+  </data>
+  <data name="BackToMainPage" xml:space="preserve">
+    <value>بازگشت به صفحه اصلی</value>
+  </data>
 </root>

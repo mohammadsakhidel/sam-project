@@ -37,16 +37,18 @@ namespace SamAPI.Controllers
         IBlobRepo _blobRepo;
         ISmsManager _smsManager;
         ICustomerRepo _customerRepo;
+        ITemplateRepo _templateRepo;
         #endregion
 
         #region Ctors:
         public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo, 
-            ISmsManager smsManager, ICustomerRepo customerRepo)
+            ISmsManager smsManager, ICustomerRepo customerRepo, ITemplateRepo templateRepo)
         {
             _consolationRepo = consolationRepo;
             _blobRepo = blobRepo;
             _smsManager = smsManager;
             _customerRepo = customerRepo;
+            _templateRepo = templateRepo;
         }
         #endregion
 
@@ -56,8 +58,17 @@ namespace SamAPI.Controllers
         {
             try
             {
+                #region Get Associated Template:
+                var template = _templateRepo.Get(model.TemplateID);
+                if (template == null)
+                    throw new Exception("Template Not Found!");
+                #endregion
+
                 #region Create Consolation:
                 var consolation = Mapper.Map<ConsolationDto, Consolation>(model);
+                consolation.Status = ConsolationStatus.pending.ToString();
+                consolation.PaymentStatus = (template.Price > 0 ? PaymentStatus.pending.ToString() : PaymentStatus.free.ToString());
+                consolation.AmountToPay = template.Price;
                 consolation.TrackingNumber = IDGenerator.GenerateTrackingNumber();
                 consolation.CreationTime = DateTimeUtils.Now;
                 consolation.LastUpdateTime = consolation.CreationTime;

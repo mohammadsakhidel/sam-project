@@ -88,11 +88,20 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:.
+        ///   Looks up a localized string similar to کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت رفتن به سایت بانک برای پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:.
         /// </summary>
         public static string CreateConsolationPreviewStepExplanation {
             get {
                 return ResourceManager.GetString("CreateConsolationPreviewStepExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کاربر گرامی، پیام شما در سیستم ثبت گردید و در سریع ترین زمان مناسب نمایش خواهد یافت (بصورت رایگان). نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:.
+        /// </summary>
+        public static string CreateConsolationPreviewStepExplanationFree {
+            get {
+                return ResourceManager.GetString("CreateConsolationPreviewStepExplanationFree", resourceCulture);
             }
         }
         

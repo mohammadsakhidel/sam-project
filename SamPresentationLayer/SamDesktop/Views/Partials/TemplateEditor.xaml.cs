@@ -68,7 +68,7 @@ namespace SamDesktop.Views.Partials
                 using (var hc = HttpUtil.CreateClient())
                 {
                     #region get categories:
-                    var catResponse = await hc.GetAsync(ApiActions.categories_all);
+                    var catResponse = await hc.GetAsync($"{ApiActions.categories_all}?onlyactives=false");
                     HttpUtil.EnsureSuccessStatusCode(catResponse);
                     _categories = await catResponse.Content.ReadAsAsync<List<TemplateCategoryDto>>();
                     ((TemplateEditorVM)DataContext).TemplateCategories = new ObservableCollection<TemplateCategoryDto>(_categories);
@@ -507,7 +507,7 @@ namespace SamDesktop.Views.Partials
                 return false;
             if (string.IsNullOrEmpty(vm.Text))
                 return false;
-            if (vm.Price <= 0)
+            if (vm.Price < 0)
                 return false;
             if (vm.Order <= 0)
                 return false;

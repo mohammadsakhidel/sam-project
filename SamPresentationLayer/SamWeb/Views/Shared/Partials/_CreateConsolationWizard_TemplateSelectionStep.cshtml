@@ -38,7 +38,7 @@
                                              data-high-res-img="@($"{templateBgUrl.ToString()}?thumb=false")" />
                                         <div class="template-title">
                                             <h5>@template.Name</h5>
-                                            <label>@template.Price.ToString(SamUtils.Constants.StringFormats.price) @Strings.PriceUnit</label>
+                                            <label>@Strings.Price: @(template.Price > 0 ? $"{template.Price.ToString(SamUtils.Constants.StringFormats.price)} {Strings.PriceUnit}" : Strings.Free)</label>
                                         </div>
                                         <div class="template-select-button">
                                             <input type="hidden" value="@template.ID" disabled="disabled" />

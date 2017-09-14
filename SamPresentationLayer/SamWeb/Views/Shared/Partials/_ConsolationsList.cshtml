@@ -21,7 +21,7 @@
                 <span>
                     @Strings.PaymentStatus:
                     @SamWeb.Code.Utils.EnumUtil.PaymentStatusToString((SamUtils.Enums.PaymentStatus)Enum.Parse(typeof(SamUtils.Enums.PaymentStatus), consolation.PaymentStatus))
-                    (@consolation.Template.Price.ToString("N0") @Strings.PriceUnit)
+                    (@consolation.AmountToPay.ToString(SamUtils.Constants.StringFormats.price) @Strings.PriceUnit)
                 </span>
                 <br />
                 <span>

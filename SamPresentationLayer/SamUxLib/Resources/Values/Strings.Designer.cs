@@ -259,6 +259,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بازگشت به صفحه اصلی.
+        /// </summary>
+        public static string BackToMainPage {
+            get {
+                return ResourceManager.GetString("BackToMainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اطلاعات پایه.
         /// </summary>
         public static string BasicInfo {
@@ -790,6 +799,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to رایگان.
+        /// </summary>
+        public static string Free {
+            get {
+                return ResourceManager.GetString("Free", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to از.
         /// </summary>
         public static string From {
@@ -1290,6 +1308,15 @@ namespace SamUxLib.Resources.Values {
         public static string PaymentStatus_Failed {
             get {
                 return ResourceManager.GetString("PaymentStatus_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رایگان.
+        /// </summary>
+        public static string PaymentStatus_Free {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Free", resourceCulture);
             }
         }
         

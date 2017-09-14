@@ -21,6 +21,8 @@ namespace SamWeb.Code.Utils
                     return Strings.PaymentStatus_Succeeded;
                 case PaymentStatus.verified:
                     return Strings.PaymentStatus_Verified;
+                case PaymentStatus.free:
+                    return Strings.PaymentStatus_Free;
                 default:
                     return "";
             }

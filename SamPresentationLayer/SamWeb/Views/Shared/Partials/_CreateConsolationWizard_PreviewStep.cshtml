@@ -1,9 +1,9 @@
 ﻿@model CreateConsolationPreviewStepVM
 
-@{ 
+@{
     var baseUrl = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
     var previewImageUrl = new Uri(baseUrl, $"{SamUtils.Constants.ApiActions.consolations_getpreview}/{Model.CreatedConsolation.ID}");
-    var amount = Model.CreatedConsolation.Template.Price;
+    var amount = Model.CreatedConsolation.AmountToPay;
 }
 
 <h2 class="step-title">
@@ -14,7 +14,7 @@
 
 <div class="form-group">
     <small class="text-muted">
-        @Messages.CreateConsolationPreviewStepExplanation
+        @(amount > 0 ? Messages.CreateConsolationPreviewStepExplanation : Messages.CreateConsolationPreviewStepExplanationFree)
     </small>
 </div>
 
@@ -22,22 +22,35 @@
     <img style="width: 100%; height: auto; max-width: 500px; margin: 0 auto;"
          src="@previewImageUrl.ToString()" />
     <br /><br />
-    <strong>
-        @Strings.AmountToPay:
-        @amount.ToString("N0")
-        @Strings.PriceUnit
-    </strong>
+    @if (amount > 0)
+    {
+        <strong>
+            @Strings.AmountToPay:
+            @amount.ToString("N0")
+            @Strings.PriceUnit
+        </strong>
+    }
 </div>
 
 <div class="form-group">
-    <button type="submit" class="btn btn-success">
-        <span class="glyphicon glyphicon-ok"></span>
-        @Strings.ConfirmAndPay
-        (@amount.ToString("N0")
-        @Strings.PriceUnit)
-    </button>
-    <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-        <span class="glyphicon glyphicon-remove"></span>
-        @Strings.Cancel
-    </a>
+    @if (amount > 0)
+    {
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            @Strings.ConfirmAndPay
+            (@amount.ToString(SamUtils.Constants.StringFormats.price)
+            @Strings.PriceUnit)
+        </button>
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+            <span class="glyphicon glyphicon-remove"></span>
+            @Strings.Cancel
+        </a>
+    }
+    else
+    {
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+            @Strings.BackToMainPage
+        </a>
+    }
 </div>
