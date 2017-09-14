@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\BannerHierarchyDto.cs" />
     <Compile Include="DTOs\CityDto.cs" />
     <Compile Include="DTOs\ConsolationDto.cs" />
     <Compile Include="DTOs\ConsolationsUpdatePackDto.cs" />
@@ -65,10 +66,15 @@
     <Compile Include="DTOs\IdentityUserDto.cs" />
     <Compile Include="Entities\Blobs\Blob.cs" />
     <Compile Include="Entities\Blobs\ImageBlob.cs" />
+    <Compile Include="Entities\Core\BannerHierarchy\Banner.cs" />
     <Compile Include="Entities\Core\City.cs" />
+    <Compile Include="Entities\Core\BannerHierarchy\AreaBanner.cs" />
     <Compile Include="Entities\Core\Display.cs" />
     <Compile Include="Entities\Core\Customer.cs" />
+    <Compile Include="Entities\Core\BannerHierarchy\GlobalBanner.cs" />
+    <Compile Include="Entities\Core\BannerHierarchy\HoldingBanner.cs" />
     <Compile Include="Entities\Core\Mosque.cs" />
+    <Compile Include="Entities\Core\BannerHierarchy\MosqueBanner.cs" />
     <Compile Include="Entities\Core\Obit.cs" />
     <Compile Include="Entities\Core\Consolation.cs" />
     <Compile Include="Entities\Core\Province.cs" />

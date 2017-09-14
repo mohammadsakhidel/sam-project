@@ -195,6 +195,22 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="e545444a-f508-4bcd-b525-11f8e70f4ede" />
           </association>
+          <association Id="2896e3bf-f69d-42ae-9abe-b9d7e28c7660" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="edd000aa-43f7-4ef6-bba3-7bc6b0947e85" LastKnownName="ImageBlob" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="05468202-a7cc-4064-9f49-da912302e7df" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="80b5c622-b0a3-4d91-bb3a-7674a4cd7e7a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e90820c3-5a43-4a42-9ece-eed524297c64" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4cead9e6-f0ed-4252-9315-65bbc55f7b9b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a5689d0d-fb0f-4747-a513-f4263bf52ac9" />
+          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -408,6 +424,22 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="cc4b54dc-531d-4357-a43b-41edd2e40360" />
           </association>
+          <association Id="03acfbc2-bb3f-4a1a-8d19-fcf4ed3ee7f4" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="edd000aa-43f7-4ef6-bba3-7bc6b0947e85" LastKnownName="ImageBlob" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d985ab2f-b6fc-45f8-aa6a-9659ab2e101d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f4d2fa39-3b57-40dd-bb4e-c4a00a580b20" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="510a3e30-cf50-443f-85d1-902975c81bc6" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="56a47cf6-3cd6-4368-b376-27b332b530b6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f0152ed0-2823-469d-a03b-ae9676b9706b" />
+          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -439,6 +471,89 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="874027d1-9277-463b-902d-0772e20e17b7" name="Displays" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="49ee925a-de5d-4a6f-8b3f-026da0cd13c2" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="147a7bb5-4a07-4069-8186-daf992e4e804" name="Banner" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="006617c2-9404-4d7e-acc5-6ef8c096eaf9" />
+        <targetEnds>
+          <association Id="dd8ddce3-a089-4cac-a9f0-78036f4237ad" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="edd000aa-43f7-4ef6-bba3-7bc6b0947e85" LastKnownName="ImageBlob" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5b6307c0-b875-483a-8523-107801e2b665" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a8ef2ba6-37c5-4c6d-b1e8-6c45274cba42" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2dba36d1-e056-436b-bdf2-620c15f5df5e" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e2443d94-c7e1-4e78-bb2d-004c7dd34f90" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0648d2db-828b-4b28-b585-de6efd433dd1" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e9c6fd94-7f1c-4083-b9cc-f6f00b6c87a2" name="Blob" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6674412b-b864-464c-b9b4-f5ef801e784b" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="edd000aa-43f7-4ef6-bba3-7bc6b0947e85" name="ImageBlob" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8eac91e2-e0f8-4cbf-81ea-7d708f773bff" />
+        <generalsInternal>
+          <generalization Id="7802ab50-34ef-49bd-85c0-49aecb088a6a" isSubstitutable="false">
+            <classMoniker Id="e9c6fd94-7f1c-4083-b9cc-f6f00b6c87a2" LastKnownName="Blob" />
+            <elementDefinition Id="5bb47123-51d4-498c-b9c0-a6ff1bc73f29" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b8cd4c6d-102b-4852-879b-5d4824f1b7f2" name="HoldingBanner" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6b4c6c4b-c91c-4ea0-917f-625808b55a13" />
+        <generalsInternal>
+          <generalization Id="9a5f0b62-c349-4ba9-9ace-8e7ecbbdca65" isSubstitutable="false">
+            <classMoniker Id="147a7bb5-4a07-4069-8186-daf992e4e804" LastKnownName="Banner" />
+            <elementDefinition Id="eab2d0de-850d-4432-ba35-e55ef3a5d932" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="edea91c6-b661-40ea-945b-d045e402494d" name="MosqueBanner" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="271b2323-04c7-444d-b810-166fdd8be97a" />
+        <generalsInternal>
+          <generalization Id="e60fdd2c-18e7-4cdb-921c-175b94537ecf" isSubstitutable="false">
+            <classMoniker Id="147a7bb5-4a07-4069-8186-daf992e4e804" LastKnownName="Banner" />
+            <elementDefinition Id="0c4e34ee-e657-4609-b86d-d55a597b7bd3" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="029a24f5-ca1e-4094-b71b-6367d71f2d35" name="AreaBanner" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cdf04945-48cc-4d91-a6b5-c0567f0a1ed0" />
+        <generalsInternal>
+          <generalization Id="08e43d29-a946-4cab-af33-90a9fdee919e" isSubstitutable="false">
+            <classMoniker Id="147a7bb5-4a07-4069-8186-daf992e4e804" LastKnownName="Banner" />
+            <elementDefinition Id="b41dd6de-44d4-4c88-a53b-7478bacfacbf" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f123b2a8-bb44-4e71-b152-def1ce06068c" name="GlobalBanner" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5250d4a6-53b4-493b-8b4a-221701572991" />
+        <generalsInternal>
+          <generalization Id="3aed0d3c-090c-4ca9-a18f-e9eb106f1733" isSubstitutable="false">
+            <classMoniker Id="147a7bb5-4a07-4069-8186-daf992e4e804" LastKnownName="Banner" />
+            <elementDefinition Id="670ec7f8-8c01-4728-b5c0-8af21f9a64e9" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

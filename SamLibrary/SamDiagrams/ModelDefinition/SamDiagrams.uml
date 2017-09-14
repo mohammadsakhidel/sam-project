@@ -338,6 +338,44 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="a5689d0d-fb0f-4747-a513-f4263bf52ac9"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="8eac91e2-e0f8-4cbf-81ea-7d708f773bff"
+              LastKnownName="ImageBlob"
+              LastKnownLocation="SamDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="80b5c622-b0a3-4d91-bb3a-7674a4cd7e7a"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4cead9e6-f0ed-4252-9315-65bbc55f7b9b"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -776,6 +814,44 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="f0152ed0-2823-469d-a03b-ae9676b9706b"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="8eac91e2-e0f8-4cbf-81ea-7d708f773bff"
+              LastKnownName="ImageBlob"
+              LastKnownLocation="SamDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f4d2fa39-3b57-40dd-bb4e-c4a00a580b20"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="56a47cf6-3cd6-4368-b376-27b332b530b6"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -864,6 +940,158 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="006617c2-9404-4d7e-acc5-6ef8c096eaf9"
+        name="Banner"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="0648d2db-828b-4b28-b585-de6efd433dd1"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="8eac91e2-e0f8-4cbf-81ea-7d708f773bff"
+              LastKnownName="ImageBlob"
+              LastKnownLocation="SamDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a8ef2ba6-37c5-4c6d-b1e8-6c45274cba42"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e2443d94-c7e1-4e78-bb2d-004c7dd34f90"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6674412b-b864-464c-b9b4-f5ef801e784b"
+        name="Blob"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8eac91e2-e0f8-4cbf-81ea-7d708f773bff"
+        name="ImageBlob"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="5bb47123-51d4-498c-b9c0-a6ff1bc73f29"
+            isSubstitutable="false">
+            <classMoniker
+              Id="6674412b-b864-464c-b9b4-f5ef801e784b"
+              LastKnownName="Blob"
+              LastKnownLocation="SamDiagrams.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6b4c6c4b-c91c-4ea0-917f-625808b55a13"
+        name="HoldingBanner"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="eab2d0de-850d-4432-ba35-e55ef3a5d932"
+            isSubstitutable="false">
+            <classMoniker
+              Id="006617c2-9404-4d7e-acc5-6ef8c096eaf9"
+              LastKnownName="Banner"
+              LastKnownLocation="SamDiagrams.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="271b2323-04c7-444d-b810-166fdd8be97a"
+        name="MosqueBanner"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="0c4e34ee-e657-4609-b86d-d55a597b7bd3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="006617c2-9404-4d7e-acc5-6ef8c096eaf9"
+              LastKnownName="Banner"
+              LastKnownLocation="SamDiagrams.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="cdf04945-48cc-4d91-a6b5-c0567f0a1ed0"
+        name="AreaBanner"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="b41dd6de-44d4-4c88-a53b-7478bacfacbf"
+            isSubstitutable="false">
+            <classMoniker
+              Id="006617c2-9404-4d7e-acc5-6ef8c096eaf9"
+              LastKnownName="Banner"
+              LastKnownLocation="SamDiagrams.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5250d4a6-53b4-493b-8b4a-221701572991"
+        name="GlobalBanner"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="670ec7f8-8c01-4728-b5c0-8af21f9a64e9"
+            isSubstitutable="false">
+            <classMoniker
+              Id="006617c2-9404-4d7e-acc5-6ef8c096eaf9"
+              LastKnownName="Banner"
+              LastKnownLocation="SamDiagrams.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
