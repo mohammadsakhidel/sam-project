@@ -592,6 +592,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شناسه متوفی.
+        /// </summary>
+        public static string DeceasedIdentifier {
+            get {
+                return ResourceManager.GetString("DeceasedIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to زمان پیش فرض نمایش (ثانیه).
         /// </summary>
         public static string DefaultSlideShowDuration {

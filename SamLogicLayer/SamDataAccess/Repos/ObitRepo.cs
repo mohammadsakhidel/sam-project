@@ -66,6 +66,7 @@ namespace SamDataAccess.Repos
             {
                 obit.Title = newObit.Title;
                 obit.ObitType = newObit.ObitType;
+                obit.DeceasedIdentifier = newObit.DeceasedIdentifier;
                 obit.LastUpdateTime = DateTimeUtils.Now;
 
                 //remove old holdings:

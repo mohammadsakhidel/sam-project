@@ -77,6 +77,10 @@
     <Compile Include="Migrations\SamDbMigrations\201709131446561_DatabaseRegenerated.Designer.cs">
       <DependentUpon>201709131446561_DatabaseRegenerated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201709140503124_Obit_DeceasedIdentifierFieldAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201709140503124_Obit_DeceasedIdentifierFieldAdded.Designer.cs">
+      <DependentUpon>201709140503124_Obit_DeceasedIdentifierFieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\CustomerRepo.cs" />
@@ -109,6 +113,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201709131446561_DatabaseRegenerated.resx">
       <DependentUpon>201709131446561_DatabaseRegenerated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201709140503124_Obit_DeceasedIdentifierFieldAdded.resx">
+      <DependentUpon>201709140503124_Obit_DeceasedIdentifierFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

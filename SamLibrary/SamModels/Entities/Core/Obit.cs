@@ -13,6 +13,9 @@ namespace SamModels.Entities.Core
         [MaxLength(32)]
         public string Title { get; set; }
 
+        [MaxLength(16)]
+        public string DeceasedIdentifier { get; set; }
+
         [Required]
         [MaxLength(16)]
         public string ObitType { get; set; }

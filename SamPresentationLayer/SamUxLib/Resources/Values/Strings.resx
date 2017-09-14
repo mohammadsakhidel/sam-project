@@ -726,4 +726,7 @@
   <data name="Visible" xml:space="preserve">
     <value>قابل مشاهده</value>
   </data>
+  <data name="DeceasedIdentifier" xml:space="preserve">
+    <value>شناسه متوفی</value>
+  </data>
 </root>

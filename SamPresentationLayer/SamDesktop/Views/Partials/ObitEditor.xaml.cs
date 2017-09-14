@@ -133,6 +133,7 @@ namespace SamDesktop.Views.Partials
                 var vm = DataContext as ObitEditorVM;
                 var formObit = ObitToEdit ?? new ObitDto();
                 formObit.Title = tbTitle.Text;
+                formObit.DeceasedIdentifier = tbDeceasedIdentifier.Text;
                 formObit.ObitType = cmbObitType.SelectedValue.ToString();
                 formObit.ObitHoldings = vm.ObitHoldings.ToList();
                 formObit.MosqueID = isEditing ? ObitToEdit.MosqueID : Mosque.ID;
@@ -191,6 +192,7 @@ namespace SamDesktop.Views.Partials
             {
                 var vm = DataContext as ObitEditorVM;
                 tbTitle.Text = ObitToEdit.Title;
+                tbDeceasedIdentifier.Text = ObitToEdit.DeceasedIdentifier;
                 cmbObitType.SelectedValue = ObitToEdit.ObitType;
                 vm.ObitHoldings = ObitToEdit.ObitHoldings != null && ObitToEdit.ObitHoldings.Any() ? new ObservableCollection<ObitHoldingDto>(ObitToEdit.ObitHoldings) : null;
             }

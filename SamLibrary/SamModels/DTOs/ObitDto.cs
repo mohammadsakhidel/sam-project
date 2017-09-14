@@ -13,6 +13,8 @@ namespace SamModels.DTOs
 
         public string Title { get; set; }
 
+        public string DeceasedIdentifier { get; set; }
+
         public string ObitType { get; set; }
 
         public int MosqueID { get; set; }
