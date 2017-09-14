@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SamModels.Entities.Core
+namespace SamModels.Entities
 {
     public class Consolation
     {

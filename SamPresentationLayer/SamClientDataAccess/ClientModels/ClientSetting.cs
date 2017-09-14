@@ -1,4 +1,4 @@
-﻿using SamModels.Entities.Core;
+﻿using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

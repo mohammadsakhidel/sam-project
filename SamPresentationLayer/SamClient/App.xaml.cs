@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using SamModels.DTOs;
-using SamModels.Entities.Blobs;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;
 using SamUxLib.Resources.Values;

@@ -1,6 +1,6 @@
 ﻿using SamClientDataAccess.Contexts;
 using SamClientDataAccess.Repos.BaseClasses;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using SamUtils.Enums;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SamClientDataAccess.Repos;
 using SamModels.DTOs;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using SamUtils.Objects.Exceptions;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;

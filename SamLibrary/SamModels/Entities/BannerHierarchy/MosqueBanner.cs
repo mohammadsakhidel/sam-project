@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamModels.Entities.Core
+namespace SamModels.Entities
 {
-    public class AreaBanner : Banner
+    public class MosqueBanner : Banner
     {
-        public int? CityID { get; set; }
-        public int? ProvinceID { get; set; }
+        [Required]
+        public int MosqueID { get; set; }
     }
 }

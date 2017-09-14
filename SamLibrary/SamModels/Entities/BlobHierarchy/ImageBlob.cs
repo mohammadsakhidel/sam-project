@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamModels.Entities.Blobs
+namespace SamModels.Entities
 {
     public class ImageBlob : Blob
     {

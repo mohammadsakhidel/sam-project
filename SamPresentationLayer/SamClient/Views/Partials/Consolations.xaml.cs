@@ -2,8 +2,7 @@
 using RamancoLibrary.Utilities;
 using SamClient.Views.Windows;
 using SamModels.DTOs;
-using SamModels.Entities.Blobs;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using SamUtils.Constants;
 using SamUtils.Utils;
 using SamUtils.Objects.Exceptions;

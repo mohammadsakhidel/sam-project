@@ -1,7 +1,7 @@
 ﻿using SamDataAccess.Contexts;
 using SamDataAccess.Repos.BaseClasses;
 using SamDataAccess.Repos.Interfaces;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using SamUtils.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Data.Entity;
 using RamancoLibrary.Utilities;
-using SamModels.Entities.Blobs;
+using SamModels.Entities;
 
 namespace SamDataAccess.Repos
 {

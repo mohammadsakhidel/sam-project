@@ -1,5 +1,5 @@
 ﻿using SamDataAccess.Contexts;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using System.Collections.Generic;
 
 namespace SamDataAccess.Repos.Interfaces

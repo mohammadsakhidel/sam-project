@@ -1,7 +1,7 @@
 ﻿using SamDataAccess.Contexts;
 using SamDataAccess.Repos.BaseClasses;
 using SamDataAccess.Repos.Interfaces;
-using SamModels.Entities.Blobs;
+using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

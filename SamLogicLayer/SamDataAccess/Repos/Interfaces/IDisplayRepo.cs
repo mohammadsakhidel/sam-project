@@ -1,6 +1,6 @@
 ﻿using SamDataAccess.Contexts;
-using SamModels.Entities.Blobs;
-using SamModels.Entities.Core;
+using SamModels.Entities;
+using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

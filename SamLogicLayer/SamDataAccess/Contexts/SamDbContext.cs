@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using SamUtils.Enums;
-using SamModels.Entities.Blobs;
+using SamModels.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SamDataAccess.Contexts
@@ -26,7 +26,7 @@ namespace SamDataAccess.Contexts
         }
         #endregion
 
-        #region Core DbSets:
+        #region DbSets:
         public DbSet<Province> Provinces { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Mosque> Mosques { get; set; }
@@ -39,34 +39,13 @@ namespace SamDataAccess.Contexts
         public DbSet<TemplateCategory> TemplateCategories { get; set; }
         public DbSet<ObitHolding> ObitHoldings { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        #endregion
-
-        #region Blobs DbSets:
         public DbSet<Blob> Blobs { get; set; }
+        public DbSet<Banner> Banners { get; set; }
         #endregion
 
         #region Fluent API:
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            #region Core Entities:
-            modelBuilder.Entity<Province>().ToTable("Provinces", DbSchemaName.core.ToString());
-            modelBuilder.Entity<City>().ToTable("Cities", DbSchemaName.core.ToString());
-            modelBuilder.Entity<Mosque>().ToTable("Mosques", DbSchemaName.core.ToString());
-            modelBuilder.Entity<Saloon>().ToTable("Saloons", DbSchemaName.core.ToString());
-            modelBuilder.Entity<Obit>().ToTable("Obits", DbSchemaName.core.ToString());
-            modelBuilder.Entity<Consolation>().ToTable("Consolations", DbSchemaName.core.ToString());
-            modelBuilder.Entity<Display>().ToTable("Displays", DbSchemaName.core.ToString());
-            modelBuilder.Entity<Template>().ToTable("Templates", DbSchemaName.core.ToString());
-            modelBuilder.Entity<TemplateField>().ToTable("TemplateFields", DbSchemaName.core.ToString());
-            modelBuilder.Entity<TemplateCategory>().ToTable("TemplateCategories", DbSchemaName.core.ToString());
-            modelBuilder.Entity<ObitHolding>().ToTable("ObitHoldings", DbSchemaName.core.ToString());
-            modelBuilder.Entity<Customer>().ToTable("Customers", DbSchemaName.core.ToString());
-            #endregion
-
-            #region Blob Entities:
-            modelBuilder.Entity<Blob>().ToTable("Blobs", DbSchemaName.blob.ToString());
-            #endregion
-
             #region More Configurations:
             modelBuilder.Entity<Province>().Property(p => p.ID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);

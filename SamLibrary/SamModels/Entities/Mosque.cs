@@ -1,10 +1,9 @@
-﻿using SamModels.Entities.Blobs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SamModels.Entities.Core
+namespace SamModels.Entities
 {
     public class Mosque
     {

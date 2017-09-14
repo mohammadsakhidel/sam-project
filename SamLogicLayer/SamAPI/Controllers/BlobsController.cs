@@ -1,7 +1,7 @@
 ﻿using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
 using SamDataAccess.Repos.Interfaces;
-using SamModels.Entities.Blobs;
+using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;

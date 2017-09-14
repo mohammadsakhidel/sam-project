@@ -1,6 +1,5 @@
 ﻿using SamUxLib.Code.Utils;
 using SamDesktop.Code.ViewModels;
-using SamModels.Entities.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -2,7 +2,7 @@
 using RamancoLibrary.Utilities;
 using SamClientDataAccess.Repos;
 using SamClientDataAccess.Repos;
-using SamModels.Entities.Core;
+using SamModels.Entities;
 using SamUtils.Enums;
 using SamUxLib.Code.Utils;
 using System;

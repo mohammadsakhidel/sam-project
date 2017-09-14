@@ -1,5 +1,4 @@
 ﻿using SamModels.DTOs;
-using SamModels.Entities.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

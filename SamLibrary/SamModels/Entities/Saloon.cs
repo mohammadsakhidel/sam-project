@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SamModels.Entities.Core
+namespace SamModels.Entities
 {
     public class Saloon
     {
