@@ -15,7 +15,7 @@
 
         <persian:DatePicker x:Name="persianDatePicker" Margin="{StaticResource padding_container_hor}" 
                             SelectedDateChanged="persianDatePicker_SelectedDateChanged" VerticalContentAlignment="Center"
-                            HorizontalContentAlignment="Center"  />
+                            HorizontalContentAlignment="Center" />
 
         <ram:FlatButton x:Name="btnNext" Style="{StaticResource small_action_button_next}"
                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Next}"

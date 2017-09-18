@@ -1,4 +1,5 @@
-﻿using SamUxLib.Resources.Values;
+﻿using SamUxLib.Resources;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,17 @@ namespace SamUxLib.Code.Utils
         public static string GetHtmlDisplay(string value)
         {
             return !string.IsNullOrEmpty(value) ? System.Web.HttpUtility.HtmlEncode(value) : "-";
+        }
+
+        public static Dictionary<string, string> EnumToDic(Type enumType, string resourcePrefix, string resourceFileName = "Enums")
+        {
+            var dic = new Dictionary<string, string>();
+            var values = Enum.GetValues(enumType);
+            foreach (var val in values)
+            {
+                dic.Add(val.ToString(), ResourceManager.GetValue($"{resourcePrefix}{val.ToString()}", resourceFileName));
+            }
+            return dic;
         }
     }
 }

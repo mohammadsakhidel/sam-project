@@ -80,6 +80,24 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<DisplayDto, Display>();
                 #endregion
 
+                #region Banner:
+                cfg.CreateMap<Banner, BannerHierarchyDto>();
+                cfg.CreateMap<BannerHierarchyDto, Banner>();
+
+                // global banner:
+                cfg.CreateMap<GlobalBanner, BannerHierarchyDto>();
+                cfg.CreateMap<BannerHierarchyDto, GlobalBanner>();
+                // area banner:
+                cfg.CreateMap<AreaBanner, BannerHierarchyDto>();
+                cfg.CreateMap<BannerHierarchyDto, AreaBanner>();
+                // holding banner:
+                cfg.CreateMap<HoldingBanner, BannerHierarchyDto>();
+                cfg.CreateMap<BannerHierarchyDto, HoldingBanner>();
+                // mosque banner:
+                cfg.CreateMap<MosqueBanner, BannerHierarchyDto>();
+                cfg.CreateMap<BannerHierarchyDto, MosqueBanner>();
+                #endregion
+
                 #region AspNetUser:
                 cfg.CreateMap<AspNetUser, IdentityUserDto>();
                 cfg.CreateMap<IdentityUserDto, AspNetUser>();

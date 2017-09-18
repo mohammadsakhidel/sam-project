@@ -268,6 +268,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بنرها.
+        /// </summary>
+        public static string Banners {
+            get {
+                return ResourceManager.GetString("Banners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نوع بنر.
+        /// </summary>
+        public static string BannerType {
+            get {
+                return ResourceManager.GetString("BannerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اطلاعات پایه.
         /// </summary>
         public static string BasicInfo {
@@ -502,6 +520,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ایجاد بنر جدید.
+        /// </summary>
+        public static string CreateBanner {
+            get {
+                return ResourceManager.GetString("CreateBanner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مشخصات شما.
         /// </summary>
         public static string CreateConsolationCustomerInfoStep {
@@ -637,6 +664,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مدت زمان نمایش (ثانیه).
+        /// </summary>
+        public static string DisplayDurationInSeconds {
+            get {
+                return ResourceManager.GetString("DisplayDurationInSeconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام جهت نمایش.
         /// </summary>
         public static string DisplayName {
@@ -678,6 +714,15 @@ namespace SamUxLib.Resources.Values {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ویرایش بنر.
+        /// </summary>
+        public static string EditBanner {
+            get {
+                return ResourceManager.GetString("EditBanner", resourceCulture);
             }
         }
         
@@ -826,6 +871,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مشخصات عمومی.
+        /// </summary>
+        public static string GeneralInformation {
+            get {
+                return ResourceManager.GetString("GeneralInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to راهنمای استفاده.
         /// </summary>
         public static string HowToUse {
@@ -907,6 +961,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فاصله تکرار (به اسلاید).
+        /// </summary>
+        public static string IntervalInSlides {
+            get {
+                return ResourceManager.GetString("IntervalInSlides", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آی پی.
         /// </summary>
         public static string IP {
@@ -966,6 +1029,24 @@ namespace SamUxLib.Resources.Values {
         public static string LeftToRightDirection {
             get {
                 return ResourceManager.GetString("LeftToRightDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زمان شروع اعتبار.
+        /// </summary>
+        public static string LifeBeginTime {
+            get {
+                return ResourceManager.GetString("LifeBeginTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زمان پایان اعتبار.
+        /// </summary>
+        public static string LifeEndTime {
+            get {
+                return ResourceManager.GetString("LifeEndTime", resourceCulture);
             }
         }
         
@@ -1402,11 +1483,29 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اولویت.
+        /// </summary>
+        public static string Priority {
+            get {
+                return ResourceManager.GetString("Priority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to استان.
         /// </summary>
         public static string Province {
             get {
                 return ResourceManager.GetString("Province", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to استان / شهر.
+        /// </summary>
+        public static string ProvinceCity {
+            get {
+                return ResourceManager.GetString("ProvinceCity", resourceCulture);
             }
         }
         
@@ -1605,6 +1704,15 @@ namespace SamUxLib.Resources.Values {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش در آغاز.
+        /// </summary>
+        public static string ShowOnStart {
+            get {
+                return ResourceManager.GetString("ShowOnStart", resourceCulture);
             }
         }
         
@@ -1839,6 +1947,15 @@ namespace SamUxLib.Resources.Values {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات انتشار.
+        /// </summary>
+        public static string TypeSpecificInformation {
+            get {
+                return ResourceManager.GetString("TypeSpecificInformation", resourceCulture);
             }
         }
         

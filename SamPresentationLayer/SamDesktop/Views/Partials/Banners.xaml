@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="SamDesktop.Views.Partials.Banners"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamDesktop.Views.Partials"
+             xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:BannersVM />
+    </UserControl.DataContext>
+
+    <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition  Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Banners}" />
+
+            <DataGrid x:Name="dgBanners" Grid.Row="1" Margin="{StaticResource padding_container_ver}" ItemsSource="{Binding Banners}">
+            </DataGrid>
+
+            <Border Grid.Row="3" Style="{StaticResource page_footer}">
+                <StackPanel Orientation="Horizontal">
+                    <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}" Click="btnNew_Click"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" />
+                    <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click"
+                                    IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                    <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
+                                    IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </toolkit:BusyIndicator>
+</UserControl>

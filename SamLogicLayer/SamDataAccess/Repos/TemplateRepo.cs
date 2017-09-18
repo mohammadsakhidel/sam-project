@@ -120,7 +120,6 @@ namespace SamDataAccess.Repos
         {
             return context.Consolations.Where(c => c.TemplateID == id).Any();
         }
-
         public List<Template> GetAll(bool onlyActives)
         {
             return set.Where(t => !onlyActives || t.IsActive).ToList();

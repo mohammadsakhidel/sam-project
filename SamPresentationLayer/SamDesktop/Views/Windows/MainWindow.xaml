@@ -65,8 +65,8 @@
                                     <StackPanel>
                                         <Button x:Name="btnConsolations" Style="{StaticResource sidebar_item}" Tag="Consolations" Click="SectionItem_Clicked"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
-                                        <Button x:Name="btnMonitoring" Style="{StaticResource sidebar_item}" Tag="Monitoring" Click="SectionItem_Clicked"
-                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Monitoring}" />
+                                        <Button x:Name="btnBanners" Style="{StaticResource sidebar_item}" Tag="Banners" Click="SectionItem_Clicked"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Banners}" />
                                         <Button x:Name="btnSettings" Style="{StaticResource sidebar_item}" Tag="Settings" Click="SectionItem_Clicked"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Settings}" />
                                     </StackPanel>

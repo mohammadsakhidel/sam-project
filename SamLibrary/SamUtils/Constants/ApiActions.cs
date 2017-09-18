@@ -48,5 +48,9 @@ namespace SamUtils.Constants
         public const string account_deleterole = "account/deleterole";
         public const string sync_getupdates = "sync/getupdates";
         public const string sync_updatedisplays = "sync/updatedisplays";
+        public const string banners_create = "banners/create";
+        public const string banners_update = "banners/update";
+        public const string banners_delete = "banners/delete";
+        public const string banners_getlatests = "banners/getlatests";
     }
 }

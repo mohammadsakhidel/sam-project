@@ -162,4 +162,14 @@
         <Setter Property="Template" Value="{StaticResource listboxitem_template}"></Setter>
     </Style>
 
+    <Style TargetType="{x:Type GroupBox}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Label Foreground="{StaticResource color_primary_dark}" Content="{Binding}"></Label>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

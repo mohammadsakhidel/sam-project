@@ -78,7 +78,7 @@ namespace SamDesktop.Views.Windows
             //clear all:
             btnMosques.Style = style;
             btnTemplates.Style = style;
-            btnMonitoring.Style = style;
+            btnBanners.Style = style;
             btnSettings.Style = style;
             btnAccounts.Style = style;
             btnAccessLevels.Style = style;

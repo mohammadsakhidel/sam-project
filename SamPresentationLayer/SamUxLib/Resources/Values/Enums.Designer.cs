@@ -61,6 +61,87 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to زیاد.
+        /// </summary>
+        public static string BannerPriority_above_normal {
+            get {
+                return ResourceManager.GetString("BannerPriority_above_normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کم.
+        /// </summary>
+        public static string BannerPriority_below_normal {
+            get {
+                return ResourceManager.GetString("BannerPriority_below_normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بسیار زیاد.
+        /// </summary>
+        public static string BannerPriority_high {
+            get {
+                return ResourceManager.GetString("BannerPriority_high", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بسیار کم.
+        /// </summary>
+        public static string BannerPriority_low {
+            get {
+                return ResourceManager.GetString("BannerPriority_low", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عادی.
+        /// </summary>
+        public static string BannerPriority_normal {
+            get {
+                return ResourceManager.GetString("BannerPriority_normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منطقه ای.
+        /// </summary>
+        public static string BannerType_area {
+            get {
+                return ResourceManager.GetString("BannerType_area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سراسری.
+        /// </summary>
+        public static string BannerType_global {
+            get {
+                return ResourceManager.GetString("BannerType_global", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مختص مراسم.
+        /// </summary>
+        public static string BannerType_holding {
+            get {
+                return ResourceManager.GetString("BannerType_holding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مختص مسجد.
+        /// </summary>
+        public static string BannerType_mosque {
+            get {
+                return ResourceManager.GetString("BannerType_mosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لغو شده.
         /// </summary>
         public static string ConsolationStatus_canceled {

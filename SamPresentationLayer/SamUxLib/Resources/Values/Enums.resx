@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BannerPriority_above_normal" xml:space="preserve">
+    <value>زیاد</value>
+  </data>
+  <data name="BannerPriority_below_normal" xml:space="preserve">
+    <value>کم</value>
+  </data>
+  <data name="BannerPriority_high" xml:space="preserve">
+    <value>بسیار زیاد</value>
+  </data>
+  <data name="BannerPriority_low" xml:space="preserve">
+    <value>بسیار کم</value>
+  </data>
+  <data name="BannerPriority_normal" xml:space="preserve">
+    <value>عادی</value>
+  </data>
+  <data name="BannerType_area" xml:space="preserve">
+    <value>منطقه ای</value>
+  </data>
+  <data name="BannerType_global" xml:space="preserve">
+    <value>سراسری</value>
+  </data>
+  <data name="BannerType_holding" xml:space="preserve">
+    <value>مختص مراسم</value>
+  </data>
+  <data name="BannerType_mosque" xml:space="preserve">
+    <value>مختص مسجد</value>
+  </data>
   <data name="ConsolationStatus_canceled" xml:space="preserve">
     <value>لغو شده</value>
   </data>

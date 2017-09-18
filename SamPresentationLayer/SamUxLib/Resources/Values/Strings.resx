@@ -738,4 +738,43 @@
   <data name="BackToMainPage" xml:space="preserve">
     <value>بازگشت به صفحه اصلی</value>
   </data>
+  <data name="Banners" xml:space="preserve">
+    <value>بنرها</value>
+  </data>
+  <data name="CreateBanner" xml:space="preserve">
+    <value>ایجاد بنر جدید</value>
+  </data>
+  <data name="EditBanner" xml:space="preserve">
+    <value>ویرایش بنر</value>
+  </data>
+  <data name="DisplayDurationInSeconds" xml:space="preserve">
+    <value>مدت زمان نمایش (ثانیه)</value>
+  </data>
+  <data name="IntervalInSlides" xml:space="preserve">
+    <value>فاصله تکرار (به اسلاید)</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>اولویت</value>
+  </data>
+  <data name="ShowOnStart" xml:space="preserve">
+    <value>نمایش در آغاز</value>
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>مشخصات عمومی</value>
+  </data>
+  <data name="TypeSpecificInformation" xml:space="preserve">
+    <value>اطلاعات انتشار</value>
+  </data>
+  <data name="BannerType" xml:space="preserve">
+    <value>نوع بنر</value>
+  </data>
+  <data name="LifeBeginTime" xml:space="preserve">
+    <value>زمان شروع اعتبار</value>
+  </data>
+  <data name="LifeEndTime" xml:space="preserve">
+    <value>زمان پایان اعتبار</value>
+  </data>
+  <data name="ProvinceCity" xml:space="preserve">
+    <value>استان / شهر</value>
+  </data>
 </root>

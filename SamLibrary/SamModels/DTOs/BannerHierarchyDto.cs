@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SamModels.Entities;
+using SamModels.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +34,23 @@ namespace SamModels.DTOs
         #endregion
         #region Mosque:
         public int MosqueID { get; set; }
+        #endregion
+        #region Dto Spesific:
+        public string Type { get; set; }
+        public string ImageBase64 { get; set; }
+        public Type GetEntityType()
+        {
+            if (Type == BannerType.area.ToString())
+                return typeof(AreaBanner);
+            else if (Type == BannerType.global.ToString())
+                return typeof(GlobalBanner);
+            else if (Type == BannerType.holding.ToString())
+                return typeof(HoldingBanner);
+            else if (Type == BannerType.mosque.ToString())
+                return typeof(MosqueBanner);
+            else
+                return typeof(Banner);
+        }
         #endregion
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="Entities\ObitHolding.cs" />
     <Compile Include="Entities\TemplateCategory.cs" />
     <Compile Include="Entities\TemplateField.cs" />
+    <Compile Include="Enums\BannerType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

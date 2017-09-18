@@ -52,12 +52,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.ServiceProcess.ServiceController, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ServiceProcess.ServiceController.4.4.0\lib\net461\System.ServiceProcess.ServiceController.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -113,6 +115,7 @@
     <Compile Include="Code\Converters\ShortDateTimeConverter.cs" />
     <Compile Include="Code\Converters\ShortDateConverter.cs" />
     <Compile Include="Code\Converters\ShortTimeConverter.cs" />
+    <Compile Include="Code\Converters\VisibilityConverter.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Code\Utils\UxUtil.cs" />
     <Compile Include="Code\Utils\VersatileUtil.cs" />
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="UserControls\PersianDateNavigator.xaml.cs">
       <DependentUpon>PersianDateNavigator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PersianDateTimePicker.xaml.cs">
+      <DependentUpon>PersianDateTimePicker.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +183,10 @@
     <Page Include="UserControls\PersianDateNavigator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PersianDateTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="SamDesktop.Views.Partials.BannerEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamDesktop.Views.Partials"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             xmlns:ux="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib"
+             Loaded="UserControl_Loaded">
+
+    <TabControl>
+        <TabItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.GeneralInformation}">
+            <Grid Margin="{StaticResource padding_container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!--Row 0 ::: Title-->
+                <Label Grid.Row="0" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Title}" />
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="tbTitle" />
+
+                <!--Row 2 ::: Image:-->
+                <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Image}" />
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="tbImageFileName" IsReadOnly="True"  />
+                    <ram:FlatButton x:Name="btnSelectImage" Style="{StaticResource small_action_button_open}" Grid.Column="1" Margin="4 0 0 0"
+                                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SelectFile}" Click="btnSelectImage_Click"/>
+                </Grid>
+
+                <!--Row 4 ::: Priority-->
+                <Label Grid.Row="4" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Priority}" />
+                <ComboBox x:Name="cmbPriority" Grid.Row="4" Grid.Column="1" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedIndex="2" />
+
+                <!--Row 6 ::: ShowOnStart-->
+                <CheckBox x:Name="chShowOnStart" Grid.Row="6" Grid.Column="1" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ShowOnStart}" />
+
+                <!--Row 8 ::: Duration-->
+                <Label Grid.Row="8" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DisplayDurationInSeconds}" />
+                <TextBox Grid.Row="8" Grid.Column="1" x:Name="tbDuration" />
+
+                <!--Row 10 ::: Interval-->
+                <Label Grid.Row="10" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.IntervalInSlides}" />
+                <TextBox Grid.Row="10" Grid.Column="1" x:Name="tbInterval" />
+
+                <!--Row 12 ::: IsActive-->
+                <CheckBox x:Name="chIsActive" Grid.Row="12" Grid.Column="1" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Visible}" />
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TypeSpecificInformation}">
+            <Grid Margin="{StaticResource padding_container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BannerType}" />
+                <ComboBox x:Name="cmbBannerType" Grid.Row="0" Grid.Column="1" DisplayMemberPath="Value" SelectedValuePath="Key" />
+
+                <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Margin="{StaticResource padding_widget_top}"
+                          Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Specifications}">
+
+                    <Grid Margin="{StaticResource padding_container}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Style="{StaticResource form_label_required}" 
+                               Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ProvinceCity}"
+                               Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=area-mosque-holding}" />
+                        <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Columns="2"
+                                     Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=area-mosque-holding}">
+                            <ComboBox x:Name="cmbProvince" SelectionChanged="cmbProvince_SelectionChanged" />
+                            <ComboBox x:Name="cmbCity" Margin="{StaticResource padding_widget_start}" />
+                        </UniformGrid>
+
+                        <Label Grid.Row="2" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}" 
+                               Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=mosque-holding}" />
+                        <ComboBox x:Name="cmbMosque" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" DisplayMemberPath="Name" SelectedValuePath="ID"
+                                  Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=mosque-holding}" />
+
+                        <Label Grid.Row="4" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Obit}" 
+                               Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=holding}" />
+                        <ComboBox x:Name="cmbHolding" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" DisplayMemberPath="Value" SelectedValuePath="Key"
+                                  Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=holding}" />
+
+                        <CheckBox Grid.Row="6" Grid.Column="1" x:Name="chHasBeginLife" Style="{StaticResource form_label_checkbox}" 
+                                  Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.LifeBeginTime}"
+                                  Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=global-area-mosque}"/>
+                        <ux:PersianDateTimePicker Grid.Row="6" Grid.Column="2" x:Name="dtLifeBegin"
+                                                  IsEnabled="{Binding ElementName=chHasBeginLife, Path=IsChecked}"
+                                                  Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=global-area-mosque}"/>
+
+                        <CheckBox Grid.Row="8" Grid.Column="1" x:Name="chHasEndLife" Style="{StaticResource form_label_checkbox}" 
+                                  Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.LifeEndTime}" 
+                                  Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=global-area-mosque}"/>
+                        <ux:PersianDateTimePicker Grid.Row="8" Grid.Column="2" x:Name="dtLifeEnd"
+                                                  IsEnabled="{Binding ElementName=chHasEndLife, Path=IsChecked}"
+                                                  Visibility="{Binding ElementName=cmbBannerType, Path=SelectedValue, Converter={StaticResource visibilityConverter}, ConverterParameter=global-area-mosque}"/>
+
+                    </Grid>
+
+                </GroupBox>
+
+            </Grid>
+        </TabItem>
+    </TabControl>
+    
+</UserControl>

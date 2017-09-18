@@ -131,6 +131,7 @@
     </Compile>
     <Compile Include="Code\Enums\AppSection.cs" />
     <Compile Include="Code\ViewModels\ConsolationsVM.cs" />
+    <Compile Include="Code\ViewModels\BannersVM.cs" />
     <Compile Include="Code\ViewModels\RolesVM.cs" />
     <Compile Include="Code\ViewModels\AccountsVM.cs" />
     <Compile Include="Code\ViewModels\MainVM.cs" />
@@ -140,6 +141,12 @@
     <Compile Include="Code\ViewModels\TemplatesVM.cs" />
     <Compile Include="Code\ViewModels\TemplateEditorVM.cs" />
     <Compile Include="Code\ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Partials\BannerEditor.xaml.cs">
+      <DependentUpon>BannerEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Partials\Banners.xaml.cs">
+      <DependentUpon>Banners.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Partials\Consolations.xaml.cs">
       <DependentUpon>Consolations.xaml</DependentUpon>
     </Compile>
@@ -184,6 +191,9 @@
     </Compile>
     <Compile Include="Views\Partials\UserEditor.xaml.cs">
       <DependentUpon>UserEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\CreateBannerWindow.xaml.cs">
+      <DependentUpon>CreateBannerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\CreateMosqueWindow.xaml.cs">
       <DependentUpon>CreateMosqueWindow.xaml</DependentUpon>
@@ -268,6 +278,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Partials\BannerEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Partials\Banners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Partials\Consolations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -327,6 +345,10 @@
     <Page Include="Views\Partials\UserEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\CreateBannerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\CreateMosqueWindow.xaml">
       <SubType>Designer</SubType>
