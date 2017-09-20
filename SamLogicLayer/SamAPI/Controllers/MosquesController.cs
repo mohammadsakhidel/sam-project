@@ -188,7 +188,7 @@ namespace SamAPI.Controllers
         {
             try
             {
-                _mosqueRepo.RemoveAllDependencies(id);
+                _mosqueRepo.RemoveWithSave(id);
                 return Ok();
             }
             catch (Exception ex)

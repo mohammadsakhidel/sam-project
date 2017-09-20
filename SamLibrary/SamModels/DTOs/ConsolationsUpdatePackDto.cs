@@ -13,6 +13,8 @@ namespace SamModels.DTOs
         public TemplateDto[] Templates { get; set; }
         public ImageBlobDto[] ImageBlobs { get; set; }
         public ConsolationDto[] Consolations { get; set; }
+        public BannerHierarchyDto[] Banners { get; set; }
+        public RemovedEntityDto[] RemovedEntities { get; set; }
         public DateTime QueryTime { get; set; }
     }
 }

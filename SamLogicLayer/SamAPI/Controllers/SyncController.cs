@@ -55,6 +55,8 @@ namespace SamAPI.Controllers
                         dto.Template = null;
                     });
                 })).ToArray();
+                var bannerDtos = updates.Item6.Select(banner => (BannerHierarchyDto)Mapper.Map(banner, banner.GetType(), typeof(BannerHierarchyDto))).ToArray();
+                var removedEntityDtos = updates.Item7.Select(re => Mapper.Map<RemovedEntity, RemovedEntityDto>(re)).ToArray();
 
                 var updateDtos = new ConsolationsUpdatePackDto
                 {
@@ -63,6 +65,8 @@ namespace SamAPI.Controllers
                     Templates = templateDtos,
                     ImageBlobs = imageBlobs,
                     Consolations = consolationDtos,
+                    Banners = bannerDtos,
+                    RemovedEntities = removedEntityDtos,
                     QueryTime = queryTime
                 };
 

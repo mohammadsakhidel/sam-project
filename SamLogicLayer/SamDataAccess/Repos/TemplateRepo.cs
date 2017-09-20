@@ -21,7 +21,14 @@ namespace SamDataAccess.Repos
         {
             return set.Include(t => t.TemplateFields).ToList();
         }
+        public override void Remove(Template entity)
+        {
+            var blob = context.Blobs.SingleOrDefault(b => b.ID == entity.BackgroundImageID);
+            if (blob != null)
+                context.Blobs.Remove(blob);
 
+            base.Remove(entity);
+        }
         public override Template Get(params object[] id)
         {
             var _id = Convert.ToInt32(id[0]);
@@ -123,14 +130,6 @@ namespace SamDataAccess.Repos
         public List<Template> GetAll(bool onlyActives)
         {
             return set.Where(t => !onlyActives || t.IsActive).ToList();
-        }
-        public override void Remove(Template entity)
-        {
-            var blob = context.Blobs.SingleOrDefault(b => b.ID == entity.BackgroundImageID);
-            if (blob != null)
-                context.Blobs.Remove(blob);
-
-            base.Remove(entity);
         }
         #endregion
     }

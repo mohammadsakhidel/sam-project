@@ -111,6 +111,11 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<BannerHierarchyDto, MosqueBanner>();
                 #endregion
 
+                #region Display:
+                cfg.CreateMap<RemovedEntity, RemovedEntityDto>();
+                cfg.CreateMap<RemovedEntityDto, RemovedEntity>();
+                #endregion
+
                 #region AspNetUser:
                 cfg.CreateMap<AspNetUser, IdentityUserDto>();
                 cfg.CreateMap<IdentityUserDto, AspNetUser>();

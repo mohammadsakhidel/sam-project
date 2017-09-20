@@ -17,11 +17,16 @@ namespace SamDataAccess.Repos
 {
     public class ConsolationRepo : Repo<SamDbContext, Consolation>, IConsolationRepo
     {
-        public Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]> GetUpdates(int mosqueId, string saloonId, DateTime? clientLastUpdatetime, DateTime queryTime)
+        public Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[], Banner[], RemovedEntity[]> GetUpdates(int mosqueId, string saloonId, DateTime? clientLastUpdatetime, DateTime queryTime)
         {
             var confirmed = ConsolationStatus.confirmed.ToString();
             var canceled = ConsolationStatus.canceled.ToString();
             var displayed = ConsolationStatus.displayed.ToString();
+
+            #region find city & province id of mosque:
+            var cityId = context.Mosques.Single(m => m.ID == mosqueId).CityID;
+            var provinceId = context.Cities.Single(c => c.ID == cityId).ProvinceID;
+            #endregion
 
             #region mosque updates:
             var mosque = (from m in context.Mosques
@@ -65,7 +70,7 @@ namespace SamDataAccess.Repos
                                on c.ObitID equals o.ID
                                join h in context.ObitHoldings
                                on o.ID equals h.ObitID
-                               where o.MosqueID == mosqueId && h.SaloonID == saloonId  && h.EndTime > queryTime &&
+                               where o.MosqueID == mosqueId && h.SaloonID == saloonId && h.EndTime > queryTime &&
                                      (c.Status == confirmed || c.Status == canceled || c.Status == displayed) &&
                                      (clientLastUpdatetime == null
                                      || (c.CreationTime <= queryTime && c.CreationTime > clientLastUpdatetime.Value)
@@ -73,7 +78,37 @@ namespace SamDataAccess.Repos
                                select c;
             #endregion
 
-            return new Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[]>(mosque, obits.Distinct().ToArray(), templates.Distinct().ToArray(), blobs.Distinct().ToArray(), consolations.Distinct().ToArray());
+            #region banner updates:
+            var banners = from b in context.Banners
+                          where
+                              (b is GlobalBanner
+                                 || (b is AreaBanner && (!(b as AreaBanner).ProvinceID.HasValue || (b as AreaBanner).ProvinceID.Value == provinceId) && (!(b as AreaBanner).CityID.HasValue || (b as AreaBanner).CityID.Value == cityId))
+                                 || (b is MosqueBanner && (b as MosqueBanner).MosqueID == mosqueId)
+                                 || (b is ObitBanner
+                                        && (from o in context.Obits
+                                            where o.ID == (b as ObitBanner).ObitID
+                                                  && o.MosqueID == mosqueId
+                                                  && o.ObitHoldings.Any(h => h.SaloonID == saloonId && h.EndTime > queryTime)
+                                            select o).Any()
+                                    )
+                              )
+                              && (!b.LifeBeginTime.HasValue || b.LifeBeginTime.Value <= queryTime)
+                              && (!b.LifeEndTime.HasValue || b.LifeEndTime.Value >= queryTime)
+                              && (clientLastUpdatetime == null
+                                 || (b.CreationTime <= queryTime && b.CreationTime > clientLastUpdatetime.Value)
+                                 || (b.LastUpdateTime <= queryTime && b.LastUpdateTime > clientLastUpdatetime.Value))
+                          select b;
+            #endregion
+
+            #region removed entities:
+            var removedEntities = from r in context.RemovedEntities
+                                  where clientLastUpdatetime == null
+                                        || (r.RemovingTime <= queryTime && r.RemovingTime > clientLastUpdatetime.Value)
+                                  select r;
+            #endregion
+
+            return new Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[], Banner[], RemovedEntity[]>(mosque, obits.Distinct().ToArray(),
+                templates.Distinct().ToArray(), blobs.Distinct().ToArray(), consolations.Distinct().ToArray(), banners.ToArray(), removedEntities.ToArray());
         }
 
         public List<Consolation> Filter(int cityId, string status, int count)

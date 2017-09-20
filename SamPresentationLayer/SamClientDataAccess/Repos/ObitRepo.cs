@@ -36,7 +36,6 @@ namespace SamClientDataAccess.Repos
                 Update(obit);
             }
         }
-
         public void Update(Obit newObit)
         {
             var obit = Get(newObit.ID);
@@ -44,6 +43,7 @@ namespace SamClientDataAccess.Repos
             {
                 obit.Title = newObit.Title;
                 obit.ObitType = newObit.ObitType;
+                obit.DeceasedIdentifier = newObit.DeceasedIdentifier;
                 obit.LastUpdateTime = newObit.LastUpdateTime;
 
                 //update holdings:

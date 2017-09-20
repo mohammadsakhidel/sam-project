@@ -50,6 +50,7 @@ namespace SamClientDataAccess.Repos
                 mosque.Address = newMosque.Address;
                 mosque.Location = newMosque.Location;
                 mosque.PhoneNumber = newMosque.PhoneNumber;
+                mosque.ImageID = newMosque.ImageID;
                 mosque.LastUpdateTime = newMosque.LastUpdateTime;
 
                 // update saloons:

@@ -135,6 +135,7 @@ namespace SamClientDataAccess.Repos
                 consolation.Status = newConsolation.Status;
                 consolation.PaymentStatus = newConsolation.PaymentStatus;
                 consolation.TrackingNumber = newConsolation.TrackingNumber;
+                consolation.AmountToPay = newConsolation.AmountToPay;
                 consolation.CreationTime = newConsolation.CreationTime;
                 consolation.LastUpdateTime = newConsolation.LastUpdateTime;
             }

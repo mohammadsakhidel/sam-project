@@ -16,17 +16,16 @@ namespace SamDataAccess.Repos
 {
     public class MosqueRepo : Repo<SamDbContext, Mosque>, IMosqueRepo
     {
+        #region Extensions:
         public override Mosque Get(params object[] id)
         {
             var _id = Convert.ToInt32(id[0]);
             return set.Include(m => m.Saloons).SingleOrDefault(m => m.ID == _id);
         }
-
         public List<Mosque> FindByCity(int cityId)
         {
             return set.Where(m => m.CityID == cityId).ToList();
         }
-
         public void UpdateWidthSave(Mosque newMosque, ImageBlob image)
         {
             var mosque = Get(newMosque.ID);
@@ -75,12 +74,10 @@ namespace SamDataAccess.Repos
                 }
             }
         }
-
         public Saloon FindSaloon(int mosqueId, string saloonId)
         {
             return context.Saloons.Find(saloonId, mosqueId);
         }
-
         public void AddWithSave(Mosque mosque, ImageBlob image)
         {
             using (var ts = new TransactionScope())
@@ -96,7 +93,6 @@ namespace SamDataAccess.Repos
                 ts.Complete();
             }
         }
-
         public List<Mosque> Search(int provinceId, int cityId, string name)
         {
             var query = from m in context.Mosques
@@ -109,31 +105,21 @@ namespace SamDataAccess.Repos
 
             return query.ToList();
         }
-
         public List<Mosque> GetLatests(int count)
         {
             return set.OrderByDescending(m => m.CreationTime).Take(count).ToList();
         }
+        #endregion
 
-        public void RemoveAllDependencies(int id)
+        #region Overrides:
+        public override void Remove(Mosque entity)
         {
-            using (var ts = new TransactionScope())
-            {
-                var entity = Get(id);
-                if (entity != null)
-                {
-                    // remove backgroudn image:
-                    var blob = context.Blobs.Find(entity.ImageID);
-                    if (blob != null)
-                        context.Blobs.Remove(blob);
+            var blob = context.Blobs.SingleOrDefault(b => b.ID == entity.ImageID);
+            if (blob != null)
+                context.Blobs.Remove(blob);
 
-                    //remove template and fields:
-                    context.Mosques.Remove(entity);
-
-                    Save();
-                    ts.Complete();
-                }
-            }
+            base.Remove(entity);
         }
+        #endregion
     }
 }

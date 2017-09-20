@@ -56,9 +56,6 @@ namespace SamModels.Entities
         #region Navigation Props:
         public virtual ICollection<Obit> Obits { get; set; }
         public virtual ICollection<Saloon> Saloons { get; set; }
-
-        [ForeignKey("ImageID")]
-        public virtual Blob Image { get; set; }
         #endregion
     }
 }

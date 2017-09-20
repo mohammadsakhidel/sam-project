@@ -58,6 +58,7 @@
     <Compile Include="DTOs\ObitDto.cs" />
     <Compile Include="DTOs\ObitHoldingDto.cs" />
     <Compile Include="DTOs\ProvinceDto.cs" />
+    <Compile Include="DTOs\RemovedEntityDto.cs" />
     <Compile Include="DTOs\SaloonDto.cs" />
     <Compile Include="DTOs\SignInDto.cs" />
     <Compile Include="DTOs\TemplateCategoryDto.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Entities\Obit.cs" />
     <Compile Include="Entities\Consolation.cs" />
     <Compile Include="Entities\Province.cs" />
+    <Compile Include="Entities\RemovedEntity.cs" />
     <Compile Include="Entities\Saloon.cs" />
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Entities\ObitHolding.cs" />

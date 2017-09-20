@@ -150,9 +150,9 @@ namespace SamSyncAgent
                     using (var consolationRepo = new ConsolationRepo(settingRepo.Context))
                     {
                         #region update mosque:
-                        var mosque = Mapper.Map<MosqueDto, Mosque>(dto.Mosque);
-                        if (mosque != null)
+                        if (dto.Mosque != null)
                         {
+                            var mosque = Mapper.Map<MosqueDto, Mosque>(dto.Mosque);
                             mosqueRepo.AddOrUpdate(mosque);
                         }
                         #endregion
@@ -207,9 +207,9 @@ namespace SamSyncAgent
                         scope.Complete();
                         #endregion
 
-                        var hadUpdates = mosque != null || dto.Obits.Any() || dto.ImageBlobs.Any() || dto.Templates.Any() || dto.Consolations.Any();
+                        var hadUpdates = dto.Mosque != null || dto.Obits.Any() || dto.ImageBlobs.Any() || dto.Templates.Any() || dto.Consolations.Any();
                         if (hadUpdates)
-                            Log($"Update Done.{Environment.NewLine}{(mosque != null ? "1" : "0")} Mosque, {dto.Obits.Count()} Obits, {dto.ImageBlobs.Count()} ImageBlobs, {dto.Templates.Count()} Templates & {dto.Consolations.Count()} Consolations Updated.{Environment.NewLine}Lat Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
+                            Log($"Update Done.{Environment.NewLine}{(dto.Mosque != null ? "1" : "0")} Mosque, {dto.Obits.Count()} Obits, {dto.ImageBlobs.Count()} ImageBlobs, {dto.Templates.Count()} Templates & {dto.Consolations.Count()} Consolations Updated.{Environment.NewLine}Lat Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
                     }
                     #endregion
                 }
