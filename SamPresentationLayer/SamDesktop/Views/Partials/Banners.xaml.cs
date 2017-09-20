@@ -4,6 +4,7 @@ using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,11 +34,11 @@ namespace SamDesktop.Views.Partials
         #endregion
 
         #region Event Handlers:
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                //LoadRecords();
+                await LoadRecords();
             }
             catch (Exception ex)
             {
@@ -45,22 +46,49 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
+                if (dgBanners.SelectedItem != null)
+                {
+                    var result = UxUtil.ShowQuestion(Messages.AreYouSureToDelete);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var bannerToDelete = dgBanners.SelectedItem as BannerHierarchyDto;
+                        #region Call Server To Delete:
+                        progress.IsBusy = true;
+                        using (var hc = HttpUtil.CreateClient())
+                        {
+                            var response = await hc.DeleteAsync($"{ApiActions.banners_delete}/{bannerToDelete.ID}");
+                            HttpUtil.EnsureSuccessStatusCode(response);
+                            UxUtil.ShowMessage(Messages.SuccessfullyDone);
+                            await LoadRecords();
+                        }
+                        #endregion
+                    }
+                }
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private async void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
+                var banner = dgBanners.SelectedItem as BannerHierarchyDto;
+                if (banner != null)
+                {
+                    var window = new EditBannerWindow(banner);
+                    var result = window.ShowDialog();
+                    if (result.HasValue && result.Value)
+                    {
+                        await LoadRecords();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -75,7 +103,7 @@ namespace SamDesktop.Views.Partials
                 var result = window.ShowDialog();
                 if (result.HasValue && result.Value)
                 {
-                    //await LoadRecords();
+                    await LoadRecords();
                 }
             }
             catch (Exception ex)

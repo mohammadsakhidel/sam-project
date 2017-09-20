@@ -513,7 +513,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="b8cd4c6d-102b-4852-879b-5d4824f1b7f2" name="HoldingBanner" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="b8cd4c6d-102b-4852-879b-5d4824f1b7f2" name="ObitBanner" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="6b4c6c4b-c91c-4ea0-917f-625808b55a13" />
         <generalsInternal>
           <generalization Id="9a5f0b62-c349-4ba9-9ace-8e7ecbbdca65" isSubstitutable="false">

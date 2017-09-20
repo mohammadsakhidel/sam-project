@@ -23,6 +23,18 @@
             <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Banners}" />
 
             <DataGrid x:Name="dgBanners" Grid.Row="1" Margin="{StaticResource padding_container_ver}" ItemsSource="{Binding Banners}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding ID}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ID}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Title}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Title}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
             </DataGrid>
 
             <Border Grid.Row="3" Style="{StaticResource page_footer}">

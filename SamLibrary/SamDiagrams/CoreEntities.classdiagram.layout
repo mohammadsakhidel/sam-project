@@ -215,7 +215,7 @@
       <associationMoniker Id="2896e3bf-f69d-42ae-9abe-b9d7e28c7660" />
       <relativeChildShapes />
       <moveableDecoratorHostShapes>
-        <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="6.7477392330542747, 1.7705261871387217, 0.125, 0.14800345897674561" shapeFieldName="SourceMultiplicity" />
+        <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="6.754683677084798, 1.7705261871387217, 0.125, 0.14800345897674561" shapeFieldName="SourceMultiplicity" />
       </moveableDecoratorHostShapes>
       <nodes>
         <classShapeMoniker Id="6acc6d9b-95ff-40f9-b26f-accda4efe596" />
@@ -231,7 +231,7 @@
       </nodes>
     </associationConnector>
     <classShape Id="37698e8d-7f64-4df8-b36e-76eee461296a" isExpanded="false" absoluteBounds="1.5, 3.5, 1.5, 0.5" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
-      <classMoniker Id="b8cd4c6d-102b-4852-879b-5d4824f1b7f2" LastKnownName="HoldingBanner" />
+      <classMoniker Id="b8cd4c6d-102b-4852-879b-5d4824f1b7f2" LastKnownName="ObitBanner" />
       <nestedChildShapes>
         <AttributeElementListCompartment Id="eaa7a201-72d5-4bda-b042-8696e8099e7c" absoluteBounds="1.5150000000000001, 3.8899999999999997, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
         <OperationElementListCompartment Id="0b1784f0-2d9b-4521-8dc3-ce231ecd97fa" absoluteBounds="1.5150000000000001, 4.10117186754942, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />

@@ -89,6 +89,22 @@
     <Compile Include="Migrations\SamDbMigrations\201709141427308_BannerAdded.Designer.cs">
       <DependentUpon>201709141427308_BannerAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201709190556041_ObitBanner_Renamed.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201709190556041_ObitBanner_Renamed.Designer.cs">
+      <DependentUpon>201709190556041_ObitBanner_Renamed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201709200519514_Banner_ImageIDForeignKeyAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201709200519514_Banner_ImageIDForeignKeyAdded.Designer.cs">
+      <DependentUpon>201709200519514_Banner_ImageIDForeignKeyAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201709200804365_BannerForeignKeysToObitAndMosqueAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201709200804365_BannerForeignKeysToObitAndMosqueAdded.Designer.cs">
+      <DependentUpon>201709200804365_BannerForeignKeysToObitAndMosqueAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201709200926057_BlobForeignKeysRemoved.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201709200926057_BlobForeignKeysRemoved.Designer.cs">
+      <DependentUpon>201709200926057_BlobForeignKeysRemoved.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
@@ -132,6 +148,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201709141427308_BannerAdded.resx">
       <DependentUpon>201709141427308_BannerAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201709190556041_ObitBanner_Renamed.resx">
+      <DependentUpon>201709190556041_ObitBanner_Renamed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201709200519514_Banner_ImageIDForeignKeyAdded.resx">
+      <DependentUpon>201709200519514_Banner_ImageIDForeignKeyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201709200804365_BannerForeignKeysToObitAndMosqueAdded.resx">
+      <DependentUpon>201709200804365_BannerForeignKeysToObitAndMosqueAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201709200926057_BlobForeignKeysRemoved.resx">
+      <DependentUpon>201709200926057_BlobForeignKeysRemoved.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

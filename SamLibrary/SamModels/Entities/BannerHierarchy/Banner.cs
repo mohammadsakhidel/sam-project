@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace SamModels.Entities
 {
     public abstract class Banner
     {
+        #region Porps:
         public int ID { get; set; }
 
         [Required]
@@ -47,5 +49,6 @@ namespace SamModels.Entities
 
         [Required]
         public DateTime LastUpdateTime { get; set; }
+        #endregion
     }
 }

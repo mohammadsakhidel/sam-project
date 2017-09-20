@@ -124,6 +124,14 @@ namespace SamDataAccess.Repos
         {
             return set.Where(t => !onlyActives || t.IsActive).ToList();
         }
+        public override void Remove(Template entity)
+        {
+            var blob = context.Blobs.SingleOrDefault(b => b.ID == entity.BackgroundImageID);
+            if (blob != null)
+                context.Blobs.Remove(blob);
+
+            base.Remove(entity);
+        }
         #endregion
     }
 }

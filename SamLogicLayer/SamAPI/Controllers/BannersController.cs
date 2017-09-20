@@ -32,6 +32,42 @@ namespace SamAPI.Controllers
 
         #region GET:
         [HttpGet]
+        public IHttpActionResult Find(int id)
+        {
+            try
+            {
+                var banner = _bannerRepo.Get(id);
+                if (banner == null)
+                    return NotFound();
+
+                var dto = Mapper.Map(banner, banner.GetType(), typeof(BannerHierarchyDto), opts =>
+                {
+                    opts.AfterMap((src, dst) =>
+                    {
+                        var hierarchy = (BannerHierarchyDto)dst;
+                        if (src is ObitBanner)
+                        {
+                            var cbanner = (ObitBanner)src;
+                            hierarchy.MosqueID = cbanner.Obit.MosqueID;
+                            hierarchy.CityID = cbanner.Obit.Mosque.CityID;
+                        }
+                        else if (src is MosqueBanner)
+                        {
+                            var cbanner = (MosqueBanner)src;
+                            hierarchy.CityID = cbanner.Mosque.CityID;
+                        }
+                    });
+                });
+
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
         public IHttpActionResult GetLatests(int count = 20)
         {
             try
@@ -73,7 +109,10 @@ namespace SamAPI.Controllers
                 };
                 #endregion
 
-                Banner banner = (Banner)Mapper.Map(hierarchy, typeof(BannerHierarchyDto), hierarchy.GetEntityType());
+                var banner = (Banner)Mapper.Map(hierarchy, typeof(BannerHierarchyDto), hierarchy.GetEntityType());
+                banner.CreationTime = DateTimeUtils.Now;
+                banner.LastUpdateTime = banner.CreationTime;
+
                 _bannerRepo.AddWithSave(banner, blob);
 
                 return Ok();
@@ -86,11 +125,66 @@ namespace SamAPI.Controllers
         #endregion
 
         #region PUT:
+        [HttpPut]
+        public IHttpActionResult Update(BannerHierarchyDto hierarchy)
+        {
+            try
+            {
+                #region Prepare Background Image Blob:
+                ImageBlob blob = null;
+                if (!string.IsNullOrEmpty(hierarchy.ImageBase64))
+                {
+                    var now = DateTimeUtils.Now;
+                    var bytes = Convert.FromBase64String(hierarchy.ImageBase64);
+                    var bitmap = IOUtils.ByteArrayToBitmap(bytes);
+                    var resizer = new ImageResizer(bitmap.Width, bitmap.Height, ResizeType.LongerFix, Values.thumbnail_size);
+                    var thumb = ImageUtils.GetThumbnailImage(bitmap, resizer.NewWidth, resizer.NewHeight);
+                    blob = new ImageBlob
+                    {
+                        // blob:
+                        ID = IDGenerator.GenerateImageID(),
+                        Bytes = bytes,
+                        CreationTime = now,
+                        LastUpdateTime = now,
+                        // imageblob:
+                        ThumbImageBytes = IOUtils.BitmapToByteArray(thumb, ImageFormat.Jpeg),
+                        ImageWidth = bitmap.Width,
+                        ImageHeight = bitmap.Height
+                    };
+                }
+                #endregion
 
+                var banner = (Banner)Mapper.Map(hierarchy, typeof(BannerHierarchyDto), hierarchy.GetEntityType());
+                _bannerRepo.UpdateWithSave(banner, blob);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region DELETE:
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            try
+            {
+                var bannerToDelete = _bannerRepo.Get(id);
+                if (bannerToDelete == null)
+                    return NotFound();
 
+                _bannerRepo.RemoveWithSave(id);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
     }
 }

@@ -138,11 +138,11 @@
   <data name="BannerType_global" xml:space="preserve">
     <value>سراسری</value>
   </data>
-  <data name="BannerType_holding" xml:space="preserve">
-    <value>مختص مراسم</value>
-  </data>
   <data name="BannerType_mosque" xml:space="preserve">
     <value>مختص مسجد</value>
+  </data>
+  <data name="BannerType_obit" xml:space="preserve">
+    <value>مختص مراسم</value>
   </data>
   <data name="ConsolationStatus_canceled" xml:space="preserve">
     <value>لغو شده</value>

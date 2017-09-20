@@ -1020,7 +1020,7 @@
     <packageHasNamedElement>
       <class
         Id="6b4c6c4b-c91c-4ea0-917f-625808b55a13"
-        name="HoldingBanner"
+        name="ObitBanner"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">

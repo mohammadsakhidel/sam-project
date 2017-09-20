@@ -124,20 +124,20 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مختص مراسم.
-        /// </summary>
-        public static string BannerType_holding {
-            get {
-                return ResourceManager.GetString("BannerType_holding", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to مختص مسجد.
         /// </summary>
         public static string BannerType_mosque {
             get {
                 return ResourceManager.GetString("BannerType_mosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مختص مراسم.
+        /// </summary>
+        public static string BannerType_obit {
+            get {
+                return ResourceManager.GetString("BannerType_obit", resourceCulture);
             }
         }
         

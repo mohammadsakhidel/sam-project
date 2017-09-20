@@ -192,6 +192,9 @@
     <Compile Include="Views\Partials\UserEditor.xaml.cs">
       <DependentUpon>UserEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\EditBannerWindow.xaml.cs">
+      <DependentUpon>EditBannerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\CreateBannerWindow.xaml.cs">
       <DependentUpon>CreateBannerWindow.xaml</DependentUpon>
     </Compile>
@@ -343,6 +346,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Partials\UserEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\EditBannerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

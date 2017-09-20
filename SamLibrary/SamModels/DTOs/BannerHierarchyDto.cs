@@ -29,11 +29,11 @@ namespace SamModels.DTOs
         public int? CityID { get; set; }
         public int? ProvinceID { get; set; }
         #endregion
-        #region Holding:
-        public int ObitHoldingID { get; set; }
+        #region Obit:
+        public int? ObitID { get; set; }
         #endregion
         #region Mosque:
-        public int MosqueID { get; set; }
+        public int? MosqueID { get; set; }
         #endregion
         #region Dto Spesific:
         public string Type { get; set; }
@@ -44,8 +44,8 @@ namespace SamModels.DTOs
                 return typeof(AreaBanner);
             else if (Type == BannerType.global.ToString())
                 return typeof(GlobalBanner);
-            else if (Type == BannerType.holding.ToString())
-                return typeof(HoldingBanner);
+            else if (Type == BannerType.obit.ToString())
+                return typeof(ObitBanner);
             else if (Type == BannerType.mosque.ToString())
                 return typeof(MosqueBanner);
             else

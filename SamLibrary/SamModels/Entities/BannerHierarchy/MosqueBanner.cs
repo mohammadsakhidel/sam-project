@@ -9,7 +9,10 @@ namespace SamModels.Entities
 {
     public class MosqueBanner : Banner
     {
-        [Required]
-        public int MosqueID { get; set; }
+        public int? MosqueID { get; set; }
+
+        #region Navigation Props:
+        public virtual Mosque Mosque { get; set; }
+        #endregion
     }
 }

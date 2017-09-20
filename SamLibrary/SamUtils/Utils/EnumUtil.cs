@@ -8,7 +8,7 @@ namespace SamUtils.Utils
 {
     public class EnumUtil
     {
-        public TEnum GetEnum<TEnum>(string value)
+        public static TEnum GetEnum<TEnum>(string value)
         {
             return (TEnum)Enum.Parse(typeof(TEnum), value);
         }

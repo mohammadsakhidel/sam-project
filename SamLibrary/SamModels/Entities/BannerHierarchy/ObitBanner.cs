@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace SamModels.Entities
 {
-    public class HoldingBanner : Banner
+    public class ObitBanner : Banner
     {
-        [Required]
-        public int ObitHoldingID { get; set; }
+        public int? ObitID { get; set; }
+
+        #region Navigation Props:
+        public virtual Obit Obit { get; set; }
+        #endregion
     }
 }

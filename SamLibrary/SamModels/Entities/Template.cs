@@ -59,9 +59,6 @@ namespace SamModels.Entities
         #region Navigation Props:
         public virtual ICollection<TemplateField> TemplateFields { get; set; }
         public virtual TemplateCategory Category { get; set; }
-
-        [ForeignKey("BackgroundImageID")]
-        public virtual Blob BackgroundImage { get; set; }
         #endregion
     }
 }

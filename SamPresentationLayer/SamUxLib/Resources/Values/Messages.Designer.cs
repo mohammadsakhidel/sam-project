@@ -387,6 +387,33 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً شهر یا استان مورد نظر را انتخاب نمایید..
+        /// </summary>
+        public static string SpecifyBannerArea {
+            get {
+                return ResourceManager.GetString("SpecifyBannerArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً مراسم مورد نظر خود را انتخاب نمایید..
+        /// </summary>
+        public static string SpecifyHolding {
+            get {
+                return ResourceManager.GetString("SpecifyHolding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً مسجد مورد نظر خود را انتخاب کنید..
+        /// </summary>
+        public static string SpecifyMosque {
+            get {
+                return ResourceManager.GetString("SpecifyMosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات با موفقیت انجام شد..
         /// </summary>
         public static string SuccessfullyDone {

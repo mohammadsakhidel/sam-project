@@ -10,7 +10,7 @@ namespace SamModels.Enums
     {
         area = 1,
         global = 2,
-        holding = 3,
+        obit = 3,
         mosque = 4
     }
 }

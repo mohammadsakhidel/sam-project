@@ -52,5 +52,6 @@ namespace SamUtils.Constants
         public const string banners_update = "banners/update";
         public const string banners_delete = "banners/delete";
         public const string banners_getlatests = "banners/getlatests";
+        public const string banners_find = "banners/find";
     }
 }

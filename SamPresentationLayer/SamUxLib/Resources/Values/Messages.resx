@@ -227,6 +227,15 @@
   <data name="SpecifyAtLeastOneSaloon" xml:space="preserve">
     <value>تعیین حداقل یک سالن برای مسجد الزامی است.</value>
   </data>
+  <data name="SpecifyBannerArea" xml:space="preserve">
+    <value>لطفاً شهر یا استان مورد نظر را انتخاب نمایید.</value>
+  </data>
+  <data name="SpecifyHolding" xml:space="preserve">
+    <value>لطفاً مراسم مورد نظر خود را انتخاب نمایید.</value>
+  </data>
+  <data name="SpecifyMosque" xml:space="preserve">
+    <value>لطفاً مسجد مورد نظر خود را انتخاب کنید.</value>
+  </data>
   <data name="SuccessfullyDone" xml:space="preserve">
     <value>عملیات با موفقیت انجام شد.</value>
   </data>

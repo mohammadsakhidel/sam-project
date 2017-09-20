@@ -2,6 +2,7 @@
 using SamDataAccess.IdentityModels;
 using SamModels.DTOs;
 using SamModels.Entities;
+using SamModels.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,16 +86,28 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<BannerHierarchyDto, Banner>();
 
                 // global banner:
-                cfg.CreateMap<GlobalBanner, BannerHierarchyDto>();
+                cfg.CreateMap<GlobalBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.global.ToString();
+                });
                 cfg.CreateMap<BannerHierarchyDto, GlobalBanner>();
                 // area banner:
-                cfg.CreateMap<AreaBanner, BannerHierarchyDto>();
+                cfg.CreateMap<AreaBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.area.ToString();
+                });
                 cfg.CreateMap<BannerHierarchyDto, AreaBanner>();
-                // holding banner:
-                cfg.CreateMap<HoldingBanner, BannerHierarchyDto>();
-                cfg.CreateMap<BannerHierarchyDto, HoldingBanner>();
+                // obit banner:
+                cfg.CreateMap<ObitBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.obit.ToString();
+                });
+                cfg.CreateMap<BannerHierarchyDto, ObitBanner>();
                 // mosque banner:
-                cfg.CreateMap<MosqueBanner, BannerHierarchyDto>();
+                cfg.CreateMap<MosqueBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.mosque.ToString();
+                });
                 cfg.CreateMap<BannerHierarchyDto, MosqueBanner>();
                 #endregion
 

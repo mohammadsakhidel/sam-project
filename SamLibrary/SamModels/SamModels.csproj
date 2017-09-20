@@ -72,7 +72,7 @@
     <Compile Include="Entities\Display.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\BannerHierarchy\GlobalBanner.cs" />
-    <Compile Include="Entities\BannerHierarchy\HoldingBanner.cs" />
+    <Compile Include="Entities\BannerHierarchy\ObitBanner.cs" />
     <Compile Include="Entities\Mosque.cs" />
     <Compile Include="Entities\BannerHierarchy\MosqueBanner.cs" />
     <Compile Include="Entities\Obit.cs" />
