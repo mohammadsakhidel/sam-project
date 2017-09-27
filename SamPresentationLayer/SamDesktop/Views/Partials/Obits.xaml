@@ -72,13 +72,16 @@
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}"
-                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" Click="btnNew_Click" />
+                                        Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_obits:c}"
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" Click="btnNew_Click" />
                         <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
-                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click"
-                                    IsEnabled="{Binding ElementName=dgRecords, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click"
+                                        Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_obits:u}"
+                                        IsEnabled="{Binding ElementName=dgRecords, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                         <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
-                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
-                                    IsEnabled="{Binding ElementName=dgRecords, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
+                                        Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_obits:d}"
+                                        IsEnabled="{Binding ElementName=dgRecords, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                     </StackPanel>
                     <uc:PersianDateNavigator x:Name="ucPersianDateNavigator" HorizontalAlignment="Right" OnChange="ucPersianDateNavigator_OnChange" />
                 </Grid>

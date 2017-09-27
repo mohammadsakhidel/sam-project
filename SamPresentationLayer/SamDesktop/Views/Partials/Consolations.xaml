@@ -88,6 +88,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="{StaticResource padding_widget}">
                                     <ram:FlatButton Content="{Binding Path=Status, Converter={StaticResource consolationStatusActionNameConverter}}"
+                                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_consolations:u}"
                                                     Tag="{Binding}" Margin="{StaticResource padding_widget_end}" Click="ChangeConsolation_Click">
                                         <ram:FlatButton.Style>
                                             <MultiBinding Converter="{StaticResource consolationStatusActionStyleConverter}">

@@ -81,14 +81,18 @@
             <Border Grid.Row="3" Style="{StaticResource page_footer}">
                 <StackPanel Orientation="Horizontal">
                     <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}" Click="btnNew_Click"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_templates:c}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" />
                     <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_templates:u}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click"
                                     IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                     <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_templates:d}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
                                     IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                     <ram:FlatButton x:Name="btnCategories" Style="{StaticResource small_action_button_open}" Click="btnCategories_Click"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_categories:u}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateCategories}"
                                     Margin="{StaticResource padding_container_start}"/>
                 </StackPanel>

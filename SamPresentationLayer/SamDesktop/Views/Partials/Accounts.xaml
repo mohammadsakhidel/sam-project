@@ -66,11 +66,14 @@
             <Border Grid.Row="3" Style="{StaticResource page_footer}">
                 <StackPanel Orientation="Horizontal">
                     <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}" Click="btnNew_Click"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_accounts:c}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" />
                     <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_accounts:u}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}" Click="btnEdit_Click"
                                     IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                     <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_accounts:d}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}" Click="btnDelete_Click"
                                     IsEnabled="{Binding ElementName=dgTemplates, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                 </StackPanel>

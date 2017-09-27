@@ -44,10 +44,13 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
+                var vm = DataContext as ObitsVM;
+                vm.Token = App.UserToken.ToString();
+
                 if (SelectedMosque != null)
                 {
                     #region Set SelectedMosque:
-                    var vm = DataContext as ObitsVM;
+                    vm.Token = App.UserToken.ToString();
                     vm.SelectedMosque = SelectedMosque;
                     #endregion
                     #region Info:

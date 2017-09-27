@@ -46,6 +46,7 @@ namespace SamDesktop.Views.Partials
             try
             {
                 var vm = DataContext as ConsolationsVM;
+                vm.Token = App.UserToken.ToString();
 
                 #region load provices combo items:
                 var provinces = CityUtil.Provinces;

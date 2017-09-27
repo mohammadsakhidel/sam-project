@@ -38,6 +38,9 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
+                var vm = DataContext as TemplatesVM;
+                vm.Token = App.UserToken.ToString();
+
                 await LoadRecords();
             }
             catch (Exception ex)

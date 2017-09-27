@@ -15,6 +15,9 @@ namespace SamUtils.Utils
         public const string section_mosques = "section_mosques";
         public const string section_obits = "section_obits";
         public const string section_templates = "section_templates";
+        public const string section_categories = "section_categories";
+        public const string section_consolations = "section_consolations";
+        public const string section_banners = "section_banners";
         public const string section_accounts = "section_accounts";
         public const string section_roles = "section_roles";
         #endregion
@@ -23,14 +26,16 @@ namespace SamUtils.Utils
         public static List<SectionAccessLevel> GetDefaults()
         {
             return new List<SectionAccessLevel> {
-                    new SectionAccessLevel(section_accounts, false, false, false, false, true, true, true, true),
                     new SectionAccessLevel(section_mosques, false, false, false, false, true, true, true, true),
                     new SectionAccessLevel(section_obits, false, false, false, false, true, true, true, true),
-                    new SectionAccessLevel(section_roles, false, false, false, false, true, true, true, true),
-                    new SectionAccessLevel(section_templates, false, false, false, false, true, true, true, true)
+                    new SectionAccessLevel(section_templates, false, false, false, false, true, true, true, true),
+                    new SectionAccessLevel(section_categories, false, false, false, false, false, false, true, false),
+                    new SectionAccessLevel(section_consolations, false, false, false, false, true, true, true, true),
+                    new SectionAccessLevel(section_banners, false, false, false, false, true, true, true, true),
+                    new SectionAccessLevel(section_accounts, false, false, false, false, true, true, true, true),
+                    new SectionAccessLevel(section_roles, false, false, false, false, true, true, true, true)
                 };
         }
-
         public static string Serialize(IEnumerable<SectionAccessLevel> accessLevels)
         {
             var objects = accessLevels.Select(o => new
@@ -40,7 +45,6 @@ namespace SamUtils.Utils
             });
             return JsonConvert.SerializeObject(objects);
         }
-
         public static List<SectionAccessLevel> Deserialize(string accessJson)
         {
             var result = new List<SectionAccessLevel>();

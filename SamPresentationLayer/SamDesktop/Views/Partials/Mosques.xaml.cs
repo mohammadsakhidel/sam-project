@@ -42,6 +42,7 @@ namespace SamDesktop.Views.Partials
             {
                 var provinces = CityUtil.Provinces;
                 var vm = DataContext as MosquesVM;
+                vm.Token = App.UserToken.ToString();
                 vm.Provinces = new ObservableCollection<ProvinceDto>(provinces);
             }
             catch (Exception ex)

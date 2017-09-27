@@ -102,15 +102,19 @@
                 <StackPanel Orientation="Horizontal">
                     <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.NewMosque}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_mosques:c}"
                                     Click="btnNew_Click" />
                     <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Edit}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_mosques:u}"
                                     Click="btnEdit_Click" IsEnabled="{Binding ElementName=dgMosques, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                     <ram:FlatButton x:Name="btnDelete" Style="{StaticResource action_button_delete}" Margin="{StaticResource padding_container_start}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Delete}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_mosques:d}"
                                     Click="btnDelete_Click" IsEnabled="{Binding ElementName=dgMosques, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                     <ram:FlatButton x:Name="btnObits" Style="{StaticResource action_button_calendar}" Margin="{StaticResource padding_container_start}"
                                     Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Obits}"
+                                    Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_obits:crud}"
                                     Click="btnObits_Click" IsEnabled="{Binding ElementName=dgMosques, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                 </StackPanel>
             </Border>

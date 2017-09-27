@@ -30,7 +30,16 @@ namespace SamDesktop.Views.Partials
         {
             _role = new IdentityRoleDto();
             InitializeComponent();
-            lbAccessLevel.ItemsSource = new ObservableCollection<SectionAccessLevel>(AccessUtil.GetDefaults());
+
+            try
+            {
+                lbAccessLevel.ItemsSource = new ObservableCollection<SectionAccessLevel>(AccessUtil.GetDefaults());
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+
         }
         #endregion
 
@@ -68,8 +77,20 @@ namespace SamDesktop.Views.Partials
             tbDisplayName.Text = _role.DisplayName;
             if (_role.Type != RoleType.admin.ToString())
             {
-                var list = AccessUtil.Deserialize(_role.AccessLevel);
-                lbAccessLevel.ItemsSource = new ObservableCollection<SectionAccessLevel>(list);
+                var accessList = AccessUtil.Deserialize(_role.AccessLevel);
+                var sourceList = (lbAccessLevel.ItemsSource as ObservableCollection<SectionAccessLevel>).ToList();
+                for (int i = 0; i < sourceList.Count; i++)
+                {
+                    var al = accessList.SingleOrDefault(asd => asd.Name == sourceList[i].Name);
+                    if (al != null)
+                    {
+                        sourceList[i].Create = al.Create;
+                        sourceList[i].Read = al.Read;
+                        sourceList[i].Update = al.Update;
+                        sourceList[i].Delete = al.Delete;
+                    }
+                }
+                lbAccessLevel.ItemsSource = new ObservableCollection<SectionAccessLevel>(sourceList);
             }
             else
             {

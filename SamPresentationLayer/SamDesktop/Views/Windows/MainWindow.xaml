@@ -48,43 +48,48 @@
 
                                 <!--Basic Info-->
                                 <Button Style="{StaticResource sidebar_section_title}" 
+                                        Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_mosques:crud|section_templates:crud|section_obits:crud}"
                                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BasicInfo}" />
                                 <Border Style="{StaticResource sidebar_section}">
                                     <StackPanel>
                                         <Button x:Name="btnMosques" Style="{StaticResource sidebar_item}" Click="SectionItem_Clicked" Tag="Mosques"
-                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.MosquesAndObits}" />
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.MosquesAndObits}"
+                                                Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_mosques:crud|section_obits:crud}" />
                                         <Button x:Name="btnTemplates" Style="{StaticResource sidebar_item}" Click="SectionItem_Clicked" Tag="Templates"
-                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Templates}" />
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Templates}"
+                                                Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_templates:crud}" />
                                     </StackPanel>
                                 </Border>
 
                                 <!--Maintenance-->
                                 <Button Style="{StaticResource sidebar_section_title}" 
-                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Maintenance}"/>
+                                        Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_consolations:crud|section_banners:crud}"
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Monitoring}"/>
                                 <Border Style="{StaticResource sidebar_section}">
                                     <StackPanel>
                                         <Button x:Name="btnConsolations" Style="{StaticResource sidebar_item}" Tag="Consolations" Click="SectionItem_Clicked"
+                                                Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_consolations:crud}"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}" />
                                         <Button x:Name="btnBanners" Style="{StaticResource sidebar_item}" Tag="Banners" Click="SectionItem_Clicked"
+                                                Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_banners:crud}"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Banners}" />
-                                        <Button x:Name="btnSettings" Style="{StaticResource sidebar_item}" Tag="Settings" Click="SectionItem_Clicked"
-                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Settings}" />
                                     </StackPanel>
                                 </Border>
 
                                 <!--Users-->
                                 <Button Style="{StaticResource sidebar_section_title}" 
+                                        Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_accounts:crud|section_roles:crud}"
                                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Users}"/>
                                 <Border Style="{StaticResource sidebar_section}">
                                     <StackPanel>
                                         <Button x:Name="btnAccounts" Style="{StaticResource sidebar_item}" Tag="Accounts" Click="SectionItem_Clicked"
+                                                Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_accounts:crud}"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Accounts}" />
                                         <Button x:Name="btnAccessLevels" Style="{StaticResource sidebar_item}" Tag="Roles" Click="SectionItem_Clicked"
+                                                Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_roles:crud}"
                                                 Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AccessLevels}" />
                                     </StackPanel>
                                 </Border>
-
-                                <Button x:Name="btnTest" Click="btnTest_Click" Visibility="Hidden">Test Button</Button>
 
                             </StackPanel>
                         </ScrollViewer>

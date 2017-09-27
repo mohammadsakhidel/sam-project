@@ -43,6 +43,9 @@ namespace SamDesktop.Views.Windows
             try
             {
                 lblUserName.Content = $"{Strings.User}: {App.FullName}";
+                var vm = DataContext as MainVM;
+                if (vm != null)
+                    vm.Token = App.UserToken.ToString();
             }
             catch (Exception ex)
             {
@@ -79,24 +82,12 @@ namespace SamDesktop.Views.Windows
             btnMosques.Style = style;
             btnTemplates.Style = style;
             btnBanners.Style = style;
-            btnSettings.Style = style;
+            btnConsolations.Style = style;
             btnAccounts.Style = style;
             btnAccessLevels.Style = style;
 
             selectedButton.Style = selectedStyle;
         }
         #endregion
-
-        private void btnTest_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                MessageBox.Show(SamUxLib.Resources.Values.Messages.AreYouSureToDelete);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
     }
 }

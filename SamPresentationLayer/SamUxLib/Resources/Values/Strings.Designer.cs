@@ -1627,6 +1627,33 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بنرها.
+        /// </summary>
+        public static string section_banners {
+            get {
+                return ResourceManager.GetString("section_banners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دسته بندی الگوها.
+        /// </summary>
+        public static string section_categories {
+            get {
+                return ResourceManager.GetString("section_categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیام های تسلیت.
+        /// </summary>
+        public static string section_consolations {
+            get {
+                return ResourceManager.GetString("section_consolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مساجد.
         /// </summary>
         public static string section_mosques {

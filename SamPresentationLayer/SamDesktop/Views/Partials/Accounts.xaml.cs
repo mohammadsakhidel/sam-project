@@ -38,6 +38,8 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
+                var vm = DataContext as AccountsVM;
+                vm.Token = App.UserToken.ToString();
                 await LoadRecords();
             }
             catch (Exception ex)

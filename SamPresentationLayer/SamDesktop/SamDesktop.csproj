@@ -174,14 +174,8 @@
     <Compile Include="Views\Partials\TemplateFieldEditor.xaml.cs">
       <DependentUpon>TemplateFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Partials\Monitoring.xaml.cs">
-      <DependentUpon>Monitoring.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Partials\Mosques.xaml.cs">
       <DependentUpon>Mosques.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Partials\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Partials\TemplateEditor.xaml.cs">
       <DependentUpon>TemplateEditor.xaml</DependentUpon>
@@ -325,15 +319,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Partials\Monitoring.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Partials\Mosques.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Partials\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

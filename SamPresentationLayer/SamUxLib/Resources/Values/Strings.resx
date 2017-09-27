@@ -780,4 +780,13 @@
   <data name="CloseWindow" xml:space="preserve">
     <value>بستن پنجره</value>
   </data>
+  <data name="section_banners" xml:space="preserve">
+    <value>بنرها</value>
+  </data>
+  <data name="section_consolations" xml:space="preserve">
+    <value>پیام های تسلیت</value>
+  </data>
+  <data name="section_categories" xml:space="preserve">
+    <value>دسته بندی الگوها</value>
+  </data>
 </root>

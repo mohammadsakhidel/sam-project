@@ -15,5 +15,21 @@ namespace SamDesktop.Code.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+
+        #region Token:
+        private string token;
+        public string Token
+        {
+            get
+            {
+                return token;
+            }
+            set
+            {
+                token = value;
+                RaisePropertyChanged("Token");
+            }
+        }
+        #endregion
     }
 }

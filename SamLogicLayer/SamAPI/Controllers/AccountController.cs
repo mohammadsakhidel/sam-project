@@ -161,6 +161,7 @@ namespace SamAPI.Controllers
                 payload.Add(JwtToken.ARG_YEAR_OF_BIRTH, (user.BirthYear.HasValue ? user.BirthYear.Value.ToString() : ""));
                 payload.Add(JwtToken.ARG_USERNAME, user.UserName);
                 payload.Add(JwtToken.ARG_ROLE, userRole?.Name);
+                payload.Add(JwtToken.ARG_USER_TYPE, userRole?.Type);
                 payload.Add(JwtToken.ARG_ACCESS, userRole?.AccessLevel);
                 payload.Add(JwtToken.ARG_TOKEN_CREATION_TIME, DateTimeUtils.Now.ToString(StringFormats.jwt_date_time));
 
