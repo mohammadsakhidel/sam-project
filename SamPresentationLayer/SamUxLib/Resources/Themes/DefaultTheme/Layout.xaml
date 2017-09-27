@@ -42,6 +42,7 @@
         <Setter Property="WindowState" Value="Maximized"></Setter>
         <Setter Property="ResizeMode" Value="NoResize"></Setter>
         <Setter Property="Background" Value="{StaticResource color_player_bg}"></Setter>
+        <Setter Property="Cursor" Value="None"></Setter>
     </Style>
 
     <Style x:Key="main_window_content" TargetType="FrameworkElement">

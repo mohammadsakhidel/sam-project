@@ -1,4 +1,5 @@
-﻿using SamClientDataAccess.Contexts;
+﻿using RamancoLibrary.Utilities;
+using SamClientDataAccess.Contexts;
 using SamClientDataAccess.Repos.BaseClasses;
 using SamModels.Entities;
 using System;
@@ -46,6 +47,7 @@ namespace SamClientDataAccess.Repos
                 blob.ImageFormat = newImageBlob.ImageFormat;
                 blob.ImageWidth = newImageBlob.ImageWidth;
                 blob.ImageHeight = newImageBlob.ImageHeight;
+                blob.LastUpdateTime = DateTimeUtils.Now;
             }
         }
         #endregion

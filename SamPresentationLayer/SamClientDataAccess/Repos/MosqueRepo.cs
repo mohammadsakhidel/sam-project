@@ -61,5 +61,18 @@ namespace SamClientDataAccess.Repos
             }
         }
         #endregion
+
+        #region Overrides:
+        public override void Remove(Mosque entity)
+        {
+            #region remove image:
+            var blob = context.Blobs.SingleOrDefault(b => b.ID == entity.ImageID);
+            if (blob != null)
+                context.Blobs.Remove(blob);
+            #endregion
+
+            base.Remove(entity);
+        }
+        #endregion
     }
 }

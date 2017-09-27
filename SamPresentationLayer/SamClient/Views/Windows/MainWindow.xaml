@@ -7,10 +7,9 @@
         xmlns:uc="clr-namespace:SamClient.Views.Partials"
         xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
         xmlns:taskbar="http://www.hardcodet.net/taskbar"
-        xmlns:code="clr-namespace:SamClient.Code"
-        Style="{StaticResource client_main_window}" 
-        Loaded="Window_Loaded" Unloaded="Window_Unloaded" WindowStartupLocation="CenterScreen"
-        MouseDown="Window_MouseDown" ShowInTaskbar="False">
+        xmlns:code="clr-namespace:SamClient.Code" ShowInTaskbar="False"
+        Style="{StaticResource client_main_window}" Loaded="Window_Loaded" Unloaded="Window_Unloaded" 
+        WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
     <Window.CommandBindings>
         <CommandBinding Command="code:CustomCommands.Maximize" Executed="MaximizeCommand_Executed" CanExecute="MaximizeCommand_CanExecute" />
     </Window.CommandBindings>

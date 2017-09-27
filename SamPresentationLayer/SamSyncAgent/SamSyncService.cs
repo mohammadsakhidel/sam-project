@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 using ClientModels.Models;
 using RamancoLibrary.Utilities;
+using SamClientDataAccess.ClientModels;
 using SamClientDataAccess.Repos;
 using SamModels.DTOs;
 using SamModels.Entities;
+using SamModels.Enums;
 using SamSyncAgent.Code.Utils;
 using SamUtils.Constants;
 using SamUtils.Enums;
 using SamUtils.Utils;
+using SamUxLib.Code.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -93,6 +96,17 @@ namespace SamSyncAgent
                     _timers.Add(displayTimer);
                     #endregion
 
+                    #region Images Download Task:
+                    Task.Run(() =>
+                    {
+                        while (true)
+                        {
+                            DownloadImagesCallback();
+                            Thread.Sleep(1000);
+                        }
+                    });
+                    #endregion
+
                     Log("Sam sync timers started.");
                 }
                 else
@@ -145,9 +159,10 @@ namespace SamSyncAgent
                     using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                     using (var mosqueRepo = new MosqueRepo(settingRepo.Context))
                     using (var obitRepo = new ObitRepo(settingRepo.Context))
-                    using (var blobRepo = new BlobRepo(settingRepo.Context))
+                    using (var taskRepo = new DownloadImageTaskRepo(settingRepo.Context))
                     using (var templateRepo = new TemplateRepo(settingRepo.Context))
                     using (var consolationRepo = new ConsolationRepo(settingRepo.Context))
+                    using (var bannerRepo = new BannerRepo(settingRepo.Context))
                     {
                         #region update mosque:
                         if (dto.Mosque != null)
@@ -161,7 +176,13 @@ namespace SamSyncAgent
                         {
                             foreach (var obitDto in dto.Obits)
                             {
-                                var obit = Mapper.Map<ObitDto, Obit>(obitDto);
+                                var obit = Mapper.Map<ObitDto, Obit>(obitDto, opts =>
+                                {
+                                    opts.AfterMap((src, dest) =>
+                                    {
+                                        dest.Mosque = null;
+                                    });
+                                });
                                 obitRepo.AddOrUpdate(obit);
                             }
                         }
@@ -169,10 +190,15 @@ namespace SamSyncAgent
                         #region update blobs:
                         if (dto.ImageBlobs != null && dto.ImageBlobs.Any())
                         {
-                            foreach (var imageBlobDto in dto.ImageBlobs)
+                            foreach (var imageBlob in dto.ImageBlobs)
                             {
-                                var imageBlob = Mapper.Map<ImageBlobDto, ImageBlob>(imageBlobDto);
-                                blobRepo.AddOrUpdateImage(imageBlob);
+                                var downloadTask = new DownloadImageTask()
+                                {
+                                    ImageToDownload = imageBlob,
+                                    CreationTime = DateTimeUtils.Now,
+                                    Status = DownloadTaskStatus.pending.ToString()
+                                };
+                                taskRepo.Add(downloadTask);
                             }
                         }
                         #endregion
@@ -196,6 +222,38 @@ namespace SamSyncAgent
                             }
                         }
                         #endregion
+                        #region update banners:
+                        if (dto.Banners != null && dto.Banners.Any())
+                        {
+                            foreach (var hierarchy in dto.Banners)
+                            {
+                                var banner = (Banner)Mapper.Map(hierarchy, typeof(BannerHierarchyDto), hierarchy.GetEntityType());
+                                bannerRepo.AddOrUpdate(banner);
+                            }
+                        }
+                        #endregion
+                        #region delete removed entities:
+                        if (dto.RemovedEntities != null && dto.RemovedEntities.Any())
+                        {
+                            foreach (var removedEntity in dto.RemovedEntities)
+                            {
+                                #region remove banner:
+                                if (removedEntity.EntityType == typeof(Banner).Name)
+                                {
+                                    var bannerId = Convert.ToInt32(removedEntity.EntityID);
+                                    bannerRepo.Remove(bannerId);
+                                }
+                                #endregion
+                                #region remove template:
+                                else if (removedEntity.EntityType == typeof(Template).Name)
+                                {
+                                    var templateId = Convert.ToInt32(removedEntity.EntityID);
+                                    templateRepo.Remove(templateId);
+                                }
+                                #endregion
+                            }
+                        }
+                        #endregion
                         #region update last update time:
                         setting = settingRepo.Get();
                         setting.LastUpdateTime = dto.QueryTime;
@@ -207,9 +265,14 @@ namespace SamSyncAgent
                         scope.Complete();
                         #endregion
 
-                        var hadUpdates = dto.Mosque != null || dto.Obits.Any() || dto.ImageBlobs.Any() || dto.Templates.Any() || dto.Consolations.Any();
+                        var hadUpdates = dto.Mosque != null || !CollUtils.IsNullOrEmpty(dto.Obits) || !CollUtils.IsNullOrEmpty(dto.ImageBlobs)
+                            || !CollUtils.IsNullOrEmpty(dto.Templates) || !CollUtils.IsNullOrEmpty(dto.Consolations)
+                            || !CollUtils.IsNullOrEmpty(dto.Banners) || !CollUtils.IsNullOrEmpty(dto.RemovedEntities);
                         if (hadUpdates)
-                            Log($"Update Done.{Environment.NewLine}{(dto.Mosque != null ? "1" : "0")} Mosque, {dto.Obits.Count()} Obits, {dto.ImageBlobs.Count()} ImageBlobs, {dto.Templates.Count()} Templates & {dto.Consolations.Count()} Consolations Updated.{Environment.NewLine}Lat Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
+                            Log($"Update Done.{Environment.NewLine}{(dto.Mosque != null ? "1" : "0")} Mosque, {CollUtils.Count(dto.Obits)} Obits, " +
+                                $"{CollUtils.Count(dto.ImageBlobs)} ImageBlob Download Tasks, {CollUtils.Count(dto.Templates)} Templates, {CollUtils.Count(dto.Consolations)} Consolations, " +
+                                $"{CollUtils.Count(dto.Banners)} Banners & {dto.RemovedEntities?.Count()} Removed Entities Updated." +
+                                $"{Environment.NewLine}Lat Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
                     }
                     #endregion
                 }
@@ -254,6 +317,52 @@ namespace SamSyncAgent
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex, logger, "DISPLAY UPLOAD ERROR");
+            }
+        }
+        private void DownloadImagesCallback()
+        {
+            try
+            {
+                using (var trepo = new DownloadImageTaskRepo())
+                {
+                    var pendingTasks = trepo.GetTasksOfStatus(DownloadTaskStatus.pending.ToString());
+                    if (pendingTasks != null && pendingTasks.Any())
+                    {
+                        using (var hc = HttpUtil.CreateClient())
+                        {
+                            foreach (var task in pendingTasks)
+                            {
+                                var imagebytes = hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{task.ImageToDownload}").Result;
+                                #region save image to database and change task status:
+                                using (var ts = new TransactionScope())
+                                using (var brepo = new BlobRepo())
+                                {
+                                    var blob = new ImageBlob()
+                                    {
+                                        ID = task.ImageToDownload,
+                                        Bytes = imagebytes,
+                                        CreationTime = DateTimeUtils.Now,
+                                        LastUpdateTime = DateTimeUtils.Now,
+                                    };
+
+                                    brepo.AddOrUpdateImage(blob);
+                                    task.Status = DownloadTaskStatus.completed.ToString();
+
+                                    brepo.Save();
+                                    trepo.Save();
+                                    ts.Complete();
+                                }
+                                #endregion
+                            }
+                        }
+
+                        Log($"{pendingTasks.Count} Images downloaded successfully.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex, logger, "IMAGE DOWNLOAD ERROR");
             }
         }
         #endregion
@@ -330,6 +439,41 @@ namespace SamSyncAgent
                 #region Display:
                 cfg.CreateMap<Display, DisplayDto>();
                 cfg.CreateMap<DisplayDto, Display>();
+                #endregion
+
+                #region Banner:
+                cfg.CreateMap<Banner, BannerHierarchyDto>();
+                cfg.CreateMap<BannerHierarchyDto, Banner>();
+
+                // global banner:
+                cfg.CreateMap<GlobalBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.global.ToString();
+                });
+                cfg.CreateMap<BannerHierarchyDto, GlobalBanner>();
+                // area banner:
+                cfg.CreateMap<AreaBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.area.ToString();
+                });
+                cfg.CreateMap<BannerHierarchyDto, AreaBanner>();
+                // obit banner:
+                cfg.CreateMap<ObitBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.obit.ToString();
+                });
+                cfg.CreateMap<BannerHierarchyDto, ObitBanner>();
+                // mosque banner:
+                cfg.CreateMap<MosqueBanner, BannerHierarchyDto>().AfterMap((model, dto) =>
+                {
+                    dto.Type = BannerType.mosque.ToString();
+                });
+                cfg.CreateMap<BannerHierarchyDto, MosqueBanner>();
+                #endregion
+
+                #region Display:
+                cfg.CreateMap<RemovedEntity, RemovedEntityDto>();
+                cfg.CreateMap<RemovedEntityDto, RemovedEntity>();
                 #endregion
             });
         }

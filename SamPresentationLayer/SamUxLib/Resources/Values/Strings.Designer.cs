@@ -394,6 +394,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بستن پنجره.
+        /// </summary>
+        public static string CloseWindow {
+            get {
+                return ResourceManager.GetString("CloseWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تأیید و ادامه.
         /// </summary>
         public static string ConfirmAndContinue {

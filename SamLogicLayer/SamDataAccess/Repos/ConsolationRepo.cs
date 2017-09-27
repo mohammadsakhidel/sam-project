@@ -17,7 +17,7 @@ namespace SamDataAccess.Repos
 {
     public class ConsolationRepo : Repo<SamDbContext, Consolation>, IConsolationRepo
     {
-        public Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[], Banner[], RemovedEntity[]> GetUpdates(int mosqueId, string saloonId, DateTime? clientLastUpdatetime, DateTime queryTime)
+        public Tuple<Mosque, Obit[], Template[], string[], Consolation[], Banner[], RemovedEntity[]> GetUpdates(int mosqueId, string saloonId, DateTime? clientLastUpdatetime, DateTime queryTime)
         {
             var confirmed = ConsolationStatus.confirmed.ToString();
             var canceled = ConsolationStatus.canceled.ToString();
@@ -61,7 +61,7 @@ namespace SamDataAccess.Repos
                         where (clientLastUpdatetime == null
                               || (b.CreationTime <= queryTime && b.CreationTime > clientLastUpdatetime.Value)
                               || (b.LastUpdateTime != null && (b.LastUpdateTime.Value <= queryTime && b.LastUpdateTime.Value > clientLastUpdatetime.Value)))
-                        select b;
+                        select b.ID;
             #endregion
 
             #region consolation updates:
@@ -107,7 +107,7 @@ namespace SamDataAccess.Repos
                                   select r;
             #endregion
 
-            return new Tuple<Mosque, Obit[], Template[], ImageBlob[], Consolation[], Banner[], RemovedEntity[]>(mosque, obits.Distinct().ToArray(),
+            return new Tuple<Mosque, Obit[], Template[], string[], Consolation[], Banner[], RemovedEntity[]>(mosque, obits.Distinct().ToArray(),
                 templates.Distinct().ToArray(), blobs.Distinct().ToArray(), consolations.Distinct().ToArray(), banners.ToArray(), removedEntities.ToArray());
         }
 

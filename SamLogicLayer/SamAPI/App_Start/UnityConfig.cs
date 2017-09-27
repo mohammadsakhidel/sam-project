@@ -25,6 +25,7 @@ namespace SamAPI
             container.RegisterType<IDisplayRepo, DisplayRepo>();
             container.RegisterType<IIdentityRepo, IdentityRepo>();
             container.RegisterType<IBannerRepo, BannerRepo>();
+            container.RegisterType<IRemovedEntityRepo, RemovedEntityRepo>();
             container.RegisterType<ISmsManager, SmsDotIrSmsManager>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

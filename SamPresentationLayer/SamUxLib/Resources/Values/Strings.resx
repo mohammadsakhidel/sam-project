@@ -777,4 +777,7 @@
   <data name="ProvinceCity" xml:space="preserve">
     <value>استان / شهر</value>
   </data>
+  <data name="CloseWindow" xml:space="preserve">
+    <value>بستن پنجره</value>
+  </data>
 </root>

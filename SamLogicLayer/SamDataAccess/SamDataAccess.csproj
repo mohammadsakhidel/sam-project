@@ -73,45 +73,9 @@
     <Compile Include="IdentityModels\AspNetRoleManager.cs" />
     <Compile Include="IdentityModels\AspNetUser.cs" />
     <Compile Include="IdentityModels\AspNetUserManager.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709131446561_DatabaseRegenerated.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709131446561_DatabaseRegenerated.Designer.cs">
-      <DependentUpon>201709131446561_DatabaseRegenerated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709140503124_Obit_DeceasedIdentifierFieldAdded.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709140503124_Obit_DeceasedIdentifierFieldAdded.Designer.cs">
-      <DependentUpon>201709140503124_Obit_DeceasedIdentifierFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709140816199_Consolation_AmountToPayFieldAdded.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709140816199_Consolation_AmountToPayFieldAdded.Designer.cs">
-      <DependentUpon>201709140816199_Consolation_AmountToPayFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709141427308_BannerAdded.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709141427308_BannerAdded.Designer.cs">
-      <DependentUpon>201709141427308_BannerAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709190556041_ObitBanner_Renamed.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709190556041_ObitBanner_Renamed.Designer.cs">
-      <DependentUpon>201709190556041_ObitBanner_Renamed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709200519514_Banner_ImageIDForeignKeyAdded.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709200519514_Banner_ImageIDForeignKeyAdded.Designer.cs">
-      <DependentUpon>201709200519514_Banner_ImageIDForeignKeyAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709200804365_BannerForeignKeysToObitAndMosqueAdded.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709200804365_BannerForeignKeysToObitAndMosqueAdded.Designer.cs">
-      <DependentUpon>201709200804365_BannerForeignKeysToObitAndMosqueAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709200926057_BlobForeignKeysRemoved.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709200926057_BlobForeignKeysRemoved.Designer.cs">
-      <DependentUpon>201709200926057_BlobForeignKeysRemoved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709201421493_ImageForeignKeyRemovedFromMosques.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709201421493_ImageForeignKeyRemovedFromMosques.Designer.cs">
-      <DependentUpon>201709201421493_ImageForeignKeyRemovedFromMosques.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SamDbMigrations\201709201538303_RemovedEntitiesAdded.cs" />
-    <Compile Include="Migrations\SamDbMigrations\201709201538303_RemovedEntitiesAdded.Designer.cs">
-      <DependentUpon>201709201538303_RemovedEntitiesAdded.cs</DependentUpon>
+    <Compile Include="Migrations\SamDbMigrations\201709240726489_Regeneration.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201709240726489_Regeneration.Designer.cs">
+      <DependentUpon>201709240726489_Regeneration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,35 +111,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709131446561_DatabaseRegenerated.resx">
-      <DependentUpon>201709131446561_DatabaseRegenerated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709140503124_Obit_DeceasedIdentifierFieldAdded.resx">
-      <DependentUpon>201709140503124_Obit_DeceasedIdentifierFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709140816199_Consolation_AmountToPayFieldAdded.resx">
-      <DependentUpon>201709140816199_Consolation_AmountToPayFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709141427308_BannerAdded.resx">
-      <DependentUpon>201709141427308_BannerAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709190556041_ObitBanner_Renamed.resx">
-      <DependentUpon>201709190556041_ObitBanner_Renamed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709200519514_Banner_ImageIDForeignKeyAdded.resx">
-      <DependentUpon>201709200519514_Banner_ImageIDForeignKeyAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709200804365_BannerForeignKeysToObitAndMosqueAdded.resx">
-      <DependentUpon>201709200804365_BannerForeignKeysToObitAndMosqueAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709200926057_BlobForeignKeysRemoved.resx">
-      <DependentUpon>201709200926057_BlobForeignKeysRemoved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709201421493_ImageForeignKeyRemovedFromMosques.resx">
-      <DependentUpon>201709201421493_ImageForeignKeyRemovedFromMosques.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SamDbMigrations\201709201538303_RemovedEntitiesAdded.resx">
-      <DependentUpon>201709201538303_RemovedEntitiesAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201709240726489_Regeneration.resx">
+      <DependentUpon>201709240726489_Regeneration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

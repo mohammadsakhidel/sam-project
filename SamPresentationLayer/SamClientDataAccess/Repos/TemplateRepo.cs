@@ -29,6 +29,16 @@ namespace SamClientDataAccess.Repos
             var _id = Convert.ToInt32(id[0]);
             return set.Include(t => t.TemplateFields).SingleOrDefault(t => t.ID == _id);
         }
+        public override void Remove(Template entity)
+        {
+            #region remove image:
+            var blob = context.Blobs.SingleOrDefault(b => b.ID == entity.BackgroundImageID);
+            if (blob != null)
+                context.Blobs.Remove(blob);
+            #endregion
+
+            base.Remove(entity);
+        }
         #endregion
 
         #region Extensions:

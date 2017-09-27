@@ -4,9 +4,11 @@ using SamClientDataAccess.Repos;
 using SamClientDataAccess.Repos;
 using SamModels.Entities;
 using SamUtils.Enums;
+using SamUxLib.Code.Objects;
 using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -28,10 +30,9 @@ namespace SamClient.Views.Windows
     public partial class PlayerWindow : Window
     {
         #region Fields:
-        Canvas _container;
-        Consolation _current;
-        Task _displayTask;
-        CancellationTokenSource _displayCancelation;
+        Queue<Slide> _queue;
+        Queue<Slide> _temp;
+        CancellationTokenSource _cancellationTokenSource;
         #endregion
 
         #region Ctors:
@@ -46,18 +47,23 @@ namespace SamClient.Views.Windows
         {
             try
             {
-                Play();
+                PlaySlides();
             }
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex);
             }
         }
-        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                StopPlaying();
+                if (_cancellationTokenSource != null)
+                {
+                    _cancellationTokenSource.Cancel();
+                }
+
+                Close();
             }
             catch (Exception ex)
             {
@@ -67,193 +73,301 @@ namespace SamClient.Views.Windows
         #endregion
 
         #region Methods:
-        private void Play()
+        private void PlaySlides()
         {
-            _displayCancelation = new CancellationTokenSource();
-            CancellationToken token = _displayCancelation.Token;
-            _displayTask = Task.Run(() =>
+            _cancellationTokenSource = new CancellationTokenSource();
+            var token = _cancellationTokenSource.Token;
+            Task.Run(() =>
             {
-                while (!token.IsCancellationRequested)
+                try
                 {
-                    try
+                    CreateQueue();
+                    #region LOOOOOOP:
+                    while (!token.IsCancellationRequested)
                     {
-                        using (var crep = new ConsolationRepo())
-                        using (var brep = new BlobRepo(crep.Context))
-                        using (var drep = new DisplayRepo(crep.Context))
+                        try
                         {
-                            #region find next consolation:
-                            var nextItem = crep.GetNext(_current?.ID);
-                            var nextConsolation = nextItem.Item1; ;
-                            var nextDuration = nextItem.Item2;
-                            #endregion
-
-                            #region show:
-                            if (nextConsolation != null)
+                            #region display all slides:
+                            while (_queue.Any())
                             {
-                                var blob = brep.Get(nextConsolation.Template.BackgroundImageID);
-                                if (blob != null)
-                                {
-                                    var bg = IOUtils.ByteArrayToBitmap(blob.Bytes);
-                                    Dispatcher.Invoke(() =>
-                                    {
-                                        try
-                                        {
-                                            ShowConsolation(nextConsolation, bg);
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            ExceptionManager.Log(ex);
-                                        }
-                                    });
-                                }
+                                var slideToDisplay = _queue.Dequeue();
+                                DisplaySlide(slideToDisplay);
+                                UpdateQueue();
+                                Thread.Sleep(slideToDisplay.DurationSeconds * 1000);
                             }
                             #endregion
-
-                            #region Delay:
-                            Thread.Sleep(nextDuration);
-                            #endregion
-
-                            #region save display:
-                            if (nextConsolation != null)
-                            {
-                                var display = new Display
-                                {
-                                    ConsolationID = nextConsolation.ID,
-                                    DurationMilliSeconds = nextDuration,
-                                    SyncStatus = DisplaySyncStatus.pending.ToString(),
-                                    TimeOfDisplay = DateTime.Now,
-                                    CreationTime = DateTime.Now
-                                };
-                                drep.AddWithSave(display);
-                            }
+                            #region create queue for next cycle:
+                            CreateQueue();
                             #endregion
                         }
+                        catch (Exception ex)
+                        {
+                            ExceptionManager.Handle(ex);
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        ExceptionManager.Log(ex);
-                    }
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    ExceptionManager.Handle(ex);
                 }
             }, token);
         }
-        private void StopPlaying()
+        private void CreateQueue()
         {
-            if (_displayTask != null && _displayTask.Status == TaskStatus.Running)
+            using (var crepo = new ConsolationRepo())
+            using (var brepo = new BannerRepo(crepo.Context))
+            using (var srepo = new ClientSettingRepo(crepo.Context))
             {
-                _displayCancelation.Cancel();
-                _displayTask.Wait();
+                #region get prereqs data:
+                var setting = srepo.Get();
+                if (setting == null)
+                    throw new Exception("Client Settings Not Found!");
+
+                var consolations = crepo.GetConsolationsToDisplay();
+                var banners = brepo.GetBannersToDisplay();
+                var slideList = new List<Slide>();
+                #endregion
+                #region add starting banners to queue:
+                var startBanners = banners.Where(b => b.Item1.ShowOnStart).OrderByDescending(b => b.Item1.Priority);
+                if (startBanners.Any())
+                {
+                    foreach (var sb in startBanners)
+                    {
+                        var slide = Dispatcher.Invoke<Slide>(() =>
+                        {
+                            return CreateBannerSlide(sb.Item1, sb.Item2);
+                        });
+                        slideList.Add(slide);
+                    }
+                }
+                #endregion
+                #region add consolations:
+                foreach (var c in consolations)
+                {
+                    var slide = Dispatcher.Invoke<Slide>(() =>
+                    {
+                        return CreateConsolationSlide(c.Item1, c.Item2, setting.DefaultSlideDurationMilliSeconds / 1000);
+                    });
+                    slideList.Add(slide);
+                }
+                #endregion
+                #region add interval banners:
+                foreach (var b in banners)
+                {
+                    var interval = b.Item1.Interval;
+                    var index = 0;
+                    var counter = 0;
+                    while (index < slideList.Count)
+                    {
+                        if (slideList[index].Type == SamUxLib.Code.Enums.SlideType.consolation)
+                        {
+                            counter++;
+
+                            if (counter > 0 && counter % interval == 0)
+                            {
+                                var slide = Dispatcher.Invoke<Slide>(() =>
+                                {
+                                    return CreateBannerSlide(b.Item1, b.Item2);
+                                });
+                                if (index + 1 < slideList.Count)
+                                    slideList.Insert(index + 1, slide);
+                                else
+                                    slideList.Add(slide);
+                            }
+                        }
+
+                        index++;
+                    }
+                }
+                #endregion
+                #region create queue:
+                _queue = new Queue<Slide>();
+                foreach (var slide in slideList)
+                {
+                    _queue.Enqueue(slide);
+                }
+                #endregion
+
+                _temp = new Queue<Slide>(_queue);
             }
         }
-        private void ShowConsolation(Consolation consolation, Bitmap backgroundImage)
+        private void UpdateQueue()
         {
-            #region Set Container Size:
-            _container = new Canvas();
+            using (var crepo = new ConsolationRepo())
+            using (var srepo = new ClientSettingRepo(crepo.Context))
+            {
+                var setting = srepo.Get();
+                var newConsolations = crepo.GetConsolationsToDisplay()
+                                      .Where(c => !_queue.Where(s => s.Type == SamUxLib.Code.Enums.SlideType.consolation)
+                                                         .Select(s => ((Consolation)s.DataObject).ID).Contains(c.Item1.ID))
+                                      .ToList();
+                foreach (var newItem in newConsolations)
+                {
+                    var slide = Dispatcher.Invoke(() =>
+                    {
+                        return CreateConsolationSlide(newItem.Item1, newItem.Item2, setting.DefaultSlideDurationMilliSeconds / 1000);
+                    });
+                    _queue.Enqueue(slide);
+                }
+            }
+        }
+        private void DisplaySlide(Slide slide)
+        {
+            #region calculate image size:
+            double calculatedWidth = 0.0, calculatedHeight = 0.0;
             var screenWidth = ActualWidth;
             var screenHeight = ActualHeight;
             double screenRatio = screenWidth / screenHeight;
-            double cWidth = consolation.Template.WidthRatio;
-            double cHeight = consolation.Template.HeightRatio;
-            double cRatio = cWidth / cHeight;
-            double containerWidth = 0.0;
-            double containerHeight = 0.0;
-            if (screenRatio > cRatio)
+            double slideWidth = slide.Image.Width;
+            double slideHeight = slide.Image.Height;
+            double slideRatio = slideWidth / slideHeight;
+            if (screenRatio > slideRatio)
             {
-                containerHeight = screenHeight;
-                containerWidth = containerHeight * cWidth / cHeight;
+                calculatedHeight = screenHeight;
+                calculatedWidth = calculatedHeight * slideWidth / slideHeight;
             }
             else
             {
-                containerWidth = screenWidth;
-                containerHeight = containerWidth * cHeight / cWidth;
+                calculatedWidth = screenWidth;
+                calculatedHeight = calculatedWidth * slideHeight / slideWidth;
             }
 
             Dispatcher.Invoke(() =>
             {
-                _container.Width = containerWidth;
-                _container.Height = containerHeight;
+                var slideImage = new System.Windows.Controls.Image();
+                slideImage.Width = calculatedWidth;
+                slideImage.Height = calculatedHeight;
+                slideImage.Source = ImageUtils.ToBitmapSource(slide.Image);
+                slideImage.VerticalAlignment = VerticalAlignment.Center;
+                slideImage.HorizontalAlignment = HorizontalAlignment.Center;
+                transitionBox.Transition = slide.InTransition;
+                transitionBox.Content = slideImage;
             });
             #endregion
-            #region Set Background and Fields:
-            _container.Background = new ImageBrush(ImageUtils.ToBitmapSource(backgroundImage));
-            // fiedls:
-            var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
-            foreach (var field in consolation.Template.TemplateFields)
+
+            #region save display:
+            if (slide.Type == SamUxLib.Code.Enums.SlideType.consolation)
             {
-                var textBlock = new TextBlock();
-                textBlock.Text = info.ContainsKey(field.Name) ? info[field.Name] : "";
-                textBlock.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom(field.TextColor));
-                textBlock.FontWeight = field.Bold.HasValue && field.Bold.Value ? FontWeights.Bold : FontWeights.Normal;
-                textBlock.TextWrapping = field.WrapContent.HasValue && field.WrapContent.Value ? TextWrapping.Wrap : TextWrapping.NoWrap;
-                textBlock.HorizontalAlignment = StringToHorizontalAlignment(field.HorizontalContentAlignment);
-                textBlock.VerticalAlignment = StringToVerticalAlignment(field.VerticalContentAlignment);
-                textBlock.FontFamily = new System.Windows.Media.FontFamily(field.FontFamily);
-                textBlock.FontSize = StringToFontSize(field.FontSize);
-
-                var box = new Border();
-                box.Width = field.BoxWidth * _container.Width / 100;
-                box.Height = field.BoxHeight * _container.Height / 100;
-                Canvas.SetLeft(box, _container.Width * field.X / 100);
-                Canvas.SetTop(box, _container.Height * field.Y / 100);
-
-                box.Child = textBlock;
-                _container.Children.Add(box);
+                using (var drep = new DisplayRepo())
+                {
+                    var display = new Display
+                    {
+                        ConsolationID = (slide.DataObject as Consolation).ID,
+                        DurationMilliSeconds = slide.DurationSeconds * 1000,
+                        SyncStatus = DisplaySyncStatus.pending.ToString(),
+                        TimeOfDisplay = DateTimeUtils.Now,
+                        CreationTime = DateTimeUtils.Now
+                    };
+                    drep.AddWithSave(display);
+                }
             }
             #endregion
+        }
+        private void ShowConsolation(Consolation consolation, Bitmap backgroundImage)
+        {
+            //#region Set Container Size:
+            //_container = new Canvas();
+            //var screenWidth = ActualWidth;
+            //var screenHeight = ActualHeight;
+            //double screenRatio = screenWidth / screenHeight;
+            //double cWidth = consolation.Template.WidthRatio;
+            //double cHeight = consolation.Template.HeightRatio;
+            //double cRatio = cWidth / cHeight;
+            //double containerWidth = 0.0;
+            //double containerHeight = 0.0;
+            //if (screenRatio > cRatio)
+            //{
+            //    containerHeight = screenHeight;
+            //    containerWidth = containerHeight * cWidth / cHeight;
+            //}
+            //else
+            //{
+            //    containerWidth = screenWidth;
+            //    containerHeight = containerWidth * cHeight / cWidth;
+            //}
 
-            _current = consolation;
+            //Dispatcher.Invoke(() =>
+            //{
+            //    _container.Width = containerWidth;
+            //    _container.Height = containerHeight;
+            //});
+            //#endregion
+            //#region Set Background and Fields:
+            //_container.Background = new ImageBrush(ImageUtils.ToBitmapSource(backgroundImage));
+            //// fiedls:
+            //var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
+            //foreach (var field in consolation.Template.TemplateFields)
+            //{
+            //    var textBlock = new TextBlock();
+            //    textBlock.Text = info.ContainsKey(field.Name) ? info[field.Name] : "";
+            //    textBlock.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom(field.TextColor));
+            //    textBlock.FontWeight = field.Bold.HasValue && field.Bold.Value ? FontWeights.Bold : FontWeights.Normal;
+            //    textBlock.TextWrapping = field.WrapContent.HasValue && field.WrapContent.Value ? TextWrapping.Wrap : TextWrapping.NoWrap;
+            //    textBlock.HorizontalAlignment = StringToHorizontalAlignment(field.HorizontalContentAlignment);
+            //    textBlock.VerticalAlignment = StringToVerticalAlignment(field.VerticalContentAlignment);
+            //    textBlock.FontFamily = new System.Windows.Media.FontFamily(field.FontFamily);
+            //    textBlock.FontSize = StringToFontSize(field.FontSize);
 
-            transitionBox.Transition = GetRandomTransition();
-            transitionBox.Content = _container;
+            //    var box = new Border();
+            //    box.Width = field.BoxWidth * _container.Width / 100;
+            //    box.Height = field.BoxHeight * _container.Height / 100;
+            //    Canvas.SetLeft(box, _container.Width * field.X / 100);
+            //    Canvas.SetTop(box, _container.Height * field.Y / 100);
+
+            //    box.Child = textBlock;
+            //    _container.Children.Add(box);
+            //}
+            //#endregion
+
+            //_current = consolation;
+
+            //transitionBox.Transition = GetRandomTransition();
+            //transitionBox.Content = _container;
         }
         private Transition GetRandomTransition()
         {
-            //var types = typeof(Transition).Assembly.GetTypes().Where(t => t.Name.EndsWith("Transition")).ToList();
             var all = new List<Transition> {
-                new DoorTransition(),
-                new ExplosionTransition(),
-                new FadeAndBlurTransition(),
-                new FadeAndGrowTransition(),
-                new FlipTransition(),
-                new PageTransition(),
-                new RollTransition(),
+                //new DoorTransition(),
+                //new ExplosionTransition(),
+                //new FadeAndBlurTransition(),
+                //new FadeAndGrowTransition(),
+                //new FlipTransition(),
+                //new PageTransition(),
+                //new RollTransition(),
+                //new TranslateTransition()
                 new RotateTransition() { Direction = RotateDirection.Left },
                 new RotateTransition() { Direction = RotateDirection.Up },
-                new TranslateTransition()
+                new RotateTransition() { Direction = RotateDirection.Right },
+                new RotateTransition() { Direction = RotateDirection.Down }
             };
             var count = all.Count();
             var randomIndex = TextUtils.GetRandomNumbers(0, count, 1)[0];
             return all[randomIndex];
         }
-        private HorizontalAlignment StringToHorizontalAlignment(string text)
+        private Slide CreateBannerSlide(Banner banner, Blob blob)
         {
-            if (text == SamUtils.Enums.TextAlignment.center.ToString())
-                return HorizontalAlignment.Center;
-            else if (text == SamUtils.Enums.TextAlignment.left.ToString())
-                return HorizontalAlignment.Left;
-            else if (text == SamUtils.Enums.TextAlignment.right.ToString())
-                return HorizontalAlignment.Right;
-
-            return HorizontalAlignment.Center;
+            var image = IOUtils.ByteArrayToBitmap(blob.Bytes);
+            var transition = GetRandomTransition();
+            return new Slide()
+            {
+                Type = SamUxLib.Code.Enums.SlideType.banner,
+                Image = image,
+                DurationSeconds = banner.DurationSeconds,
+                DataObject = banner,
+                InTransition = transition
+            };
         }
-        private VerticalAlignment StringToVerticalAlignment(string text)
+        private Slide CreateConsolationSlide(Consolation consolation, Blob blob, int durationSecs)
         {
-            if (text == SamUtils.Enums.TextAlignment.center.ToString())
-                return VerticalAlignment.Center;
-            else if (text == SamUtils.Enums.TextAlignment.top.ToString())
-                return VerticalAlignment.Top;
-            else if (text == SamUtils.Enums.TextAlignment.bottom.ToString())
-                return VerticalAlignment.Bottom;
-
-            return VerticalAlignment.Center;
-        }
-        private double StringToFontSize(string text)
-        {
-            var res = FindResource($"font_consolation_{text}") as double?;
-
-            if (!res.HasValue)
-                return (double)FindResource("font_consolation_normal");
-
-            return res.Value;
+            return new Slide()
+            {
+                Type = SamUxLib.Code.Enums.SlideType.consolation,
+                Image = IOUtils.ByteArrayToBitmap(blob.Bytes),
+                DurationSeconds = durationSecs,
+                DataObject = consolation,
+                InTransition = GetRandomTransition()
+            };
         }
         #endregion
     }

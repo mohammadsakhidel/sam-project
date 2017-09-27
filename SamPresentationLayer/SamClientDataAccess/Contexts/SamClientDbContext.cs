@@ -1,4 +1,5 @@
 ﻿using ClientModels.Models;
+using SamClientDataAccess.ClientModels;
 using SamModels.Entities;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace SamClientDataAccess.Contexts
         public DbSet<TemplateField> TemplateFields { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Blob> Blobs { get; set; }
+        public DbSet<Banner> Banners { get; set; }
+        public DbSet<DownloadImageTask> DownloadImageTasks { get; set; }
         #endregion
 
         #region Fluent API:

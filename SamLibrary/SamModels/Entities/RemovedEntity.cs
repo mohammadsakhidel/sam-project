@@ -16,6 +16,10 @@ namespace SamModels.Entities
         public string EntityType { get; set; }
 
         [Required]
+        [MaxLength(32)]
+        public string EntityID { get; set; }
+
+        [Required]
         public DateTime RemovingTime { get; set; }
 
         [MaxLength(128)]

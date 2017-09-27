@@ -11,7 +11,7 @@ namespace SamSyncAgent.Code.Utils
     {
         public static void Handle(Exception ex, EventLog logger)
         {
-            logger.WriteEntry($"Handled Exception: {ex.Message}");
+            logger.WriteEntry($"Handled Exception: {(ex.InnerException != null ? ex.InnerException.Message : ex.Message)}");
         }
 
         public static void Handle(Exception ex, EventLog logger, string source)

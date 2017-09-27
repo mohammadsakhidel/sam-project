@@ -59,53 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientModels\ClientSetting.cs" />
+    <Compile Include="ClientModels\DownloadImageTask.cs" />
     <Compile Include="Contexts\SamClientDbContext.cs" />
-    <Compile Include="Migrations\201708071541153_Initial.cs" />
-    <Compile Include="Migrations\201708071541153_Initial.Designer.cs">
-      <DependentUpon>201708071541153_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708100526213_SyncRelatedFieldsAdded.cs" />
-    <Compile Include="Migrations\201708100526213_SyncRelatedFieldsAdded.Designer.cs">
-      <DependentUpon>201708100526213_SyncRelatedFieldsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708101402446_SomeSyncingFieldsAdded.cs" />
-    <Compile Include="Migrations\201708101402446_SomeSyncingFieldsAdded.Designer.cs">
-      <DependentUpon>201708101402446_SomeSyncingFieldsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708110640206_DownloadSettingsAddedToClientSettings.cs" />
-    <Compile Include="Migrations\201708110640206_DownloadSettingsAddedToClientSettings.Designer.cs">
-      <DependentUpon>201708110640206_DownloadSettingsAddedToClientSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708110735295_CategoriesAddedToContext.cs" />
-    <Compile Include="Migrations\201708110735295_CategoriesAddedToContext.Designer.cs">
-      <DependentUpon>201708110735295_CategoriesAddedToContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708131324214_ClientSetting_AutoSlieshowFieldAdded.cs" />
-    <Compile Include="Migrations\201708131324214_ClientSetting_AutoSlieshowFieldAdded.Designer.cs">
-      <DependentUpon>201708131324214_ClientSetting_AutoSlieshowFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708140612510_Setting_DurationFieldAdded.cs" />
-    <Compile Include="Migrations\201708140612510_Setting_DurationFieldAdded.Designer.cs">
-      <DependentUpon>201708140612510_Setting_DurationFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708140837364_Consolation_TrackingNumberFieldAdded.cs" />
-    <Compile Include="Migrations\201708140837364_Consolation_TrackingNumberFieldAdded.Designer.cs">
-      <DependentUpon>201708140837364_Consolation_TrackingNumberFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708150421078_DisplayEntityAdded.cs" />
-    <Compile Include="Migrations\201708150421078_DisplayEntityAdded.Designer.cs">
-      <DependentUpon>201708150421078_DisplayEntityAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708150544337_DisplaySyncFieldsAdded.cs" />
-    <Compile Include="Migrations\201708150544337_DisplaySyncFieldsAdded.Designer.cs">
-      <DependentUpon>201708150544337_DisplaySyncFieldsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709201426160_BannerSupportAdded.cs" />
-    <Compile Include="Migrations\201709201426160_BannerSupportAdded.Designer.cs">
-      <DependentUpon>201709201426160_BannerSupportAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201709241510542_Regeneration.cs" />
+    <Compile Include="Migrations\201709241510542_Regeneration.Designer.cs">
+      <DependentUpon>201709241510542_Regeneration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\BannerRepo.cs" />
     <Compile Include="Repos\BaseClasses\Repo.cs" />
     <Compile Include="Repos\BlobRepo.cs" />
     <Compile Include="Repos\CityRepo.cs" />
@@ -113,6 +75,7 @@
     <Compile Include="Repos\ConsolationRepo.cs" />
     <Compile Include="Repos\CustomerRepo.cs" />
     <Compile Include="Repos\DisplayRepo.cs" />
+    <Compile Include="Repos\DownloadImageTaskRepo.cs" />
     <Compile Include="Repos\MosqueRepo.cs" />
     <Compile Include="Repos\ObitRepo.cs" />
     <Compile Include="Repos\ProvinceRepo.cs" />
@@ -124,38 +87,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708071541153_Initial.resx">
-      <DependentUpon>201708071541153_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708100526213_SyncRelatedFieldsAdded.resx">
-      <DependentUpon>201708100526213_SyncRelatedFieldsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708101402446_SomeSyncingFieldsAdded.resx">
-      <DependentUpon>201708101402446_SomeSyncingFieldsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708110640206_DownloadSettingsAddedToClientSettings.resx">
-      <DependentUpon>201708110640206_DownloadSettingsAddedToClientSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708110735295_CategoriesAddedToContext.resx">
-      <DependentUpon>201708110735295_CategoriesAddedToContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708131324214_ClientSetting_AutoSlieshowFieldAdded.resx">
-      <DependentUpon>201708131324214_ClientSetting_AutoSlieshowFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708140612510_Setting_DurationFieldAdded.resx">
-      <DependentUpon>201708140612510_Setting_DurationFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708140837364_Consolation_TrackingNumberFieldAdded.resx">
-      <DependentUpon>201708140837364_Consolation_TrackingNumberFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708150421078_DisplayEntityAdded.resx">
-      <DependentUpon>201708150421078_DisplayEntityAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708150544337_DisplaySyncFieldsAdded.resx">
-      <DependentUpon>201708150544337_DisplaySyncFieldsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709201426160_BannerSupportAdded.resx">
-      <DependentUpon>201709201426160_BannerSupportAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709241510542_Regeneration.resx">
+      <DependentUpon>201709241510542_Regeneration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

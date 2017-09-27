@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
+using System.Transactions;
 using System.Web.Http;
 
 namespace SamAPI.Controllers
@@ -19,13 +20,15 @@ namespace SamAPI.Controllers
         #region Fields:
         IObitRepo _obitRepo;
         IMosqueRepo _mosqueRepo;
+        IRemovedEntityRepo _removedEntityRepo;
         #endregion
 
         #region Ctors:
-        public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo)
+        public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo, IRemovedEntityRepo removedEntityRepo)
         {
             _obitRepo = obitRepo;
             _mosqueRepo = mosqueRepo;
+            _removedEntityRepo = removedEntityRepo;
         }
         #endregion
 
@@ -138,9 +141,27 @@ namespace SamAPI.Controllers
         {
             try
             {
-                _obitRepo.RemoveWithSave(id);
+                var obitToDelete = _obitRepo.Get(id);
+                if (obitToDelete == null)
+                    return NotFound();
 
-                return Ok();
+                using (var ts = new TransactionScope())
+                {
+                    _obitRepo.RemoveWithSave(obitToDelete);
+
+                    #region add removed entity record:
+                    var re = new RemovedEntity()
+                    {
+                        EntityID = obitToDelete.ID.ToString(),
+                        EntityType = typeof(Obit).Name,
+                        RemovingTime = DateTimeUtils.Now
+                    };
+                    _removedEntityRepo.AddWithSave(re);
+                    #endregion
+
+                    ts.Complete();
+                    return Ok();
+                }
             }
             catch (Exception ex)
             {

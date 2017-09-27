@@ -6,11 +6,19 @@
         xmlns:local="clr-namespace:SamClient.Views.Windows"
         xmlns:tr="clr-namespace:Transitionals;assembly=Transitionals"
         xmlns:trc="clr-namespace:Transitionals.Controls;assembly=Transitionals"
-        Style="{StaticResource player_window}"
-        Loaded="Window_Loaded" Unloaded="Window_Unloaded">
+        Style="{StaticResource player_window}" ShowInTaskbar="False"
+        Loaded="Window_Loaded">
 
-    <trc:TransitionElement x:Name="transitionBox" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Border Background="{StaticResource color_player_bg}"></Border>
-    </trc:TransitionElement>
-    
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CloseWindow}"
+                      Click="ExitMenuItem_Click"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+
+    <Border Background="{StaticResource color_player_bg}">
+        <trc:TransitionElement x:Name="transitionBox" VerticalAlignment="Center" HorizontalAlignment="Center">
+        </trc:TransitionElement>
+    </Border>
+
 </Window>

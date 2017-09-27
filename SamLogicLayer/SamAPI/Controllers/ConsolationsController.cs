@@ -40,7 +40,7 @@ namespace SamAPI.Controllers
         #endregion
 
         #region Ctors:
-        public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo, 
+        public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo,
             ISmsManager smsManager, ICustomerRepo customerRepo, ITemplateRepo templateRepo)
         {
             _consolationRepo = consolationRepo;
@@ -145,6 +145,23 @@ namespace SamAPI.Controllers
                 if (consolation == null)
                     return NotFound();
 
+                #region return from temp folder if available:
+                #region create folders if not exist:
+                if (!Directory.Exists(HostingEnvironment.MapPath("~/Content/Temp/")))
+                    Directory.CreateDirectory(HostingEnvironment.MapPath("~/Content/Temp/"));
+
+                if (!Directory.Exists(HostingEnvironment.MapPath("~/Content/Temp/Consolations/")))
+                    Directory.CreateDirectory(HostingEnvironment.MapPath("~/Content/Temp/Consolations/"));
+                #endregion
+                var tempFolderPath = HostingEnvironment.MapPath("~/Content/Temp/Consolations");
+                var tempFilePath = $"{tempFolderPath}/{consolation.ID}.jpg";
+                FileInfo fileInfo = File.Exists(tempFilePath) ? new FileInfo(tempFilePath) : null;
+                if (fileInfo != null && (!consolation.LastUpdateTime.HasValue || consolation.LastUpdateTime.Value < fileInfo.LastWriteTime))
+                {
+                    return ResponseMessage(JpgResponse(File.ReadAllBytes(tempFilePath)));
+                }
+                #endregion
+
                 var blob = _blobRepo.Get(consolation.Template.BackgroundImageID);
                 if (blob == null || !(blob is ImageBlob))
                     return NotFound();
@@ -165,12 +182,8 @@ namespace SamAPI.Controllers
                 var previewBytes = IOUtils.BitmapToByteArray(previewBitmap, System.Drawing.Imaging.ImageFormat.Jpeg);
                 #endregion
 
-                #region Return As Image:
-                HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-                result.Content = new ByteArrayContent(previewBytes);
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
-                return ResponseMessage(result);
-                #endregion
+                File.WriteAllBytes(tempFilePath, previewBytes);
+                return ResponseMessage(JpgResponse(previewBytes));
             }
             catch (Exception ex)
             {
@@ -370,6 +383,13 @@ namespace SamAPI.Controllers
             dic.Add("large", 80);
             dic.Add("huge", 100);
             return dic.ContainsKey(text) ? dic[text] : dic["normal"];
+        }
+        private HttpResponseMessage JpgResponse(byte[] imageBytes)
+        {
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+            result.Content = new ByteArrayContent(imageBytes);
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
+            return result;
         }
         #endregion
     }

@@ -64,6 +64,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -111,6 +112,10 @@
     <ProjectReference Include="..\SamClientDataAccess\SamClientDataAccess.csproj">
       <Project>{7c4f3e6f-dbd8-41bb-be79-acc4dfd8ae2c}</Project>
       <Name>SamClientDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SamUxLib\SamUxLib.csproj">
+      <Project>{6A3E7C54-3305-4BEB-9E13-B967A6183C94}</Project>
+      <Name>SamUxLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -12,6 +12,8 @@ namespace SamModels.DTOs
 
         public string EntityType { get; set; }
 
+        public string EntityID { get; set; }
+
         public DateTime RemovingTime { get; set; }
 
         public string metadata { get; set; }

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Transactions;
 using System.Web.Http;
 
 namespace SamAPI.Controllers
@@ -22,13 +23,15 @@ namespace SamAPI.Controllers
         #region Fields:
         ITemplateRepo _templateRepo;
         IBlobRepo _blobRepo;
+        IRemovedEntityRepo _removedEntityRepo;
         #endregion
 
         #region Ctors:
-        public TemplatesController(ITemplateRepo templateRepo, IBlobRepo blobRepo)
+        public TemplatesController(ITemplateRepo templateRepo, IBlobRepo blobRepo, IRemovedEntityRepo removedEntityRepo)
         {
             _templateRepo = templateRepo;
             _blobRepo = blobRepo;
+            _removedEntityRepo = removedEntityRepo;
         }
         #endregion
 
@@ -168,8 +171,23 @@ namespace SamAPI.Controllers
                     return BadRequest();
                 #endregion
 
-                _templateRepo.RemoveWithSave(id);
-                return Ok();
+                using (var ts = new TransactionScope())
+                {
+                    _templateRepo.RemoveWithSave(id);
+
+                    #region add removed entity record:
+                    var re = new RemovedEntity()
+                    {
+                        EntityID = templateToDelete.ID.ToString(),
+                        EntityType = typeof(Template).Name,
+                        RemovingTime = DateTimeUtils.Now
+                    };
+                    _removedEntityRepo.AddWithSave(re);
+                    #endregion
+
+                    ts.Complete();
+                    return Ok();
+                }
             }
             catch (Exception ex)
             {

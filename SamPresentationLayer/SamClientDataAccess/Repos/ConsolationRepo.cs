@@ -111,6 +111,31 @@ namespace SamClientDataAccess.Repos
 
             return new Tuple<Consolation, int>(next, durationMills);
         }
+        public List<Tuple<Consolation, Blob>> GetConsolationsToDisplay()
+        {
+            #region prereq data:
+            var setting = context.ClientSettings.Find(1);
+            if (setting == null)
+                throw new Exception("Client Settings Not Found!");
+
+            DateTime now = DateTimeUtils.Now;
+            var confirmed = ConsolationStatus.confirmed.ToString();
+            #endregion
+
+            var all = from c in context.Consolations
+                      join t in context.Templates on c.TemplateID equals t.ID
+                      join b in context.Blobs on t.BackgroundImageID equals b.ID
+                      join o in context.Obits on c.ObitID equals o.ID
+                      join h in context.ObitHoldings on o.ID equals h.ObitID
+                      where o.MosqueID == setting.MosqueID
+                            && h.SaloonID == setting.SaloonID
+                            && (now >= h.BeginTime && now <= h.EndTime)
+                            && c.Status == confirmed
+                      orderby c.CreationTime ascending
+                      select new { Consolation = c, Blob = b };
+
+            return all.ToList().Select(o => new Tuple<Consolation, Blob>(o.Consolation, o.Blob)).ToList();
+        }
         public void AddOrUpdate(Consolation consolation)
         {
             var exists = set.Where(c => c.ID == consolation.ID).Any();

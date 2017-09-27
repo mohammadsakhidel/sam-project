@@ -9,7 +9,7 @@
         xmlns:uc="clr-namespace:SamClient.Views.Partials"
         mc:Ignorable="d" Title="" Height="450" Width="700"
         Loaded="Window_Loaded" Style="{StaticResource dialog_window}"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
 
     <Border Style="{StaticResource dialog_window_content}">
         <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">

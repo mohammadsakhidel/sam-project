@@ -13,6 +13,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Transactions;
 using System.Web.Http;
 
 namespace SamAPI.Controllers
@@ -21,12 +22,14 @@ namespace SamAPI.Controllers
     {
         #region Fields:
         IBannerRepo _bannerRepo;
+        IRemovedEntityRepo _removedEntityRepo;
         #endregion
 
         #region Ctors:
-        public BannersController(IBannerRepo bannerRepo)
+        public BannersController(IBannerRepo bannerRepo, IRemovedEntityRepo removedEntityRepo)
         {
             _bannerRepo = bannerRepo;
+            _removedEntityRepo = removedEntityRepo;
         }
         #endregion
 
@@ -172,13 +175,27 @@ namespace SamAPI.Controllers
         {
             try
             {
-                var bannerToDelete = _bannerRepo.Get(id);
-                if (bannerToDelete == null)
-                    return NotFound();
+                using (var ts = new TransactionScope())
+                {
+                    var bannerToDelete = _bannerRepo.Get(id);
+                    if (bannerToDelete == null)
+                        return NotFound();
 
-                _bannerRepo.RemoveWithSave(id);
+                    _bannerRepo.RemoveWithSave(id);
 
-                return Ok();
+                    #region add removed entity record:
+                    var re = new RemovedEntity()
+                    {
+                        EntityID = bannerToDelete.ID.ToString(),
+                        EntityType = typeof(Banner).Name,
+                        RemovingTime = DateTimeUtils.Now
+                    };
+                    _removedEntityRepo.AddWithSave(re);
+                    #endregion
+
+                    ts.Complete();
+                    return Ok();
+                }
             }
             catch (Exception ex)
             {
