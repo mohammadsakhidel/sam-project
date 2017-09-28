@@ -8,6 +8,6 @@ namespace SmsLib.Objects
 {
     public interface ISmsManager
     {
-        Task<bool> SendAsync(string message, IEnumerable<string> numbers);
+        bool Send(string message, IEnumerable<string> numbers);
     }
 }

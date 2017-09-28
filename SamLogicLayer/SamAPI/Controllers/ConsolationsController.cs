@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
@@ -20,12 +21,9 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Web.Http;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace SamAPI.Controllers
 {
@@ -88,12 +86,15 @@ namespace SamAPI.Controllers
                 #endregion
 
                 #region Send SMS To Customer:
-                try
+                Task.Run(() =>
                 {
-                    string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
-                    _smsManager.SendAsync(messageText, new string[] { model.Customer.CellPhoneNumber });
-                }
-                catch { }
+                    try
+                    {
+                        string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
+                        _smsManager.Send(messageText, new string[] { model.Customer.CellPhoneNumber });
+                    }
+                    catch { }
+                });
                 #endregion
 
                 return Ok(new { ID = consolation.ID, TrackingNumber = consolation.TrackingNumber });
@@ -274,76 +275,137 @@ namespace SamAPI.Controllers
         #endregion
 
         #region Methods:
-        private Bitmap GeneratePreview(Consolation consolation, Bitmap backgroundImage, int targetScreenWidth = 0, int targetScreenHeight = 0)
+        private Bitmap GeneratePreview(Consolation consolation, Bitmap backgroundImage)
         {
             Bitmap bitmap = null;
             Thread t = new Thread(() =>
             {
-                #region Set Container Size:
-                var container = new Canvas();
-                var screenWidth = targetScreenWidth > 0 ? targetScreenWidth : backgroundImage.Width;
-                var screenHeight = targetScreenHeight > 0 ? targetScreenHeight : backgroundImage.Height;
-                double screenRatio = screenWidth / screenHeight;
-                double cWidth = consolation.Template.WidthRatio;
-                double cHeight = consolation.Template.HeightRatio;
-                double cRatio = cWidth / cHeight;
-                double containerWidth = 0.0;
-                double containerHeight = 0.0;
-                if (screenRatio > cRatio)
+                try
                 {
-                    containerHeight = screenHeight;
-                    containerWidth = containerHeight * cWidth / cHeight;
+                    #region 1 ::: WPF Draw Control:
+                    /*
+                    #region Set Container Size:
+                    var container = new Canvas();
+                    var screenWidth = backgroundImage.Width;
+                    var screenHeight = backgroundImage.Height;
+                    double screenRatio = screenWidth / screenHeight;
+                    double cWidth = consolation.Template.WidthRatio;
+                    double cHeight = consolation.Template.HeightRatio;
+                    double cRatio = cWidth / cHeight;
+                    double containerWidth = 0.0;
+                    double containerHeight = 0.0;
+                    if (screenRatio > cRatio)
+                    {
+                        containerHeight = screenHeight;
+                        containerWidth = containerHeight * cWidth / cHeight;
+                    }
+                    else
+                    {
+                        containerWidth = screenWidth;
+                        containerHeight = containerWidth * cHeight / cWidth;
+                    }
+
+                    container.Width = containerWidth;
+                    container.Height = containerHeight;
+                    #endregion
+
+                    #region Set Background and Fields:
+                    container.Background = System.Windows.Media.Brushes.Red; //new ImageBrush(ImageUtils.ToBitmapSource(backgroundImage));
+
+                    #region fields:
+                    var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
+                    var fields = consolation.Template.TemplateFields.ToList();
+
+                    foreach (var field in fields)
+                    {
+                        var textBlock = new TextBlock();
+                        textBlock.Text = info.ContainsKey(field.Name) ? info[field.Name] : "";
+                        textBlock.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom(field.TextColor));
+                        textBlock.FontWeight = field.Bold.HasValue && field.Bold.Value ? FontWeights.Bold : FontWeights.Normal;
+                        textBlock.TextWrapping = field.WrapContent.HasValue && field.WrapContent.Value ? TextWrapping.Wrap : TextWrapping.NoWrap;
+                        textBlock.HorizontalAlignment = StringToHorizontalAlignment(field.HorizontalContentAlignment);
+                        textBlock.VerticalAlignment = StringToVerticalAlignment(field.VerticalContentAlignment);
+
+                        // font family:
+                        var fontsFolder = new Uri(HostingEnvironment.MapPath("~/Content/Fonts/#"));
+                        var fontFamilies = Fonts.GetFontFamilies(fontsFolder).ToList();
+                        var fontFamily = fontFamilies.Where(ff => ff.FamilyNames.Values.Contains(field.FontFamily)).FirstOrDefault();
+
+                        if (fontFamily != null)
+                            textBlock.FontFamily = fontFamily;
+
+                        textBlock.FontSize = StringToFontSize(field.FontSize);
+
+                        var box = new Border();
+                        box.Width = field.BoxWidth * container.Width / 100;
+                        box.Height = field.BoxHeight * container.Height / 100;
+                        Canvas.SetLeft(box, container.Width * field.X / 100);
+                        Canvas.SetTop(box, container.Height * field.Y / 100);
+
+                        box.Child = textBlock;
+                        container.Children.Add(box);
+                    }
+                    #endregion
+                    #endregion
+
+                    #region view box:
+                    Viewbox viewbox = new Viewbox();
+                    viewbox.Child = container;
+                    viewbox.Measure(new System.Windows.Size(container.Width, container.Height));
+                    viewbox.Arrange(new Rect(0, 0, container.Width, container.Height));
+                    viewbox.UpdateLayout();
+                    #endregion
+
+                    bitmap = ImageUtils.DrawWpfControl(viewbox, (int)container.Width, (int)container.Height);
+                    */
+                    #endregion
+                    #region 2 ::: Graphics Library:
+                    var maxWith = 1500;
+                    var resizer = new ImageResizer(backgroundImage.Width, backgroundImage.Height, ResizeType.LongerFix, maxWith);
+                    var resizedBG = ImageUtils.GetThumbnailImage(backgroundImage, resizer.NewWidth, resizer.NewHeight);
+                    #region draw fields:
+                    using (var g = Graphics.FromImage(resizedBG))
+                    {
+                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
+                        var fields = consolation.Template.TemplateFields.ToList();
+
+                        foreach (var field in fields)
+                        {
+                            var box = new Rectangle();
+                            box.Width = (int)(field.BoxWidth * resizedBG.Width / 100);
+                            box.Height = (int)(field.BoxHeight * resizedBG.Height / 100);
+                            box.X = (int)(resizedBG.Width * field.X / 100);
+                            box.Y = (int)(resizedBG.Height * field.Y / 100);
+
+                            //text:
+                            var text = info.ContainsKey(field.Name) ? info[field.Name] : "";
+                            var textAlignmentFormat = new StringFormat()
+                            {
+                                Alignment = StringToStringAlignment(field.HorizontalContentAlignment),
+                                LineAlignment = StringToStringAlignment(field.VerticalContentAlignment)
+                            };
+                            var textColor = new SolidBrush(ColorTranslator.FromHtml(field.TextColor));
+                            //font:
+                            var fontsFolder = HostingEnvironment.MapPath("~/Content/Fonts/");
+                            var fontCollection = new PrivateFontCollection();
+                            var fontFiles = Directory.GetFiles(fontsFolder);
+                            foreach (var fontFile in fontFiles)
+                            {
+                                fontCollection.AddFontFile(fontFile);
+                            }
+                            var fontFamily = fontCollection.Families.Where(ff => ff.Name == field.FontFamily).FirstOrDefault();
+                            var font = new Font(fontFamily, StringToFontSize(field.FontSize), (field.Bold.HasValue && field.Bold.Value ? FontStyle.Bold : FontStyle.Regular));
+
+                            g.DrawString(text, font, textColor, box, textAlignmentFormat);
+                        }
+                    }
+                    #endregion
+                    bitmap = resizedBG;
+                    #endregion
+
                 }
-                else
-                {
-                    containerWidth = screenWidth;
-                    containerHeight = containerWidth * cHeight / cWidth;
-                }
-
-                container.Width = containerWidth;
-                container.Height = containerHeight;
-                #endregion
-                #region Set Background and Fields:
-                container.Background = new ImageBrush(ImageUtils.ToBitmapSource(backgroundImage));
-                //fiedls:
-                var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
-                foreach (var field in consolation.Template.TemplateFields)
-                {
-                    var textBlock = new TextBlock();
-                    textBlock.Text = info.ContainsKey(field.Name) ? info[field.Name] : "";
-                    textBlock.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom(field.TextColor));
-                    textBlock.FontWeight = field.Bold.HasValue && field.Bold.Value ? FontWeights.Bold : FontWeights.Normal;
-                    textBlock.TextWrapping = field.WrapContent.HasValue && field.WrapContent.Value ? TextWrapping.Wrap : TextWrapping.NoWrap;
-                    textBlock.HorizontalAlignment = StringToHorizontalAlignment(field.HorizontalContentAlignment);
-                    textBlock.VerticalAlignment = StringToVerticalAlignment(field.VerticalContentAlignment);
-
-                    // font family:
-                    var fontsFolder = new Uri(HostingEnvironment.MapPath("~/Content/Fonts/#"));
-                    var fontFamilies = Fonts.GetFontFamilies(fontsFolder).ToList();
-                    var fontFamily = fontFamilies.Where(ff => ff.FamilyNames.Values.Contains(field.FontFamily)).FirstOrDefault();
-                    if (fontFamily != null)
-                        textBlock.FontFamily = fontFamily;
-
-                    textBlock.FontSize = StringToFontSize(field.FontSize);
-
-                    var box = new Border();
-                    box.Width = field.BoxWidth * container.Width / 100;
-                    box.Height = field.BoxHeight * container.Height / 100;
-                    Canvas.SetLeft(box, container.Width * field.X / 100);
-                    Canvas.SetTop(box, container.Height * field.Y / 100);
-
-                    box.Child = textBlock;
-                    container.Children.Add(box);
-                }
-                #endregion
-
-                Viewbox viewbox = new Viewbox();
-                viewbox.Child = container;
-                viewbox.Measure(new System.Windows.Size(container.Width, container.Height));
-                viewbox.Arrange(new Rect(0, 0, container.Width, container.Height));
-                viewbox.UpdateLayout();
-
-                bitmap = ImageUtils.DrawWpfControl(viewbox, (int)container.Width, (int)container.Height);
+                catch { }
             });
 
             t.SetApartmentState(ApartmentState.STA);
@@ -352,44 +414,33 @@ namespace SamAPI.Controllers
 
             return bitmap;
         }
-        private HorizontalAlignment StringToHorizontalAlignment(string text)
-        {
-            if (text == SamUtils.Enums.TextAlignment.center.ToString())
-                return HorizontalAlignment.Center;
-            else if (text == SamUtils.Enums.TextAlignment.left.ToString())
-                return HorizontalAlignment.Left;
-            else if (text == SamUtils.Enums.TextAlignment.right.ToString())
-                return HorizontalAlignment.Right;
-
-            return HorizontalAlignment.Center;
-        }
-        private VerticalAlignment StringToVerticalAlignment(string text)
-        {
-            if (text == SamUtils.Enums.TextAlignment.center.ToString())
-                return VerticalAlignment.Center;
-            else if (text == SamUtils.Enums.TextAlignment.top.ToString())
-                return VerticalAlignment.Top;
-            else if (text == SamUtils.Enums.TextAlignment.bottom.ToString())
-                return VerticalAlignment.Bottom;
-
-            return VerticalAlignment.Center;
-        }
-        private double StringToFontSize(string text)
-        {
-            var dic = new Dictionary<string, double>();
-            dic.Add("tiny", 20);
-            dic.Add("small", 40);
-            dic.Add("normal", 60);
-            dic.Add("large", 80);
-            dic.Add("huge", 100);
-            return dic.ContainsKey(text) ? dic[text] : dic["normal"];
-        }
         private HttpResponseMessage JpgResponse(byte[] imageBytes)
         {
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
             result.Content = new ByteArrayContent(imageBytes);
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
             return result;
+        }
+        private StringAlignment StringToStringAlignment(string text)
+        {
+            if (text == SamUtils.Enums.TextAlignment.center.ToString())
+                return StringAlignment.Center;
+            else if (text == SamUtils.Enums.TextAlignment.left.ToString() || text == SamUtils.Enums.TextAlignment.top.ToString())
+                return StringAlignment.Near;
+            else if (text == SamUtils.Enums.TextAlignment.right.ToString() || text == SamUtils.Enums.TextAlignment.bottom.ToString())
+                return StringAlignment.Far;
+
+            return StringAlignment.Center;
+        }
+        private float StringToFontSize(string text)
+        {
+            var dic = new Dictionary<string, float>();
+            dic.Add("tiny", 25f);
+            dic.Add("small", 35f);
+            dic.Add("normal", 55f);
+            dic.Add("large", 70f);
+            dic.Add("huge", 80f);
+            return dic.ContainsKey(text) ? dic[text] : dic["normal"];
         }
         #endregion
     }

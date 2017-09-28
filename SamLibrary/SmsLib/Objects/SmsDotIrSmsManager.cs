@@ -1,4 +1,5 @@
-﻿using SmsLib.Models;
+﻿using SmsIrRestful;
+using SmsLib.Models;
 using SmsLib.Models.SmsDotIrModels;
 using System;
 using System.Collections.Generic;
@@ -15,73 +16,41 @@ namespace SmsLib.Objects
         internal const int TOKEN_LIFETIME_SECONDS = 30;
         internal const string SECRET_KEY = "eaa2aa019a13b5ab1aa6ae02";
         internal const string API_KEY = "vRL3ouOwMeXHEXrYKH1VZnXXXWLYJbxv";
-        internal const string API_BASE_ADDRESS = "http://restfulsms.com/api/";
-        internal const string SECURITY_TOKEN_HEADER = "x-sms-ir-secure-token";
         internal const string LINE = "50002015117700";
         #endregion
 
-        #region API ENDPOINTS:
-        public const string ENDPOINT_TOKEN = "Token";
-        public const string ENDPOINT_SEND = "MessageSend";
-        #endregion
-
         #region Fields:
-        private static string token;
-        private static DateTime? lastTokenTime = null;
+        private static string _token;
+        private static DateTime? _lastTokenTime = null;
         #endregion
 
         #region Private Methods:
-        private async Task UpdateToken()
+        private void UpdateToken()
         {
-            if (!string.IsNullOrEmpty(token) &&
-                lastTokenTime > DateTime.Now.AddSeconds(-30))
+            if (!string.IsNullOrEmpty(_token) &&
+                _lastTokenTime > DateTime.Now.AddSeconds(-TOKEN_LIFETIME_SECONDS))
                 return;
 
-            #region Call Service:
-            using (var hc = CreateClient())
-            {
-                var model = new TokenRequestModel
-                {
-                    UserApiKey = API_KEY,
-                    SecretKey = SECRET_KEY
-                };
-                var response = await hc.PostAsJsonAsync(ENDPOINT_TOKEN, model);
-                response.EnsureSuccessStatusCode();
-
-                var responseModel = await response.Content.ReadAsAsync<TokenResponseModel>();
-                token = responseModel.TokenKey;
-            }
-            #endregion
-        }
-        private HttpClient CreateClient()
-        {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(API_BASE_ADDRESS);
-            if (!string.IsNullOrEmpty(token))
-                client.DefaultRequestHeaders.Add(SECURITY_TOKEN_HEADER, token);
-            return client;
+            Token tk = new SmsIrRestful.Token();
+            _token = tk.GetToken(API_KEY, SECRET_KEY);
         }
         #endregion
 
         #region Public Methods:
-        public async Task<bool> SendAsync(string message, IEnumerable<string> numbers)
+        public bool Send(string message, IEnumerable<string> numbers)
         {
-            await UpdateToken();
+            UpdateToken();
 
-            using (var hc = CreateClient())
+            var model = new MessageSendObject()
             {
-                var model = new SendModel {
-                    LineNumber = LINE,
-                    CanContinueInCaseOfError = false,
-                    Messages = new string[] { message },
-                    MobileNumbers = numbers.ToArray(),
-                    SendDateTime = ""
-                };
-                var response = await hc.PostAsJsonAsync<SendModel>(ENDPOINT_SEND, model);
-                response.EnsureSuccessStatusCode();
-                var responseModel = await response.Content.ReadAsAsync<ApiResponseBase>();
-                return responseModel.IsSuccessful;
-            }
+                LineNumber = LINE,
+                CanContinueInCaseOfError = false,
+                Messages = new string[] { message },
+                MobileNumbers = numbers.ToArray(),
+                SendDateTime = null
+            };
+            MessageSendResponseObject response = new MessageSend().Send(_token, model);
+            return response.IsSuccessful;
         }
         #endregion
     }
