@@ -196,7 +196,8 @@ namespace SamSyncAgent
                                 {
                                     ImageToDownload = imageBlob,
                                     CreationTime = DateTimeUtils.Now,
-                                    Status = DownloadTaskStatus.pending.ToString()
+                                    Status = DownloadTaskStatus.pending.ToString(),
+                                    Type = DownloadTaskType.blob.ToString()
                                 };
                                 taskRepo.Add(downloadTask);
                             }
@@ -219,6 +220,15 @@ namespace SamSyncAgent
                             {
                                 var consolation = Mapper.Map<ConsolationDto, Consolation>(consolationDto);
                                 consolationRepo.AddOrUpdate(consolation);
+
+                                var downloadTask = new DownloadImageTask()
+                                {
+                                    ImageToDownload = consolationDto.ID.ToString(),
+                                    CreationTime = DateTimeUtils.Now,
+                                    Status = DownloadTaskStatus.pending.ToString(),
+                                    Type = DownloadTaskType.consolation.ToString()
+                                };
+                                taskRepo.Add(downloadTask);
                             }
                         }
                         #endregion
@@ -332,25 +342,61 @@ namespace SamSyncAgent
                         {
                             foreach (var task in pendingTasks)
                             {
-                                var imagebytes = hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{task.ImageToDownload}").Result;
-                                #region save image to database and change task status:
-                                using (var ts = new TransactionScope())
-                                using (var brepo = new BlobRepo())
+                                #region download image bytes:
+                                byte[] imageBytes;
+                                if (task.Type == DownloadTaskType.consolation.ToString())
                                 {
-                                    var blob = new ImageBlob()
+                                    imageBytes = hc.GetByteArrayAsync($"{ApiActions.consolations_getpreview}/{task.ImageToDownload}").Result;
+                                }
+                                else
+                                {
+                                    imageBytes = hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{task.ImageToDownload}").Result;
+                                }
+                                #endregion
+                                #region save image to database and change task status:
+                                if (imageBytes != null && imageBytes.Any())
+                                {
+                                    using (var ts = new TransactionScope())
+                                    using (var brepo = new BlobRepo())
+                                    using (var crepo = new ConsolationImageRepo())
                                     {
-                                        ID = task.ImageToDownload,
-                                        Bytes = imagebytes,
-                                        CreationTime = DateTimeUtils.Now,
-                                        LastUpdateTime = DateTimeUtils.Now,
-                                    };
+                                        #region add or update consolation image:
+                                        if (task.Type == DownloadTaskType.consolation.ToString())
+                                        {
+                                            var cImage = new ConsolationImage()
+                                            {
+                                                ConsolationID = Convert.ToInt32(task.ImageToDownload),
+                                                Bytes = imageBytes,
+                                                CreationTime = DateTime.Now,
+                                                LastUpdateTime = DateTime.Now
+                                            };
+                                            crepo.AddOrUpdate(cImage);
+                                            crepo.Save();
+                                        }
+                                        #endregion
+                                        #region add or update image blob:
+                                        else
+                                        {
+                                            var blob = new ImageBlob()
+                                            {
+                                                ID = task.ImageToDownload,
+                                                Bytes = imageBytes,
+                                                CreationTime = DateTimeUtils.Now,
+                                                LastUpdateTime = DateTimeUtils.Now,
+                                            };
 
-                                    brepo.AddOrUpdateImage(blob);
-                                    task.Status = DownloadTaskStatus.completed.ToString();
+                                            brepo.AddOrUpdateImage(blob);
+                                            brepo.Save();
+                                        }
+                                        #endregion
+                                        #region update task status:
+                                        task.Status = DownloadTaskStatus.completed.ToString();
+                                        task.DownloadCompletiontime = DateTimeUtils.Now;
+                                        trepo.Save();
+                                        #endregion
 
-                                    brepo.Save();
-                                    trepo.Save();
-                                    ts.Complete();
+                                        ts.Complete();
+                                    }
                                 }
                                 #endregion
                             }

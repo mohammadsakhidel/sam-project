@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RamancoLibrary.Utilities;
+using SamClientDataAccess.ClientModels;
 using SamClientDataAccess.Repos;
 using SamClientDataAccess.Repos;
 using SamModels.Entities;
@@ -358,12 +359,12 @@ namespace SamClient.Views.Windows
                 InTransition = transition
             };
         }
-        private Slide CreateConsolationSlide(Consolation consolation, Blob blob, int durationSecs)
+        private Slide CreateConsolationSlide(Consolation consolation, ConsolationImage image, int durationSecs)
         {
             return new Slide()
             {
                 Type = SamUxLib.Code.Enums.SlideType.consolation,
-                Image = IOUtils.ByteArrayToBitmap(blob.Bytes),
+                Image = IOUtils.ByteArrayToBitmap(image.Bytes),
                 DurationSeconds = durationSecs,
                 DataObject = consolation,
                 InTransition = GetRandomTransition()

@@ -11,6 +11,7 @@ using System.Data.Entity;
 using RamancoLibrary.Utilities;
 using SamUtils.Enums;
 using ClientModels.Models;
+using SamClientDataAccess.ClientModels;
 
 namespace SamClientDataAccess.Repos
 {
@@ -111,7 +112,7 @@ namespace SamClientDataAccess.Repos
 
             return new Tuple<Consolation, int>(next, durationMills);
         }
-        public List<Tuple<Consolation, Blob>> GetConsolationsToDisplay()
+        public List<Tuple<Consolation, ConsolationImage>> GetConsolationsToDisplay()
         {
             #region prereq data:
             var setting = context.ClientSettings.Find(1);
@@ -120,21 +121,21 @@ namespace SamClientDataAccess.Repos
 
             DateTime now = DateTimeUtils.Now;
             var confirmed = ConsolationStatus.confirmed.ToString();
+            var displayed = ConsolationStatus.displayed.ToString();
             #endregion
 
             var all = from c in context.Consolations
-                      join t in context.Templates on c.TemplateID equals t.ID
-                      join b in context.Blobs on t.BackgroundImageID equals b.ID
+                      join i in context.ConsolationImages on c.ID equals i.ConsolationID
                       join o in context.Obits on c.ObitID equals o.ID
                       join h in context.ObitHoldings on o.ID equals h.ObitID
                       where o.MosqueID == setting.MosqueID
                             && h.SaloonID == setting.SaloonID
                             && (now >= h.BeginTime && now <= h.EndTime)
-                            && c.Status == confirmed
+                            && (c.Status == confirmed || c.Status == displayed)
                       orderby c.CreationTime ascending
-                      select new { Consolation = c, Blob = b };
+                      select new { Consolation = c, Image = i };
 
-            return all.ToList().Select(o => new Tuple<Consolation, Blob>(o.Consolation, o.Blob)).ToList();
+            return all.ToList().Select(o => new Tuple<Consolation, ConsolationImage>(o.Consolation, o.Image)).ToList();
         }
         public void AddOrUpdate(Consolation consolation)
         {

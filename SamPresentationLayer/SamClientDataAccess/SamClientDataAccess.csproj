@@ -59,11 +59,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientModels\ClientSetting.cs" />
+    <Compile Include="ClientModels\ConsolationImage.cs" />
     <Compile Include="ClientModels\DownloadImageTask.cs" />
     <Compile Include="Contexts\SamClientDbContext.cs" />
     <Compile Include="Migrations\201709241510542_Regeneration.cs" />
     <Compile Include="Migrations\201709241510542_Regeneration.Designer.cs">
       <DependentUpon>201709241510542_Regeneration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710010915396_ConsolationImageEntityAdded.cs" />
+    <Compile Include="Migrations\201710010915396_ConsolationImageEntityAdded.Designer.cs">
+      <DependentUpon>201710010915396_ConsolationImageEntityAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +77,7 @@
     <Compile Include="Repos\BlobRepo.cs" />
     <Compile Include="Repos\CityRepo.cs" />
     <Compile Include="Repos\ClientSettingRepo.cs" />
+    <Compile Include="Repos\ConsolationImageRepo.cs" />
     <Compile Include="Repos\ConsolationRepo.cs" />
     <Compile Include="Repos\CustomerRepo.cs" />
     <Compile Include="Repos\DisplayRepo.cs" />
@@ -89,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709241510542_Regeneration.resx">
       <DependentUpon>201709241510542_Regeneration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710010915396_ConsolationImageEntityAdded.resx">
+      <DependentUpon>201710010915396_ConsolationImageEntityAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -36,7 +36,6 @@ namespace SamClientDataAccess.Repos
                 Update(imageBlob);
             }
         }
-
         public void Update(ImageBlob newImageBlob)
         {
             var blob = set.OfType<ImageBlob>().SingleOrDefault(b => b.ID == newImageBlob.ID);

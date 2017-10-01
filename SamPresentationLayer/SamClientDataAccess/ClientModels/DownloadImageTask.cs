@@ -20,6 +20,10 @@ namespace SamClientDataAccess.ClientModels
         public string Status { get; set; }
 
         [Required]
+        [MaxLength(16)]
+        public string Type { get; set; }
+
+        [Required]
         public DateTime CreationTime { get; set; }
 
         public DateTime? DownloadCompletiontime { get; set; }

@@ -25,6 +25,7 @@ namespace SamClientDataAccess.Contexts
         public DbSet<Saloon> Saloons { get; set; }
         public DbSet<ClientSetting> ClientSettings { get; set; }
         public DbSet<Consolation> Consolations { get; set; }
+        public DbSet<ConsolationImage> ConsolationImages { get; set; }
         public DbSet<Display> Displays { get; set; }
         public DbSet<Obit> Obits { get; set; }
         public DbSet<ObitHolding> ObitHoldings { get; set; }
@@ -51,6 +52,7 @@ namespace SamClientDataAccess.Contexts
             modelBuilder.Entity<TemplateField>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Customer>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Blob>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<ConsolationImage>().Property(e => e.ConsolationID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             base.OnModelCreating(modelBuilder);
         }

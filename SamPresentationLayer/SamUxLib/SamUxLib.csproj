@@ -121,6 +121,7 @@
     <Compile Include="Code\Converters\ShortTimeConverter.cs" />
     <Compile Include="Code\Converters\VisibilityConverter.cs" />
     <Compile Include="Code\Enums\DownloadTaskStatus.cs" />
+    <Compile Include="Code\Enums\DownloadTaskType.cs" />
     <Compile Include="Code\Enums\SlideType.cs" />
     <Compile Include="Code\Objects\Slide.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />

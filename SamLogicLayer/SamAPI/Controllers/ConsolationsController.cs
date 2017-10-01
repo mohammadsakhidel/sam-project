@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
@@ -366,7 +367,8 @@ namespace SamAPI.Controllers
                     #region draw fields:
                     using (var g = Graphics.FromImage(resizedBG))
                     {
-                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        g.SmoothingMode = SmoothingMode.AntiAlias;
+                        g.TextRenderingHint = TextRenderingHint.AntiAlias;
                         var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
                         var fields = consolation.Template.TemplateFields.ToList();
 
