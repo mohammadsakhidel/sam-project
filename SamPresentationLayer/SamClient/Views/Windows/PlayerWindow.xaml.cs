@@ -5,6 +5,7 @@ using SamClientDataAccess.Repos;
 using SamClientDataAccess.Repos;
 using SamModels.Entities;
 using SamUtils.Enums;
+using SamUxLib.Code.Constants;
 using SamUxLib.Code.Objects;
 using SamUxLib.Code.Utils;
 using System;
@@ -48,6 +49,13 @@ namespace SamClient.Views.Windows
         {
             try
             {
+                #region set display params:
+                Left = DisplayParams.X;
+                Top = DisplayParams.X;
+                Width = DisplayParams.WIDTH;
+                Height = DisplayParams.HEIGHT;
+                #endregion
+
                 PlaySlides();
             }
             catch (Exception ex)
