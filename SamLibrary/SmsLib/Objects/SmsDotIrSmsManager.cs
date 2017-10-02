@@ -13,9 +13,9 @@ namespace SmsLib.Objects
     public class SmsDotIrSmsManager : ISmsManager
     {
         #region Configs:
-        internal const int TOKEN_LIFETIME_SECONDS = 30;
-        internal const string SECRET_KEY = "eaa2aa019a13b5ab1aa6ae02";
-        internal const string API_KEY = "vRL3ouOwMeXHEXrYKH1VZnXXXWLYJbxv";
+        internal const int TOKEN_LIFETIME_SECONDS = 1500;
+        internal const string SECRET_KEY = "vRL3ouOwMeXHEXrYKH1VZnXXXWLYJbxv";
+        internal const string API_KEY = "b7b25431780714f3de585431";
         internal const string LINE = "50002015117700";
         #endregion
 
