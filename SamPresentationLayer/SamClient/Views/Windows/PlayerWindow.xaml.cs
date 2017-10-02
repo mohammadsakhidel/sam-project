@@ -137,10 +137,25 @@ namespace SamClient.Views.Windows
                 #endregion
 
                 #region add consolations:
-                foreach (var c in allConsolations)
+                if (allConsolations.Any())
                 {
-                    var slide = Dispatcher.Invoke(() => { return CreateSlide(c.Item1, c.Item2, setting.DefaultSlideDurationMilliSeconds / 1000); });
-                    slideList.Add(slide);
+                    var maxIntervals = allBanners.Max(b => b.Item1.Interval);
+                    foreach (var c in allConsolations)
+                    {
+                        var slide = Dispatcher.Invoke(() => { return CreateSlide(c.Item1, c.Item2, setting.DefaultSlideDurationMilliSeconds / 1000); });
+                        slideList.Add(slide);
+                    }
+                    while (slideList.Where(s => s.Type == SamUxLib.Code.Enums.SlideType.consolation).Count() < maxIntervals)
+                    {
+                        foreach (var c in allConsolations)
+                        {
+                            if (slideList.Where(s => s.Type == SamUxLib.Code.Enums.SlideType.consolation).Count() < maxIntervals)
+                            {
+                                var slide = Dispatcher.Invoke(() => { return CreateSlide(c.Item1, c.Item2, setting.DefaultSlideDurationMilliSeconds / 1000); });
+                                slideList.Add(slide);
+                            }
+                        }
+                    }
                 }
                 #endregion
 
