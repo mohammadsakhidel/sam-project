@@ -139,6 +139,7 @@ namespace SamAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IHttpActionResult GetPreview(int id, bool? thumb = false)
         {
             try

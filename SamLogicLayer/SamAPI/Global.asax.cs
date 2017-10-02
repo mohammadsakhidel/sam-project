@@ -11,6 +11,7 @@ namespace SamAPI
     {
         protected void Application_Start()
         {
+            FilterConfig.RegisterGlobalFilters(GlobalConfiguration.Configuration.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             UnityConfig.RegisterComponents();
         }

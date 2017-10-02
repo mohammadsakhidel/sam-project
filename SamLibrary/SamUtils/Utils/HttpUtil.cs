@@ -15,6 +15,7 @@ namespace SamUtils.Utils
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["api_host"]);
+            client.DefaultRequestHeaders.Add("Authorization", "Basic c3JvU1ZxRnE5WTpyTFZYN1BDZFRXbllCenVGNVQ5cXJQQ1Q5bWVSVjJ3TA==");
             return client;
         }
 

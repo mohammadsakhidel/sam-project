@@ -15,7 +15,8 @@ namespace SamUtils.Constants
             get
             {
                 var dic = new Dictionary<string, string>();
-                dic.Add("sroSVqFq9Y", "rLVX7PCdTWnYBzuF5T9qrPCT9meRV2wL"); //Authorization: Basic c3JvU1ZxRnE5WTpyTFZYN1BDZFRXbllCenVGNVQ5cXJQQ1Q5bWVSVjJ3TA==
+                dic.Add("sroSVqFq9Y", "rLVX7PCdTWnYBzuF5T9qrPCT9meRV2wL");
+                //Authorization: Basic c3JvU1ZxRnE5WTpyTFZYN1BDZFRXbllCenVGNVQ5cXJQQ1Q5bWVSVjJ3TA==
                 return dic;
             }
         }

@@ -28,6 +28,7 @@ namespace SamAPI.Controllers
 
         #region GET:
         [HttpGet]
+        [AllowAnonymous]
         public IHttpActionResult GetImage(string id, bool? thumb = false)
         {
             try
