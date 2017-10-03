@@ -224,6 +224,9 @@
   <data name="SomthingWrongHappend" xml:space="preserve">
     <value>متأسفانه مشکلی بروز کرده است، لطفاً مجدداً تلاش کنید.</value>
   </data>
+  <data name="SpecifyAtLeastOneHolding" xml:space="preserve">
+    <value>تعیین اطلاعات برگزاری مراسم الزامی است.</value>
+  </data>
   <data name="SpecifyAtLeastOneSaloon" xml:space="preserve">
     <value>تعیین حداقل یک سالن برای مسجد الزامی است.</value>
   </data>

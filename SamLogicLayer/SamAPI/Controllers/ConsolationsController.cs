@@ -67,7 +67,7 @@ namespace SamAPI.Controllers
                 consolation.Status = ConsolationStatus.pending.ToString();
                 consolation.PaymentStatus = (template.Price > 0 ? PaymentStatus.pending.ToString() : PaymentStatus.free.ToString());
                 consolation.AmountToPay = template.Price;
-                consolation.TrackingNumber = IDGenerator.GenerateTrackingNumber();
+                consolation.TrackingNumber = IDGenerator.GenerateConsolationTrackingNumber();
                 consolation.CreationTime = DateTimeUtils.Now;
                 consolation.LastUpdateTime = consolation.CreationTime;
                 #region Customer Info:

@@ -70,5 +70,16 @@ namespace SamAPI.Resources {
                 return ResourceManager.GetString("ConsolationCreationSms", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * سام *
+        ///مراسم با عنوان ({0}) در سیستم ثبت شد.
+        ///کد رهگیری: {1}.
+        /// </summary>
+        public static string ObitCreationSms {
+            get {
+                return ResourceManager.GetString("ObitCreationSms", resourceCulture);
+            }
+        }
     }
 }

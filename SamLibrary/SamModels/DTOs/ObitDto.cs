@@ -22,6 +22,10 @@ namespace SamModels.DTOs
         public DateTime CreationTime { get; set; }
 
         public DateTime? LastUpdateTime { get; set; }
+
+        public string OwnerCellPhone { get; set; }
+
+        public string TrackingNumber { get; set; }
         #endregion
 
         #region Navigation Props:

@@ -22,6 +22,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace SamDesktop.Views.Partials
 {
@@ -99,6 +100,9 @@ namespace SamDesktop.Views.Partials
 
                 if (beginTime >= endTime)
                     throw new ValidationException(Messages.InvalidInputValues);
+
+                if ((beginTime - DateTimeUtils.Now).TotalDays > Values.max_obit_days)
+                    throw new ValidationException(Messages.InvalidInputValues);
                 #endregion
 
                 #region Add To DataGrid:
@@ -123,20 +127,26 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
+                var vm = DataContext as ObitEditorVM;
+
                 #region Validate Inputs:
-                if (string.IsNullOrEmpty(tbTitle.Text) || cmbObitType.SelectedItem == null)
+                if (string.IsNullOrEmpty(tbTitle.Text) || cmbObitType.SelectedItem == null
+                    || string.IsNullOrEmpty(tbOwnerCellPhone.Text) || !(new Regex(Patterns.cellphone)).IsMatch(tbOwnerCellPhone.Text))
                     throw new ValidationException(Messages.FillRequiredFields);
+
+                if (!vm.ObitHoldings.Any())
+                    throw new ValidationException(Messages.SpecifyAtLeastOneHolding);
                 #endregion
 
                 #region Gather Info:
                 var isEditing = ObitToEdit != null;
-                var vm = DataContext as ObitEditorVM;
                 var formObit = ObitToEdit ?? new ObitDto();
                 formObit.Title = tbTitle.Text;
                 formObit.DeceasedIdentifier = tbDeceasedIdentifier.Text;
                 formObit.ObitType = cmbObitType.SelectedValue.ToString();
                 formObit.ObitHoldings = vm.ObitHoldings.ToList();
                 formObit.MosqueID = isEditing ? ObitToEdit.MosqueID : Mosque.ID;
+                formObit.OwnerCellPhone = tbOwnerCellPhone.Text;
                 #endregion
 
                 #region Call Server:
@@ -147,14 +157,16 @@ namespace SamDesktop.Views.Partials
                     {
                         var response = await hc.PostAsJsonAsync(ApiActions.obits_create, formObit);
                         HttpUtil.EnsureSuccessStatusCode(response);
+                        var trackingNumber = await response.Content.ReadAsStringAsync();
+                        UxUtil.ShowMessage($"{Messages.SuccessfullyDone}{Environment.NewLine}{Strings.TrackingNumber}: {trackingNumber}");
                     }
                     else
                     {
                         var response = await hc.PutAsJsonAsync(ApiActions.obits_update, formObit);
                         HttpUtil.EnsureSuccessStatusCode(response);
+                        UxUtil.ShowMessage(Messages.SuccessfullyDone);
                     }
                     progress.IsBusy = false;
-                    UxUtil.ShowMessage(Messages.SuccessfullyDone);
                     Window.GetWindow(this).DialogResult = true;
                 }
                 #endregion
@@ -194,6 +206,7 @@ namespace SamDesktop.Views.Partials
                 tbTitle.Text = ObitToEdit.Title;
                 tbDeceasedIdentifier.Text = ObitToEdit.DeceasedIdentifier;
                 cmbObitType.SelectedValue = ObitToEdit.ObitType;
+                tbOwnerCellPhone.Text = ObitToEdit.OwnerCellPhone;
                 vm.ObitHoldings = ObitToEdit.ObitHoldings != null && ObitToEdit.ObitHoldings.Any() ? new ObservableCollection<ObitHoldingDto>(ObitToEdit.ObitHoldings) : null;
             }
         }

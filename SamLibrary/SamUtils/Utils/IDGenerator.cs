@@ -14,11 +14,18 @@ namespace SamUtils.Utils
             return $"img_{RamancoLibrary.Utilities.TextUtils.GetRandomString(12, true)}";
         }
 
-        public static string GenerateTrackingNumber()
+        public static string GenerateConsolationTrackingNumber()
         {
-            var randomNumber = TextUtils.GetRandomNumbers(0, 10, 1).First();
-            var timeStr = DateTimeUtils.Now.ToString("fffmmHHss");
-            return $"{timeStr}{randomNumber.ToString("D1")}";
+            var randomNumber = TextUtils.GetRandomNumbers(10, 100, 1).First();
+            var timeStr = DateTimeUtils.Now.ToString("fffmmHHddss");
+            return $"{randomNumber.ToString("D2")}{timeStr}";
+        }
+
+        public static string GenerateObitTrackingNumber()
+        {
+            var randomNumber = TextUtils.GetRandomNumbers(10, 100, 1).First();
+            var timeStr = DateTimeUtils.Now.ToString("fffHHmmddss");
+            return $"{randomNumber.ToString("D2")}{timeStr}";
         }
     }
 }

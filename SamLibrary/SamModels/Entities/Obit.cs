@@ -28,6 +28,14 @@ namespace SamModels.Entities
 
         public DateTime? LastUpdateTime { get; set; }
 
+        [Required]
+        [MaxLength(16)]
+        public string OwnerCellPhone { get; set; }
+
+        [Required]
+        [MaxLength(16)]
+        public string TrackingNumber { get; set; }
+
         #region Navigation Props:
         public virtual Mosque Mosque { get; set; }
         public virtual ICollection<Consolation> Consolations { get; set; }

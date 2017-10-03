@@ -26,6 +26,8 @@
                 <RowDefinition Height="{StaticResource grid_row_spacing}" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="{StaticResource grid_row_spacing}" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="{StaticResource grid_row_spacing}" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
@@ -38,12 +40,16 @@
             <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitType}" />
             <ComboBox x:Name="cmbObitType" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ObitTypes}" SelectedValuePath="Key" />
 
-            <!--Row 4 ::: DeceasedIdentifier-->
-            <Label Grid.Row="4" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DeceasedIdentifier}" />
-            <TextBox x:Name="tbDeceasedIdentifier" Grid.Row="4" Grid.Column="1" />
+            <!--Row 4 ::: OwnerCellPhone-->
+            <Label Grid.Row="4" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OwnerCellPhone}" />
+            <TextBox Grid.Row="4" x:Name="tbOwnerCellPhone" Grid.Column="1" />
 
-            <!--Row 6 ::: ObitHoldings-->
-            <GroupBox Grid.Row="6" Grid.ColumnSpan="2" Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitHolding}" Margin="{StaticResource padding_widget_ver}">
+            <!--Row 6 ::: DeceasedIdentifier-->
+            <Label Grid.Row="6" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DeceasedIdentifier}" />
+            <TextBox x:Name="tbDeceasedIdentifier" Grid.Row="6" Grid.Column="1" />
+
+            <!--Row 8 ::: ObitHoldings-->
+            <GroupBox Grid.Row="8" Grid.ColumnSpan="2" Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitHolding}" Margin="{StaticResource padding_widget_ver}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -110,8 +116,8 @@
                 </Grid>
             </GroupBox>
 
-            <!--Row 7 ::: OK Cancel Buttons-->
-            <StackPanel Grid.Row="7" HorizontalAlignment="Center" Orientation="Horizontal">
+            <!--Row 9 ::: OK Cancel Buttons-->
+            <StackPanel Grid.Row="9" HorizontalAlignment="Center" Orientation="Horizontal">
                 <ram:FlatButton x:Name="btnSave" Style="{StaticResource action_button_ok}" Margin="{StaticResource padding_container_end}"
                             Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OK}" Click="btnSave_Click" IsDefault="True"/>
                 <ram:FlatButton x:Name="btnCancel" Style="{StaticResource action_button_cancel}"

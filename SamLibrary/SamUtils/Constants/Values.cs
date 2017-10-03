@@ -8,6 +8,7 @@ namespace SamUtils.Constants
 {
     public class Values
     {
+        public const int max_obit_days = 60;
         public const int thumbnail_size = 256;
         public const string def_admin_name = "samadmin";
         public const string jwt_issure = "http://www.sam.ir";

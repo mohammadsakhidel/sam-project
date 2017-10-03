@@ -378,6 +378,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تعیین اطلاعات برگزاری مراسم الزامی است..
+        /// </summary>
+        public static string SpecifyAtLeastOneHolding {
+            get {
+                return ResourceManager.GetString("SpecifyAtLeastOneHolding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تعیین حداقل یک سالن برای مسجد الزامی است..
         /// </summary>
         public static string SpecifyAtLeastOneSaloon {

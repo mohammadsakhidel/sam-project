@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201710010915396_ConsolationImageEntityAdded.Designer.cs">
       <DependentUpon>201710010915396_ConsolationImageEntityAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.cs" />
+    <Compile Include="Migrations\201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.Designer.cs">
+      <DependentUpon>201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710010915396_ConsolationImageEntityAdded.resx">
       <DependentUpon>201710010915396_ConsolationImageEntityAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.resx">
+      <DependentUpon>201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

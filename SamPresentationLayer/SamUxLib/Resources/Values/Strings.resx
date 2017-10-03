@@ -789,4 +789,7 @@
   <data name="section_categories" xml:space="preserve">
     <value>دسته بندی الگوها</value>
   </data>
+  <data name="OwnerCellPhone" xml:space="preserve">
+    <value>شماره همراه اطلاع رسانی</value>
+  </data>
 </root>

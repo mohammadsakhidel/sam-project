@@ -1,15 +1,19 @@
 ﻿using AutoMapper;
 using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
+using SamAPI.Resources;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities;
+using SamUtils.Utils;
+using SmsLib.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Transactions;
 using System.Web.Http;
 
@@ -21,14 +25,17 @@ namespace SamAPI.Controllers
         IObitRepo _obitRepo;
         IMosqueRepo _mosqueRepo;
         IRemovedEntityRepo _removedEntityRepo;
+        ISmsManager _smsManager;
         #endregion
 
         #region Ctors:
-        public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo, IRemovedEntityRepo removedEntityRepo)
+        public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo, 
+            IRemovedEntityRepo removedEntityRepo, ISmsManager smsManager)
         {
             _obitRepo = obitRepo;
             _mosqueRepo = mosqueRepo;
             _removedEntityRepo = removedEntityRepo;
+            _smsManager = smsManager;
         }
         #endregion
 
@@ -105,10 +112,24 @@ namespace SamAPI.Controllers
             try
             {
                 var obit = Mapper.Map<ObitDto, Obit>(model);
+                obit.TrackingNumber = IDGenerator.GenerateObitTrackingNumber();
                 obit.CreationTime = DateTimeUtils.Now;
                 obit.LastUpdateTime = obit.CreationTime;
                 _obitRepo.AddWithSave(obit);
-                return Ok();
+
+                #region Send SMS To Owner:
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        string messageText = string.Format(SmsMessages.ObitCreationSms, obit.Title, obit.TrackingNumber);
+                        _smsManager.Send(messageText, new string[] { obit.OwnerCellPhone });
+                    }
+                    catch { }
+                });
+                #endregion
+
+                return Ok(obit.TrackingNumber);
             }
             catch (Exception ex)
             {

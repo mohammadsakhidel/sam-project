@@ -1357,6 +1357,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شماره همراه اطلاع رسانی.
+        /// </summary>
+        public static string OwnerCellPhone {
+            get {
+                return ResourceManager.GetString("OwnerCellPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قسمتی از نام مسجد.
         /// </summary>
         public static string PartOfMosqueName {

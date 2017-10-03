@@ -44,6 +44,8 @@ namespace SamClientDataAccess.Repos
                 obit.Title = newObit.Title;
                 obit.ObitType = newObit.ObitType;
                 obit.DeceasedIdentifier = newObit.DeceasedIdentifier;
+                obit.OwnerCellPhone = newObit.OwnerCellPhone;
+                obit.TrackingNumber = newObit.TrackingNumber;
                 obit.LastUpdateTime = newObit.LastUpdateTime;
 
                 //update holdings:
