@@ -646,7 +646,7 @@
     <value>انتخاب الگوی پیام تسلیت</value>
   </data>
   <data name="DownloadApp" xml:space="preserve">
-    <value>دریافت اَپ موبایل</value>
+    <value>دریافت اَپ</value>
   </data>
   <data name="Footer" xml:space="preserve">
     <value>محصول شرکت آرت استون ایرانیان</value>
@@ -791,5 +791,11 @@
   </data>
   <data name="OwnerCellPhone" xml:space="preserve">
     <value>شماره همراه اطلاع رسانی</value>
+  </data>
+  <data name="DownloadResume" xml:space="preserve">
+    <value>دانلود کاتالوگ</value>
+  </data>
+  <data name="ObitTrackingNumber" xml:space="preserve">
+    <value>کد رهگیری مراسم</value>
   </data>
 </root>

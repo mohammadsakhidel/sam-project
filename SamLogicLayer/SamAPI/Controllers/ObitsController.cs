@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
 using SamAPI.Resources;
@@ -9,13 +11,18 @@ using SamUtils.Utils;
 using SmsLib.Objects;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Web.Hosting;
 using System.Web.Http;
+using Unity.WebApi;
+using Microsoft.Practices.Unity;
 
 namespace SamAPI.Controllers
 {
@@ -29,8 +36,9 @@ namespace SamAPI.Controllers
         #endregion
 
         #region Ctors:
-        public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo, 
-            IRemovedEntityRepo removedEntityRepo, ISmsManager smsManager)
+        public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo,
+            IRemovedEntityRepo removedEntityRepo, IConsolationRepo consolationRepo,
+            ISmsManager smsManager)
         {
             _obitRepo = obitRepo;
             _mosqueRepo = mosqueRepo;
@@ -97,6 +105,24 @@ namespace SamAPI.Controllers
                     dest.SaloonName = _mosqueRepo.FindSaloon(mosqueId, src.SaloonID)?.Name;
                 })));
                 return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult Find(string trackingNumber)
+        {
+            try
+            {
+                var obit = _obitRepo.FindByTrackingNumber(trackingNumber);
+                if (obit == null)
+                    return NotFound();
+
+                var dto = Mapper.Map<Obit, ObitDto>(obit);
+                return Ok(dto);
             }
             catch (Exception ex)
             {

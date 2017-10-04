@@ -691,7 +691,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to دریافت اَپ موبایل.
+        ///   Looks up a localized string similar to دریافت اَپ.
         /// </summary>
         public static string DownloadApp {
             get {
@@ -714,6 +714,15 @@ namespace SamUxLib.Resources.Values {
         public static string DownloadIntervalSeconds {
             get {
                 return ResourceManager.GetString("DownloadIntervalSeconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دانلود کاتالوگ.
+        /// </summary>
+        public static string DownloadResume {
+            get {
+                return ResourceManager.GetString("DownloadResume", resourceCulture);
             }
         }
         
@@ -1290,6 +1299,15 @@ namespace SamUxLib.Resources.Values {
         public static string Obits {
             get {
                 return ResourceManager.GetString("Obits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد رهگیری مراسم.
+        /// </summary>
+        public static string ObitTrackingNumber {
+            get {
+                return ResourceManager.GetString("ObitTrackingNumber", resourceCulture);
             }
         }
         

@@ -14,6 +14,13 @@ namespace SamDataAccess.Repos
 {
     public class ObitRepo : Repo<SamDbContext, Obit>, IObitRepo
     {
+        public Obit FindByTrackingNumber(string trackingNumber)
+        {
+            return set.Where(o => o.TrackingNumber == trackingNumber)
+                .OrderByDescending(o => o.CreationTime)
+                .FirstOrDefault();
+        }
+
         public List<Obit> Get(int mosqueId, DateTime date)
         {
             var obits = from o in set

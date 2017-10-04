@@ -117,6 +117,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جهت دانلود کاتالوگ بر روی این لینک کلیک کنید..
+        /// </summary>
+        public static string DownloadCatalogText {
+            get {
+                return ResourceManager.GetString("DownloadCatalogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نقشی با این نام قبلا ثبت شده است..
         /// </summary>
         public static string DuplicateRoleName {

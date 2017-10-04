@@ -13,22 +13,23 @@ namespace SamAPI
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
+            Container = new UnityContainer();
 
-            container.RegisterType<IMosqueRepo, MosqueRepo>();
-            container.RegisterType<ITemplateRepo, TemplateRepo>();
-            container.RegisterType<ITemplateCategoryRepo, TemplateCategoryRepo>();
-            container.RegisterType<IBlobRepo, BlobRepo>();
-            container.RegisterType<IObitRepo, ObitRepo>();
-            container.RegisterType<IConsolationRepo, ConsolationRepo>();
-            container.RegisterType<ICustomerRepo, CustomerRepo>();
-            container.RegisterType<IDisplayRepo, DisplayRepo>();
-            container.RegisterType<IIdentityRepo, IdentityRepo>();
-            container.RegisterType<IBannerRepo, BannerRepo>();
-            container.RegisterType<IRemovedEntityRepo, RemovedEntityRepo>();
-            container.RegisterType<ISmsManager, SmsDotIrSmsManager>();
+            Container.RegisterType<IMosqueRepo, MosqueRepo>();
+            Container.RegisterType<ITemplateRepo, TemplateRepo>();
+            Container.RegisterType<ITemplateCategoryRepo, TemplateCategoryRepo>();
+            Container.RegisterType<IBlobRepo, BlobRepo>();
+            Container.RegisterType<IObitRepo, ObitRepo>();
+            Container.RegisterType<IConsolationRepo, ConsolationRepo>();
+            Container.RegisterType<ICustomerRepo, CustomerRepo>();
+            Container.RegisterType<IDisplayRepo, DisplayRepo>();
+            Container.RegisterType<IIdentityRepo, IdentityRepo>();
+            Container.RegisterType<IBannerRepo, BannerRepo>();
+            Container.RegisterType<IRemovedEntityRepo, RemovedEntityRepo>();
+            Container.RegisterType<ISmsManager, SmsDotIrSmsManager>();
 
-            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(Container);
         }
+        public static UnityContainer Container { get; private set; }
     }
 }

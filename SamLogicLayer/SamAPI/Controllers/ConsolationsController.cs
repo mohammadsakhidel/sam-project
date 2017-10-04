@@ -32,6 +32,7 @@ namespace SamAPI.Controllers
     {
         #region Fields:
         IConsolationRepo _consolationRepo;
+        IObitRepo _obitRepo;
         IBlobRepo _blobRepo;
         ISmsManager _smsManager;
         ICustomerRepo _customerRepo;
@@ -40,13 +41,15 @@ namespace SamAPI.Controllers
 
         #region Ctors:
         public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo,
-            ISmsManager smsManager, ICustomerRepo customerRepo, ITemplateRepo templateRepo)
+            ISmsManager smsManager, ICustomerRepo customerRepo, ITemplateRepo templateRepo,
+            IObitRepo obitRepo)
         {
             _consolationRepo = consolationRepo;
             _blobRepo = blobRepo;
             _smsManager = smsManager;
             _customerRepo = customerRepo;
             _templateRepo = templateRepo;
+            _obitRepo = obitRepo;
         }
         #endregion
 
@@ -140,13 +143,13 @@ namespace SamAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult GetPreview(int id, bool? thumb = false)
+        public HttpResponseMessage GetPreview(int id, bool? thumb = false)
         {
             try
             {
                 var consolation = _consolationRepo.Get(id);
                 if (consolation == null)
-                    return NotFound();
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
 
                 #region return from temp folder if available:
                 #region create folders if not exist:
@@ -161,13 +164,13 @@ namespace SamAPI.Controllers
                 FileInfo fileInfo = File.Exists(tempFilePath) ? new FileInfo(tempFilePath) : null;
                 if (fileInfo != null && (!consolation.LastUpdateTime.HasValue || consolation.LastUpdateTime.Value < fileInfo.LastWriteTime))
                 {
-                    return ResponseMessage(JpgResponse(File.ReadAllBytes(tempFilePath)));
+                    return JpgResponse(File.ReadAllBytes(tempFilePath));
                 }
                 #endregion
 
                 var blob = _blobRepo.Get(consolation.Template.BackgroundImageID);
                 if (blob == null || !(blob is ImageBlob))
-                    return NotFound();
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
 
                 #region generate preview image:
                 var imgBlob = (ImageBlob)blob;
@@ -186,11 +189,11 @@ namespace SamAPI.Controllers
                 #endregion
 
                 File.WriteAllBytes(tempFilePath, previewBytes);
-                return ResponseMessage(JpgResponse(previewBytes));
+                return JpgResponse(previewBytes);
             }
             catch (Exception ex)
             {
-                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+                return ExceptionManager.GetExceptionResponse(this, ex);
             }
         }
 
@@ -205,6 +208,25 @@ namespace SamAPI.Controllers
 
                 var dto = Mapper.Map<Consolation, ConsolationDto>(consolation);
                 return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult FindByObit(string trackingNumber)
+        {
+            try
+            {
+                var obit = _obitRepo.FindByTrackingNumber(trackingNumber);
+                if (obit == null)
+                    return NotFound();
+
+                var consolations = obit.Consolations.ToList();
+                var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c));
+                return Ok(dtos);
             }
             catch (Exception ex)
             {

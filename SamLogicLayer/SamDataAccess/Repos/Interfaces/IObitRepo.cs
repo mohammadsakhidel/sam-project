@@ -19,5 +19,7 @@ namespace SamDataAccess.Repos.Interfaces
         List<ObitHolding> GetHoldings(int mosqueId, DateTime date);
 
         void UpdateWithSave(Obit newObit);
+
+        Obit FindByTrackingNumber(string trackingNumber);
     }
 }

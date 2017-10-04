@@ -137,6 +137,9 @@
 
 آیا اطمینان دارید؟</value>
   </data>
+  <data name="DownloadCatalogText" xml:space="preserve">
+    <value>جهت دانلود کاتالوگ بر روی این لینک کلیک کنید.</value>
+  </data>
   <data name="DuplicateRoleName" xml:space="preserve">
     <value>نقشی با این نام قبلا ثبت شده است.</value>
   </data>

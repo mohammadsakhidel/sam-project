@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Jmelosegui.Mvc.GoogleMap, Version=0.8.0.0, Culture=neutral, PublicKeyToken=bf3d287218d508fe, processorArchitecture=MSIL">
       <HintPath>..\packages\Jmelosegui.Mvc.Googlemap.0.8.0.0\lib\net45\Jmelosegui.Mvc.GoogleMap.dll</HintPath>
       <Private>True</Private>
@@ -133,6 +137,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Downloads\Resumes\empty.txt" />
     <Content Include="Content\imageviewer.css" />
     <Content Include="Content\SamThemes\DefaultTheme\bootstrap-custom.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\elements.min.css" />
@@ -261,6 +266,7 @@
     <Compile Include="Controllers\ConsolationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MosquesController.cs" />
+    <Compile Include="Controllers\ObitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -291,6 +297,8 @@
     <Content Include="Views\Mosques\Index.cshtml" />
     <Content Include="Views\Shared\Partials\_MosquesList.cshtml" />
     <Content Include="Views\Mosques\Details.cshtml" />
+    <Content Include="Views\Obits\Resume.cshtml" />
+    <Content Include="Views\Shared\Partials\_ObitResumeDownloadLink.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
