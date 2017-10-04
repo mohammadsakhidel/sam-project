@@ -33,5 +33,15 @@ namespace SamWeb.Controllers
         {
             return Json(CityUtil.GetProvinceCities(id), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult DownloadApp()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

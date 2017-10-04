@@ -126,6 +126,9 @@
   <data name="ConsolationSuccessfullySent" xml:space="preserve">
     <value>پیام تسلیت شما با موفقیت در سیستم ثبت شد و پس از تأیید نمایش داده خواهد شد. هرگونه تغییر وضعیت از طریق پیامک به اطلاع شما خواهد رسید.</value>
   </data>
+  <data name="ContactUsText" xml:space="preserve">
+    <value>جهت هرگونه پیشنهاد یا انتقاد می توانید از طریق راه های ارتباطی زیر می توانید با مدیریت سیستم در ارتباط باشید:</value>
+  </data>
   <data name="CreateConsolationPreviewStepExplanation" xml:space="preserve">
     <value>کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت رفتن به سایت بانک برای پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:</value>
   </data>
@@ -137,8 +140,11 @@
 
 آیا اطمینان دارید؟</value>
   </data>
+  <data name="DownloadAppDesc" xml:space="preserve">
+    <value>جهت دریافت اپلیکیشن سام بر روی لینک زیر کلیک کنید:</value>
+  </data>
   <data name="DownloadCatalogText" xml:space="preserve">
-    <value>جهت دانلود کاتالوگ بر روی این لینک کلیک کنید.</value>
+    <value>جهت دانلود کاتالوگ بر روی لینک زیر کلیک کنید.</value>
   </data>
   <data name="DuplicateRoleName" xml:space="preserve">
     <value>نقشی با این نام قبلا ثبت شده است.</value>

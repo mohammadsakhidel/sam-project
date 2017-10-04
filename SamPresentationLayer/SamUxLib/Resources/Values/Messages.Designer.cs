@@ -88,6 +88,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جهت هرگونه پیشنهاد یا انتقاد می توانید از طریق راه های ارتباطی زیر می توانید با مدیریت سیستم در ارتباط باشید:.
+        /// </summary>
+        public static string ContactUsText {
+            get {
+                return ResourceManager.GetString("ContactUsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کاربر گرامی، پیام شما در سیستم ثبت گردید و پس از اتمام مراحل پرداخت در سریع ترین زمان مناسب نمایش خواهد یافت، جهت رفتن به سایت بانک برای پرداخت مبلغ دکمه (تأیید و پرداخت) در پایین صفحه را فشار دهید. نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:.
         /// </summary>
         public static string CreateConsolationPreviewStepExplanation {
@@ -117,7 +126,16 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to جهت دانلود کاتالوگ بر روی این لینک کلیک کنید..
+        ///   Looks up a localized string similar to جهت دریافت اپلیکیشن سام بر روی لینک زیر کلیک کنید:.
+        /// </summary>
+        public static string DownloadAppDesc {
+            get {
+                return ResourceManager.GetString("DownloadAppDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جهت دانلود کاتالوگ بر روی لینک زیر کلیک کنید..
         /// </summary>
         public static string DownloadCatalogText {
             get {

@@ -173,3 +173,9 @@ img.thumb {
 .float {
     float: right;
 }
+
+.download-link {
+    font-size: large;
+    font-weight: bold;
+    
+}

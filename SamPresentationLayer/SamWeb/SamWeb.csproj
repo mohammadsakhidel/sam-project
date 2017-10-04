@@ -138,6 +138,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Downloads\Resumes\empty.txt" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\imageviewer.css" />
     <Content Include="Content\SamThemes\DefaultTheme\bootstrap-custom.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\elements.min.css" />
@@ -299,6 +300,8 @@
     <Content Include="Views\Mosques\Details.cshtml" />
     <Content Include="Views\Obits\Resume.cshtml" />
     <Content Include="Views\Shared\Partials\_ObitResumeDownloadLink.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\DownloadApp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

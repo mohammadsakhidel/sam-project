@@ -798,4 +798,13 @@
   <data name="ObitTrackingNumber" xml:space="preserve">
     <value>کد رهگیری مراسم</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>دانلود</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>تلگرام</value>
+  </data>
 </root>

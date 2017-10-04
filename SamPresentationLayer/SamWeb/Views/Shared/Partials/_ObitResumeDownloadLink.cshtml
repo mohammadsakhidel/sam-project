@@ -1,4 +1,9 @@
 ﻿
-<a href="@Url.Action("DownloadResume", "Obits", new { tn= ViewBag.TrackingNumber })">
+<p class="text-muted">
     @Messages.DownloadCatalogText
+</p>
+
+<a class="download-link" href="@Url.Action("DownloadResume", "Obits", new { tn= ViewBag.TrackingNumber })">
+    <span class="glyphicon glyphicon-download-alt"></span>
+    @Strings.Download
 </a>

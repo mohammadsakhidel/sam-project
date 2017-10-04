@@ -4,6 +4,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@ViewBag.Title</title>
+        <link rel="icon" type="image/x-icon" href="~/Content/favicon.ico">
         @Styles.Render("~/content/bootstrap")
         @Styles.Render("~/content/samthemes/defaulttheme/styles")
 
@@ -38,16 +39,16 @@
                 <!--Desktop Menu-->
                 <div class="desktop-menu hidden-xs hidden-sm visible-md visible-lg">
                     <span>
+                        <label class="glyphicon glyphicon-send"></label>
+                        <a href="@Url.Action("Contact", "Home")">@Strings.ContactUs</a>
+                    </span>
+                    <span>
                         <label class="glyphicon glyphicon-download-alt"></label>
-                        <a>@Strings.DownloadApp</a>
+                        <a href="@Url.Action("DownloadApp", "Home")">@Strings.DownloadApp</a>
                     </span>
                     <span>
                         <label class="glyphicon glyphicon-book"></label>
                         <a href="@Url.Action("Resume", "Obits")">@Strings.DownloadResume</a>
-                    </span>
-                    <span>
-                        <label class="glyphicon glyphicon-send"></label>
-                        <a>@Strings.ContactUs</a>
                     </span>
                     <span>
                         <label class="glyphicon glyphicon-info-sign"></label>
@@ -82,16 +83,16 @@
                 @Html.ActionLink(@Strings.MosqueBrowser, "Index", "Mosques")
             </span>
             <span>
-                <label class="glyphicon glyphicon-send"></label>
-                <a>@Strings.ContactUs</a>
-            </span>
-            <span>
                 <label class="glyphicon glyphicon-book"></label>
                 <a href="@Url.Action("Resume", "Obits")">@Strings.DownloadResume</a>
             </span>
             <span>
                 <label class="glyphicon glyphicon-download-alt"></label>
-                <a>@Strings.DownloadApp</a>
+                <a href="@Url.Action("DownloadApp", "Home")">@Strings.DownloadApp</a>
+            </span>
+            <span>
+                <label class="glyphicon glyphicon-send"></label>
+                <a href="@Url.Action("Contact", "Home")">@Strings.ContactUs</a>
             </span>
         </div>
 
