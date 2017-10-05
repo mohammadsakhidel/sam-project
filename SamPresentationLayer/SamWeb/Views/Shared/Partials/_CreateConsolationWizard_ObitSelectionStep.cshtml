@@ -7,9 +7,11 @@
 <hr />
 
 @using (Ajax.BeginForm("Create_ObitSelectionStep", "Consolations", null,
-                new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
-                new { @id = "frm_obit" }))
+                            new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+                            new { @id = "frm_obit" }))
 {
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
         <label for="ProvinceID" class="control-label">@Strings.Province</label>
         <div>

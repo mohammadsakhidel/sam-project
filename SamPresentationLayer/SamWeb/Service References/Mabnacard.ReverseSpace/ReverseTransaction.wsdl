@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://www.mabnacard.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="ReverseTransaction" targetNamespace="http://www.mabnacard.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://mabna.shaparak.ir:443/ReverseTransaction?xsd=1" namespace="http://www.mabnacard.com/" />
+    </xsd:schema>
+  </types>
+  <message name="sendReversal">
+    <part name="parameters" element="tns:sendReversal" />
+  </message>
+  <message name="sendReversalResponse">
+    <part name="parameters" element="tns:sendReversalResponse" />
+  </message>
+  <portType name="ReverseTransaction">
+    <operation name="sendReversal">
+      <input wsam:Action="http://www.mabnacard.com/ReverseTransaction/sendReversalRequest" message="tns:sendReversal" />
+      <output wsam:Action="http://www.mabnacard.com/ReverseTransaction/sendReversalResponse" message="tns:sendReversalResponse" />
+    </operation>
+  </portType>
+  <binding name="ReverseTransactionPortBinding" type="tns:ReverseTransaction">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="sendReversal">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ReverseTransaction">
+    <port name="ReverseTransactionPort" binding="tns:ReverseTransactionPortBinding">
+      <soap:address location="https://mabna.shaparak.ir:443/ReverseTransaction" />
+    </port>
+  </service>
+</definitions>

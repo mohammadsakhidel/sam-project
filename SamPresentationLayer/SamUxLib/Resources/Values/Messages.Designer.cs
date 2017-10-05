@@ -135,7 +135,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to جهت دانلود کاتالوگ بر روی لینک زیر کلیک کنید..
+        ///   Looks up a localized string similar to جهت دانلود آلبوم لطفاً بر روی لینک زیر کلیک کنید..
         /// </summary>
         public static string DownloadCatalogText {
             get {

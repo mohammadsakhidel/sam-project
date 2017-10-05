@@ -7,9 +7,11 @@
 <hr />
 
 @using (Ajax.BeginForm("Create_TemplateSelectionStep", "Consolations", null,
-                            new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
-                            new { @id = "frm_template" }))
+                                        new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+                                        new { @id = "frm_template" }))
 {
+    @Html.AntiForgeryToken()
+
     <div class="panel-group">
         @if (Model.Categories != null && Model.Categories.Any())
         {

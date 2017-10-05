@@ -8,6 +8,8 @@
 
 @using (Ajax.BeginForm("Create_CustomerInfoStep", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_customer_info" }))
 {
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
         <label for="FullName" class="control-label">@Strings.FullName</label>
         <div>

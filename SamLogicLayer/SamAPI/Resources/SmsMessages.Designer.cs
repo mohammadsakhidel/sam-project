@@ -62,12 +62,34 @@ namespace SamAPI.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to * سام *
+        ///کاربر گرامی، پیام تسلیت شما تأیید شده و در صف نمایش قرار گرفت.
+        ///کد رهگیری: {0}.
+        /// </summary>
+        public static string ConsolationConfirmSms {
+            get {
+                return ResourceManager.GetString("ConsolationConfirmSms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * سام *
         ///کاربر گرامی، پیام تسلیت شما در سیستم ثبت گردید، پس از انجام مراحل پرداخت و تأیید نهایی، در مسجد به نمایش در خواهد آمد.
         ///کد رهگیری: {0}.
         /// </summary>
         public static string ConsolationCreationSms {
             get {
                 return ResourceManager.GetString("ConsolationCreationSms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * سام *
+        ///کاربر گرامی، پیام تسلیت شما در مراسم به نمایش در آمد.
+        ///کد رهگیری: {0}.
+        /// </summary>
+        public static string ConsolationDisplaySms {
+            get {
+                return ResourceManager.GetString("ConsolationDisplaySms", resourceCulture);
             }
         }
         

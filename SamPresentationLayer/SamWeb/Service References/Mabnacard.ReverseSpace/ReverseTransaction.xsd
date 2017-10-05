@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.mabnacard.com/" targetNamespace="http://www.mabnacard.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="sendReversal" type="tns:sendReversal" />
+  <xs:element name="sendReversalResponse" type="tns:sendReversalResponse" />
+  <xs:complexType name="sendReversal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Reverse_params" type="tns:reversalDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="reversalDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MID" type="xs:string" />
+      <xs:element minOccurs="0" name="RRN" type="xs:string" />
+      <xs:element minOccurs="0" name="SIGNATURE" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendReversalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RamancoLibrary.Utilities;
 using SamAPI.Code.Utils;
+using SamAPI.Resources;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities;
@@ -85,6 +86,19 @@ namespace SamAPI.Controllers
         {
             try
             {
+                #region send sms for first time displays:
+                var displayedConsolations = displays.Select(d => d.ConsolationID).Distinct();
+                foreach (var cId in displayedConsolations)
+                {
+                    if (!_consolationRepo.IsDisplayed(cId))
+                    {
+                        var c = _consolationRepo.Get(cId);
+                        var message = string.Format(SmsMessages.ConsolationDisplaySms, c.TrackingNumber);
+                        SmsUtil.Send(message, c.Customer.CellPhoneNumber);
+                    }
+                }
+                #endregion
+
                 foreach (var displayDto in displays)
                 {
                     var display = Mapper.Map<DisplayDto, Display>(displayDto);

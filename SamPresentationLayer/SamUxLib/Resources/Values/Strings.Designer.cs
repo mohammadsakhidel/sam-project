@@ -70,7 +70,8 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to متن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمتن دربارهمت [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to در راستای بهره گیری از فناوری اطلاعات در حوزه های دینی، فرهنگی و اجتماعی با هدف کمک به یاری به حفظ و ارتقاء کیفیت مدیریت مساجد و جلوگیری از اتلاف هزینه های هنگفت برای چاپ و نصب بنر های و اعلامیه های تسلیت در مجالس ترحیم، کمک به محیط زیست از طریق کاهش مصرف بنرهای پلاستیکی و نیز کمک به هزینه های مالی مساجد، سیستم اطلاع رسانی مساجد «سام» ابداع ، طراحی و راه اندازی شده است.
+        ///در این سیستم ، یک شبکه الکترونیکی بهم پیوسته از نمایشگر های بزرگ متصل به هم که توسط نرم افزار های هوشمند مدیریت می گردند ، اعلامیه های تسل [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AboutSamExplanation {
             get {
@@ -727,7 +728,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to دانلود کاتالوگ.
+        ///   Looks up a localized string similar to آلبوم پیام.
         /// </summary>
         public static string DownloadResume {
             get {
@@ -1033,7 +1034,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to آخرین مساجد تجهیز شده.
+        ///   Looks up a localized string similar to جدیدترین مساجد عضو شبکه.
         /// </summary>
         public static string LatestMosques {
             get {

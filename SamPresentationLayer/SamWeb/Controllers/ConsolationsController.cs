@@ -74,6 +74,7 @@ namespace SamWeb.Controllers
 
         #region POST Actions:
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<PartialViewResult> Create_ObitSelectionStep(CreateConsolationObitSelectionStepVM model)
         {
             try
@@ -120,6 +121,7 @@ namespace SamWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<PartialViewResult> Create_CustomerInfoStep(CreateConsolationCustomerInfoStep model)
         {
             try
@@ -151,6 +153,7 @@ namespace SamWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<PartialViewResult> Create_TemplateSelectionStep(CreateConsolationTemplateSelectionStepVM model)
         {
             try
@@ -186,6 +189,7 @@ namespace SamWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<PartialViewResult> Create_TemplateInfoStep(CreateConsolationTemplateInfoStep model)
         {
             try
@@ -280,7 +284,7 @@ namespace SamWeb.Controllers
             }
         }
 
-        public async Task<List<TemplateDto>> GetTemplatesFromApi()
+        private async Task<List<TemplateDto>> GetTemplatesFromApi()
         {
             using (var hc = HttpUtil.CreateClient())
             {
@@ -291,7 +295,7 @@ namespace SamWeb.Controllers
             }
         }
 
-        public async Task<TemplateDto> GetTemplateFromApi(int templateId)
+        private async Task<TemplateDto> GetTemplateFromApi(int templateId)
         {
             using (var hc = HttpUtil.CreateClient())
             {
@@ -302,7 +306,7 @@ namespace SamWeb.Controllers
             }
         }
 
-        public async Task<List<ConsolationDto>> FindByTrackingNumberFromApi(string trackingNumber)
+        private async Task<List<ConsolationDto>> FindByTrackingNumberFromApi(string trackingNumber)
         {
             using (var hc = HttpUtil.CreateClient())
             {

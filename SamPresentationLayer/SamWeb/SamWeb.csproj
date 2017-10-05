@@ -84,6 +84,8 @@
       <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -146,8 +148,8 @@
     <Content Include="Content\SamThemes\DefaultTheme\Images\logo.png" />
     <Content Include="Content\SamThemes\DefaultTheme\layout.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\styles.min.css" />
-    <Content Include="Content\Slideshow\slide1.jpg" />
-    <Content Include="Content\Slideshow\slide2.jpg" />
+    <Content Include="Content\Slideshow\s1.jpg" />
+    <Content Include="Content\Slideshow\s2.jpg" />
     <Content Include="Content\Slideshow\slide3.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -251,6 +253,31 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js.cookie.js" />
     <Content Include="Scripts\markerclusterer.js" />
+    <None Include="Service References\Mabnacard.ReverseSpace\ReverseTransaction.wsdl" />
+    <None Include="Service References\Mabnacard.ReverseSpace\ReverseTransaction.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\Mabnacard.ReverseSpace\SamWeb.Mabnacard.ReverseSpace.sendReversalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\Mabnacard.TokenSpace\configuration91.svcinfo" />
+    <None Include="Service References\Mabnacard.TokenSpace\configuration.svcinfo" />
+    <None Include="Service References\Mabnacard.TokenSpace\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Mabnacard.TransactionSpace\configuration91.svcinfo" />
+    <None Include="Service References\Mabnacard.TransactionSpace\configuration.svcinfo" />
+    <None Include="Service References\Mabnacard.TransactionSpace\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Mabnacard.ReverseSpace\configuration91.svcinfo" />
+    <None Include="Service References\Mabnacard.ReverseSpace\configuration.svcinfo" />
+    <None Include="Service References\Mabnacard.ReverseSpace\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -278,6 +305,21 @@
     <Compile Include="Models\ViewModels\CreateConsolationTemplateInfoStep.cs" />
     <Compile Include="Models\ViewModels\CreateConsolationTemplateSelectionStepVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Mabnacard.ReverseSpace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Mabnacard.TokenSpace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Mabnacard.TransactionSpace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -302,6 +344,26 @@
     <Content Include="Views\Shared\Partials\_ObitResumeDownloadLink.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\DownloadApp.cshtml" />
+    <Content Include="Service References\Mabnacard.TokenSpace\SamWeb.Mabnacard.TokenSpace.reservationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Mabnacard.TokenSpace\SamWeb.Mabnacard.TokenSpace.tokenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\Mabnacard.TokenSpace\Token.wsdl" />
+    <None Include="Service References\Mabnacard.TokenSpace\TokenService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\Mabnacard.TransactionSpace\SamWeb.Mabnacard.TransactionSpace.saleConfResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Mabnacard.TransactionSpace\SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\Mabnacard.TransactionSpace\TransactionReference.wsdl" />
+    <None Include="Service References\Mabnacard.TransactionSpace\TransactionReference.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -312,12 +374,21 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Code\Attributes\" />
+    <Folder Include="Content\Slideshow\psd\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SamUxLib\SamUxLib.csproj">
       <Project>{6a3e7c54-3305-4beb-9e13-b967a6183c94}</Project>
       <Name>SamUxLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Mabnacard.ReverseSpace\" />
+    <WCFMetadataStorage Include="Service References\Mabnacard.TokenSpace\" />
+    <WCFMetadataStorage Include="Service References\Mabnacard.TransactionSpace\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

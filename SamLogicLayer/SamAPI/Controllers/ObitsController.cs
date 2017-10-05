@@ -32,18 +32,15 @@ namespace SamAPI.Controllers
         IObitRepo _obitRepo;
         IMosqueRepo _mosqueRepo;
         IRemovedEntityRepo _removedEntityRepo;
-        ISmsManager _smsManager;
         #endregion
 
         #region Ctors:
         public ObitsController(IObitRepo obitRepo, IMosqueRepo mosqueRepo,
-            IRemovedEntityRepo removedEntityRepo, IConsolationRepo consolationRepo,
-            ISmsManager smsManager)
+            IRemovedEntityRepo removedEntityRepo, IConsolationRepo consolationRepo)
         {
             _obitRepo = obitRepo;
             _mosqueRepo = mosqueRepo;
             _removedEntityRepo = removedEntityRepo;
-            _smsManager = smsManager;
         }
         #endregion
 
@@ -144,15 +141,8 @@ namespace SamAPI.Controllers
                 _obitRepo.AddWithSave(obit);
 
                 #region Send SMS To Owner:
-                Task.Run(() =>
-                {
-                    try
-                    {
-                        string messageText = string.Format(SmsMessages.ObitCreationSms, obit.Title, obit.TrackingNumber);
-                        _smsManager.Send(messageText, new string[] { obit.OwnerCellPhone });
-                    }
-                    catch { }
-                });
+                string messageText = string.Format(SmsMessages.ObitCreationSms, obit.Title, obit.TrackingNumber);
+                SmsUtil.Send(messageText, obit.OwnerCellPhone);
                 #endregion
 
                 return Ok(obit.TrackingNumber);

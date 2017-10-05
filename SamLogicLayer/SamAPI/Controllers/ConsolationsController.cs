@@ -34,19 +34,16 @@ namespace SamAPI.Controllers
         IConsolationRepo _consolationRepo;
         IObitRepo _obitRepo;
         IBlobRepo _blobRepo;
-        ISmsManager _smsManager;
         ICustomerRepo _customerRepo;
         ITemplateRepo _templateRepo;
         #endregion
 
         #region Ctors:
         public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo,
-            ISmsManager smsManager, ICustomerRepo customerRepo, ITemplateRepo templateRepo,
-            IObitRepo obitRepo)
+            ICustomerRepo customerRepo, ITemplateRepo templateRepo, IObitRepo obitRepo)
         {
             _consolationRepo = consolationRepo;
             _blobRepo = blobRepo;
-            _smsManager = smsManager;
             _customerRepo = customerRepo;
             _templateRepo = templateRepo;
             _obitRepo = obitRepo;
@@ -90,15 +87,8 @@ namespace SamAPI.Controllers
                 #endregion
 
                 #region Send SMS To Customer:
-                Task.Run(() =>
-                {
-                    try
-                    {
-                        string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
-                        _smsManager.Send(messageText, new string[] { model.Customer.CellPhoneNumber });
-                    }
-                    catch { }
-                });
+                string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
+                SmsUtil.Send(messageText, consolation.Customer.CellPhoneNumber);
                 #endregion
 
                 return Ok(new { ID = consolation.ID, TrackingNumber = consolation.TrackingNumber });
@@ -268,7 +258,6 @@ namespace SamAPI.Controllers
                     var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), newStatus);
                     if (newstatus == ConsolationStatus.confirmed)
                     {
-                        // TODO: verify payment if no problem then change the status to cofirmed.
                         if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
                         {
                             var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
@@ -277,6 +266,10 @@ namespace SamAPI.Controllers
                         else
                         {
                             consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
+                            #region Send SMS:
+                            string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
+                            SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
+                            #endregion
                         }
                     }
                     else if (newstatus == ConsolationStatus.canceled)

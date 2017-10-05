@@ -40,6 +40,7 @@ namespace SamWeb.Controllers
 
         #region Post Actions:
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<PartialViewResult> Index(int? provinceId, int? cityId, string name)
         {
             try
