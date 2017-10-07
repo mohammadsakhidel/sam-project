@@ -57,6 +57,7 @@
     <Compile Include="DTOs\MosqueDto.cs" />
     <Compile Include="DTOs\ObitDto.cs" />
     <Compile Include="DTOs\ObitHoldingDto.cs" />
+    <Compile Include="DTOs\PaymentDto.cs" />
     <Compile Include="DTOs\ProvinceDto.cs" />
     <Compile Include="DTOs\RemovedEntityDto.cs" />
     <Compile Include="DTOs\SaloonDto.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Entities\BannerHierarchy\MosqueBanner.cs" />
     <Compile Include="Entities\Obit.cs" />
     <Compile Include="Entities\Consolation.cs" />
+    <Compile Include="Entities\Payment.cs" />
     <Compile Include="Entities\Province.cs" />
     <Compile Include="Entities\RemovedEntity.cs" />
     <Compile Include="Entities\Saloon.cs" />

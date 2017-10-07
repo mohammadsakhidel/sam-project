@@ -42,6 +42,7 @@ namespace SamDataAccess.Contexts
         public DbSet<Blob> Blobs { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<RemovedEntity> RemovedEntities { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         #endregion
 
         #region Fluent API:

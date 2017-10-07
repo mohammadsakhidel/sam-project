@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
 using RamancoLibrary.Utilities;
+using SamAPI.Code.Payment;
 using SamAPI.Code.Utils;
 using SamAPI.Resources;
 using SamDataAccess.Repos.Interfaces;
@@ -23,6 +24,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Web.Hosting;
 using System.Web.Http;
 
@@ -36,17 +38,22 @@ namespace SamAPI.Controllers
         IBlobRepo _blobRepo;
         ICustomerRepo _customerRepo;
         ITemplateRepo _templateRepo;
+        IPaymentRepo _paymentRepo;
+        IPaymentService _paymentService;
         #endregion
 
         #region Ctors:
         public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo,
-            ICustomerRepo customerRepo, ITemplateRepo templateRepo, IObitRepo obitRepo)
+            ICustomerRepo customerRepo, ITemplateRepo templateRepo, IObitRepo obitRepo,
+            IPaymentRepo paymentRepo, IPaymentService paymentService)
         {
             _consolationRepo = consolationRepo;
             _blobRepo = blobRepo;
             _customerRepo = customerRepo;
             _templateRepo = templateRepo;
             _obitRepo = obitRepo;
+            _paymentRepo = paymentRepo;
+            _paymentService = paymentService;
         }
         #endregion
 
@@ -62,39 +69,72 @@ namespace SamAPI.Controllers
                     throw new Exception("Template Not Found!");
                 #endregion
 
-                #region Create Consolation:
-                var consolation = Mapper.Map<ConsolationDto, Consolation>(model);
-                consolation.Status = ConsolationStatus.pending.ToString();
-                consolation.PaymentStatus = (template.Price > 0 ? PaymentStatus.pending.ToString() : PaymentStatus.free.ToString());
-                consolation.AmountToPay = template.Price;
-                consolation.TrackingNumber = IDGenerator.GenerateConsolationTrackingNumber();
-                consolation.CreationTime = DateTimeUtils.Now;
-                consolation.LastUpdateTime = consolation.CreationTime;
-                #region Customer Info:
-                var customer = _customerRepo.Find(consolation.Customer.CellPhoneNumber);
-                if (customer != null)
+                #region Create Consolation & Payment:
+                Consolation consolation;
+                Payment payment;
+                Customer customer;
+                using (var ts = new TransactionScope())
                 {
-                    consolation.CustomerID = customer.ID;
-                    consolation.Customer = null;
+                    #region Consolation:
+                    consolation = Mapper.Map<ConsolationDto, Consolation>(model);
+                    consolation.Status = ConsolationStatus.pending.ToString();
+                    consolation.PaymentStatus = (template.Price > 0 ? PaymentStatus.pending.ToString() : PaymentStatus.free.ToString());
+                    consolation.AmountToPay = template.Price;
+                    consolation.TrackingNumber = IDGenerator.GenerateConsolationTrackingNumber();
+                    consolation.CreationTime = DateTimeUtils.Now;
+                    consolation.LastUpdateTime = consolation.CreationTime;
+                    #region Customer Info:
+                    customer = _customerRepo.Find(consolation.Customer.CellPhoneNumber);
+                    if (customer != null)
+                    {
+                        consolation.CustomerID = customer.ID;
+                        consolation.Customer = null;
+                    }
+                    else
+                    {
+                        consolation.Customer.IsMember = false;
+                    }
+                    #endregion
+                    _consolationRepo.Add(consolation);
+                    _consolationRepo.Save();
+                    #endregion
+                    #region Payment:
+                    var paymentToken = _paymentService.GetToken((int)consolation.AmountToPay);
+                    payment = new Payment()
+                    {
+                        ID = _paymentService.UniqueID,
+                        Amount = (int)consolation.AmountToPay,
+                        Provider = _paymentService.ProviderName,
+                        Status = PaymentStatus.pending.ToString(),
+                        Token = paymentToken,
+                        CreationTime = DateTimeUtils.Now,
+                        LastUpdateTime = DateTimeUtils.Now
+                    };
+                    _paymentRepo.Add(payment);
+                    _paymentRepo.Save();
+                    #endregion
+
+                    ts.Complete();
                 }
-                else
-                {
-                    consolation.Customer.IsMember = false;
-                }
-                #endregion
-                _consolationRepo.Add(consolation);
-                _consolationRepo.Save();
                 #endregion
 
                 #region Send SMS To Customer:
                 string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
-                SmsUtil.Send(messageText, consolation.Customer.CellPhoneNumber);
+                SmsUtil.Send(messageText, customer.CellPhoneNumber);
                 #endregion
 
-                return Ok(new { ID = consolation.ID, TrackingNumber = consolation.TrackingNumber });
+                return Ok(new
+                {
+                    ID = consolation.ID,
+                    TrackingNumber = consolation.TrackingNumber,
+                    PaymentID = payment.ID,
+                    PaymentToken = payment.Token,
+                    BankPageUrl = _paymentService.BankPageUrl
+                });
             }
             catch (Exception ex)
             {
+                //ExceptionManager.WriteToLog(ex);
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }

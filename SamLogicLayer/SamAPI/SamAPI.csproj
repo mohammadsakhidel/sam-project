@@ -101,6 +101,8 @@
       <HintPath>..\..\SamLibrary\SmsLib\bin\Debug\SmsLib.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -137,6 +139,31 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
+    <None Include="Service References\Mabnacard.ReverseSpace\ReverseTransaction.wsdl" />
+    <None Include="Service References\Mabnacard.ReverseSpace\ReverseTransaction.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\Mabnacard.ReverseSpace\SamAPI.Mabnacard.ReverseSpace.sendReversalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\Mabnacard.TokenSpace\configuration91.svcinfo" />
+    <None Include="Service References\Mabnacard.TokenSpace\configuration.svcinfo" />
+    <None Include="Service References\Mabnacard.TokenSpace\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Mabnacard.ReverseSpace\configuration91.svcinfo" />
+    <None Include="Service References\Mabnacard.ReverseSpace\configuration.svcinfo" />
+    <None Include="Service References\Mabnacard.ReverseSpace\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Mabnacard.TransactionSpace\configuration91.svcinfo" />
+    <None Include="Service References\Mabnacard.TransactionSpace\configuration.svcinfo" />
+    <None Include="Service References\Mabnacard.TransactionSpace\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -147,6 +174,8 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\Attributes\BasicAuthAttribute.cs" />
+    <Compile Include="Code\Payment\IPaymentService.cs" />
+    <Compile Include="Code\Payment\MabnaPaymentService.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Code\Utils\SmsUtil.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -156,6 +185,7 @@
     <Compile Include="Controllers\ConsolationsController.cs" />
     <Compile Include="Controllers\MosquesController.cs" />
     <Compile Include="Controllers\ObitsController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SyncController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,6 +196,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SmsMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Mabnacard.ReverseSpace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Mabnacard.TokenSpace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Mabnacard.TransactionSpace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -429,6 +474,26 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\samapi.pubxml" />
+    <Content Include="Service References\Mabnacard.TokenSpace\SamAPI.Mabnacard.TokenSpace.reservationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Mabnacard.TokenSpace\SamAPI.Mabnacard.TokenSpace.tokenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\Mabnacard.TokenSpace\Token.wsdl" />
+    <None Include="Service References\Mabnacard.TokenSpace\TokenService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\Mabnacard.TransactionSpace\SamAPI.Mabnacard.TransactionSpace.saleConfResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\Mabnacard.TransactionSpace\SamAPI.Mabnacard.TransactionSpace.sendConfirmationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\Mabnacard.TransactionSpace\TransactionReference.wsdl" />
+    <None Include="Service References\Mabnacard.TransactionSpace\TransactionReference.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -452,6 +517,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SmsMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Mabnacard.ReverseSpace\" />
+    <WCFMetadataStorage Include="Service References\Mabnacard.TokenSpace\" />
+    <WCFMetadataStorage Include="Service References\Mabnacard.TransactionSpace\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

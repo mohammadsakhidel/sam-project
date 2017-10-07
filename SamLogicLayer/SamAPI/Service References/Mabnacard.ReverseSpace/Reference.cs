@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SamWeb.Mabnacard.ReverseSpace {
+namespace SamAPI.Mabnacard.ReverseSpace {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -19,10 +19,10 @@ namespace SamWeb.Mabnacard.ReverseSpace {
         [System.ServiceModel.OperationContractAttribute(Action="http://www.mabnacard.com/ReverseTransaction/sendReversalRequest", ReplyAction="http://www.mabnacard.com/ReverseTransaction/sendReversalResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SamWeb.Mabnacard.ReverseSpace.sendReversalResponse sendReversal(SamWeb.Mabnacard.ReverseSpace.sendReversalRequest request);
+        SamAPI.Mabnacard.ReverseSpace.sendReversalResponse sendReversal(SamAPI.Mabnacard.ReverseSpace.sendReversalRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.mabnacard.com/ReverseTransaction/sendReversalRequest", ReplyAction="http://www.mabnacard.com/ReverseTransaction/sendReversalResponse")]
-        System.Threading.Tasks.Task<SamWeb.Mabnacard.ReverseSpace.sendReversalResponse> sendReversalAsync(SamWeb.Mabnacard.ReverseSpace.sendReversalRequest request);
+        System.Threading.Tasks.Task<SamAPI.Mabnacard.ReverseSpace.sendReversalResponse> sendReversalAsync(SamAPI.Mabnacard.ReverseSpace.sendReversalRequest request);
     }
     
     /// <remarks/>
@@ -93,12 +93,12 @@ namespace SamWeb.Mabnacard.ReverseSpace {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.mabnacard.com/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SamWeb.Mabnacard.ReverseSpace.reversalDto Reverse_params;
+        public SamAPI.Mabnacard.ReverseSpace.reversalDto Reverse_params;
         
         public sendReversalRequest() {
         }
         
-        public sendReversalRequest(SamWeb.Mabnacard.ReverseSpace.reversalDto Reverse_params) {
+        public sendReversalRequest(SamAPI.Mabnacard.ReverseSpace.reversalDto Reverse_params) {
             this.Reverse_params = Reverse_params;
         }
     }
@@ -122,12 +122,12 @@ namespace SamWeb.Mabnacard.ReverseSpace {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ReverseTransactionChannel : SamWeb.Mabnacard.ReverseSpace.ReverseTransaction, System.ServiceModel.IClientChannel {
+    public interface ReverseTransactionChannel : SamAPI.Mabnacard.ReverseSpace.ReverseTransaction, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ReverseTransactionClient : System.ServiceModel.ClientBase<SamWeb.Mabnacard.ReverseSpace.ReverseTransaction>, SamWeb.Mabnacard.ReverseSpace.ReverseTransaction {
+    public partial class ReverseTransactionClient : System.ServiceModel.ClientBase<SamAPI.Mabnacard.ReverseSpace.ReverseTransaction>, SamAPI.Mabnacard.ReverseSpace.ReverseTransaction {
         
         public ReverseTransactionClient() {
         }
@@ -149,26 +149,26 @@ namespace SamWeb.Mabnacard.ReverseSpace {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SamWeb.Mabnacard.ReverseSpace.sendReversalResponse SamWeb.Mabnacard.ReverseSpace.ReverseTransaction.sendReversal(SamWeb.Mabnacard.ReverseSpace.sendReversalRequest request) {
+        SamAPI.Mabnacard.ReverseSpace.sendReversalResponse SamAPI.Mabnacard.ReverseSpace.ReverseTransaction.sendReversal(SamAPI.Mabnacard.ReverseSpace.sendReversalRequest request) {
             return base.Channel.sendReversal(request);
         }
         
-        public string sendReversal(SamWeb.Mabnacard.ReverseSpace.reversalDto Reverse_params) {
-            SamWeb.Mabnacard.ReverseSpace.sendReversalRequest inValue = new SamWeb.Mabnacard.ReverseSpace.sendReversalRequest();
+        public string sendReversal(SamAPI.Mabnacard.ReverseSpace.reversalDto Reverse_params) {
+            SamAPI.Mabnacard.ReverseSpace.sendReversalRequest inValue = new SamAPI.Mabnacard.ReverseSpace.sendReversalRequest();
             inValue.Reverse_params = Reverse_params;
-            SamWeb.Mabnacard.ReverseSpace.sendReversalResponse retVal = ((SamWeb.Mabnacard.ReverseSpace.ReverseTransaction)(this)).sendReversal(inValue);
+            SamAPI.Mabnacard.ReverseSpace.sendReversalResponse retVal = ((SamAPI.Mabnacard.ReverseSpace.ReverseTransaction)(this)).sendReversal(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SamWeb.Mabnacard.ReverseSpace.sendReversalResponse> SamWeb.Mabnacard.ReverseSpace.ReverseTransaction.sendReversalAsync(SamWeb.Mabnacard.ReverseSpace.sendReversalRequest request) {
+        System.Threading.Tasks.Task<SamAPI.Mabnacard.ReverseSpace.sendReversalResponse> SamAPI.Mabnacard.ReverseSpace.ReverseTransaction.sendReversalAsync(SamAPI.Mabnacard.ReverseSpace.sendReversalRequest request) {
             return base.Channel.sendReversalAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SamWeb.Mabnacard.ReverseSpace.sendReversalResponse> sendReversalAsync(SamWeb.Mabnacard.ReverseSpace.reversalDto Reverse_params) {
-            SamWeb.Mabnacard.ReverseSpace.sendReversalRequest inValue = new SamWeb.Mabnacard.ReverseSpace.sendReversalRequest();
+        public System.Threading.Tasks.Task<SamAPI.Mabnacard.ReverseSpace.sendReversalResponse> sendReversalAsync(SamAPI.Mabnacard.ReverseSpace.reversalDto Reverse_params) {
+            SamAPI.Mabnacard.ReverseSpace.sendReversalRequest inValue = new SamAPI.Mabnacard.ReverseSpace.sendReversalRequest();
             inValue.Reverse_params = Reverse_params;
-            return ((SamWeb.Mabnacard.ReverseSpace.ReverseTransaction)(this)).sendReversalAsync(inValue);
+            return ((SamAPI.Mabnacard.ReverseSpace.ReverseTransaction)(this)).sendReversalAsync(inValue);
         }
     }
 }

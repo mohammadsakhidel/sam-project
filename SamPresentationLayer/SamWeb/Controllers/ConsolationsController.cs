@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RamancoLibrary.Utilities;
 using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Enums;
@@ -194,8 +195,6 @@ namespace SamWeb.Controllers
         {
             try
             {
-                Thread.Sleep(1000);
-
                 #region Validation:
                 foreach (var field in model.Fields)
                 {
@@ -209,7 +208,7 @@ namespace SamWeb.Controllers
                     return PartialView("Partials/_CreateConsolationWizard_TemplateInfoStep", model);
                 #endregion
 
-                #region Create Consolation:
+                #region Create Consolation and return preview page:
                 var fieldValues = model.Fields.ToDictionary(f => f.Name, f => f.Value);
                 var templateInfo = JsonConvert.SerializeObject(fieldValues);
                 var dto = new ConsolationDto
@@ -226,16 +225,28 @@ namespace SamWeb.Controllers
 
                 using (var hc = HttpUtil.CreateClient())
                 {
+                    #region create consolation:
                     var response = await hc.PostAsJsonAsync<ConsolationDto>(ApiActions.consolations_create, dto);
                     HttpUtil.EnsureSuccessStatusCode(response);
                     var info = await response.Content.ReadAsAsync<Dictionary<string, string>>();
                     var consolationId = Convert.ToInt32(info["ID"]);
-                    // call api to get new xonsolation:
+                    var paymentId = info["PaymentID"];
+                    var paymentToken = info["PaymentToken"];
+                    var bankPageUrl = info["BankPageUrl"];
+                    #endregion
+                    #region return view:
                     var response2 = await hc.GetAsync($"{ApiActions.consolations_findbyid}/{consolationId}");
                     response2.EnsureSuccessStatusCode();
                     var createdConsolation = await response2.Content.ReadAsAsync<ConsolationDto>();
-                    var vm = new CreateConsolationPreviewStepVM { CreatedConsolation = createdConsolation };
+                    var vm = new CreateConsolationPreviewStepVM
+                    {
+                        CreatedConsolation = createdConsolation,
+                        PaymentID = paymentId,
+                        PaymentToken = paymentToken,
+                        BankPageUrl = bankPageUrl
+                    };
                     return PartialView("Partials/_CreateConsolationWizard_PreviewStep", vm);
+                    #endregion
                 }
                 #endregion
             }

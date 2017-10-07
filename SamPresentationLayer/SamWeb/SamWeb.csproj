@@ -61,9 +61,29 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="RamancoLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SamModels">
       <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>
@@ -148,9 +168,8 @@
     <Content Include="Content\SamThemes\DefaultTheme\Images\logo.png" />
     <Content Include="Content\SamThemes\DefaultTheme\layout.min.css" />
     <Content Include="Content\SamThemes\DefaultTheme\styles.min.css" />
-    <Content Include="Content\Slideshow\s1.jpg" />
-    <Content Include="Content\Slideshow\s2.jpg" />
-    <Content Include="Content\Slideshow\slide3.jpg" />
+    <Content Include="Content\Slideshow\b2.jpg" />
+    <Content Include="Content\Slideshow\b1.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -253,31 +272,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js.cookie.js" />
     <Content Include="Scripts\markerclusterer.js" />
-    <None Include="Service References\Mabnacard.ReverseSpace\ReverseTransaction.wsdl" />
-    <None Include="Service References\Mabnacard.ReverseSpace\ReverseTransaction.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\Mabnacard.ReverseSpace\SamWeb.Mabnacard.ReverseSpace.sendReversalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\Mabnacard.TokenSpace\configuration91.svcinfo" />
-    <None Include="Service References\Mabnacard.TokenSpace\configuration.svcinfo" />
-    <None Include="Service References\Mabnacard.TokenSpace\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\Mabnacard.TransactionSpace\configuration91.svcinfo" />
-    <None Include="Service References\Mabnacard.TransactionSpace\configuration.svcinfo" />
-    <None Include="Service References\Mabnacard.TransactionSpace\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\Mabnacard.ReverseSpace\configuration91.svcinfo" />
-    <None Include="Service References\Mabnacard.ReverseSpace\configuration.svcinfo" />
-    <None Include="Service References\Mabnacard.ReverseSpace\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -295,6 +289,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MosquesController.cs" />
     <Compile Include="Controllers\ObitsController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -305,21 +300,6 @@
     <Compile Include="Models\ViewModels\CreateConsolationTemplateInfoStep.cs" />
     <Compile Include="Models\ViewModels\CreateConsolationTemplateSelectionStepVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\Mabnacard.ReverseSpace\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\Mabnacard.TokenSpace\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\Mabnacard.TransactionSpace\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -344,26 +324,7 @@
     <Content Include="Views\Shared\Partials\_ObitResumeDownloadLink.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\DownloadApp.cshtml" />
-    <Content Include="Service References\Mabnacard.TokenSpace\SamWeb.Mabnacard.TokenSpace.reservationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\Mabnacard.TokenSpace\SamWeb.Mabnacard.TokenSpace.tokenResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\Mabnacard.TokenSpace\Token.wsdl" />
-    <None Include="Service References\Mabnacard.TokenSpace\TokenService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\Mabnacard.TransactionSpace\SamWeb.Mabnacard.TransactionSpace.saleConfResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\Mabnacard.TransactionSpace\SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\Mabnacard.TransactionSpace\TransactionReference.wsdl" />
-    <None Include="Service References\Mabnacard.TransactionSpace\TransactionReference.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <Content Include="Views\Payment\MabnaCallback.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -384,11 +345,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Mabnacard.ReverseSpace\" />
-    <WCFMetadataStorage Include="Service References\Mabnacard.TokenSpace\" />
-    <WCFMetadataStorage Include="Service References\Mabnacard.TransactionSpace\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

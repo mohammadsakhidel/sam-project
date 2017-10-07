@@ -116,6 +116,11 @@ namespace SamAPI.App_Start
                 cfg.CreateMap<RemovedEntityDto, RemovedEntity>();
                 #endregion
 
+                #region Payment:
+                cfg.CreateMap<Payment, PaymentDto>();
+                cfg.CreateMap<PaymentDto, Payment>();
+                #endregion
+
                 #region AspNetUser:
                 cfg.CreateMap<AspNetUser, IdentityUserDto>();
                 cfg.CreateMap<IdentityUserDto, AspNetUser>();

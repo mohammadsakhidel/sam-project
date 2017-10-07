@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SamWeb.Mabnacard.TransactionSpace {
+namespace SamAPI.Mabnacard.TransactionSpace {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -21,10 +21,10 @@ namespace SamWeb.Mabnacard.TransactionSpace {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(responseMessageSpec))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(requestMessageSpec))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse sendConfirmation(SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest request);
+        SamAPI.Mabnacard.TransactionSpace.sendConfirmationResponse sendConfirmation(SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.s2m.messaging/TransactionReference/sendConfirmationRequest", ReplyAction="http://ws.s2m.messaging/TransactionReference/sendConfirmationResponse")]
-        System.Threading.Tasks.Task<SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse> sendConfirmationAsync(SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest request);
+        System.Threading.Tasks.Task<SamAPI.Mabnacard.TransactionSpace.sendConfirmationResponse> sendConfirmationAsync(SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest request);
     }
     
     /// <remarks/>
@@ -312,12 +312,12 @@ namespace SamWeb.Mabnacard.TransactionSpace {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.s2m.messaging/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SamWeb.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req;
+        public SamAPI.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req;
         
         public sendConfirmationRequest() {
         }
         
-        public sendConfirmationRequest(SamWeb.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req) {
+        public sendConfirmationRequest(SamAPI.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req) {
             this.SaleConf_req = SaleConf_req;
         }
     }
@@ -330,23 +330,23 @@ namespace SamWeb.Mabnacard.TransactionSpace {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.s2m.messaging/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SamWeb.Mabnacard.TransactionSpace.saleConfResponse @return;
+        public SamAPI.Mabnacard.TransactionSpace.saleConfResponse @return;
         
         public sendConfirmationResponse() {
         }
         
-        public sendConfirmationResponse(SamWeb.Mabnacard.TransactionSpace.saleConfResponse @return) {
+        public sendConfirmationResponse(SamAPI.Mabnacard.TransactionSpace.saleConfResponse @return) {
             this.@return = @return;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface TransactionReferenceChannel : SamWeb.Mabnacard.TransactionSpace.TransactionReference, System.ServiceModel.IClientChannel {
+    public interface TransactionReferenceChannel : SamAPI.Mabnacard.TransactionSpace.TransactionReference, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TransactionReferenceClient : System.ServiceModel.ClientBase<SamWeb.Mabnacard.TransactionSpace.TransactionReference>, SamWeb.Mabnacard.TransactionSpace.TransactionReference {
+    public partial class TransactionReferenceClient : System.ServiceModel.ClientBase<SamAPI.Mabnacard.TransactionSpace.TransactionReference>, SamAPI.Mabnacard.TransactionSpace.TransactionReference {
         
         public TransactionReferenceClient() {
         }
@@ -368,26 +368,26 @@ namespace SamWeb.Mabnacard.TransactionSpace {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse SamWeb.Mabnacard.TransactionSpace.TransactionReference.sendConfirmation(SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest request) {
+        SamAPI.Mabnacard.TransactionSpace.sendConfirmationResponse SamAPI.Mabnacard.TransactionSpace.TransactionReference.sendConfirmation(SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest request) {
             return base.Channel.sendConfirmation(request);
         }
         
-        public SamWeb.Mabnacard.TransactionSpace.saleConfResponse sendConfirmation(SamWeb.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req) {
-            SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest inValue = new SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest();
+        public SamAPI.Mabnacard.TransactionSpace.saleConfResponse sendConfirmation(SamAPI.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req) {
+            SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest inValue = new SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest();
             inValue.SaleConf_req = SaleConf_req;
-            SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse retVal = ((SamWeb.Mabnacard.TransactionSpace.TransactionReference)(this)).sendConfirmation(inValue);
+            SamAPI.Mabnacard.TransactionSpace.sendConfirmationResponse retVal = ((SamAPI.Mabnacard.TransactionSpace.TransactionReference)(this)).sendConfirmation(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse> SamWeb.Mabnacard.TransactionSpace.TransactionReference.sendConfirmationAsync(SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest request) {
+        System.Threading.Tasks.Task<SamAPI.Mabnacard.TransactionSpace.sendConfirmationResponse> SamAPI.Mabnacard.TransactionSpace.TransactionReference.sendConfirmationAsync(SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest request) {
             return base.Channel.sendConfirmationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SamWeb.Mabnacard.TransactionSpace.sendConfirmationResponse> sendConfirmationAsync(SamWeb.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req) {
-            SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest inValue = new SamWeb.Mabnacard.TransactionSpace.sendConfirmationRequest();
+        public System.Threading.Tasks.Task<SamAPI.Mabnacard.TransactionSpace.sendConfirmationResponse> sendConfirmationAsync(SamAPI.Mabnacard.TransactionSpace.confirmationDTO SaleConf_req) {
+            SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest inValue = new SamAPI.Mabnacard.TransactionSpace.sendConfirmationRequest();
             inValue.SaleConf_req = SaleConf_req;
-            return ((SamWeb.Mabnacard.TransactionSpace.TransactionReference)(this)).sendConfirmationAsync(inValue);
+            return ((SamAPI.Mabnacard.TransactionSpace.TransactionReference)(this)).sendConfirmationAsync(inValue);
         }
     }
 }

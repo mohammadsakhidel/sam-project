@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="89d79b02-b402-4248-a51b-4c647d6941b4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d33c71ed-10de-44c2-adc3-4b61adbdd941" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://mabna.shaparak.ir/TransactionReference/TransactionReference?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://mabna.shaparak.ir/ReverseTransaction?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TransactionReference.xsd" MetadataType="Schema" ID="c911c2e6-e070-4558-a7cb-022953b95f92" SourceId="1" SourceUrl="https://mabna.shaparak.ir/TransactionReference/TransactionReference?xsd=1" />
-    <MetadataFile FileName="TransactionReference.wsdl" MetadataType="Wsdl" ID="e47a83d3-c9ad-4a8a-be51-bc75811427d6" SourceId="1" SourceUrl="https://mabna.shaparak.ir/TransactionReference/TransactionReference?wsdl" />
+    <MetadataFile FileName="ReverseTransaction.xsd" MetadataType="Schema" ID="f004a5b8-1a96-435f-9968-e893fc4ff8d8" SourceId="1" SourceUrl="https://mabna.shaparak.ir/ReverseTransaction?xsd=1" />
+    <MetadataFile FileName="ReverseTransaction.wsdl" MetadataType="Wsdl" ID="f3cba709-3143-455d-98c6-dee7b7b4abc9" SourceId="1" SourceUrl="https://mabna.shaparak.ir/ReverseTransaction?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

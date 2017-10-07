@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0650f65e-8396-45a9-89f9-01690142c965" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8e52e79b-3d9e-450e-8601-1b5d9b3219d4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://mabna.shaparak.ir/TokenService?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://mabna.shaparak.ir/TransactionReference/TransactionReference?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Token.wsdl" MetadataType="Wsdl" ID="0947adc6-4c29-46a5-a66d-ded3539ea38c" SourceId="1" SourceUrl="https://mabna.shaparak.ir/TokenService?wsdl" />
-    <MetadataFile FileName="TokenService.xsd" MetadataType="Schema" ID="a0a8dc61-9412-49cc-9012-b9522dbe82d7" SourceId="1" SourceUrl="https://mabna.shaparak.ir/TokenService?xsd=1" />
+    <MetadataFile FileName="TransactionReference.xsd" MetadataType="Schema" ID="9ab90fb5-fcd6-4884-ad11-e2595d33db12" SourceId="1" SourceUrl="https://mabna.shaparak.ir/TransactionReference/TransactionReference?xsd=1" />
+    <MetadataFile FileName="TransactionReference.wsdl" MetadataType="Wsdl" ID="ddc79c42-ecc7-4cc3-8c16-7545204dfca5" SourceId="1" SourceUrl="https://mabna.shaparak.ir/TransactionReference/TransactionReference?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

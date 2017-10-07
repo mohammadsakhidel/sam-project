@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SamWeb.Mabnacard.TokenSpace {
+namespace SamAPI.Mabnacard.TokenSpace {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -19,10 +19,10 @@ namespace SamWeb.Mabnacard.TokenSpace {
         [System.ServiceModel.OperationContractAttribute(Action="http://token.ws.web.cnpg/TokenService/reservationRequest", ReplyAction="http://token.ws.web.cnpg/TokenService/reservationResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SamWeb.Mabnacard.TokenSpace.reservationResponse reservation(SamWeb.Mabnacard.TokenSpace.reservationRequest request);
+        SamAPI.Mabnacard.TokenSpace.reservationResponse reservation(SamAPI.Mabnacard.TokenSpace.reservationRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://token.ws.web.cnpg/TokenService/reservationRequest", ReplyAction="http://token.ws.web.cnpg/TokenService/reservationResponse")]
-        System.Threading.Tasks.Task<SamWeb.Mabnacard.TokenSpace.reservationResponse> reservationAsync(SamWeb.Mabnacard.TokenSpace.reservationRequest request);
+        System.Threading.Tasks.Task<SamAPI.Mabnacard.TokenSpace.reservationResponse> reservationAsync(SamAPI.Mabnacard.TokenSpace.reservationRequest request);
     }
     
     /// <remarks/>
@@ -195,12 +195,12 @@ namespace SamWeb.Mabnacard.TokenSpace {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://token.ws.web.cnpg/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SamWeb.Mabnacard.TokenSpace.tokenDTO Token_param;
+        public SamAPI.Mabnacard.TokenSpace.tokenDTO Token_param;
         
         public reservationRequest() {
         }
         
-        public reservationRequest(SamWeb.Mabnacard.TokenSpace.tokenDTO Token_param) {
+        public reservationRequest(SamAPI.Mabnacard.TokenSpace.tokenDTO Token_param) {
             this.Token_param = Token_param;
         }
     }
@@ -213,23 +213,23 @@ namespace SamWeb.Mabnacard.TokenSpace {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://token.ws.web.cnpg/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SamWeb.Mabnacard.TokenSpace.tokenResponse @return;
+        public SamAPI.Mabnacard.TokenSpace.tokenResponse @return;
         
         public reservationResponse() {
         }
         
-        public reservationResponse(SamWeb.Mabnacard.TokenSpace.tokenResponse @return) {
+        public reservationResponse(SamAPI.Mabnacard.TokenSpace.tokenResponse @return) {
             this.@return = @return;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface TokenServiceChannel : SamWeb.Mabnacard.TokenSpace.TokenService, System.ServiceModel.IClientChannel {
+    public interface TokenServiceChannel : SamAPI.Mabnacard.TokenSpace.TokenService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TokenServiceClient : System.ServiceModel.ClientBase<SamWeb.Mabnacard.TokenSpace.TokenService>, SamWeb.Mabnacard.TokenSpace.TokenService {
+    public partial class TokenServiceClient : System.ServiceModel.ClientBase<SamAPI.Mabnacard.TokenSpace.TokenService>, SamAPI.Mabnacard.TokenSpace.TokenService {
         
         public TokenServiceClient() {
         }
@@ -251,26 +251,26 @@ namespace SamWeb.Mabnacard.TokenSpace {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SamWeb.Mabnacard.TokenSpace.reservationResponse SamWeb.Mabnacard.TokenSpace.TokenService.reservation(SamWeb.Mabnacard.TokenSpace.reservationRequest request) {
+        SamAPI.Mabnacard.TokenSpace.reservationResponse SamAPI.Mabnacard.TokenSpace.TokenService.reservation(SamAPI.Mabnacard.TokenSpace.reservationRequest request) {
             return base.Channel.reservation(request);
         }
         
-        public SamWeb.Mabnacard.TokenSpace.tokenResponse reservation(SamWeb.Mabnacard.TokenSpace.tokenDTO Token_param) {
-            SamWeb.Mabnacard.TokenSpace.reservationRequest inValue = new SamWeb.Mabnacard.TokenSpace.reservationRequest();
+        public SamAPI.Mabnacard.TokenSpace.tokenResponse reservation(SamAPI.Mabnacard.TokenSpace.tokenDTO Token_param) {
+            SamAPI.Mabnacard.TokenSpace.reservationRequest inValue = new SamAPI.Mabnacard.TokenSpace.reservationRequest();
             inValue.Token_param = Token_param;
-            SamWeb.Mabnacard.TokenSpace.reservationResponse retVal = ((SamWeb.Mabnacard.TokenSpace.TokenService)(this)).reservation(inValue);
+            SamAPI.Mabnacard.TokenSpace.reservationResponse retVal = ((SamAPI.Mabnacard.TokenSpace.TokenService)(this)).reservation(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SamWeb.Mabnacard.TokenSpace.reservationResponse> SamWeb.Mabnacard.TokenSpace.TokenService.reservationAsync(SamWeb.Mabnacard.TokenSpace.reservationRequest request) {
+        System.Threading.Tasks.Task<SamAPI.Mabnacard.TokenSpace.reservationResponse> SamAPI.Mabnacard.TokenSpace.TokenService.reservationAsync(SamAPI.Mabnacard.TokenSpace.reservationRequest request) {
             return base.Channel.reservationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SamWeb.Mabnacard.TokenSpace.reservationResponse> reservationAsync(SamWeb.Mabnacard.TokenSpace.tokenDTO Token_param) {
-            SamWeb.Mabnacard.TokenSpace.reservationRequest inValue = new SamWeb.Mabnacard.TokenSpace.reservationRequest();
+        public System.Threading.Tasks.Task<SamAPI.Mabnacard.TokenSpace.reservationResponse> reservationAsync(SamAPI.Mabnacard.TokenSpace.tokenDTO Token_param) {
+            SamAPI.Mabnacard.TokenSpace.reservationRequest inValue = new SamAPI.Mabnacard.TokenSpace.reservationRequest();
             inValue.Token_param = Token_param;
-            return ((SamWeb.Mabnacard.TokenSpace.TokenService)(this)).reservationAsync(inValue);
+            return ((SamAPI.Mabnacard.TokenSpace.TokenService)(this)).reservationAsync(inValue);
         }
     }
 }

@@ -35,12 +35,15 @@
 <div class="form-group">
     @if (amount > 0)
     {
-        <button type="submit" class="btn btn-success">
-            <span class="glyphicon glyphicon-ok"></span>
-            @Strings.ConfirmAndPay
-            (@amount.ToString(SamUtils.Constants.StringFormats.price)
-            @Strings.PriceUnit)
-        </button>
+        <form method="post" action="@Model.BankPageUrl">
+            <input type="hidden" name="TOKEN" value="@Model.PaymentToken" />
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                @Strings.ConfirmAndPay
+                (@amount.ToString(SamUtils.Constants.StringFormats.price)
+                @Strings.PriceUnit)
+            </button>
+        </form>
         <a class="btn btn-default" href="@Url.Action("Index", "Home")">
             <span class="glyphicon glyphicon-remove"></span>
             @Strings.Cancel

@@ -1,4 +1,5 @@
 using Microsoft.Practices.Unity;
+using SamAPI.Code.Payment;
 using SamDataAccess.Contexts;
 using SamDataAccess.Repos;
 using SamDataAccess.Repos.BaseClasses;
@@ -26,6 +27,8 @@ namespace SamAPI
             Container.RegisterType<IIdentityRepo, IdentityRepo>();
             Container.RegisterType<IBannerRepo, BannerRepo>();
             Container.RegisterType<IRemovedEntityRepo, RemovedEntityRepo>();
+            Container.RegisterType<IPaymentRepo, PaymentRepo>();
+            Container.RegisterType<IPaymentService, MabnaPaymentService>();
             Container.RegisterType<ISmsManager, SmsDotIrSmsManager>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(Container);
