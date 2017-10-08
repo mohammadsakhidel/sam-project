@@ -9,10 +9,12 @@
 }
 else
 {
+    var message = (Model.InnerException != null ? Model.InnerException.Message : Model.Message);
+
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>@Messages.SomthingWrongHappend</strong>
         <br />
-        <span>@(Model.InnerException != null ? Model.InnerException.Message : Model.Message)</span>
+        <span>@message</span>
     </div>
 }

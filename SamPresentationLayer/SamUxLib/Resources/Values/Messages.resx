@@ -212,6 +212,15 @@
   <data name="NotAllowedToDeleteItem" xml:space="preserve">
     <value>حذف این مورد از سیستم مجاز نیست.</value>
   </data>
+  <data name="PaymentCanceled" xml:space="preserve">
+    <value>عملیات پرداخت از طرف کاربر لغو شد.</value>
+  </data>
+  <data name="PaymentError" xml:space="preserve">
+    <value>خطا در فرایند پرداخت، در صورت کسر وجه از حساب شما به زودی مبلغ کسر شده به حساب باز خواهد گشت.</value>
+  </data>
+  <data name="PaymentSuccessfull" xml:space="preserve">
+    <value>پرداخت با موفقیت انجام شد.</value>
+  </data>
   <data name="PleaseFillSomeConditions" xml:space="preserve">
     <value>لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید.</value>
   </data>

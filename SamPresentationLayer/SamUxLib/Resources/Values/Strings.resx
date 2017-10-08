@@ -809,4 +809,10 @@
   <data name="Telegram" xml:space="preserve">
     <value>تلگرام</value>
   </data>
+  <data name="ReturnToHomePage" xml:space="preserve">
+    <value>بازگشت به صفحه اصلی</value>
+  </data>
+  <data name="TransactionResult" xml:space="preserve">
+    <value>نتیجه تراکنش</value>
+  </data>
 </root>

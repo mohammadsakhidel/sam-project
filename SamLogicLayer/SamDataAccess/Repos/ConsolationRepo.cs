@@ -133,5 +133,13 @@ namespace SamDataAccess.Repos
         {
             return set.Where(c => trackingNumbers.Contains(c.TrackingNumber)).ToList();
         }
+
+        public Consolation FindByPaymentID(string pId)
+        {
+            var c = set.Where(cc => cc.PaymentID == pId)
+                .OrderByDescending(cc => cc.CreationTime)
+                .FirstOrDefault();
+            return c;
+        }
     }
 }

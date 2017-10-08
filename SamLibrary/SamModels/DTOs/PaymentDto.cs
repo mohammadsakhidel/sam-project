@@ -20,6 +20,8 @@ namespace SamModels.DTOs
 
         public string ReferenceCode { get; set; }
 
+        public string Type { get; set; }
+
         public DateTime CreationTime { get; set; }
 
         public DateTime LastUpdateTime { get; set; }

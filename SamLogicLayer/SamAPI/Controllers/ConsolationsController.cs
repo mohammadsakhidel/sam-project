@@ -70,16 +70,34 @@ namespace SamAPI.Controllers
                 #endregion
 
                 #region Create Consolation & Payment:
+                var amountToPay = template.Price;
                 Consolation consolation;
                 Payment payment;
                 Customer customer;
                 using (var ts = new TransactionScope())
                 {
+                    #region Payment:
+                    var paymentToken = _paymentService.GetToken((int)amountToPay);
+                    payment = new Payment()
+                    {
+                        ID = _paymentService.UniqueID,
+                        Amount = (int)amountToPay,
+                        Provider = _paymentService.ProviderName,
+                        Status = PaymentStatus.pending.ToString(),
+                        Token = paymentToken,
+                        Type = PaymentType.consolation.ToString(),
+                        CreationTime = DateTimeUtils.Now,
+                        LastUpdateTime = DateTimeUtils.Now
+                    };
+                    _paymentRepo.Add(payment);
+                    _paymentRepo.Save();
+                    #endregion
                     #region Consolation:
                     consolation = Mapper.Map<ConsolationDto, Consolation>(model);
                     consolation.Status = ConsolationStatus.pending.ToString();
-                    consolation.PaymentStatus = (template.Price > 0 ? PaymentStatus.pending.ToString() : PaymentStatus.free.ToString());
-                    consolation.AmountToPay = template.Price;
+                    consolation.PaymentStatus = (amountToPay > 0 ? PaymentStatus.pending.ToString() : PaymentStatus.free.ToString());
+                    consolation.PaymentID = payment.ID;
+                    consolation.AmountToPay = amountToPay;
                     consolation.TrackingNumber = IDGenerator.GenerateConsolationTrackingNumber();
                     consolation.CreationTime = DateTimeUtils.Now;
                     consolation.LastUpdateTime = consolation.CreationTime;
@@ -97,21 +115,6 @@ namespace SamAPI.Controllers
                     #endregion
                     _consolationRepo.Add(consolation);
                     _consolationRepo.Save();
-                    #endregion
-                    #region Payment:
-                    var paymentToken = _paymentService.GetToken((int)consolation.AmountToPay);
-                    payment = new Payment()
-                    {
-                        ID = _paymentService.UniqueID,
-                        Amount = (int)consolation.AmountToPay,
-                        Provider = _paymentService.ProviderName,
-                        Status = PaymentStatus.pending.ToString(),
-                        Token = paymentToken,
-                        CreationTime = DateTimeUtils.Now,
-                        LastUpdateTime = DateTimeUtils.Now
-                    };
-                    _paymentRepo.Add(payment);
-                    _paymentRepo.Save();
                     #endregion
 
                     ts.Complete();
@@ -134,7 +137,6 @@ namespace SamAPI.Controllers
             }
             catch (Exception ex)
             {
-                //ExceptionManager.WriteToLog(ex);
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }

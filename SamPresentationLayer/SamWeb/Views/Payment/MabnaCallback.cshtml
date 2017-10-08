@@ -1,10 +1,36 @@
 ﻿
-@{
-    ViewBag.Title = "MabnaCallback";
-}
+<div class="page-content">
 
-<h2>CRN: @ViewBag.CRN</h2>
-<h2>Result: @ViewBag.Result</h2>
-<h2>TRN: @ViewBag.TRN</h2>
-<h2>Amount: @ViewBag.Amount</h2>
+    <h2 class="step-title">
+        @Strings.TransactionResult
+    </h2>
 
+    <hr />
+
+    @if (ViewBag.IsSuccessfull != null && ViewBag.IsSuccessfull)
+    {
+        <div class="alert alert-success">
+            <h3>@Messages.PaymentSuccessfull</h3>
+        </div>
+    }
+    else if (ViewBag.IsCanceled != null && ViewBag.IsCanceled)
+    {
+        <div class="alert alert-danger">
+            <h3>@Messages.PaymentCanceled</h3>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h3>@Messages.PaymentError</h3>
+        </div>
+    }
+
+    <div style="margin-top: 15px;">
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+            <span class="glyphicon glyphicon-home"></span>
+            @Strings.ReturnToHomePage
+        </a>
+    </div>
+
+</div>

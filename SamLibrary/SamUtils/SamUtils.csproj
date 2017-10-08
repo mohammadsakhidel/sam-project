@@ -52,8 +52,10 @@
     <Compile Include="Constants\WindowsServices.cs" />
     <Compile Include="Enums\BannerPriority.cs" />
     <Compile Include="Enums\DisplaySyncStatus.cs" />
+    <Compile Include="Enums\PaymentType.cs" />
     <Compile Include="Objects\API\ApiOperationResult.cs" />
     <Compile Include="Objects\Exceptions\HttpException.cs" />
+    <Compile Include="Objects\Exceptions\PaymentException.cs" />
     <Compile Include="Objects\Presenters\SectionAccessLevel.cs" />
     <Compile Include="Objects\Presenters\AspectRatio.cs" />
     <Compile Include="Objects\Presenters\FontSizePresenter.cs" />

@@ -26,6 +26,8 @@ namespace SamModels.DTOs
 
         public string PaymentStatus { get; set; }
 
+        public string PaymentID { get; set; }
+
         public double AmountToPay { get; set; }
 
         public DateTime CreationTime { get; set; }

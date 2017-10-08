@@ -37,6 +37,9 @@ namespace SamModels.Entities
         [MaxLength(16)]
         public string PaymentStatus { get; set; }
 
+        [MaxLength(32)]
+        public string PaymentID { get; set; }
+
         [Required]
         public DateTime CreationTime { get; set; }
 

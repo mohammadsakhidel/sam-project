@@ -342,6 +342,33 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عملیات پرداخت از طرف کاربر لغو شد..
+        /// </summary>
+        public static string PaymentCanceled {
+            get {
+                return ResourceManager.GetString("PaymentCanceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطا در فرایند پرداخت، در صورت کسر وجه از حساب شما به زودی مبلغ کسر شده به حساب باز خواهد گشت..
+        /// </summary>
+        public static string PaymentError {
+            get {
+                return ResourceManager.GetString("PaymentError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت با موفقیت انجام شد..
+        /// </summary>
+        public static string PaymentSuccessfull {
+            get {
+                return ResourceManager.GetString("PaymentSuccessfull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید..
         /// </summary>
         public static string PleaseFillSomeConditions {

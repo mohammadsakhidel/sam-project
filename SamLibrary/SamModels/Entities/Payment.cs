@@ -32,6 +32,10 @@ namespace SamModels.Entities
         public string ReferenceCode { get; set; }
 
         [Required]
+        [MaxLength(16)]
+        public string Type { get; set; }
+
+        [Required]
         public DateTime CreationTime { get; set; }
 
         [Required]

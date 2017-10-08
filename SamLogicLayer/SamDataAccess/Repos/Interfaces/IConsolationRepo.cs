@@ -17,5 +17,7 @@ namespace SamDataAccess.Repos.Interfaces
         bool IsDisplayed(int id);
 
         List<Consolation> Find(string[] trackingNumbers);
+
+        Consolation FindByPaymentID(string pId);
     }
 }

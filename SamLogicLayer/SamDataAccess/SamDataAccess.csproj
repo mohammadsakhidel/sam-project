@@ -89,6 +89,14 @@
     <Compile Include="Migrations\SamDbMigrations\201710071016592_Payment_LastUpdateAdded.Designer.cs">
       <DependentUpon>201710071016592_Payment_LastUpdateAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201710080607546_Consolation_PaymentIDFieldAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201710080607546_Consolation_PaymentIDFieldAdded.Designer.cs">
+      <DependentUpon>201710080607546_Consolation_PaymentIDFieldAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201710080716399_Payment_TypefieldAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201710080716399_Payment_TypefieldAdded.Designer.cs">
+      <DependentUpon>201710080716399_Payment_TypefieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
@@ -136,6 +144,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201710071016592_Payment_LastUpdateAdded.resx">
       <DependentUpon>201710071016592_Payment_LastUpdateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201710080607546_Consolation_PaymentIDFieldAdded.resx">
+      <DependentUpon>201710080607546_Consolation_PaymentIDFieldAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201710080716399_Payment_TypefieldAdded.resx">
+      <DependentUpon>201710080716399_Payment_TypefieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

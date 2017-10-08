@@ -1601,6 +1601,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بازگشت به صفحه اصلی.
+        /// </summary>
+        public static string ReturnToHomePage {
+            get {
+                return ResourceManager.GetString("ReturnToHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to راست.
         /// </summary>
         public static string Right {
@@ -2029,6 +2038,15 @@ namespace SamUxLib.Resources.Values {
         public static string TrackingNumber {
             get {
                 return ResourceManager.GetString("TrackingNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نتیجه تراکنش.
+        /// </summary>
+        public static string TransactionResult {
+            get {
+                return ResourceManager.GetString("TransactionResult", resourceCulture);
             }
         }
         
