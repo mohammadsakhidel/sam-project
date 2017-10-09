@@ -815,4 +815,7 @@
   <data name="TransactionResult" xml:space="preserve">
     <value>نتیجه تراکنش</value>
   </data>
+  <data name="CustomErrorTitle" xml:space="preserve">
+    <value>خطایی رخ داده است</value>
+  </data>
 </root>

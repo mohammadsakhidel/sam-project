@@ -278,7 +278,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Code\Attributes\Class1.cs" />
+    <Compile Include="Code\Attributes\HandleExceptionAttribute.cs" />
     <Compile Include="Code\Constants\Urls.cs" />
     <Compile Include="Code\Extensions\HtmlHelpers.cs" />
     <Compile Include="Code\MvcExtensions\ModelBinders\CreateConsolationStep2ModelBinder.cs" />
@@ -325,6 +328,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\DownloadApp.cshtml" />
     <Content Include="Views\Payment\MabnaCallback.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -334,7 +338,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\Attributes\" />
     <Folder Include="Content\Slideshow\psd\" />
   </ItemGroup>
   <ItemGroup>

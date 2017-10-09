@@ -29,7 +29,7 @@ namespace SamWeb.Controllers
             }
             catch { }
             #endregion
-
+            throw new Exception("xxx");
             return View();
         }
 

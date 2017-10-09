@@ -629,6 +629,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خطایی رخ داده است.
+        /// </summary>
+        public static string CustomErrorTitle {
+            get {
+                return ResourceManager.GetString("CustomErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تاریخ.
         /// </summary>
         public static string Date {

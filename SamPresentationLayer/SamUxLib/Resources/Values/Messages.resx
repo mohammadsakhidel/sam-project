@@ -120,6 +120,9 @@
   <data name="AccountDisabled" xml:space="preserve">
     <value>کاربر گرامی، حساب کاربری شما غیرفعال شده است، لطفاً با واحد پشتیبانی سیستم تماس بگیرید.</value>
   </data>
+  <data name="ApiErrorMessage" xml:space="preserve">
+    <value>خطایی در ارتباط با سرور رخ داده است، لطفاً ارتباط اینترنت خود را بررسی و مجدداً تلاش کنید.</value>
+  </data>
   <data name="AreYouSureToDelete" xml:space="preserve">
     <value>آیا نسبت به اجرای عملیات حذف اطمینان دارید؟</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="CreateConsolationPreviewStepExplanationFree" xml:space="preserve">
     <value>کاربر گرامی، پیام شما در سیستم ثبت گردید و در سریع ترین زمان مناسب نمایش خواهد یافت (بصورت رایگان). نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:</value>
+  </data>
+  <data name="CustomErrorMessage" xml:space="preserve">
+    <value>متأسفانه خطایی در پردازش درخواست شما رخ داده است، لطفاً مجدداً تلاش کنید.</value>
   </data>
   <data name="DeleteCategoryWarning" xml:space="preserve">
     <value>با حذف دسته، تمامی الگوهای آن دسته حذف خواهد شد (شما قادر به حذف الگوهای استفاده شده نخواهید بود)

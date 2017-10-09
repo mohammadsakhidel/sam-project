@@ -70,6 +70,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خطایی در ارتباط با سرور رخ داده است، لطفاً ارتباط اینترنت خود را بررسی و مجدداً تلاش کنید..
+        /// </summary>
+        public static string ApiErrorMessage {
+            get {
+                return ResourceManager.GetString("ApiErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آیا نسبت به اجرای عملیات حذف اطمینان دارید؟.
         /// </summary>
         public static string AreYouSureToDelete {
@@ -111,6 +120,15 @@ namespace SamUxLib.Resources.Values {
         public static string CreateConsolationPreviewStepExplanationFree {
             get {
                 return ResourceManager.GetString("CreateConsolationPreviewStepExplanationFree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متأسفانه خطایی در پردازش درخواست شما رخ داده است، لطفاً مجدداً تلاش کنید..
+        /// </summary>
+        public static string CustomErrorMessage {
+            get {
+                return ResourceManager.GetString("CustomErrorMessage", resourceCulture);
             }
         }
         

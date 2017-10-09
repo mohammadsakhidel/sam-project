@@ -13,16 +13,27 @@ namespace SamUxLib.Code.Utils
     {
         public static MessageBoxResult ShowMessage(string message)
         {
-            return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.MessageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Information);
+            Style style = new Style(typeof(Xceed.Wpf.Toolkit.MessageBox));
+            style.RegisterName("FlowDirection", "RightToLeft");
+
+            return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.MessageBoxCaption, MessageBoxButton.OK, 
+                MessageBoxImage.Information, style);
         }
 
         public static MessageBoxResult ShowError(string message)
         {
-            return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.ErrorMessageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+            Style style = new Style(typeof(Xceed.Wpf.Toolkit.MessageBox));
+            style.RegisterName("FlowDirection", "RightToLeft");
+
+            return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.ErrorMessageBoxCaption, 
+                MessageBoxButton.OK, MessageBoxImage.Error, style);
         }
 
         public static MessageBoxResult ShowQuestion(string message)
         {
+            Style style = new Style(typeof(Xceed.Wpf.Toolkit.MessageBox));
+            style.RegisterName("FlowDirection", "RightToLeft");
+
             return Xceed.Wpf.Toolkit.MessageBox.Show(message, Strings.QuestionMessageBoxCaption, MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
 
