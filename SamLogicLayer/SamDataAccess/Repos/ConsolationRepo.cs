@@ -131,7 +131,9 @@ namespace SamDataAccess.Repos
 
         public List<Consolation> Find(string[] trackingNumbers)
         {
-            return set.Where(c => trackingNumbers.Contains(c.TrackingNumber)).ToList();
+            return set.Where(c => trackingNumbers.Contains(c.TrackingNumber))
+                .OrderByDescending(c => c.CreationTime)
+                .ToList();
         }
 
         public Consolation FindByPaymentID(string pId)
