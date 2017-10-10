@@ -166,6 +166,7 @@ public class PreviewStepFragment extends Fragment {
                                             Button btnConfirm = (Button) v.findViewById(R.id.btn_confirm);
                                             btnConfirm.setEnabled(false);
                                             btnConfirm.setText(getResources().getString(R.string.msg_successfully_payed));
+                                            parentView.setPrevVisible(false);
                                         }
                                     } catch (Exception ex) {
                                         ExceptionManager.handle(getActivity(), ex);
