@@ -81,7 +81,7 @@ public class HistoryFragment extends Fragment {
                                     ConsolationAdapter adapter = new ConsolationAdapter(getActivity(), consolations);
                                     ListView lvItems = (ListView) fragmentView.findViewById(R.id.lv_items);
                                     lvItems.setAdapter(adapter);
-                                    lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    /*lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                             try {
@@ -94,7 +94,7 @@ public class HistoryFragment extends Fragment {
                                                 ExceptionManager.handle(getActivity(), ex);
                                             }
                                         }
-                                    });
+                                    });*/
                                     progress.dismiss();
                                 }
                             } catch (Exception ex) {
