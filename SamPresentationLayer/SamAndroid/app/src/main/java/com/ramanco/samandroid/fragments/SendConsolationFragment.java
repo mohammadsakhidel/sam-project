@@ -32,6 +32,7 @@ public class SendConsolationFragment extends Fragment {
     private TemplateDto selectedTemplate;
     private String templateInfo;
     private int createdConsolationId;
+    private String createdConsolationTN;
     private boolean nextVisible = false;
     private boolean prevVisible = false;
     private Runnable onNextClickListener;
@@ -249,6 +250,14 @@ public class SendConsolationFragment extends Fragment {
 
     public void setLoadFromPreview(boolean loadFromPreview) {
         this.loadFromPreview = loadFromPreview;
+    }
+
+    public String getCreatedConsolationTN() {
+        return createdConsolationTN;
+    }
+
+    public void setCreatedConsolationTN(String createdConsolationTN) {
+        this.createdConsolationTN = createdConsolationTN;
     }
 
     //endregion

@@ -3,12 +3,15 @@ package com.ramanco.samandroid.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +23,12 @@ import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.activities.BaseActivity;
+import com.ramanco.samandroid.api.dtos.ConsolationDto;
 import com.ramanco.samandroid.api.endpoints.ConsolationsApiEndpoint;
 import com.ramanco.samandroid.consts.ApiActions;
 import com.ramanco.samandroid.consts.Configs;
+import com.ramanco.samandroid.enums.PaymentStatus;
+import com.ramanco.samandroid.exceptions.CallServerException;
 import com.ramanco.samandroid.exceptions.ImageLoadingException;
 import com.ramanco.samandroid.utils.ApiUtil;
 import com.ramanco.samandroid.utils.DateTimeUtility;
@@ -36,6 +42,9 @@ import org.joda.time.DateTimeUtils;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class PreviewStepFragment extends Fragment {
 
@@ -110,7 +119,13 @@ public class PreviewStepFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     try {
-                        Toast.makeText(getActivity(), "ارسال جهت پرداخت....", Toast.LENGTH_SHORT).show();
+                        String trackingNumber = parentView.getCreatedConsolationTN();
+                        String previewUrl =
+                                String.format("http://www.samsys.ir/consolations/preview?tn=%s&ref=app",
+                                trackingNumber);
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(previewUrl));
+                        startActivity(intent);
                     } catch (Exception ex) {
                         ExceptionManager.handle(getActivity(), ex);
                     }
@@ -123,6 +138,69 @@ public class PreviewStepFragment extends Fragment {
         }
 
         return fragmentView;
+    }
+
+    @Override
+    public void onStart() {
+        try {
+            final String tn = parentView.getCreatedConsolationTN();
+            final ProgressDialog progress = UxUtil.showProgress(getActivity());
+            //region check payment status from api:
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        ConsolationsApiEndpoint endpoint = ApiUtil.createEndpoint(ConsolationsApiEndpoint.class);
+                        Response<ConsolationDto> response = endpoint.findByTrackingNumber(tn).execute();
+                        if (!response.isSuccessful())
+                            throw new CallServerException(getActivity());
+                        ConsolationDto dto = response.body();
+                        if (dto.getPaymentStatus().equals(PaymentStatus.verified.toString())) {
+                            //region disable confirm button:
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        View v = getView();
+                                        if (v != null) {
+                                            Button btnConfirm = (Button) v.findViewById(R.id.btn_confirm);
+                                            btnConfirm.setEnabled(false);
+                                            btnConfirm.setText(getResources().getString(R.string.msg_successfully_payed));
+                                        }
+                                    } catch (Exception ex) {
+                                        ExceptionManager.handle(getActivity(), ex);
+                                    }
+                                }
+                            });
+                            //endregion
+                        }
+                        //region hide progress:
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progress.dismiss();
+                            }
+                        });
+                        //endregion
+                    } catch (Exception ex) {
+                        //region hide progress:
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progress.dismiss();
+                            }
+                        });
+                        //endregion
+                        ExceptionManager.handle(getActivity(), ex);
+                    }
+                }
+            }).start();
+            //endregion
+        } catch (Exception ex) {
+            ExceptionManager.handle(getActivity(), ex);
+        }
+
+        super.onStart();
     }
     //endregion
 

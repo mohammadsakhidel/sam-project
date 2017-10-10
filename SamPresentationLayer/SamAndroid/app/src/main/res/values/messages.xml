@@ -5,4 +5,5 @@
     <string name="msg_invalid_cellphone">شماره همراه وارد شده معتبر نیست.</string>
     <string name="msg_loading_image_failed">خطا در بارگذاری تصویر</string>
     <string name="msg_invalid_tracking_number">یک کد رهگیری معتبر وارد نمایید</string>
+    <string name="msg_successfully_payed">پرداخت با موفقیت انجام شد</string>
 </resources>

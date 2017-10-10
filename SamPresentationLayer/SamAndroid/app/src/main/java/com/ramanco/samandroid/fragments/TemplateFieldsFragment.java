@@ -242,10 +242,11 @@ public class TemplateFieldsFragment extends Fragment {
 
                             Map<String, Object> data = response.body();
                             final int consolationId = ((Double) data.get("ID")).intValue();
+                            String trackingNumber = data.get("TrackingNumber").toString();
                             parentView.setCreatedConsolationId(consolationId);
+                            parentView.setCreatedConsolationTN(trackingNumber);
                             //endregion
                             //region save tracking number to prefs:
-                            String trackingNumber = data.get("TrackingNumber").toString();
                             if (!TextUtils.isEmpty(trackingNumber.replace(" ", ""))) {
                                 List<String> trackingNumbers = PrefUtil.getTrackingNumbers(getActivity());
                                 if (trackingNumbers == null)

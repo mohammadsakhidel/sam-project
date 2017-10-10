@@ -26,6 +26,9 @@ public interface ConsolationsApiEndpoint {
                       @Query("newstatus") String newStatus, @Query("obitid") int obitId,
                       @Query("templateid") int templateId);
 
+    @GET(ApiActions.consolations_findbytrackingnumber)
+    Call<ConsolationDto> findByTrackingNumber(@Query("tn") String tn);
+
 }
 
 

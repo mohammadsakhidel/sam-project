@@ -121,6 +121,7 @@ public class HistoryFragment extends Fragment {
         fragment.setSelectedTemplate(dto.getTemplate());
         fragment.setTemplateInfo(dto.getTemplateInfo());
         fragment.setCreatedConsolationId(dto.getId());
+        fragment.setCreatedConsolationTN(dto.getTrackingNumber());
         fragment.setLoadFromPreview(true);
 
         mainActivity.replaceFragment(fragment);
