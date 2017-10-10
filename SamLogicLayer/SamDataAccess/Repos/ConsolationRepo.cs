@@ -141,5 +141,10 @@ namespace SamDataAccess.Repos
                 .FirstOrDefault();
             return c;
         }
+
+        public Consolation Find(string trackingNumber)
+        {
+            return set.SingleOrDefault(c => c.TrackingNumber == trackingNumber);
+        }
     }
 }

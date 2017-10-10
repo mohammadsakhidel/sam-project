@@ -71,6 +71,30 @@ namespace SamWeb.Controllers
                 return Json(ExceptionManager.GetProperMessage(ex), JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult> Preview(string tn)
+        {
+            #region create privew partial model:
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var resConsolation = await hc.GetAsync($"{ApiActions.consolations_findbytrackingnumber}?tn={tn}");
+                var consolationDto = await resConsolation.Content.ReadAsAsync<ConsolationDto>();
+                var resPayment = await hc.GetAsync($"{ApiActions.payment_find}/{consolationDto.PaymentID}");
+                var paymentDto = await resPayment.Content.ReadAsAsync<PaymentDto>();
+
+                var vm = new CreateConsolationPreviewStepVM()
+                {
+                    CreatedConsolation = consolationDto,
+                    BankPageUrl=  paymentDto.BankPageUrl,
+                    PaymentID = paymentDto.ID,
+                    PaymentToken = paymentDto.Token
+                };
+
+                return View(vm);
+            }
+            #endregion
+        }
         #endregion
 
         #region POST Actions:

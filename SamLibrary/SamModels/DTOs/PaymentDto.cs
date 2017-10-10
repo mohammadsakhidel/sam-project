@@ -8,6 +8,7 @@ namespace SamModels.DTOs
 {
     public class PaymentDto
     {
+        #region Entity Props:
         public string ID { get; set; }
 
         public string Token { get; set; }
@@ -25,5 +26,10 @@ namespace SamModels.DTOs
         public DateTime CreationTime { get; set; }
 
         public DateTime LastUpdateTime { get; set; }
+        #endregion
+
+        #region Extensions:
+        public string BankPageUrl { get; set; }
+        #endregion
     }
 }

@@ -46,6 +46,7 @@ namespace SamAPI.Controllers
                     return NotFound();
 
                 var dto = Mapper.Map<Payment, PaymentDto>(payment);
+                dto.BankPageUrl = _paymentService.BankPageUrl;
                 return Ok(dto);
             }
             catch (Exception ex)

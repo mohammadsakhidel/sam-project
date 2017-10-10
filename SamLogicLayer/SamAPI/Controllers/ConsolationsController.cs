@@ -248,6 +248,24 @@ namespace SamAPI.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult FindByTrackingNumber(string tn)
+        {
+            try
+            {
+                var consolation = _consolationRepo.Find(tn);
+                if (consolation == null)
+                    return NotFound();
+
+                var dto = Mapper.Map<Consolation, ConsolationDto>(consolation);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
         public IHttpActionResult FindByObit(string trackingNumber)
         {
             try

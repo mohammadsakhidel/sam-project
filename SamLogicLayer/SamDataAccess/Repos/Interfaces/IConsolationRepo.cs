@@ -18,6 +18,8 @@ namespace SamDataAccess.Repos.Interfaces
 
         List<Consolation> Find(string[] trackingNumbers);
 
+        Consolation Find(string trackingNumber);
+
         Consolation FindByPaymentID(string pId);
     }
 }

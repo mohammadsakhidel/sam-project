@@ -329,6 +329,7 @@
     <Content Include="Views\Home\DownloadApp.cshtml" />
     <Content Include="Views\Payment\MabnaCallback.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Consolations\Preview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
