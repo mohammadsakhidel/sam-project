@@ -128,4 +128,5 @@ public class HistoryFragment extends Fragment {
         mainActivity.setBottomNavigationIndex(0);
     }
     //endregion
+
 }
