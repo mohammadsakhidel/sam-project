@@ -2,7 +2,6 @@
 using RamancoLibrary.Utilities;
 using SamClientDataAccess.ClientModels;
 using SamClientDataAccess.Repos;
-using SamClientDataAccess.Repos;
 using SamModels.Entities;
 using SamUtils.Enums;
 using SamUxLib.Code.Constants;
@@ -11,6 +10,7 @@ using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -50,10 +50,12 @@ namespace SamClient.Views.Windows
             try
             {
                 #region set display params:
-                Left = DisplayParams.X;
-                Top = DisplayParams.X;
-                Width = DisplayParams.WIDTH;
-                Height = DisplayParams.HEIGHT;
+                var displayParamsString = ConfigurationManager.AppSettings["display_params"];
+                var displayParams = DisplayParams.Parse(displayParamsString);
+                Left = displayParams.X;
+                Top = displayParams.Y;
+                Width = displayParams.Width;
+                Height = displayParams.Height;
                 #endregion
 
                 PlaySlides();

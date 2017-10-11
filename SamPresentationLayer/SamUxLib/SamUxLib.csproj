@@ -102,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Constants\Collections.cs" />
-    <Compile Include="Code\Constants\DisplayParams.cs" />
+    <Compile Include="Code\Objects\DisplayParams.cs" />
     <Compile Include="Code\Converters\AccessToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\BoolConverter.cs" />
     <Compile Include="Code\Converters\ConnectorConverter.cs" />
