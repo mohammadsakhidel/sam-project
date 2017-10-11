@@ -22,6 +22,7 @@ namespace SamDataAccess.Repos
             var confirmed = ConsolationStatus.confirmed.ToString();
             var canceled = ConsolationStatus.canceled.ToString();
             var displayed = ConsolationStatus.displayed.ToString();
+            var verified = PaymentStatus.verified.ToString();
 
             #region find city & province id of mosque:
             var cityId = context.Mosques.Single(m => m.ID == mosqueId).CityID;
@@ -72,6 +73,7 @@ namespace SamDataAccess.Repos
                                on o.ID equals h.ObitID
                                where o.MosqueID == mosqueId && h.SaloonID == saloonId && h.EndTime > queryTime &&
                                      (c.Status == confirmed || c.Status == canceled || c.Status == displayed) &&
+                                     c.PaymentStatus == verified &&
                                      (clientLastUpdatetime == null
                                      || (c.CreationTime <= queryTime && c.CreationTime > clientLastUpdatetime.Value)
                                      || (c.LastUpdateTime != null && (c.LastUpdateTime.Value <= queryTime && c.LastUpdateTime.Value > clientLastUpdatetime.Value)))
@@ -113,9 +115,11 @@ namespace SamDataAccess.Repos
 
         public List<Consolation> Filter(int cityId, string status, int count)
         {
+            var verified = PaymentStatus.verified.ToString();
             var query = from c in context.Consolations.Include(c => c.Obit.Mosque)
                         where (string.IsNullOrEmpty(status) || c.Status == status)
                               && (cityId <= 0 || cityId == c.Obit.Mosque.CityID)
+                              && c.PaymentStatus == verified
                         orderby c.CreationTime descending
                         select c;
             return query.Take(count).ToList();

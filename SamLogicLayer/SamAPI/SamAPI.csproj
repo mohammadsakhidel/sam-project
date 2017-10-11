@@ -188,6 +188,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SyncController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
