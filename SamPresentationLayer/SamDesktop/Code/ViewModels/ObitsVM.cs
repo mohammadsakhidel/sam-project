@@ -11,19 +11,6 @@ namespace SamDesktop.Code.ViewModels
 {
     public class ObitsVM : ViewModelBase
     {
-        #region Selected Mosque:
-        private MosqueDto selectedMosque;
-        public MosqueDto SelectedMosque
-        {
-            get { return selectedMosque; }
-            set
-            {
-                selectedMosque = value;
-                RaisePropertyChanged("SelectedMosque");
-            }
-        }
-        #endregion
-
         #region ObitHoldings:
         private ObservableCollection<ObitHoldingDto> obitHoldings;
         public ObservableCollection<ObitHoldingDto> ObitHoldings

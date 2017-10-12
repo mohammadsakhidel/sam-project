@@ -47,18 +47,9 @@ namespace SamDesktop.Views.Partials
                 var vm = DataContext as ObitsVM;
                 vm.Token = App.UserToken.ToString();
 
-                if (SelectedMosque != null)
-                {
-                    #region Set SelectedMosque:
-                    vm.Token = App.UserToken.ToString();
-                    vm.SelectedMosque = SelectedMosque;
-                    #endregion
-                    #region Info:
-                    var province = CityUtil.GetProvince(SelectedMosque.CityID);
-                    var city = CityUtil.GetCity(SelectedMosque.CityID);
-                    lblInfo.Content = $"{Strings.Province}: {province.Name}\t {Strings.City}: {city.Name}\t {Strings.Mosque}: {SelectedMosque.Name}";
-                    #endregion
-                }
+                var provinces = CityUtil.Provinces;
+                cmbProvince.ItemsSource = new ObservableCollection<ProvinceDto>(provinces);
+
                 ucPersianDateNavigator.SetMiladyDate(DateTimeUtils.Now);
             }
             catch (Exception ex)
@@ -70,7 +61,8 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                await LoadObits(SelectedMosque.ID, e.NewDate);
+                if (SelectedMosque != null)
+                    await LoadObits(SelectedMosque.ID, e.NewDate);
             }
             catch (Exception ex)
             {
@@ -81,13 +73,14 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                var window = new CreateObitWindow(SelectedMosque);
+                var mosque = cmbMosque.SelectedItem as MosqueDto;
+                var window = new CreateObitWindow(mosque);
                 var res = window.ShowDialog();
                 if (res.HasValue && res.Value)
                 {
                     var selectedDate = ucPersianDateNavigator.GetMiladyDate();
                     if (selectedDate.HasValue)
-                        await LoadObits(SelectedMosque.ID, ucPersianDateNavigator.GetMiladyDate().Value);
+                        await LoadObits(mosque.ID, ucPersianDateNavigator.GetMiladyDate().Value);
                 }
             }
             catch (Exception ex)
@@ -144,6 +137,62 @@ namespace SamDesktop.Views.Partials
             catch (Exception ex)
             {
                 progress.IsBusy = false;
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void cmbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (cmbProvince.SelectedItem != null)
+                {
+                    var prov = (ProvinceDto)cmbProvince.SelectedItem;
+                    var cities = CityUtil.GetProvinceCities(prov.ID);
+                    cmbCity.ItemsSource = cities;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private async void cmbCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (cmbCity.SelectedItem != null)
+                {
+                    cmbMosque.IsEnabled = false;
+                    var city = cmbCity.SelectedItem as CityDto;
+                    using (var hc = HttpUtil.CreateClient())
+                    {
+                        var response = await hc.GetAsync($"{ApiActions.mosques_findbycity}?cityId={city.ID}");
+                        HttpUtil.EnsureSuccessStatusCode(response);
+                        var mosques = await response.Content.ReadAsAsync<List<MosqueDto>>();
+                        cmbMosque.ItemsSource = mosques;
+                        cmbMosque.IsEnabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                cmbMosque.IsEnabled = true;
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private async void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SelectedMosque = cmbMosque.SelectedItem as MosqueDto;
+                if (SelectedMosque != null)
+                {
+                    var dt = ucPersianDateNavigator.GetMiladyDate().HasValue ? ucPersianDateNavigator.GetMiladyDate().Value : DateTimeUtils.Now;
+                    await LoadObits(SelectedMosque.ID, dt);
+                }
+            }
+            catch (Exception ex)
+            {
                 ExceptionManager.Handle(ex);
             }
         }

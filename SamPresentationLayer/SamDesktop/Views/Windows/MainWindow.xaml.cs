@@ -52,7 +52,6 @@ namespace SamDesktop.Views.Windows
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void SectionItem_Clicked(object sender, RoutedEventArgs e)
         {
             try
@@ -85,6 +84,7 @@ namespace SamDesktop.Views.Windows
             btnConsolations.Style = style;
             btnAccounts.Style = style;
             btnAccessLevels.Style = style;
+            btnObits.Style = style;
 
             selectedButton.Style = selectedStyle;
         }

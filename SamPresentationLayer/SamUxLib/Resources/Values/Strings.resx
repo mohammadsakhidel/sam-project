@@ -821,4 +821,7 @@
   <data name="PaymentStatus_Reversed" xml:space="preserve">
     <value>بازگشت به حساب</value>
   </data>
+  <data name="Features" xml:space="preserve">
+    <value>امکانات سیستم</value>
+  </data>
 </root>

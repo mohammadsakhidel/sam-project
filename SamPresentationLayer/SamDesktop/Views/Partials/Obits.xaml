@@ -27,9 +27,20 @@
 
             <Border Grid.Row="1" Style="{StaticResource frame}" Margin="{StaticResource padding_container_top}">
                 <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
+                    <ComboBox x:Name="cmbProvince" Width="140" ItemsSource="{Binding Provinces}" DisplayMemberPath="Name" SelectedValuePath="ID" 
+                              SelectionChanged="cmbProvince_SelectionChanged"></ComboBox>
                     
-                    <Label x:Name="lblInfo"></Label>
-                                        
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="16 0 0 0"></Label>
+                    <ComboBox x:Name="cmbCity" Width="140" ItemsSource="{Binding Cities}" DisplayMemberPath="Name" SelectedValuePath="ID"
+                              SelectionChanged="cmbCity_SelectionChanged"></ComboBox>
+
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}" Margin="16 0 0 0"></Label>
+                    <ComboBox x:Name="cmbMosque" Width="140" ItemsSource="{Binding Cities}" DisplayMemberPath="Name" SelectedValuePath="ID"></ComboBox>
+
+                    <ram:FlatButton x:Name="btnSearch" Style="{StaticResource small_action_button_search}" Margin="{StaticResource padding_container_hor}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Search}"
+                                    Click="btnSearch_Click" IsEnabled="{Binding ElementName=cmbCity, Path=SelectedItem, Converter={StaticResource notNullConverter}}"/>
                 </StackPanel>
             </Border>
 
@@ -72,6 +83,7 @@
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <ram:FlatButton x:Name="btnNew" Style="{StaticResource action_button_add}"
+                                        IsEnabled="{Binding ElementName=cmbMosque, Path=SelectedItem, Converter={StaticResource notNullConverter}}"
                                         Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_obits:c}"
                                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.New}" Click="btnNew_Click" />
                         <ram:FlatButton x:Name="btnEdit" Style="{StaticResource action_button_edit}" Margin="{StaticResource padding_container_start}"

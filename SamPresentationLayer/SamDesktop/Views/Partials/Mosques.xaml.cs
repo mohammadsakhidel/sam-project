@@ -160,22 +160,6 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnObits_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (dgMosques.SelectedItem != null)
-                {
-                    var mosque = dgMosques.SelectedItem as MosqueDto;
-                    var window = new SamDesktop.Views.Windows.ObitsWindow(mosque);
-                    window.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
-            }
-        }
         #endregion
 
         #region Private Methods:
