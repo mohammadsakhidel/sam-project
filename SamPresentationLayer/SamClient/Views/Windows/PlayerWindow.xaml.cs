@@ -81,6 +81,20 @@ namespace SamClient.Views.Windows
                 ExceptionManager.Handle(ex);
             }
         }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.System && e.SystemKey == Key.F4)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
         #endregion
 
         #region Methods:

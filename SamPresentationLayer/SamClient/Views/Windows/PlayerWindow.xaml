@@ -7,7 +7,7 @@
         xmlns:tr="clr-namespace:Transitionals;assembly=Transitionals"
         xmlns:trc="clr-namespace:Transitionals.Controls;assembly=Transitionals"
         Style="{StaticResource player_window}" ShowInTaskbar="False"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" KeyDown="Window_KeyDown">
 
     <Window.ContextMenu>
         <ContextMenu>

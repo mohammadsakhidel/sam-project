@@ -77,7 +77,7 @@ namespace SamClient.Views.Windows
                 }
                 #endregion
 
-                #region Update Services Status:
+                #region Timer ::: Update Service Icons Status:
                 UpdateServicesStatus();
 
                 _timers = new List<Timer>();
@@ -102,6 +102,13 @@ namespace SamClient.Views.Windows
                 };
                 serviceStatusUpdateTimer.Enabled = true;
                 _timers.Add(serviceStatusUpdateTimer);
+                #endregion
+
+                #region Timer ::: AutoPlay Check:
+                var autoPlayCheckTimer = new Timer(20000);
+                autoPlayCheckTimer.Enabled = true;
+                autoPlayCheckTimer.Elapsed += AutoPlayCheckTimer_Elapsed;
+                _timers.Add(autoPlayCheckTimer);
                 #endregion
 
                 LoadContent(new HomePage(this));
@@ -171,8 +178,7 @@ namespace SamClient.Views.Windows
         {
             try
             {
-                var player = new PlayerWindow();
-                player.Show();
+                ShowPlayer();
             }
             catch (Exception ex)
             {
@@ -206,8 +212,7 @@ namespace SamClient.Views.Windows
         {
             try
             {
-                var player = new PlayerWindow();
-                player.Show();
+                ShowPlayer();
             }
             catch (Exception ex)
             {
@@ -218,7 +223,7 @@ namespace SamClient.Views.Windows
         {
             try
             {
-                WindowState = WindowState.Normal;
+                ActivateWindow();
             }
             catch (Exception ex)
             {
@@ -240,7 +245,36 @@ namespace SamClient.Views.Windows
         {
             try
             {
-                WindowState = WindowState.Normal;
+                ActivateWindow();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private void AutoPlayCheckTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                var isPlaying = IsPlaying();
+                if (!isPlaying)
+                {
+                    using (var srep = new ClientSettingRepo())
+                    using (var orep = new ObitRepo(srep.Context))
+                    {
+                        var setting = srep.Get();
+                        if (setting != null && setting.AutoSlideShow)
+                        {
+                            var activeObits = orep.GetActiveObits();
+                            if (activeObits.Any())
+                            {
+                                Dispatcher.Invoke(() => {
+                                    ShowPlayer();
+                                });
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -267,6 +301,30 @@ namespace SamClient.Views.Windows
         public void LoadContent(UserControl content)
         {
             brdMainContent.Child = content;
+        }
+        private bool IsPlaying()
+        {
+            return Dispatcher.Invoke(() =>
+            {
+                return Application.Current.Windows.OfType<PlayerWindow>().Any();
+            });
+        }
+        private void ActivateWindow()
+        {
+            WindowState = WindowState.Normal;
+            Activate();
+            Topmost = true;
+            Topmost = false;
+            Focus();
+        }
+        public void ShowPlayer()
+        {
+            var isPlaying = IsPlaying();
+            if (!isPlaying)
+            {
+                var player = new PlayerWindow();
+                player.Show();
+            }
         }
         #endregion
     }

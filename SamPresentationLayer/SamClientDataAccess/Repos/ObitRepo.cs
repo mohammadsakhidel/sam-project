@@ -55,6 +55,24 @@ namespace SamClientDataAccess.Repos
                 obit.ObitHoldings = newObit.ObitHoldings;
             }
         }
+        public List<Obit> GetActiveObits()
+        {
+            #region preres:
+            var setting = context.ClientSettings.Find(1);
+            var mosqueId = setting.MosqueID;
+            var saloonId = setting.SaloonID;
+
+            var now = DateTimeUtils.Now;
+            #endregion
+
+            var recs = from o in context.Obits
+                       where (from h in context.ObitHoldings
+                              where h.ObitID == o.ID && h.BeginTime <= now && h.EndTime >= now
+                              select h).Any()
+                       select o;
+
+            return recs.ToList();
+        }
         #endregion
     }
 }

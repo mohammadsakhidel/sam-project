@@ -47,8 +47,7 @@ namespace SamClient.Views.Partials
         {
             try
             {
-                var player = new PlayerWindow();
-                player.Show();
+                _mainWindow.ShowPlayer();
             }
             catch (Exception ex)
             {
