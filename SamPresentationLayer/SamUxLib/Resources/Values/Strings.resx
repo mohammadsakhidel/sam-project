@@ -818,4 +818,7 @@
   <data name="CustomErrorTitle" xml:space="preserve">
     <value>خطایی رخ داده است</value>
   </data>
+  <data name="PaymentStatus_Reversed" xml:space="preserve">
+    <value>بازگشت به حساب</value>
+  </data>
 </root>

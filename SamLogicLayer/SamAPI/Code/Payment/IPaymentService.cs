@@ -16,8 +16,8 @@ namespace SamAPI.Code.Payment
 
         #region Methods:
         string GetToken(int amount);
-
         bool Verify(string paymentId, string referenceCode);
+        bool Reverse(string referenceCode);
         #endregion
     }
 }

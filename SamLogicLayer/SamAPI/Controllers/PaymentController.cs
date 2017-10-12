@@ -56,6 +56,41 @@ namespace SamAPI.Controllers
         }
         #endregion
 
+        #region POST:
+        [HttpPost]
+        public IHttpActionResult Reverse()
+        {
+            try
+            {
+                var consolations = _consolationRepo.FindReversingConsolations();
+                foreach (var c in consolations)
+                {
+                    var payment = _paymentRepo.Get(c.PaymentID);
+                    var result = _paymentService.Reverse(payment.ReferenceCode);
+                    if (result)
+                    {
+                        using (var ts = new TransactionScope())
+                        {
+                            payment.Status = PaymentStatus.reversed.ToString();
+                            c.PaymentStatus = PaymentStatus.reversed.ToString();
+
+                            _paymentRepo.Save();
+                            _consolationRepo.Save();
+
+                            ts.Complete();
+                        }
+                    }
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+        #endregion
+
         #region PUT:
         [HttpPut]
         public IHttpActionResult Verify(string id, string refcode)

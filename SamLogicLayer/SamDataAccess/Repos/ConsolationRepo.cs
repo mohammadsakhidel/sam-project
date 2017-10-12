@@ -152,5 +152,22 @@ namespace SamDataAccess.Repos
         {
             return set.SingleOrDefault(c => c.TrackingNumber == trackingNumber);
         }
+
+        public List<Consolation> FindReversingConsolations()
+        {
+            var pending = ConsolationStatus.pending.ToString();
+            var verified = PaymentStatus.verified.ToString();
+            var compareTime = DateTimeUtils.Now.AddMinutes(-55);
+
+            var recs = from c in set
+                       where c.Status == pending && 
+                             c.PaymentStatus == verified &&
+                             c.CreationTime < compareTime &&
+                             !string.IsNullOrEmpty(c.PaymentID)
+                       orderby c.CreationTime descending
+                       select c;
+
+            return recs.ToList();
+        }
     }
 }

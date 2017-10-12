@@ -92,7 +92,8 @@ namespace SamAPI.Code.Payment
             #endregion
 
             #region Call Service:
-            var dto = new Mabnacard.TokenSpace.tokenDTO() {
+            var dto = new Mabnacard.TokenSpace.tokenDTO()
+            {
                 AMOUNT = amountBase64,
                 CRN = crnBase64,
                 MID = midBase64,
@@ -157,6 +158,36 @@ namespace SamAPI.Code.Payment
 
             if (string.IsNullOrEmpty(response.RESCODE) || (Convert.ToInt32(response.RESCODE) != 0 && Convert.ToInt32(response.RESCODE) != 101))
                 throw new Exception($"Payment confirmation failed with error code: {response.RESCODE}");
+            #endregion
+
+            return true;
+        }
+        public bool Reverse(string referenceCode)
+        {
+            #region Prerequisits:
+            RSACryptoServiceProvider privateCryptoProvider = new RSACryptoServiceProvider();
+            privateCryptoProvider.FromXmlString(PRIVATE_KEY);
+            #endregion
+
+            #region Signature:
+            Signature = MID + referenceCode;
+            var signatureBytes = privateCryptoProvider.SignData(Encoding.UTF8.GetBytes(Signature), new SHA1CryptoServiceProvider());
+            var signatureBase64 = Convert.ToBase64String(signatureBytes);
+            #endregion
+
+            #region Call Service:
+            var dto = new Mabnacard.ReverseSpace.reversalDto()
+            {
+                MID = MID,
+                RRN = referenceCode,
+                SIGNATURE = signatureBase64
+            };
+
+            var client = new Mabnacard.ReverseSpace.ReverseTransactionClient();
+            var response = client.sendReversal(dto);
+
+            if (string.IsNullOrEmpty(response) || (response != "0" && response != "00"))
+                throw new Exception($"Payment reverse failed with error: {response}");
             #endregion
 
             return true;

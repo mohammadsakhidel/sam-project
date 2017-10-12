@@ -22,6 +22,8 @@ public class EnumUtil {
                 return context.getResources().getString(R.string.payment_verified);
             case free:
                 return context.getResources().getString(R.string.payment_free);
+            case reversed:
+                return context.getResources().getString(R.string.payment_reversed);
         }
         return "";
     }
@@ -37,6 +39,8 @@ public class EnumUtil {
                 return ContextCompat.getColor(context, R.color.colorStatusOK);
             case free:
                 return ContextCompat.getColor(context, R.color.colorStatusOK);
+            case reversed:
+                return ContextCompat.getColor(context, R.color.colorStatusPending);
         }
         return ContextCompat.getColor(context, R.color.colorTextPrimary);
     }

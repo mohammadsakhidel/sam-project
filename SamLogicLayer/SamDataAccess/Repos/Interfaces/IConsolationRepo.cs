@@ -21,5 +21,7 @@ namespace SamDataAccess.Repos.Interfaces
         Consolation Find(string trackingNumber);
 
         Consolation FindByPaymentID(string pId);
+
+        List<Consolation> FindReversingConsolations();
     }
 }

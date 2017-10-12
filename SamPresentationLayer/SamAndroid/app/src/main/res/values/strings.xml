@@ -73,6 +73,7 @@
     <string name="obit_type_yadbood">مجلس یادبود</string>
     <string name="obit_type_sayer">متفرقه</string>
     <string name="payment_verified">تأیید شده نهایی</string>
+    <string name="payment_reversed">بازگشت به حساب</string>
     <string name="payment_free">رایگان</string>
     <string name="step_preview_desc_free">کاربر گرامی، پیام شما در سیستم ثبت گردید و در سریع ترین زمان مناسب نمایش خواهد یافت (بصورت رایگان). نحوه نمایش پیام شما در نمایشگر به صورت زیر خواهد بود:</string>
     <string name="back">بازگشت</string>

@@ -5,5 +5,6 @@ public enum PaymentStatus {
     failed,
     succeeded,
     verified,
-    free
+    free,
+    reversed
 }

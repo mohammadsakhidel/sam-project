@@ -12,6 +12,7 @@ namespace SamUtils.Enums
         failed = 2,
         succeeded = 3,
         verified = 4,
-        free = 5
+        free = 5,
+        reversed = 6
     }
 }

@@ -1475,6 +1475,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بازگشت به حساب.
+        /// </summary>
+        public static string PaymentStatus_Reversed {
+            get {
+                return ResourceManager.GetString("PaymentStatus_Reversed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to منتظر تأیید نهایی.
         /// </summary>
         public static string PaymentStatus_Succeeded {
