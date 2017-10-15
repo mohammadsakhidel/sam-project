@@ -8,6 +8,7 @@ using SamModels.Entities;
 using SamUtils.Constants;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -72,6 +73,27 @@ namespace SamAPI.Controllers
                 };
 
                 return Ok(updateDtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult AppVersion()
+        {
+            try
+            {
+                var appVersionName = ConfigurationManager.AppSettings["AppVersionName"];
+                var appVersionCode = ConfigurationManager.AppSettings["AppVersionCode"];
+                var newVersionUrl = ConfigurationManager.AppSettings["AppNewVersionUrl"];
+                return Ok(new
+                {
+                    VersionName = appVersionName,
+                    VersionCode = appVersionCode,
+                    NewVersionUrl = newVersionUrl
+                });
             }
             catch (Exception ex)
             {

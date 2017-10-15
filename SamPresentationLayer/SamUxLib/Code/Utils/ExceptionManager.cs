@@ -36,7 +36,7 @@ namespace SamUxLib.Code.Utils
             }
             else
             {
-                message = Messages.ErrorOccurredTryAgain;
+                message = ex.Message; //Messages.ErrorOccurredTryAgain;
             }
 
             Dispatcher.CurrentDispatcher.Invoke(() =>
