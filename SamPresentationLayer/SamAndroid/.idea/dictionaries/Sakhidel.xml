@@ -1,11 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Sakhidel">
     <words>
+      <w>appversion</w>
       <w>attacher</w>
       <w>chehelom</w>
       <w>cityid</w>
       <w>dtos</w>
       <w>findbycity</w>
+      <w>findbytrackingnumber</w>
       <w>getall</w>
       <w>getallobits</w>
       <w>getimage</w>

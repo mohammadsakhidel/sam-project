@@ -11,4 +11,6 @@ public class ApiActions {
     public static final String consolations_getpreview = "consolations/getpreview";
     public static final String consolations_find = "consolations/find";
     public static final String consolations_findbytrackingnumber = "consolations/findbytrackingnumber";
+    public static final String sync_appversion = "sync/appversion";
+    //
 }

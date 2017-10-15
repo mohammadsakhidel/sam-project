@@ -79,4 +79,6 @@
     <string name="back">بازگشت</string>
     <string name="amount_to_pay">مبلغ قابل پرداخت</string>
     <string name="finish">پایان</string>
+    <string name="msg_update_not_title">بروزرسانی اپلیکیشن سام</string>
+    <string name="msg_update_not_content">نسخه جدید اپلیکیشن سام اکنون در دسترس است، برای بروزرسانی کلیک کنید.</string>
 </resources>

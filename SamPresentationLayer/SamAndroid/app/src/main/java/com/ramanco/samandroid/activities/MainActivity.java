@@ -1,6 +1,13 @@
 package com.ramanco.samandroid.activities;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -10,23 +17,33 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.ramanco.samandroid.BuildConfig;
 import com.ramanco.samandroid.R;
+import com.ramanco.samandroid.api.dtos.AppVersionDto;
 import com.ramanco.samandroid.api.dtos.CustomerDto;
+import com.ramanco.samandroid.api.endpoints.SyncApiEndpoint;
 import com.ramanco.samandroid.objects.KeyValuePair;
+import com.ramanco.samandroid.utils.ApiUtil;
 import com.ramanco.samandroid.utils.CityUtil;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.fragments.HistoryFragment;
 import com.ramanco.samandroid.fragments.SendConsolationFragment;
 import com.ramanco.samandroid.fragments.TrackFragment;
 import com.ramanco.samandroid.utils.PrefUtil;
+
+import java.io.IOException;
+
+import retrofit2.Response;
 
 public class MainActivity extends BaseActivity {
 
@@ -86,7 +103,6 @@ public class MainActivity extends BaseActivity {
             MenuItem navMenuItem = navMenu.getItem(1);
             navMenuItem.setChecked(true);
             //endregion
-
         } catch (Exception ex) {
             ExceptionManager.handle(this, ex);
         }
@@ -95,6 +111,17 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         try {
+            //region check for updates:
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        checkForUpdates();
+                    } catch (Exception ex) {
+                    }
+                }
+            }).start();
+            //endregion
             //region set user name:
             NavigationView navigationView = (NavigationView) findViewById(R.id.drawer_nav_view);
             View headerView = navigationView.getHeaderView(0);
@@ -173,6 +200,48 @@ public class MainActivity extends BaseActivity {
         Menu navigationMenu = navigation.getMenu();
         MenuItem navigationMenuItem = navigationMenu.getItem(index);
         navigationMenuItem.setChecked(true);
+    }
+
+    private void checkForUpdates() throws IOException, PackageManager.NameNotFoundException {
+        SyncApiEndpoint endpoint = ApiUtil.createEndpoint(SyncApiEndpoint.class);
+        Response<AppVersionDto> response = endpoint.appVersion().execute();
+        if (response.isSuccessful()) {
+            final AppVersionDto dto = response.body();
+            int appVersionCode = BuildConfig.VERSION_CODE;
+            if (dto.getAppVersionCode() > appVersionCode) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            showUpdateNotification(dto);
+                        } catch (Exception ex) {
+                            ExceptionManager.handle(MainActivity.this, ex);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    public void showUpdateNotification(AppVersionDto dto) {
+
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(dto.getNewVersionUrl()));
+        PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+
+        Notification n  = new Notification.Builder(this)
+                .setContentTitle(getResources().getString(R.string.msg_update_not_title))
+                .setContentText(getResources().getString(R.string.msg_update_not_content))
+                .setSmallIcon(R.drawable.ic_notification)
+                .setSound(soundUri)
+                .setContentIntent(pIntent)
+                .setAutoCancel(true).build();
+
+        NotificationManager notificationManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, n);
+
     }
     //endregion
 
