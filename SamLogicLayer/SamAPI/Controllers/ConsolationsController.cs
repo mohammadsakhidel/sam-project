@@ -283,12 +283,50 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult GetPreviewInfo(int id)
+        {
+            try
+            {
+                var consolation = _consolationRepo.Get(id);
+                if (consolation == null)
+                    return NotFound();
+
+                var payment = _paymentRepo.Get(consolation.PaymentID);
+                if (payment == null)
+                    return NotFound();
+
+                var consolationDto = Mapper.Map<Consolation, ConsolationDto>(consolation, opts =>
+                {
+                    opts.AfterMap((src, dst) =>
+                    {
+                        dst.Obit = null;
+                        dst.Template = null;
+                    });
+                });
+                var paymentDto = Mapper.Map<Payment, PaymentDto>(payment);
+
+                var dto = new ConsolationPreviewDto()
+                {
+                    Consolation = consolationDto,
+                    Payment = paymentDto,
+                    MoreData = _paymentService.BankPageUrl
+                };
+
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region PUT ACTIONS:
         [HttpPut]
-        public IHttpActionResult Update(int id, string newStatus, Dictionary<string, string> fields,
-            int obitId = -1, int templateId = -1)
+        public IHttpActionResult Update(int id, Dictionary<string, string> fields,
+            string newStatus = "", int obitId = -1, int templateId = -1)
         {
             try
             {

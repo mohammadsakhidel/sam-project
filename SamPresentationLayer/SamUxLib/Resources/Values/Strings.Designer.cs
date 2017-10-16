@@ -539,7 +539,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مشخصات شما.
+        ///   Looks up a localized string similar to اطلاعات تماس.
         /// </summary>
         public static string CreateConsolationCustomerInfoStep {
             get {
@@ -1534,6 +1534,15 @@ namespace SamUxLib.Resources.Values {
         public static string PleaseWait {
             get {
                 return ResourceManager.GetString("PleaseWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مرحله قبلی.
+        /// </summary>
+        public static string PreviousStep {
+            get {
+                return ResourceManager.GetString("PreviousStep", resourceCulture);
             }
         }
         

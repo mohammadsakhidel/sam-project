@@ -2,7 +2,7 @@
 
 @{
     var baseUrl = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
-    var previewImageUrl = new Uri(baseUrl, $"{SamUtils.Constants.ApiActions.consolations_getpreview}/{Model.CreatedConsolation.ID}");
+    var previewImageUrl = new Uri(baseUrl, $"{SamUtils.Constants.ApiActions.consolations_getpreview}/{Model.CreatedConsolation.ID}?ts={DateTime.Now.ToString("HHmmssfff")}");
     var amount = Model.CreatedConsolation.AmountToPay;
 }
 
@@ -44,10 +44,14 @@
                 @Strings.PriceUnit)
             </button>
         </form>
-        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-            <span class="glyphicon glyphicon-remove"></span>
-            @Strings.Cancel
-        </a>
+        using (Ajax.BeginForm("GetTemplateInfoView", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_prev", @style = "display: inline-block;" }))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+                @Strings.PreviousStep
+            </button>
+        }
     }
     else
     {

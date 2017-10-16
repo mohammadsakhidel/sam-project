@@ -6,53 +6,50 @@
 
 <hr />
 
-@using (Ajax.BeginForm("Create_CustomerInfoStep", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_customer_info" }))
+@using (Ajax.BeginForm("Create_CustomerInfoStep", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_customer" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        <label for="FullName" class="control-label">@Strings.FullName</label>
-        <div>
-            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
-        </div>
-        <span class="text-muted small">@Messages.Hint_FullName</span>
+<div class="form-group">
+    <label for="FullName" class="control-label">@Strings.FullName</label>
+    <div>
+        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
     </div>
+    <span class="text-muted small">@Messages.Hint_FullName</span>
+</div>
 
-    <div class="form-group">
-        <label for="CellPhoneNumber" class="control-label">@Strings.CellPhoneNumber</label>
-        <div>
-            @Html.TextBoxFor(model => model.CellPhoneNumber, new { @class = "form-control" })
-        </div>
-        <span class="text-muted small">@Messages.Hint_CellPhoneNumber</span>
+<div class="form-group">
+    <label for="CellPhoneNumber" class="control-label">@Strings.CellPhoneNumber</label>
+    <div>
+        @Html.TextBoxFor(model => model.CellPhoneNumber, new { @class = "form-control" })
     </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-success">
-            <span class="glyphicon glyphicon-ok"></span>
-            @Strings.ConfirmAndContinue
-        </button>
-        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-            <span class="glyphicon glyphicon-remove"></span>
-            @Strings.Cancel
-        </a>
-    </div>
-
-    <div class="text-danger">
-        @Html.ValidationSummary()
-    </div>
+    <span class="text-muted small">@Messages.Hint_CellPhoneNumber</span>
+</div>
 }
 
+<div class="form-group">
+    <a id="btn_submit" class="btn btn-success">
+        <span class="glyphicon glyphicon-ok"></span>
+        @Strings.ConfirmAndContinue
+    </a>
+    @using (Ajax.BeginForm("GetObitSelectionView", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_prev", @style = "display: inline-block;" }))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            @Strings.PreviousStep
+        </button>
+    }
+</div>
+
+<div class="text-danger">
+    @Html.ValidationSummary()
+</div>
+
 <script>
-    $('form#frm_customer_info').submit(function () {
-        try {
-            var fullName = $('#FullName').val();
-            var cellPhoneNumber = $('#CellPhoneNumber').val();
-            if ($.trim(fullName) != '', $.trim(cellPhoneNumber) != '') {
-                setLocal("FullName", fullName);
-                setLocal("CellPhoneNumber", cellPhoneNumber);
-            }
-        } catch (e) {
-            alert(e.message);
-        }
+    $(function () {
+        $('#btn_submit').click(function () {
+            $('#frm_customer').submit();
+        });
     });
 </script>

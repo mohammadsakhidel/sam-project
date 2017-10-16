@@ -7,61 +7,69 @@
 <hr />
 
 @using (Ajax.BeginForm("Create_ObitSelectionStep", "Consolations", null,
-                            new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
-                            new { @id = "frm_obit" }))
+                                                                new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+                                                                new { @id = "frm_obit" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-group">
         <label for="ProvinceID" class="control-label">@Strings.Province</label>
         <div>
-            @{
-                var provinces = SamUtils.Utils.CityUtil.Provinces.Select(p => new SelectListItem { Text = p.Name, Value = p.ID.ToString() }).ToList();
-                provinces.Insert(0, new SelectListItem());
-            }
-            @Html.DropDownListFor(model => model.ProvinceID, provinces, new { @class = "form-control" })
+            <select name="ProvinceID" id="ProvinceID" class="form-control">
+                <option value=""></option>
+                @foreach (var p in SamUtils.Utils.CityUtil.Provinces)
+                {
+                    <option value="@p.ID" @(Model.ProvinceID.HasValue && p.ID == Model.ProvinceID.Value ? Html.Raw("selected=\"selected\"") : Html.Raw(""))>@p.Name</option>
+                }
+            </select>
         </div>
     </div>
 
     <div class="form-group">
         <label for="CityID" class="control-label">@Strings.City</label>
         <div>
-            @{
-                var cities = Model != null && Model.Cities != null ? Model.Cities.Select(c => new SelectListItem { Text = c.Name, Value = c.ID.ToString() }).ToList() : new List<SelectListItem>();
-                if (cities.Any())
+            <select name="CityID" id="CityID" class="form-control">
+                @if (Model.Cities != null && Model.Cities.Any())
                 {
-                    cities.Insert(0, new SelectListItem { Text = "", Value = "" });
+                    <option value=""></option>
+                    foreach (var c in Model.Cities)
+                    {
+                        <option value="@c.ID" @(Model.CityID.HasValue && c.ID == Model.CityID.Value ? Html.Raw("selected=\"selected\"") : Html.Raw(""))>@c.Name</option>
+                    }
                 }
-            }
-            @Html.DropDownListFor(model => model.CityID, cities, new { @class = "form-control" })
+            </select>
         </div>
     </div>
 
     <div class="form-group">
         <label for="MosqueID" class="control-label">@Strings.Mosque</label>
         <div>
-            @{
-                var mosques = Model != null && Model.Mosques != null ? Model.Mosques.Select(m => new SelectListItem { Text = m.Name, Value = m.ID.ToString() }).ToList() : new List<SelectListItem>();
-                if (mosques.Any())
+            <select name="MosqueID" id="MosqueID" class="form-control">
+                @if (Model.Mosques != null && Model.Mosques.Any())
                 {
-                    mosques.Insert(0, new SelectListItem { Text = "", Value = "" });
+                    <option value=""></option>
+                    foreach (var m in Model.Mosques)
+                    {
+                        <option value="@m.ID" @(Model.MosqueID.HasValue && m.ID == Model.MosqueID.Value ? Html.Raw("selected=\"selected\"") : Html.Raw(""))>@m.Name</option>
+                    }
                 }
-            }
-            @Html.DropDownListFor(model => model.MosqueID, mosques, new { @class = "form-control" })
+            </select>
         </div>
     </div>
 
     <div class="form-group">
         <label for="ObitID" class="control-label">@Strings.Obit</label>
         <div>
-            @{
-                var obits = Model != null && Model.Obits != null ? Model.Obits.Select(m => new SelectListItem { Text = m.Title, Value = m.ID.ToString() }).ToList() : new List<SelectListItem>();
-                if (obits.Any())
+            <select name="ObitID" id="ObitID" class="form-control">
+                @if (Model.Obits != null && Model.Obits.Any())
                 {
-                    obits.Insert(0, new SelectListItem { Text = "", Value = "" });
+                    <option value=""></option>
+                    foreach (var o in Model.Obits)
+                    {
+                        <option value="@o.ID" @(Model.ObitID.HasValue && o.ID == Model.ObitID.Value ? Html.Raw("selected=\"selected\"") : Html.Raw(""))>@o.Title</option>
+                    }
                 }
-            }
-            @Html.DropDownListFor(model => model.ObitID, obits, new { @class = "form-control" })
+            </select>
         </div>
     </div>
 
@@ -70,20 +78,14 @@
             <span class="glyphicon glyphicon-ok"></span>
             @Strings.ConfirmAndContinue
         </button>
-        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-            <span class="glyphicon glyphicon-remove"></span>
-            @Strings.Cancel
-        </a>
     </div>
 
     <div class="text-danger">
         @Html.ValidationSummary()
     </div>
-                }
+}
 
 <script>
-    var ObitSelectionStep = {};
-    ObitSelectionStep.ObitID = -1;
 
     $('#ProvinceID').change(function () {
         $('#CityID').prop('disabled', true);
@@ -116,28 +118,6 @@
             success: onMosqueChangeSuccess,
             error: onAjaxError
         });
-    });
-
-    $('#ObitID').change(function () {
-        try {
-            if ($(this).val() != '') {
-                ObitSelectionStep.ObitID = Number($(this).val());
-            } else {
-                ObitSelectionStep.ObitID = -1;
-            }
-        } catch (e) {
-            alert(e.message);
-        }
-    });
-
-    $('form#frm_obit').submit(function () {
-        try {
-            if (ObitSelectionStep.ObitID > 0) {
-                setLocal("ObitID", ObitSelectionStep.ObitID);
-            }
-        } catch (e) {
-            alert(e.message);
-        }
     });
 
     function onProvChangeSuccess(data) {

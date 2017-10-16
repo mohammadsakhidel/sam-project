@@ -8,8 +8,7 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
              xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
-             Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
-             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+             Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
     <UserControl.DataContext>
         <vm:ConsolationsVM />
     </UserControl.DataContext>
@@ -42,7 +41,7 @@
                     <ComboBox x:Name="cmbCity" Width="130" ItemsSource="{Binding Cities}" DisplayMemberPath="Name" 
                               SelectedValuePath="ID" SelectedIndex="0"></ComboBox>
 
-                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" Margin="{StaticResource padding_container_start}"></Label>
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Status}" Margin="{StaticResource padding_container_start}"></Label>
                     <ComboBox x:Name="cmbStatus" Width="120" ItemsSource="{Binding Statuses}" 
                               SelectedIndex="0" DisplayMemberPath="Value" SelectedValuePath="Key"></ComboBox>
 

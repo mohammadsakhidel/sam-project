@@ -1,5 +1,4 @@
 ﻿@section head {
-    @Scripts.Render("~/bundles/js/jquery-cookie")
     <link href="~/Content/imageviewer.css" rel="stylesheet" />
     <script src="~/Scripts/imageviewer.min.js"></script>
 }
@@ -7,7 +6,7 @@
 <div id="wizard" style="position: relative;" class="page-content">
 
     <div id="wizard_step">
-        @Html.Partial("Partials/_CreateConsolationWizard_ObitSelectionStep")
+        @Html.Raw(ViewBag.DefaultView);
     </div>
 
     <div id="loading" class="wizard-loading" style="display: none;">
@@ -26,21 +25,5 @@
         var top = wizardHeight / 2 - loaderHeight / 2;
         var left = wizardWidth / 2 - loaderWidth / 2;
         $('#loader').css('top', top).css('left', left);
-    }
-
-    function setLocal(key, val) {
-        if (sessionStorage) {
-            sessionStorage.setItem(key, val);
-        } else {
-            Cookies.set(key, val);
-        }
-    }
-
-    function getLocal(key) {
-        if (sessionStorage) {
-            return sessionStorage.getItem(key);
-        } else {
-            return Cookies.get(key);
-        }
     }
 </script>

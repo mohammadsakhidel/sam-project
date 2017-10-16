@@ -6,7 +6,7 @@
 
 <hr />
 
-@using (Ajax.BeginForm("Create_TemplateInfoStep", "Consolations", new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }))
+@using (Ajax.BeginForm("Create_TemplateInfoStep", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_template_info" }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,32 +22,31 @@
             </div>
         </div>
     }
-
-    @Html.Hidden("ObitID")
-    @Html.Hidden("TemplateID")
-    @Html.Hidden("FullName")
-    @Html.Hidden("CellPhoneNumber")
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-success">
-            <span class="glyphicon glyphicon-ok"></span>
-            @Strings.ConfirmAndPreview
-        </button>
-        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-            <span class="glyphicon glyphicon-remove"></span>
-            @Strings.Cancel
-        </a>
-    </div>
-
-    <div class="text-danger">
-        @Html.ValidationSummary()
-    </div>
 }
+
+<div class="form-group">
+    <button id="btn_submit" type="button" class="btn btn-success">
+        <span class="glyphicon glyphicon-ok"></span>
+        @Strings.ConfirmAndPreview
+    </button>
+    @using (Ajax.BeginForm("GetTemplateSelectionView", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_prev", @style = "display: inline-block;" }))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            @Strings.PreviousStep
+        </button>
+    }
+</div>
+
+<div class="text-danger">
+    @Html.ValidationSummary()
+</div>
+
 <script>
     $(function () {
-        $('#ObitID').val(getLocal("ObitID"));
-        $('#TemplateID').val(getLocal("TemplateID"));
-        $('#FullName').val(getLocal("FullName"));
-        $('#CellPhoneNumber').val(getLocal("CellPhoneNumber"));
+        $('#btn_submit').click(function () {
+            $('#frm_template_info').submit();
+        });
     });
 </script>

@@ -40,6 +40,7 @@ namespace SamUtils.Constants
         public const string consolations_getpreview = "consolations/getpreview";
         public const string consolations_findbyobit = "consolations/findbyobit";
         public const string consolations_findbytrackingnumber = "consolations/findbytrackingnumber";
+        public const string consolations_getpreviewinfo = "consolations/getpreviewinfo";
         public const string account_validateuser = "account/validateuser";
         public const string account_all = "account/all";
         public const string account_create = "account/create";

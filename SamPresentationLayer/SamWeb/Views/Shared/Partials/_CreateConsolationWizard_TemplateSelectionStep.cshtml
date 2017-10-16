@@ -32,6 +32,7 @@
                             {
                                 foreach (var template in Model.Templates.Where(t => t.TemplateCategoryID == category.ID).ToList())
                                 {
+                                    var isSelected = template.ID == Model.TemplateID;
                                     var baseUrl = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
                                     var templateBgUrl = new Uri(baseUrl, $"/blobs/getimage/{template.BackgroundImageID}");
 
@@ -44,7 +45,7 @@
                                         </div>
                                         <div class="template-select-button">
                                             <input type="hidden" value="@template.ID" disabled="disabled" />
-                                            <input id="@($"chTemplate_{template.ID}")" type="checkbox" data-toggle="toggle" data-on="@Strings.Select" data-off="@Strings.Select" />
+                                            <input id="@($"chTemplate_{template.ID}")" type="checkbox" @(isSelected ? Html.Raw("CHECKED") : Html.Raw("")) data-toggle="toggle" data-on="@Strings.Select" data-off="@Strings.Select" />
                                         </div>
                                         <div class="clear"></div>
                                     </div>
@@ -58,29 +59,34 @@
     </div>
 
     @Html.HiddenFor(model => model.TemplateID)
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-success">
-            <span class="glyphicon glyphicon-ok"></span>
-            @Strings.ConfirmAndContinue
-        </button>
-        <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-            <span class="glyphicon glyphicon-remove"></span>
-            @Strings.Cancel
-        </a>
-    </div>
-
-    <div class="text-danger">
-        @Html.ValidationSummary()
-    </div>
 }
+
+<div class="form-group">
+    <button id="btn_submit" type="button" class="btn btn-success">
+        <span class="glyphicon glyphicon-ok"></span>
+        @Strings.ConfirmAndContinue
+    </button>
+    @using (Ajax.BeginForm("GetCustomerInfoView", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_prev", @style = "display: inline-block;" }))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            @Strings.PreviousStep
+        </button>
+    }
+</div>
+
+<div class="text-danger">
+    @Html.ValidationSummary()
+</div>
 
 <script>
 
-    var TemplateSelectionStep = {};
-    TemplateSelectionStep.TemplateID = -1;
-
     $(function () {
+        $('#btn_submit').click(function () {
+            $('#frm_template').submit();
+        });
+
         $('.template-select-item input[type="checkbox"]').bootstrapToggle({
             width: 80
         });
@@ -104,10 +110,8 @@
                     }
                 });
 
-                TemplateSelectionStep.TemplateID = Number(selectedTemplateId);
                 $('input#TemplateID').val(selectedTemplateId);
             } else {
-                TemplateSelectionStep.TemplateID = -1;
                 $('input#TemplateID').val('');
             }
         } catch (e) {
@@ -121,16 +125,6 @@
 
     $(".collapse").on('hidden.bs.collapse', function () {
         $('#cs_' + $(this).data('categoryId')).val(false);
-    });
-
-    $('form#frm_template').submit(function () {
-        try {
-            if (TemplateSelectionStep.TemplateID > 0) {
-                setLocal("TemplateID", TemplateSelectionStep.TemplateID);
-            }
-        } catch (e) {
-            alert(e.message);
-        }
     });
 
 </script>

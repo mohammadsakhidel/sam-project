@@ -633,7 +633,7 @@
     <value>ارتباط با ما</value>
   </data>
   <data name="CreateConsolationCustomerInfoStep" xml:space="preserve">
-    <value>مشخصات شما</value>
+    <value>اطلاعات تماس</value>
   </data>
   <data name="CreateConsolationObitSelectionStep" xml:space="preserve">
     <value>انتخاب مجلس ترحیم</value>
@@ -823,5 +823,8 @@
   </data>
   <data name="Features" xml:space="preserve">
     <value>امکانات سیستم</value>
+  </data>
+  <data name="PreviousStep" xml:space="preserve">
+    <value>مرحله قبلی</value>
   </data>
 </root>
