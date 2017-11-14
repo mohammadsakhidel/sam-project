@@ -62,21 +62,9 @@
     <Compile Include="ClientModels\ConsolationImage.cs" />
     <Compile Include="ClientModels\DownloadImageTask.cs" />
     <Compile Include="Contexts\SamClientDbContext.cs" />
-    <Compile Include="Migrations\201709241510542_Regeneration.cs" />
-    <Compile Include="Migrations\201709241510542_Regeneration.Designer.cs">
-      <DependentUpon>201709241510542_Regeneration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710010915396_ConsolationImageEntityAdded.cs" />
-    <Compile Include="Migrations\201710010915396_ConsolationImageEntityAdded.Designer.cs">
-      <DependentUpon>201710010915396_ConsolationImageEntityAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.cs" />
-    <Compile Include="Migrations\201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.Designer.cs">
-      <DependentUpon>201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710111802513_Consolation_PaymentIDFieldAdded.cs" />
-    <Compile Include="Migrations\201710111802513_Consolation_PaymentIDFieldAdded.Designer.cs">
-      <DependentUpon>201710111802513_Consolation_PaymentIDFieldAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201711141732500_Init.cs" />
+    <Compile Include="Migrations\201711141732500_Init.Designer.cs">
+      <DependentUpon>201711141732500_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,17 +89,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709241510542_Regeneration.resx">
-      <DependentUpon>201709241510542_Regeneration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710010915396_ConsolationImageEntityAdded.resx">
-      <DependentUpon>201710010915396_ConsolationImageEntityAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.resx">
-      <DependentUpon>201710030427451_Obit_TrackingNumberAndCellphoneFieldsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710111802513_Consolation_PaymentIDFieldAdded.resx">
-      <DependentUpon>201710111802513_Consolation_PaymentIDFieldAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711141732500_Init.resx">
+      <DependentUpon>201711141732500_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

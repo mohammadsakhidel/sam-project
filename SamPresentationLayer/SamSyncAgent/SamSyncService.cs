@@ -250,14 +250,16 @@ namespace SamSyncAgent
                                 if (removedEntity.EntityType == typeof(Banner).Name)
                                 {
                                     var bannerId = Convert.ToInt32(removedEntity.EntityID);
-                                    bannerRepo.Remove(bannerId);
+                                    if (bannerRepo.Exists(bannerId))
+                                        bannerRepo.Remove(bannerId);
                                 }
                                 #endregion
                                 #region remove template:
                                 else if (removedEntity.EntityType == typeof(Template).Name)
                                 {
                                     var templateId = Convert.ToInt32(removedEntity.EntityID);
-                                    templateRepo.Remove(templateId);
+                                    if (templateRepo.Exists(templateId))
+                                        templateRepo.Remove(templateId);
                                 }
                                 #endregion
                             }

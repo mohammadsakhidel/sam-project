@@ -3,7 +3,7 @@ namespace SamClientDataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Regeneration : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace SamClientDataAccess.Migrations
                 "dbo.Banners",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        ID = c.Int(nullable: false),
                         Title = c.String(nullable: false, maxLength: 64),
                         ImageID = c.String(nullable: false, maxLength: 32),
                         LifeBeginTime = c.DateTime(),
@@ -68,6 +68,8 @@ namespace SamClientDataAccess.Migrations
                         MosqueID = c.Int(nullable: false),
                         CreationTime = c.DateTime(nullable: false),
                         LastUpdateTime = c.DateTime(),
+                        OwnerCellPhone = c.String(nullable: false, maxLength: 16),
+                        TrackingNumber = c.String(nullable: false, maxLength: 16),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Mosques", t => t.MosqueID, cascadeDelete: true)
@@ -86,6 +88,7 @@ namespace SamClientDataAccess.Migrations
                         From = c.String(maxLength: 64),
                         Status = c.String(nullable: false, maxLength: 16),
                         PaymentStatus = c.String(nullable: false, maxLength: 16),
+                        PaymentID = c.String(maxLength: 32),
                         CreationTime = c.DateTime(nullable: false),
                         LastUpdateTime = c.DateTime(),
                         TrackingNumber = c.String(nullable: false, maxLength: 16),
@@ -232,6 +235,17 @@ namespace SamClientDataAccess.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.ConsolationImages",
+                c => new
+                    {
+                        ConsolationID = c.Int(nullable: false),
+                        Bytes = c.Binary(nullable: false),
+                        CreationTime = c.DateTime(nullable: false),
+                        LastUpdateTime = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ConsolationID);
+            
+            CreateTable(
                 "dbo.Displays",
                 c => new
                     {
@@ -253,6 +267,7 @@ namespace SamClientDataAccess.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         ImageToDownload = c.String(nullable: false, maxLength: 32),
                         Status = c.String(nullable: false, maxLength: 16),
+                        Type = c.String(nullable: false, maxLength: 16),
                         CreationTime = c.DateTime(nullable: false),
                         DownloadCompletiontime = c.DateTime(),
                     })
@@ -286,6 +301,7 @@ namespace SamClientDataAccess.Migrations
             DropIndex("dbo.Banners", new[] { "MosqueID" });
             DropTable("dbo.DownloadImageTasks");
             DropTable("dbo.Displays");
+            DropTable("dbo.ConsolationImages");
             DropTable("dbo.ClientSettings");
             DropTable("dbo.Blobs");
             DropTable("dbo.Saloons");

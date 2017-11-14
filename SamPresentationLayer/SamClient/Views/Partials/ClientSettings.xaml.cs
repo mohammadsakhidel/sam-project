@@ -33,7 +33,6 @@ namespace SamClient.Views.Partials
         public ClientSettings()
         {
             InitializeComponent();
-            LoadProvinces();
         }
         #endregion
 
@@ -83,14 +82,7 @@ namespace SamClient.Views.Partials
         #region Methods:
         private void LoadProvinces()
         {
-            try
-            {
-                cmbProvinces.ItemsSource = CityUtil.Provinces;
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
-            }
+            cmbProvinces.ItemsSource = CityUtil.Provinces;
         }
         private void UpdateForm()
         {
@@ -137,6 +129,17 @@ namespace SamClient.Views.Partials
         #endregion
 
         #region Event Handlers:
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                LoadProvinces();
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
         private void cmbProvinces_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try

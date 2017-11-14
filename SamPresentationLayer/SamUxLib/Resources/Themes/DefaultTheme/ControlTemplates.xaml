@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <ControlTemplate x:Key="sidebar_section_title_template" TargetType="{x:Type Button}">
         <Border Background="{TemplateBinding Background}" Cursor="{TemplateBinding Cursor}"

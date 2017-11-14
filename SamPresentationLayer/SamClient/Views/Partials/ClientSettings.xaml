@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamClient.Views.Partials"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
-             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit">
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             Loaded="UserControl_Loaded">
 
     <TabControl Margin="{StaticResource padding_container_ver}">
         <TabItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.MosqueInfo}">
@@ -30,7 +31,7 @@
 
                 <!--ROW 0-->
                 <Label Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}"></Label>
-                <ComboBox Grid.Column="1" x:Name="cmbProvinces" SelectionChanged="cmbProvinces_SelectionChanged" SelectedValuePath="ID"  />
+                <ComboBox Grid.Column="1" x:Name="cmbProvinces" SelectionChanged="cmbProvinces_SelectionChanged" SelectedValuePath="ID" />
 
                 <!--ROW 2-->
                 <Label Style="{StaticResource form_label}" Grid.Row="2" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}"></Label>

@@ -36,7 +36,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="RamancoCC">
       <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoCC\bin\Debug\RamancoCC.dll</HintPath>
     </Reference>

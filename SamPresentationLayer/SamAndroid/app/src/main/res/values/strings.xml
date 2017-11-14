@@ -81,4 +81,5 @@
     <string name="finish">پایان</string>
     <string name="msg_update_not_title">بروزرسانی اپلیکیشن سام</string>
     <string name="msg_update_not_content">نسخه جدید اپلیکیشن سام اکنون در دسترس است، برای بروزرسانی کلیک کنید.</string>
+    <string name="msg_general_error_message">خطایی رخ داده است، لطفاً مجددا تلاش کنید.</string>
 </resources>

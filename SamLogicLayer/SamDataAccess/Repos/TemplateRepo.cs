@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Transactions;
-using SamModels.Entities;
 using RamancoLibrary.Utilities;
 
 namespace SamDataAccess.Repos
