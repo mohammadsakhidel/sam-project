@@ -112,6 +112,7 @@ namespace SamClient.Views.Windows
                 #endregion
 
                 LoadContent(new HomePage(this));
+                ShowPlayer();
             }
             catch (Exception ex)
             {
