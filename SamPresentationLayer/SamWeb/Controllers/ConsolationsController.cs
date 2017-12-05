@@ -66,7 +66,7 @@ namespace SamWeb.Controllers
             try
             {
                 var mosques = await GetCityMosquesFromApi(id);
-                return Json(mosques, JsonRequestBehavior.AllowGet);
+                return Json(mosques.OrderBy(m => m.Name), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

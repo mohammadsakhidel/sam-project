@@ -827,4 +827,13 @@
   <data name="PreviousStep" xml:space="preserve">
     <value>مرحله قبلی</value>
   </data>
+  <data name="OfficeAddress" xml:space="preserve">
+    <value>آدرس دفتر مرکزی شرکت</value>
+  </data>
+  <data name="OfficeAddressText" xml:space="preserve">
+    <value>ارومیه، خیابان مولوی، روبروی بانک ملت، ساختمان کوروش، واحد 8</value>
+  </data>
+  <data name="OfficeTel" xml:space="preserve">
+    <value>شماره تماس شرکت</value>
+  </data>
 </root>

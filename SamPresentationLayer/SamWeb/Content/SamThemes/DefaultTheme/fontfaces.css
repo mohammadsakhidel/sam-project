@@ -1,0 +1,52 @@
+﻿/* ::: SAMIM font-face FACES ::: */
+@font-face {
+    font-family: '_samim';
+    src: url('Fonts/samim/Samim-FD.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/samim/Samim-FD.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/samim/Samim-FD.woff2') format('woff2'), /* Super Modern Browsers */
+    url('Fonts/samim/Samim-FD.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Fonts/samim/Samim-FD.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: '_samim';
+    src: url('Fonts/samim/Samim-Bold-FD.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/samim/Samim-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/samim/Samim-Bold-FD.woff2') format('woff2'), /* Super Modern Browsers */
+    url('Fonts/samim/Samim-Bold-FD.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Fonts/samim/Samim-Bold-FD.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: bold;
+}
+
+/* ::: SHABNAM font-face FACES ::: */
+
+@font-face {
+    font-family: '_vazir';
+    src: url('Fonts/shabnam/Shabnam-FD.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/shabnam/Shabnam-FD.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/shabnam/Shabnam-FD.woff2') format('woff2'), /* Super Modern Browsers */
+    url('Fonts/shabnam/Shabnam-FD.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Fonts/shabnam/Shabnam-FD.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: '_vazir';
+    src: url('Fonts/shabnam/Shabnam-Bold-FD.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/shabnam/Shabnam-Bold-FD.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/shabnam/Shabnam-Bold-FD.woff2') format('woff2'), /* Super Modern Browsers */
+    url('Fonts/shabnam/Shabnam-Bold-FD.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Fonts/shabnam/Shabnam-Bold-FD.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: '_vazir';
+    src: url('Fonts/shabnam/Shabnam-Light-FD.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/shabnam/Shabnam-Light-FD.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/shabnam/Shabnam-Light-FD.woff2') format('woff2'), /* Super Modern Browsers */
+    url('Fonts/shabnam/Shabnam-Light-FD.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Fonts/shabnam/Shabnam-Light-FD.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: lighter;
+}

@@ -20,22 +20,7 @@
     <SolidColorBrush x:Key="color_required_field" Color="#ff0000" />
 */
 
-@font-face {
-    font-family: '_samim';
-    src: url('Fonts/Samim.eot'); /* IE9 Compat Modes */
-    src: url('Fonts/Samim.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('Fonts/Samim.woff') format('woff'), /* Pretty Modern Browsers */
-    url('Fonts/Samim.ttf') format('truetype'); /* Safari, Android, iOS */
-}
-
-@font-face {
-    font-family: '_vazir';
-    src: url('Fonts/Vazir.eot'); /* IE9 Compat Modes */
-    src: url('Fonts/Vazir.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('Fonts/Vazir.woff2') format('woff2'), /* Super Modern Browsers */
-    url('Fonts/Vazir.woff') format('woff'), /* Pretty Modern Browsers */
-    url('Fonts/Vazir.ttf') format('truetype'); /* Safari, Android, iOS */
-}
+@import url('fontfaces.css');
 
 body {
     direction: rtl;
@@ -69,7 +54,6 @@ nav.navbar {
     }
 
     nav.navbar .title {
-        font-family: _vazir;
         float: right;
         color: #282829;
         margin: 15px 10px 0 0;
@@ -80,6 +64,7 @@ nav.navbar {
             padding: 0;
             font-size: 18pt;
             font-weight: bold;
+            font-family: _vazir;
         }
 
         nav.navbar .title > h2 {
@@ -87,6 +72,7 @@ nav.navbar {
             font-weight: bold;
             color: #cccccc;
             margin-top: 10px;
+            font-family: _vazir;
         }
 
     nav.navbar .desktop-menu {
