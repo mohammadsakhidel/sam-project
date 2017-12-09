@@ -8,7 +8,7 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
              xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
-             Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
+             Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:ConsolationsVM />
     </UserControl.DataContext>
@@ -59,7 +59,7 @@
                 </StackPanel>
             </Border>
 
-            <ListBox ItemsSource="{Binding Consolations}" Grid.Row="2">
+            <ListBox x:Name="lbItems" ItemsSource="{Binding Consolations}" Grid.Row="2">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Template" Value="{StaticResource listboxitem_mute_template}"></Setter>
@@ -70,7 +70,16 @@
                         <Border Style="{StaticResource item}" Margin="{StaticResource padding_widget_top}">
                             <Grid>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Converter={StaticResource consolationDescConverter}}" Style="{StaticResource item_desc}" />
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <ram:ImageButton Style="{StaticResource grid_button_image}" Click="ViewConsolationImage_Click" Tag="{Binding}"
+                                                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Image}"></ram:ImageButton>
+                                        <TextBlock Grid.Column="1" Text="{Binding Converter={StaticResource consolationDescConverter}}" Style="{StaticResource item_desc}" />
+                                    </Grid>
+                                    
                                     <StackPanel Orientation="Horizontal">
                                         <Image VerticalAlignment="Top" ToolTip="{Binding Path=Status, Converter={StaticResource consolationStatusDisplayNameConverter}}">
                                             <Image.Style>

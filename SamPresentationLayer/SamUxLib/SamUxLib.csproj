@@ -274,6 +274,7 @@
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_pending.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_canceled.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_displayed.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_image.png" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.ico" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />

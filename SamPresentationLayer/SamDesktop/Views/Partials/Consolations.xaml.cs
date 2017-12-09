@@ -1,4 +1,6 @@
-﻿using SamDesktop.Code.ViewModels;
+﻿using RamancoCC;
+using RamancoLibrary.Utilities;
+using SamDesktop.Code.ViewModels;
 using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using SamUtils.Constants;
@@ -9,7 +11,10 @@ using SamUxLib.Resources;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -92,48 +97,29 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-
         private void cmbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                try
+                if (cmbProvince.SelectedItem != null)
                 {
-                    if (cmbProvince.SelectedItem != null)
+                    if (cmbProvince.SelectedIndex > 0)
                     {
-                        if (cmbProvince.SelectedIndex > 0)
-                        {
-                            var prov = (ProvinceDto)cmbProvince.SelectedItem;
-                            var cities = CityUtil.GetProvinceCities(prov.ID);
-                            cities.Insert(0, new CityDto { ID = 0, Name = ResourceManager.GetValue("All") });
-                            var vm = DataContext as ConsolationsVM;
-                            vm.Cities = new ObservableCollection<CityDto>(cities);
-                        }
-                        else
-                        {
-                            var cities = new List<CityDto>();
-                            cities.Insert(0, new CityDto { ID = 0, Name = ResourceManager.GetValue("All") });
-                            var vm = DataContext as ConsolationsVM;
-                            vm.Cities = new ObservableCollection<CityDto>(cities);
-                        }
-                        cmbCity.SelectedIndex = 0;
+                        var prov = (ProvinceDto)cmbProvince.SelectedItem;
+                        var cities = CityUtil.GetProvinceCities(prov.ID);
+                        cities.Insert(0, new CityDto { ID = 0, Name = ResourceManager.GetValue("All") });
+                        var vm = DataContext as ConsolationsVM;
+                        vm.Cities = new ObservableCollection<CityDto>(cities);
                     }
+                    else
+                    {
+                        var cities = new List<CityDto>();
+                        cities.Insert(0, new CityDto { ID = 0, Name = ResourceManager.GetValue("All") });
+                        var vm = DataContext as ConsolationsVM;
+                        vm.Cities = new ObservableCollection<CityDto>(cities);
+                    }
+                    cmbCity.SelectedIndex = 0;
                 }
-                catch (Exception ex)
-                {
-                    ExceptionManager.Handle(ex);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
-            }
-        }
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-
             }
             catch (Exception ex)
             {
@@ -169,6 +155,33 @@ namespace SamDesktop.Views.Partials
             }
             catch (Exception ex)
             {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private async void ViewConsolationImage_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as ImageButton;
+                var consolation = button.Tag as ConsolationDto;
+                if (consolation != null)
+                {
+                    var baseUrl = new Uri(ConfigurationManager.AppSettings["api_host"]);
+                    var imageUrl = new Uri(baseUrl, $"/consolations/getpreview/{consolation.ID}?thumb=false");
+                    progress.IsBusy = true;
+                    using (var client = new HttpClient())
+                    {
+                        var bytes = await client.GetByteArrayAsync(imageUrl);
+                        var bitmap = IOUtils.ByteArrayToBitmap(bytes);
+                        var window = new ImageViewer(bitmap);
+                        progress.IsBusy = false;
+                        window.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }

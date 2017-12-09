@@ -836,4 +836,7 @@
   <data name="OfficeTel" xml:space="preserve">
     <value>شماره تماس شرکت</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
 </root>

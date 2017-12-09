@@ -475,9 +475,10 @@ namespace SamAPI.Controllers
                     */
                     #endregion
                     #region 2 ::: Graphics Library:
-                    var maxWith = 1500;
-                    var resizer = new ImageResizer(backgroundImage.Width, backgroundImage.Height, ResizeType.LongerFix, maxWith);
-                    var resizedBG = ImageUtils.GetThumbnailImage(backgroundImage, resizer.NewWidth, resizer.NewHeight);
+                    //var maxWith = 800;
+                    //var resizer = new ImageResizer(backgroundImage.Width, backgroundImage.Height, ResizeType.LongerFix, maxWith);
+                    //var resizedBG = ImageUtils.GetThumbnailImage(backgroundImage, resizer.NewWidth, resizer.NewHeight);
+                    var resizedBG = backgroundImage;
                     #region draw fields:
                     using (var g = Graphics.FromImage(resizedBG))
                     {
@@ -551,11 +552,11 @@ namespace SamAPI.Controllers
         private float StringToFontSize(string text)
         {
             var dic = new Dictionary<string, float>();
-            dic.Add("tiny", 25f);
-            dic.Add("small", 35f);
-            dic.Add("normal", 55f);
-            dic.Add("large", 70f);
-            dic.Add("huge", 80f);
+            dic.Add("tiny", 13f);
+            dic.Add("small", 20f);
+            dic.Add("normal", 30f);
+            dic.Add("large", 37f);
+            dic.Add("huge", 43f);
             return dic.ContainsKey(text) ? dic[text] : dic["normal"];
         }
         #endregion

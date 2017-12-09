@@ -367,6 +367,7 @@
     <Style x:Key="item_desc" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource font_small}"></Setter>
         <Setter Property="Foreground" Value="{StaticResource color_neutral_darkest}"></Setter>
+        <Setter Property="Margin" Value="{StaticResource padding_container_start}"></Setter>
     </Style>
 
     <Style x:Key="grid_button" TargetType="{x:Type ram:ImageButton}">
@@ -381,6 +382,10 @@
 
     <Style x:Key="grid_button_edit" TargetType="{x:Type ram:ImageButton}" BasedOn="{StaticResource grid_button}">
         <Setter Property="ImageSource" Value="Images/ic_edit_dark.png"></Setter>
+    </Style>
+
+    <Style x:Key="grid_button_image" TargetType="{x:Type ram:ImageButton}" BasedOn="{StaticResource grid_button}">
+        <Setter Property="ImageSource" Value="Images/ic_image.png"></Setter>
     </Style>
 
 </ResourceDictionary>
