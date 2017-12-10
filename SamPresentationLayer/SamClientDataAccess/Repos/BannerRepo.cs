@@ -40,9 +40,9 @@ namespace SamClientDataAccess.Repos
             var banners = from b in context.Banners
                           join i in context.Blobs on b.ImageID equals i.ID
                           where b.IsActive &&
-                                (((!b.LifeBeginTime.HasValue || b.LifeBeginTime.Value <= now) && (!b.LifeEndTime.HasValue || b.LifeEndTime.Value > now)) ||
-                                (b is MosqueBanner && (b as MosqueBanner).MosqueID == mosqueId) ||
-                                (b is ObitBanner && currentObitIds.Contains((b as ObitBanner).ObitID.Value)))
+                                ((!b.LifeBeginTime.HasValue || b.LifeBeginTime.Value <= now) && (!b.LifeEndTime.HasValue || b.LifeEndTime.Value > now)) &&
+                                (!(b is MosqueBanner) || (b as MosqueBanner).MosqueID == mosqueId) &&
+                                (!(b is ObitBanner) || currentObitIds.Contains((b as ObitBanner).ObitID.Value))
                           orderby b.Priority ascending, b.CreationTime ascending
                           select new { Banner = b, Blob = i };
             return banners.ToList().Select(o => new Tuple<Banner, Blob>(o.Banner, o.Blob)).ToList();

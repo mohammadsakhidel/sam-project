@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace SamClientDataAccess.Repos
 {
@@ -27,7 +28,8 @@ namespace SamClientDataAccess.Repos
         public override Template Get(params object[] id)
         {
             var _id = Convert.ToInt32(id[0]);
-            return set.Include(t => t.TemplateFields).SingleOrDefault(t => t.ID == _id);
+            return set.Include(t => t.TemplateFields)
+                .SingleOrDefault(t => t.ID == _id);
         }
         public override void Remove(Template entity)
         {
@@ -56,24 +58,13 @@ namespace SamClientDataAccess.Repos
         }
         public void Update(Template newTemplate)
         {
-            var oldTemplate = Get(newTemplate.ID);
-
-            #region Update Category:
-            if (oldTemplate.TemplateCategoryID != newTemplate.TemplateCategoryID)
-            {
-                // insert category if not exists:
-                var catExists = context.TemplateCategories.Where(c => c.ID == newTemplate.TemplateCategoryID).Any();
-                if (!catExists)
-                    context.TemplateCategories.Add(newTemplate.Category);
-
-                oldTemplate.TemplateCategoryID = newTemplate.TemplateCategoryID;
-            }
-            #endregion
+            var oldTemplate = context.Templates.SingleOrDefault(t => t.ID == newTemplate.ID);
 
             #region Update Props:
             oldTemplate.Text = newTemplate.Text;
             oldTemplate.Price = newTemplate.Price;
             oldTemplate.BackgroundImageID = newTemplate.BackgroundImageID;
+            oldTemplate.TemplateCategoryID = newTemplate.TemplateCategoryID;
             oldTemplate.WidthRatio = newTemplate.WidthRatio;
             oldTemplate.HeightRatio = newTemplate.HeightRatio;
             oldTemplate.Name = newTemplate.Name;

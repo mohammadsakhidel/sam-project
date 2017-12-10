@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201711141732500_Init.Designer.cs">
       <DependentUpon>201711141732500_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712101005438_Template_CategoryFieldExcluded.cs" />
+    <Compile Include="Migrations\201712101005438_Template_CategoryFieldExcluded.Designer.cs">
+      <DependentUpon>201712101005438_Template_CategoryFieldExcluded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
@@ -91,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711141732500_Init.resx">
       <DependentUpon>201711141732500_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712101005438_Template_CategoryFieldExcluded.resx">
+      <DependentUpon>201712101005438_Template_CategoryFieldExcluded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
