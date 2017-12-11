@@ -43,6 +43,18 @@ namespace SamDataAccess.Repos
             return obits.Include(o => o.ObitHoldings).ToList();
         }
 
+        public List<Obit> GetHenceForwardObits(int mosqueId)
+        {
+            var now = DateTimeUtils.Now;
+            var obits = from o in set
+                        where o.MosqueID == mosqueId &&
+                              (from h in o.ObitHoldings
+                               where h.EndTime > now
+                               select h).Any()
+                        select o;
+            return obits.Include(o => o.ObitHoldings).ToList();
+        }
+
         public List<ObitHolding> GetHoldings(int mosqueId, DateTime date)
         {
             var holdings = from h in context.ObitHoldings

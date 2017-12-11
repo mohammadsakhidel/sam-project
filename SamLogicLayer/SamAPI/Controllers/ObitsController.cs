@@ -61,6 +61,21 @@ namespace SamAPI.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetHenceForwardObits(int mosqueId)
+        {
+            try
+            {
+                var obits = _obitRepo.GetHenceForwardObits(mosqueId);
+                var dtos = obits.Select(o => Mapper.Map<Obit, ObitDto>(o));
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
         public IHttpActionResult Search(string query)
         {
             try

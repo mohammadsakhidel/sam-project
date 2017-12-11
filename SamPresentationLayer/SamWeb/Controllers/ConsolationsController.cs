@@ -445,7 +445,7 @@ namespace SamWeb.Controllers
         {
             using (var hc = HttpUtil.CreateClient())
             {
-                var response = await hc.GetAsync($"{ApiActions.obits_getallobits}?mosqueId={mosqueId}");
+                var response = await hc.GetAsync($"{ApiActions.obits_gethenceforwardobits}?mosqueId={mosqueId}");
                 HttpUtil.EnsureSuccessStatusCode(response);
                 var obits = await response.Content.ReadAsAsync<List<ObitDto>>();
                 return obits;

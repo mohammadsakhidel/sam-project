@@ -14,6 +14,8 @@ namespace SamDataAccess.Repos.Interfaces
 
         List<Obit> GetAllFromDate(int mosqueId, DateTime date);
 
+        List<Obit> GetHenceForwardObits(int mosqueId);
+
         List<Obit> Search(string query, DateTime date);
 
         List<ObitHolding> GetHoldings(int mosqueId, DateTime date);
