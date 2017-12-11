@@ -27,11 +27,6 @@
         <activity
             android:name=".activities.CustomerInfoActivity"
             android:parentActivityName=".activities.MainActivity" />
-
-        <service
-            android:name=".services.AppUpdateService"
-            android:enabled="true"
-            android:exported="false"></service>
     </application>
 
 </manifest>
