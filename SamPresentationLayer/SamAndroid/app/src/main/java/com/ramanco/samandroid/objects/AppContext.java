@@ -14,7 +14,7 @@ public class AppContext extends Application {
         try {
 
             FontUtility.overrideFont(getApplicationContext(), "DEFAULT", "Samim.ttf");
-            FontUtility.overrideFont(getApplicationContext(), "SERIF", "Shabnam.ttf");
+            FontUtility.overrideFont(getApplicationContext(), "SERIF", "Samim.ttf");
 
         } catch (Exception e) {
             ExceptionManager.handle(this, e);

@@ -9,6 +9,8 @@
         <item name="android:textSize">@dimen/font_size_normal</item>
         <item name="drawerArrowStyle">@style/AppTheme.DrawerToggle</item>
         <item name="android:layoutDirection">rtl</item>
+        <item name="android:actionMenuTextColor">#fff</item>
+        <item name="android:typeface">serif</item>
     </style>
 
     <style name="AppTheme.MainPageLogo">
