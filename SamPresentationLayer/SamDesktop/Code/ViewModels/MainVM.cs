@@ -1,11 +1,12 @@
-﻿using System.Windows;
+﻿using SamDesktop.Views.Partials;
+using System.Windows;
 
 namespace SamDesktop.Code.ViewModels
 {
     public class MainVM : ViewModelBase
     {
         #region Props:
-        private FrameworkElement selectedSectionContent;
+        private FrameworkElement selectedSectionContent = new DefaultPage();
         public FrameworkElement SelectedSectionContent
         {
             get

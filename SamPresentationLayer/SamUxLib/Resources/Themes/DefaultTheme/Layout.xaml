@@ -12,6 +12,15 @@
         <Setter Property="FontWeight" Value="Normal"></Setter>
     </Style>
 
+    <Style x:Key="default_page_image" TargetType="Image">
+        <Setter Property="Width" Value="400"></Setter>
+        <Setter Property="Height" Value="200"></Setter>
+        <Setter Property="Source" Value="Images/default_image.png"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FlowDirection" Value="LeftToRight"></Setter>
+    </Style>
+
     <Style x:Key="client_main_window" TargetType="Window">
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="AllowsTransparency" Value="True"></Setter>

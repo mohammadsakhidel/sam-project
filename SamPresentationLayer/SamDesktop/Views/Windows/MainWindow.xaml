@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SamDesktop.Views.Windows"
         xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
         xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib"
+        xmlns:uc="clr-namespace:SamDesktop.Views.Partials"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Style="{StaticResource main_window}"
         Title="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppName}"
@@ -101,8 +102,7 @@
 
                     <!--Content-->
                     <Border Grid.Column="1" Style="{StaticResource content_container}">
-                        <ContentControl Content="{Binding SelectedSectionContent}">
-                        </ContentControl>
+                        <ContentControl Content="{Binding SelectedSectionContent}"></ContentControl>
                     </Border>
 
                 </Grid>

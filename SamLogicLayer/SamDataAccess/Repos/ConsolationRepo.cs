@@ -115,11 +115,15 @@ namespace SamDataAccess.Repos
 
         public List<Consolation> Filter(int cityId, string status, int count)
         {
+            var now = DateTimeUtils.Now;
             var verified = PaymentStatus.verified.ToString();
-            var query = from c in context.Consolations.Include(c => c.Obit.Mosque)
+            var query = from c in context.Consolations
+                            .Include(c => c.Obit.Mosque)
+                            .Include(c => c.Obit.ObitHoldings)
                         where (string.IsNullOrEmpty(status) || c.Status == status)
                               && (cityId <= 0 || cityId == c.Obit.Mosque.CityID)
                               && c.PaymentStatus == verified
+                              && c.Obit.ObitHoldings.Where(h => h.EndTime > now).Any()
                         orderby c.CreationTime descending
                         select c;
             return query.Take(count).ToList();

@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ic_launcher_nRk_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -149,6 +152,9 @@
     </Compile>
     <Compile Include="Views\Partials\Consolations.xaml.cs">
       <DependentUpon>Consolations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Partials\DefaultPage.xaml.cs">
+      <DependentUpon>DefaultPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Partials\RoleEditor.xaml.cs">
       <DependentUpon>RoleEditor.xaml</DependentUpon>
@@ -290,6 +296,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Partials\DefaultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Partials\RoleEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -420,6 +430,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ic_launcher_nRk_icon.ico" />
     <Content Include="Libs\WPFToolkit.dll" />
   </ItemGroup>
   <ItemGroup>

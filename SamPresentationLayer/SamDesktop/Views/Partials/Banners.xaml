@@ -34,6 +34,41 @@
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Title}" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Type, Converter={StaticResource rc}, ConverterParameter=Enums.BannerType_}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BannerType}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding DurationSeconds}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DisplayDurationInSeconds}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Interval}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.IntervalInSlides}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridCheckBoxColumn Binding="{Binding IsActive}">
+                        <DataGridCheckBoxColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Visible}" />
+                        </DataGridCheckBoxColumn.Header>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Binding="{Binding CreationTime}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreationTime}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding LastUpdateTime}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.LastUpdateTime}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Creator}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CreatorUser}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
