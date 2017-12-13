@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201712101005438_Template_CategoryFieldExcluded.Designer.cs">
       <DependentUpon>201712101005438_Template_CategoryFieldExcluded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712130604031_TemplateRemovedFromClientDatabase.cs" />
+    <Compile Include="Migrations\201712130604031_TemplateRemovedFromClientDatabase.Designer.cs">
+      <DependentUpon>201712130604031_TemplateRemovedFromClientDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
@@ -85,8 +89,6 @@
     <Compile Include="Repos\MosqueRepo.cs" />
     <Compile Include="Repos\ObitRepo.cs" />
     <Compile Include="Repos\ProvinceRepo.cs" />
-    <Compile Include="Repos\TemplateCategoryRepo.cs" />
-    <Compile Include="Repos\TemplateRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -98,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712101005438_Template_CategoryFieldExcluded.resx">
       <DependentUpon>201712101005438_Template_CategoryFieldExcluded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712130604031_TemplateRemovedFromClientDatabase.resx">
+      <DependentUpon>201712130604031_TemplateRemovedFromClientDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

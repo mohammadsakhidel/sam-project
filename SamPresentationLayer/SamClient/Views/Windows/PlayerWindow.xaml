@@ -12,7 +12,7 @@
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CloseWindow}"
-                      Click="ExitMenuItem_Click"/>
+                      Click="ExitMenuItem_Click" />
         </ContextMenu>
     </Window.ContextMenu>
 

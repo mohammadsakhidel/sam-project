@@ -29,9 +29,6 @@ namespace SamClientDataAccess.Contexts
         public DbSet<Display> Displays { get; set; }
         public DbSet<Obit> Obits { get; set; }
         public DbSet<ObitHolding> ObitHoldings { get; set; }
-        public DbSet<Template> Templates { get; set; }
-        //public DbSet<TemplateCategory> TemplateCategories { get; set; }
-        public DbSet<TemplateField> TemplateFields { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Blob> Blobs { get; set; }
         public DbSet<Banner> Banners { get; set; }
@@ -45,13 +42,10 @@ namespace SamClientDataAccess.Contexts
             modelBuilder.Entity<Mosque>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Saloon>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Consolation>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Consolation>().Ignore(c => c.Template);
             modelBuilder.Entity<Banner>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Obit>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<ObitHolding>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Template>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Template>().Ignore(t => t.Category);
-            //modelBuilder.Entity<TemplateCategory>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<TemplateField>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Customer>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Blob>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<ConsolationImage>().Property(e => e.ConsolationID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);

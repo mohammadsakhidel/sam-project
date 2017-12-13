@@ -106,6 +106,16 @@ namespace SamSyncAgent
                     });
                     #endregion
 
+                    #region Remove Obsolete Items Task:
+                    Task.Run(() =>
+                    {
+                        while (true)
+                        {
+                            RemoveObsoleteItemsCallback();
+                        }
+                    });
+                    #endregion
+
                     Log("Sam sync timers started.");
                 }
                 else
@@ -159,7 +169,6 @@ namespace SamSyncAgent
                     using (var mosqueRepo = new MosqueRepo(settingRepo.Context))
                     using (var obitRepo = new ObitRepo(settingRepo.Context))
                     using (var taskRepo = new DownloadImageTaskRepo(settingRepo.Context))
-                    using (var templateRepo = new TemplateRepo(settingRepo.Context))
                     using (var consolationRepo = new ConsolationRepo(settingRepo.Context))
                     using (var bannerRepo = new BannerRepo(settingRepo.Context))
                     {
@@ -199,16 +208,6 @@ namespace SamSyncAgent
                                     Type = DownloadTaskType.blob.ToString()
                                 };
                                 taskRepo.Add(downloadTask);
-                            }
-                        }
-                        #endregion
-                        #region update templates:
-                        if (dto.Templates != null && dto.Templates.Any())
-                        {
-                            foreach (var templateDto in dto.Templates)
-                            {
-                                var template = Mapper.Map<TemplateDto, Template>(templateDto);
-                                templateRepo.AddOrUpdate(template);
                             }
                         }
                         #endregion
@@ -254,14 +253,6 @@ namespace SamSyncAgent
                                         bannerRepo.Remove(bannerId);
                                 }
                                 #endregion
-                                #region remove template:
-                                else if (removedEntity.EntityType == typeof(Template).Name)
-                                {
-                                    var templateId = Convert.ToInt32(removedEntity.EntityID);
-                                    if (templateRepo.Exists(templateId))
-                                        templateRepo.Remove(templateId);
-                                }
-                                #endregion
                             }
                         }
                         #endregion
@@ -272,7 +263,6 @@ namespace SamSyncAgent
 
                         #region Commit:
                         settingRepo.Save(); // all repos share a same context
-
                         scope.Complete();
                         #endregion
 
@@ -281,9 +271,9 @@ namespace SamSyncAgent
                             || !CollUtils.IsNullOrEmpty(dto.Banners) || !CollUtils.IsNullOrEmpty(dto.RemovedEntities);
                         if (hadUpdates)
                             Log($"Update Done.{Environment.NewLine}{(dto.Mosque != null ? "1" : "0")} Mosque, {CollUtils.Count(dto.Obits)} Obits, " +
-                                $"{CollUtils.Count(dto.ImageBlobs)} ImageBlob Download Tasks, {CollUtils.Count(dto.Templates)} Templates, {CollUtils.Count(dto.Consolations)} Consolations, " +
+                                $"{CollUtils.Count(dto.ImageBlobs)} ImageBlob Download Tasks, {CollUtils.Count(dto.Consolations)} Consolations, " +
                                 $"{CollUtils.Count(dto.Banners)} Banners & {dto.RemovedEntities?.Count()} Removed Entities Updated." +
-                                $"{Environment.NewLine}Lat Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
+                                $"{Environment.NewLine}Last Update Time became {dto.QueryTime.ToString("HH:mm:ss yyyy-MM-dd")}.");
                     }
                     #endregion
                 }
@@ -410,6 +400,50 @@ namespace SamSyncAgent
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex, logger, "IMAGE DOWNLOAD ERROR");
+            }
+            finally
+            {
+                Thread.Sleep(2500);
+            }
+        }
+        private void RemoveObsoleteItemsCallback()
+        {
+            try
+            {
+                using (var crepo = new ConsolationRepo())
+                using (var brepo = new BannerRepo())
+                {
+                    var obsoleteConsolations = crepo.GetObsoleteItems();
+                    var obsoleteBanners = brepo.GetObsoleteItems();
+
+                    #region remove banners:
+                    if (obsoleteBanners.Any())
+                    {
+                        foreach (var banner in obsoleteBanners)
+                        {
+                            brepo.Remove(banner);
+                        }
+                        brepo.Save();
+                    }
+                    #endregion
+                    #region remove consolations:
+                    if (obsoleteConsolations.Any())
+                    {
+                        foreach (var c in obsoleteConsolations)
+                        {
+                            crepo.Remove(c);
+                        }
+                        crepo.Save();
+                    }
+                    #endregion
+
+                    if (obsoleteBanners.Any() || obsoleteConsolations.Any())
+                        Log($"{obsoleteBanners.Count} obsolete banners & {obsoleteConsolations.Count} obsolete consolations removed successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex, logger, "OBSOLETE ITEMS REMOVER ERROR");
             }
             finally
             {

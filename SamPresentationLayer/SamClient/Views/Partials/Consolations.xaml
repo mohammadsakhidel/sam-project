@@ -40,7 +40,7 @@
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolator}" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Template.Name}">
+                    <DataGridTextColumn Binding="{Binding TemplateID}">
                         <DataGridTextColumn.Header>
                             <TextBlock Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Template}" />
                         </DataGridTextColumn.Header>

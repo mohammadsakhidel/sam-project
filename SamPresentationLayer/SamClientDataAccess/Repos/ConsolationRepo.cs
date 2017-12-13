@@ -38,7 +38,6 @@ namespace SamClientDataAccess.Repos
             var items = set.Where(c => c.Obit.MosqueID == setting.MosqueID && DbFunctions.TruncateTime(c.CreationTime) == DbFunctions.TruncateTime(date))
                 .Include(c => c.Obit)
                 .Include(c => c.Customer)
-                .Include(c => c.Template)
                 .OrderByDescending(c => c.CreationTime)
                 .ToList();
             return items;
@@ -105,6 +104,28 @@ namespace SamClientDataAccess.Repos
                 consolation.CreationTime = newConsolation.CreationTime;
                 consolation.LastUpdateTime = newConsolation.LastUpdateTime;
             }
+        }
+        public List<Consolation> GetObsoleteItems()
+        {
+            var now = DateTimeUtils.Now;
+            var q = from c in context.Consolations.Include(context => context.Obit.ObitHoldings)
+                    where !c.Obit.ObitHoldings.Where(h => h.EndTime > now).Any()
+                    select c;
+
+            return q.ToList();
+        }
+        #endregion
+
+        #region Overrides:
+        public override void Remove(Consolation entity)
+        {
+            #region remove image:
+            var image = context.ConsolationImages.SingleOrDefault(ci => ci.ConsolationID == entity.ID);
+            if (image != null)
+                context.ConsolationImages.Remove(image);
+            #endregion
+
+            base.Remove(entity);
         }
         #endregion
     }

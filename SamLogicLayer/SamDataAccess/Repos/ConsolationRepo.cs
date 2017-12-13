@@ -49,14 +49,6 @@ namespace SamDataAccess.Repos
                         select o;
             #endregion
 
-            #region templates updates:
-            var templates = from t in context.Templates.Include(t => t.TemplateFields)
-                            where (clientLastUpdatetime == null
-                                  || (t.CreationTime <= queryTime && t.CreationTime > clientLastUpdatetime.Value)
-                                  || (t.LastUpdateTime != null && (t.LastUpdateTime.Value <= queryTime && t.LastUpdateTime.Value > clientLastUpdatetime.Value)))
-                            select t;
-            #endregion
-
             #region blobs updates:
             var blobs = from b in context.Blobs.OfType<ImageBlob>()
                         where (clientLastUpdatetime == null
@@ -109,8 +101,15 @@ namespace SamDataAccess.Repos
                                   select r;
             #endregion
 
-            return new Tuple<Mosque, Obit[], Template[], string[], Consolation[], Banner[], RemovedEntity[]>(mosque, obits.Distinct().ToArray(),
-                templates.Distinct().ToArray(), blobs.Distinct().ToArray(), consolations.Distinct().ToArray(), banners.ToArray(), removedEntities.ToArray());
+            return new Tuple<Mosque, Obit[], Template[], string[], Consolation[], Banner[], RemovedEntity[]>(
+                mosque,
+                obits.Distinct().ToArray(),
+                null,
+                blobs.Distinct().ToArray(),
+                consolations.Distinct().ToArray(),
+                banners.ToArray(),
+                removedEntities.ToArray()
+                );
         }
 
         public List<Consolation> Filter(int cityId, string status, int count)
@@ -164,7 +163,7 @@ namespace SamDataAccess.Repos
             var compareTime = DateTimeUtils.Now.AddMinutes(-55);
 
             var recs = from c in set
-                       where c.Status == pending && 
+                       where c.Status == pending &&
                              c.PaymentStatus == verified &&
                              c.CreationTime < compareTime &&
                              !string.IsNullOrEmpty(c.PaymentID)

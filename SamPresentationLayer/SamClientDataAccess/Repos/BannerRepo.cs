@@ -103,6 +103,16 @@ namespace SamClientDataAccess.Repos
                 #endregion
             }
         }
+        public List<Banner> GetObsoleteItems()
+        {
+            var now = DateTimeUtils.Now;
+            var q = from b in context.Banners
+                    where (b.LifeEndTime.HasValue && b.LifeEndTime.Value < now) ||
+                          (b is ObitBanner && !(b as ObitBanner).Obit.ObitHoldings.Where(h => h.EndTime > now).Any())
+                    select b;
+
+            return q.ToList();
+        }
         #endregion
 
         #region Overrides:

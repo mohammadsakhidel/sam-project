@@ -47,7 +47,6 @@ namespace SamAPI.Controllers
 
                 var mosqueDto = Mapper.Map<Mosque, MosqueDto>(updates.Item1);
                 var obitDtos = updates.Item2.Select(obit => Mapper.Map<Obit, ObitDto>(obit)).ToArray();
-                var templateDtos = updates.Item3.Select(tmpl => Mapper.Map<Template, TemplateDto>(tmpl)).ToArray();
                 var imageBlobIds = updates.Item4.ToArray();
                 var consolationDtos = updates.Item5.Select(c => Mapper.Map<Consolation, ConsolationDto>(c, opts =>
                 {
@@ -64,7 +63,7 @@ namespace SamAPI.Controllers
                 {
                     Mosque = mosqueDto,
                     Obits = obitDtos,
-                    Templates = templateDtos,
+                    Templates = null, // templates removed from clients
                     ImageBlobs = imageBlobIds,
                     Consolations = consolationDtos,
                     Banners = bannerDtos,
