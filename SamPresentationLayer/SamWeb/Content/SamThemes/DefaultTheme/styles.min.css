@@ -111,8 +111,8 @@
     background-size: cover;
     display: inline-block;
     position: relative;
-    top: 8px;
-    right: 8px;
+    top: 6px;
+    right: 6px;
 }
 
 .thumb-container {
@@ -178,4 +178,12 @@ img.thumb {
     font-size: large;
     font-weight: bold;
     
+}
+
+.inline {
+    display: inline-block;
+}
+
+.margin-start {
+    margin-right: 6px;
 }

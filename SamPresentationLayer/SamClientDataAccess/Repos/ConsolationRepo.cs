@@ -107,7 +107,8 @@ namespace SamClientDataAccess.Repos
         }
         public List<Consolation> GetObsoleteItems()
         {
-            var now = DateTimeUtils.Now;
+            var days = 7;
+            var now = DateTimeUtils.Now.AddDays(-days);
             var q = from c in context.Consolations.Include(context => context.Obit.ObitHoldings)
                     where !c.Obit.ObitHoldings.Where(h => h.EndTime > now).Any()
                     select c;

@@ -230,6 +230,12 @@
   <data name="PleaseFillSomeConditions" xml:space="preserve">
     <value>لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید.</value>
   </data>
+  <data name="RequiredPassword" xml:space="preserve">
+    <value>لطفاً گذرواژه خود را وارد کنید.</value>
+  </data>
+  <data name="RequiredUserName" xml:space="preserve">
+    <value>لطفاً نام کاربری خود را وارد نمایید.</value>
+  </data>
   <data name="Required_CellPhoneNumber" xml:space="preserve">
     <value>لطفاً شماره موبایل خود را وارد کنید.</value>
   </data>

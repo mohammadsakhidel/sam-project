@@ -1664,6 +1664,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مرا بخاطر بسپار.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بازگشت به صفحه اصلی.
         /// </summary>
         public static string ReturnToHomePage {
@@ -1867,6 +1876,15 @@ namespace SamUxLib.Resources.Values {
         public static string ShowOnStart {
             get {
                 return ResourceManager.GetString("ShowOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ورود به سیستم.
+        /// </summary>
+        public static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
             }
         }
         

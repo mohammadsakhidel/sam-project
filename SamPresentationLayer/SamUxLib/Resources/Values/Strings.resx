@@ -839,4 +839,10 @@
   <data name="String1" xml:space="preserve">
     <value>تصویر</value>
   </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>ورود به سیستم</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>مرا بخاطر بسپار</value>
+  </data>
 </root>

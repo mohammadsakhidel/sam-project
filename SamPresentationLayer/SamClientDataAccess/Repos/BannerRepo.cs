@@ -105,7 +105,8 @@ namespace SamClientDataAccess.Repos
         }
         public List<Banner> GetObsoleteItems()
         {
-            var now = DateTimeUtils.Now;
+            var days = 7;
+            var now = DateTimeUtils.Now.AddDays(-days);
             var q = from b in context.Banners
                     where (b.LifeEndTime.HasValue && b.LifeEndTime.Value < now) ||
                           (b is ObitBanner && !(b as ObitBanner).Obit.ObitHoldings.Where(h => h.EndTime > now).Any())

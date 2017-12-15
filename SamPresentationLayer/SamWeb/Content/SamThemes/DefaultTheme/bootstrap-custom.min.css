@@ -42,3 +42,12 @@
 .alert .close {
     float: left;
 }
+
+div.checkbox input {
+    position: relative !important;
+    margin: 0 !important;
+    top: 3px;
+}
+
+div.checkbox > label {
+}
