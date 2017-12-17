@@ -22,7 +22,8 @@
 
             <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Banners}" />
 
-            <DataGrid x:Name="dgBanners" Grid.Row="1" Margin="{StaticResource padding_container_ver}" ItemsSource="{Binding Banners}">
+            <DataGrid x:Name="dgBanners" Grid.Row="1" Margin="{StaticResource padding_container_ver}" 
+                      ItemsSource="{Binding Banners}" MouseDoubleClick="dgBanners_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding ID}">
                         <DataGridTextColumn.Header>

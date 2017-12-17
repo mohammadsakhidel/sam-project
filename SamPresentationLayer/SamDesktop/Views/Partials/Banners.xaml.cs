@@ -1,4 +1,5 @@
-﻿using SamDesktop.Code.ViewModels;
+﻿using RamancoLibrary.Utilities;
+using SamDesktop.Code.ViewModels;
 using SamDesktop.Views.Windows;
 using SamModels.DTOs;
 using SamUtils.Constants;
@@ -110,6 +111,30 @@ namespace SamDesktop.Views.Partials
             }
             catch (Exception ex)
             {
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private async void dgBanners_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                var banner = dgBanners.SelectedItem as BannerHierarchyDto;
+                if (banner != null)
+                {
+                    progress.IsBusy = true;
+                    using (var hc = HttpUtil.CreateClient())
+                    {
+                        var bytes = await hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{banner.ImageID}");
+                        var bitmap = IOUtils.ByteArrayToBitmap(bytes);
+                        var window = new ImageViewer(bitmap);
+                        progress.IsBusy = false;
+                        window.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }
