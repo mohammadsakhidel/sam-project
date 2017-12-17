@@ -190,9 +190,12 @@ namespace SamAPI.Controllers
 
                 if (!Directory.Exists(HostingEnvironment.MapPath("~/Content/Temp/Consolations/")))
                     Directory.CreateDirectory(HostingEnvironment.MapPath("~/Content/Temp/Consolations/"));
+
+                if (!Directory.Exists(HostingEnvironment.MapPath("~/Content/Temp/Consolations/Thumbs/")))
+                    Directory.CreateDirectory(HostingEnvironment.MapPath("~/Content/Temp/Consolations/Thumbs/"));
                 #endregion
                 var tempFolderPath = HostingEnvironment.MapPath("~/Content/Temp/Consolations");
-                var tempFilePath = $"{tempFolderPath}/{consolation.ID}.jpg";
+                var tempFilePath = $"{tempFolderPath}/{(thumb.HasValue && thumb.Value ? "Thumbs/" : "")}{consolation.ID}.jpg";
                 FileInfo fileInfo = File.Exists(tempFilePath) ? new FileInfo(tempFilePath) : null;
                 if (fileInfo != null && (!consolation.LastUpdateTime.HasValue || consolation.LastUpdateTime.Value < fileInfo.LastWriteTime))
                 {
@@ -221,6 +224,7 @@ namespace SamAPI.Controllers
                 #endregion
 
                 File.WriteAllBytes(tempFilePath, previewBytes);
+
                 return JpgResponse(previewBytes);
             }
             catch (Exception ex)
