@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,7 +60,6 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -69,10 +68,9 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -87,10 +85,9 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -112,72 +109,9 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BannerPriority_above_normal" xml:space="preserve">
-    <value>زیاد</value>
-  </data>
-  <data name="BannerPriority_below_normal" xml:space="preserve">
-    <value>کم</value>
-  </data>
-  <data name="BannerPriority_high" xml:space="preserve">
-    <value>بسیار زیاد</value>
-  </data>
-  <data name="BannerPriority_low" xml:space="preserve">
-    <value>بسیار کم</value>
-  </data>
-  <data name="BannerPriority_normal" xml:space="preserve">
-    <value>عادی</value>
-  </data>
-  <data name="BannerType_area" xml:space="preserve">
-    <value>منطقه ای</value>
-  </data>
-  <data name="BannerType_global" xml:space="preserve">
-    <value>سراسری</value>
-  </data>
-  <data name="BannerType_mosque" xml:space="preserve">
-    <value>مختص مسجد</value>
-  </data>
-  <data name="BannerType_obit" xml:space="preserve">
-    <value>مختص مراسم</value>
-  </data>
-  <data name="ConsolationStatus_canceled" xml:space="preserve">
-    <value>لغو شده</value>
-  </data>
-  <data name="ConsolationStatus_confirmed" xml:space="preserve">
-    <value>تأیید شده</value>
-  </data>
-  <data name="ConsolationStatus_displayed" xml:space="preserve">
-    <value>نمایش یافته</value>
-  </data>
-  <data name="ConsolationStatus_pending" xml:space="preserve">
-    <value>منتظر تأیید</value>
-  </data>
-  <data name="ConsolationStatus_synced" xml:space="preserve">
-    <value>ارسال شده جهت نمایش</value>
-  </data>
-  <data name="ObitType_chehelom" xml:space="preserve">
-    <value>مجلس چهلم</value>
-  </data>
-  <data name="ObitType_haftom" xml:space="preserve">
-    <value>روز هفتم</value>
-  </data>
-  <data name="ObitType_salgard" xml:space="preserve">
-    <value>سالگرد</value>
-  </data>
-  <data name="ObitType_sayer" xml:space="preserve">
-    <value>سایر</value>
-  </data>
-  <data name="ObitType_sevom" xml:space="preserve">
-    <value>روز سوم</value>
-  </data>
-  <data name="ObitType_tarhim" xml:space="preserve">
-    <value>مجلس ترحیم</value>
-  </data>
-  <data name="ObitType_yadbood" xml:space="preserve">
-    <value>شام غریبان</value>
-  </data>
 </root>
