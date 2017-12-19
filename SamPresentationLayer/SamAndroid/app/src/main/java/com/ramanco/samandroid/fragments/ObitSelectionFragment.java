@@ -142,7 +142,7 @@ public class ObitSelectionFragment extends Fragment {
             public void run() {
                 try {
                     ObitsApiEndpoint endpoint = ApiUtil.createEndpoint(ObitsApiEndpoint.class);
-                    Response<ObitDto[]> response = endpoint.getAllObits(mosqueId).execute();
+                    Response<ObitDto[]> response = endpoint.getHenceForwardObits(mosqueId).execute();
                     if (!response.isSuccessful())
                         throw new CallServerException(getActivity());
                     allObits = response.body();

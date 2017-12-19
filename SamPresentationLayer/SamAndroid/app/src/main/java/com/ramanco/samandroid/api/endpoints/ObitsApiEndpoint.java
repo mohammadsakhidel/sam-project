@@ -15,4 +15,7 @@ public interface ObitsApiEndpoint {
     @GET(ApiActions.obits_getallobits)
     Call<ObitDto[]> getAllObits(@Query("mosqueId") int mosqueId);
 
+    @GET(ApiActions.obits_gethenceforwardobits)
+    Call<ObitDto[]> getHenceForwardObits(@Query("mosqueId") int mosqueId);
+
 }

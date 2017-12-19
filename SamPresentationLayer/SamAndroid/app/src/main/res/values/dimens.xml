@@ -11,7 +11,7 @@
     <dimen name="font_size_small">12sp</dimen>
     <dimen name="font_size_tiny">10sp</dimen>
     <dimen name="font_size_xtiny">9sp</dimen>
-    <!--Marins-->
+    <!--Marلins-->
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="container_margin">16dp</dimen>
     <dimen name="activity_margin">24dp</dimen>

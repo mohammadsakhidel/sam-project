@@ -10,6 +10,7 @@
       <w>findbytrackingnumber</w>
       <w>getall</w>
       <w>getallobits</w>
+      <w>gethenceforwardobits</w>
       <w>getimage</w>
       <w>getpreview</w>
       <w>haftom</w>
