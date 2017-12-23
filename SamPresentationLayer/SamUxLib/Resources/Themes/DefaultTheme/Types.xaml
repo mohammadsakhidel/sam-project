@@ -173,4 +173,9 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type ScrollViewer}">
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"></Setter>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"></Setter>
+    </Style>
+
 </ResourceDictionary>

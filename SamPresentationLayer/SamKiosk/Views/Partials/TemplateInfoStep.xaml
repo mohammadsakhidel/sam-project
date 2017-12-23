@@ -17,10 +17,12 @@
                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateInfoStepTitle}"></Label>
 
         <!--Content-->
-        <toolkit:BusyIndicator x:Name="progress" Grid.Row="1" IsBusy="False"
-                               Style="{StaticResource kiosk_busy_indicator}">
-            
-        </toolkit:BusyIndicator>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="{StaticResource padding_container_kiosk}">
+                <!--<Label Style="{StaticResource kiosk_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.FullName}"></Label>
+                <TextBox x:Name="tbFullName" Style="{StaticResource kiosk_textbox}" TextChanged="FormTextChanged"></TextBox>-->
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </UserControl>

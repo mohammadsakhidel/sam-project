@@ -638,6 +638,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گام دوم: مشخصات سفارش دهنده.
+        /// </summary>
+        public static string CustomerInfoStepTitle {
+            get {
+                return ResourceManager.GetString("CustomerInfoStepTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to خطایی رخ داده است.
         /// </summary>
         public static string CustomErrorTitle {
@@ -2078,6 +2087,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گام چهارم: محتوای پیام تسلیت.
+        /// </summary>
+        public static string TemplateInfoStepTitle {
+            get {
+                return ResourceManager.GetString("TemplateInfoStepTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام الگو.
         /// </summary>
         public static string TemplateName {
@@ -2096,7 +2114,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to گام دوم: انتخاب طرح پیام.
+        ///   Looks up a localized string similar to گام سوم: انتخاب طرح پیام.
         /// </summary>
         public static string TemplateSelectionStepTitle {
             get {

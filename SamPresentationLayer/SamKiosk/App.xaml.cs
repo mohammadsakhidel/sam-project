@@ -18,6 +18,7 @@ namespace SamKiosk
             try
             {
                 TabTipAutomation.BindTo<TextBox>();
+                TabTipAutomation.IgnoreHardwareKeyboard = HardwareKeyboardIgnoreOptions.IgnoreAll;
             }
             catch (Exception ex)
             {

@@ -852,7 +852,7 @@
     <value>گام اول: انتخاب مراسم</value>
   </data>
   <data name="TemplateSelectionStepTitle" xml:space="preserve">
-    <value>گام دوم: انتخاب طرح پیام</value>
+    <value>گام سوم: انتخاب طرح پیام</value>
   </data>
   <data name="NextStep" xml:space="preserve">
     <value>گام بعدی</value>
@@ -862,5 +862,11 @@
   </data>
   <data name="Previous" xml:space="preserve">
     <value>قبلی</value>
+  </data>
+  <data name="CustomerInfoStepTitle" xml:space="preserve">
+    <value>گام دوم: مشخصات سفارش دهنده</value>
+  </data>
+  <data name="TemplateInfoStepTitle" xml:space="preserve">
+    <value>گام چهارم: محتوای پیام تسلیت</value>
   </data>
 </root>

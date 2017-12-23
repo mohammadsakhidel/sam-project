@@ -135,6 +135,9 @@
     </Compile>
     <Compile Include="Code\Converters\TemplateImageLoaderConverter.cs" />
     <Compile Include="Code\Utils\KioskExceptionManager.cs" />
+    <Compile Include="Views\Partials\CustomerInfoStep.xaml.cs">
+      <DependentUpon>CustomerInfoStep.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Partials\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -188,6 +191,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Partials\CustomerInfoStep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Partials\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -25,6 +25,7 @@ namespace SamKiosk.Views.Partials
         MainWindow _mainWindow;
         ObitDto _selectedObit;
         TemplateDto _selectedTemplate;
+        CustomerDto _selectedCustomer;
         #endregion
 
         #region Ctors:
@@ -101,9 +102,12 @@ namespace SamKiosk.Views.Partials
                     LoadPartial(new ObitSelectionStep(this));
                     break;
                 case 2:
-                    LoadPartial(new TemplateSelectionStep(this));
+                    LoadPartial(new CustomerInfoStep(this));
                     break;
                 case 3:
+                    LoadPartial(new TemplateSelectionStep(this));
+                    break;
+                case 4:
                     LoadPartial(new TemplateInfoStep(this));
                     break;
             }
@@ -124,6 +128,11 @@ namespace SamKiosk.Views.Partials
         {
             get { return _selectedTemplate; }
             set { _selectedTemplate = value; }
+        }
+        public CustomerDto SelectedCustomer
+        {
+            get { return _selectedCustomer; }
+            set { _selectedCustomer = value; }
         }
         #endregion
     }

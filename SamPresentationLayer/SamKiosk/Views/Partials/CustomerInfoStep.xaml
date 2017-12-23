@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="SamKiosk.Views.Partials.CustomerInfoStep"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamKiosk.Views.Partials"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--Page Title-->
+        <Label Style="{StaticResource kiosk_page_header}" 
+               Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CustomerInfoStepTitle}"></Label>
+
+        <!--Content-->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="{StaticResource padding_container_kiosk}">
+                <Label Style="{StaticResource kiosk_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.FullName}"></Label>
+                <TextBox x:Name="tbFullName" Style="{StaticResource kiosk_textbox}" TextChanged="FormTextChanged"></TextBox>
+
+                <Label Style="{StaticResource kiosk_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.CellPhoneNumber}"></Label>
+                <TextBox x:Name="tbCellPhoneNumber" InputScope="Number"
+                         Style="{StaticResource kiosk_textbox}" TextChanged="FormTextChanged"></TextBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

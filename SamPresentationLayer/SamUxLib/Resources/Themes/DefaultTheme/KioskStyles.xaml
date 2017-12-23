@@ -220,4 +220,25 @@
         </Setter>
     </Style>
 
+    <Style x:Key="kiosk_label" TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource font_large}"></Setter>
+        <Setter Property="Margin" Value="{StaticResource padding_widget_ver}"></Setter>
+    </Style>
+    
+    <Style x:Key="kiosk_textbox" TargetType="TextBox">
+        <Setter Property="Template" Value="{StaticResource textbox_template}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_darker}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="FontSize" Value="{StaticResource font_large}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource color_disabled}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
