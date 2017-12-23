@@ -4,6 +4,7 @@ using SamModels.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +27,8 @@ namespace SamKiosk.Views.Partials
         ObitDto _selectedObit;
         TemplateDto _selectedTemplate;
         CustomerDto _selectedCustomer;
+        Dictionary<string, string> _fields;
+        int _createdConsolationId = -1;
         #endregion
 
         #region Ctors:
@@ -49,12 +52,11 @@ namespace SamKiosk.Views.Partials
                 KioskExceptionManager.Handle(ex);
             }
         }
-        private void btnNext_Click(object sender, RoutedEventArgs e)
+        private async void btnNext_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                _step++;
-                ShowStep();
+                await NextAsync();
             }
             catch (Exception ex)
             {
@@ -65,8 +67,7 @@ namespace SamKiosk.Views.Partials
         {
             try
             {
-                _step--;
-                ShowStep();
+                Previous();
             }
             catch (Exception ex)
             {
@@ -84,8 +85,13 @@ namespace SamKiosk.Views.Partials
             btnPrevious.Visibility = (isPrevVisible ? Visibility.Visible : Visibility.Collapsed);
             btnPrevious.IsEnabled = isPrevEnabled;
         }
-        public void Next()
+        public async Task NextAsync()
         {
+            if (OnNextAction != null)
+            {
+                await OnNextAction();
+            }
+
             _step++;
             ShowStep();
         }
@@ -110,6 +116,9 @@ namespace SamKiosk.Views.Partials
                 case 4:
                     LoadPartial(new TemplateInfoStep(this));
                     break;
+                case 5:
+                    LoadPartial(new PayViaPosStep(this));
+                    break;
             }
         }
         void LoadPartial(UserControl uc)
@@ -133,6 +142,21 @@ namespace SamKiosk.Views.Partials
         {
             get { return _selectedCustomer; }
             set { _selectedCustomer = value; }
+        }
+        public Dictionary<string, string> Fields
+        {
+            get { return _fields; }
+            set { _fields = value; }
+        }
+        public int CreatedConsolationID
+        {
+            get { return _createdConsolationId; }
+            set { _createdConsolationId = value; }
+        }
+        public Func<Task> OnNextAction { get; set; }
+        bool IsActionAsync(Action action)
+        {
+            return action.Method.IsDefined(typeof(AsyncStateMachineAttribute), false);
         }
         #endregion
     }

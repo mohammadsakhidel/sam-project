@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SamKiosk.Views.Partials.TemplateInfoStep"
+﻿<UserControl x:Class="SamKiosk.Views.Partials.PayViaPosStep"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:SamKiosk.Views.Partials"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              Loaded="UserControl_Loaded">
-
     <toolkit:BusyIndicator x:Name="progress" Style="{StaticResource kiosk_busy_indicator}" IsBusy="False">
         <Grid>
             <Grid.RowDefinitions>
@@ -16,16 +15,18 @@
 
             <!--Page Title-->
             <Label Style="{StaticResource kiosk_page_header}" 
-               Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateInfoStepTitle}"></Label>
+               Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PayViaPosStepTitle}"></Label>
+            
+            <!--Confirm And Pay Button-->
+            <Button x:Name="btnConfirmAndPay" Style="{StaticResource kiosk_confirm_button}"
+                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ConfirmAndPay}"
+                Click="btnConfirmAndPay_Click">
+            </Button>
 
             <!--Content-->
-            <ScrollViewer Grid.Row="1">
-                <StackPanel x:Name="fieldsContainer" Margin="{StaticResource padding_container_kiosk}">
-                    <!--<Label Style="{StaticResource kiosk_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.FullName}"></Label>
-                <TextBox x:Name="tbFullName" Style="{StaticResource kiosk_textbox}" TextChanged="FormTextChanged"></TextBox>-->
-                </StackPanel>
-            </ScrollViewer>
+            <Border Grid.Row="1" >
+                <Image x:Name="imgPreview" Margin="{StaticResource padding_container_kiosk}" />
+            </Border>
         </Grid>
     </toolkit:BusyIndicator>
-
 </UserControl>

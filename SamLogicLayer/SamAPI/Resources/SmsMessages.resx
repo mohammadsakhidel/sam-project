@@ -124,7 +124,7 @@
   </data>
   <data name="ConsolationCreationSms" xml:space="preserve">
     <value>* سام *
-کاربر گرامی، پیام تسلیت شما در سیستم ثبت گردید، پس از انجام مراحل پرداخت و تأیید نهایی، در مسجد به نمایش در خواهد آمد.
+کاربر گرامی، پیام تسلیت شما در سیستم ثبت گردید، پس از تأیید توسط کارشناس در مسجد به نمایش در خواهد آمد.
 کد رهگیری: {0}</value>
   </data>
   <data name="ConsolationDisplaySms" xml:space="preserve">

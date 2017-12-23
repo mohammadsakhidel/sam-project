@@ -288,6 +288,7 @@
     <Resource Include="Resources\Themes\DefaultTheme\Images\loading_kiosk.gif" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_next_light.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_previous_light.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_ok_light.png" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.ico" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />

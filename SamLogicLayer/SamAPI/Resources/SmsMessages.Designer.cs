@@ -19,7 +19,7 @@ namespace SamAPI.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class SmsMessages {
@@ -73,7 +73,7 @@ namespace SamAPI.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to * سام *
-        ///کاربر گرامی، پیام تسلیت شما در سیستم ثبت گردید، پس از انجام مراحل پرداخت و تأیید نهایی، در مسجد به نمایش در خواهد آمد.
+        ///کاربر گرامی، پیام تسلیت شما در سیستم ثبت گردید، پس از تأیید توسط کارشناس در مسجد به نمایش در خواهد آمد.
         ///کد رهگیری: {0}.
         /// </summary>
         public static string ConsolationCreationSms {

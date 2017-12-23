@@ -2,6 +2,7 @@
 using RamancoLibrary.Utilities;
 using SamAPI.Code.Payment;
 using SamAPI.Code.Utils;
+using SamAPI.Resources;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities;
@@ -130,6 +131,47 @@ namespace SamAPI.Controllers
 
                     ts.Complete();
                 }
+
+                #region Send SMS To Customer:
+                if (consolation?.Customer != null)
+                {
+                    string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
+                    SmsUtil.Send(messageText, consolation.Customer.CellPhoneNumber);
+                }
+                #endregion
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpPut]
+        public IHttpActionResult VerifyPOS(PosPaymentVerificationDto model)
+        {
+            try
+            {
+                #region find consolation:
+                var consolation = _consolationRepo.Get(model.ConsolationID);
+                if (consolation == null)
+                    return NotFound();
+                #endregion
+
+                #region update payment status:
+                consolation.PaymentStatus = PaymentStatus.verified.ToString();
+                consolation.ExtraData = model.PaymentData;
+                _consolationRepo.Save();
+                #endregion
+
+                #region Send SMS To Customer:
+                if (consolation?.Customer != null)
+                {
+                    string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
+                    SmsUtil.Send(messageText, consolation.Customer.CellPhoneNumber);
+                }
+                #endregion
 
                 return Ok();
             }

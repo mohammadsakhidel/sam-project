@@ -41,5 +41,9 @@ namespace SamModels.DTOs
         public ObitDto Obit { get; set; }
         public TemplateDto Template { get; set; }
         #endregion
+
+        #region Additional Fields:
+        public bool PayedByPOS { get; set; } = false;
+        #endregion
     }
 }

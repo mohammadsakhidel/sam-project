@@ -143,7 +143,7 @@
     </Style>
 
     <Style x:Key="kiosk_list_item_title" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="{StaticResource font_large}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_larger}"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
     </Style>
 
@@ -218,6 +218,42 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="kiosk_confirm_button" TargetType="Button">
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="Height" Value="90"></Setter>
+        <Setter Property="Background" Value="{StaticResource color_confirm}"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="0 15 15 0"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="2"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Source="Images/ic_ok_light.png" Width="24" Height="24" />
+                            <Label Content="{TemplateBinding Content}" FontWeight="Bold" 
+                                   FontSize="{StaticResource font_large}" Foreground="{TemplateBinding Foreground}"></Label>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource color_confirm_dark}"></Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource color_neutral_darker}"></Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="kiosk_label" TargetType="Label">

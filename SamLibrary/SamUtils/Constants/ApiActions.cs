@@ -35,6 +35,7 @@ namespace SamUtils.Constants
         public const string obits_gethenceforwardobits = "obits/gethenceforwardobits";
         public const string consolations_create = "consolations/create";
         public const string consolations_update = "consolations/update";
+        public const string consolations_updatev2 = "consolations/updatev2";
         public const string consolations_filter = "consolations/filter";
         public const string consolations_find = "consolations/find";
         public const string consolations_findbyid = "consolations/findbyid";
@@ -60,6 +61,7 @@ namespace SamUtils.Constants
         public const string banners_find = "banners/find";
         public const string payment_find = "payment/find";
         public const string payment_verify = "payment/verify";
+        public const string payment_verifypos = "payment/verifypos";
         public const string payment_reverse = "payment/reverse";
     }
 }

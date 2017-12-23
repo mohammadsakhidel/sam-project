@@ -160,7 +160,7 @@ namespace SamDataAccess.Repos
         {
             var pending = ConsolationStatus.pending.ToString();
             var verified = PaymentStatus.verified.ToString();
-            var compareTime = DateTimeUtils.Now.AddMinutes(-55);
+            var compareTime = DateTimeUtils.Now.AddMinutes(-50);
 
             var recs = from c in set
                        where c.Status == pending &&

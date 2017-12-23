@@ -72,31 +72,40 @@ namespace SamAPI.Controllers
                 #region Create Consolation & Payment:
                 var amountToPay = template.Price;
                 Consolation consolation;
-                Payment payment;
+                Payment payment = null;
                 Customer customer;
                 using (var ts = new TransactionScope())
                 {
                     #region Payment:
-                    var paymentToken = _paymentService.GetToken((int)amountToPay);
-                    payment = new Payment()
+                    if (amountToPay > 0)
                     {
-                        ID = _paymentService.UniqueID,
-                        Amount = (int)amountToPay,
-                        Provider = _paymentService.ProviderName,
-                        Status = PaymentStatus.pending.ToString(),
-                        Token = paymentToken,
-                        Type = PaymentType.consolation.ToString(),
-                        CreationTime = DateTimeUtils.Now,
-                        LastUpdateTime = DateTimeUtils.Now
-                    };
-                    _paymentRepo.Add(payment);
-                    _paymentRepo.Save();
+                        #region epay:
+                        if (!model.PayedByPOS)
+                        {
+                            var paymentToken = _paymentService.GetToken((int)amountToPay);
+                            payment = new Payment()
+                            {
+                                ID = _paymentService.UniqueID,
+                                Amount = (int)amountToPay,
+                                Provider = _paymentService.ProviderName,
+                                Status = PaymentStatus.pending.ToString(),
+                                Token = paymentToken,
+                                Type = PaymentType.consolation.ToString(),
+                                CreationTime = DateTimeUtils.Now,
+                                LastUpdateTime = DateTimeUtils.Now
+                            };
+                            _paymentRepo.Add(payment);
+                            _paymentRepo.Save();
+                        }
+                        #endregion
+                    }
                     #endregion
+
                     #region Consolation:
                     consolation = Mapper.Map<ConsolationDto, Consolation>(model);
                     consolation.Status = ConsolationStatus.pending.ToString();
-                    consolation.PaymentStatus = (amountToPay > 0 ? PaymentStatus.pending.ToString() : PaymentStatus.free.ToString());
-                    consolation.PaymentID = payment.ID;
+                    consolation.PaymentStatus = (amountToPay <= 0 ? PaymentStatus.free.ToString() : PaymentStatus.pending.ToString());
+                    consolation.PaymentID = payment?.ID;
                     consolation.AmountToPay = amountToPay;
                     consolation.TrackingNumber = IDGenerator.GenerateConsolationTrackingNumber();
                     consolation.CreationTime = DateTimeUtils.Now;
@@ -122,16 +131,19 @@ namespace SamAPI.Controllers
                 #endregion
 
                 #region Send SMS To Customer:
-                string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
-                SmsUtil.Send(messageText, customer.CellPhoneNumber);
+                if (consolation.PaymentStatus == PaymentStatus.free.ToString())
+                {
+                    string messageText = string.Format(SmsMessages.ConsolationCreationSms, consolation.TrackingNumber);
+                    SmsUtil.Send(messageText, customer.CellPhoneNumber);
+                }
                 #endregion
 
                 return Ok(new
                 {
                     ID = consolation.ID,
                     TrackingNumber = consolation.TrackingNumber,
-                    PaymentID = payment.ID,
-                    PaymentToken = payment.Token,
+                    PaymentID = payment?.ID,
+                    PaymentToken = payment?.Token,
                     BankPageUrl = _paymentService.BankPageUrl
                 });
             }
@@ -358,6 +370,74 @@ namespace SamAPI.Controllers
                 if (!string.IsNullOrEmpty(newStatus))
                 {
                     var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), newStatus);
+                    if (newstatus == ConsolationStatus.confirmed)
+                    {
+                        if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                        {
+                            var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
+                            consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                        }
+                        else
+                        {
+                            consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
+                            #region Send SMS:
+                            string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
+                            SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
+                            #endregion
+                        }
+                    }
+                    else if (newstatus == ConsolationStatus.canceled)
+                    {
+                        consolationToEdit.Status = newstatus.ToString();
+                    }
+                }
+                #endregion
+
+                consolationToEdit.LastUpdateTime = DateTimeUtils.Now;
+                _consolationRepo.Save();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateV2(ConsolationDto model)
+        {
+            try
+            {
+                var consolationToEdit = _consolationRepo.Get(model.ID);
+                if (consolationToEdit == null)
+                    return NotFound();
+
+                #region update fields:
+                if (model.ObitID > 0)
+                    consolationToEdit.ObitID = model.ObitID;
+
+                if (model.TemplateID > 0)
+                    consolationToEdit.TemplateID = model.TemplateID;
+
+                if (!string.IsNullOrEmpty(model.TemplateInfo))
+                {
+                    var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.TemplateInfo);
+
+                    if (fields.ContainsKey("Audience"))
+                        consolationToEdit.Audience = fields["Audience"];
+                    if (fields.ContainsKey("From"))
+                        consolationToEdit.From = fields["From"];
+
+                    consolationToEdit.TemplateInfo = model.TemplateInfo;
+                }
+                
+                #endregion
+
+                #region update status:
+                if (!string.IsNullOrEmpty(model.Status))
+                {
+                    var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
                     if (newstatus == ConsolationStatus.confirmed)
                     {
                         if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())

@@ -1583,6 +1583,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گام نهایی: تأیید طرح و پرداخت مبلغ.
+        /// </summary>
+        public static string PayViaPosStepTitle {
+            get {
+                return ResourceManager.GetString("PayViaPosStepTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شماره تماس.
         /// </summary>
         public static string PhoneNumber {

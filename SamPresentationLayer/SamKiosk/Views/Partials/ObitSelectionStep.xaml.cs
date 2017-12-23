@@ -61,7 +61,7 @@ namespace SamKiosk.Views.Partials
                 KioskExceptionManager.Handle(ex);
             }
         }
-        private void lbObits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void lbObits_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace SamKiosk.Views.Partials
                 if (obit != null)
                 {
                     _parent.SelectedObit = obit;
-                    _parent.Next();
+                    await _parent.NextAsync();
                 }
             }
             catch (Exception ex)

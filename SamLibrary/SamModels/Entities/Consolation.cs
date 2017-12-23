@@ -52,6 +52,9 @@ namespace SamModels.Entities
         [Required]
         public double AmountToPay { get; set; }
 
+        [MaxLength(512)]
+        public string ExtraData { get; set; }
+
         #region Navigation Props:
         public virtual Obit Obit { get; set; }
         public virtual Customer Customer { get; set; }

@@ -31,10 +31,11 @@
                 </Grid.ColumnDefinitions>
 
                 <ListBox x:Name="lbTemplates" Style="{StaticResource kiosk_list_box}" 
-                     Margin="{StaticResource padding_container_dbl}" 
+                         Margin="{StaticResource padding_container_dbl}" 
                          SelectedValuePath="ID"
-                     ItemContainerStyle="{StaticResource kiosk_list_box_item_container}"
-                     SelectionChanged="lbTemplates_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                         ItemContainerStyle="{StaticResource kiosk_list_box_item_container}"
+                         SelectionChanged="lbTemplates_SelectionChanged" 
+                         ScrollViewer.VerticalScrollBarVisibility="Hidden">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border Style="{StaticResource kiosk_list_item}">

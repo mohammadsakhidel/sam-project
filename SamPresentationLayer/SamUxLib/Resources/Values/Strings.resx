@@ -869,4 +869,7 @@
   <data name="TemplateInfoStepTitle" xml:space="preserve">
     <value>گام چهارم: محتوای پیام تسلیت</value>
   </data>
+  <data name="PayViaPosStepTitle" xml:space="preserve">
+    <value>گام نهایی: تأیید طرح و پرداخت مبلغ</value>
+  </data>
 </root>

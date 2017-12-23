@@ -23,5 +23,7 @@
     <SolidColorBrush x:Key="color_player_bg" Color="#000" />
     <SolidColorBrush x:Key="color_window_border" Color="#f1f1f1" />
     <SolidColorBrush x:Key="color_hover" Color="#f1fafe" />
+    <SolidColorBrush x:Key="color_confirm" Color="#00d266" />
+    <SolidColorBrush x:Key="color_confirm_dark" Color="#00b055" />
 
 </ResourceDictionary>

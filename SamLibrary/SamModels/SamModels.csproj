@@ -59,6 +59,7 @@
     <Compile Include="DTOs\ObitDto.cs" />
     <Compile Include="DTOs\ObitHoldingDto.cs" />
     <Compile Include="DTOs\PaymentDto.cs" />
+    <Compile Include="DTOs\PosPaymentVerificationDto.cs" />
     <Compile Include="DTOs\ProvinceDto.cs" />
     <Compile Include="DTOs\RemovedEntityDto.cs" />
     <Compile Include="DTOs\SaloonDto.cs" />
