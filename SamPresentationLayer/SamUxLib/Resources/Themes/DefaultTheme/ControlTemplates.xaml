@@ -39,6 +39,8 @@
                    FontWeight="{TemplateBinding FontWeight}"
                    FontFamily="{TemplateBinding FontFamily}"
                    FontSize="{TemplateBinding FontSize}"
+                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                    Margin="0" />
         </Border>
     </ControlTemplate>

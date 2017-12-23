@@ -1,5 +1,6 @@
 ﻿using SamKiosk.Code.Utils;
-using SamKiosk.Views.Partials;
+using SamKiosk.Views.Windows;
+using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,37 +13,49 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SamKiosk.Views.Windows
+namespace SamKiosk.Views.Partials
 {
-    public partial class MainWindow : Window
+    public partial class Home : UserControl
     {
+        #region Fields:
+        MainWindow _mainWindow;
+        #endregion
+
         #region Constructors:
-        public MainWindow()
+        public Home(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
         }
         #endregion
 
         #region Event Handlers:
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void btnSendConsolation_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                SetContent(new Home(this));
+                var uc = new SendConsolationView(_mainWindow);
+                _mainWindow.SetContent(uc);
             }
             catch (Exception ex)
             {
                 KioskExceptionManager.Handle(ex);
             }
         }
-        #endregion
 
-        #region Methods:
-        public void SetContent(UserControl userControl)
+        private void btnAbout_Click(object sender, RoutedEventArgs e)
         {
-            container.Content = userControl;
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                KioskExceptionManager.Handle(ex);
+            }
         }
         #endregion
     }

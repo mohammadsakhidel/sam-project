@@ -1,5 +1,4 @@
 ﻿using SamUxLib.Code.Utils;
-using SamUxLib.Resources;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,16 +9,22 @@ using System.Windows.Data;
 
 namespace SamUxLib.Code.Converters
 {
-    public class SectionNameDisplayConverter : IValueConverter
+    public class ArabicDigitsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                if (string.IsNullOrEmpty(value as string))
+                if (value != null)
+                {
+                    var input = (parameter != null ? (System.Convert.ToInt32(value)).ToString(parameter.ToString()) : value.ToString());
+                    var arabic = VersatileUtil.ToArabicNumbers(input);
+                    return arabic;
+                }
+                else
+                {
                     return "";
-
-                return ResourceManager.GetValue($"section_{value.ToString()}");
+                }
             }
             catch (Exception ex)
             {

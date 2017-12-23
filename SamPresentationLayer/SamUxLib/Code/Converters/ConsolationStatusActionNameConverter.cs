@@ -1,4 +1,5 @@
 ﻿using SamUtils.Enums;
+using SamUxLib.Code.Utils;
 using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
@@ -14,23 +15,30 @@ namespace SamUxLib.Code.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var statusStr = value as string;
-            ConsolationStatus status;
-            var res = Enum.TryParse(statusStr, out status);
-            if (!res) return null;
-
-            switch (status)
+            try
             {
-                case ConsolationStatus.pending:
-                    return Strings.ConfirmToDisplay;
-                case ConsolationStatus.confirmed:
-                    return Strings.CancelConfirmation;
-                case ConsolationStatus.canceled:
-                    return Strings.ConfirmToDisplay;
-                case ConsolationStatus.displayed:
-                    return Strings.CancelDisplay;
-                default:
-                    return "";
+                var statusStr = value as string;
+                ConsolationStatus status;
+                var res = Enum.TryParse(statusStr, out status);
+                if (!res) return null;
+
+                switch (status)
+                {
+                    case ConsolationStatus.pending:
+                        return Strings.ConfirmToDisplay;
+                    case ConsolationStatus.confirmed:
+                        return Strings.CancelConfirmation;
+                    case ConsolationStatus.canceled:
+                        return Strings.ConfirmToDisplay;
+                    case ConsolationStatus.displayed:
+                        return Strings.CancelDisplay;
+                    default:
+                        return "";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ExceptionManager.ConverterException<string>(ex);
             }
         }
 

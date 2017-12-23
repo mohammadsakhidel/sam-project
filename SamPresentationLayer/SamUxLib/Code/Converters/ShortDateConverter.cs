@@ -1,4 +1,5 @@
 ﻿using RamancoLibrary.Utilities;
+using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,9 +23,9 @@ namespace SamUxLib.Code.Converters
                 var roji = DateTimeUtils.ToShamsi(date);
                 return string.Format("{0:D4}/{1:D2}/{2:D2}", roji.Year, roji.Month, roji.Day);
             }
-            catch
+            catch(Exception ex)
             {
-                return "";
+                return ExceptionManager.ConverterException<string>(ex);
             }
         }
 

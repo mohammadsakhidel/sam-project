@@ -1,4 +1,5 @@
-﻿using SamUxLib.Resources.Values;
+﻿using SamUxLib.Code.Utils;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,13 +14,20 @@ namespace SamUxLib.Code.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null)
+            try
             {
-                return System.Convert.ToBoolean(value) ? Strings.Yes : Strings.No;
+                if (value != null)
+                {
+                    return System.Convert.ToBoolean(value) ? Strings.Yes : Strings.No;
+                }
+                else
+                {
+                    return "";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return "";
+                return ExceptionManager.ConverterException<string>(ex);
             }
         }
 

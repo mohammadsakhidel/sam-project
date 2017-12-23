@@ -4,17 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SamKiosk.Views.Windows"
-        WindowStyle="None" WindowState="Maximized">
-    
+        xmlns:uc="clr-namespace:SamKiosk.Views.Partials"
+        WindowStyle="None" WindowState="Maximized"
+        Style="{StaticResource main_window}" Loaded="Window_Loaded">
+
     <Grid Style="{StaticResource main_window_content}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <!--Right Bar-->
-        <Border Style="{StaticResource kiosk_rightbar}"></Border>
+        <!--Side Bar-->
+        <Border Style="{StaticResource kiosk_main_window_sidebar}">
+            <Grid Margin="{StaticResource padding_container_ver}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!--Header-->
+                <StackPanel>
+                    <Image Style="{StaticResource kiosk_header_logo}" />
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppShortName}"
+                                   Style="{StaticResource client_header_app_name}" />
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppShortNameDesc}"
+                                   Style="{StaticResource client_header_app_name_desc}" />
+                </StackPanel>
+
+                <!--Software Info-->
+                <StackPanel Grid.Row="2" Margin="{StaticResource padding_container}">
+                    <TextBlock Style="{StaticResource kiosk_sidebar_desc}" Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Footer}"></TextBlock>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!--Content-->
+        <Border Grid.Column="1">
+            <ContentControl Background="Green" x:Name="container"></ContentControl>
+        </Border>
 
     </Grid>
-    
+
 </Window>

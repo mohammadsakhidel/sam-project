@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="SamKiosk.Views.Partials.TemplateSelectionStep"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamKiosk.Views.Partials"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:localcnv="clr-namespace:SamKiosk.Code.Converters"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <localcnv:TemplateImageLoaderConverter x:Key="templateImageLoaderConverter" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--Page Title-->
+        <Label Style="{StaticResource kiosk_page_header}" 
+               Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TemplateSelectionStepTitle}"></Label>
+
+        <!--Content-->
+        <toolkit:BusyIndicator x:Name="progress" Grid.Row="1" IsBusy="False"
+                               Style="{StaticResource kiosk_busy_indicator}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35*" />
+                    <ColumnDefinition Width="65*" />
+                </Grid.ColumnDefinitions>
+
+                <ListBox x:Name="lbTemplates" Style="{StaticResource kiosk_list_box}" 
+                     Margin="{StaticResource padding_container_dbl}" 
+                         SelectedValuePath="ID"
+                     ItemContainerStyle="{StaticResource kiosk_list_box_item_container}"
+                     SelectionChanged="lbTemplates_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource kiosk_list_item}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border CornerRadius="5">
+                                        <Image Style="{StaticResource kiosk_list_box_item_thumb}"
+                                               Source="{Binding Converter={StaticResource templateImageLoaderConverter}, ConverterParameter=true, IsAsync=True}" />
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1" Margin="{StaticResource padding_widget_start}">
+                                        <TextBlock Text="{Binding Name, Converter={StaticResource arabicDigitsConverter}}" Style="{StaticResource kiosk_list_item_title}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal" Margin="0 4 0 0">
+                                            <TextBlock Margin="0" Style="{StaticResource kiosk_item_desc}" Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Price}"></TextBlock>
+                                            <TextBlock Margin="2 0 0 0" Style="{StaticResource kiosk_item_desc}" Text=":"></TextBlock>
+                                            <TextBlock Margin="2 0 0 0" Style="{StaticResource kiosk_item_desc}" Text="{Binding Price, Converter={StaticResource arabicDigitsConverter}, ConverterParameter=N0}"></TextBlock>
+                                            <TextBlock Margin="2 0 0 0" Style="{StaticResource kiosk_item_desc}" Text="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PriceUnit}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <GridSplitter Width="1" Background="{StaticResource color_neutral_dark}"></GridSplitter>
+
+                <Border Grid.Column="1">
+                    <Image x:Name="imgTemplate" />
+                </Border>
+
+            </Grid>
+        </toolkit:BusyIndicator>
+
+    </Grid>
+</UserControl>

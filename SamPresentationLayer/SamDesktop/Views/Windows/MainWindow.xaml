@@ -14,9 +14,6 @@
     <Window.DataContext>
         <vm:MainVM />
     </Window.DataContext>
-    <Window.Resources>
-        <cnv:SelectedSectionConverter x:Key="ssc" />
-    </Window.Resources>
 
     <Border Style="{StaticResource main_window_content}">
         <Grid>

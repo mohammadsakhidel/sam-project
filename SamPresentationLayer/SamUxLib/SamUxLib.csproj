@@ -71,6 +71,9 @@
       <HintPath>..\..\..\..\..\Projects\Practices\Transitionals\Transitionals\Libs\Transitionals.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.15\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Libs\WPFToolkit.dll</HintPath>
@@ -102,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Constants\Collections.cs" />
+    <Compile Include="Code\Converters\ArabicDigitsConverter.cs" />
     <Compile Include="Code\Objects\DisplayParams.cs" />
     <Compile Include="Code\Converters\AccessToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\BoolConverter.cs" />
@@ -116,7 +120,6 @@
     <Compile Include="Code\Converters\PriceConverter.cs" />
     <Compile Include="Code\Converters\ResourceConverter.cs" />
     <Compile Include="Code\Converters\SectionNameDisplayConverter.cs" />
-    <Compile Include="Code\Converters\SelectedSectionConverter.cs" />
     <Compile Include="Code\Converters\ShortDateTimeConverter.cs" />
     <Compile Include="Code\Converters\ShortDateConverter.cs" />
     <Compile Include="Code\Converters\ShortTimeConverter.cs" />
@@ -280,6 +283,11 @@
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_displayed.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_image.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\default_image.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_send_light.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_info_light.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\loading_kiosk.gif" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_next_light.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_previous_light.png" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.ico" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />

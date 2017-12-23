@@ -22,13 +22,12 @@ namespace SamUxLib.Code.Converters
                 }
                 else
                 {
-                    return null;
+                    return "";
                 }
             }
             catch (Exception ex)
             {
-                ExceptionManager.Handle(ex);
-                return null;
+                return ExceptionManager.ConverterException<string>(ex);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using SamUtils.Constants;
+using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,15 +16,22 @@ namespace SamUxLib.Code.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || parameter == null || string.IsNullOrEmpty(value.ToString()) 
+            try
+            {
+                if (value == null || parameter == null || string.IsNullOrEmpty(value.ToString())
                     || string.IsNullOrEmpty(parameter.ToString()))
+                    return Visibility.Collapsed;
+
+                var paramVals = parameter.ToString().Split('-');
+                if (paramVals.Contains(value.ToString()))
+                    return Visibility.Visible;
+
                 return Visibility.Collapsed;
-
-            var paramVals = parameter.ToString().Split('-');
-            if (paramVals.Contains(value.ToString()))
-                return Visibility.Visible;
-
-            return Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
+                return ExceptionManager.ConverterException<Visibility>(ex);
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

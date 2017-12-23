@@ -50,10 +50,12 @@ namespace SamUxLib.Code.Utils
             // log exception here
         }
 
-        public static string ConverterException<T>(Exception ex)
+        public static object ConverterException<T>(Exception ex)
         {
             if (typeof(T) == typeof(string))
                 return ex.Message;
+            else if (typeof(T) == typeof(Visibility))
+                return Visibility.Collapsed;
             else
                 return null;
         }

@@ -1,4 +1,5 @@
 ﻿using RamancoLibrary.Utilities;
+using SamUxLib.Code.Utils;
 using SamUxLib.Resources;
 using SamUxLib.Resources.Values;
 using System;
@@ -48,9 +49,9 @@ namespace SamUxLib.Code.Converters
                     return "";
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                return "";
+                return ExceptionManager.ConverterException<string>(ex);
             }
         }
 

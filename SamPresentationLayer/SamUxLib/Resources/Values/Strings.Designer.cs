@@ -61,6 +61,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to درباره سیستم.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to درباره پروژه سام.
         /// </summary>
         public static string AboutSam {
@@ -1286,6 +1295,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بعدی.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گام بعدی.
+        /// </summary>
+        public static string NextStep {
+            get {
+                return ResourceManager.GetString("NextStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to خیر.
         /// </summary>
         public static string No {
@@ -1336,6 +1363,15 @@ namespace SamUxLib.Resources.Values {
         public static string Obits {
             get {
                 return ResourceManager.GetString("Obits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گام اول: انتخاب مراسم.
+        /// </summary>
+        public static string ObitSelectionStepTitle {
+            get {
+                return ResourceManager.GetString("ObitSelectionStepTitle", resourceCulture);
             }
         }
         
@@ -1565,7 +1601,16 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مرحله قبلی.
+        ///   Looks up a localized string similar to قبلی.
+        /// </summary>
+        public static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گام قبلی.
         /// </summary>
         public static string PreviousStep {
             get {
@@ -2047,6 +2092,15 @@ namespace SamUxLib.Resources.Values {
         public static string Templates {
             get {
                 return ResourceManager.GetString("Templates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گام دوم: انتخاب طرح پیام.
+        /// </summary>
+        public static string TemplateSelectionStepTitle {
+            get {
+                return ResourceManager.GetString("TemplateSelectionStepTitle", resourceCulture);
             }
         }
         

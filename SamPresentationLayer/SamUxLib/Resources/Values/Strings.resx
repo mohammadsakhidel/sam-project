@@ -825,7 +825,7 @@
     <value>امکانات سیستم</value>
   </data>
   <data name="PreviousStep" xml:space="preserve">
-    <value>مرحله قبلی</value>
+    <value>گام قبلی</value>
   </data>
   <data name="OfficeAddress" xml:space="preserve">
     <value>آدرس دفتر مرکزی شرکت</value>
@@ -844,5 +844,23 @@
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>مرا بخاطر بسپار</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>درباره سیستم</value>
+  </data>
+  <data name="ObitSelectionStepTitle" xml:space="preserve">
+    <value>گام اول: انتخاب مراسم</value>
+  </data>
+  <data name="TemplateSelectionStepTitle" xml:space="preserve">
+    <value>گام دوم: انتخاب طرح پیام</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>گام بعدی</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>بعدی</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>قبلی</value>
   </data>
 </root>

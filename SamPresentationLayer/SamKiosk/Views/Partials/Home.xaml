@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="SamKiosk.Views.Partials.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamKiosk.Views.Partials"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC">
+    
+    <UniformGrid VerticalAlignment="Center" HorizontalAlignment="Center" Columns="2">
+        <ram:SquareButton x:Name="btnSendConsolation" Style="{StaticResource kiosk_homepage_menuitem_send_consolation}" 
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SendConsolation}"
+                        Click="btnSendConsolation_Click" />
+
+        <ram:SquareButton x:Name="btnAbout" Style="{StaticResource kiosk_homepage_menuitem_info}" 
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.About}"
+                        Click="btnAbout_Click" />
+    </UniformGrid>
+    
+</UserControl>

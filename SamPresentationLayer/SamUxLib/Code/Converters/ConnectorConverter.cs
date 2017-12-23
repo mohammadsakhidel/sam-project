@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SamUxLib.Code.Utils;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,19 +13,26 @@ namespace SamUxLib.Code.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values != null && values.Any())
+            try
             {
-                var result = values[0];
-                var splitter = parameter != null ? parameter.ToString() : " ";
-                for (int i = 1; i < values.Length; i++)
+                if (values != null && values.Any())
                 {
-                    result += $" {values[i].ToString()}";
+                    var result = values[0];
+                    var splitter = parameter != null ? parameter.ToString() : " ";
+                    for (int i = 1; i < values.Length; i++)
+                    {
+                        result += $" {values[i].ToString()}";
+                    }
+                    return result;
                 }
-                return result;
+                else
+                {
+                    return "";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return "";
+                return ExceptionManager.ConverterException<string>(ex);
             }
         }
 

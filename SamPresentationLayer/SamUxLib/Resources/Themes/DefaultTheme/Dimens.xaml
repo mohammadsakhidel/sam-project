@@ -20,6 +20,7 @@
     <sys:Double x:Key="font_consolation_huge">50</sys:Double>
 
     <Thickness x:Key="padding_container">12</Thickness>
+    <Thickness x:Key="padding_container_dbl">24</Thickness>
     <Thickness x:Key="padding_container_ver">0 12</Thickness>
     <Thickness x:Key="padding_container_hor">12 0</Thickness>
     <Thickness x:Key="padding_container_top">0 12 0 0</Thickness>
