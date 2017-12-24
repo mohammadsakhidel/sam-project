@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SamKiosk.Views.Windows"
         xmlns:uc="clr-namespace:SamKiosk.Views.Partials"
+        xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
         WindowStyle="None" WindowState="Maximized"
         Style="{StaticResource main_window}" Loaded="Window_Loaded">
 
@@ -30,6 +31,10 @@
                                    Style="{StaticResource client_header_app_name}" />
                     <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.AppShortNameDesc}"
                                    Style="{StaticResource client_header_app_name_desc}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                    <ram:ImageButton x:Name="btnHome" Style="{StaticResource kiosk_home_button}" Click="btnHome_Click" />
                 </StackPanel>
 
                 <!--Software Info-->

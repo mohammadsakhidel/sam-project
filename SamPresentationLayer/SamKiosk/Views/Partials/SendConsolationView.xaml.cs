@@ -24,11 +24,6 @@ namespace SamKiosk.Views.Partials
         #region Fields:
         byte _step = 1;
         MainWindow _mainWindow;
-        ObitDto _selectedObit;
-        TemplateDto _selectedTemplate;
-        CustomerDto _selectedCustomer;
-        Dictionary<string, string> _fields;
-        int _createdConsolationId = -1;
         #endregion
 
         #region Ctors:
@@ -99,6 +94,7 @@ namespace SamKiosk.Views.Partials
         {
             _step--;
             ShowStep();
+            OnNextAction = null;
         }
         void ShowStep()
         {
@@ -128,31 +124,11 @@ namespace SamKiosk.Views.Partials
         #endregion
 
         #region Props:
-        public ObitDto SelectedObit
-        {
-            get { return _selectedObit; }
-            set { _selectedObit = value; }
-        }
-        public TemplateDto SelectedTemplate
-        {
-            get { return _selectedTemplate; }
-            set { _selectedTemplate = value; }
-        }
-        public CustomerDto SelectedCustomer
-        {
-            get { return _selectedCustomer; }
-            set { _selectedCustomer = value; }
-        }
-        public Dictionary<string, string> Fields
-        {
-            get { return _fields; }
-            set { _fields = value; }
-        }
-        public int CreatedConsolationID
-        {
-            get { return _createdConsolationId; }
-            set { _createdConsolationId = value; }
-        }
+        public ObitDto SelectedObit { get; set; }
+        public TemplateDto SelectedTemplate { get; set; }
+        public CustomerDto SelectedCustomer { get; set; }
+        public Dictionary<string, string> Fields { get; set; }
+        public int CreatedConsolationID { get; set; }
         public Func<Task> OnNextAction { get; set; }
         bool IsActionAsync(Action action)
         {

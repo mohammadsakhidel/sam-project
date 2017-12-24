@@ -43,6 +43,9 @@
     <Reference Include="RamancoLibrary">
       <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="SamanPcToPos">
+      <HintPath>..\..\..\..\..\temp\SamanPayment\C# protocol 1 com &amp; usb\C#\dll\SamanPcToPos.dll</HintPath>
+    </Reference>
     <Reference Include="SamModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>
@@ -106,6 +109,8 @@
   <ItemGroup>
     <Compile Include="Code\Constants\Collections.cs" />
     <Compile Include="Code\Converters\ArabicDigitsConverter.cs" />
+    <Compile Include="Code\DI\IPOS.cs" />
+    <Compile Include="Code\DI\SamanSerialPOS.cs" />
     <Compile Include="Code\Objects\DisplayParams.cs" />
     <Compile Include="Code\Converters\AccessToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\BoolConverter.cs" />
@@ -289,6 +294,7 @@
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_next_light.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_previous_light.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_ok_light.png" />
+    <Resource Include="Resources\Themes\DefaultTheme\Images\ic_home.png" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.ico" />
     <Content Include="Resources\Themes\DefaultTheme\Images\sam_client_icon.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_download_dark.png" />

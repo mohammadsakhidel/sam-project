@@ -27,6 +27,13 @@
             <Border Grid.Row="1" >
                 <Image x:Name="imgPreview" Margin="{StaticResource padding_container_kiosk}" />
             </Border>
+
+            <Border x:Name="pnlPosResponse" Style="{StaticResource kiosk_popup_panel}" 
+                    Grid.Row="1" Visibility="Collapsed">
+                <TextBlock x:Name="lblPosResponse" Style="{StaticResource kiosk_popup_panel_text}"
+                           Text="{Binding Converter={StaticResource rc}, ConverterParameter=Messages.WaitForPosMessage}"></TextBlock>
+            </Border>
+            
         </Grid>
     </toolkit:BusyIndicator>
 </UserControl>

@@ -2,8 +2,10 @@
 using SamKiosk.Code.Utils;
 using SamUtils.Constants;
 using SamUtils.Utils;
+using SamUxLib.Code.DI;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,7 @@ namespace SamKiosk.Views.Partials
     public partial class PayViaPosStep : UserControl
     {
         #region Fields:
+        IPOS _pos;
         SendConsolationView _parent;
         #endregion
 
@@ -38,6 +41,7 @@ namespace SamKiosk.Views.Partials
         {
             try
             {
+                InitPos();
                 _parent.SetNavigationState(false, false, true, true);
 
                 #region load preview image:
@@ -58,11 +62,48 @@ namespace SamKiosk.Views.Partials
                 KioskExceptionManager.Handle(ex);
             }
         }
-        #endregion
-
         private void btnConfirmAndPay_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var amount = (int)_parent.SelectedTemplate.Price;
+                _pos.PayRequest(amount, false, true);
+                _pos.PosResponse += _pos_Response;
 
+                pnlPosResponse.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                KioskExceptionManager.Handle(ex);
+            }
         }
+
+        private void _pos_Response(object sender, PosResponseEventArgs e)
+        {
+            try
+            {
+                if (e.Succeeded)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                KioskExceptionManager.Handle(ex);
+            }
+        }
+        #endregion
+
+        #region Methods:
+        void InitPos()
+        {
+            var portName = ConfigurationManager.AppSettings["pos_port"];
+            _pos = new SamanSerialPOS(portName);
+        }
+        #endregion
     }
 }

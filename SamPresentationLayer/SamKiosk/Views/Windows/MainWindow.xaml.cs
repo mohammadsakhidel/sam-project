@@ -37,6 +37,17 @@ namespace SamKiosk.Views.Windows
                 KioskExceptionManager.Handle(ex);
             }
         }
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SetContent(new Home(this));
+            }
+            catch (Exception ex)
+            {
+                KioskExceptionManager.Handle(ex);
+            }
+        }
         #endregion
 
         #region Methods:

@@ -58,14 +58,28 @@
         <Setter Property="Padding" Value="0 0 0 20"></Setter>
     </Style>
 
+    <Style x:Key="kiosk_home_button" TargetType="ram:ImageButton">
+        <Setter Property="ImageSource" Value="Images/ic_home.png"></Setter>
+        <Setter Property="ImageWidth" Value="56"></Setter>
+        <Setter Property="ImageHeight" Value="56"></Setter>
+        <Setter Property="Padding" Value="16"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource color_primary_dark}"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="kiosk_rightbar" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource color_accent}"></Setter>
     </Style>
 
     <Style x:Key="kiosk_homepage_menuitem" TargetType="{x:Type ram:SquareButton}">
-        <Setter Property="Width" Value="150"></Setter>
-        <Setter Property="Height" Value="150"></Setter>
-        <Setter Property="CornerRadius" Value="2"></Setter>
+        <Setter Property="Width" Value="170"></Setter>
+        <Setter Property="Height" Value="170"></Setter>
+        <Setter Property="CornerRadius" Value="4"></Setter>
         <Setter Property="IconHeight" Value="32"></Setter>
         <Setter Property="IconWidth" Value="32"></Setter>
         <Setter Property="Margin" Value="{StaticResource padding_container}"></Setter>
@@ -75,19 +89,24 @@
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource ff_subject}"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="5" Direction="-45" RenderingBias="Quality" Color="#9f9f9f" ShadowDepth="2"/>
+            </Setter.Value>
+        </Setter>
     </Style>
     
     <Style x:Key="kiosk_homepage_menuitem_send_consolation" TargetType="{x:Type ram:SquareButton}" 
            BasedOn="{StaticResource kiosk_homepage_menuitem}">
         <Setter Property="IconSource" Value="Images/ic_send_light.png"></Setter>
-        <Setter Property="Background" Value="#00c45f"></Setter>
+        <Setter Property="Background" Value="#fbc217"></Setter>
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#01a04e"></Setter>
+                <Setter Property="Background" Value="#deaa0c"></Setter>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="#018b44"></Setter>
+                <Setter Property="Background" Value="#d19f07"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -275,6 +294,25 @@
                 <Setter Property="Background" Value="{StaticResource color_disabled}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="kiosk_popup_panel" TargetType="Border">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="450"></Setter>
+        <Setter Property="Height" Value="350"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="CornerRadius" Value="3"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource color_neutral_darker}"></Setter>
+        <Setter Property="Background" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="Padding" Value="{StaticResource padding_container_kiosk}"></Setter>
+    </Style>
+
+    <Style x:Key="kiosk_popup_panel_text" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_bit_larger}"></Setter>
     </Style>
 
 </ResourceDictionary>

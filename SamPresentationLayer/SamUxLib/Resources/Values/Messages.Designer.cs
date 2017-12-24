@@ -538,5 +538,16 @@ namespace SamUxLib.Resources.Values {
                 return ResourceManager.GetString("SysAdminUserNameImutable", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to در انتظار تکمیل عملیات پرداخت...
+        ///
+        ///لطفاً از طریق دستگاه کارتخوان عملیات پرداخت را انجام دهید..
+        /// </summary>
+        public static string WaitForPosMessage {
+            get {
+                return ResourceManager.GetString("WaitForPosMessage", resourceCulture);
+            }
+        }
     }
 }

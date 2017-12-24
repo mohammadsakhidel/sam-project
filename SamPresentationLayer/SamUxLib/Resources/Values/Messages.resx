@@ -278,4 +278,9 @@
   <data name="SysAdminUserNameImutable" xml:space="preserve">
     <value>نام کاربری مدیر پیش فرض سیستم قابل تغییر نمی باشد.</value>
   </data>
+  <data name="WaitForPosMessage" xml:space="preserve">
+    <value>در انتظار تکمیل عملیات پرداخت...
+
+لطفاً از طریق دستگاه کارتخوان عملیات پرداخت را انجام دهید.</value>
+  </data>
 </root>
