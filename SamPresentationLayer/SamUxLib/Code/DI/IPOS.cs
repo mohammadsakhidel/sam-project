@@ -9,8 +9,10 @@ namespace SamUxLib.Code.DI
     public interface IPOS
     {
         #region Methods:
+        void Open();
+        void Close();
         void PayRequest(int amount, bool print, bool verifyLater);
-        void VerifyPayment(string id);
+        void VerifyPayment(params string[] args);
         #endregion
 
         #region Events:

@@ -36,6 +36,8 @@ namespace SamModels.DTOs
 
         public string TrackingNumber { get; set; }
 
+        public string ExtraData { get; set; }
+
         #region Navigation:
         public CustomerDto Customer { get; set; }
         public ObitDto Obit { get; set; }

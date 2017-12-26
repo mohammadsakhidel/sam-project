@@ -90,6 +90,11 @@ namespace SamKiosk.Views.Partials
             _step++;
             ShowStep();
         }
+        public void NextNoAction()
+        {
+            _step++;
+            ShowStep();
+        }
         public void Previous()
         {
             _step--;
@@ -115,11 +120,25 @@ namespace SamKiosk.Views.Partials
                 case 5:
                     LoadPartial(new PayViaPosStep(this));
                     break;
+                case 6:
+                    LoadPartial(new SendingResultStep(this));
+                    break;
             }
         }
         void LoadPartial(UserControl uc)
         {
             sendConsolationContainer.Content = uc;
+        }
+        public void Reset()
+        {
+            SelectedObit = null;
+            SelectedTemplate = null;
+            SelectedCustomer = null;
+            Fields = null;
+            CreatedConsolationID = 0;
+            OnNextAction = null;
+            VerificationSucceeded = null;
+            _step = 1;
         }
         #endregion
 
@@ -130,10 +149,7 @@ namespace SamKiosk.Views.Partials
         public Dictionary<string, string> Fields { get; set; }
         public int CreatedConsolationID { get; set; }
         public Func<Task> OnNextAction { get; set; }
-        bool IsActionAsync(Action action)
-        {
-            return action.Method.IsDefined(typeof(AsyncStateMachineAttribute), false);
-        }
+        public bool? VerificationSucceeded { get; set; }
         #endregion
     }
 }

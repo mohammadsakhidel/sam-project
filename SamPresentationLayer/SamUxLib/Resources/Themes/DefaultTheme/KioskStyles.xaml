@@ -315,4 +315,37 @@
         <Setter Property="FontSize" Value="{StaticResource font_bit_larger}"></Setter>
     </Style>
 
+    <Style x:Key="kiosk_retry_button" TargetType="Button">
+        <Setter Property="Padding" Value="16 8"></Setter>
+        <Setter Property="Background" Value="{StaticResource color_primary}"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource color_primary_dark}"></Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource color_neutral_darker}"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="kiosk_result_message" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource font_xxxlarge}"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="Padding" Value="128"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style x:Key="kiosk_result_message_success" TargetType="TextBlock" BasedOn="{StaticResource kiosk_result_message}">
+        <Setter Property="Foreground" Value="#00ba5a"></Setter>
+    </Style>
+
+    <Style x:Key="kiosk_result_message_error" TargetType="TextBlock" BasedOn="{StaticResource kiosk_result_message}">
+        <Setter Property="Foreground" Value="#e01515"></Setter>
+    </Style>
+
 </ResourceDictionary>

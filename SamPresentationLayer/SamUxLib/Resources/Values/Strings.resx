@@ -872,4 +872,7 @@
   <data name="PayViaPosStepTitle" xml:space="preserve">
     <value>گام نهایی: تأیید طرح و پرداخت مبلغ</value>
   </data>
+  <data name="Retry" xml:space="preserve">
+    <value>تلاش مجدد</value>
+  </data>
 </root>

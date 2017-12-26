@@ -153,6 +153,9 @@
     <Compile Include="Views\Partials\SendConsolationView.xaml.cs">
       <DependentUpon>SendConsolationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Partials\SendingResultStep.xaml.cs">
+      <DependentUpon>SendingResultStep.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Partials\TemplateInfoStep.xaml.cs">
       <DependentUpon>TemplateInfoStep.xaml</DependentUpon>
     </Compile>
@@ -214,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Partials\SendConsolationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Partials\SendingResultStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

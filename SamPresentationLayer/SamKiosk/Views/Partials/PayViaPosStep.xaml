@@ -30,8 +30,16 @@
 
             <Border x:Name="pnlPosResponse" Style="{StaticResource kiosk_popup_panel}" 
                     Grid.Row="1" Visibility="Collapsed">
-                <TextBlock x:Name="lblPosResponse" Style="{StaticResource kiosk_popup_panel_text}"
+                
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="txtPayMessage" Style="{StaticResource kiosk_popup_panel_text}"
                            Text="{Binding Converter={StaticResource rc}, ConverterParameter=Messages.WaitForPosMessage}"></TextBlock>
+
+                    <Button x:Name="btnRetry" Style="{StaticResource kiosk_retry_button}" HorizontalAlignment="Center"
+                            Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Retry}"
+                            Click="btnRetry_Click" Visibility="Collapsed" Margin="{StaticResource padding_container_kiosk}"></Button>
+                </StackPanel>
+                
             </Border>
             
         </Grid>

@@ -126,6 +126,9 @@
   <data name="AreYouSureToDelete" xml:space="preserve">
     <value>آیا نسبت به اجرای عملیات حذف اطمینان دارید؟</value>
   </data>
+  <data name="ConsolationSendingFailed" xml:space="preserve">
+    <value>متاسفانه مشکلی در پرداخت و یا ارسال پیام شما رخ داده است، لطفاً مجدداً تلاش کنید.</value>
+  </data>
   <data name="ConsolationSuccessfullySent" xml:space="preserve">
     <value>پیام تسلیت شما با موفقیت در سیستم ثبت شد و پس از تأیید نمایش داده خواهد شد. هرگونه تغییر وضعیت از طریق پیامک به اطلاع شما خواهد رسید.</value>
   </data>

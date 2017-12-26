@@ -12,42 +12,61 @@ namespace SamUxLib.Code.DI
     public class SamanSerialPOS : IPOS
     {
         #region Fields:
+        TTerminal _terminal = null;
         string _portName;
+        bool _opened = false;
         #endregion
 
         #region Ctors:
         public SamanSerialPOS(string portName)
         {
             _portName = portName;
+            _terminal = new TTerminal(_portName);
+            _terminal.XMLReceived += _terminal_XMLReceived;
         }
         #endregion
 
         #region IPOS Implementation:
         public event EventHandler<PosResponseEventArgs> PosResponse;
 
+        public void Open()
+        {
+            if (!_opened)
+                _terminal.OpenPort();
+
+            _opened = true;
+        }
+
+        public void Close()
+        {
+            if (_opened)
+                _terminal.ClosePort();
+
+            _opened = false;
+        }
+
         public void PayRequest(int amount, bool print, bool verifyLater)
         {
-            var terminal = new TTerminal(_portName);
+            if (!_opened)
+                Open();
+
+            _terminal.ShowMessages = false;
+            _terminal.ConfirmFlag = verifyLater;
+            _terminal.PrintFlag = print ? (byte)1 : (byte)0;
 
             var data = new Dictionary<string, object>();
             data["Amount1"] = amount;
             data["TotalFee"] = amount;
-
+            data["PrgVer"] = "v2.0.50727";
             var xml = ToXml(data);
-            terminal.SendToCOM(xml);
 
-            terminal.XMLReceived += (sender, e) => {
-                PosResponse?.Invoke(sender, new PosResponseEventArgs {
-                    Succeeded = e.IsSuccessful,
-                    Data = e.XmlRecieve,
-                    DataFormat = DataFormat.xml
-                });
-            };
+            var res = _terminal.SendToCOM(xml);
+
         }
 
-        public void VerifyPayment(string id)
+        public void VerifyPayment(params string[] args)
         {
-            throw new NotImplementedException();
+            _terminal.SetConfirmFlag(true);
         }
         #endregion
 
@@ -60,6 +79,19 @@ namespace SamUxLib.Code.DI
                 xml += $"<{item.Key}>{item.Value}</{item.Key}>";
             }
             return xml;
+        }
+        #endregion
+
+        #region Event Handlers:
+        private void _terminal_XMLReceived(object sender, XmlReceivedEventArgs e)
+        {
+            var args = new PosResponseEventArgs
+            {
+                Succeeded = e.IsSuccessful,
+                Data = e.XmlRecieve,
+                DataFormat = DataFormat.xml
+            };
+            PosResponse?.Invoke(sender, args);
         }
         #endregion
     }

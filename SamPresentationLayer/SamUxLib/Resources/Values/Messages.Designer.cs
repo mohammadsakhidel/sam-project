@@ -88,6 +88,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to متاسفانه مشکلی در پرداخت و یا ارسال پیام شما رخ داده است، لطفاً مجدداً تلاش کنید..
+        /// </summary>
+        public static string ConsolationSendingFailed {
+            get {
+                return ResourceManager.GetString("ConsolationSendingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پیام تسلیت شما با موفقیت در سیستم ثبت شد و پس از تأیید نمایش داده خواهد شد. هرگونه تغییر وضعیت از طریق پیامک به اطلاع شما خواهد رسید..
         /// </summary>
         public static string ConsolationSuccessfullySent {

@@ -1,5 +1,6 @@
 ﻿using RamancoLibrary.Utilities;
 using SamKiosk.Code.Utils;
+using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Utils;
 using SamUxLib.Code.DI;
@@ -7,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -68,7 +71,6 @@ namespace SamKiosk.Views.Partials
             {
                 var amount = (int)_parent.SelectedTemplate.Price;
                 _pos.PayRequest(amount, false, true);
-                _pos.PosResponse += _pos_Response;
 
                 pnlPosResponse.Visibility = Visibility.Visible;
             }
@@ -77,19 +79,32 @@ namespace SamKiosk.Views.Partials
                 KioskExceptionManager.Handle(ex);
             }
         }
-
-        private void _pos_Response(object sender, PosResponseEventArgs e)
+        private async void _pos_Response(object sender, PosResponseEventArgs e)
         {
             try
             {
                 if (e.Succeeded)
                 {
-
+                    await VerifyAsync(e.Data);
                 }
                 else
                 {
-
+                    _parent.VerificationSucceeded = false;
+                    Dispatcher.Invoke(() => {
+                        _parent.NextNoAction();
+                    });
                 }
+            }
+            catch (Exception ex)
+            {
+                KioskExceptionManager.Handle(ex);
+            }
+        }
+        private void btnRetry_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
             }
             catch (Exception ex)
             {
@@ -103,6 +118,51 @@ namespace SamKiosk.Views.Partials
         {
             var portName = ConfigurationManager.AppSettings["pos_port"];
             _pos = new SamanSerialPOS(portName);
+            _pos.PosResponse += _pos_Response;
+        }
+        void ShowRetryView()
+        {
+
+        }
+        async Task VerifyAsync(string data)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                progress.IsBusy = true;
+            });
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var dto = new PosPaymentVerificationDto()
+                {
+                    ConsolationID = _parent.CreatedConsolationID,
+                    PaymentData = (data.Length > 512 ? data.Substring(0, 512) : data)
+                };
+                #region call with retry:
+                var waitTime = 2000;
+                try
+                {
+                    try
+                    {
+                        var response = await hc.PutAsJsonAsync($"{ApiActions.payment_verifypos}", dto);
+                        HttpUtil.EnsureSuccessStatusCode(response);
+                        _parent.VerificationSucceeded = true;
+                        Dispatcher.Invoke(() => _parent.NextNoAction());
+                    }
+                    catch
+                    {
+                        Thread.Sleep(waitTime);
+                        var response = await hc.PutAsJsonAsync($"{ApiActions.payment_verifypos}", dto);
+                        HttpUtil.EnsureSuccessStatusCode(response);
+                        _parent.VerificationSucceeded = true;
+                        Dispatcher.Invoke(() => _parent.NextNoAction());
+                    }
+                }
+                catch
+                {
+                    ShowRetryView();
+                }
+                #endregion
+            }
         }
         #endregion
     }

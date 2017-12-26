@@ -70,6 +70,7 @@ namespace SamKiosk.Views.Partials
                         dto.TemplateInfo = JsonConvert.SerializeObject(_parent.Fields);
                         dto.Audience = _parent.Fields["Audience"];
                         dto.From = _parent.Fields["From"];
+                        dto.PayedByPOS = true;
                         #endregion
 
                         #region call server:
