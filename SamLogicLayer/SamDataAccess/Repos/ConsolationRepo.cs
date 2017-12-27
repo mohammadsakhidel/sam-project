@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Data.Entity;
 using RamancoLibrary.Utilities;
-using SamModels.Entities;
 
 namespace SamDataAccess.Repos
 {
@@ -49,16 +48,8 @@ namespace SamDataAccess.Repos
                         select o;
             #endregion
 
-            #region blobs updates:
-            var blobs = from b in context.Blobs.OfType<ImageBlob>()
-                        where (clientLastUpdatetime == null
-                              || (b.CreationTime <= queryTime && b.CreationTime > clientLastUpdatetime.Value)
-                              || (b.LastUpdateTime != null && (b.LastUpdateTime.Value <= queryTime && b.LastUpdateTime.Value > clientLastUpdatetime.Value)))
-                        select b.ID;
-            #endregion
-
             #region consolation updates:
-            var consolations = from c in context.Consolations
+            var consolations = from c in context.Consolations.Include(con => con.Template)
                                join o in context.Obits
                                on c.ObitID equals o.ID
                                join h in context.ObitHoldings
@@ -94,11 +85,20 @@ namespace SamDataAccess.Repos
                           select b;
             #endregion
 
+            #region blobs updates:
+            var blobs = from b in context.Blobs.OfType<ImageBlob>()
+                        where (consolations.Select(c => c.Template.BackgroundImageID).Contains(b.ID) || banners.Select(bnr => bnr.ImageID).Contains(b.ID))
+                        //&& (clientLastUpdatetime == null
+                        //   || (b.CreationTime <= queryTime && b.CreationTime > clientLastUpdatetime.Value)
+                        //   || (b.LastUpdateTime != null && (b.LastUpdateTime.Value <= queryTime && b.LastUpdateTime.Value > clientLastUpdatetime.Value)))
+                        select b.ID;
+            #endregion
+
             #region removed entities:
-            var removedEntities = from r in context.RemovedEntities
-                                  where clientLastUpdatetime == null
-                                        || (r.RemovingTime <= queryTime && r.RemovingTime > clientLastUpdatetime.Value)
-                                  select r;
+            var removedEntities = !clientLastUpdatetime.HasValue ? Enumerable.Empty<RemovedEntity>() :
+                (from r in context.RemovedEntities
+                 where (r.RemovingTime <= queryTime && r.RemovingTime > clientLastUpdatetime.Value)
+                 select r);
             #endregion
 
             return new Tuple<Mosque, Obit[], Template[], string[], Consolation[], Banner[], RemovedEntity[]>(
