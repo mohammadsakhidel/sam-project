@@ -7,8 +7,8 @@
 <hr />
 
 @using (Ajax.BeginForm("Create_TemplateSelectionStep", "Consolations", null,
-                                        new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
-                                        new { @id = "frm_template" }))
+                                                    new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" },
+                                                    new { @id = "frm_template" }))
 {
     @Html.AntiForgeryToken()
 
@@ -21,9 +21,12 @@
                 <input type="hidden" name="@($"cs_{category.ID}")" id="@($"cs_{category.ID}")" value="@(catState != null && catState.Item2 ? catState.Item2.ToString() : "false")" />
 
                 <div class="panel panel-default" style="margin-top: 8px;">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="@($"#cat_{category.ID}")">@category.Name</a>
+                    <div class="panel-heading template-category-header">
+                        <h4 class="panel-title" style="display: block;">
+                            <a data-toggle="collapse" href="@($"#cat_{category.ID}")" style="display: block;">
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                                @category.Name
+                            </a>
                         </h4>
                     </div>
                     <div id="@($"cat_{category.ID}")" class="@("panel-collapse collapse" + (catState != null && catState.Item2 ? " in" : ""))" data-category-id="@category.ID">
@@ -36,19 +39,19 @@
                                     var baseUrl = new Uri(System.Configuration.ConfigurationManager.AppSettings["api_host"]);
                                     var templateBgUrl = new Uri(baseUrl, $"/blobs/getimage/{template.BackgroundImageID}");
 
-                                    <div class="template-select-item">
-                                        <img src="@($"{templateBgUrl.ToString()}?thumb=true")" class="template-thumb"
-                                             data-high-res-img="@($"{templateBgUrl.ToString()}?thumb=false")" />
-                                        <div class="template-title">
-                                            <h5>@template.Name</h5>
-                                            <label>@Strings.Price: @(template.Price > 0 ? $"{template.Price.ToString(SamUtils.Constants.StringFormats.price)} {Strings.PriceUnit}" : Strings.Free)</label>
-                                        </div>
-                                        <div class="template-select-button">
-                                            <input type="hidden" value="@template.ID" disabled="disabled" />
-                                            <input id="@($"chTemplate_{template.ID}")" type="checkbox" @(isSelected ? Html.Raw("CHECKED") : Html.Raw("")) data-toggle="toggle" data-on="@Strings.Select" data-off="@Strings.Select" />
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
+                            <div class="template-select-item">
+                                <img src="@($"{templateBgUrl.ToString()}?thumb=true")" class="template-thumb"
+                                     data-high-res-img="@($"{templateBgUrl.ToString()}?thumb=false")" />
+                                <div class="template-title">
+                                    <h5>@template.Name</h5>
+                                    <label>@Strings.Price: @(template.Price > 0 ? $"{template.Price.ToString(SamUtils.Constants.StringFormats.price)} {Strings.PriceUnit}" : Strings.Free)</label>
+                                </div>
+                                <div class="template-select-button">
+                                    <input type="hidden" value="@template.ID" disabled="disabled" />
+                                    <input id="@($"chTemplate_{template.ID}")" type="checkbox" @(isSelected ? Html.Raw("CHECKED") : Html.Raw("")) data-toggle="toggle" data-on="@Strings.Select" data-off="@Strings.Select" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
                                 }
                             }
                         </div>
@@ -68,11 +71,11 @@
     </button>
     @using (Ajax.BeginForm("GetCustomerInfoView", "Consolations", null, new AjaxOptions { UpdateTargetId = "wizard_step", LoadingElementId = "loading", OnBegin = "onBegin" }, new { @id = "frm_prev", @style = "display: inline-block;" }))
     {
-        @Html.AntiForgeryToken()
-        <button type="submit" class="btn btn-default">
-            <span class="glyphicon glyphicon-circle-arrow-right"></span>
-            @Strings.PreviousStep
-        </button>
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-default">
+        <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        @Strings.PreviousStep
+    </button>
     }
 </div>
 

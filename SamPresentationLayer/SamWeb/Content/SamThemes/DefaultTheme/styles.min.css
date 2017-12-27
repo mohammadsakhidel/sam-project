@@ -177,7 +177,6 @@ img.thumb {
 .download-link {
     font-size: large;
     font-weight: bold;
-    
 }
 
 .inline {
@@ -187,3 +186,19 @@ img.thumb {
 .margin-start {
     margin-right: 6px;
 }
+
+.template-category-header {
+    cursor: pointer;
+}
+
+    .template-category-header:hover {
+        background: #cccccc;
+    }
+
+    .template-category-header a {
+        text-decoration: none;
+    }
+
+        .template-category-header a:hover {
+            text-decoration: none;
+        }

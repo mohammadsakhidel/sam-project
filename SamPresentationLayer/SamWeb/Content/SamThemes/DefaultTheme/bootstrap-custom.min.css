@@ -51,3 +51,7 @@ div.checkbox input {
 
 div.checkbox > label {
 }
+
+.panel .panel-title {
+    display: inline-block;
+}
