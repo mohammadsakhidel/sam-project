@@ -101,6 +101,14 @@
     <Compile Include="Migrations\SamDbMigrations\201712231440426_Consolation_ExtraDataFieldAdded.Designer.cs">
       <DependentUpon>201712231440426_Consolation_ExtraDataFieldAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201712270916022_Consolation_TemplateInfoFieldSizeIncreased.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201712270916022_Consolation_TemplateInfoFieldSizeIncreased.Designer.cs">
+      <DependentUpon>201712270916022_Consolation_TemplateInfoFieldSizeIncreased.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201712270928560_ConsolationFieldsLengthIncreased.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201712270928560_ConsolationFieldsLengthIncreased.Designer.cs">
+      <DependentUpon>201712270928560_ConsolationFieldsLengthIncreased.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
@@ -157,6 +165,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201712231440426_Consolation_ExtraDataFieldAdded.resx">
       <DependentUpon>201712231440426_Consolation_ExtraDataFieldAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201712270916022_Consolation_TemplateInfoFieldSizeIncreased.resx">
+      <DependentUpon>201712270916022_Consolation_TemplateInfoFieldSizeIncreased.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201712270928560_ConsolationFieldsLengthIncreased.resx">
+      <DependentUpon>201712270928560_ConsolationFieldsLengthIncreased.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

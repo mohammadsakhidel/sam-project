@@ -20,13 +20,13 @@ namespace SamModels.Entities
         /// This field is a container for additional info for selected template, such as relationship
         /// of deseaced person and audience. These informations whill be stored as a JSON object.
         /// </summary>
-        [MaxLength(256)]
+        [MaxLength(1024)]
         public string TemplateInfo { get; set; }
 
-        [MaxLength(64)]
+        [MaxLength(512)]
         public string Audience { get; set; }
 
-        [MaxLength(64)]
+        [MaxLength(512)]
         public string From { get; set; }
 
         [Required]
