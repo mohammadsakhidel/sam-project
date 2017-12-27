@@ -317,8 +317,14 @@ namespace SamWeb.Controllers
                     using (var hc = HttpUtil.CreateClient())
                     {
                         var consolationId = (int)Session[ARG_CONSOLATION_ID];
-                        var url = $"{ApiActions.consolations_update}/{consolationId}?obitId={obitId}&templateId={templateId}";
-                        var response = await hc.PutAsJsonAsync(url, fieldValues);
+                        var dto = new ConsolationDto() {
+                            ID = consolationId,
+                            ObitID = obitId,
+                            TemplateID = templateId,
+                            TemplateInfo = templateInfo,
+                            Customer = new CustomerDto { FullName = fullName, CellPhoneNumber = cellphone }
+                        };
+                        var response = await hc.PutAsJsonAsync(ApiActions.consolations_updatev2, dto);
                         HttpUtil.EnsureSuccessStatusCode(response);
                     }
                 }

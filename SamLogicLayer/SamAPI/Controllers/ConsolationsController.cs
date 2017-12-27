@@ -355,7 +355,12 @@ namespace SamAPI.Controllers
                     consolationToEdit.ObitID = obitId;
 
                 if (templateId > 0)
+                {
+                    var newTemplate = _templateRepo.Get(templateId);
+
                     consolationToEdit.TemplateID = templateId;
+                    consolationToEdit.AmountToPay = newTemplate.Price;
+                }
 
                 if (fields.ContainsKey("Audience"))
                     consolationToEdit.Audience = fields["Audience"];
@@ -413,56 +418,85 @@ namespace SamAPI.Controllers
                 if (consolationToEdit == null)
                     return NotFound();
 
-                #region update fields:
-                if (model.ObitID > 0)
-                    consolationToEdit.ObitID = model.ObitID;
-
-                if (model.TemplateID > 0)
-                    consolationToEdit.TemplateID = model.TemplateID;
-
-                if (!string.IsNullOrEmpty(model.TemplateInfo))
+                using (var ts = new TransactionScope())
                 {
-                    var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.TemplateInfo);
+                    #region update fields:
+                    if (model.ObitID > 0)
+                        consolationToEdit.ObitID = model.ObitID;
 
-                    if (fields.ContainsKey("Audience"))
-                        consolationToEdit.Audience = fields["Audience"];
-                    if (fields.ContainsKey("From"))
-                        consolationToEdit.From = fields["From"];
-
-                    consolationToEdit.TemplateInfo = model.TemplateInfo;
-                }
-                
-                #endregion
-
-                #region update status:
-                if (!string.IsNullOrEmpty(model.Status))
-                {
-                    var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
-                    if (newstatus == ConsolationStatus.confirmed)
+                    if (model.TemplateID > 0)
                     {
-                        if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                        var newTemplate = _templateRepo.Get(model.TemplateID);
+
+                        consolationToEdit.TemplateID = model.TemplateID;
+                        consolationToEdit.AmountToPay = newTemplate.Price;
+                    }
+
+                    if (!string.IsNullOrEmpty(model.TemplateInfo))
+                    {
+                        var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.TemplateInfo);
+
+                        if (fields.ContainsKey("Audience"))
+                            consolationToEdit.Audience = fields["Audience"];
+                        if (fields.ContainsKey("From"))
+                            consolationToEdit.From = fields["From"];
+
+                        consolationToEdit.TemplateInfo = model.TemplateInfo;
+                    }
+                    #endregion
+
+                    #region update customer:
+                    if (model.Customer != null)
+                    {
+                        var customer = _customerRepo.Find(model.Customer.CellPhoneNumber);
+                        if (customer != null)
                         {
-                            var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
-                            consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                            if (consolationToEdit.CustomerID != customer.ID)
+                                consolationToEdit.CustomerID = customer.ID;
                         }
                         else
                         {
-                            consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
-                            #region Send SMS:
-                            string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
-                            SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
-                            #endregion
+                            var newCustomer = Mapper.Map<CustomerDto, Customer>(model.Customer);
+                            newCustomer.IsMember = false;
+                            _customerRepo.AddWithSave(newCustomer);
+
+                            consolationToEdit.CustomerID = newCustomer.ID;
                         }
                     }
-                    else if (newstatus == ConsolationStatus.canceled)
-                    {
-                        consolationToEdit.Status = newstatus.ToString();
-                    }
-                }
-                #endregion
+                    #endregion
 
-                consolationToEdit.LastUpdateTime = DateTimeUtils.Now;
-                _consolationRepo.Save();
+                    #region update status:
+                    if (!string.IsNullOrEmpty(model.Status))
+                    {
+                        var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
+                        if (newstatus == ConsolationStatus.confirmed)
+                        {
+                            if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                            {
+                                var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
+                                consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                            }
+                            else
+                            {
+                                consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
+                                #region Send SMS:
+                                string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
+                                SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
+                                #endregion
+                            }
+                        }
+                        else if (newstatus == ConsolationStatus.canceled)
+                        {
+                            consolationToEdit.Status = newstatus.ToString();
+                        }
+                    }
+                    #endregion
+
+                    consolationToEdit.LastUpdateTime = DateTimeUtils.Now;
+
+                    _consolationRepo.Save();
+                    ts.Complete();
+                }
 
                 return Ok();
             }
