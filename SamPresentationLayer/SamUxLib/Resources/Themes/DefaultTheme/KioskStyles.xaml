@@ -316,9 +316,11 @@
     </Style>
 
     <Style x:Key="kiosk_retry_button" TargetType="Button">
-        <Setter Property="Padding" Value="16 8"></Setter>
+        <Setter Property="Padding" Value="24 10"></Setter>
         <Setter Property="Background" Value="{StaticResource color_primary}"></Setter>
         <Setter Property="Foreground" Value="{StaticResource color_neutral}"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource font_xxlarge}"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
 
         <Style.Triggers>

@@ -333,6 +333,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ارتباط با سرور برقرار نشد، لطفاً مجدداً تلاش کنید....
+        /// </summary>
+        public static string KioskRetryMessage {
+            get {
+                return ResourceManager.GetString("KioskRetryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ورود به سیستم ناموفق بود، لطفاً مجدداً تلاش کنید..
         /// </summary>
         public static string LoginFailedTryAgain {

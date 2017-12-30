@@ -94,5 +94,16 @@ namespace SamUxLib.Code.DI
             PosResponse?.Invoke(sender, args);
         }
         #endregion
+
+        public void SimulateSuccessResponse()
+        {
+            var args = new PosResponseEventArgs
+            {
+                Succeeded = true,
+                Data = "test data",
+                DataFormat = DataFormat.xml
+            };
+            PosResponse.Invoke(this, args);
+        }
     }
 }

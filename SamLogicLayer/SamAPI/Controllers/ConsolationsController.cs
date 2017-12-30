@@ -418,85 +418,80 @@ namespace SamAPI.Controllers
                 if (consolationToEdit == null)
                     return NotFound();
 
-                using (var ts = new TransactionScope())
+                #region update fields:
+                if (model.ObitID > 0)
+                    consolationToEdit.ObitID = model.ObitID;
+
+                if (model.TemplateID > 0)
                 {
-                    #region update fields:
-                    if (model.ObitID > 0)
-                        consolationToEdit.ObitID = model.ObitID;
+                    var newTemplate = _templateRepo.Get(model.TemplateID);
 
-                    if (model.TemplateID > 0)
+                    consolationToEdit.TemplateID = model.TemplateID;
+                    consolationToEdit.AmountToPay = newTemplate.Price;
+                }
+
+                if (!string.IsNullOrEmpty(model.TemplateInfo))
+                {
+                    var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.TemplateInfo);
+
+                    if (fields.ContainsKey("Audience"))
+                        consolationToEdit.Audience = fields["Audience"];
+                    if (fields.ContainsKey("From"))
+                        consolationToEdit.From = fields["From"];
+
+                    consolationToEdit.TemplateInfo = model.TemplateInfo;
+                }
+                #endregion
+
+                #region update customer:
+                if (model.Customer != null)
+                {
+                    var customer = _customerRepo.Find(model.Customer.CellPhoneNumber);
+                    if (customer != null)
                     {
-                        var newTemplate = _templateRepo.Get(model.TemplateID);
-
-                        consolationToEdit.TemplateID = model.TemplateID;
-                        consolationToEdit.AmountToPay = newTemplate.Price;
+                        if (consolationToEdit.CustomerID != customer.ID)
+                            consolationToEdit.CustomerID = customer.ID;
                     }
-
-                    if (!string.IsNullOrEmpty(model.TemplateInfo))
+                    else
                     {
-                        var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.TemplateInfo);
+                        var newCustomer = Mapper.Map<CustomerDto, Customer>(model.Customer);
+                        newCustomer.IsMember = false;
 
-                        if (fields.ContainsKey("Audience"))
-                            consolationToEdit.Audience = fields["Audience"];
-                        if (fields.ContainsKey("From"))
-                            consolationToEdit.From = fields["From"];
-
-                        consolationToEdit.TemplateInfo = model.TemplateInfo;
+                        consolationToEdit.Customer = newCustomer;
                     }
-                    #endregion
+                }
+                #endregion
 
-                    #region update customer:
-                    if (model.Customer != null)
+                #region update status:
+                if (!string.IsNullOrEmpty(model.Status))
+                {
+                    var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
+                    if (newstatus == ConsolationStatus.confirmed)
                     {
-                        var customer = _customerRepo.Find(model.Customer.CellPhoneNumber);
-                        if (customer != null)
+                        if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
                         {
-                            if (consolationToEdit.CustomerID != customer.ID)
-                                consolationToEdit.CustomerID = customer.ID;
+                            var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
+                            consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
                         }
                         else
                         {
-                            var newCustomer = Mapper.Map<CustomerDto, Customer>(model.Customer);
-                            newCustomer.IsMember = false;
-                            _customerRepo.AddWithSave(newCustomer);
-
-                            consolationToEdit.CustomerID = newCustomer.ID;
+                            consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
+                            #region Send SMS:
+                            string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
+                            SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
+                            #endregion
                         }
                     }
-                    #endregion
-
-                    #region update status:
-                    if (!string.IsNullOrEmpty(model.Status))
+                    else if (newstatus == ConsolationStatus.canceled)
                     {
-                        var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
-                        if (newstatus == ConsolationStatus.confirmed)
-                        {
-                            if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
-                            {
-                                var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
-                                consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
-                            }
-                            else
-                            {
-                                consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
-                                #region Send SMS:
-                                string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
-                                SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
-                                #endregion
-                            }
-                        }
-                        else if (newstatus == ConsolationStatus.canceled)
-                        {
-                            consolationToEdit.Status = newstatus.ToString();
-                        }
+                        consolationToEdit.Status = newstatus.ToString();
                     }
-                    #endregion
-
-                    consolationToEdit.LastUpdateTime = DateTimeUtils.Now;
-
-                    _consolationRepo.Save();
-                    ts.Complete();
                 }
+                #endregion
+
+                consolationToEdit.LastUpdateTime = DateTimeUtils.Now;
+
+                _consolationRepo.Save();
 
                 return Ok();
             }

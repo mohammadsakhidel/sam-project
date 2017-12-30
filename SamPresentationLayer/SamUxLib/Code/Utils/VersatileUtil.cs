@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RamancoLibrary.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -72,6 +73,13 @@ namespace SamUxLib.Code.Utils
                         .Replace('7', '\u06f7')
                         .Replace('8', '\u06f8')
                         .Replace('9', '\u06f9');
+        }
+
+        public static bool IsConnectedToInternet()
+        {
+            //var uri = new Uri(ConfigurationManager.AppSettings["api_host"]);
+            var res = MiscellaneousUtils.PingHost("www.google.com");
+            return res;
         }
     }
 }

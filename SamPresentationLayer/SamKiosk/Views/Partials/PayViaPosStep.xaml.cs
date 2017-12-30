@@ -4,10 +4,14 @@ using SamModels.DTOs;
 using SamUtils.Constants;
 using SamUtils.Utils;
 using SamUxLib.Code.DI;
+using SamUxLib.Code.Utils;
+using SamUxLib.Resources.Values;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -79,18 +83,19 @@ namespace SamKiosk.Views.Partials
                 KioskExceptionManager.Handle(ex);
             }
         }
-        private async void _pos_Response(object sender, PosResponseEventArgs e)
+        private void _pos_Response(object sender, PosResponseEventArgs e)
         {
             try
             {
                 if (e.Succeeded)
                 {
-                    await VerifyAsync(e.Data);
+                    Verify(e.Data);
                 }
                 else
                 {
                     _parent.VerificationSucceeded = false;
-                    Dispatcher.Invoke(() => {
+                    Dispatcher.Invoke(() =>
+                    {
                         _parent.NextNoAction();
                     });
                 }
@@ -104,7 +109,9 @@ namespace SamKiosk.Views.Partials
         {
             try
             {
-
+                var btnRetry = e.Source as Button;
+                var data = btnRetry.Tag.ToString();
+                Verify(data);
             }
             catch (Exception ex)
             {
@@ -120,49 +127,59 @@ namespace SamKiosk.Views.Partials
             _pos = new SamanSerialPOS(portName);
             _pos.PosResponse += _pos_Response;
         }
-        void ShowRetryView()
+        void ShowRetryView(string data)
         {
-
+            progress.IsBusy = false;
+            btnRetry.Tag = data;
+            btnRetry.Visibility = Visibility.Visible;
+            txtPayMessage.Text = Messages.KioskRetryMessage;
         }
-        async Task VerifyAsync(string data)
+        void Verify(string data)
         {
+            var dto = new PosPaymentVerificationDto()
+            {
+                ConsolationID = _parent.CreatedConsolationID,
+                PaymentData = (data.Length > 512 ? data.Substring(0, 512) : data)
+            };
+
+            #region call api:
             Dispatcher.Invoke(() =>
             {
                 progress.IsBusy = true;
             });
-            using (var hc = HttpUtil.CreateClient())
+            Task.Run(() =>
             {
-                var dto = new PosPaymentVerificationDto()
-                {
-                    ConsolationID = _parent.CreatedConsolationID,
-                    PaymentData = (data.Length > 512 ? data.Substring(0, 512) : data)
-                };
-                #region call with retry:
-                var waitTime = 2000;
                 try
                 {
-                    try
+                    var isConnected = VersatileUtil.IsConnectedToInternet();
+                    if (!isConnected)
                     {
-                        var response = await hc.PutAsJsonAsync($"{ApiActions.payment_verifypos}", dto);
-                        HttpUtil.EnsureSuccessStatusCode(response);
-                        _parent.VerificationSucceeded = true;
-                        Dispatcher.Invoke(() => _parent.NextNoAction());
+                        Dispatcher.Invoke(() => ShowRetryView(data));
                     }
-                    catch
+                    else
                     {
-                        Thread.Sleep(waitTime);
-                        var response = await hc.PutAsJsonAsync($"{ApiActions.payment_verifypos}", dto);
-                        HttpUtil.EnsureSuccessStatusCode(response);
-                        _parent.VerificationSucceeded = true;
-                        Dispatcher.Invoke(() => _parent.NextNoAction());
+                        try
+                        {
+                            using (var hc = HttpUtil.CreateClient())
+                            {
+                                var response = hc.PutAsJsonAsync($"{ApiActions.payment_verifypos}", dto).Result;
+                                HttpUtil.EnsureSuccessStatusCode(response);
+                                _parent.VerificationSucceeded = true;
+                                Dispatcher.Invoke(() => _parent.NextNoAction());
+                            }
+                        }
+                        catch
+                        {
+                            Dispatcher.Invoke(() => ShowRetryView(data));
+                        }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    ShowRetryView();
+                    KioskExceptionManager.Handle(ex);
                 }
-                #endregion
-            }
+            });
+            #endregion
         }
         #endregion
     }

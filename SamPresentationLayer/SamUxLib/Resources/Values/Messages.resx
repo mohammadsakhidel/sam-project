@@ -209,6 +209,9 @@
   <data name="Invalid_CellPhoneNumber" xml:space="preserve">
     <value>شماره موبایل وارد شده معتبر نیست.</value>
   </data>
+  <data name="KioskRetryMessage" xml:space="preserve">
+    <value>ارتباط با سرور برقرار نشد، لطفاً مجدداً تلاش کنید...</value>
+  </data>
   <data name="LoginFailedTryAgain" xml:space="preserve">
     <value>ورود به سیستم ناموفق بود، لطفاً مجدداً تلاش کنید.</value>
   </data>
