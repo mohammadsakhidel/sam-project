@@ -600,6 +600,16 @@ namespace SamAPI.Controllers
                         var info = JsonConvert.DeserializeObject<Dictionary<string, string>>(consolation.TemplateInfo);
                         var fields = consolation.Template.TemplateFields.ToList();
 
+                        #region font collection:
+                        var fontsFolder = HostingEnvironment.MapPath("~/Content/Fonts/");
+                        var fontCollection = new PrivateFontCollection();
+                        var fontFiles = Directory.GetFiles(fontsFolder);
+                        foreach (var fontFile in fontFiles)
+                        {
+                            fontCollection.AddFontFile(fontFile);
+                        }
+                        #endregion
+
                         foreach (var field in fields)
                         {
                             var box = new Rectangle();
@@ -617,16 +627,23 @@ namespace SamAPI.Controllers
                             };
                             var textColor = new SolidBrush(ColorTranslator.FromHtml(field.TextColor));
                             //font:
-                            var fontsFolder = HostingEnvironment.MapPath("~/Content/Fonts/");
-                            var fontCollection = new PrivateFontCollection();
-                            var fontFiles = Directory.GetFiles(fontsFolder);
-                            foreach (var fontFile in fontFiles)
-                            {
-                                fontCollection.AddFontFile(fontFile);
-                            }
                             var fontFamily = fontCollection.Families.Where(ff => ff.Name == field.FontFamily).FirstOrDefault();
-                            var font = new Font(fontFamily, StringToFontSize(field.FontSize), (field.Bold.HasValue && field.Bold.Value ? FontStyle.Bold : FontStyle.Regular));
-
+                            var fontSize = StringToFontSize(field.FontSize);
+                            var font = new Font(fontFamily, fontSize, (field.Bold.HasValue && field.Bold.Value ? FontStyle.Bold : FontStyle.Regular));
+                            #region scale to fit:
+                            var dist = CalcDistanceToFit(g, box, text, font);
+                            if (dist > 0)
+                            {
+                                var margin = 1;
+                                var maxIncrease = 7;
+                                var increasedSize = (dist > margin ? (dist - margin < maxIncrease ? dist - margin : maxIncrease) : 0);
+                                font = new Font(font.FontFamily, font.SizeInPoints + increasedSize, (field.Bold.HasValue && field.Bold.Value ? FontStyle.Bold : FontStyle.Regular));
+                            }
+                            else if (dist < 0)
+                            {
+                                font = new Font(font.FontFamily, font.SizeInPoints + dist, (field.Bold.HasValue && field.Bold.Value ? FontStyle.Bold : FontStyle.Regular));
+                            }
+                            #endregion
                             g.DrawString(text, font, textColor, box, textAlignmentFormat);
                         }
                     }
@@ -671,6 +688,30 @@ namespace SamAPI.Controllers
             dic.Add("large", 37f);
             dic.Add("huge", 43f);
             return dic.ContainsKey(text) ? dic[text] : dic["normal"];
+        }
+        private int CalcDistanceToFit(Graphics g, Rectangle box, string text, Font font)
+        {
+            var dist = 0;
+            var stringSize = g.MeasureString(text, font, box.Width);
+            if (stringSize.Height < box.Height)
+            {
+                while (stringSize.Height < box.Height)
+                {
+                    font = new Font(font.FontFamily, font.SizeInPoints + 1);
+                    stringSize = g.MeasureString(text, font, box.Width);
+                    dist++;
+                }
+            }
+            else
+            {
+                while (stringSize.Height > box.Height)
+                {
+                    font = new Font(font.FontFamily, font.SizeInPoints - 1);
+                    stringSize = g.MeasureString(text, font, box.Width);
+                    dist--;
+                }
+            }
+            return dist;
         }
         #endregion
     }
