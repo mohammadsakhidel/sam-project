@@ -94,6 +94,11 @@ namespace SamServerAgent
                 {
                     var response = hc.PostAsync(ApiActions.payment_reverse, null).Result;
                     response.EnsureSuccessStatusCode();
+                    var count = Convert.ToInt32(response.Content.ReadAsStringAsync().Result);
+                    if (count > 0)
+                    {
+                        Log($"{count} Payment{(count > 1 ? "s" : "")} Reversed!");
+                    }
                 }
                 #endregion
             }

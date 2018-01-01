@@ -103,5 +103,16 @@ namespace SamAPI.Resources {
                 return ResourceManager.GetString("ObitCreationSms", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * سام *
+        ///کاربر گرامی، با توجه به عدم امکان نمایش پیام تسلیت ارسال شده شما در مراسم مورد نظر، ضمن عرض پوزش، مبلغ پرداخت شده به حساب شما عودت داده شد.
+        ///کد رهگیری: {0}.
+        /// </summary>
+        public static string ReverseSms {
+            get {
+                return ResourceManager.GetString("ReverseSms", resourceCulture);
+            }
+        }
     }
 }

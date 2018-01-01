@@ -80,10 +80,18 @@ namespace SamAPI.Controllers
 
                             ts.Complete();
                         }
+
+                        #region Send SMS To Customer:
+                        if (c?.Customer != null)
+                        {
+                            string messageText = string.Format(SmsMessages.ReverseSms, c.TrackingNumber);
+                            SmsUtil.Send(messageText, c.Customer.CellPhoneNumber);
+                        }
+                        #endregion
                     }
                 }
 
-                return Ok();
+                return Ok(consolations.Count);
             }
             catch (Exception ex)
             {

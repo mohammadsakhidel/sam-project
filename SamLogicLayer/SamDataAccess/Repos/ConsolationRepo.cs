@@ -160,12 +160,13 @@ namespace SamDataAccess.Repos
         {
             var pending = ConsolationStatus.pending.ToString();
             var verified = PaymentStatus.verified.ToString();
-            var compareTime = DateTimeUtils.Now.AddMinutes(-50);
+            var compareTime = DateTimeUtils.Now.AddMinutes(-45);
+            var minTime = DateTimeUtils.Now.AddMinutes(-60);
 
             var recs = from c in set
                        where c.Status == pending &&
                              c.PaymentStatus == verified &&
-                             c.CreationTime < compareTime &&
+                             (c.CreationTime < compareTime && c.CreationTime > minTime) &&
                              !string.IsNullOrEmpty(c.PaymentID)
                        orderby c.CreationTime descending
                        select c;

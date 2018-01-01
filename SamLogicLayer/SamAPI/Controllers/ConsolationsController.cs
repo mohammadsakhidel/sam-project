@@ -377,6 +377,9 @@ namespace SamAPI.Controllers
                     var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), newStatus);
                     if (newstatus == ConsolationStatus.confirmed)
                     {
+                        if (consolationToEdit.PaymentStatus != PaymentStatus.verified.ToString())
+                            throw new Exception("Only consolations with verified payments can be confirmed.");
+
                         if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
                         {
                             var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
@@ -468,6 +471,9 @@ namespace SamAPI.Controllers
                     var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
                     if (newstatus == ConsolationStatus.confirmed)
                     {
+                        if (consolationToEdit.PaymentStatus != PaymentStatus.verified.ToString())
+                            throw new Exception("Only consolations with verified payments can be confirmed.");
+
                         if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
                         {
                             var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
