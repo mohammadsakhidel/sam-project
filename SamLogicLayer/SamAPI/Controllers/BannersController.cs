@@ -84,6 +84,22 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult FindByType(string bannerType, int count = 20)
+        {
+            try
+            {
+                var type = BannerHierarchyDto.GetEntityType(bannerType);
+                var entities = _bannerRepo.FindByType(type, count);
+                var dtos = entities.Select(e => Mapper.Map(e, e.GetType(), typeof(BannerHierarchyDto)));
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region POST:
@@ -175,31 +191,61 @@ namespace SamAPI.Controllers
         {
             try
             {
-                using (var ts = new TransactionScope())
-                {
-                    var bannerToDelete = _bannerRepo.Get(id);
-                    if (bannerToDelete == null)
-                        return NotFound();
+                var bannerToDelete = _bannerRepo.Get(id);
+                if (bannerToDelete == null)
+                    return NotFound();
 
-                    _bannerRepo.RemoveWithSave(id);
+                DeleteBanner(bannerToDelete);
 
-                    #region add removed entity record:
-                    var re = new RemovedEntity()
-                    {
-                        EntityID = bannerToDelete.ID.ToString(),
-                        EntityType = typeof(Banner).Name,
-                        RemovingTime = DateTimeUtils.Now
-                    };
-                    _removedEntityRepo.AddWithSave(re);
-                    #endregion
-
-                    ts.Complete();
-                    return Ok();
-                }
+                return Ok();
             }
             catch (Exception ex)
             {
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpPut]
+        public IHttpActionResult DeleteAll([FromBody]int[] ids)
+        {
+            try
+            {
+                foreach (var id in ids)
+                {
+                    var bannerToDelete = _bannerRepo.Get(id);
+                    if (bannerToDelete != null)
+                    {
+                        DeleteBanner(bannerToDelete);
+                    }
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+        #endregion
+
+        #region Private Methods:
+        private void DeleteBanner(Banner bannerToDelete)
+        {
+            using (var ts = new TransactionScope())
+            {
+                _bannerRepo.RemoveWithSave(bannerToDelete.ID);
+
+                #region add removed entity record:
+                var re = new RemovedEntity()
+                {
+                    EntityID = bannerToDelete.ID.ToString(),
+                    EntityType = typeof(Banner).Name,
+                    RemovingTime = DateTimeUtils.Now
+                };
+                _removedEntityRepo.AddWithSave(re);
+                #endregion
+
+                ts.Complete();
             }
         }
         #endregion

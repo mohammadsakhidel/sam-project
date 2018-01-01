@@ -105,5 +105,17 @@ namespace SamDataAccess.Repos
 
             base.Remove(entity);
         }
+
+        public List<Banner> FindByType(Type type, int count)
+        {
+            var query = $"SELECT TOP {count} * FROM [dbo].[Banners] WHERE [Discriminator] = @p0 ORDER BY [CreationTime] DESC";
+            var raw = context.Database.SqlQuery(type, query, type.Name);
+            var list = new List<Banner>();
+            foreach (var item in raw)
+            {
+                list.Add(item as Banner);
+            }
+            return list;
+        }
     }
 }

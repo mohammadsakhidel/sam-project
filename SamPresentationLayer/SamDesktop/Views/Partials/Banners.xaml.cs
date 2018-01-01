@@ -2,6 +2,7 @@
 using SamDesktop.Code.ViewModels;
 using SamDesktop.Views.Windows;
 using SamModels.DTOs;
+using SamModels.Enums;
 using SamUtils.Constants;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;
@@ -39,6 +40,11 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
+                var bannerTypesDic = UxUtil.EnumToDic(typeof(BannerType), "BannerType_");
+                var bannerTypePairs = bannerTypesDic.ToList();
+                bannerTypePairs.Insert(0, new KeyValuePair<string, string>("", Strings.All));
+                cmbBannerType.ItemsSource = bannerTypePairs;
+
                 var vm = DataContext as BannersVM;
                 vm.Token = App.UserToken.ToString();
                 await LoadRecords();
@@ -53,17 +59,17 @@ namespace SamDesktop.Views.Partials
         {
             try
             {
-                if (dgBanners.SelectedItem != null)
+                if (dgBanners.SelectedItems != null && dgBanners.SelectedItems.Count > 0)
                 {
                     var result = UxUtil.ShowQuestion(Messages.AreYouSureToDelete);
                     if (result == MessageBoxResult.Yes)
                     {
-                        var bannerToDelete = dgBanners.SelectedItem as BannerHierarchyDto;
+                        var bannersToDelete = dgBanners.SelectedItems.Cast<BannerHierarchyDto>();
                         #region Call Server To Delete:
                         progress.IsBusy = true;
                         using (var hc = HttpUtil.CreateClient())
                         {
-                            var response = await hc.DeleteAsync($"{ApiActions.banners_delete}/{bannerToDelete.ID}");
+                            var response = await hc.PutAsJsonAsync($"{ApiActions.banners_deleteall}", bannersToDelete.Select(b => b.ID).ToArray());
                             HttpUtil.EnsureSuccessStatusCode(response);
                             UxUtil.ShowMessage(Messages.SuccessfullyDone);
                             await LoadRecords();
@@ -138,6 +144,18 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
+        private async void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await LoadRecords();
+            }
+            catch (Exception ex)
+            {
+                progress.IsBusy = false;
+                ExceptionManager.Handle(ex);
+            }
+        }
         #endregion
 
         #region Private Methods:
@@ -146,10 +164,28 @@ namespace SamDesktop.Views.Partials
             progress.IsBusy = true;
             using (var client = HttpUtil.CreateClient())
             {
-                var response = await client.GetAsync($"{ApiActions.banners_getlatests}");
-                HttpUtil.EnsureSuccessStatusCode(response);
-                var list = await response.Content.ReadAsAsync<List<BannerHierarchyDto>>();
-                ((BannersVM)DataContext).Banners = new ObservableCollection<BannerHierarchyDto>(list);
+                if (cmbBannerType.SelectedIndex > 0)
+                {
+                    #region get by type:
+                    var bannerType = cmbBannerType.SelectedValue.ToString();
+                    var url = $"{ApiActions.banners_findbytype}?bannerType={bannerType}{(cmbCount.SelectedItem != null ? "&count=" + cmbCount.SelectedItem.ToString() : "")}";
+                    var response = await client.GetAsync(url);
+                    HttpUtil.EnsureSuccessStatusCode(response);
+                    var list = await response.Content.ReadAsAsync<List<BannerHierarchyDto>>();
+                    ((BannersVM)DataContext).Banners = new ObservableCollection<BannerHierarchyDto>(list);
+                    #endregion
+                }
+                else
+                {
+                    #region get latests:
+                    var url = $"{ApiActions.banners_getlatests}{(cmbCount.SelectedItem != null ? "?count=" + cmbCount.SelectedItem.ToString() : "")}";
+                    var response = await client.GetAsync(url);
+                    HttpUtil.EnsureSuccessStatusCode(response);
+                    var list = await response.Content.ReadAsAsync<List<BannerHierarchyDto>>();
+                    ((BannersVM)DataContext).Banners = new ObservableCollection<BannerHierarchyDto>(list);
+                    #endregion
+                }
+
                 progress.IsBusy = false;
             }
         }

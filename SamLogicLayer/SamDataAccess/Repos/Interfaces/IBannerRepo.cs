@@ -13,5 +13,6 @@ namespace SamDataAccess.Repos.Interfaces
         List<Banner> GetLatests(int count);
         void AddWithSave(Banner banner, ImageBlob blob);
         void UpdateWithSave(Banner newBanner, ImageBlob image);
+        List<Banner> FindByType(Type type, int count);
     }
 }

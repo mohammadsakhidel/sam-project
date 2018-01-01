@@ -40,13 +40,17 @@ namespace SamModels.DTOs
         public string ImageBase64 { get; set; }
         public Type GetEntityType()
         {
-            if (Type == BannerType.area.ToString())
+            return GetEntityType(Type);
+        }
+        public static Type GetEntityType(string type)
+        {
+            if (type == BannerType.area.ToString())
                 return typeof(AreaBanner);
-            else if (Type == BannerType.global.ToString())
+            else if (type == BannerType.global.ToString())
                 return typeof(GlobalBanner);
-            else if (Type == BannerType.obit.ToString())
+            else if (type == BannerType.obit.ToString())
                 return typeof(ObitBanner);
-            else if (Type == BannerType.mosque.ToString())
+            else if (type == BannerType.mosque.ToString())
                 return typeof(MosqueBanner);
             else
                 return typeof(Banner);

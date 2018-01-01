@@ -7,6 +7,7 @@
              xmlns:vm="clr-namespace:SamDesktop.Code.ViewModels"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:BannersVM />
@@ -16,13 +17,36 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition  Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <Label Style="{StaticResource page_header}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Banners}" />
 
-            <DataGrid x:Name="dgBanners" Grid.Row="1" Margin="{StaticResource padding_container_ver}" 
+            <Border Grid.Row="1" Style="{StaticResource frame}" Margin="{StaticResource padding_container_top}">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.BannerType}"></Label>
+                    <ComboBox x:Name="cmbBannerType" Width="140" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedIndex="0"></ComboBox>
+
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Count}" Margin="16 0 0 0"></Label>
+                    <ComboBox x:Name="cmbCount" Width="60" SelectedIndex="0">
+                        <sys:Int32>50</sys:Int32>
+                        <sys:Int32>100</sys:Int32>
+                        <sys:Int32>200</sys:Int32>
+                        <sys:Int32>300</sys:Int32>
+                        <sys:Int32>400</sys:Int32>
+                        <sys:Int32>500</sys:Int32>
+                    </ComboBox>
+
+                    <ram:FlatButton x:Name="btnSearch" Style="{StaticResource small_action_button_search}" Margin="{StaticResource padding_container_hor}"
+                                    Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Search}"
+                                    IsEnabled="{Binding ElementName=cmbBannerType, Path=SelectedItem, Converter={StaticResource notNullConverter}}"
+                                    Click="btnSearch_Click" />
+                </StackPanel>
+            </Border>
+
+            <DataGrid x:Name="dgBanners" Grid.Row="2" Margin="{StaticResource padding_container_ver}" 
                       ItemsSource="{Binding Banners}" MouseDoubleClick="dgBanners_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding ID}">
