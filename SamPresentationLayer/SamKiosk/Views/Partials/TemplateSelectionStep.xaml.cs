@@ -49,14 +49,11 @@ namespace SamKiosk.Views.Partials
                     _parent.SetNavigationState(true, true, true, true);
 
                     progress.IsBusy = true;
-                    using (var hc = HttpUtil.CreateClient())
-                    {
-                        var bytes = await hc.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{template.BackgroundImageID}?thumb=false");
-                        var bitmap = IOUtils.ByteArrayToBitmap(bytes);
-                        var source = ImageUtils.ToBitmapSource(bitmap);
-                        imgTemplate.Source = source;
-                        progress.IsBusy = false;
-                    }
+                    var bytes = await App.ApiClient.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{template.BackgroundImageID}?thumb=false");
+                    var bitmap = IOUtils.ByteArrayToBitmap(bytes);
+                    var source = ImageUtils.ToBitmapSource(bitmap);
+                    imgTemplate.Source = source;
+                    progress.IsBusy = false;
                 }
             }
             catch (Exception ex)
@@ -72,13 +69,10 @@ namespace SamKiosk.Views.Partials
                 _parent.SetNavigationState(true, false, true, true);
 
                 progress.IsBusy = true;
-                using (var hc = HttpUtil.CreateClient())
-                {
-                    var response = await hc.GetAsync($"{ApiActions.templates_all}");
-                    var templates = await response.Content.ReadAsAsync<TemplateDto[]>();
-                    lbTemplates.ItemsSource = new ObservableCollection<TemplateDto>(templates);
-                    progress.IsBusy = false;
-                }
+                var response = await App.ApiClient.GetAsync($"{ApiActions.templates_all}");
+                var templates = await response.Content.ReadAsAsync<TemplateDto[]>();
+                lbTemplates.ItemsSource = new ObservableCollection<TemplateDto>(templates);
+                progress.IsBusy = false;
 
                 #region state:
                 if (_parent.SelectedTemplate != null)

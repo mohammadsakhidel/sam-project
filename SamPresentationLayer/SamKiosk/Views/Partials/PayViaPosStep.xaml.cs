@@ -53,14 +53,11 @@ namespace SamKiosk.Views.Partials
 
                 #region load preview image:
                 progress.IsBusy = true;
-                using (var hc = HttpUtil.CreateClient())
-                {
-                    var bytes = await hc.GetByteArrayAsync($"{ApiActions.consolations_getpreview}/{_parent.CreatedConsolationID}?thumb=false");
-                    var bitmap = IOUtils.ByteArrayToBitmap(bytes);
-                    var source = ImageUtils.ToBitmapSource(bitmap);
-                    imgPreview.Source = source;
-                    progress.IsBusy = false;
-                }
+                var bytes = await App.ApiClient.GetByteArrayAsync($"{ApiActions.consolations_getpreview}/{_parent.CreatedConsolationID}?thumb=false");
+                var bitmap = IOUtils.ByteArrayToBitmap(bytes);
+                var source = ImageUtils.ToBitmapSource(bitmap);
+                imgPreview.Source = source;
+                progress.IsBusy = false;
                 #endregion
             }
             catch (Exception ex)
@@ -160,13 +157,11 @@ namespace SamKiosk.Views.Partials
                     {
                         try
                         {
-                            using (var hc = HttpUtil.CreateClient())
-                            {
-                                var response = hc.PutAsJsonAsync($"{ApiActions.payment_verifypos}", dto).Result;
-                                HttpUtil.EnsureSuccessStatusCode(response);
-                                _parent.VerificationSucceeded = true;
-                                Dispatcher.Invoke(() => _parent.NextNoAction());
-                            }
+                            var response = App.ApiClient.PutAsJsonAsync($"{ApiActions.payment_verifypos}", dto).Result;
+                            HttpUtil.EnsureSuccessStatusCode(response);
+                            _parent.VerificationSucceeded = true;
+                            Dispatcher.Invoke(() => _parent.NextNoAction());
+
                         }
                         catch
                         {

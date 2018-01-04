@@ -1,9 +1,11 @@
-﻿using SamUxLib.Code.Utils;
+﻿using SamUtils.Utils;
+using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,5 +29,19 @@ namespace SamKiosk
 
             base.OnStartup(e);
         }
+
+        #region Global Static Props:
+        private static HttpClient apiClient = null;
+        public static HttpClient ApiClient
+        {
+            get
+            {
+                if (apiClient == null)
+                    apiClient = HttpUtil.CreateClient();
+
+                return apiClient;
+            }
+        }
+        #endregion
     }
 }

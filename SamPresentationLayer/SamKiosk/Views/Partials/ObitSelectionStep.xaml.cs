@@ -46,14 +46,11 @@ namespace SamKiosk.Views.Partials
                 _parent.SetNavigationState(false, false, false, false);
 
                 progress.IsBusy = true;
-                using (var hc = HttpUtil.CreateClient())
-                {
-                    var mosqueId = Convert.ToInt32(ConfigurationManager.AppSettings["MosqueID"]);
-                    var response = await hc.GetAsync($"{ApiActions.obits_gethenceforwardobits}?mosqueid={mosqueId}");
-                    var obits = await response.Content.ReadAsAsync<ObitDto[]>();
-                    lbObits.ItemsSource = new ObservableCollection<ObitDto>(obits);
-                    progress.IsBusy = false;
-                }
+                var mosqueId = Convert.ToInt32(ConfigurationManager.AppSettings["MosqueID"]);
+                var response = await App.ApiClient.GetAsync($"{ApiActions.obits_gethenceforwardobits}?mosqueid={mosqueId}");
+                var obits = await response.Content.ReadAsAsync<ObitDto[]>();
+                lbObits.ItemsSource = new ObservableCollection<ObitDto>(obits);
+                progress.IsBusy = false;
             }
             catch (Exception ex)
             {

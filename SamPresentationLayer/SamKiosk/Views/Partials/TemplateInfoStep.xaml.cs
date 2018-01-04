@@ -59,7 +59,8 @@ namespace SamKiosk.Views.Partials
                 #endregion
 
                 #region on next action:
-                _parent.OnNextAction = async () => {
+                _parent.OnNextAction = async () =>
+                {
                     try
                     {
                         #region instantiate consolation dto object:
@@ -75,27 +76,24 @@ namespace SamKiosk.Views.Partials
 
                         #region call server:
                         progress.IsBusy = true;
-                        using (var hc = HttpUtil.CreateClient())
+                        #region update:
+                        if (_parent.CreatedConsolationID > 0)
                         {
-                            #region update:
-                            if (_parent.CreatedConsolationID > 0)
-                            {
-                                dto.ID = _parent.CreatedConsolationID;
-                                var response = await hc.PutAsJsonAsync(ApiActions.consolations_updatev2, dto);
-                                HttpUtil.EnsureSuccessStatusCode(response);
-                            }
-                            #endregion
-                            #region create:
-                            else
-                            {
-                                var response = await hc.PostAsJsonAsync(ApiActions.consolations_create, dto);
-                                HttpUtil.EnsureSuccessStatusCode(response);
-                                var info = await response.Content.ReadAsAsync<Dictionary<string, string>>();
-                                var consolationId = Convert.ToInt32(info["ID"]);
-                                _parent.CreatedConsolationID = consolationId;
-                            }
-                            #endregion
+                            dto.ID = _parent.CreatedConsolationID;
+                            var response = await App.ApiClient.PutAsJsonAsync(ApiActions.consolations_updatev2, dto);
+                            HttpUtil.EnsureSuccessStatusCode(response);
                         }
+                        #endregion
+                        #region create:
+                        else
+                        {
+                            var response = await App.ApiClient.PostAsJsonAsync(ApiActions.consolations_create, dto);
+                            HttpUtil.EnsureSuccessStatusCode(response);
+                            var info = await response.Content.ReadAsAsync<Dictionary<string, string>>();
+                            var consolationId = Convert.ToInt32(info["ID"]);
+                            _parent.CreatedConsolationID = consolationId;
+                        }
+                        #endregion
                         progress.IsBusy = false;
                         #endregion
                     }
