@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using SamDataAccess.Contexts;
 using SamDataAccess.IdentityModels;
 using SamDataAccess.Repos.Interfaces;
+using SamUtils.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,20 @@ namespace SamDataAccess.Repos
         public RoleManager<AspNetRole> GetRoleManager()
         {
             return new AspNetRoleManager(new RoleStore<AspNetRole>(context));
+        }
+        public List<AspNetUser> GetUsersInRole(params string[] roleNames)
+        {
+            if (roleNames != null && roleNames.Any())
+            {
+                var roles = context.Roles.Where(r => roleNames.Contains(r.Name));
+                if (roles.Any())
+                {
+                    return (from user in context.Users
+                            where user.Roles.Any(r => roles.Select(rl => rl.Id).Contains(r.RoleId))
+                            select user).ToList();
+                }
+            }
+            return new List<AspNetUser>();
         }
         #endregion
 

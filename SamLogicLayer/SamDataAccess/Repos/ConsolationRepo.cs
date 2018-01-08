@@ -173,5 +173,19 @@ namespace SamDataAccess.Repos
 
             return recs.ToList();
         }
+
+        public int GetNotifiablePendingsCount()
+        {
+            var pending = ConsolationStatus.pending.ToString();
+            var verified = PaymentStatus.verified.ToString();
+            var compareTime = DateTimeUtils.Now.AddMinutes(-7);
+            var minTime = DateTimeUtils.Now.AddMinutes(-40);
+
+            return (from c in set
+                    where c.Status == pending &&
+                          c.PaymentStatus == verified &&
+                          (c.CreationTime < compareTime && c.CreationTime > minTime)
+                    select c).Count();
+        }
     }
 }

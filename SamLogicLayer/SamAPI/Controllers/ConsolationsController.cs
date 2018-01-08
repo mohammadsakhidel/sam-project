@@ -7,6 +7,7 @@ using SamAPI.Resources;
 using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities;
+using SamUtils.Constants;
 using SamUtils.Enums;
 using SamUtils.Utils;
 using SmsLib.Objects;
@@ -22,6 +23,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -40,12 +42,13 @@ namespace SamAPI.Controllers
         ITemplateRepo _templateRepo;
         IPaymentRepo _paymentRepo;
         IPaymentService _paymentService;
+        IIdentityRepo _identityRepo;
         #endregion
 
         #region Ctors:
         public ConsolationsController(IConsolationRepo consolationRepo, IBlobRepo blobRepo,
             ICustomerRepo customerRepo, ITemplateRepo templateRepo, IObitRepo obitRepo,
-            IPaymentRepo paymentRepo, IPaymentService paymentService)
+            IPaymentRepo paymentRepo, IPaymentService paymentService, IIdentityRepo identityRepo)
         {
             _consolationRepo = consolationRepo;
             _blobRepo = blobRepo;
@@ -54,6 +57,7 @@ namespace SamAPI.Controllers
             _obitRepo = obitRepo;
             _paymentRepo = paymentRepo;
             _paymentService = paymentService;
+            _identityRepo = identityRepo;
         }
         #endregion
 
@@ -161,6 +165,53 @@ namespace SamAPI.Controllers
                 var consolations = _consolationRepo.Find(trackingNumbers);
                 var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c)).ToList();
                 return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpPost]
+        public IHttpActionResult Notify()
+        {
+            try
+            {
+                #region check for pending consolations:
+                var notifiableCount = _consolationRepo.GetNotifiablePendingsCount();
+                #endregion
+
+                if (notifiableCount > 0)
+                {
+                    #region find associated users:
+                    var oprator = RoleType.oprator.ToString();
+                    var rm = _identityRepo.GetRoleManager();
+                    var um = _identityRepo.GetUserManager();
+
+                    var operatorRoles = rm.Roles
+                        .Where(r => r.Type == oprator)
+                        .ToList();
+                    var operators = _identityRepo.GetUsersInRole(operatorRoles.Select(r => r.Name).ToArray());
+                    #endregion
+
+                    #region send message:
+                    if (operators.Any())
+                    {
+                        foreach (var op in operators)
+                        {
+                            #region Send SMS To Customer:
+                            if (Regex.IsMatch(op.PhoneNumber, Patterns.cellphone))
+                            {
+                                string messageText = string.Format(SmsMessages.OperatorNotificationMessage, notifiableCount);
+                                SmsUtil.Send(messageText, op.PhoneNumber);
+                            }
+                            #endregion
+                        }
+                    }
+                    #endregion
+                }
+
+                return Ok();
             }
             catch (Exception ex)
             {

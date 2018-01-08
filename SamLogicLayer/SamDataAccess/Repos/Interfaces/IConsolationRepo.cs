@@ -23,5 +23,7 @@ namespace SamDataAccess.Repos.Interfaces
         Consolation FindByPaymentID(string pId);
 
         List<Consolation> FindReversingConsolations();
+
+        int GetNotifiablePendingsCount();
     }
 }

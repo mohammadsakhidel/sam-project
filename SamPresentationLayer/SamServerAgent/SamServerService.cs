@@ -19,6 +19,7 @@ namespace SamServerAgent
     {
         #region Constants:
         const int REVERSE_PAYMENT_INTERVAL = 20000;
+        const int NOTIFY_OPERATOR_INTERVAL = 240000;
         #endregion
 
         #region CTORS:
@@ -49,11 +50,13 @@ namespace SamServerAgent
                 logger.Log = logName;
                 #endregion
 
-                #region Payment Reverse Checker Task:
+                #region Init Timers:
                 var reverseTimer = new Timer(ReversePaymentCallback, null, 20000, REVERSE_PAYMENT_INTERVAL);
+                var notifyTimer = new Timer(NotifyOperatorsCallback, null, 30000, NOTIFY_OPERATOR_INTERVAL);
 
                 _timers = new List<Timer>();
                 _timers.Add(reverseTimer);
+                _timers.Add(notifyTimer);
                 #endregion
 
                 Log("Sam Server Agent Started!");
@@ -105,6 +108,23 @@ namespace SamServerAgent
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex, logger, "REVERSE_PAYMENT");
+            }
+        }
+        private void NotifyOperatorsCallback(object stat)
+        {
+            try
+            {
+                #region Call Api:
+                using (var hc = HttpUtil.CreateClient())
+                {
+                    var response = hc.PostAsync(ApiActions.consolations_notify, null).Result;
+                    response.EnsureSuccessStatusCode();
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex, logger, "NOTIFY_OPERATOR");
             }
         }
         #endregion

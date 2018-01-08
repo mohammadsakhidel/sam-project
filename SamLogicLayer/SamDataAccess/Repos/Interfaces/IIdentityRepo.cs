@@ -12,5 +12,6 @@ namespace SamDataAccess.Repos.Interfaces
     {
         AspNetUserManager GetUserManager();
         RoleManager<AspNetRole> GetRoleManager();
+        List<AspNetUser> GetUsersInRole(params string[] roleNames);
     }
 }

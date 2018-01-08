@@ -106,6 +106,16 @@ namespace SamAPI.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to * سام *
+        ///اپراتور محترم، {0} پیام منتظر تأیید در سیستم وجود دارد..
+        /// </summary>
+        public static string OperatorNotificationMessage {
+            get {
+                return ResourceManager.GetString("OperatorNotificationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * سام *
         ///کاربر گرامی، با توجه به عدم امکان نمایش پیام تسلیت ارسال شده شما در مراسم مورد نظر، ضمن عرض پوزش، مبلغ پرداخت شده به حساب شما عودت داده شد.
         ///کد رهگیری: {0}.
         /// </summary>
