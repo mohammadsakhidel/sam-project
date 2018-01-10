@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -11,12 +12,18 @@ namespace SamUtils.Objects.Exceptions
     {
         #region Fields:
         HttpResponseMessage _response = null;
+        IRestResponse _restResponse = null;
         #endregion
 
         #region Ctors:
         public HttpException(HttpResponseMessage response)
         {
             _response = response;
+        }
+
+        public HttpException(IRestResponse restResponse)
+        {
+            _restResponse = restResponse;
         }
         #endregion
 
@@ -26,6 +33,14 @@ namespace SamUtils.Objects.Exceptions
             get
             {
                 return _response;
+            }
+        }
+
+        public IRestResponse RestResponse
+        {
+            get
+            {
+                return _restResponse;
             }
         }
         #endregion

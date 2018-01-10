@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RestSharp;
 using SamKiosk.Code.Utils;
 using SamModels.DTOs;
 using SamUtils.Constants;
@@ -80,16 +81,20 @@ namespace SamKiosk.Views.Partials
                         if (_parent.CreatedConsolationID > 0)
                         {
                             dto.ID = _parent.CreatedConsolationID;
-                            var response = await App.ApiClient.PutAsJsonAsync(ApiActions.consolations_updatev2, dto);
-                            HttpUtil.EnsureSuccessStatusCode(response);
+                            var request = new RestRequest(ApiActions.consolations_updatev2, Method.PUT);
+                            request.AddJsonBody(dto);
+                            var response = await App.RestClient.ExecuteTaskAsync(request);
+                            HttpUtil.EnsureRestSuccessStatusCode(response);
                         }
                         #endregion
                         #region create:
                         else
                         {
-                            var response = await App.ApiClient.PostAsJsonAsync(ApiActions.consolations_create, dto);
-                            HttpUtil.EnsureSuccessStatusCode(response);
-                            var info = await response.Content.ReadAsAsync<Dictionary<string, string>>();
+                            var request = new RestRequest(ApiActions.consolations_create, Method.POST);
+                            request.AddJsonBody(dto);
+                            var response = await App.RestClient.ExecuteTaskAsync<Dictionary<string, string>>(request);
+                            HttpUtil.EnsureRestSuccessStatusCode(response);
+                            var info = response.Data;
                             var consolationId = Convert.ToInt32(info["ID"]);
                             _parent.CreatedConsolationID = consolationId;
                         }

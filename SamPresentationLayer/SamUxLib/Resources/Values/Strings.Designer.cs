@@ -1736,6 +1736,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خطا در اتصال به دستگاه کارت خوان، مجددا تلاش کنید..
+        /// </summary>
+        public static string RequestToPOSFailed {
+            get {
+                return ResourceManager.GetString("RequestToPOSFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تلاش مجدد.
         /// </summary>
         public static string Retry {

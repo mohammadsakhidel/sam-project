@@ -1,4 +1,5 @@
-﻿using SamUtils.Objects.Exceptions;
+﻿using RestSharp;
+using SamUtils.Objects.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,6 +24,19 @@ namespace SamUtils.Utils
         {
             if (!response.IsSuccessStatusCode)
                 throw new HttpException(response);
+        }
+
+        public static void EnsureRestSuccessStatusCode(IRestResponse response)
+        {
+            if (!response.IsSuccessful)
+                throw new HttpException(response);
+        }
+
+        public static RestClient CreateRestClient(params string[] args)
+        {
+            var client = new RestClient(ConfigurationManager.AppSettings["api_host"]);
+            client.AddDefaultHeader("Authorization", "Basic c3JvU1ZxRnE5WTpyTFZYN1BDZFRXbllCenVGNVQ5cXJQQ1Q5bWVSVjJ3TA==");
+            return client;
         }
     }
 }

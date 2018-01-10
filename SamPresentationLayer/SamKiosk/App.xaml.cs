@@ -1,4 +1,5 @@
-﻿using SamUtils.Utils;
+﻿using RestSharp;
+using SamUtils.Utils;
 using SamUxLib.Code.Utils;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace SamKiosk
             base.OnStartup(e);
         }
 
-        #region Global Static Props:
+        #region Global Static:
         private static HttpClient apiClient = null;
         public static HttpClient ApiClient
         {
@@ -40,6 +41,18 @@ namespace SamKiosk
                     apiClient = HttpUtil.CreateClient();
 
                 return apiClient;
+            }
+        }
+
+        private static RestClient restClient = null;
+        public static RestClient RestClient
+        {
+            get
+            {
+                if (restClient == null)
+                    restClient = HttpUtil.CreateRestClient();
+
+                return restClient;
             }
         }
         #endregion

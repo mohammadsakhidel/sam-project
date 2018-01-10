@@ -37,7 +37,7 @@
 
                     <Button x:Name="btnRetry" Style="{StaticResource kiosk_retry_button}" HorizontalAlignment="Center"
                             Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Retry}"
-                            Click="btnRetry_Click" Visibility="Collapsed" Margin="{StaticResource padding_container_kiosk}"></Button>
+                            Visibility="Collapsed" Margin="{StaticResource padding_container_kiosk}"></Button>
                 </StackPanel>
                 
             </Border>

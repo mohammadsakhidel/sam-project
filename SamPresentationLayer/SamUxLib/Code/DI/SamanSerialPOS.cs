@@ -32,7 +32,10 @@ namespace SamUxLib.Code.DI
         public void Open()
         {
             if (!_opened)
+            {
+                _terminal.ClosePort();
                 _terminal.OpenPort();
+            }
 
             _opened = true;
         }
@@ -45,13 +48,13 @@ namespace SamUxLib.Code.DI
             _opened = false;
         }
 
-        public void PayRequest(int amount, bool print, bool verifyLater)
+        public bool PayRequest(int amount, bool print, bool verifyLater)
         {
             if (!_opened)
                 Open();
 
             _terminal.ShowMessages = false;
-            _terminal.ConfirmFlag = verifyLater;
+            //_terminal.ConfirmFlag = verifyLater;
             _terminal.PrintFlag = print ? (byte)1 : (byte)0;
 
             var data = new Dictionary<string, object>();
@@ -61,7 +64,7 @@ namespace SamUxLib.Code.DI
             var xml = ToXml(data);
 
             var res = _terminal.SendToCOM(xml);
-
+            return res;
         }
 
         public void VerifyPayment(params string[] args)
@@ -92,6 +95,7 @@ namespace SamUxLib.Code.DI
                 DataFormat = DataFormat.xml
             };
             PosResponse?.Invoke(sender, args);
+            Close();
         }
         #endregion
 

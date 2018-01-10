@@ -1,4 +1,6 @@
-﻿using RamancoLibrary.Utilities;
+﻿using Newtonsoft.Json;
+using RamancoLibrary.Utilities;
+using RestSharp;
 using SamKiosk.Code.Utils;
 using SamModels.DTOs;
 using SamUtils.Constants;
@@ -49,7 +51,10 @@ namespace SamKiosk.Views.Partials
                     _parent.SetNavigationState(true, true, true, true);
 
                     progress.IsBusy = true;
-                    var bytes = await App.ApiClient.GetByteArrayAsync($"{ApiActions.blobs_getimage}/{template.BackgroundImageID}?thumb=false");
+                    var request = new RestRequest($"{ApiActions.blobs_getimage}/{template.BackgroundImageID}?thumb=false");
+                    var response = await App.RestClient.ExecuteGetTaskAsync(request);
+                    HttpUtil.EnsureRestSuccessStatusCode(response);
+                    var bytes = response.RawBytes;
                     var bitmap = IOUtils.ByteArrayToBitmap(bytes);
                     var source = ImageUtils.ToBitmapSource(bitmap);
                     imgTemplate.Source = source;
@@ -68,11 +73,17 @@ namespace SamKiosk.Views.Partials
             {
                 _parent.SetNavigationState(true, false, true, true);
 
+                #region load templates from server:
                 progress.IsBusy = true;
-                var response = await App.ApiClient.GetAsync($"{ApiActions.templates_all}");
-                var templates = await response.Content.ReadAsAsync<TemplateDto[]>();
+
+                var request = new RestRequest(ApiActions.templates_all);
+                var response = await App.RestClient.ExecuteGetTaskAsync(request);
+                HttpUtil.EnsureRestSuccessStatusCode(response);
+
+                var templates = JsonConvert.DeserializeObject<List<TemplateDto>>(response.Content);
                 lbTemplates.ItemsSource = new ObservableCollection<TemplateDto>(templates);
                 progress.IsBusy = false;
+                #endregion
 
                 #region state:
                 if (_parent.SelectedTemplate != null)
@@ -88,10 +99,6 @@ namespace SamKiosk.Views.Partials
             }
         }
         #endregion
-
-        #region Methods:
-        #endregion
-
 
     }
 }

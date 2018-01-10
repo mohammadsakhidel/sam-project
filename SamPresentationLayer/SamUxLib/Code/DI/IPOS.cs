@@ -11,7 +11,7 @@ namespace SamUxLib.Code.DI
         #region Methods:
         void Open();
         void Close();
-        void PayRequest(int amount, bool print, bool verifyLater);
+        bool PayRequest(int amount, bool print, bool verifyLater);
         void VerifyPayment(params string[] args);
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using SamKiosk.Code.Utils;
+﻿using RestSharp;
+using SamKiosk.Code.Utils;
 using SamKiosk.Views.Windows;
 using SamModels.DTOs;
 using SamUtils.Constants;
@@ -45,12 +46,17 @@ namespace SamKiosk.Views.Partials
             {
                 _parent.SetNavigationState(false, false, false, false);
 
+                #region load obits:
                 progress.IsBusy = true;
                 var mosqueId = Convert.ToInt32(ConfigurationManager.AppSettings["MosqueID"]);
-                var response = await App.ApiClient.GetAsync($"{ApiActions.obits_gethenceforwardobits}?mosqueid={mosqueId}");
-                var obits = await response.Content.ReadAsAsync<ObitDto[]>();
+                var request = new RestRequest($"{ApiActions.obits_gethenceforwardobits}?mosqueid={mosqueId}");
+                var response = await App.RestClient.ExecuteGetTaskAsync<List<ObitDto>>(request);
+                HttpUtil.EnsureRestSuccessStatusCode(response);
+                var obits = response.Data;
+
                 lbObits.ItemsSource = new ObservableCollection<ObitDto>(obits);
                 progress.IsBusy = false;
+                #endregion
             }
             catch (Exception ex)
             {

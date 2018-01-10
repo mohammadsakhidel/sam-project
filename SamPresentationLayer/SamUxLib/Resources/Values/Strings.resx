@@ -875,4 +875,7 @@
   <data name="Retry" xml:space="preserve">
     <value>تلاش مجدد</value>
   </data>
+  <data name="RequestToPOSFailed" xml:space="preserve">
+    <value>خطا در اتصال به دستگاه کارت خوان، مجددا تلاش کنید.</value>
+  </data>
 </root>
