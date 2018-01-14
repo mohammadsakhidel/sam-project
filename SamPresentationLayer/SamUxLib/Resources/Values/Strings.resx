@@ -878,4 +878,7 @@
   <data name="RequestToPOSFailed" xml:space="preserve">
     <value>خطا در اتصال به دستگاه کارت خوان، مجددا تلاش کنید.</value>
   </data>
+  <data name="UpdaterTitle" xml:space="preserve">
+    <value>نرم افزار بروزرسان سام</value>
+  </data>
 </root>

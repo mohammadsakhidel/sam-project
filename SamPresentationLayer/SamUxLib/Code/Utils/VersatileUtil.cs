@@ -37,6 +37,7 @@ namespace SamUxLib.Code.Utils
                 while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Running)
                 {
                 }
+                sc.Dispose();
             });
 
             return task;
@@ -52,8 +53,27 @@ namespace SamUxLib.Code.Utils
                 while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Stopped)
                 {
                 }
+                sc.Dispose();
             });
             return task;
+        }
+
+        public static void StartService(string serviceName)
+        {
+            ServiceController sc = new ServiceController(serviceName);
+            if (sc.Status != ServiceControllerStatus.Running)
+                sc.Start();
+
+            while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Running) { }
+            sc.Dispose();
+        }
+
+        public static void StopService(string serviceName)
+        {
+            ServiceController sc = new ServiceController(serviceName);
+            sc.Stop();
+            while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Stopped) { }
+            sc.Dispose();
         }
 
         public static SolidColorBrush GetBrushFromColorCode(string colorCode)

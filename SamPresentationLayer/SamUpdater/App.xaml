@@ -1,0 +1,33 @@
+﻿<Application x:Class="SamUpdater.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SamUpdater"
+             StartupUri="MainWindow.xaml"
+             xmlns:cnv="clr-namespace:SamUxLib.Code.Converters;assembly=SamUxLib">
+    <Application.Resources>
+        <ResourceDictionary>
+            <cnv:ResourceConverter x:Key="rc" />
+            <cnv:NotNullConverter x:Key="notNullConverter" />
+            <cnv:PriceConverter x:Key="priceConverter" />
+            <cnv:ConnectorConverter x:Key="connectorConverter" />
+            <cnv:BoolConverter x:Key="boolConverter" />
+            <cnv:ShortTimeConverter x:Key="shortTimeConverter" />
+            <cnv:ShortDateConverter x:Key="shortDateConverter" />
+            <cnv:ShortDateTimeConverter x:Key="shortDateTimeConverter" />
+            <cnv:VisibilityConverter x:Key="visibilityConverter" />
+            <cnv:ArabicDigitsConverter x:Key="arabicDigitsConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Dimens.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/ControlTemplates.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/DataTemplates.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Types.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Styles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Layout.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/ToolkitStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

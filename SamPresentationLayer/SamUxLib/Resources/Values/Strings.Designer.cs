@@ -2267,6 +2267,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نرم افزار بروزرسان سام.
+        /// </summary>
+        public static string UpdaterTitle {
+            get {
+                return ResourceManager.GetString("UpdaterTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کاربر.
         /// </summary>
         public static string User {
