@@ -62,7 +62,7 @@ namespace SamUpdater
             }
             catch (Exception ex)
             {
-                ExceptionManager.Handle(ex);
+                Log(ex.Message);
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -90,29 +90,7 @@ namespace SamUpdater
             }
             catch (Exception ex)
             {
-                ExceptionManager.Handle(ex);
-            }
-        }
-        private void MaximizeCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            try
-            {
-                e.CanExecute = true;
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
-            }
-        }
-        private void MaximizeCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                ActivateWindow();
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
+                Log(ex.Message);
             }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -124,7 +102,7 @@ namespace SamUpdater
             }
             catch (Exception ex)
             {
-                ExceptionManager.Handle(ex);
+                Log(ex.Message);
             }
         }
         private void NotifyIcon_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -138,7 +116,7 @@ namespace SamUpdater
             }
             catch (Exception ex)
             {
-                ExceptionManager.Handle(ex);
+                Log(ex.Message);
             }
         }
         private void NotifyIconQuit_Click(object sender, EventArgs e)
@@ -149,7 +127,7 @@ namespace SamUpdater
             }
             catch (Exception ex)
             {
-                ExceptionManager.Handle(ex);
+                Log(ex.Message);
             }
         }
         #endregion
@@ -165,33 +143,26 @@ namespace SamUpdater
         }
         private void CheckForUpdates()
         {
-            try
+            var updateBaseUrl = ConfigurationManager.AppSettings["updatesBaseUrl"];
+            var updatesLocalFolderPath = $@"{AppDomain.CurrentDomain.BaseDirectory}updates\";
+
+            var updateCodes = DownloadUpdateCodes(updateBaseUrl);
+            var currentUpdateCode = GetLocalUpdateCode();
+            var newUpdateCodes = updateCodes.Where(c => c > currentUpdateCode).ToList();
+
+            #region download update packages to local folder:
+            if (updateCodes.Any() && updateCodes.Last() > currentUpdateCode)
             {
-                var updateBaseUrl = ConfigurationManager.AppSettings["updatesBaseUrl"];
-                var updatesLocalFolderPath = $@"{AppDomain.CurrentDomain.BaseDirectory}updates\";
-
-                var updateCodes = DownloadUpdateCodes(updateBaseUrl);
-                var currentUpdateCode = GetLocalUpdateCode();
-                var newUpdateCodes = updateCodes.Where(c => c > currentUpdateCode).ToList();
-
-                #region download update packages to local folder:
-                if (updateCodes.Any() && updateCodes.Last() > currentUpdateCode)
-                {
-                    DownloadAllNewUpdatePackages(newUpdateCodes, updateBaseUrl, updatesLocalFolderPath);
-                }
-                #endregion
-
-                #region install update packages:
-                foreach (var newUpdateCode in newUpdateCodes)
-                {
-                    InstallPackage(newUpdateCode, updatesLocalFolderPath);
-                }
-                #endregion
+                DownloadAllNewUpdatePackages(newUpdateCodes, updateBaseUrl, updatesLocalFolderPath);
             }
-            catch (Exception ex)
+            #endregion
+
+            #region install update packages:
+            foreach (var newUpdateCode in newUpdateCodes)
             {
-                ExceptionManager.Handle(ex);
+                InstallPackage(newUpdateCode, updatesLocalFolderPath);
             }
+            #endregion
         }
         private List<int> DownloadUpdateCodes(string updateBaseUrl)
         {
@@ -422,7 +393,6 @@ namespace SamUpdater
             if (asAdmin)
                 startInfo.Verb = "runas";
             var process = Process.Start(startInfo);
-            var id = 1;
         }
         private int CopyAllItemsInDirectory(string sourceDir, string destDir)
         {
