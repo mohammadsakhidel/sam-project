@@ -152,60 +152,24 @@ namespace SamClient.Views.Windows
                 var slideList = new List<Slide>();
                 #endregion
 
-                #region add start banners:
-                foreach (var banner in allBanners.Where(b => b.Item1.ShowOnStart).OrderByDescending(b => b.Item1.Priority))
-                {
-                    var slide = Dispatcher.Invoke(() => { return CreateSlide(banner.Item1, banner.Item2); });
-                    slideList.Add(slide);
-                }
-                #endregion
-
                 #region add consolations:
                 if (allConsolations.Any())
                 {
-                    var maxIntervals = allBanners.Max(b => b.Item1.Interval);
                     foreach (var c in allConsolations)
                     {
                         var slide = Dispatcher.Invoke(() => { return CreateSlide(c.Item1, c.Item2, setting.DefaultSlideDurationMilliSeconds / 1000); });
                         slideList.Add(slide);
                     }
-                    while (slideList.Where(s => s.Type == SamUxLib.Code.Enums.SlideType.consolation).Count() < maxIntervals)
-                    {
-                        foreach (var c in allConsolations)
-                        {
-                            if (slideList.Where(s => s.Type == SamUxLib.Code.Enums.SlideType.consolation).Count() < maxIntervals)
-                            {
-                                var slide = Dispatcher.Invoke(() => { return CreateSlide(c.Item1, c.Item2, setting.DefaultSlideDurationMilliSeconds / 1000); });
-                                slideList.Add(slide);
-                            }
-                        }
-                    }
                 }
                 #endregion
 
-                #region add interval banners:
-                foreach (var b in allBanners)
+                #region add banners:
+                if (allBanners.Any())
                 {
-                    var interval = b.Item1.Interval;
-                    var index = 0;
-                    var counter = 0;
-                    while (index < slideList.Count)
+                    foreach (var b in allBanners)
                     {
-                        if (slideList[index].Type == SamUxLib.Code.Enums.SlideType.consolation)
-                        {
-                            counter++;
-
-                            if (counter % interval == 0)
-                            {
-                                var slide = Dispatcher.Invoke(() => { return CreateSlide(b.Item1, b.Item2); });
-                                if (index < slideList.Count - 1)
-                                    slideList.Insert(index + 1, slide);
-                                else
-                                    slideList.Add(slide);
-                            }
-                        }
-
-                        index++;
+                        var slide = Dispatcher.Invoke(() => { return CreateSlide(b.Item1, b.Item2); });
+                        slideList.Add(slide);
                     }
                 }
                 #endregion
