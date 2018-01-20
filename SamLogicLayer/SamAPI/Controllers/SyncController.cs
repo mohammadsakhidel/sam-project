@@ -13,6 +13,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace SamAPI.Controllers
@@ -97,6 +98,23 @@ namespace SamAPI.Controllers
             catch (Exception ex)
             {
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetServerDateTime()
+        {
+            try
+            {
+                var dateTime = DateTime.UtcNow.ToString(StringFormats.datetime_long);
+                var response = Request.CreateResponse(HttpStatusCode.OK, dateTime);
+                response.Content = new StringContent(dateTime);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return ExceptionManager.GetExceptionResponse(this, ex);
             }
         }
         #endregion

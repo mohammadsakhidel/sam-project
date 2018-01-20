@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Structs\SYSTEMTIME.cs" />
     <Compile Include="Code\Utils\ExceptionManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">

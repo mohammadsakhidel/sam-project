@@ -6,6 +6,7 @@ using SamClientDataAccess.Repos;
 using SamModels.DTOs;
 using SamModels.Entities;
 using SamModels.Enums;
+using SamSyncAgent.Code.Structs;
 using SamSyncAgent.Code.Utils;
 using SamUtils.Constants;
 using SamUtils.Enums;
@@ -17,9 +18,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading;
@@ -65,6 +68,21 @@ namespace SamSyncAgent
 
                 #region AutoMapper Config:
                 Mapper.Initialize(MappingUtil.ClientsConfiguration);
+                #endregion
+
+                #region Set Date Time From Server If Available:
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        SetDateTimeFromServer();
+                        Log($"Date & time successfully set from server.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log($"SET SERVER TIME ERROR: {(ex.InnerException != null ? ex.InnerException.Message : ex.Message)}");
+                    }
+                });
                 #endregion
 
                 #region Check Starting Prereqs:
@@ -457,6 +475,31 @@ namespace SamSyncAgent
         {
             logger.WriteEntry(message);
         }
+        private void SetDateTimeFromServer()
+        {
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var serverDateTimeStr = hc.GetStringAsync(ApiActions.sync_getserverdatetime).Result;
+                var serverDateTime = DateTime.ParseExact(serverDateTimeStr, StringFormats.datetime_long, CultureInfo.InvariantCulture);
+                var sysTime = new SYSTEMTIME()
+                {
+                    wYear = (short)serverDateTime.Year,
+                    wMonth = (short)serverDateTime.Month,
+                    wDay = (short)serverDateTime.Day,
+                    wDayOfWeek = (short)serverDateTime.DayOfWeek,
+                    wHour = (short)serverDateTime.Hour,
+                    wMinute = (short)serverDateTime.Minute,
+                    wSecond = (short)serverDateTime.Second,
+                    wMilliseconds = (short)serverDateTime.Millisecond
+                };
+                SetSystemTime(ref sysTime);
+            }
+        }
+        #endregion
+
+        #region External Methods:
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool SetSystemTime(ref SYSTEMTIME st);
         #endregion
     }
 }

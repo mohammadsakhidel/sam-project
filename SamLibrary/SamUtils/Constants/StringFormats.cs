@@ -14,5 +14,6 @@ namespace SamUtils.Constants
         public const string url_date_time = "yyyyMMddHHmmssfff";
         public const string price = "N0";
         public const string datetime_short = "yyyy-MM-dd HH:mm";
+        public const string datetime_long = "yyyy-MM-dd HH:mm:ss.fff";
     }
 }
