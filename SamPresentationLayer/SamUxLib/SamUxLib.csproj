@@ -270,6 +270,8 @@
     <None Include="Resources\Themes\DefaultTheme\Images\PSDs\sam_client_icon.psd" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Libs\SamanPcToPos.dll" />
+    <Content Include="Libs\Transitionals.dll" />
     <Content Include="Resources\Libs\WPFToolkit.dll" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_close_window.png" />
     <Resource Include="Resources\Themes\DefaultTheme\Images\ic_close_window_hover.png" />
