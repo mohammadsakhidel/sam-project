@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.adapters.PairAdapter;
 import com.ramanco.samandroid.api.dtos.ObitDto;
+import com.ramanco.samandroid.api.dtos.ObitHoldingDto;
 import com.ramanco.samandroid.api.endpoints.ObitsApiEndpoint;
 import com.ramanco.samandroid.enums.ObitType;
 import com.ramanco.samandroid.exceptions.CallServerException;
@@ -25,7 +26,10 @@ import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.utils.UxUtil;
 import com.rey.material.widget.EditText;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Response;
@@ -235,6 +239,7 @@ public class ObitSelectionFragment extends Fragment {
         KeyValuePair[] pairs = new KeyValuePair[dtos.length];
         for (int i = 0; i < dtos.length; i++) {
             ObitDto o = dtos[i];
+
             KeyValuePair pair = new KeyValuePair(Integer.toString(o.getId()), o.getTitle());
             pair.setDesc(String.format("%s: %s",
                     getActivity().getResources().getString(R.string.obit_type),
@@ -249,6 +254,14 @@ public class ObitSelectionFragment extends Fragment {
         PairAdapter adapter = new PairAdapter(getActivity(), pairs);
         ListView lvItems = (ListView) fragmentView.findViewById(R.id.lv_items);
         lvItems.setAdapter(adapter);
+    }
+
+    private ObitHoldingDto getNearestHolding(ObitHoldingDto[] holdings) {
+        return holdings[0];
+    }
+
+    private String getObitDateString(Date beginTime, Date endTime) {
+        return "";
     }
     //endregion
 

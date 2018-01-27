@@ -3,36 +3,44 @@ package com.ramanco.samandroid.api.dtos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ObitDto {
 
     //region Fields:
     @SerializedName("ID")
     @Expose
-    int id;
+    private int id;
 
     @SerializedName("Title")
     @Expose
-    String title;
+    private String title;
 
     @SerializedName("ObitType")
     @Expose
-    String obitType;
+    private String obitType;
 
     @SerializedName("DeceasedIdentifier")
     @Expose
-    String deceasedIdentifier;
+    private String deceasedIdentifier;
 
     @SerializedName("MosqueID")
     @Expose
-    int mosqueID;
+    private int mosqueID;
 
     @SerializedName("CreationTime")
     @Expose
-    String creationTime;
+    private String creationTime;
 
     @SerializedName("LastUpdateTime")
     @Expose
-    String lastUpdateTime;
+    private String lastUpdateTime;
+    //endregion
+
+    //region Navigation Fields:
+    @SerializedName("ObitHoldings")
+    @Expose
+    private ObitHoldingDto[] obitHoldings;
     //endregion
 
     //region Getters & Setters:
@@ -61,6 +69,14 @@ public class ObitDto {
         this.obitType = obitType;
     }
 
+    public String getDeceasedIdentifier() {
+        return deceasedIdentifier;
+    }
+
+    public void setDeceasedIdentifier(String deceasedIdentifier) {
+        this.deceasedIdentifier = deceasedIdentifier;
+    }
+
     public int getMosqueID() {
         return mosqueID;
     }
@@ -85,12 +101,12 @@ public class ObitDto {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public String getDeceasedIdentifier() {
-        return deceasedIdentifier;
+    public ObitHoldingDto[] getObitHoldings() {
+        return obitHoldings;
     }
 
-    public void setDeceasedIdentifier(String deceasedIdentifier) {
-        this.deceasedIdentifier = deceasedIdentifier;
+    public void setObitHoldings(ObitHoldingDto[] obitHoldings) {
+        this.obitHoldings = obitHoldings;
     }
 
     //endregion
