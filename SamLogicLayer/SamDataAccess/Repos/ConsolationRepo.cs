@@ -178,7 +178,7 @@ namespace SamDataAccess.Repos
         {
             var pending = ConsolationStatus.pending.ToString();
             var verified = PaymentStatus.verified.ToString();
-            var compareTime = DateTimeUtils.Now.AddMinutes(-7);
+            var compareTime = DateTimeUtils.Now.AddMinutes(-3);
             var minTime = DateTimeUtils.Now.AddMinutes(-40);
 
             return (from c in set
