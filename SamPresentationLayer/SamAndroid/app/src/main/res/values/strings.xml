@@ -85,4 +85,6 @@
     <string name="confirm">تأیید</string>
     <string name="from_hour">از ساعت</string>
     <string name="to_hour">الی</string>
+    <string name="msg_no_item_found">موردی جهت نمایش یافت نشد.</string>
+    <string name="back_again_to_exit">برای بستن برنامه، دکمه بازگشت را دوباره فشار دهید.</string>
 </resources>

@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mi_ok"
-
-        app:showAsAction="always"
+        android:icon="@drawable/ic_done_text"
         android:title="@string/confirm"
+        app:showAsAction="always"
+
         />
 </menu>

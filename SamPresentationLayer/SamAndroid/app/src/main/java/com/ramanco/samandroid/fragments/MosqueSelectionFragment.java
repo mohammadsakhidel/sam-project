@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.ramanco.samandroid.R;
 import com.ramanco.samandroid.adapters.PairAdapter;
@@ -154,12 +155,16 @@ public class MosqueSelectionFragment extends Fragment {
                         @Override
                         public void run() {
                             try {
-                                KeyValuePair[] pairs = toPairs(allMosques);
-                                View fragmentView = getView();
-                                if (fragmentView != null) {
-                                    fillListView(fragmentView, pairs);
-                                    progress.dismiss();
+                                if (allMosques.length > 0) {
+                                    KeyValuePair[] pairs = toPairs(allMosques);
+                                    View fragmentView = getView();
+                                    if (fragmentView != null) {
+                                        fillListView(fragmentView, pairs);
+                                    }
+                                } else {
+                                    Toast.makeText(getActivity(), getActivity().getString(R.string.msg_no_item_found), Toast.LENGTH_LONG).show();
                                 }
+                                progress.dismiss();
                             } catch (Exception ex) {
                                 progress.dismiss();
                                 ExceptionManager.handle(getActivity(), ex);

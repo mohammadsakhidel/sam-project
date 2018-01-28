@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
@@ -47,6 +49,10 @@ import java.io.IOException;
 import retrofit2.Response;
 
 public class MainActivity extends BaseActivity {
+
+    //region Fields:
+    boolean backPressedOnce = false;
+    //endregion
 
     //region Overrides:
     @Override
@@ -182,6 +188,38 @@ public class MainActivity extends BaseActivity {
         }
 
         super.onStart();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.root);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        int stackFragmentsCount = fragmentManager.getBackStackEntryCount();
+
+        if (stackFragmentsCount > 0) {
+            fragmentManager.popBackStack();
+        } else if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            //region exit with wait:
+            if (backPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            backPressedOnce = true;
+            Toast.makeText(this, getResources().getString(R.string.back_again_to_exit), Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    backPressedOnce = false;
+                }
+            }, 2000);
+            //endregion
+        }
     }
     //endregion
 
