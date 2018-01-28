@@ -77,6 +77,18 @@
                                     </StackPanel>
                                 </Border>
 
+                                <!--Monitoring-->
+                                <Button Style="{StaticResource sidebar_section_title}" 
+                                        Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_reports:r|section_livestatus:r}"
+                                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Monitoring}"/>
+                                <Border Style="{StaticResource sidebar_section}">
+                                    <StackPanel>
+                                        <Button x:Name="btnReports" Style="{StaticResource sidebar_item}" Tag="Reports" Click="SectionItem_Clicked"
+                                                Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_reports:r}"
+                                                Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Reports}" />
+                                    </StackPanel>
+                                </Border>
+
                                 <!--Users-->
                                 <Button Style="{StaticResource sidebar_section_title}" 
                                         Visibility="{Binding Token, Converter={StaticResource accessToVisibilityConverter}, ConverterParameter=section_accounts:crud|section_roles:crud}"

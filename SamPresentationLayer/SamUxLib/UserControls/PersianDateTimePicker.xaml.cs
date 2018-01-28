@@ -55,5 +55,29 @@ namespace SamUxLib.UserControls
             tbTime.Text = miladyDate.ToString("HH:mm");
         }
         #endregion
+
+        #region Properties:
+        bool includeTime = true;
+        public bool IncludeTime
+        {
+            get
+            {
+                return includeTime;
+            }
+            set
+            {
+                includeTime = value;
+
+                if (!includeTime)
+                {
+                    tbTime.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    tbTime.Visibility = Visibility.Visible;
+                }
+            }
+        }
+        #endregion
     }
 }

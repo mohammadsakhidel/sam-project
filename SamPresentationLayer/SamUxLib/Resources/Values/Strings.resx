@@ -881,4 +881,19 @@
   <data name="UpdaterTitle" xml:space="preserve">
     <value>نرم افزار بروزرسان سام</value>
   </data>
+  <data name="LiveStatus" xml:space="preserve">
+    <value>نظارت زنده</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>گزارشات</value>
+  </data>
+  <data name="ReportBeginDate" xml:space="preserve">
+    <value>تاریخ شروع گزارش</value>
+  </data>
+  <data name="ReportEndDate" xml:space="preserve">
+    <value>تاریخ پایان گزارش</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>نوع گزارش</value>
+  </data>
 </root>

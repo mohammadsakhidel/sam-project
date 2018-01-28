@@ -7,10 +7,16 @@
              xmlns:persian="http://schemas.microsoft.com/wpf/2008/toolkit"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Orientation="Horizontal">
-        <persian:DatePicker x:Name="persianDatePicker" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
-                            Margin="{StaticResource padding_container_end}" />
-        <toolkit:MaskedTextBox x:Name="tbTime" Mask="99:99" Width="50"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <persian:DatePicker x:Name="persianDatePicker" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                            HorizontalContentAlignment="Right" Background="#fff" />
+        
+        <toolkit:MaskedTextBox Grid.Column="1" x:Name="tbTime" Mask="99:99" Width="50" Margin="{StaticResource padding_container_start}"
                                VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-    </StackPanel>
+    </Grid>
 </UserControl>

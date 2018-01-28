@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="SamDesktop.Views.Partials.Reports"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamDesktop.Views.Partials"
+             xmlns:ux="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Style="{StaticResource dark_frame}" Width="200">
+
+            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical">
+
+                    <!--Report Type-->
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportType}"></Label>
+                    <ComboBox x:Name="cmbReportType"></ComboBox>
+
+                    <!--Begin Date-->
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportBeginDate}"
+                       Margin="{StaticResource padding_container_top}" />
+                    <ux:PersianDateTimePicker x:Name="dateReportBeginDate" IncludeTime="false" />
+
+                    <!--End Date-->
+                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportEndDate}"
+                       Margin="{StaticResource padding_container_top}" />
+                    <ux:PersianDateTimePicker x:Name="dateReportEndDate" IncludeTime="false" />
+
+                </StackPanel>
+            </ScrollViewer>
+            
+        </Border>
+
+        <Border Grid.Column="1" Background="Red"></Border>
+        
+    </Grid>
+</UserControl>

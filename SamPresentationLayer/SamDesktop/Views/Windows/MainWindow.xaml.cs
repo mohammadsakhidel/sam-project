@@ -85,6 +85,7 @@ namespace SamDesktop.Views.Windows
             btnAccounts.Style = style;
             btnAccessLevels.Style = style;
             btnObits.Style = style;
+            btnReports.Style = style;
 
             selectedButton.Style = selectedStyle;
         }
