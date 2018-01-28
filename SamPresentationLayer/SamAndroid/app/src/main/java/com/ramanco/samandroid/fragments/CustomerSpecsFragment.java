@@ -20,6 +20,7 @@ import com.ramanco.samandroid.exceptions.ValidationException;
 import com.ramanco.samandroid.utils.ExceptionManager;
 import com.ramanco.samandroid.utils.PrefUtil;
 import com.ramanco.samandroid.utils.TextUtility;
+import com.ramanco.samandroid.utils.VersatileUtility;
 import com.rey.material.widget.EditText;
 
 public class CustomerSpecsFragment extends Fragment {
@@ -87,6 +88,7 @@ public class CustomerSpecsFragment extends Fragment {
 
                     EditText etCellPhone = (EditText) v.findViewById(R.id.et_cellphone);
                     String cellPhone = etCellPhone.getText().toString();
+                    cellPhone = VersatileUtility.toLatinDigits(cellPhone);
                     //endregion
 
                     //region form validation:

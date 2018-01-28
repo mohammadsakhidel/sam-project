@@ -76,11 +76,12 @@ public class HistoryFragment extends Fragment {
                         @Override
                         public void run() {
                             try {
-                                View fragmentView = getView();
-                                if (fragmentView != null) {
-                                    ConsolationAdapter adapter = new ConsolationAdapter(getActivity(), consolations);
-                                    ListView lvItems = (ListView) fragmentView.findViewById(R.id.lv_items);
-                                    lvItems.setAdapter(adapter);
+                                if (consolations.length > 0) {
+                                    View fragmentView = getView();
+                                    if (fragmentView != null) {
+                                        ConsolationAdapter adapter = new ConsolationAdapter(getActivity(), consolations);
+                                        ListView lvItems = (ListView) fragmentView.findViewById(R.id.lv_items);
+                                        lvItems.setAdapter(adapter);
                                     /*lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,8 +96,12 @@ public class HistoryFragment extends Fragment {
                                             }
                                         }
                                     });*/
-                                    progress.dismiss();
+
+                                    }
+                                } else {
+                                    Toast.makeText(getActivity(), getActivity().getString(R.string.msg_no_item_found), Toast.LENGTH_LONG).show();
                                 }
+                                progress.dismiss();
                             } catch (Exception ex) {
                                 progress.dismiss();
                                 ExceptionManager.handle(getActivity(), ex);
@@ -113,6 +118,7 @@ public class HistoryFragment extends Fragment {
         //endregion
 
     }
+
     private void showSendConsolationFragment(ConsolationDto dto) {
         MainActivity mainActivity = (MainActivity) getActivity();
 

@@ -1,11 +1,15 @@
 package com.ramanco.samandroid.api.dtos;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.joda.time.DateTime;
+
 import java.util.Date;
 
-public class ObitHoldingDto {
+public class ObitHoldingDto implements Comparable<ObitHoldingDto> {
     
     //region Fields:
     @SerializedName("ID")
@@ -18,11 +22,11 @@ public class ObitHoldingDto {
 
     @SerializedName("BeginTime")
     @Expose
-    private Date beginTime;
+    private String beginTime;
 
     @SerializedName("EndTime")
     @Expose
-    private Date endTime;
+    private String endTime;
 
     @SerializedName("SaloonID")
     @Expose
@@ -51,19 +55,19 @@ public class ObitHoldingDto {
         this.obitID = obitID;
     }
 
-    public Date getBeginTime() {
+    public String getBeginTime() {
         return beginTime;
     }
 
-    public void setBeginTime(Date beginTime) {
+    public void setBeginTime(String beginTime) {
         this.beginTime = beginTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -83,6 +87,25 @@ public class ObitHoldingDto {
         this.saloonName = saloonName;
     }
 
+    //endregion
+
+    //region Additional Fields:
+    public DateTime getBeginTimeObject()
+    {
+        return DateTime.parse(this.beginTime);
+    }
+
+    public DateTime getEndTimeObject()
+    {
+        return DateTime.parse(this.endTime);
+    }
+    //endregion
+
+    //region Comparable Implementation:
+    @Override
+    public int compareTo(@NonNull ObitHoldingDto o) {
+        return this.getBeginTimeObject().compareTo(o.getBeginTimeObject());
+    }
     //endregion
     
 }
