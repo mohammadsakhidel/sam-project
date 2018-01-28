@@ -23,14 +23,20 @@ import com.ramanco.samandroid.objects.KeyValuePair;
 import com.ramanco.samandroid.utils.ApiUtil;
 import com.ramanco.samandroid.utils.EnumUtil;
 import com.ramanco.samandroid.utils.ExceptionManager;
+import com.ramanco.samandroid.utils.PersianDateConverter;
 import com.ramanco.samandroid.utils.UxUtil;
 import com.rey.material.widget.EditText;
 
 import org.joda.time.DateTime;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Response;
 
@@ -238,12 +244,15 @@ public class ObitSelectionFragment extends Fragment {
     private KeyValuePair[] toPairs(ObitDto[] dtos) {
         KeyValuePair[] pairs = new KeyValuePair[dtos.length];
         for (int i = 0; i < dtos.length; i++) {
+
             ObitDto o = dtos[i];
+            ObitHoldingDto h = getNearestHolding(o.getObitHoldings());
 
             KeyValuePair pair = new KeyValuePair(Integer.toString(o.getId()), o.getTitle());
-            pair.setDesc(String.format("%s: %s",
+            pair.setDesc(String.format("%s: %s - %s",
                     getActivity().getResources().getString(R.string.obit_type),
-                    EnumUtil.getObitTypeText(getActivity(), ObitType.valueOf(o.getObitType()))));
+                    EnumUtil.getObitTypeText(getActivity(), ObitType.valueOf(o.getObitType())),
+                    (h != null ? getObitDateString(h.getBeginTimeObject(), h.getEndTimeObject()) : "")));
             pair.setTag(o);
             pairs[i] = pair;
         }
@@ -257,11 +266,30 @@ public class ObitSelectionFragment extends Fragment {
     }
 
     private ObitHoldingDto getNearestHolding(ObitHoldingDto[] holdings) {
-        return holdings[0];
+
+        if (holdings == null || holdings.length == 0)
+            return null;
+
+        Arrays.sort(holdings);
+        ObitHoldingDto nearestHolding = null;
+        for (ObitHoldingDto h : holdings) {
+            if (h.getEndTimeObject().compareTo(DateTime.now()) > 0)
+                nearestHolding = h;
+        }
+
+        return nearestHolding;
     }
 
-    private String getObitDateString(Date beginTime, Date endTime) {
-        return "";
+    private String getObitDateString(DateTime beginTime, DateTime endTime) {
+
+        PersianDateConverter datePersian = new PersianDateConverter(beginTime.getYear(), beginTime.getMonthOfYear(), beginTime.getDayOfMonth());
+
+        return String.format("%s - %s %s %s %s",
+                datePersian.getIranianDate(),
+                getActivity().getResources().getString(R.string.from_hour),
+                String.format(Locale.getDefault(), "%02d:%02d", beginTime.getHourOfDay(), beginTime.getMinuteOfHour()),
+                getActivity().getResources().getString(R.string.to_hour),
+                String.format(Locale.getDefault(), "%02d:%02d", endTime.getHourOfDay(), endTime.getMinuteOfHour()));
     }
     //endregion
 

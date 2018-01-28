@@ -83,4 +83,6 @@
     <string name="msg_update_not_content">نسخه جدید اپلیکیشن سام اکنون در دسترس است، برای بروزرسانی کلیک کنید.</string>
     <string name="msg_general_error_message">خطایی رخ داده است، لطفاً مجددا تلاش کنید.</string>
     <string name="confirm">تأیید</string>
+    <string name="from_hour">از ساعت</string>
+    <string name="to_hour">الی</string>
 </resources>
