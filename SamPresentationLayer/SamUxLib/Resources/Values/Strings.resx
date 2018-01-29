@@ -896,4 +896,13 @@
   <data name="ReportType" xml:space="preserve">
     <value>نوع گزارش</value>
   </data>
+  <data name="ReportType_DailyTurnover" xml:space="preserve">
+    <value>گزارش عملکرد روزانه</value>
+  </data>
+  <data name="ReportType_MosquesTurnover" xml:space="preserve">
+    <value>گزارش عملکرد مساجد</value>
+  </data>
+  <data name="ViewReport" xml:space="preserve">
+    <value>نمایش گزارش</value>
+  </data>
 </root>

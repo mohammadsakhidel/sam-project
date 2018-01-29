@@ -1781,6 +1781,24 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گزارش عملکرد روزانه.
+        /// </summary>
+        public static string ReportType_DailyTurnover {
+            get {
+                return ResourceManager.GetString("ReportType_DailyTurnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گزارش عملکرد مساجد.
+        /// </summary>
+        public static string ReportType_MosquesTurnover {
+            get {
+                return ResourceManager.GetString("ReportType_MosquesTurnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to خطا در اتصال به دستگاه کارت خوان، مجددا تلاش کنید..
         /// </summary>
         public static string RequestToPOSFailed {
@@ -2344,6 +2362,15 @@ namespace SamUxLib.Resources.Values {
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش گزارش.
+        /// </summary>
+        public static string ViewReport {
+            get {
+                return ResourceManager.GetString("ViewReport", resourceCulture);
             }
         }
         

@@ -1,41 +1,82 @@
-﻿<UserControl x:Class="SamDesktop.Views.Partials.Reports"
+﻿<UserControl xmlns:wpfViewer="schemas-stimulsoft-com:wpf-viewer"  x:Class="SamDesktop.Views.Partials.Reports"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamDesktop.Views.Partials"
-             xmlns:ux="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+             xmlns:ux="clr-namespace:SamUxLib.UserControls;assembly=SamUxLib"
+             xmlns:ram="clr-namespace:RamancoCC;assembly=RamancoCC"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             Loaded="UserControl_Loaded">
 
-        <Border Style="{StaticResource dark_frame}" Width="200">
+    <toolkit:BusyIndicator x:Name="progress" BusyContent="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.PleaseWait}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Vertical">
+            <Border Style="{StaticResource dark_frame}" Width="250">
 
-                    <!--Report Type-->
-                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportType}"></Label>
-                    <ComboBox x:Name="cmbReportType"></ComboBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                    <!--Begin Date-->
-                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportBeginDate}"
-                       Margin="{StaticResource padding_container_top}" />
-                    <ux:PersianDateTimePicker x:Name="dateReportBeginDate" IncludeTime="false" />
+                    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Vertical">
 
-                    <!--End Date-->
-                    <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportEndDate}"
-                       Margin="{StaticResource padding_container_top}" />
-                    <ux:PersianDateTimePicker x:Name="dateReportEndDate" IncludeTime="false" />
+                            <!--Report Type-->
+                            <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportType}" 
+                                   Margin="{StaticResource padding_widget_top}" />
+                            <ComboBox x:Name="cmbReportType" DisplayMemberPath="Title" SelectedValuePath="ID" 
+                                      SelectionChanged="cmbReportType_SelectionChanged"/>
 
-                </StackPanel>
-            </ScrollViewer>
-            
-        </Border>
+                            <StackPanel x:Name="pnlReportDateRange" Visibility="Collapsed">
+                                <!--Begin Date-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportBeginDate}"
+                                   Margin="{StaticResource padding_widget_top}" />
+                                <ux:PersianDateTimePicker x:Name="dateReportBeginDate" IncludeTime="false" />
 
-        <Border Grid.Column="1" Background="Red"></Border>
-        
-    </Grid>
+                                <!--End Date-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ReportEndDate}"
+                                   Margin="{StaticResource padding_widget_top}" />
+                                <ux:PersianDateTimePicker x:Name="dateReportEndDate" IncludeTime="false" />
+                            </StackPanel>
+
+                            <StackPanel x:Name="pnlMosqueSelection" Visibility="Collapsed">
+                                <!--Provionce-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Province}" 
+                                   Margin="{StaticResource padding_widget_top}" />
+                                <ComboBox x:Name="cmbProvince" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="cmbProvince_SelectionChanged" />
+
+                                <!--City-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.City}" 
+                                   Margin="{StaticResource padding_widget_top}" />
+                                <ComboBox x:Name="cmbCity" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="cmbCity_SelectionChanged" />
+
+                                <!--Mosque-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Mosque}" 
+                                   Margin="{StaticResource padding_widget_top}" />
+                                <ComboBox x:Name="cmbMosque" DisplayMemberPath="Name" SelectedValuePath="ID"></ComboBox>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <ram:FlatButton x:Name="btnViewReport" Style="{StaticResource small_action_button_next}"
+                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ViewReport}"
+                        Click="btnViewReport_Click" Grid.Row="1" />
+
+                </Grid>
+
+            </Border>
+
+            <Border Grid.Column="1">
+                <wpfViewer:StiWpfViewerControl x:Name="reportViewer" />
+            </Border>
+
+        </Grid>
+    </toolkit:BusyIndicator>
 </UserControl>

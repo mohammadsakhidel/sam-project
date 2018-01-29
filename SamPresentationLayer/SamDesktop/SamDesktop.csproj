@@ -57,6 +57,18 @@
     <Reference Include="SamUtils">
       <HintPath>..\..\SamLibrary\SamUtils\bin\Debug\SamUtils.dll</HintPath>
     </Reference>
+    <Reference Include="Stimulsoft.Base, Version=2016.3.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Stimulsoft Reports Ultimate 2016.3.0\.NET\Stimulsoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2016.3.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Stimulsoft Reports Ultimate 2016.3.0\.NET\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf, Version=2016.3.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Stimulsoft Reports Ultimate 2016.3.0\.NET\Stimulsoft.Report.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -438,14 +450,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ic_launcher_nRk_icon.ico" />
+    <Content Include="Libs\Stimulsoft.Base.dll" />
+    <Content Include="Libs\Stimulsoft.Report.dll" />
+    <Content Include="Libs\Stimulsoft.Report.Wpf.dll" />
     <Content Include="Libs\WPFToolkit.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SamReportLib\SamReportLib.csproj">
+      <Project>{72a687b4-1d86-4188-a151-6c85a4a65a67}</Project>
+      <Name>SamReportLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SamUxLib\SamUxLib.csproj">
       <Project>{6a3e7c54-3305-4beb-9e13-b967a6183c94}</Project>
       <Name>SamUxLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
