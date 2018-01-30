@@ -67,5 +67,6 @@ namespace SamUtils.Constants
         public const string payment_verify = "payment/verify";
         public const string payment_verifypos = "payment/verifypos";
         public const string payment_reverse = "payment/reverse";
+        public const string reports_mosqueturnoverrecords = "reports/mosqueturnoverrecords";
     }
 }

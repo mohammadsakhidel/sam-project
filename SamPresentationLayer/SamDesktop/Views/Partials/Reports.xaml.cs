@@ -1,9 +1,13 @@
-﻿using SamModels.DTOs;
+﻿using RamancoLibrary.Utilities;
+using SamModels.DTOs;
 using SamReportLib.Models;
+using SamReportLib.Queries;
 using SamUtils.Constants;
+using SamUtils.Objects.Exceptions;
 using SamUtils.Utils;
 using SamUxLib.Code.Objects;
 using SamUxLib.Code.Utils;
+using SamUxLib.Resources.Values;
 using Stimulsoft.Report;
 using System;
 using System.Collections.Generic;
@@ -40,6 +44,8 @@ namespace SamDesktop.Views.Partials
             {
                 cmbReportType.ItemsSource = ReportDefinition.All;
                 cmbProvince.ItemsSource = CityUtil.Provinces;
+                dateReportBeginDate.SetMiladyDate(DateTime.Now.AddMonths(-1));
+                dateReportEndDate.SetMiladyDate(DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -49,6 +55,11 @@ namespace SamDesktop.Views.Partials
         private void cmbReportType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbReportType.SelectedIndex == 0)
+            {
+                pnlReportDateRange.Visibility = Visibility.Visible;
+                pnlMosqueSelection.Visibility = Visibility.Visible;
+            }
+            else if (cmbReportType.SelectedIndex == 1)
             {
                 pnlReportDateRange.Visibility = Visibility.Visible;
                 pnlMosqueSelection.Visibility = Visibility.Visible;
@@ -96,30 +107,18 @@ namespace SamDesktop.Views.Partials
                 ExceptionManager.Handle(ex);
             }
         }
-        private void btnViewReport_Click(object sender, RoutedEventArgs e)
+        private async void btnViewReport_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var items = new List<MosqueTurnoverRecord>() {
-                    new MosqueTurnoverRecord { Index = 1, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 },
-                    new MosqueTurnoverRecord { Index = 2, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 },
-                    new MosqueTurnoverRecord { Index = 3, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 },
-                    new MosqueTurnoverRecord { Index = 4, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 }
-                };
-
-                var report = new StiReport();
-                report.Load(Assembly.Load("SamReportLib").GetManifestResourceStream("SamReportLib.Reports.MosqueTurnoverReport.mrt"));
-                report.RegBusinessObject("MosqueTurnoverRecord", items);
-                report.Compile();
-                report.Render();
-
-                reportViewer.Report = report;
-                reportViewer.Refresh();
-                reportViewer.InvokeZoomPageWidth();
-
+                if (cmbReportType.SelectedIndex == 0 || cmbReportType.SelectedIndex == 1)
+                {
+                    await CollectAndShowMosquesTurnoverReport(cmbReportType.SelectedIndex == 1);
+                }
             }
             catch (Exception ex)
             {
+                progress.IsBusy = false;
                 ExceptionManager.Handle(ex);
             }
         }
@@ -137,6 +136,53 @@ namespace SamDesktop.Views.Partials
                 progress.IsBusy = false;
                 return mosques;
             }
+        }
+        private async Task CollectAndShowMosquesTurnoverReport(bool showChart)
+        {
+            #region validate:
+            if (!dateReportBeginDate.GetMiladyDateTime().HasValue ||
+                !dateReportEndDate.GetMiladyDateTime().HasValue)
+                throw new ValidationException(Messages.SpecifyReportBeginAndEndDate);
+            #endregion
+
+            #region collect inputs:
+            var queryObject = new MosquesTurnoverQuery();
+            queryObject.BeginDate = dateReportBeginDate.GetMiladyDateTime().Value;
+            queryObject.EndDate = dateReportEndDate.GetMiladyDateTime().Value;
+            queryObject.ProvinceID = (cmbProvince.SelectedItem != null ? (int?)cmbProvince.SelectedValue : null);
+            queryObject.CityID = (cmbCity.SelectedItem != null ? (int?)cmbCity.SelectedValue : null);
+            queryObject.MosqueID = (cmbMosque.SelectedItem != null ? (int?)cmbMosque.SelectedValue : null);
+            #endregion
+
+            #region call api server:
+            progress.IsBusy = true;
+            List<MosqueTurnoverRecord> dataItems;
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var response = await hc.PostAsJsonAsync<MosquesTurnoverQuery>(ApiActions.reports_mosqueturnoverrecords, queryObject);
+                HttpUtil.EnsureSuccessStatusCode(response);
+                dataItems = await response.Content.ReadAsAsync<List<MosqueTurnoverRecord>>();
+            }
+            #endregion
+
+            #region create report document:
+            var report = new StiReport();
+            report.Load(Assembly.Load("SamReportLib").GetManifestResourceStream($"SamReportLib.Reports.MosqueTurnoverReport{(showChart ? "Chart" : "")}.mrt"));
+            report.RegBusinessObject("MosqueTurnoverRecord", dataItems);
+            report.Dictionary.Variables["ReportDate"].Value = DateTimeUtils.ToShamsi(DateTimeUtils.Now).ToString();
+            report.Dictionary.Variables["BeginDate"].Value = DateTimeUtils.ToShamsi(queryObject.BeginDate).ToString();
+            report.Dictionary.Variables["EndDate"].Value = DateTimeUtils.ToShamsi(queryObject.EndDate).ToString();
+            report.Compile();
+            report.Render();
+            #endregion
+
+            #region show in report viewer:
+            reportViewer.Report = report;
+            reportViewer.Refresh();
+            reportViewer.InvokeZoomPageWidth();
+            #endregion
+
+            progress.IsBusy = false;
         }
         #endregion
     }

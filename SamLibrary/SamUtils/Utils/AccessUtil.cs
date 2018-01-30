@@ -20,6 +20,8 @@ namespace SamUtils.Utils
         public const string section_banners = "section_banners";
         public const string section_accounts = "section_accounts";
         public const string section_roles = "section_roles";
+        public const string section_reports = "section_reports";
+        public const string section_livestatus = "section_livestatus";
         #endregion
 
         #region Methods:
@@ -32,6 +34,8 @@ namespace SamUtils.Utils
                     new SectionAccessLevel(section_categories, false, false, false, false, false, false, true, false),
                     new SectionAccessLevel(section_consolations, false, false, false, false, true, true, true, true),
                     new SectionAccessLevel(section_banners, false, false, false, false, true, true, true, true),
+                    new SectionAccessLevel(section_reports, false, false, false, false, false, true, false, false),
+                    new SectionAccessLevel(section_livestatus, false, false, false, false, false, true, false, false),
                     new SectionAccessLevel(section_accounts, false, false, false, false, true, true, true, true),
                     new SectionAccessLevel(section_roles, false, false, false, false, true, true, true, true)
                 };

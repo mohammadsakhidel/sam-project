@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,10 +25,14 @@ namespace SamUxLib.UserControls
         }
 
         #region Methods:
+        public bool IsTimeSpecicied()
+        {
+            return Regex.IsMatch(tbTime.Text, @"\d{2}:\d{2}");
+        }
         public bool IsCompleted()
         {
             var selectedDate = persianDatePicker.SelectedDate;
-            if (selectedDate.HasValue && tbTime.IsMaskCompleted)
+            if (selectedDate.HasValue && (!IncludeTime || IsTimeSpecicied()))
                 return true;
 
             return false;
@@ -38,7 +43,7 @@ namespace SamUxLib.UserControls
             if (!selectedDate.HasValue)
                 return null;
 
-            if (!tbTime.IsMaskCompleted)
+            if (!IsTimeSpecicied())
                 return new DateTime(selectedDate.Value.Year, selectedDate.Value.Month, selectedDate.Value.Day);
             else
             {

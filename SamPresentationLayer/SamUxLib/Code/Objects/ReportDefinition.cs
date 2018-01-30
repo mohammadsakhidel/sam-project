@@ -21,7 +21,8 @@ namespace SamUxLib.Code.Objects
             {
                 return new List<ReportDefinition>() {
                     new ReportDefinition { ID = "mosque_turnover", Title = Strings.ReportType_MosquesTurnover, Type = ReportType.sti },
-                    new ReportDefinition { ID = "daily_turnover", Title = Strings.ReportType_DailyTurnover, Type = ReportType.sti }
+                    new ReportDefinition { ID = "mosque_turnover_chart", Title = Strings.ReportType_MosquesTurnoverChart, Type = ReportType.sti }
+                    //new ReportDefinition { ID = "daily_turnover", Title = Strings.ReportType_DailyTurnover, Type = ReportType.sti }
                 };
             }
         }

@@ -44,7 +44,9 @@
     <Compile Include="Models\MosqueTurnoverRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\MosqueTurnoverReportChart.mrt" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\logo.png" />
   </ItemGroup>

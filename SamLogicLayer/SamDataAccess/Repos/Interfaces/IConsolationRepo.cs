@@ -25,7 +25,5 @@ namespace SamDataAccess.Repos.Interfaces
         List<Consolation> FindReversingConsolations();
 
         int GetNotifiablePendingsCount();
-
-        List<Tuple<Consolation, Mosque>> Query(DateTime beginDate, DateTime endDate, int? provinceId, int? cityId, int? mosqueId);
     }
 }

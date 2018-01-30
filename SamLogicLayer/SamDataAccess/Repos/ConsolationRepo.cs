@@ -188,25 +188,5 @@ namespace SamDataAccess.Repos
                     select c).Count();
         }
 
-        public List<Tuple<Consolation, Mosque>> Query(DateTime beginDate, DateTime endDate, int? provinceId, int? cityId, int? mosqueId)
-        {
-            var verified = PaymentStatus.verified.ToString();
-
-            var query = from c in context.Consolations
-                        join o in context.Obits on c.ObitID equals o.ID
-                        join m in context.Mosques on o.MosqueID equals m.ID
-                        join ct in context.Cities on m.CityID equals ct.ID
-                        where c.PaymentStatus == verified &&
-                              DbFunctions.TruncateTime(c.CreationTime) >= DbFunctions.TruncateTime(beginDate) &&
-                              DbFunctions.TruncateTime(c.CreationTime) <= DbFunctions.TruncateTime(endDate) &&
-                              (!provinceId.HasValue || ct.ProvinceID == provinceId.Value) &&
-                              (!cityId.HasValue || ct.ID == cityId.Value) &&
-                              (!mosqueId.HasValue || m.ID == mosqueId.Value)
-                        orderby c.CreationTime
-                        select new Tuple<Consolation, Mosque>(c, m);
-
-            return query.ToList();
-        }
-
     }
 }

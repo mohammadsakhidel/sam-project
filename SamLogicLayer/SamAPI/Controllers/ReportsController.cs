@@ -14,12 +14,14 @@ namespace SamAPI.Controllers
     {
         #region Fields:
         private IConsolationRepo _consolationRepo;
+        private IMosqueRepo _mosqueRepo;
         #endregion
 
         #region Constructors:
-        public ReportsController(IConsolationRepo consolationRepo)
+        public ReportsController(IConsolationRepo consolationRepo, IMosqueRepo mosqueRepo)
         {
             _consolationRepo = consolationRepo;
+            _mosqueRepo = mosqueRepo;
         }
         #endregion
 
@@ -29,19 +31,25 @@ namespace SamAPI.Controllers
         {
 
             #region retrieve data:
-            var records = _consolationRepo.Query(query.BeginDate, query.EndDate, query.ProvinceID, query.CityID, query.MosqueID);
-            var groups = records.GroupBy(r => r.Item2.ID);
+            var records = _mosqueRepo.GetMosquesTurnover(query.BeginDate, query.EndDate, query.ProvinceID, query.CityID, query.MosqueID);
             #endregion
 
             #region prepare report model:
             var dataItems = new List<MosqueTurnoverRecord>();
-            foreach (var g in groups)
+            foreach (var r in records)
             {
-                
+                var item = new MosqueTurnoverRecord();
+                item.MosqueName = r.Item1.Name;
+                item.ObitsCount = r.Item2.Count();
+                item.ConsolationCount = r.Item3.Count();
+                item.ConsolationAverage = item.ObitsCount > 0 ? (double)item.ConsolationCount / item.ObitsCount : 0;
+                item.TotalIncome = (int)r.Item3.Sum(c => c.AmountToPay);
+
+                dataItems.Add(item);
             }
             #endregion
 
-            return Ok();
+            return Ok(dataItems.OrderBy(d => d.MosqueName));
         }
         #endregion
 

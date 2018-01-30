@@ -268,6 +268,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\B Koodak Bold.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\B Nazanin Bold.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\B Nazanin.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Parastoo-Bold.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Parastoo.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Sahel-Black.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Sahel-Bold.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Sahel.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Vazir-Bold.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Vazir-Light.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Vazir-Medium.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Vazir-Thin.ttf" />
+    <None Include="Resources\Themes\DefaultTheme\Fonts\Vazir.ttf" />
     <None Include="Resources\Themes\DefaultTheme\Images\PSDs\header.psd" />
     <None Include="Resources\Themes\DefaultTheme\Images\PSDs\sam_client_icon.psd" />
   </ItemGroup>

@@ -905,4 +905,16 @@
   <data name="ViewReport" xml:space="preserve">
     <value>نمایش گزارش</value>
   </data>
+  <data name="ReportType_MosquesTurnoverChart" xml:space="preserve">
+    <value>گزارش عملکرد مساجد (نمودار)</value>
+  </data>
+  <data name="ViewChart" xml:space="preserve">
+    <value>نمایش نموداری</value>
+  </data>
+  <data name="section_livestatus" xml:space="preserve">
+    <value>نظارت زنده</value>
+  </data>
+  <data name="section_reports" xml:space="preserve">
+    <value>گزارشات</value>
+  </data>
 </root>

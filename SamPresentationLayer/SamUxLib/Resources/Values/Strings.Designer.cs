@@ -1799,6 +1799,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گزارش عملکرد مساجد (نمودار).
+        /// </summary>
+        public static string ReportType_MosquesTurnoverChart {
+            get {
+                return ResourceManager.GetString("ReportType_MosquesTurnoverChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to خطا در اتصال به دستگاه کارت خوان، مجددا تلاش کنید..
         /// </summary>
         public static string RequestToPOSFailed {
@@ -1925,6 +1934,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نظارت زنده.
+        /// </summary>
+        public static string section_livestatus {
+            get {
+                return ResourceManager.GetString("section_livestatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مساجد.
         /// </summary>
         public static string section_mosques {
@@ -1939,6 +1957,15 @@ namespace SamUxLib.Resources.Values {
         public static string section_obits {
             get {
                 return ResourceManager.GetString("section_obits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گزارشات.
+        /// </summary>
+        public static string section_reports {
+            get {
+                return ResourceManager.GetString("section_reports", resourceCulture);
             }
         }
         
@@ -2362,6 +2389,15 @@ namespace SamUxLib.Resources.Values {
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمایش نموداری.
+        /// </summary>
+        public static string ViewChart {
+            get {
+                return ResourceManager.GetString("ViewChart", resourceCulture);
             }
         }
         

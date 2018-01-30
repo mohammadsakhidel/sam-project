@@ -1,6 +1,5 @@
 ﻿using SamDataAccess.Contexts;
 using SamModels.Entities;
-using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +16,7 @@ namespace SamDataAccess.Repos.Interfaces
         void AddWithSave(Mosque mosque, ImageBlob image);
         List<Mosque> Search(int provinceId, int cityId, string name);
         List<Mosque> GetLatests(int count);
+        List<Tuple<Mosque, Obit[], Consolation[]>> GetMosquesTurnover(DateTime beginDate, DateTime endDate, int? provinceId, int? cityId, int? mosqueId);
+
     }
 }

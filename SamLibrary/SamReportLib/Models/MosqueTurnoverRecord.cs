@@ -8,7 +8,6 @@ namespace SamReportLib.Models
 {
     public class MosqueTurnoverRecord
     {
-        public int Index { get; set; }
         public string MosqueName { get; set; }
         public int ObitsCount { get; set; }
         public int ConsolationCount { get; set; }

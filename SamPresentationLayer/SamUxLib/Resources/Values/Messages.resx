@@ -275,6 +275,9 @@
   <data name="SpecifyMosque" xml:space="preserve">
     <value>لطفاً مسجد مورد نظر خود را انتخاب کنید.</value>
   </data>
+  <data name="SpecifyReportBeginAndEndDate" xml:space="preserve">
+    <value>لطفاً تاریخ شورع و پایان گزارش را مشخص نمایدد.</value>
+  </data>
   <data name="SuccessfullyDone" xml:space="preserve">
     <value>عملیات با موفقیت انجام شد.</value>
   </data>

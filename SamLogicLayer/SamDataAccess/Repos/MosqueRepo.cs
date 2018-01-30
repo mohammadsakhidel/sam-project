@@ -9,8 +9,8 @@ using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using RamancoLibrary.Utilities;
-using SamModels.Entities;
 using System.Transactions;
+using SamUtils.Enums;
 
 namespace SamDataAccess.Repos
 {
@@ -109,6 +109,25 @@ namespace SamDataAccess.Repos
         {
             return set.OrderByDescending(m => m.CreationTime).Take(count).ToList();
         }
+        public List<Tuple<Mosque, Obit[], Consolation[]>> GetMosquesTurnover(DateTime beginDate, DateTime endDate, int? provinceId, int? cityId, int? mosqueId)
+        {
+            var verified = PaymentStatus.verified.ToString();
+
+            var items = (from m in context.Mosques
+                           join ct in context.Cities on m.CityID equals ct.ID
+                           where (!provinceId.HasValue || provinceId.Value == ct.ProvinceID)
+                             && (!cityId.HasValue || cityId.Value == ct.ID)
+                             && (!mosqueId.HasValue || mosqueId.Value == m.ID)
+                           select new
+                           {
+                               Mosque = m,
+                               Obits = m.Obits.Where(o => o.ObitHoldings.Any(h => DbFunctions.TruncateTime(h.BeginTime) >= DbFunctions.TruncateTime(beginDate) && DbFunctions.TruncateTime(h.BeginTime) <= DbFunctions.TruncateTime(endDate))),
+                               Consolations = m.Obits.Where(o => o.ObitHoldings.Any(h => DbFunctions.TruncateTime(h.BeginTime) >= DbFunctions.TruncateTime(beginDate) && DbFunctions.TruncateTime(h.BeginTime) <= DbFunctions.TruncateTime(endDate)))
+                                                          .SelectMany(o => o.Consolations.Where(c => c.PaymentStatus == verified))
+                           }).ToList();
+
+            return items.Select(i => new Tuple<Mosque, Obit[], Consolation[]>(i.Mosque, i.Obits.ToArray(), i.Consolations.ToArray())).ToList();
+        }
         #endregion
 
         #region Overrides:
@@ -120,6 +139,8 @@ namespace SamDataAccess.Repos
 
             base.Remove(entity);
         }
+
+
         #endregion
     }
 }

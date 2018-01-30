@@ -531,6 +531,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً تاریخ شورع و پایان گزارش را مشخص نمایدد..
+        /// </summary>
+        public static string SpecifyReportBeginAndEndDate {
+            get {
+                return ResourceManager.GetString("SpecifyReportBeginAndEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات با موفقیت انجام شد..
         /// </summary>
         public static string SuccessfullyDone {
