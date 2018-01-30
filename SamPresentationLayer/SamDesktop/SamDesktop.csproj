@@ -54,6 +54,10 @@
     <Reference Include="SamModels">
       <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>
     </Reference>
+    <Reference Include="SamReportLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SamLibrary\SamReportLib\bin\Debug\SamReportLib.dll</HintPath>
+    </Reference>
     <Reference Include="SamUtils">
       <HintPath>..\..\SamLibrary\SamUtils\bin\Debug\SamUtils.dll</HintPath>
     </Reference>
@@ -456,10 +460,6 @@
     <Content Include="Libs\WPFToolkit.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SamReportLib\SamReportLib.csproj">
-      <Project>{72a687b4-1d86-4188-a151-6c85a4a65a67}</Project>
-      <Name>SamReportLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SamUxLib\SamUxLib.csproj">
       <Project>{6a3e7c54-3305-4beb-9e13-b967a6183c94}</Project>
       <Name>SamUxLib</Name>

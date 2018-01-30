@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamDesktop", "SamDesktop\SamDesktop.csproj", "{713D11A1-FD9F-4A35-BD84-26804FA411EE}"
 EndProject
@@ -20,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamKiosk", "SamKiosk\SamKiosk.csproj", "{3E6EC607-28B3-48AF-B857-24B85ADE0A73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamUpdater", "SamUpdater\SamUpdater.csproj", "{9E468EE5-0B4A-4CCF-93FF-C49401BC8979}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamReportLib", "SamReportLib\SamReportLib.csproj", "{72A687B4-1D86-4188-A151-6C85A4A65A67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -179,22 +177,6 @@ Global
 		{9E468EE5-0B4A-4CCF-93FF-C49401BC8979}.Release|x64.Build.0 = Release|Any CPU
 		{9E468EE5-0B4A-4CCF-93FF-C49401BC8979}.Release|x86.ActiveCfg = Release|Any CPU
 		{9E468EE5-0B4A-4CCF-93FF-C49401BC8979}.Release|x86.Build.0 = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|ARM.Build.0 = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|x64.Build.0 = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Debug|x86.Build.0 = Debug|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|ARM.ActiveCfg = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|ARM.Build.0 = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|x64.ActiveCfg = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|x64.Build.0 = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|x86.ActiveCfg = Release|Any CPU
-		{72A687B4-1D86-4188-A151-6C85A4A65A67}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

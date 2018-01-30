@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -100,22 +101,21 @@ namespace SamDesktop.Views.Partials
             try
             {
                 var items = new List<MosqueTurnoverRecord>() {
-                    new MosqueTurnoverRecord { MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000 },
-                    new MosqueTurnoverRecord { MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000 },
-                    new MosqueTurnoverRecord { MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000 },
-                    new MosqueTurnoverRecord { MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000 }
+                    new MosqueTurnoverRecord { Index = 1, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 },
+                    new MosqueTurnoverRecord { Index = 2, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 },
+                    new MosqueTurnoverRecord { Index = 3, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 },
+                    new MosqueTurnoverRecord { Index = 4, MosqueName = "ccc", ObitsCount = 100, ConsolationCount = 1000, TotalIncome = 100000, ConsolationAverage = 5.5 }
                 };
-                
 
                 var report = new StiReport();
-                report.Load(@"E:\TeamProjects\Git\SamGitProject\SamPresentationLayer\SamReportLib\Reports\MosqueTurnoverReport.mrt");
-
-                report.RegData("dsMosqueTurnover", "dsMosqueTurnover", items);
-                //report.RegBusinessObject("dsMosqueTurnover", "dsMosqueTurnover", items);
+                report.Load(Assembly.Load("SamReportLib").GetManifestResourceStream("SamReportLib.Reports.MosqueTurnoverReport.mrt"));
+                report.RegBusinessObject("MosqueTurnoverRecord", items);
                 report.Compile();
+                report.Render();
 
                 reportViewer.Report = report;
                 reportViewer.Refresh();
+                reportViewer.InvokeZoomPageWidth();
 
             }
             catch (Exception ex)

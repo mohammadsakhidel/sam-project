@@ -73,7 +73,7 @@
 
             </Border>
 
-            <Border Grid.Column="1">
+            <Border Grid.Column="1" Margin="{StaticResource padding_container_start}">
                 <wpfViewer:StiWpfViewerControl x:Name="reportViewer" />
             </Border>
 
