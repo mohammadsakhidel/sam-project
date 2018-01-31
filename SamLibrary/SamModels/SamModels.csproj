@@ -85,6 +85,7 @@
     <Compile Include="Entities\Province.cs" />
     <Compile Include="Entities\RemovedEntity.cs" />
     <Compile Include="Entities\Saloon.cs" />
+    <Compile Include="Entities\SystemParameter.cs" />
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Entities\ObitHolding.cs" />
     <Compile Include="Entities\TemplateCategory.cs" />

@@ -23,5 +23,7 @@ namespace SamDataAccess.Repos.Interfaces
         void UpdateWithSave(Obit newObit);
 
         Obit FindByTrackingNumber(string trackingNumber);
+
+        List<Obit> GetCompletedObitsWhichHaveConsolations(int minConsolationsCount = 2);
     }
 }

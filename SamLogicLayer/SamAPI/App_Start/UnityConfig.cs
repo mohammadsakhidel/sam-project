@@ -1,5 +1,6 @@
 using Microsoft.Practices.Unity;
 using SamAPI.Code.Payment;
+using SamAPI.Code.Telegram;
 using SamDataAccess.Contexts;
 using SamDataAccess.Repos;
 using SamDataAccess.Repos.BaseClasses;
@@ -28,8 +29,10 @@ namespace SamAPI
             Container.RegisterType<IBannerRepo, BannerRepo>();
             Container.RegisterType<IRemovedEntityRepo, RemovedEntityRepo>();
             Container.RegisterType<IPaymentRepo, PaymentRepo>();
+            Container.RegisterType<ISystemParameterRepo, SystemParameterRepo>();
             Container.RegisterType<IPaymentService, MabnaPaymentService>();
             Container.RegisterType<ISmsManager, SmsDotIrSmsManager>();
+            Container.RegisterType<ITelegramClient, TelegramClient>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(Container);
         }

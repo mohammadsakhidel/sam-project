@@ -20,6 +20,7 @@ namespace SamServerAgent
         #region Constants:
         const int REVERSE_PAYMENT_INTERVAL = 20000;
         const int NOTIFY_OPERATOR_INTERVAL = 240000;
+        const int TELEGRAM_GIFS_INTERVAL = 300000;
         #endregion
 
         #region CTORS:
@@ -53,10 +54,12 @@ namespace SamServerAgent
                 #region Init Timers:
                 var reverseTimer = new Timer(ReversePaymentCallback, null, 20000, REVERSE_PAYMENT_INTERVAL);
                 var notifyTimer = new Timer(NotifyOperatorsCallback, null, 30000, NOTIFY_OPERATOR_INTERVAL);
+                var telegramGifsTimer = new Timer(SendGifsToTelegramCallback, null, 10000, TELEGRAM_GIFS_INTERVAL);
 
                 _timers = new List<Timer>();
                 _timers.Add(reverseTimer);
                 _timers.Add(notifyTimer);
+                _timers.Add(telegramGifsTimer);
                 #endregion
 
                 Log("Sam Server Agent Started!");
@@ -125,6 +128,23 @@ namespace SamServerAgent
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex, logger, "NOTIFY_OPERATOR");
+            }
+        }
+        private void SendGifsToTelegramCallback(object stat)
+        {
+            try
+            {
+                #region Call Api:
+                using (var hc = HttpUtil.CreateClient())
+                {
+                    var response = hc.PostAsync(ApiActions.notifications_sendobitgifs, null).Result;
+                    response.EnsureSuccessStatusCode();
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex, logger, "TELEGRAM_GIFS");
             }
         }
         #endregion

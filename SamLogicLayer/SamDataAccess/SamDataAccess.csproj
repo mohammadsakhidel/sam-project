@@ -109,11 +109,16 @@
     <Compile Include="Migrations\SamDbMigrations\201712270928560_ConsolationFieldsLengthIncreased.Designer.cs">
       <DependentUpon>201712270928560_ConsolationFieldsLengthIncreased.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201801311725236_SystemParameterEntityAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201801311725236_SystemParameterEntityAdded.Designer.cs">
+      <DependentUpon>201801311725236_SystemParameterEntityAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
     <Compile Include="Repos\CustomerRepo.cs" />
     <Compile Include="Repos\Interfaces\IPaymentRepo.cs" />
+    <Compile Include="Repos\Interfaces\ISystemParameterRepo.cs" />
     <Compile Include="Repos\PaymentRepo.cs" />
     <Compile Include="Repos\RemovedEntityRepo.cs" />
     <Compile Include="Repos\DisplayRepo.cs" />
@@ -135,6 +140,7 @@
     <Compile Include="Repos\Interfaces\IMosqueRepo.cs" />
     <Compile Include="Repos\Interfaces\IRepo.cs" />
     <Compile Include="Repos\ObitRepo.cs" />
+    <Compile Include="Repos\SystemParameterRepo.cs" />
     <Compile Include="Repos\TemplateCategoryRepo.cs" />
     <Compile Include="Repos\TemplateRepo.cs" />
   </ItemGroup>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201712270928560_ConsolationFieldsLengthIncreased.resx">
       <DependentUpon>201712270928560_ConsolationFieldsLengthIncreased.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201801311725236_SystemParameterEntityAdded.resx">
+      <DependentUpon>201801311725236_SystemParameterEntityAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

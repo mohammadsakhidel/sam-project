@@ -124,5 +124,50 @@ namespace SamAPI.Resources {
                 return ResourceManager.GetString("ReverseSms", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #سام_گیف.
+        /// </summary>
+        public static string TelegramGifsHashtag {
+            get {
+                return ResourceManager.GetString("TelegramGifsHashtag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زمان.
+        /// </summary>
+        public static string TelegramHoldingTime {
+            get {
+                return ResourceManager.GetString("TelegramHoldingTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پیام های تسلیت ارسالی.
+        /// </summary>
+        public static string TelegramMessagesCount {
+            get {
+                return ResourceManager.GetString("TelegramMessagesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to محل برگزاری.
+        /// </summary>
+        public static string TelegramObitPlace {
+            get {
+                return ResourceManager.GetString("TelegramObitPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مراسم.
+        /// </summary>
+        public static string TelegramObitTitle {
+            get {
+                return ResourceManager.GetString("TelegramObitTitle", resourceCulture);
+            }
+        }
     }
 }

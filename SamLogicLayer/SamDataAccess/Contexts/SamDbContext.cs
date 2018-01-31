@@ -43,6 +43,7 @@ namespace SamDataAccess.Contexts
         public DbSet<Banner> Banners { get; set; }
         public DbSet<RemovedEntity> RemovedEntities { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<SystemParameter> SystemParameters { get; set; }
         #endregion
 
         #region Fluent API:
@@ -52,6 +53,8 @@ namespace SamDataAccess.Contexts
             modelBuilder.Entity<Province>().Property(p => p.ID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<City>().Property(c => c.ID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<SystemParameter>().Property(p => p.ID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             #endregion
 
