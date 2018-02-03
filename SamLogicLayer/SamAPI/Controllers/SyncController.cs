@@ -6,6 +6,7 @@ using SamDataAccess.Repos.Interfaces;
 using SamModels.DTOs;
 using SamModels.Entities;
 using SamUtils.Constants;
+using SamUtils.Enums;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Transactions;
 using System.Web.Http;
 
 namespace SamAPI.Controllers
@@ -138,12 +140,30 @@ namespace SamAPI.Controllers
                 }
                 #endregion
 
-                foreach (var displayDto in displays)
+                #region add display record and update consolation status:
+                using (var ts = new TransactionScope())
                 {
-                    var display = Mapper.Map<DisplayDto, Display>(displayDto);
-                    _displayRepo.Add(display);
+                    var consolationsUpdated = false;
+                    foreach (var displayDto in displays)
+                    {
+                        var display = Mapper.Map<DisplayDto, Display>(displayDto);
+                        _displayRepo.Add(display);
+
+                        var consolation = _consolationRepo.Get(display.ConsolationID);
+                        if (consolation.Status == ConsolationStatus.confirmed.ToString())
+                        {
+                            consolation.Status = ConsolationStatus.displayed.ToString();
+                            consolationsUpdated = true;
+                        }
+                    }
+
+                    _displayRepo.Save();
+                    if (consolationsUpdated)
+                        _consolationRepo.Save();
+
+                    ts.Complete();
                 }
-                _displayRepo.Save();
+                #endregion
 
                 return Ok();
             }
