@@ -23,6 +23,8 @@ using System.Web.Hosting;
 using System.Web.Http;
 using Unity.WebApi;
 using Microsoft.Practices.Unity;
+using System.Drawing;
+using SamUtils.Enums;
 
 namespace SamAPI.Controllers
 {
@@ -141,6 +143,53 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> GetGif(int id)
+        {
+            try
+            {
+                var obit = _obitRepo.Get(id);
+                if (obit == null || !obit.Consolations.Any())
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+
+                #region generate conoslation bitmaps:
+                var verified = PaymentStatus.verified.ToString();
+                var confirmed = ConsolationStatus.confirmed.ToString();
+                var displayed = ConsolationStatus.displayed.ToString();
+
+                var consolations = obit.Consolations
+                    .Where(c => c.PaymentStatus == verified && (c.Status == confirmed || c.Status == displayed))
+                    .ToList();
+
+                var consolationBitmaps = new List<Bitmap>(consolations.Count());
+                foreach (var c in consolations)
+                {
+                    var consolationsController = UnityConfig.Container.Resolve<ConsolationsController>();
+                    var response = consolationsController.GetPreview(c.ID, thumb: false);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var stream = await response.Content.ReadAsStreamAsync();
+                        var bitmap = new Bitmap(stream);
+                        consolationBitmaps.Add(bitmap);
+                    }
+                }
+                #endregion
+
+                #region generate obit gif:
+                var gifWidth = consolationBitmaps.Select(b => b.Width).Max();
+                var gifHeight = consolationBitmaps.Select(b => b.Height).Max();
+                var gifBytes = ImageUtils.GenerateGif(consolationBitmaps.ToArray(), gifWidth, gifHeight, delayInSeconds: 5);
+                #endregion
+
+                return GifResponse(gifBytes);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionManager.GetExceptionResponse(this, ex);
+            }
+        }
         #endregion
 
         #region POST ACTIONS:
@@ -219,6 +268,16 @@ namespace SamAPI.Controllers
             {
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
+        }
+        #endregion
+
+        #region Methods:
+        private HttpResponseMessage GifResponse(byte[] imageBytes)
+        {
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+            result.Content = new ByteArrayContent(imageBytes);
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/gif");
+            return result;
         }
         #endregion
     }
