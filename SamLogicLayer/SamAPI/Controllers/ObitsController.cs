@@ -163,6 +163,9 @@ namespace SamAPI.Controllers
                     .Where(c => c.PaymentStatus == verified && (c.Status == confirmed || c.Status == displayed))
                     .ToList();
 
+                if (!consolations.Any())
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+
                 var consolationBitmaps = new List<Bitmap>(consolations.Count());
                 foreach (var c in consolations)
                 {
@@ -180,7 +183,7 @@ namespace SamAPI.Controllers
                 #region generate obit gif:
                 var gifWidth = consolationBitmaps.Select(b => b.Width).Max();
                 var gifHeight = consolationBitmaps.Select(b => b.Height).Max();
-                var gifBytes = ImageUtils.GenerateGif(consolationBitmaps.ToArray(), gifWidth, gifHeight, delayInSeconds: 5);
+                var gifBytes = ImageUtils.GenerateGif(consolationBitmaps.ToArray(), gifWidth, gifHeight, delayInSeconds: 3);
                 #endregion
 
                 return GifResponse(gifBytes);
