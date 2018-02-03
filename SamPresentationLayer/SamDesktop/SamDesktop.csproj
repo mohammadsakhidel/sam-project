@@ -453,6 +453,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Sounds\alert.wav" />
     <Resource Include="ic_launcher_nRk_icon.ico" />
     <Content Include="Libs\Stimulsoft.Base.dll" />
     <Content Include="Libs\Stimulsoft.Report.dll" />

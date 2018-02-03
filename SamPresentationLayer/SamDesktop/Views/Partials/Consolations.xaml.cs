@@ -14,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -206,6 +207,18 @@ namespace SamDesktop.Views.Partials
                 var list = await response.Content.ReadAsAsync<List<ConsolationDto>>();
                 ((ConsolationsVM)DataContext).Consolations = new ObservableCollection<ConsolationDto>(list);
                 progress.IsBusy = false;
+
+                if (list.Where(c => c.Status == ConsolationStatus.pending.ToString()).Any())
+                    PlayNotificationSound();
+            }
+        }
+        private void PlayNotificationSound()
+        {
+            using (var stream = typeof(SamDesktop.App).Assembly.GetManifestResourceStream("SamDesktop.Sounds.alert.wav"))
+            {
+                var player = new SoundPlayer(stream);
+                player.Load();
+                player.Play();
             }
         }
         #endregion
