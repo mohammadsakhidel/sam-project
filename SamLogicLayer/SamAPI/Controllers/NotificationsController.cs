@@ -12,6 +12,7 @@ using System.Drawing;
 using RamancoLibrary.Utilities;
 using System.Configuration;
 using SamAPI.Resources;
+using SamUtils.Enums;
 
 namespace SamAPI.Controllers
 {
@@ -46,40 +47,36 @@ namespace SamAPI.Controllers
                 #region generate gifs then send:
                 foreach (var obit in obits)
                 {
-                    #region generate conoslation bitmaps:
-                    var consolations = obit.Consolations.ToList();
-                    var consolationBitmaps = new List<Bitmap>();
-                    foreach (var c in consolations)
+                    #region get git from obits controller:
+                    byte[] gifBytes = null;
+                    var obitsController = UnityConfig.Container.Resolve<ObitsController>();
+                    var response = await obitsController.GetGif(obit.ID);
+                    if (response.IsSuccessStatusCode)
                     {
-                        var consolationsController = UnityConfig.Container.Resolve<ConsolationsController>();
-                        var response = consolationsController.GetPreview(c.ID, thumb: false);
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var stream = await response.Content.ReadAsStreamAsync();
-                            var bitmap = new Bitmap(stream);
-                            consolationBitmaps.Add(bitmap);
-                        }
+                        gifBytes = await response.Content.ReadAsByteArrayAsync();
                     }
                     #endregion
 
-                    #region generate obit gif:
-                    var gifWidth = consolationBitmaps.Select(b => b.Width).Max();
-                    var gifHeight = consolationBitmaps.Select(b => b.Height).Max();
-                    var gifBytes = ImageUtils.GenerateGif(consolationBitmaps.ToArray(), gifWidth, gifHeight, delayInSeconds: 5);
-                    #endregion
-
                     #region send to telegram channel:
-                    var obitHoldingDateShamsi = DateTimeUtils.ToShamsi(obit.ObitHoldings.OrderByDescending(h => h.EndTime).First().BeginTime);
-                    var obitHoldingDateString = $"{obitHoldingDateShamsi.DayName} {obitHoldingDateShamsi.Day} {obitHoldingDateShamsi.MonthName} {obitHoldingDateShamsi.Year}";
-                    var channelId = ConfigurationManager.AppSettings["TelegramChannelID"];
-                    var caption = SmsMessages.TelegramGifsHashtag + Environment.NewLine + Environment.NewLine +
-                        $"🔶 {SmsMessages.TelegramObitTitle}: {obit.Title}" + Environment.NewLine +
-                        $"🔶 {SmsMessages.TelegramHoldingTime}: {obitHoldingDateString}" + Environment.NewLine +
-                        $"🔶 {SmsMessages.TelegramObitPlace}: {obit.Mosque.Name}" + Environment.NewLine +
-                        $"🔶 {SmsMessages.TelegramMessagesCount}: {obit.Consolations.Count()}" + Environment.NewLine + Environment.NewLine +
-                        @"@samsys_ir";
+                    if (gifBytes != null)
+                    {
+                        var obitHoldingDateShamsi = DateTimeUtils.ToShamsi(obit.ObitHoldings.OrderByDescending(h => h.EndTime).First().BeginTime);
+                        var obitHoldingDateString = $"{obitHoldingDateShamsi.DayName} {obitHoldingDateShamsi.Day} {obitHoldingDateShamsi.MonthName} {obitHoldingDateShamsi.Year}";
+                        var channelId = ConfigurationManager.AppSettings["TelegramChannelID"];
+                        var verified = PaymentStatus.verified.ToString();
+                        var confirmed = ConsolationStatus.confirmed.ToString();
+                        var displayed = ConsolationStatus.displayed.ToString();
+                        var consolationsCount = obit.Consolations.Where(c => c.PaymentStatus == verified && (c.Status == confirmed || c.Status == displayed)).Count();
 
-                    await _telegramClient.SendGifAsync(channelId, gifBytes, TextUtils.ToArabicDigits(caption));
+                        var caption = SmsMessages.TelegramGifsHashtag + Environment.NewLine + Environment.NewLine +
+                            $"🔶 {SmsMessages.TelegramObitTitle}: {obit.Title}" + Environment.NewLine +
+                            $"🔶 {SmsMessages.TelegramHoldingTime}: {obitHoldingDateString}" + Environment.NewLine +
+                            $"🔶 {SmsMessages.TelegramObitPlace}: {obit.Mosque.Name}" + Environment.NewLine +
+                            $"🔶 {SmsMessages.TelegramMessagesCount}: {consolationsCount}" + Environment.NewLine + Environment.NewLine +
+                            @"@samsys_ir";
+
+                        await _telegramClient.SendGifAsync(channelId, gifBytes, TextUtils.ToArabicDigits(caption));
+                    }
                     #endregion
                 }
                 #endregion

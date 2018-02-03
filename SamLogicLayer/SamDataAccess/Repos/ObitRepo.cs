@@ -56,7 +56,7 @@ namespace SamDataAccess.Repos
             var q = from o in context.Obits
                     .Include(o => o.ObitHoldings)
                     .Include(o => o.Consolations)
-                    where o.ObitHoldings.Any() 
+                    where o.ObitHoldings.Any()
                         && o.ObitHoldings.OrderByDescending(h => h.BeginTime).FirstOrDefault().EndTime > lastCheckTime
                         && o.ObitHoldings.OrderByDescending(h => h.BeginTime).FirstOrDefault().EndTime < now
                         && o.Consolations.Where(c => c.PaymentStatus == verified && (c.Status == confirmed || c.Status == displayed)).Count() >= minConsolationsCount
