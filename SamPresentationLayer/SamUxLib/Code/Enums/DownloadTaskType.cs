@@ -8,7 +8,7 @@ namespace SamUxLib.Code.Enums
 {
     public enum DownloadTaskType
     {
-        blob = 1,
+        banner = 1,
         consolation = 2
     }
 }

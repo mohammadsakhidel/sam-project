@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientModels.Models
+namespace SamClientDataAccess.ClientModels
 {
     public class ClientSetting
     {

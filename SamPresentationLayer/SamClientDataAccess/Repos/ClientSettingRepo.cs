@@ -1,4 +1,4 @@
-﻿using ClientModels.Models;
+﻿using SamClientDataAccess.ClientModels;
 using SamClientDataAccess.Contexts;
 using SamClientDataAccess.Repos.BaseClasses;
 using System;

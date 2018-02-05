@@ -94,7 +94,6 @@
     <Compile Include="Utils\EnumUtil.cs" />
     <Compile Include="Utils\HttpUtil.cs" />
     <Compile Include="Utils\IDGenerator.cs" />
-    <Compile Include="Utils\MappingUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SamModels\SamModels.csproj">

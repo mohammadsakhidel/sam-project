@@ -34,7 +34,6 @@ namespace SamClient
                 #endregion
 
                 InitializeCityUtil();
-                InitializeMapper();
 
                 base.OnStartup(e);
             }
@@ -46,10 +45,6 @@ namespace SamClient
         #endregion
 
         #region Methods:
-        private void InitializeMapper()
-        {
-            Mapper.Initialize(MappingUtil.ClientsConfiguration);
-        }
         private void InitializeCityUtil()
         {
             CityUtil.Func_GetXMLContent = () => {

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using RamancoLibrary.Utilities;
 using SamUtils.Enums;
-using ClientModels.Models;
 using SamClientDataAccess.ClientModels;
 
 namespace SamClientDataAccess.Repos

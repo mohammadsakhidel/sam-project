@@ -1,5 +1,4 @@
-﻿using ClientModels.Models;
-using SamClientDataAccess.ClientModels;
+﻿using SamClientDataAccess.ClientModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

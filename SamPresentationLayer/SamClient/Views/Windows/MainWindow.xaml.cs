@@ -1,4 +1,4 @@
-﻿using ClientModels.Models;
+﻿using SamClientDataAccess.ClientModels;
 using SamClient.Views.Partials;
 using SamClientDataAccess.Repos;
 using SamModels.DTOs;

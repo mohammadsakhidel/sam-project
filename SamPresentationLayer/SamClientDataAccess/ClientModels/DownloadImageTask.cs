@@ -11,9 +11,10 @@ namespace SamClientDataAccess.ClientModels
     {
         public int ID { get; set; }
 
-        [Required]
-        [MaxLength(32)]
-        public string ImageToDownload { get; set; }
+        public int AssociatedObjectID { get; set; }
+
+        [MaxLength(128)]
+        public string DownloadData { get; set; }
 
         [Required]
         [MaxLength(16)]

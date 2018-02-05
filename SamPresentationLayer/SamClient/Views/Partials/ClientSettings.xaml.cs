@@ -22,7 +22,7 @@ using SamUtils.Objects.Exceptions;
 using System.Transactions;
 using AutoMapper;
 using SamClientDataAccess.Repos;
-using ClientModels.Models;
+using SamClientDataAccess.ClientModels;
 
 namespace SamClient.Views.Partials
 {
