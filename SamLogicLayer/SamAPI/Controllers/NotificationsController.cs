@@ -131,7 +131,7 @@ namespace SamAPI.Controllers
                             {
                                 var messageText = String.Format(SmsMessages.DisplayReportSms,
                                     obit.Title,
-                                    displayCounts[consolation.ID],
+                                    TextUtils.ToArabicDigits(displayCounts[consolation.ID].ToString()),
                                     consolation.TrackingNumber);
                                 SmsUtil.Send(messageText, consolation.Customer.CellPhoneNumber);
                             }
@@ -184,7 +184,7 @@ namespace SamAPI.Controllers
                             #region Send SMS:
                             if (Regex.IsMatch(op.PhoneNumber, Patterns.cellphone))
                             {
-                                string messageText = string.Format(SmsMessages.OperatorNotificationMessage, notifiableCount);
+                                string messageText = string.Format(SmsMessages.OperatorNotificationMessage, TextUtils.ToArabicDigits(notifiableCount.ToString()));
                                 SmsUtil.Send(messageText, op.PhoneNumber);
                             }
                             #endregion
