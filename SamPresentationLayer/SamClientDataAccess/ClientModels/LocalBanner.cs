@@ -46,6 +46,7 @@ namespace SamClientDataAccess.ClientModels
 
         #region Banner inheritance props:
         [Required]
+        [MaxLength(16)]
         public string Type { get; set; }
 
         public int? ObitID { get; set; }

@@ -7,13 +7,13 @@ namespace SamClientDataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class TemplateRemovedFromClientDatabase : IMigrationMetadata
+    public sealed partial class InitAfterMigratedToLocalEntities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TemplateRemovedFromClientDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitAfterMigratedToLocalEntities));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712130604031_TemplateRemovedFromClientDatabase"; }
+            get { return "201802051837463_InitAfterMigratedToLocalEntities"; }
         }
         
         string IMigrationMetadata.Source

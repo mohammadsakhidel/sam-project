@@ -64,21 +64,9 @@
     <Compile Include="ClientModels\LocalObitHolding.cs" />
     <Compile Include="Code\Enums\LocalBannerTypes.cs" />
     <Compile Include="Contexts\SamClientDbContext.cs" />
-    <Compile Include="Migrations\201711141732500_Init.cs" />
-    <Compile Include="Migrations\201711141732500_Init.Designer.cs">
-      <DependentUpon>201711141732500_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712101005438_Template_CategoryFieldExcluded.cs" />
-    <Compile Include="Migrations\201712101005438_Template_CategoryFieldExcluded.Designer.cs">
-      <DependentUpon>201712101005438_Template_CategoryFieldExcluded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712130604031_TemplateRemovedFromClientDatabase.cs" />
-    <Compile Include="Migrations\201712130604031_TemplateRemovedFromClientDatabase.Designer.cs">
-      <DependentUpon>201712130604031_TemplateRemovedFromClientDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801051425174_Consolation_FieldsChanged.cs" />
-    <Compile Include="Migrations\201801051425174_Consolation_FieldsChanged.Designer.cs">
-      <DependentUpon>201801051425174_Consolation_FieldsChanged.cs</DependentUpon>
+    <Compile Include="Migrations\201802051837463_InitAfterMigratedToLocalEntities.cs" />
+    <Compile Include="Migrations\201802051837463_InitAfterMigratedToLocalEntities.Designer.cs">
+      <DependentUpon>201802051837463_InitAfterMigratedToLocalEntities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,17 +83,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711141732500_Init.resx">
-      <DependentUpon>201711141732500_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712101005438_Template_CategoryFieldExcluded.resx">
-      <DependentUpon>201712101005438_Template_CategoryFieldExcluded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712130604031_TemplateRemovedFromClientDatabase.resx">
-      <DependentUpon>201712130604031_TemplateRemovedFromClientDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801051425174_Consolation_FieldsChanged.resx">
-      <DependentUpon>201801051425174_Consolation_FieldsChanged.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802051837463_InitAfterMigratedToLocalEntities.resx">
+      <DependentUpon>201802051837463_InitAfterMigratedToLocalEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
