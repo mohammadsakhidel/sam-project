@@ -10,5 +10,6 @@ namespace SamModels.Entities
     {
         public int ID { get; set; } = 1;
         public DateTime? LastGifCheckDate { get; set; }
+        public DateTime? LastDisplayReportDate { get; set; }
     }
 }

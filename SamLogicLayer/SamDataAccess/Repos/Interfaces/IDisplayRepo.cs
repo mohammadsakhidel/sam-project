@@ -1,6 +1,5 @@
 ﻿using SamDataAccess.Contexts;
 using SamModels.Entities;
-using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +10,8 @@ namespace SamDataAccess.Repos.Interfaces
 {
     public interface IDisplayRepo : IRepo<SamDbContext, Display>
     {
+        List<Display> GetDisplays(params int[] consolationId);
+
+        Dictionary<int, int> GetDisplayCounts(params int[] consolationId);
     }
 }

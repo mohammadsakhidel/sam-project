@@ -19,8 +19,9 @@ namespace SamServerAgent
     {
         #region Constants:
         const int REVERSE_PAYMENT_INTERVAL = 20000;
-        const int NOTIFY_OPERATOR_INTERVAL = 240000;
-        const int TELEGRAM_GIFS_INTERVAL = 300000;
+        const int NOTIFY_OPERATOR_INTERVAL = 135000;
+        const int TELEGRAM_GIFS_INTERVAL = 215000;
+        const int DISPLAY_REPORTS_INTERVAL = 305000;
         #endregion
 
         #region CTORS:
@@ -55,11 +56,13 @@ namespace SamServerAgent
                 var reverseTimer = new Timer(ReversePaymentCallback, null, 20000, REVERSE_PAYMENT_INTERVAL);
                 var notifyTimer = new Timer(NotifyOperatorsCallback, null, 30000, NOTIFY_OPERATOR_INTERVAL);
                 var telegramGifsTimer = new Timer(SendGifsToTelegramCallback, null, 10000, TELEGRAM_GIFS_INTERVAL);
+                var displayReportsTimer = new Timer(SendDisplayReportsToCustomers, null, 15000, DISPLAY_REPORTS_INTERVAL);
 
                 _timers = new List<Timer>();
                 _timers.Add(reverseTimer);
                 _timers.Add(notifyTimer);
                 _timers.Add(telegramGifsTimer);
+                _timers.Add(displayReportsTimer);
                 #endregion
 
                 Log("Sam Server Agent Started!");
@@ -120,7 +123,7 @@ namespace SamServerAgent
                 #region Call Api:
                 using (var hc = HttpUtil.CreateClient())
                 {
-                    var response = hc.PostAsync(ApiActions.consolations_notify, null).Result;
+                    var response = hc.PostAsync(ApiActions.notifications_notifyoperators, null).Result;
                     response.EnsureSuccessStatusCode();
                 }
                 #endregion
@@ -145,6 +148,23 @@ namespace SamServerAgent
             catch (Exception ex)
             {
                 ExceptionManager.Handle(ex, logger, "TELEGRAM_GIFS");
+            }
+        }
+        private void SendDisplayReportsToCustomers(object stat)
+        {
+            try
+            {
+                #region Call Api:
+                using (var hc = HttpUtil.CreateClient())
+                {
+                    var response = hc.PostAsync(ApiActions.notifications_senddisplayreports, null).Result;
+                    response.EnsureSuccessStatusCode();
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex, logger, "NOTIFY_OPERATOR");
             }
         }
         #endregion

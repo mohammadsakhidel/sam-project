@@ -44,10 +44,9 @@ namespace SamDataAccess.Repos
             return obits.Include(o => o.ObitHoldings).ToList();
         }
 
-        public List<Obit> GetCompletedObitsWhichHaveConsolations(int minConsolationsCount = 2)
+        public List<Obit> GetCompletedObitsWhichHaveConsolations(DateTime? fromTime, int minConsolationsCount = 2)
         {
-            var sysParameters = context.SystemParameters.FirstOrDefault();
-            var lastCheckTime = sysParameters != null && sysParameters.LastGifCheckDate.HasValue ? sysParameters.LastGifCheckDate.Value : DateTime.Now.AddDays(-4);
+            var lastCheckTime = fromTime.HasValue ? fromTime.Value : DateTime.Now.AddDays(-4);
             var now = DateTime.Now;
             var verified = PaymentStatus.verified.ToString();
             var confirmed = ConsolationStatus.confirmed.ToString();
@@ -60,6 +59,26 @@ namespace SamDataAccess.Repos
                         && o.ObitHoldings.OrderByDescending(h => h.BeginTime).FirstOrDefault().EndTime > lastCheckTime
                         && o.ObitHoldings.OrderByDescending(h => h.BeginTime).FirstOrDefault().EndTime < now
                         && o.Consolations.Where(c => c.PaymentStatus == verified && (c.Status == confirmed || c.Status == displayed)).Count() >= minConsolationsCount
+                    select o;
+
+            return q.ToList();
+        }
+
+        public List<Obit> GetCompletedObitsWhichHaveDisplayedConsolations(DateTime? fromTime)
+        {
+            var lastCheckTime = fromTime.HasValue ? fromTime.Value : DateTime.Now.AddDays(-2);
+            var now = DateTime.Now;
+            var verified = PaymentStatus.verified.ToString();
+            var confirmed = ConsolationStatus.confirmed.ToString();
+            var displayed = ConsolationStatus.displayed.ToString();
+
+            var q = from o in context.Obits
+                        .Include(o => o.ObitHoldings)
+                        .Include(o => o.Consolations)
+                    where o.ObitHoldings.Any()
+                        && o.ObitHoldings.OrderByDescending(h => h.BeginTime).FirstOrDefault().EndTime > lastCheckTime
+                        && o.ObitHoldings.OrderByDescending(h => h.BeginTime).FirstOrDefault().EndTime < now
+                        && o.Consolations.Where(c => c.PaymentStatus == verified && c.Status == displayed).Any()
                     select o;
 
             return q.ToList();

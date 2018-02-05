@@ -171,53 +171,6 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
-
-        [HttpPost]
-        public IHttpActionResult Notify()
-        {
-            try
-            {
-                #region check for pending consolations:
-                var notifiableCount = _consolationRepo.GetNotifiablePendingsCount();
-                #endregion
-
-                if (notifiableCount > 0)
-                {
-                    #region find associated users:
-                    var oprator = RoleType.oprator.ToString();
-                    var rm = _identityRepo.GetRoleManager();
-                    var um = _identityRepo.GetUserManager();
-
-                    var operatorRoles = rm.Roles
-                        .Where(r => r.Type == oprator)
-                        .ToList();
-                    var operators = _identityRepo.GetUsersInRole(operatorRoles.Select(r => r.Name).ToArray());
-                    #endregion
-
-                    #region send message:
-                    if (operators.Any())
-                    {
-                        foreach (var op in operators)
-                        {
-                            #region Send SMS To Customer:
-                            if (Regex.IsMatch(op.PhoneNumber, Patterns.cellphone))
-                            {
-                                string messageText = string.Format(SmsMessages.OperatorNotificationMessage, notifiableCount);
-                                SmsUtil.Send(messageText, op.PhoneNumber);
-                            }
-                            #endregion
-                        }
-                    }
-                    #endregion
-                }
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
-            }
-        }
         #endregion
 
         #region GET Actions:

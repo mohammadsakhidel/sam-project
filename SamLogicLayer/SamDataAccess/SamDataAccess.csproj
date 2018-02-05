@@ -113,6 +113,10 @@
     <Compile Include="Migrations\SamDbMigrations\201801311725236_SystemParameterEntityAdded.Designer.cs">
       <DependentUpon>201801311725236_SystemParameterEntityAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SamDbMigrations\201802050612567_SystemParameters_LastDisplayReportDateFieldAdded.cs" />
+    <Compile Include="Migrations\SamDbMigrations\201802050612567_SystemParameters_LastDisplayReportDateFieldAdded.Designer.cs">
+      <DependentUpon>201802050612567_SystemParameters_LastDisplayReportDateFieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamDbMigrations\SamDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\BannerRepo.cs" />
@@ -180,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SamDbMigrations\201801311725236_SystemParameterEntityAdded.resx">
       <DependentUpon>201801311725236_SystemParameterEntityAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SamDbMigrations\201802050612567_SystemParameters_LastDisplayReportDateFieldAdded.resx">
+      <DependentUpon>201802050612567_SystemParameters_LastDisplayReportDateFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

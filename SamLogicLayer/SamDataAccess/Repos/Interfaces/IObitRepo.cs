@@ -24,6 +24,8 @@ namespace SamDataAccess.Repos.Interfaces
 
         Obit FindByTrackingNumber(string trackingNumber);
 
-        List<Obit> GetCompletedObitsWhichHaveConsolations(int minConsolationsCount = 2);
+        List<Obit> GetCompletedObitsWhichHaveConsolations(DateTime? fromTime, int minConsolationsCount = 2);
+
+        List<Obit> GetCompletedObitsWhichHaveDisplayedConsolations(DateTime? fromTime);
     }
 }

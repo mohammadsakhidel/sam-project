@@ -95,6 +95,17 @@ namespace SamAPI.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to * سام *
+        ///کاربر گرامی، پیام تسلیت شما در مراسم {0} {1} بار به نمایش در آمده است. از مشارکت شما در این امر خداپسندانه سپاسگذاریم.
+        ///کد رهگیری: {2}.
+        /// </summary>
+        public static string DisplayReportSms {
+            get {
+                return ResourceManager.GetString("DisplayReportSms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * سام *
         ///مراسم با عنوان ({0}) در سیستم ثبت شد.
         ///کد رهگیری: {1}.
         /// </summary>
