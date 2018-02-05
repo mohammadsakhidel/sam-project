@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using SamClientDataAccess.Repos;
 using SamModels.DTOs;
-using SamModels.Entities;
 using SamUtils.Objects.Exceptions;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;
@@ -46,19 +45,8 @@ namespace SamClient.Views.Windows
                 #region Save Settings:
                 using (var ts = new TransactionScope())
                 using (var srep = new ClientSettingRepo())
-                using (var mrep = new MosqueRepo(srep.Context))
                 {
                     var newClientSetting = ucClientSettings.ClientSetting;
-
-                    #region Save Mosque If Not Exists:
-                    var selectedMosque = ucClientSettings.SelectedMosque;
-                    var mosqueExists = mrep.Exists(selectedMosque.ID);
-                    if (!mosqueExists)
-                    {
-                        var mosque = Mapper.Map<MosqueDto, Mosque>(selectedMosque);
-                        mrep.AddWithSave(mosque);
-                    }
-                    #endregion
 
                     #region Save Settings:
                     if (srep.Exists(1))
@@ -92,19 +80,12 @@ namespace SamClient.Views.Windows
             {
                 #region Load Current Settings:
                 using (var srepo = new ClientSettingRepo())
-                using (var mrepo = new MosqueRepo(srepo.Context))
                 {
                     var settings = srepo.Get();
                     if (settings != null)
                     {
-                        var mosque = mrepo.Get(settings.MosqueID);
-                        if (mosque != null)
-                        {
-                            var city = CityUtil.GetCity(mosque.CityID);
-                            ucClientSettings.ProvinceID = city.ProvinceID;
-                            ucClientSettings.CityID = city.ID;
-                            ucClientSettings.ClientSetting = settings;
-                        }
+                        var city = CityUtil.GetCity(settings.CityID);
+                        ucClientSettings.ClientSetting = settings;
                     }
                 }
                 #endregion

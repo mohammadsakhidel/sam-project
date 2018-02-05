@@ -19,13 +19,11 @@
         <ram:FlatButton x:Name="btnSlideShow" Style="{StaticResource client_homepage_menuitem_slideshow}" 
                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SlideShow}"
                         Click="btnSlideShow_Click"/>
-        <ram:FlatButton Grid.Column="1" x:Name="btnConsolations" Style="{StaticResource client_homepage_menuitem_consolations}" 
-                        Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Consolations}"
-                        Click="btnConsolations_Click"/>
 
-        <ram:FlatButton Grid.Row="1" x:Name="btnServices" Style="{StaticResource client_homepage_menuitem_services}" 
+        <ram:FlatButton Grid.Column="1" x:Name="btnServices" Style="{StaticResource client_homepage_menuitem_services}" 
                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.WindowsServices}"
                         Click="btnServices_Click"/>
+        
         <ram:FlatButton Grid.Row="1" Grid.Column="1" x:Name="btnSettings" Style="{StaticResource client_homepage_menuitem_settings}" 
                         Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ClientSettings}"
                         Click="btnSettings_Click"/>

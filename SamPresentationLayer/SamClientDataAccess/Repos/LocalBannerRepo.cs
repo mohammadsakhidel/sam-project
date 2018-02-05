@@ -1,7 +1,8 @@
 ﻿using RamancoLibrary.Utilities;
+using SamClientDataAccess.ClientModels;
+using SamClientDataAccess.Code.Enums;
 using SamClientDataAccess.Contexts;
 using SamClientDataAccess.Repos.BaseClasses;
-using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace SamClientDataAccess.Repos
 {
-    public class BannerRepo : Repo<SamClientDbContext, Banner>
+    public class LocalBannerRepo : Repo<SamClientDbContext, LocalBanner>
     {
         #region Ctors:
-        public BannerRepo() : base()
+        public LocalBannerRepo() : base()
         {
         }
-        public BannerRepo(SamClientDbContext context) : base(context)
+        public LocalBannerRepo(SamClientDbContext context) : base(context)
         {
         }
         #endregion
 
         #region Extensions:
-        public List<Tuple<Banner, Blob>> GetBannersToDisplay()
+        public List<LocalBanner> GetBannersToDisplay()
         {
             #region prereq data:
             var setting = context.ClientSettings.Find(1);
@@ -37,17 +38,17 @@ namespace SamClientDataAccess.Repos
                                   select o.ID).ToList();
             #endregion
 
+            var obitbannertype = LocalBannerTypes.obit.ToString();
+
             var banners = from b in context.Banners
-                          join i in context.Blobs on b.ImageID equals i.ID
                           where b.IsActive &&
                                 ((!b.LifeBeginTime.HasValue || b.LifeBeginTime.Value <= now) && (!b.LifeEndTime.HasValue || b.LifeEndTime.Value > now)) &&
-                                (!(b is MosqueBanner) || (b as MosqueBanner).MosqueID == mosqueId) &&
-                                (!(b is ObitBanner) || currentObitIds.Contains((b as ObitBanner).ObitID.Value))
+                                (!(b.Type == obitbannertype) || currentObitIds.Contains(b.ObitID.Value))
                           orderby b.Priority descending, b.CreationTime descending
-                          select new { Banner = b, Blob = i };
-            return banners.ToList().Select(o => new Tuple<Banner, Blob>(o.Banner, o.Blob)).ToList();
+                          select b;
+            return banners.ToList();
         }
-        public void AddOrUpdate(Banner banner)
+        public void AddOrUpdate(LocalBanner banner)
         {
             var exists = set.Where(b => b.ID == banner.ID).Any();
             if (!exists)
@@ -59,14 +60,13 @@ namespace SamClientDataAccess.Repos
                 Update(banner);
             }
         }
-        public void Update(Banner newBanner)
+        public void Update(LocalBanner newBanner)
         {
             var banner = Get(newBanner.ID);
             if (banner != null)
             {
                 #region base:
                 banner.Title = newBanner.Title;
-                banner.ImageID = newBanner.ImageID;
                 banner.LifeBeginTime = newBanner.LifeBeginTime;
                 banner.LifeEndTime = newBanner.LifeEndTime;
                 banner.IsActive = newBanner.IsActive;
@@ -75,57 +75,36 @@ namespace SamClientDataAccess.Repos
                 banner.DurationSeconds = newBanner.DurationSeconds;
                 banner.Interval = newBanner.Interval;
                 banner.LastUpdateTime = newBanner.LastUpdateTime;
+
+                if (newBanner.ImageBytes != null && newBanner.ImageBytes.Any())
+                    banner.ImageBytes = newBanner.ImageBytes;
                 #endregion
-                #region area:
-                if (banner is AreaBanner)
+
+                #region inherited banners:
+                var obitbannertype = LocalBannerTypes.obit.ToString();
+                if (banner.Type == obitbannertype)
                 {
-                    var areaBanner = (AreaBanner)banner;
-                    var newAreaBanner = (AreaBanner)newBanner;
-                    areaBanner.CityID = newAreaBanner.CityID;
-                    areaBanner.ProvinceID = newAreaBanner.ProvinceID;
+                    banner.ObitID = newBanner.ObitID;
                 }
-                #endregion
-                #region mosque:
-                else if (banner is MosqueBanner)
+                else
                 {
-                    var mosqueBanner = (MosqueBanner)banner;
-                    var newMosqueBanner = (MosqueBanner)newBanner;
-                    mosqueBanner.MosqueID = newMosqueBanner.MosqueID;
-                }
-                #endregion
-                #region obit:
-                else if (banner is ObitBanner)
-                {
-                    var obitBanner = (ObitBanner)banner;
-                    var newObitBanner = (ObitBanner)newBanner;
-                    obitBanner.ObitID = newObitBanner.ObitID;
+                    banner.ObitID = null;
                 }
                 #endregion
             }
         }
-        public List<Banner> GetObsoleteItems()
+        public List<LocalBanner> GetObsoleteItems()
         {
             var days = 7;
             var now = DateTimeUtils.Now.AddDays(-days);
+            var obitbannertype = LocalBannerTypes.obit.ToString();
+
             var q = from b in context.Banners
                     where (b.LifeEndTime.HasValue && b.LifeEndTime.Value < now) ||
-                          (b is ObitBanner && !(b as ObitBanner).Obit.ObitHoldings.Where(h => h.EndTime > now).Any())
+                          (b.Type == obitbannertype && !(from h in context.ObitHoldings where h.ObitID == b.ObitID.Value select h).Where(h => h.EndTime > now).Any())
                     select b;
 
             return q.ToList();
-        }
-        #endregion
-
-        #region Overrides:
-        public override void Remove(Banner entity)
-        {
-            #region remove image:
-            var blob = context.Blobs.SingleOrDefault(b => b.ID == entity.ImageID);
-            if (blob != null)
-                context.Blobs.Remove(blob);
-            #endregion
-
-            base.Remove(entity);
         }
         #endregion
     }

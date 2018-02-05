@@ -1,5 +1,4 @@
-﻿using SamModels.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,7 +13,16 @@ namespace ClientModels.Models
         public int ID { get; set; }
 
         [Required]
+        public int CityID { get; set; }
+
+        [Required]
         public int MosqueID { get; set; }
+
+        [MaxLength(128)]
+        public string MosqueName { get; set; }
+
+        [MaxLength(512)]
+        public string MosqueAddress { get; set; }
 
         [Required]
         [MaxLength(16)]

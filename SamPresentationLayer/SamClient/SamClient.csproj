@@ -167,9 +167,6 @@
     <Compile Include="Views\Partials\ClientSettings.xaml.cs">
       <DependentUpon>ClientSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Partials\Consolations.xaml.cs">
-      <DependentUpon>Consolations.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Partials\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -221,10 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Partials\ClientSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Partials\Consolations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

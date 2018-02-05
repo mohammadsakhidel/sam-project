@@ -1,6 +1,6 @@
-﻿using SamClientDataAccess.Contexts;
+﻿using SamClientDataAccess.ClientModels;
+using SamClientDataAccess.Contexts;
 using SamClientDataAccess.Repos.BaseClasses;
-using SamModels.Entities;
 using SamUtils.Enums;
 using System;
 using System.Collections.Generic;
@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace SamClientDataAccess.Repos
 {
-    public class DisplayRepo : Repo<SamClientDbContext, Display>
+    public class LocalDisplayRepo : Repo<SamClientDbContext, LocalDisplay>
     {
         #region Ctors:
-        public DisplayRepo() : base()
+        public LocalDisplayRepo() : base()
         {
 
         }
-        public DisplayRepo(SamClientDbContext context) : base(context)
+        public LocalDisplayRepo(SamClientDbContext context) : base(context)
         {
 
         }
         #endregion
 
         #region Extensions:
-        public List<Display> GetPendingDisplays(DateTime? lastUploadTime, DateTime now)
+        public List<LocalDisplay> GetPendingDisplays(DateTime? lastUploadTime, DateTime now)
         {
             var pending = DisplaySyncStatus.pending.ToString();
 

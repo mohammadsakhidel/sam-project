@@ -65,14 +65,12 @@ namespace SamClient.Views.Windows
             {
                 #region Load Mosque Info:
                 using (var srepo = new ClientSettingRepo())
-                using (var mrepo = new MosqueRepo())
                 {
                     var setting = srepo.Get();
-                    var mosque = mrepo.Get(setting.MosqueID);
-                    if (mosque != null)
+                    if (setting != null)
                     {
-                        lblMosqueName.Text = mosque.Name;
-                        lblMosqueAddress.Text = mosque.Address;
+                        lblMosqueName.Text = setting.MosqueName;
+                        lblMosqueAddress.Text = setting.MosqueAddress;
                     }
                 }
                 #endregion
@@ -261,7 +259,7 @@ namespace SamClient.Views.Windows
                 if (!isPlaying)
                 {
                     using (var srep = new ClientSettingRepo())
-                    using (var orep = new ObitRepo(srep.Context))
+                    using (var orep = new LocalObitRepo(srep.Context))
                     {
                         var setting = srep.Get();
                         if (setting != null && setting.AutoSlideShow)

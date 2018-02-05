@@ -185,10 +185,10 @@ namespace SamSyncAgent
                     #region update data:
                     using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                     using (var mosqueRepo = new MosqueRepo(settingRepo.Context))
-                    using (var obitRepo = new ObitRepo(settingRepo.Context))
+                    using (var obitRepo = new LocalObitRepo(settingRepo.Context))
                     using (var taskRepo = new DownloadImageTaskRepo(settingRepo.Context))
-                    using (var consolationRepo = new ConsolationRepo(settingRepo.Context))
-                    using (var bannerRepo = new BannerRepo(settingRepo.Context))
+                    using (var consolationRepo = new LocalConsolationRepo(settingRepo.Context))
+                    using (var bannerRepo = new LocalBannerRepo(settingRepo.Context))
                     {
                         #region update mosque:
                         if (dto.Mosque != null)
@@ -306,7 +306,7 @@ namespace SamSyncAgent
             try
             {
                 using (var srepo = new ClientSettingRepo())
-                using (var drepo = new DisplayRepo(srepo.Context))
+                using (var drepo = new LocalDisplayRepo(srepo.Context))
                 using (var hc = HttpUtil.CreateClient())
                 {
                     #region get displays to upload:
@@ -428,8 +428,8 @@ namespace SamSyncAgent
         {
             try
             {
-                using (var crepo = new ConsolationRepo())
-                using (var brepo = new BannerRepo())
+                using (var crepo = new LocalConsolationRepo())
+                using (var brepo = new LocalBannerRepo())
                 {
                     var obsoleteConsolations = crepo.GetObsoleteItems();
                     var obsoleteBanners = brepo.GetObsoleteItems();

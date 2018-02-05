@@ -2,7 +2,6 @@
 using RamancoLibrary.Utilities;
 using SamClientDataAccess.ClientModels;
 using SamClientDataAccess.Repos;
-using SamModels.Entities;
 using SamUtils.Enums;
 using SamUxLib.Code.Constants;
 using SamUxLib.Code.Objects;
@@ -138,8 +137,8 @@ namespace SamClient.Views.Windows
         }
         private void CreateQueue()
         {
-            using (var crepo = new ConsolationRepo())
-            using (var brepo = new BannerRepo(crepo.Context))
+            using (var crepo = new LocalConsolationRepo())
+            using (var brepo = new LocalBannerRepo(crepo.Context))
             using (var srepo = new ClientSettingRepo(crepo.Context))
             {
                 #region get prerequisits:
@@ -157,7 +156,7 @@ namespace SamClient.Views.Windows
                 {
                     foreach (var c in allConsolations)
                     {
-                        var slide = Dispatcher.Invoke(() => { return CreateSlide(c.Item1, c.Item2, setting.DefaultSlideDurationMilliSeconds / 1000); });
+                        var slide = Dispatcher.Invoke(() => { return CreateSlide(c, setting.DefaultSlideDurationMilliSeconds / 1000); });
                         slideList.Add(slide);
                     }
                 }
@@ -168,7 +167,7 @@ namespace SamClient.Views.Windows
                 {
                     foreach (var b in allBanners)
                     {
-                        var slide = Dispatcher.Invoke(() => { return CreateSlide(b.Item1, b.Item2); });
+                        var slide = Dispatcher.Invoke(() => { return CreateSlide(b); });
                         slideList.Add(slide);
                     }
                 }
@@ -180,17 +179,17 @@ namespace SamClient.Views.Windows
         }
         private void UpdateQueue()
         {
-            using (var crepo = new ConsolationRepo())
+            using (var crepo = new LocalConsolationRepo())
             using (var srepo = new ClientSettingRepo(crepo.Context))
             {
                 var setting = srepo.Get();
                 var newConsolations = crepo.GetConsolationsToDisplay()
                                       .Where(c => !_initialQueue.Where(s => s.Type == SamUxLib.Code.Enums.SlideType.consolation)
-                                                                .Select(s => ((Consolation)s.DataObject).ID).Contains(c.Item1.ID))
+                                                                .Select(s => ((LocalConsolation)s.DataObject).ID).Contains(c.ID))
                                       .ToList();
                 foreach (var newItem in newConsolations)
                 {
-                    var slide = Dispatcher.Invoke(() => { return CreateSlide(newItem.Item1, newItem.Item2, setting.DefaultSlideDurationMilliSeconds / 1000); });
+                    var slide = Dispatcher.Invoke(() => { return CreateSlide(newItem, setting.DefaultSlideDurationMilliSeconds / 1000); });
                     _queue.Enqueue(slide);
                     _initialQueue.Enqueue(slide);
                 }
@@ -198,59 +197,64 @@ namespace SamClient.Views.Windows
         }
         private void DisplaySlide(Slide slide)
         {
-            #region show:
-            double calculatedWidth = 0.0, calculatedHeight = 0.0;
-            var screenWidth = ActualWidth;
-            var screenHeight = ActualHeight;
-            double screenRatio = screenWidth / screenHeight;
-            double slideWidth = slide.Image.Width;
-            double slideHeight = slide.Image.Height;
-            double slideRatio = slideWidth / slideHeight;
-            if (screenRatio > slideRatio)
+            if (slide != null)
             {
-                calculatedHeight = screenHeight;
-                calculatedWidth = calculatedHeight * slideWidth / slideHeight;
-            }
-            else
-            {
-                calculatedWidth = screenWidth;
-                calculatedHeight = calculatedWidth * slideHeight / slideWidth;
-            }
 
-            Dispatcher.Invoke(() =>
-            {
-                var slideImage = new System.Windows.Controls.Image();
-                slideImage.Width = calculatedWidth;
-                slideImage.Height = calculatedHeight;
-                slideImage.Source = ImageUtils.ToBitmapSource(slide.Image);
-                slideImage.VerticalAlignment = VerticalAlignment.Center;
-                slideImage.HorizontalAlignment = HorizontalAlignment.Center;
-                transitionBox.Transition = slide.InTransition;
-                transitionBox.Content = slideImage;
-            });
-            #endregion
-
-            #region save display:
-            if (slide.Type == SamUxLib.Code.Enums.SlideType.consolation)
-            {
-                using (var drep = new DisplayRepo())
+                #region show:
+                double calculatedWidth = 0.0, calculatedHeight = 0.0;
+                var screenWidth = ActualWidth;
+                var screenHeight = ActualHeight;
+                double screenRatio = screenWidth / screenHeight;
+                double slideWidth = slide.Image.Width;
+                double slideHeight = slide.Image.Height;
+                double slideRatio = slideWidth / slideHeight;
+                if (screenRatio > slideRatio)
                 {
-                    var display = new Display
-                    {
-                        ConsolationID = (slide.DataObject as Consolation).ID,
-                        DurationMilliSeconds = slide.DurationSeconds * 1000,
-                        SyncStatus = DisplaySyncStatus.pending.ToString(),
-                        TimeOfDisplay = DateTimeUtils.Now,
-                        CreationTime = DateTimeUtils.Now
-                    };
-                    drep.AddWithSave(display);
+                    calculatedHeight = screenHeight;
+                    calculatedWidth = calculatedHeight * slideWidth / slideHeight;
                 }
-            }
-            #endregion
+                else
+                {
+                    calculatedWidth = screenWidth;
+                    calculatedHeight = calculatedWidth * slideHeight / slideWidth;
+                }
 
-            #region delay:
-            Thread.Sleep(slide.DurationSeconds * 1000);
-            #endregion
+                Dispatcher.Invoke(() =>
+                {
+                    var slideImage = new System.Windows.Controls.Image();
+                    slideImage.Width = calculatedWidth;
+                    slideImage.Height = calculatedHeight;
+                    slideImage.Source = ImageUtils.ToBitmapSource(slide.Image);
+                    slideImage.VerticalAlignment = VerticalAlignment.Center;
+                    slideImage.HorizontalAlignment = HorizontalAlignment.Center;
+                    transitionBox.Transition = slide.InTransition;
+                    transitionBox.Content = slideImage;
+                });
+                #endregion
+
+                #region save display:
+                if (slide.Type == SamUxLib.Code.Enums.SlideType.consolation)
+                {
+                    using (var drep = new LocalDisplayRepo())
+                    {
+                        var display = new LocalDisplay
+                        {
+                            ConsolationID = (slide.DataObject as LocalConsolation).ID,
+                            DurationMilliSeconds = slide.DurationSeconds * 1000,
+                            SyncStatus = DisplaySyncStatus.pending.ToString(),
+                            TimeOfDisplay = DateTimeUtils.Now,
+                            CreationTime = DateTimeUtils.Now
+                        };
+                        drep.AddWithSave(display);
+                    }
+                }
+                #endregion
+
+                #region delay:
+                Thread.Sleep(slide.DurationSeconds * 1000);
+                #endregion
+
+            }
         }
         private Transition GetRandomTransition()
         {
@@ -272,9 +276,12 @@ namespace SamClient.Views.Windows
             var randomIndex = TextUtils.GetRandomNumbers(0, count, 1)[0];
             return all[randomIndex];
         }
-        private Slide CreateSlide(Banner banner, Blob blob)
+        private Slide CreateSlide(LocalBanner banner)
         {
-            var image = IOUtils.ByteArrayToBitmap(blob.Bytes);
+            if (banner.ImageBytes == null || !banner.ImageBytes.Any())
+                return null;
+
+            var image = IOUtils.ByteArrayToBitmap(banner.ImageBytes);
             var transition = GetRandomTransition();
             return new Slide()
             {
@@ -285,12 +292,15 @@ namespace SamClient.Views.Windows
                 InTransition = transition
             };
         }
-        private Slide CreateSlide(Consolation consolation, ConsolationImage image, int durationSecs)
+        private Slide CreateSlide(LocalConsolation consolation, int durationSecs)
         {
+            if (consolation.ImageBytes == null || !consolation.ImageBytes.Any())
+                return null;
+
             return new Slide()
             {
                 Type = SamUxLib.Code.Enums.SlideType.consolation,
-                Image = IOUtils.ByteArrayToBitmap(image.Bytes),
+                Image = IOUtils.ByteArrayToBitmap(consolation.ImageBytes),
                 DurationSeconds = durationSecs,
                 DataObject = consolation,
                 InTransition = GetRandomTransition()

@@ -20,7 +20,6 @@ using System.Net.Http;
 using SamUxLib.Resources.Values;
 using SamUtils.Objects.Exceptions;
 using System.Transactions;
-using SamModels.Entities;
 using AutoMapper;
 using SamClientDataAccess.Repos;
 using ClientModels.Models;
@@ -61,22 +60,6 @@ namespace SamClient.Views.Partials
                 return _selectedMosque;
             }
         }
-
-        public int ProvinceID
-        {
-            set
-            {
-                cmbProvinces.SelectedValue = value;
-            }
-        }
-
-        public int CityID
-        {
-            set
-            {
-                cmbCities.SelectedValue = value;
-            }
-        }
         #endregion
 
         #region Methods:
@@ -88,6 +71,11 @@ namespace SamClient.Views.Partials
         {
             if (_clientSetting != null)
             {
+                cmbCities.SelectedValue = _clientSetting.CityID;
+                if (_clientSetting.CityID > 0)
+                {
+                    cmbProvinces.SelectedItem = CityUtil.GetProvince(_clientSetting.CityID).ID;
+                }
                 cmbMosques.SelectedValue = _clientSetting.MosqueID;
                 cmbSaloons.SelectedValue = _clientSetting.SaloonID;
                 tbDownloadIntervalSeconds.Text = (_clientSetting.DownloadIntervalMilliSeconds / 1000).ToString();
@@ -103,8 +91,12 @@ namespace SamClient.Views.Partials
 
             _clientSetting.ID = 1;
 
+            _clientSetting.CityID = cmbCities.SelectedItem != null ? Convert.ToInt32(cmbCities.SelectedValue) : -1;
+
             _selectedMosque = cmbMosques.SelectedItem as MosqueDto;
             _clientSetting.MosqueID = _selectedMosque != null ? _selectedMosque.ID : -1;
+            _clientSetting.MosqueName = _selectedMosque != null ? _selectedMosque.Name : "";
+            _clientSetting.MosqueAddress = _selectedMosque != null ? _selectedMosque.Address : "";
 
             var selectedSaloon = cmbSaloons.SelectedItem as SaloonDto;
             _clientSetting.SaloonID = selectedSaloon != null ? selectedSaloon.ID : "";

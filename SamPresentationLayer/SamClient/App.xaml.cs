@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SamModels.DTOs;
-using SamModels.Entities;
 using SamModels.Enums;
 using SamUtils.Utils;
 using SamUxLib.Code.Utils;

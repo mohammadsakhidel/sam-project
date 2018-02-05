@@ -41,9 +41,6 @@
     <Reference Include="RamancoLibrary">
       <HintPath>..\..\..\RamancoAppsGitProject\RamancoReuseables\RamancoLibrary\bin\Debug\RamancoLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="SamModels">
-      <HintPath>..\..\SamLibrary\SamModels\bin\Debug\SamModels.dll</HintPath>
-    </Reference>
     <Reference Include="SamUtils">
       <HintPath>..\..\SamLibrary\SamUtils\bin\Debug\SamUtils.dll</HintPath>
     </Reference>
@@ -59,8 +56,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientModels\ClientSetting.cs" />
-    <Compile Include="ClientModels\ConsolationImage.cs" />
     <Compile Include="ClientModels\DownloadImageTask.cs" />
+    <Compile Include="ClientModels\LocalBanner.cs" />
+    <Compile Include="ClientModels\LocalConsolation.cs" />
+    <Compile Include="ClientModels\LocalDisplay.cs" />
+    <Compile Include="ClientModels\LocalObit.cs" />
+    <Compile Include="ClientModels\LocalObitHolding.cs" />
+    <Compile Include="Code\Enums\LocalBannerTypes.cs" />
     <Compile Include="Contexts\SamClientDbContext.cs" />
     <Compile Include="Migrations\201711141732500_Init.cs" />
     <Compile Include="Migrations\201711141732500_Init.Designer.cs">
@@ -80,19 +82,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repos\BannerRepo.cs" />
+    <Compile Include="Repos\LocalBannerRepo.cs" />
     <Compile Include="Repos\BaseClasses\Repo.cs" />
-    <Compile Include="Repos\BlobRepo.cs" />
-    <Compile Include="Repos\CityRepo.cs" />
     <Compile Include="Repos\ClientSettingRepo.cs" />
-    <Compile Include="Repos\ConsolationImageRepo.cs" />
-    <Compile Include="Repos\ConsolationRepo.cs" />
-    <Compile Include="Repos\CustomerRepo.cs" />
-    <Compile Include="Repos\DisplayRepo.cs" />
+    <Compile Include="Repos\LocalConsolationRepo.cs" />
+    <Compile Include="Repos\LocalDisplayRepo.cs" />
     <Compile Include="Repos\DownloadImageTaskRepo.cs" />
-    <Compile Include="Repos\MosqueRepo.cs" />
-    <Compile Include="Repos\ObitRepo.cs" />
-    <Compile Include="Repos\ProvinceRepo.cs" />
+    <Compile Include="Repos\LocalObitRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

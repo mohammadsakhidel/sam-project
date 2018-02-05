@@ -1,6 +1,5 @@
 ﻿using ClientModels.Models;
 using SamClientDataAccess.ClientModels;
-using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,17 +20,12 @@ namespace SamClientDataAccess.Contexts
         #endregion
 
         #region DbSets:
-        public DbSet<Mosque> Mosques { get; set; }
-        public DbSet<Saloon> Saloons { get; set; }
         public DbSet<ClientSetting> ClientSettings { get; set; }
-        public DbSet<Consolation> Consolations { get; set; }
-        public DbSet<ConsolationImage> ConsolationImages { get; set; }
-        public DbSet<Display> Displays { get; set; }
-        public DbSet<Obit> Obits { get; set; }
-        public DbSet<ObitHolding> ObitHoldings { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Blob> Blobs { get; set; }
-        public DbSet<Banner> Banners { get; set; }
+        public DbSet<LocalConsolation> Consolations { get; set; }
+        public DbSet<LocalBanner> Banners { get; set; }
+        public DbSet<LocalDisplay> Displays { get; set; }
+        public DbSet<LocalObit> Obits { get; set; }
+        public DbSet<LocalObitHolding> ObitHoldings { get; set; }
         public DbSet<DownloadImageTask> DownloadImageTasks { get; set; }
         #endregion
 
@@ -39,16 +33,10 @@ namespace SamClientDataAccess.Contexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClientSetting>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Mosque>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Saloon>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Consolation>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Consolation>().Ignore(c => c.Template);
-            modelBuilder.Entity<Banner>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Obit>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<ObitHolding>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Customer>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Blob>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<ConsolationImage>().Property(e => e.ConsolationID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<LocalConsolation>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<LocalBanner>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<LocalObit>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<LocalObitHolding>().Property(e => e.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             base.OnModelCreating(modelBuilder);
         }

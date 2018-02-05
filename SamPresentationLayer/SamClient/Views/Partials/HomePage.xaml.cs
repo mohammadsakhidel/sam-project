@@ -32,17 +32,6 @@ namespace SamClient.Views.Partials
         #endregion
 
         #region Event Handlers:
-        private void btnConsolations_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                _mainWindow.LoadContent(new Consolations(_mainWindow));
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
-            }
-        }
         private void btnSlideShow_Click(object sender, RoutedEventArgs e)
         {
             try

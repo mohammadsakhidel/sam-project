@@ -1,7 +1,7 @@
 ﻿using RamancoLibrary.Utilities;
+using SamClientDataAccess.ClientModels;
 using SamClientDataAccess.Contexts;
 using SamClientDataAccess.Repos.BaseClasses;
-using SamModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace SamClientDataAccess.Repos
 {
-    public class ObitRepo : Repo<SamClientDbContext, Obit>
+    public class LocalObitRepo : Repo<SamClientDbContext, LocalObit>
     {
         #region Ctors:
-        public ObitRepo() : base()
+        public LocalObitRepo() : base()
         {
 
         }
-        public ObitRepo(SamClientDbContext context) : base(context)
+        public LocalObitRepo(SamClientDbContext context) : base(context)
         {
 
         }
         #endregion
 
         #region Extensions:
-        public void AddOrUpdate(Obit obit)
+        public void AddOrUpdate(LocalObit obit)
         {
             var exists = set.Where(o => o.ID == obit.ID).Any();
             if (!exists)
@@ -36,15 +36,12 @@ namespace SamClientDataAccess.Repos
                 Update(obit);
             }
         }
-        public void Update(Obit newObit)
+        public void Update(LocalObit newObit)
         {
             var obit = Get(newObit.ID);
             if (obit != null)
             {
                 obit.Title = newObit.Title;
-                obit.ObitType = newObit.ObitType;
-                obit.DeceasedIdentifier = newObit.DeceasedIdentifier;
-                obit.OwnerCellPhone = newObit.OwnerCellPhone;
                 obit.TrackingNumber = newObit.TrackingNumber;
                 obit.LastUpdateTime = newObit.LastUpdateTime;
 
@@ -55,7 +52,7 @@ namespace SamClientDataAccess.Repos
                 obit.ObitHoldings = newObit.ObitHoldings;
             }
         }
-        public List<Obit> GetActiveObits()
+        public List<LocalObit> GetActiveObits()
         {
             #region preres:
             var setting = context.ClientSettings.Find(1);
