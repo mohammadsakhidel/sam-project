@@ -51,7 +51,7 @@ namespace SamAPI.Controllers
             {
                 #region find completed obits:
                 var sysParameters = _systemParameterRepo.Get();
-                var obits = _obitRepo.GetCompletedObitsWhichHaveConsolations(sysParameters != null ? sysParameters.LastGifCheckDate : null, 1);
+                var obits = _obitRepo.GetCompletedObitsWhichHaveConsolations(sysParameters != null ? sysParameters.LastGifCheckDate : null, 2);
                 #endregion
 
                 #region generate gifs then send:
