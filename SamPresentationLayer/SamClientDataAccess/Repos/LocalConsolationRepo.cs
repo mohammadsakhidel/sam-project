@@ -26,18 +26,6 @@ namespace SamClientDataAccess.Repos
         #endregion
 
         #region Extensions:
-        public List<LocalConsolation> GetAll(DateTime date)
-        {
-            var setting = context.ClientSettings.Find(1);
-            if (setting == null)
-                throw new Exception("Client Settings Not Found!");
-
-            var items = set.Where(c => c.Obit.MosqueID == setting.MosqueID && DbFunctions.TruncateTime(c.CreationTime) == DbFunctions.TruncateTime(date))
-                .Include(c => c.Obit)
-                .OrderByDescending(c => c.CreationTime)
-                .ToList();
-            return items;
-        }
         public List<LocalConsolation> GetConsolationsToDisplay()
         {
             #region prereq data:
@@ -57,6 +45,7 @@ namespace SamClientDataAccess.Repos
                             && h.SaloonID == setting.SaloonID
                             && (now >= h.BeginTime && now <= h.EndTime)
                             && (c.Status == confirmed || c.Status == displayed)
+                            && c.ImageBytes != null
                       orderby c.CreationTime ascending
                       select c;
 

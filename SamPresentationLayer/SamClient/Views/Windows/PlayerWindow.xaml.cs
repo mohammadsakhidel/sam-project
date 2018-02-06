@@ -151,24 +151,23 @@ namespace SamClient.Views.Windows
                 var slideList = new List<Slide>();
                 #endregion
 
-                #region add consolations:
-                if (allConsolations.Any())
+                #region add consolations & banners to queue:
+                var cIndex = 0;
+                var bIndex = 0;
+                while (cIndex < allConsolations.Count() || bIndex < allBanners.Count())
                 {
-                    foreach (var c in allConsolations)
+                    if (cIndex < allConsolations.Count())
                     {
-                        var slide = Dispatcher.Invoke(() => { return CreateSlide(c, setting.DefaultSlideDurationMilliSeconds / 1000); });
+                        var slide = Dispatcher.Invoke(() => { return CreateSlide(allConsolations[cIndex], setting.DefaultSlideDurationMilliSeconds / 1000); });
                         slideList.Add(slide);
+                        cIndex++;
                     }
-                }
-                #endregion
 
-                #region add banners:
-                if (allBanners.Any())
-                {
-                    foreach (var b in allBanners)
+                    if (bIndex < allBanners.Count())
                     {
-                        var slide = Dispatcher.Invoke(() => { return CreateSlide(b); });
+                        var slide = Dispatcher.Invoke(() => { return CreateSlide(allBanners[bIndex]); });
                         slideList.Add(slide);
+                        bIndex++;
                     }
                 }
                 #endregion

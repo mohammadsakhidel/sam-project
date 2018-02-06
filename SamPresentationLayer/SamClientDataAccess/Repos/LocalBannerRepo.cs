@@ -41,8 +41,9 @@ namespace SamClientDataAccess.Repos
             var obitbannertype = LocalBannerTypes.obit.ToString();
 
             var banners = from b in context.Banners
-                          where b.IsActive &&
-                                ((!b.LifeBeginTime.HasValue || b.LifeBeginTime.Value <= now) && (!b.LifeEndTime.HasValue || b.LifeEndTime.Value > now)) &&
+                          where b.IsActive && b.ImageBytes != null &&
+                                (!b.LifeBeginTime.HasValue || b.LifeBeginTime.Value <= now) &&
+                                (!b.LifeEndTime.HasValue || b.LifeEndTime.Value > now) &&
                                 (!(b.Type == obitbannertype) || currentObitIds.Contains(b.ObitID.Value))
                           orderby b.Priority descending, b.CreationTime descending
                           select b;

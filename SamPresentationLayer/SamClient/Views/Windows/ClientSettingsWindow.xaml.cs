@@ -32,6 +32,26 @@ namespace SamClient.Views.Windows
         #endregion
 
         #region Event HandlerS:
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                #region Load Current Settings:
+                using (var srepo = new ClientSettingRepo())
+                {
+                    var settings = srepo.Get();
+                    if (settings != null)
+                    {
+                        ucClientSettings.ClientSetting = settings;
+                    }
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.Handle(ex);
+            }
+        }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -73,27 +93,5 @@ namespace SamClient.Views.Windows
             }
         }
         #endregion
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                #region Load Current Settings:
-                using (var srepo = new ClientSettingRepo())
-                {
-                    var settings = srepo.Get();
-                    if (settings != null)
-                    {
-                        var city = CityUtil.GetCity(settings.CityID);
-                        ucClientSettings.ClientSetting = settings;
-                    }
-                }
-                #endregion
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.Handle(ex);
-            }
-        }
     }
 }

@@ -74,7 +74,7 @@ namespace SamClient.Views.Partials
                 cmbCities.SelectedValue = _clientSetting.CityID;
                 if (_clientSetting.CityID > 0)
                 {
-                    cmbProvinces.SelectedItem = CityUtil.GetProvince(_clientSetting.CityID).ID;
+                    cmbProvinces.SelectedValue = CityUtil.GetProvince(_clientSetting.CityID).ID;
                 }
                 cmbMosques.SelectedValue = _clientSetting.MosqueID;
                 cmbSaloons.SelectedValue = _clientSetting.SaloonID;
