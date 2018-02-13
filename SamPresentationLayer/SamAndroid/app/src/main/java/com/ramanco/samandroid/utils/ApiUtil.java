@@ -18,7 +18,7 @@ public class ApiUtil {
                     @Override
                     public Response intercept(Interceptor.Chain chain) throws IOException {
                         Request request = chain.request().newBuilder()
-                                .addHeader("Authorization", Configs.API_BASIC_AUTH_HEADER_SCHEME_PARAM)
+                                .addHeader(Configs.getAuthHeaderName(), Configs.getAuthToken())
                                 .build();
                         return chain.proceed(request);
                     }
