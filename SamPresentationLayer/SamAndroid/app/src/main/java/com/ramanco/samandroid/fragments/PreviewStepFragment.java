@@ -217,7 +217,7 @@ public class PreviewStepFragment extends Fragment {
 
     //region Methods:
     private void loadPreviewImageAsync(final View fragmentView) throws MalformedURLException {
-        URL url = new URL(new URL(Configs.API_BASE_ADDRESS), String.format("%s/%s?ts=%s", ApiActions.consolations_getpreview,
+        URL url = new URL(new URL(Configs.getApiBaseAddress()), String.format("%s/%s?ts=%s", ApiActions.consolations_getpreview,
                 Integer.toString(parentView.getCreatedConsolationId()),
                 Long.toString(DateTimeUtility.getUTCNow().getTime())));
         final ProgressDialog progress = UxUtil.showProgress(getActivity());

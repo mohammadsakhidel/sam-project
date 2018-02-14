@@ -103,7 +103,7 @@ public class TemplateAdapter extends ArrayAdapter<TemplateDto> implements Sticky
 
             //region Icon ImageView:
             ImageView imgIcon = (ImageView) convertView.findViewById(R.id.img_icon);
-            URL iconUrl = new URL(new URL(Configs.API_BASE_ADDRESS),
+            URL iconUrl = new URL(new URL(Configs.getApiBaseAddress()),
                     String.format("%s/%s?thumb=true", ApiActions.blobs_getimage, template.getBackgroundImageID()));
             Picasso.with(context).load(iconUrl.toString()).into(imgIcon);
             imgIcon.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +111,7 @@ public class TemplateAdapter extends ArrayAdapter<TemplateDto> implements Sticky
                 public void onClick(View v) {
                     try {
                         //region show template preview:
-                        URL imageUrl = new URL(new URL(Configs.API_BASE_ADDRESS),
+                        URL imageUrl = new URL(new URL(Configs.getApiBaseAddress()),
                                 String.format("%s/%s?thumb=false", ApiActions.blobs_getimage, template.getBackgroundImageID()));
                         loadTemplateImage(imageUrl.toString());
                         //endregion

@@ -17,8 +17,11 @@ public class ApiUtil {
                 new Interceptor() {
                     @Override
                     public Response intercept(Interceptor.Chain chain) throws IOException {
+                        String h = Configs.getAuthHeaderName();
+                        String v = Configs.getAuthToken();
+
                         Request request = chain.request().newBuilder()
-                                .addHeader(Configs.getAuthHeaderName(), Configs.getAuthToken())
+                                .addHeader(h, v)
                                 .build();
                         return chain.proceed(request);
                     }
@@ -28,7 +31,7 @@ public class ApiUtil {
     public static <E> E createEndpoint(Class<E> clazz) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Configs.API_BASE_ADDRESS)
+                .baseUrl(Configs.getApiBaseAddress())
                 .client(getAuthHeaderAttacherHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
