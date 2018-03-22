@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,25 @@ namespace SamSyncAgent.Code.Utils
     {
         public static void Handle(Exception ex, EventLog logger)
         {
-            logger.WriteEntry($"Handled Exception: {(ex.InnerException != null ? ex.InnerException.Message : ex.Message)}");
+            Handle(ex, logger, "");
         }
 
         public static void Handle(Exception ex, EventLog logger, string source)
         {
-            logger.WriteEntry($"{source}: {(ex.InnerException != null ? ex.InnerException.Message : ex.Message)}");
+            var message = $"{source}: {(ex.InnerException != null ? ex.InnerException.Message : ex.Message)}";
+
+            if (ex is DbEntityValidationException vex)
+            {
+                foreach (var entityValidationErrors in vex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        message += Environment.NewLine + $"Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}";
+                    }
+                }
+            }
+
+            logger.WriteEntry(message);
         }
     }
 }
