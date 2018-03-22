@@ -11,6 +11,7 @@ import android.util.Base64;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import com.ramanco.samandroid.consts.Patterns;
 
 public class TextUtility {
@@ -175,5 +177,28 @@ public class TextUtility {
         if (plc < 0)
             return src;
         return src.substring(0, plc) + newStr + src.substring(plc + oldStr.length());
+    }
+
+    public static String bytesToString(byte[] bytes) {
+        /*StringBuilder sb = new StringBuilder();
+
+        int index = 0;
+        final int blockSize = 10;
+        int blocksCount = bytes.length / blockSize;
+
+        for (int b = 0; b < blocksCount; b++) {
+            byte[] block = new byte[blockSize];
+            System.arraycopy(bytes, b * blockSize, block, 0, blockSize);
+            sb.append(new String(block));
+        }
+
+        if (bytes.length % blockSize > 0) {
+            byte[] block = new byte[bytes.length % blockSize];
+            System.arraycopy(bytes, blocksCount * blockSize, block, 0, bytes.length % blockSize);
+            sb.append(new String(block));
+        }
+
+        return sb.toString();*/
+        return new String(bytes);
     }
 }

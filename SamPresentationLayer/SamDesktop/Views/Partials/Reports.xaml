@@ -62,6 +62,23 @@
                                 <ComboBox x:Name="cmbMosque" DisplayMemberPath="Name" SelectedValuePath="ID"></ComboBox>
                             </StackPanel>
 
+                            <StackPanel x:Name="pnlConsolationData" Visibility="Collapsed">
+                                <!--Display Status-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DisplayStatus}" 
+                                       Margin="{StaticResource padding_widget_top}" />
+                                <ComboBox x:Name="cmbConsolationStatus" DisplayMemberPath="Value" SelectedValuePath="Key" />
+
+                                <!--Tracking Number-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.TrackingNumber}" 
+                                       Margin="{StaticResource padding_widget_top}" />
+                                <TextBox x:Name="tbTrackingNumber"></TextBox>
+
+                                <!--Customer-->
+                                <Label Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.SenderCellPhone}" 
+                                       Margin="{StaticResource padding_widget_top}" />
+                                <TextBox x:Name="tbCustomer"></TextBox>
+                            </StackPanel>
+
                         </StackPanel>
                     </ScrollViewer>
 

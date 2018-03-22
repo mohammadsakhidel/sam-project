@@ -25,5 +25,8 @@ namespace SamDataAccess.Repos.Interfaces
         List<Consolation> FindReversingConsolations();
 
         int GetNotifiablePendingsCount();
+
+        List<Consolation> Query(DateTime beginDate, DateTime endDate, int? provinceId, int? cityId, 
+            int? mosqueId, string status, string customerCellphone, string trackingNumber);
     }
 }

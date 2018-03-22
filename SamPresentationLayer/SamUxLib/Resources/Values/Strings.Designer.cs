@@ -719,6 +719,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to وضعیت نمایش.
+        /// </summary>
+        public static string DisplayStatus {
+            get {
+                return ResourceManager.GetString("DisplayStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to دانلود.
         /// </summary>
         public static string Download {
@@ -1781,6 +1790,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گزارش پیام های تسلیت.
+        /// </summary>
+        public static string ReportType_Consolations {
+            get {
+                return ResourceManager.GetString("ReportType_Consolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گزارش عملکرد روزانه.
         /// </summary>
         public static string ReportType_DailyTurnover {
@@ -2020,6 +2038,15 @@ namespace SamUxLib.Resources.Values {
         public static string Sender {
             get {
                 return ResourceManager.GetString("Sender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شماره ارسال کننده پیام.
+        /// </summary>
+        public static string SenderCellPhone {
+            get {
+                return ResourceManager.GetString("SenderCellPhone", resourceCulture);
             }
         }
         

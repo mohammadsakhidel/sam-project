@@ -2,22 +2,26 @@
 <StiSerializer version="1.02" type="Net" application="StiReport">
   <Dictionary Ref="1" type="Dictionary" isKey="true">
     <BusinessObjects isList="true" count="1">
-      <MosqueTurnoverRecord Ref="2" type="Stimulsoft.Report.Dictionary.StiBusinessObject" isKey="true">
-        <Alias>MosqueTurnoverRecord</Alias>
+      <ConsolationRecord Ref="2" type="Stimulsoft.Report.Dictionary.StiBusinessObject" isKey="true">
+        <Alias>ConsolationRecord</Alias>
         <BusinessObjects isList="true" count="0" />
-        <Category>SamReportLib</Category>
-        <Columns isList="true" count="6">
-          <value>ConsolationAverage,System.Double</value>
-          <value>ConsolationCount,System.Int32</value>
-          <value>Index,System.Int32</value>
+        <Category />
+        <Columns isList="true" count="10">
+          <value>Amount,System.Int32</value>
+          <value>Content,System.String</value>
+          <value>CreationTime,System.DateTime</value>
+          <value>CustomerCellPhone,System.String</value>
+          <value>ID,System.Int32</value>
           <value>MosqueName,System.String</value>
-          <value>ObitsCount,System.Int32</value>
-          <value>TotalIncome,System.Int32</value>
+          <value>ObitTitle,System.String</value>
+          <value>Status,System.String</value>
+          <value>TemplateTitle,System.String</value>
+          <value>TrackingNumber,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Guid>b465dd500c154d628a2f6fb4e03ea102</Guid>
-        <Name>MosqueTurnoverRecord</Name>
-      </MosqueTurnoverRecord>
+        <Guid>9293d78da415420db16c06a9208a82ee</Guid>
+        <Name>ConsolationRecord</Name>
+      </ConsolationRecord>
     </BusinessObjects>
     <Databases isList="true" count="0" />
     <DataSources isList="true" count="0" />
@@ -35,9 +39,9 @@
   <Pages isList="true" count="1">
     <Page1 Ref="3" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
-      <Brush>White</Brush>
+      <Brush>Transparent</Brush>
       <Components isList="true" count="4">
-        <ReportTitleBand1 Ref="4" type="ReportTitleBand" isKey="true">
+        <ReportTitleBand2 Ref="4" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,27.7,5.2</ClientRectangle>
           <Components isList="true" count="8">
@@ -46,6 +50,7 @@
               <Brush>EmptyBrush</Brush>
               <ClientRectangle>11.8,0.2,4.4,3</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Guid>cac0fe7d52ce47be9efcf562d9510772</Guid>
               <HorAlignment>Center</HorAlignment>
               <Image>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1d0karu4ev3f//6XzkIvoxjAV77ylbSXafgkitc2T5deemm69zR/+MMf3LZ5+tnPfpbuPQ2PeW3zxLFjiNFrm6f//Oc/6d7TnH766W7bIsoyAM5tV7+0x5oWM5EBRPDDEl4CdUV//vOf05noZRQD8K5wYdDXzG+99dZ0z2n++9//um3zdP/996d7T8NjXts8cewYYvTaZok58BjmGVJQlgFwbr32XZF+NGYmMoCI3//+927ydEXXXXddOhO9jGIAV199ddpLL4M+07r99tvTPad5+eWX3bZ58n4on8e8tnni2DHE6LXNUtaVKXPmtS+iLAPg3HrtuyLWtuhFBhAxypVXG/S1r30tnYleZAAz1TQD4Nx67buirGeiXUYGEMHr1V7ydEVHHXVUOhO9yABmqmkGwLn12ndF3ntRXUcGEHHKKae4ydMVffrTn05nohcZwEw1zQA4t177roi1LXqRAUTIAGQARSUDaJZkADORAUTIAGQARSUDaJZkADORAUTIAMo3gJVXXnmq0MXy2uZplVVWKaUf7hAZ9zHMnV/jPhAxem3z5PXDnHlti0gG4EsGMBMZQIQMoHwDkMYrGYAvGcBMZAD/D/dz4cex0ZFHHukmT1d0wAEHLJ2Lv//97+kMyQCaJGsAnMNwPjm3XvuuiLUd5kK/FLaEzhvAwQcf7CaLtETz58+fmicZQHMUDIBz522Xloi133U6bwBdvTfKIHriiSeS3/3ud+42qX7iXHHOvG3StFj7XafzBuAlhtQrblb21ltvJdtuu627XaqPOEecK86Zt13qVdeRAThJIfUq3K3yjTfeSG666abkiiuuSC6++GK3rTR+cS44J5wbzhHIAIqp68gAnKTwxMfyzj333CkV/YjeoYcemlxzzTXJZptt5m6PteOOO079mlPR127XW2+95Ac/+EFy7LHHJssuu6zbxmqFFVZIvvjFL079RuogP6Ti3a548eLFbltp/OJcxAxiAOQCOUFukCNeGytyjZwj98hBr00scprcJse97bFYM6wd1pC3PdYw6xN1HRmAkxSe+Mm/AH97bay23377tHWxn5jkZwCfffbZqfZ8wWju3LluO6trr712qj3su+++bhurBQsWpK2T5Jvf/KbbxpMMoN4a1QDIhQA54rWxItcC5KDXxopcDl+aI8eL/OSl/QlH1pLXxmrQ9RnUdWQATlJ4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</Image>
               <Name>Image1</Name>
@@ -59,12 +64,13 @@
               <ClientRectangle>11.6,3.8,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Vazir,15,Bold</Font>
+              <Guid>d7ae43138d66413696103937b4227a71</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="3" />
               <Parent isRef="4" />
-              <Text>گزارش کارکرد مساجد</Text>
+              <Text>گزارش پیام های تسلیت</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text1>
@@ -73,6 +79,7 @@
               <ClientRectangle>25.6,1.4,2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,12</Font>
+              <Guid>66017fc55b6d4f40b8794765c784db5b</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="3" />
@@ -86,7 +93,7 @@
               <ClientRectangle>23.2,1.4,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,12</Font>
-              <Guid>7455c7b66731487d86c529dbd999e0bb</Guid>
+              <Guid>a5f1841ba3194a02994ffdd4313fc8a6</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
@@ -101,7 +108,7 @@
               <ClientRectangle>25.6,2.2,2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,12</Font>
-              <Guid>ad9e9133fe1142b88df6a77d7a0c1589</Guid>
+              <Guid>543ff56c712041e1bd21f95049394219</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="3" />
@@ -115,7 +122,7 @@
               <ClientRectangle>23.2,2.2,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,12</Font>
-              <Guid>f27835947ced45c69237295727eca579</Guid>
+              <Guid>96b9ac3be1254b12830bb825bc54223c</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
@@ -130,7 +137,7 @@
               <ClientRectangle>0.8,1.6,3.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,12</Font>
-              <Guid>15f78078d14a4f69aa1106458367299d</Guid>
+              <Guid>d4a1f2ea728a441087ee1ba910a0ded2</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
@@ -145,7 +152,7 @@
               <ClientRectangle>1.4,2.2,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,12</Font>
-              <Guid>b119fe6467134a45bf3f15d5eab6e82f</Guid>
+              <Guid>ee9725a2bd834feea4717103d1bb6878</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
@@ -157,112 +164,24 @@
             </Text7>
           </Components>
           <Conditions isList="true" count="0" />
-          <Name>ReportTitleBand1</Name>
+          <Guid>c4dad3d374594f1086451ab986e0e536</Guid>
+          <Name>ReportTitleBand2</Name>
           <Page isRef="3" />
           <Parent isRef="3" />
-        </ReportTitleBand1>
-        <HeaderBand1 Ref="13" type="HeaderBand" isKey="true">
+        </ReportTitleBand2>
+        <HeaderBand2 Ref="13" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <CanBreak>True</CanBreak>
           <ClientRectangle>0,6.4,27.7,1</ClientRectangle>
-          <Components isList="true" count="6">
-            <Text8 Ref="14" type="Text" isKey="true">
+          <Components isList="true" count="10">
+            <Text14 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
               <CanBreak>True</CanBreak>
-              <ClientRectangle>16.8,0,9,1</ClientRectangle>
+              <ClientRectangle>26.4,0,1.2,1</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text8</Name>
-              <Page isRef="3" />
-              <Parent isRef="13" />
-              <Text>نام مسجد</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text8>
-            <Text9 Ref="15" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
-              <CanBreak>True</CanBreak>
-              <ClientRectangle>13.6,0,3.2,1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>e2df9c347a484334b36ec6890cab321c</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text9</Name>
-              <Page isRef="3" />
-              <Parent isRef="13" />
-              <Text>تعداد مراسمات</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text9>
-            <Text10 Ref="16" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
-              <CanBreak>True</CanBreak>
-              <ClientRectangle>9.2,0,4.4,1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>efffbedf85fe44a291f516acfd8427b0</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text10</Name>
-              <Page isRef="3" />
-              <Parent isRef="13" />
-              <Text>کل پیام های تسلیت</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text10>
-            <Text11 Ref="17" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
-              <CanBreak>True</CanBreak>
-              <ClientRectangle>0,0,5.4,1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>1ed46edd2b764fff90c2a73f85f4aed6</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text11</Name>
-              <Page isRef="3" />
-              <Parent isRef="13" />
-              <Text>مجموع درآمد</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text11>
-            <Text12 Ref="18" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
-              <CanBreak>True</CanBreak>
-              <ClientRectangle>5.4,0,3.8,1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>70b009b83f0a4c16b1e17950ca7a81f2</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text12</Name>
-              <Page isRef="3" />
-              <Parent isRef="13" />
-              <Text>میانگین پیام در مراسم</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text12>
-            <Text14 Ref="19" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
-              <CanBreak>True</CanBreak>
-              <ClientRectangle>25.8,0,1.8,1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>B Nazanin,12,Bold</Font>
-              <Guid>27b25fb4d00c4324ae64c3e8995ee6b0</Guid>
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>80a215e530f44d5dbb2a55ed119b2640</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
@@ -273,131 +192,372 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Name>HeaderBand1</Name>
-          <Page isRef="3" />
-          <Parent isRef="3" />
-        </HeaderBand1>
-        <Data Ref="20" type="DataBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <BusinessObjectGuid>b465dd500c154d628a2f6fb4e03ea102</BusinessObjectGuid>
-          <ClientRectangle>0,8.2,27.7,1</ClientRectangle>
-          <Components isList="true" count="6">
-            <DataMosqueTurnoverRecord_ConsolationAverage Ref="21" type="Text" isKey="true">
+            <Text8 Ref="15" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>5.4,0,3.8,1</ClientRectangle>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>23.2,0,3.2,1</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,13</Font>
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>9a704b531c4946fab503c4b3640553d5</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>DataMosqueTurnoverRecord_ConsolationAverage</Name>
+              <Name>Text8</Name>
               <Page isRef="3" />
-              <Parent isRef="20" />
-              <Text>{MosqueTurnoverRecord.ConsolationAverage}</Text>
+              <Parent isRef="13" />
+              <Text>مسجد</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="22" type="NumberFormat" isKey="true">
-                <GroupSeparator>,</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </DataMosqueTurnoverRecord_ConsolationAverage>
-            <DataMosqueTurnoverRecord_ConsolationCount Ref="23" type="Text" isKey="true">
+            </Text8>
+            <Text9 Ref="16" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>9.2,0,4.4,1</ClientRectangle>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>19.4,0,3.8,1</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,13</Font>
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>6bd031f9a03f4c1a97c84c03feaac970</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>DataMosqueTurnoverRecord_ConsolationCount</Name>
+              <Name>Text9</Name>
               <Page isRef="3" />
-              <Parent isRef="20" />
-              <Text>{MosqueTurnoverRecord.ConsolationCount}</Text>
+              <Parent isRef="13" />
+              <Text>مراسم</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text10 Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>17.2,0,2.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>fc049cf7e8164088891b073ca888a623</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>ارسال کننده</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="18" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>13.2,0,1.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>609e585ed345442ca84a18882f0ca62f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>مبلغ</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>10,0,3.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>ffeff1c3e8c6414b88eddcd418665f47</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>الگو</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="20" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>4.4,0,5.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>0c2b3759a3204e209e7ff3b91573e415</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>محتوا</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text15 Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>2.6,0,1.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>5dea6fb2f8304e9e875ee85c343ea14c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>وضعیت</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text16 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>0,0,2.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>db0c77144b8141c6bde6507fd5d0d92e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>کد رهگیری</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>HatchBrush,Percent30,DarkGray,White</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>14.8,0,2.4,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>170bdcbb4df34b3caff3b1ba80d36420</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>زمان ارسال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>50ce7cc859da4b1d8c9177340b6bd7a7</Guid>
+          <Name>HeaderBand2</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+        </HeaderBand2>
+        <Data Ref="24" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid>9293d78da415420db16c06a9208a82ee</BusinessObjectGuid>
+          <ClientRectangle>0,8.2,27.7,0.8</ClientRectangle>
+          <Components isList="true" count="10">
+            <DataConsolationRecord_Amount Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>13.2,0,1.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataConsolationRecord_Amount</Name>
+              <Page isRef="3" />
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.Amount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="26" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>/</DecimalSeparator>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>2</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataConsolationRecord_Amount>
+            <DataConsolationRecord_Content Ref="27" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.4,0,5.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataConsolationRecord_Content</Name>
+              <Page isRef="3" />
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.Content}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
-            </DataMosqueTurnoverRecord_ConsolationCount>
-            <DataMosqueTurnoverRecord_Index Ref="24" type="Text" isKey="true">
+            </DataConsolationRecord_Content>
+            <DataConsolationRecord_CreationTime Ref="28" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
+              <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>25.8,0,1.8,1</ClientRectangle>
+              <ClientRectangle>14.8,0,2.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,13</Font>
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>DataMosqueTurnoverRecord_Index</Name>
+              <Name>DataConsolationRecord_CreationTime</Name>
               <Page isRef="3" />
-              <Parent isRef="20" />
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.CreationTime}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="29" type="DateFormat" isKey="true">
+                <StringFormat>f</StringFormat>
+              </TextFormat>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataConsolationRecord_CreationTime>
+            <DataConsolationRecord_CustomerCellPhone Ref="30" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>17.2,0,2.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataConsolationRecord_CustomerCellPhone</Name>
+              <Page isRef="3" />
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.CustomerCellPhone}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataConsolationRecord_CustomerCellPhone>
+            <DataConsolationRecord_ID Ref="31" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>26.4,0,1.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataConsolationRecord_ID</Name>
+              <Page isRef="3" />
+              <Parent isRef="24" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </DataMosqueTurnoverRecord_Index>
-            <DataMosqueTurnoverRecord_MosqueName Ref="25" type="Text" isKey="true">
+            </DataConsolationRecord_ID>
+            <DataConsolationRecord_MosqueName Ref="32" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
+              <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>16.8,0,9,1</ClientRectangle>
+              <ClientRectangle>23.2,0,3.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,13</Font>
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>DataMosqueTurnoverRecord_MosqueName</Name>
+              <Name>DataConsolationRecord_MosqueName</Name>
               <Page isRef="3" />
-              <Parent isRef="20" />
-              <Text>{MosqueTurnoverRecord.MosqueName}</Text>
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.MosqueName}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
-            </DataMosqueTurnoverRecord_MosqueName>
-            <DataMosqueTurnoverRecord_ObitsCount Ref="26" type="Text" isKey="true">
+            </DataConsolationRecord_MosqueName>
+            <DataConsolationRecord_ObitTitle Ref="33" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
+              <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>13.6,0,3.2,1</ClientRectangle>
+              <ClientRectangle>19.4,0,3.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,13</Font>
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>DataMosqueTurnoverRecord_ObitsCount</Name>
+              <Name>DataConsolationRecord_ObitTitle</Name>
               <Page isRef="3" />
-              <Parent isRef="20" />
-              <Text>{MosqueTurnoverRecord.ObitsCount}</Text>
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.ObitTitle}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
-            </DataMosqueTurnoverRecord_ObitsCount>
-            <DataMosqueTurnoverRecord_TotalIncome Ref="27" type="Text" isKey="true">
+            </DataConsolationRecord_ObitTitle>
+            <DataConsolationRecord_Status Ref="34" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
+              <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0,0,5.4,1</ClientRectangle>
+              <ClientRectangle>2.6,0,1.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>B Nazanin,13</Font>
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>DataMosqueTurnoverRecord_TotalIncome</Name>
+              <Name>DataConsolationRecord_Status</Name>
               <Page isRef="3" />
-              <Parent isRef="20" />
-              <Text>{MosqueTurnoverRecord.TotalIncome}</Text>
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.Status}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="28" type="NumberFormat" isKey="true">
-                <DecimalDigits>0</DecimalDigits>
-                <GroupSeparator>,</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
-            </DataMosqueTurnoverRecord_TotalIncome>
+            </DataConsolationRecord_Status>
+            <DataConsolationRecord_TemplateTitle Ref="35" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>10,0,3.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataConsolationRecord_TemplateTitle</Name>
+              <Page isRef="3" />
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.TemplateTitle}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataConsolationRecord_TemplateTitle>
+            <DataConsolationRecord_TrackingNumber Ref="36" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,9.75,Regular,Point,False,178</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataConsolationRecord_TrackingNumber</Name>
+              <Page isRef="3" />
+              <Parent isRef="24" />
+              <Text>{ConsolationRecord.TrackingNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataConsolationRecord_TrackingNumber>
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName isNull="true" />
@@ -407,26 +567,25 @@
           <Parent isRef="3" />
           <Sort isList="true" count="0" />
         </Data>
-        <ReportSummaryBand1 Ref="29" type="ReportSummaryBand" isKey="true">
+        <ReportSummaryBand1 Ref="37" type="ReportSummaryBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10,27.7,1</ClientRectangle>
+          <ClientRectangle>0,9.8,27.7,1.6</ClientRectangle>
           <Components isList="true" count="2">
-            <Text13 Ref="30" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
+            <Text18 Ref="38" type="Text" isKey="true">
               <Brush>White</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0,0,5.4,1</ClientRectangle>
+              <ClientRectangle>19.2,0.4,5.4,1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,14</Font>
-              <Guid>3296068849524aff8136ff5fe87df3f4</Guid>
-              <HorAlignment>Center</HorAlignment>
+              <Guid>24530d3b47d449c69ce29f04e12f07dc</Guid>
+              <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text13</Name>
+              <Name>Text18</Name>
               <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>{Sum(Data,MosqueTurnoverRecord.TotalIncome)}</Text>
+              <Parent isRef="37" />
+              <Text>{Sum(Data,ConsolationRecord.Amount)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="31" type="NumberFormat" isKey="true">
+              <TextFormat Ref="39" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -435,21 +594,22 @@
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text13>
-            <Text15 Ref="32" type="Text" isKey="true">
+            </Text18>
+            <Text19 Ref="40" type="Text" isKey="true">
               <Brush>White</Brush>
-              <ClientRectangle>5.6,0.2,2.2,0.6</ClientRectangle>
+              <ClientRectangle>24.8,0.6,2.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>B Nazanin,14,Bold</Font>
+              <Guid>31cd3be30d984316955fa529ff6e384e</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text15</Name>
+              <Name>Text19</Name>
               <Page isRef="3" />
-              <Parent isRef="29" />
-              <Text>:جمع کل</Text>
+              <Parent isRef="37" />
+              <Text>:جمع پرداخت</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text15>
+            </Text19>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>ReportSummaryBand1</Name>
@@ -458,20 +618,20 @@
         </ReportSummaryBand1>
       </Components>
       <Conditions isList="true" count="0" />
-      <Guid>12c30d4027b5490f99bb62b7bd12e858</Guid>
+      <Guid>a72a4ced4af04227b99424a331d91567</Guid>
       <Margins>1,1,1,1</Margins>
       <Name>Page1</Name>
       <Orientation>Landscape</Orientation>
       <PageHeight>21</PageHeight>
       <PageWidth>29.7</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="33" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
-        <Font>Arial,100</Font>
+      <Watermark Ref="41" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,11</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="34" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="42" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -483,10 +643,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/27/2018 12:07:55 PM</ReportChanged>
-  <ReportCreated>1/30/2018 8:32:10 AM</ReportCreated>
-  <ReportFile>D:\TeamProjects\Git\SamGitProject\SamLibrary\SamReportLib\Reports\MosqueTurnoverReport.mrt</ReportFile>
-  <ReportGuid>aa341a0caa2a4c3996bfd76a9d7c17d8</ReportGuid>
+  <ReportChanged>2/27/2018 12:56:55 PM</ReportChanged>
+  <ReportCreated>2/27/2018 10:11:01 AM</ReportCreated>
+  <ReportFile>D:\TeamProjects\Git\SamGitProject\SamLibrary\SamReportLib\Reports\ConsolationsReport.mrt</ReportFile>
+  <ReportGuid>c2b2b8d738f4406c8843261f09119597</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2012.2.1304</ReportVersion>

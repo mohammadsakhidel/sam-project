@@ -188,5 +188,27 @@ namespace SamDataAccess.Repos
                     select c).Count();
         }
 
+        public List<Consolation> Query(DateTime beginDate, DateTime endDate, int? provinceId, int? cityId,
+            int? mosqueId, string status, string customerCellphone, string trackingNumber)
+        {
+            var verified = PaymentStatus.verified.ToString();
+
+            var items = (from c in context.Consolations.Include(c => c.Customer).Include(c => c.Template)
+                         join o in context.Obits.Include(o => o.ObitHoldings) on c.ObitID equals o.ID
+                         join m in context.Mosques on o.MosqueID equals m.ID
+                         join ct in context.Cities on m.CityID equals ct.ID
+                         where c.PaymentStatus == verified
+                               && (string.IsNullOrEmpty(status) || c.Status == status)
+                               && (string.IsNullOrEmpty(trackingNumber) || c.TrackingNumber == trackingNumber)
+                               && (string.IsNullOrEmpty(customerCellphone) || c.Customer.CellPhoneNumber.Contains(customerCellphone))
+                               && (!provinceId.HasValue || provinceId.Value == ct.ProvinceID)
+                               && (!cityId.HasValue || cityId.Value == ct.ID)
+                               && (!mosqueId.HasValue || mosqueId.Value == m.ID)
+                               && (o.ObitHoldings.Any(h => DbFunctions.TruncateTime(h.BeginTime) >= DbFunctions.TruncateTime(beginDate)
+                                                           && DbFunctions.TruncateTime(h.BeginTime) <= DbFunctions.TruncateTime(endDate)))
+                         select c
+                ).ToList();
+            return items;
+        }
     }
 }

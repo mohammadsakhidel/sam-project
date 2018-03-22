@@ -104,7 +104,7 @@ public class ConsolationAdapter extends ArrayAdapter<ConsolationDto> {
 
             //region Icon ImageView:
             ImageView imgIcon = (ImageView) convertView.findViewById(R.id.img_icon);
-            URL iconUrl = new URL(new URL(Configs.API_BASE_ADDRESS),
+            URL iconUrl = new URL(new URL(Configs.getApiBaseAddress()),
                     String.format("%s/%s?thumb=true", ApiActions.consolations_getpreview, consolation.getId()));
             Picasso.with(context).load(iconUrl.toString()).into(imgIcon);
             imgIcon.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +112,7 @@ public class ConsolationAdapter extends ArrayAdapter<ConsolationDto> {
                 public void onClick(View v) {
                     try {
                         //region show template preview:
-                        URL imageUrl = new URL(new URL(Configs.API_BASE_ADDRESS),
+                        URL imageUrl = new URL(new URL(Configs.getApiBaseAddress()),
                                 String.format("%s/%s?thumb=false", ApiActions.consolations_getpreview, consolation.getId()));
                         loadConsolationPreview(imageUrl.toString());
                         //endregion

@@ -917,4 +917,13 @@
   <data name="section_reports" xml:space="preserve">
     <value>گزارشات</value>
   </data>
+  <data name="DisplayStatus" xml:space="preserve">
+    <value>وضعیت نمایش</value>
+  </data>
+  <data name="ReportType_Consolations" xml:space="preserve">
+    <value>گزارش پیام های تسلیت</value>
+  </data>
+  <data name="SenderCellPhone" xml:space="preserve">
+    <value>شماره ارسال کننده پیام</value>
+  </data>
 </root>

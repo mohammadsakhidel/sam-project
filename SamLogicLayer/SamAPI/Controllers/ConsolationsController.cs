@@ -393,8 +393,10 @@ namespace SamAPI.Controllers
                         {
                             consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
                             #region Send SMS:
+
                             string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
                             SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
+
                             #endregion
                         }
                     }
