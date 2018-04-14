@@ -134,8 +134,11 @@ namespace SamAPI.Controllers
                     if (!_consolationRepo.IsDisplayed(cId))
                     {
                         var c = _consolationRepo.Get(cId);
-                        var message = string.Format(SmsMessages.ConsolationDisplaySms, c.TrackingNumber);
-                        SmsUtil.Send(message, c.Customer.CellPhoneNumber);
+                        if (c != null)
+                        {
+                            var message = string.Format(SmsMessages.ConsolationDisplaySms, c.TrackingNumber);
+                            SmsUtil.Send(message, c.Customer.CellPhoneNumber);
+                        }
                     }
                 }
                 #endregion
@@ -144,20 +147,28 @@ namespace SamAPI.Controllers
                 using (var ts = new TransactionScope())
                 {
                     var consolationsUpdated = false;
+                    var displaysAdded = false;
+
                     foreach (var displayDto in displays)
                     {
                         var display = Mapper.Map<DisplayDto, Display>(displayDto);
-                        _displayRepo.Add(display);
-
                         var consolation = _consolationRepo.Get(display.ConsolationID);
-                        if (consolation.Status == ConsolationStatus.confirmed.ToString())
+
+                        if (consolation != null)
                         {
-                            consolation.Status = ConsolationStatus.displayed.ToString();
-                            consolationsUpdated = true;
+                            _displayRepo.Add(display);
+                            displaysAdded = true;
+
+                            if (consolation.Status == ConsolationStatus.confirmed.ToString())
+                            {
+                                consolation.Status = ConsolationStatus.displayed.ToString();
+                                consolationsUpdated = true;
+                            }
                         }
                     }
 
-                    _displayRepo.Save();
+                    if (displaysAdded)
+                        _displayRepo.Save();
                     if (consolationsUpdated)
                         _consolationRepo.Save();
 
