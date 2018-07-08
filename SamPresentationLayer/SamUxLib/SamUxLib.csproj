@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Code\Constants\Collections.cs" />
     <Compile Include="Code\Converters\ArabicDigitsConverter.cs" />
+    <Compile Include="Code\Converters\BoolReverserConverter.cs" />
     <Compile Include="Code\DI\IPOS.cs" />
     <Compile Include="Code\DI\SamanSerialPOS.cs" />
     <Compile Include="Code\Enums\ReportType.cs" />

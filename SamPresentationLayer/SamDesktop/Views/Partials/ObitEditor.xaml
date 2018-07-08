@@ -32,21 +32,26 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <!--Row 0 ::: Title-->
-            <Label Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Title}" />
-            <TextBox x:Name="tbTitle" Grid.Column="1" />
+            <!--Row 0 ::: DeceasedIdentifier-->
+            <Label Grid.Row="0" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DeceasedIdentifier}" />
+            <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2">
+                <ComboBox x:Name="cmbDeceasedIdentifier" ItemsSource="{Binding DeceasedPeople}" SelectedValuePath="Key" DisplayMemberPath="Value"
+                          IsEnabled="{Binding ElementName=chNewIdentifier, Path=IsChecked, Converter={StaticResource boolReverserConverter}}" />
+                <CheckBox Name="chNewIdentifier" Margin="10 10 0 0" IsChecked="False"
+                          Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.GenerateNewIdentifier}" />
+            </UniformGrid>
+            
+            <!--Row 2 ::: Title-->
+            <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Title}" />
+            <TextBox x:Name="tbTitle" Grid.Row="2" Grid.Column="1" Text="{Binding Mode=OneWay, ElementName=cmbDeceasedIdentifier, Path=SelectedItem.Value}" />
 
-            <!--Row 2 ::: ObitType-->
-            <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitType}" />
-            <ComboBox x:Name="cmbObitType" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ObitTypes}" SelectedValuePath="Key" />
+            <!--Row 4 ::: ObitType-->
+            <Label Grid.Row="4" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitType}" />
+            <ComboBox x:Name="cmbObitType" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ObitTypes}" SelectedValuePath="Key" />
 
-            <!--Row 4 ::: OwnerCellPhone-->
-            <Label Grid.Row="4" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OwnerCellPhone}" />
-            <TextBox Grid.Row="4" x:Name="tbOwnerCellPhone" Grid.Column="1" />
-
-            <!--Row 6 ::: DeceasedIdentifier-->
-            <Label Grid.Row="6" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DeceasedIdentifier}" />
-            <TextBox x:Name="tbDeceasedIdentifier" Grid.Row="6" Grid.Column="1" />
+            <!--Row 6 ::: OwnerCellPhone-->
+            <Label Grid.Row="6" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.OwnerCellPhone}" />
+            <TextBox Grid.Row="6" x:Name="tbOwnerCellPhone" Grid.Column="1" />
 
             <!--Row 8 ::: ObitHoldings-->
             <GroupBox Grid.Row="8" Grid.ColumnSpan="2" Header="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.ObitHolding}" Margin="{StaticResource padding_widget_ver}">

@@ -13,6 +13,7 @@
             <cnv:PriceConverter x:Key="priceConverter" />
             <cnv:ConnectorConverter x:Key="connectorConverter" />
             <cnv:BoolConverter x:Key="boolConverter" />
+            <cnv:BoolReverserConverter x:Key="boolReverserConverter" />
             <cnv:ShortTimeConverter x:Key="shortTimeConverter" />
             <cnv:ShortDateConverter x:Key="shortDateConverter" />
             <cnv:ShortDateTimeConverter x:Key="shortDateTimeConverter" />

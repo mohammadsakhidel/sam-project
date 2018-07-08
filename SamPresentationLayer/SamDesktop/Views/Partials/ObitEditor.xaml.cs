@@ -60,7 +60,7 @@ namespace SamDesktop.Views.Partials
         #endregion
 
         #region Event Handler:
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -75,6 +75,10 @@ namespace SamDesktop.Views.Partials
                 {
                     LoadObit();
                 }
+
+                #region Load Deceased People:
+                await LoadDeceasedPeopleAsync();
+                #endregion
             }
             catch (Exception ex)
             {
@@ -141,8 +145,10 @@ namespace SamDesktop.Views.Partials
                 #region Gather Info:
                 var isEditing = ObitToEdit != null;
                 var formObit = ObitToEdit ?? new ObitDto();
+                var selectedIdentifier = cmbDeceasedIdentifier.SelectedItem != null ? cmbDeceasedIdentifier.SelectedValue.ToString() : "";
+                var generateNewIdentifier = chNewIdentifier.IsChecked.HasValue ? chNewIdentifier.IsChecked.Value : false;
                 formObit.Title = tbTitle.Text;
-                formObit.DeceasedIdentifier = tbDeceasedIdentifier.Text;
+                formObit.DeceasedIdentifier = generateNewIdentifier ? GenerateRandomIdentifier() : selectedIdentifier;
                 formObit.ObitType = cmbObitType.SelectedValue.ToString();
                 formObit.ObitHoldings = vm.ObitHoldings.ToList();
                 formObit.MosqueID = isEditing ? ObitToEdit.MosqueID : Mosque.ID;
@@ -204,11 +210,37 @@ namespace SamDesktop.Views.Partials
             {
                 var vm = DataContext as ObitEditorVM;
                 tbTitle.Text = ObitToEdit.Title;
-                tbDeceasedIdentifier.Text = ObitToEdit.DeceasedIdentifier;
+                cmbDeceasedIdentifier.SelectedValue = ObitToEdit.DeceasedIdentifier;
                 cmbObitType.SelectedValue = ObitToEdit.ObitType;
                 tbOwnerCellPhone.Text = ObitToEdit.OwnerCellPhone;
                 vm.ObitHoldings = ObitToEdit.ObitHoldings != null && ObitToEdit.ObitHoldings.Any() ? new ObservableCollection<ObitHoldingDto>(ObitToEdit.ObitHoldings) : null;
             }
+        }
+        private async Task LoadDeceasedPeopleAsync()
+        {
+            try
+            {
+                progress.IsBusy = true;
+                using (var hc = HttpUtil.CreateClient())
+                {
+                    var response = await hc.GetAsync(ApiActions.obits_getdeceasedpeople);
+                    HttpUtil.EnsureSuccessStatusCode(response);
+                    var people = await response.Content.ReadAsAsync<List<KeyValuePair<string, string>>>();
+                    var vm = DataContext as ObitEditorVM;
+                    vm.DeceasedPeople = new ObservableCollection<KeyValuePair<string, string>>(people);
+                    progress.IsBusy = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                progress.IsBusy = false;
+                ExceptionManager.Handle(ex);
+            }
+        }
+        private string GenerateRandomIdentifier()
+        {
+            var baseString = DateTime.Now.ToString("yyyyMMddHHmmss");
+            return $"{TextUtils.GetRandomString(2, false)}{baseString}";
         }
         #endregion
     }

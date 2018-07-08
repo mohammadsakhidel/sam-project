@@ -193,6 +193,24 @@ namespace SamAPI.Controllers
                 return ExceptionManager.GetExceptionResponse(this, ex);
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult GetDeceasedPeople()
+        {
+            try
+            {
+                var obits = _obitRepo.GetLastObitsWithDeceasedId(40)
+                    .OrderByDescending(o => o.ID);
+
+                var kvPairs = obits.Select(o => new KeyValuePair<string, string>(o.DeceasedIdentifier, o.Title)).ToList();
+
+                return Ok(kvPairs);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region POST ACTIONS:

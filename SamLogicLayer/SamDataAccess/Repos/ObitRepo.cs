@@ -108,6 +108,16 @@ namespace SamDataAccess.Repos
             return holdings.Include(h => h.Obit).ToList();
         }
 
+        public List<Obit> GetLastObitsWithDeceasedId(int days)
+        {
+            var beginTime = DateTimeUtils.Now.AddDays(-days);
+            var recs = from o in context.Obits.Include(ob => ob.ObitHoldings)
+                       where o.ObitHoldings.Any(h => h.BeginTime > beginTime)
+                             && !string.IsNullOrEmpty(o.DeceasedIdentifier)
+                       select o;
+            return recs.ToList();
+        }
+
         public List<Obit> Search(string query, DateTime date)
         {
             var obits = from o in set

@@ -55,5 +55,18 @@ namespace SamDesktop.Code.ViewModels
             }
         }
         #endregion
+
+        #region DeceasedPeople:
+        private ObservableCollection<KeyValuePair<string, string>> deceasedPeople;
+        public ObservableCollection<KeyValuePair<string, string>> DeceasedPeople
+        {
+            get { return deceasedPeople; }
+            set
+            {
+                deceasedPeople = value;
+                RaisePropertyChanged("DeceasedPeople");
+            }
+        }
+        #endregion
     }
 }

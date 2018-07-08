@@ -665,7 +665,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to شناسه متوفی.
+        ///   Looks up a localized string similar to مراسم مرتبط.
         /// </summary>
         public static string DeceasedIdentifier {
             get {
@@ -958,6 +958,15 @@ namespace SamUxLib.Resources.Values {
         public static string GeneralInformation {
             get {
                 return ResourceManager.GetString("GeneralInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تولید شناسه جدید.
+        /// </summary>
+        public static string GenerateNewIdentifier {
+            get {
+                return ResourceManager.GetString("GenerateNewIdentifier", resourceCulture);
             }
         }
         
