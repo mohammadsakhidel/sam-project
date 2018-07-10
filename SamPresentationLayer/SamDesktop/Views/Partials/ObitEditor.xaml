@@ -34,12 +34,23 @@
 
             <!--Row 0 ::: DeceasedIdentifier-->
             <Label Grid.Row="0" Style="{StaticResource form_label}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.DeceasedIdentifier}" />
-            <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2">
-                <ComboBox x:Name="cmbDeceasedIdentifier" ItemsSource="{Binding DeceasedPeople}" SelectedValuePath="Key" DisplayMemberPath="Value"
-                          IsEnabled="{Binding ElementName=chNewIdentifier, Path=IsChecked, Converter={StaticResource boolReverserConverter}}" />
-                <CheckBox Name="chNewIdentifier" Margin="10 10 0 0" IsChecked="False"
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <ComboBox x:Name="cmbDeceasedIdentifier" ItemsSource="{Binding DeceasedPeople}" SelectedValuePath="Key"
+                          IsEnabled="{Binding ElementName=chNewIdentifier, Path=IsChecked, Converter={StaticResource boolReverserConverter}}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource keyValuePairConverter}}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <CheckBox Name="chNewIdentifier" Margin="10 10 0 0" IsChecked="False" Grid.Column="1"
                           Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.GenerateNewIdentifier}" />
-            </UniformGrid>
+            </Grid>
             
             <!--Row 2 ::: Title-->
             <Label Grid.Row="2" Style="{StaticResource form_label_required}" Content="{Binding Converter={StaticResource rc}, ConverterParameter=Strings.Title}" />

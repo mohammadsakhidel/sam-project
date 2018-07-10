@@ -20,6 +20,7 @@
             <cnv:SectionNameDisplayConverter x:Key="sectionNameDisplayConverter" />
             <cnv:VisibilityConverter x:Key="visibilityConverter" />
             <cnv:AccessToVisibilityConverter x:Key="accessToVisibilityConverter" />
+            <cnv:KeyValuePairConverter x:Key="keyValuePairConverter" />
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/SamUxLib;component/Resources/Themes/DefaultTheme/Colors.xaml" />

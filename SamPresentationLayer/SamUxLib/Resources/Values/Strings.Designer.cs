@@ -665,7 +665,7 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مراسم مرتبط.
+        ///   Looks up a localized string similar to شناسه متوفی.
         /// </summary>
         public static string DeceasedIdentifier {
             get {

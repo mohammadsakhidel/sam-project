@@ -25,6 +25,7 @@ using Unity.WebApi;
 using Microsoft.Practices.Unity;
 using System.Drawing;
 using SamUtils.Enums;
+using SamUtils.Objects.Utilities;
 
 namespace SamAPI.Controllers
 {
@@ -200,6 +201,7 @@ namespace SamAPI.Controllers
             try
             {
                 var obits = _obitRepo.GetLastObitsWithDeceasedId(40)
+                    .Distinct(new LambdaComparer<Obit>((a, b) => a.DeceasedIdentifier == b.DeceasedIdentifier))
                     .OrderByDescending(o => o.ID);
 
                 var kvPairs = obits.Select(o => new KeyValuePair<string, string>(o.DeceasedIdentifier, o.Title)).ToList();
