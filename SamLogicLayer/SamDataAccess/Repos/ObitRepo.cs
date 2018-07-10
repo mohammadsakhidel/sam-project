@@ -84,6 +84,23 @@ namespace SamDataAccess.Repos
             return q.ToList();
         }
 
+        public List<Obit> GetFutureRelatedObits(int obitId)
+        {
+            var obit = Get(obitId);
+            if (obit == null)
+                return new List<Obit>();
+
+            var now = DateTime.Now;
+            var query = from o in context.Obits
+                        join h in context.ObitHoldings on o.ID equals h.ObitID
+                        where o.DeceasedIdentifier == obit.DeceasedIdentifier
+                              && o.ID != obit.ID
+                              && h.EndTime > now
+                        orderby h.BeginTime
+                        select o;
+            return query.Distinct().ToList();
+        }
+
         public List<Obit> GetHenceForwardObits(int mosqueId)
         {
             var now = DateTimeUtils.Now;

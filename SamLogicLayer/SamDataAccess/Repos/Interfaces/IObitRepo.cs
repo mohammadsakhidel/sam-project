@@ -29,5 +29,7 @@ namespace SamDataAccess.Repos.Interfaces
         List<Obit> GetCompletedObitsWhichHaveDisplayedConsolations(DateTime? fromTime);
 
         List<Obit> GetLastObitsWithDeceasedId(int days);
+
+        List<Obit> GetFutureRelatedObits(int obitId);
     }
 }

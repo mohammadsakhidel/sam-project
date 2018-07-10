@@ -213,6 +213,21 @@ namespace SamAPI.Controllers
                 return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult GetFutureRelatedObits(int obitId)
+        {
+            try
+            {
+                var obits = _obitRepo.GetFutureRelatedObits(obitId);
+                var dtos = obits.Select(o => Mapper.Map<Obit, ObitDto>(o));
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
         #endregion
 
         #region POST ACTIONS:
