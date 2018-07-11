@@ -28,6 +28,7 @@ namespace SamWeb.Controllers
         const string ARG_CITY_ID = "city_id";
         const string ARG_MOSQUE_ID = "mosque_id";
         const string ARG_OBIT_ID = "obit_id";
+        const string ARG_RELATED_OBIT_IDS = "related_obit_ids";
         const string ARG_FULLNAME = "fullname";
         const string ARG_CELLPHONE = "cellphone";
         const string ARG_TEMPLATE_ID = "template_id";
@@ -83,6 +84,8 @@ namespace SamWeb.Controllers
                 foreach (var obit in obits)
                 {
                     obit.ObitTypeDisplay = ResourceManager.GetValue($"ObitType_{obit.ObitType}", "Enums");
+                    var shamsiDate = obit.ObitHoldings.Any() ? DateTimeUtils.ToShamsi(obit.ObitHoldings.First().BeginTime) : null;
+                    obit.HoldingTimeDisplay = (shamsiDate != null ? $"{shamsiDate.Year.ToString("D4")}/{shamsiDate.Month.ToString("D2")}/{shamsiDate.Day.ToString("D2")} - {shamsiDate.Hour.ToString("D2")}:{shamsiDate.Minute.ToString("D2")}" : "");
                 }
                 return Json(obits, JsonRequestBehavior.AllowGet);
             }
@@ -114,6 +117,26 @@ namespace SamWeb.Controllers
                 return View(vm);
             }
             #endregion
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetRelatedObits(int obitId)
+        {
+            try
+            {
+                var obits = await GetRelatedObitsFromApi(obitId);
+                foreach (var obit in obits)
+                {
+                    obit.ObitTypeDisplay = ResourceManager.GetValue($"ObitType_{obit.ObitType}", "Enums");
+                    var shamsiDate = obit.ObitHoldings.Any() ? DateTimeUtils.ToShamsi(obit.ObitHoldings.First().BeginTime) : null;
+                    obit.HoldingTimeDisplay = (shamsiDate != null ? $"{shamsiDate.Year.ToString("D4")}/{shamsiDate.Month.ToString("D2")}/{shamsiDate.Day.ToString("D2")} - {shamsiDate.Hour.ToString("D2")}:{shamsiDate.Minute.ToString("D2")}" : "");
+                }
+                return Json(obits, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ExceptionManager.GetProperMessage(ex), JsonRequestBehavior.AllowGet);
+            }
         }
         #endregion
 
@@ -163,6 +186,10 @@ namespace SamWeb.Controllers
                     if (model.MosqueID.HasValue)
                     {
                         var obits = await GetMosqueObitsFromApi(model.MosqueID.Value);
+                        foreach (var obit in obits)
+                        {
+                            obit.ObitTypeDisplay = ResourceManager.GetValue($"ObitType_{obit.ObitType}", "Enums");
+                        }
                         model.Obits = obits;
                     }
                     #endregion
@@ -176,6 +203,7 @@ namespace SamWeb.Controllers
                 Session[ARG_CITY_ID] = model.CityID;
                 Session[ARG_MOSQUE_ID] = model.MosqueID;
                 Session[ARG_OBIT_ID] = model.ObitID;
+                Session[ARG_RELATED_OBIT_IDS] = model.RelatedObitIds;
                 #endregion
 
                 #region Return Customer Info Step View:
@@ -276,6 +304,7 @@ namespace SamWeb.Controllers
 
                 #region prepare dto:
                 var obitId = (int)Session[ARG_OBIT_ID];
+                var relatedObitIds = (List<int>)Session[ARG_RELATED_OBIT_IDS];
                 var fullName = Session[ARG_FULLNAME].ToString();
                 var cellphone = Session[ARG_CELLPHONE].ToString();
                 var templateId = (int)Session[ARG_TEMPLATE_ID];
@@ -290,6 +319,7 @@ namespace SamWeb.Controllers
                     var dto = new ConsolationDto
                     {
                         ObitID = obitId,
+                        OtherObits = relatedObitIds.Select(i => i.ToString()).Aggregate<string>((a, b) => $"{a}, {b}"),
                         TemplateID = templateId,
                         Customer = new CustomerDto { FullName = fullName, CellPhoneNumber = cellphone },
                         Audience = model.Fields.SingleOrDefault(f => f.Name == "Audience")?.Value,
@@ -317,9 +347,11 @@ namespace SamWeb.Controllers
                     using (var hc = HttpUtil.CreateClient())
                     {
                         var consolationId = (int)Session[ARG_CONSOLATION_ID];
-                        var dto = new ConsolationDto() {
+                        var dto = new ConsolationDto()
+                        {
                             ID = consolationId,
                             ObitID = obitId,
+                            OtherObits = relatedObitIds.Select(i => i.ToString()).Aggregate<string>((a, b) => $"{a}, {b}"),
                             TemplateID = templateId,
                             TemplateInfo = templateInfo,
                             Customer = new CustomerDto { FullName = fullName, CellPhoneNumber = cellphone }
@@ -457,6 +489,16 @@ namespace SamWeb.Controllers
                 return obits;
             }
         }
+        private async Task<List<ObitDto>> GetRelatedObitsFromApi(int obitId)
+        {
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var response = await hc.GetAsync($"{ApiActions.obits_getfuturerelatedobits}?obitId={obitId}");
+                HttpUtil.EnsureSuccessStatusCode(response);
+                var obits = await response.Content.ReadAsAsync<List<ObitDto>>();
+                return obits;
+            }
+        }
         private async Task<List<TemplateDto>> GetTemplatesFromApi()
         {
             using (var hc = HttpUtil.CreateClient())
@@ -495,6 +537,7 @@ namespace SamWeb.Controllers
             vm.CityID = Session[ARG_CITY_ID] != null ? (int)Session[ARG_CITY_ID] : (int?)null;
             vm.MosqueID = Session[ARG_MOSQUE_ID] != null ? (int)Session[ARG_MOSQUE_ID] : (int?)null;
             vm.ObitID = Session[ARG_OBIT_ID] != null ? (int)Session[ARG_OBIT_ID] : (int?)null;
+            vm.RelatedObitIds = Session[ARG_RELATED_OBIT_IDS] != null ? (List<int>)Session[ARG_RELATED_OBIT_IDS] : new List<int>();
 
             #region set cities collection to maintain view state:
             if (vm.ProvinceID.HasValue)
@@ -511,7 +554,26 @@ namespace SamWeb.Controllers
             if (vm.MosqueID.HasValue)
             {
                 var obits = await GetMosqueObitsFromApi(vm.MosqueID.Value);
+                foreach (var obit in obits)
+                {
+                    obit.ObitTypeDisplay = ResourceManager.GetValue($"ObitType_{obit.ObitType}", "Enums");
+                    var shamsiDate = obit.ObitHoldings.Any() ? DateTimeUtils.ToShamsi(obit.ObitHoldings.First().BeginTime) : null;
+                    obit.HoldingTimeDisplay = (shamsiDate != null ? $"{shamsiDate.Year.ToString("D4")}/{shamsiDate.Month.ToString("D2")}/{shamsiDate.Day.ToString("D2")} - {shamsiDate.Hour.ToString("D2")}:{shamsiDate.Minute.ToString("D2")}" : "");
+                }
                 vm.Obits = obits;
+            }
+            #endregion
+            #region set all related obits collection to maintain view state:
+            if (vm.ObitID.HasValue)
+            {
+                var obits = await GetRelatedObitsFromApi(vm.ObitID.Value);
+                foreach (var obit in obits)
+                {
+                    obit.ObitTypeDisplay = ResourceManager.GetValue($"ObitType_{obit.ObitType}", "Enums");
+                    var shamsiDate = obit.ObitHoldings.Any() ? DateTimeUtils.ToShamsi(obit.ObitHoldings.First().BeginTime) : null;
+                    obit.HoldingTimeDisplay = (shamsiDate != null ? $"{shamsiDate.Year.ToString("D4")}/{shamsiDate.Month.ToString("D2")}/{shamsiDate.Day.ToString("D2")} - {shamsiDate.Hour.ToString("D2")}:{shamsiDate.Minute.ToString("D2")}" : "");
+                }
+                vm.AllRelatedObits = obits;
             }
             #endregion
             return vm;

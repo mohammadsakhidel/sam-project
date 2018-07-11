@@ -35,6 +35,7 @@ namespace SamModels.DTOs
 
         #region Extensions:
         public string ObitTypeDisplay { get; set; }
+        public string HoldingTimeDisplay { get; set; }
         #endregion
     }
 }

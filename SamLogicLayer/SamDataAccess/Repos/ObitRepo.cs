@@ -93,7 +93,8 @@ namespace SamDataAccess.Repos
             var now = DateTime.Now;
             var query = from o in context.Obits
                         join h in context.ObitHoldings on o.ID equals h.ObitID
-                        where o.DeceasedIdentifier == obit.DeceasedIdentifier
+                        where !string.IsNullOrEmpty(o.DeceasedIdentifier)
+                              && o.DeceasedIdentifier == obit.DeceasedIdentifier
                               && o.ID != obit.ID
                               && h.EndTime > now
                         orderby h.BeginTime

@@ -55,6 +55,9 @@ namespace SamModels.Entities
         [MaxLength(512)]
         public string ExtraData { get; set; }
 
+        [MaxLength(128)]
+        public string OtherObits { get; set; }
+
         #region Navigation Props:
         public virtual Obit Obit { get; set; }
         public virtual Customer Customer { get; set; }

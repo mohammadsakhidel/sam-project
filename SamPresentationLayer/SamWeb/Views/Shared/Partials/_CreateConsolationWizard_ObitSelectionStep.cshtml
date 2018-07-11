@@ -66,10 +66,31 @@
                     <option value=""></option>
                     foreach (var o in Model.Obits)
                     {
-                        <option value="@o.ID" @(Model.ObitID.HasValue && o.ID == Model.ObitID.Value ? Html.Raw("selected=\"selected\"") : Html.Raw(""))>@o.Title</option>
+                        <option value="@o.ID" @(Model.ObitID.HasValue && o.ID == Model.ObitID.Value ? Html.Raw("selected=\"selected\"") : Html.Raw(""))>
+                            @o.Title : @o.ObitTypeDisplay (@o.HoldingTimeDisplay)
+                        </option>
                     }
                 }
             </select>
+        </div>
+        <div id="relatedObits" @(Model.AllRelatedObits != null && Model.AllRelatedObits.Any() ? Html.Raw("") : Html.Raw("style=\"display: none;\""))>
+            <p style="padding: 10px 0;">@Messages.RelatedObitsSelectionMessage</p>
+            <ul style="list-style: none;">
+                @if (Model.AllRelatedObits != null && Model.AllRelatedObits.Any())
+                {
+                    foreach (var obit in Model.AllRelatedObits)
+                    {
+                        var elId = $"relatedobit_{obit.ID}";
+
+                        <li style="margin: 5px 0;">
+                            <input name="@elId" id="@elId" type="checkbox" @(Model.RelatedObitIds != null && Model.RelatedObitIds.Contains(obit.ID) ? Html.Raw("checked=\"checked\"") : Html.Raw("")) />
+                            <label for="@elId" style="padding: 0 5px 0 0;">
+                                @($"{obit.Title} : {obit.ObitTypeDisplay} ({obit.HoldingTimeDisplay})")
+                            </label>
+                        </li>
+                    }
+                }
+            </ul>
         </div>
     </div>
 
@@ -88,36 +109,56 @@
 <script>
 
     $('#ProvinceID').change(function () {
-        $('#CityID').prop('disabled', true);
         var provinceId = $(this).val();
-        $.ajax({
-            url: '/home/getprovincecities/' + provinceId,
-            type: 'GET',
-            success: onProvChangeSuccess,
-            error: onAjaxError
-        });
+        if (provinceId != '') {
+            $('#CityID').prop('disabled', true);
+            $.ajax({
+                url: '/home/getprovincecities/' + provinceId,
+                type: 'GET',
+                success: onProvChangeSuccess,
+                error: onAjaxError
+            });
+        }
     });
 
     $('#CityID').change(function () {
-        $('#MosqueID').prop('disabled', true);
         var cityId = $(this).val();
-        $.ajax({
-            url: '/consolations/getcitymosques/' + cityId,
-            type: 'GET',
-            success: onCityChangeSuccess,
-            error: onAjaxError
-        });
+        if (cityId != '') {
+            $('#MosqueID').prop('disabled', true);
+            $.ajax({
+                url: '/consolations/getcitymosques/' + cityId,
+                type: 'GET',
+                success: onCityChangeSuccess,
+                error: onAjaxError
+            });
+        }
     });
 
     $('#MosqueID').change(function () {
-        $('#ObitID').prop('disabled', true);
         var mosqueId = $(this).val();
-        $.ajax({
-            url: '/consolations/getallobits?mosqueId=' + mosqueId,
-            type: 'GET',
-            success: onMosqueChangeSuccess,
-            error: onAjaxError
-        });
+        if (mosqueId != '') {
+            $('#ObitID').prop('disabled', true);
+            $.ajax({
+                url: '/consolations/getallobits?mosqueId=' + mosqueId,
+                type: 'GET',
+                success: onMosqueChangeSuccess,
+                error: onAjaxError
+            });
+        }
+    });
+
+    $('#ObitID').change(function () {
+        var obitId = $(this).val();
+        if (obitId != '') {
+            onBegin();
+            $('#loading').show();
+            $.ajax({
+                url: '/consolations/getrelatedobits?obitId=' + obitId,
+                type: 'GET',
+                success: onObitChangeSuccess,
+                error: onAjaxError
+            });
+        }
     });
 
     function onProvChangeSuccess(data) {
@@ -148,7 +189,7 @@
         try {
             $('#ObitID').html('<option></option>');
             $.each(data, function (key, val) {
-                $('#ObitID').append('<option value="' + val.ID + '">' + val.Title + ' : ' + val.ObitTypeDisplay + '</option>');
+                $('#ObitID').append('<option value="' + val.ID + '">' + obitDisplayName(val) + '</option>');
             });
             $('#ObitID').prop('disabled', false);
         } catch (e) {
@@ -156,8 +197,39 @@
         }
     }
 
+    function onObitChangeSuccess(data) {
+        try {
+            if (data.length > 0) {
+                var selectedObit = $("#ObitID").val();
+                $('#relatedObits ul').empty();
+                for (var i = 0; i < data.length; i++) {
+                    var obit = data[i];
+                    var elId = 'relatedobit_' + obit.ID;
+                    $('#relatedObits ul').append('<li style="margin: 5px 0;">' +
+                        '<input name="' + elId + '" id="' + elId + '" type="checkbox" />' +
+                        '<label for="' + elId + '" style="padding: 0 5px 0 0;">' +
+                            obitDisplayName(obit) +
+                        '</label>' +
+                    '</li>');
+                    $('#relatedObits').show();
+                }
+            } else {
+                $('#relatedObits ul').empty();
+                $('#relatedObits').hide();
+            }
+
+            $('#loading').hide();
+        } catch (e) {
+            alert(e.message);
+        }
+    }
+
     function onAjaxError(data) {
         alert('@Messages.SomthingWrongHappend');
+    }
+
+    function obitDisplayName(obit) {
+        return obit.Title + ' : ' + obit.ObitTypeDisplay + ' (' + obit.HoldingTimeDisplay + ')';
     }
 
 </script>

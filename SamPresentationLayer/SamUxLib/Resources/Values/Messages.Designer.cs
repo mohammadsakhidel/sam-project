@@ -414,6 +414,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سایر مراسمات مورد نظر خود را جهت نمایش پیام تسلیت با تخفیف ویژه انتخاب نمایید:.
+        /// </summary>
+        public static string RelatedObitsSelectionMessage {
+            get {
+                return ResourceManager.GetString("RelatedObitsSelectionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً شماره موبایل خود را وارد کنید..
         /// </summary>
         public static string Required_CellPhoneNumber {

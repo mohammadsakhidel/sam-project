@@ -38,6 +38,8 @@ namespace SamModels.DTOs
 
         public string ExtraData { get; set; }
 
+        public string OtherObits { get; set; }
+
         #region Navigation:
         public CustomerDto Customer { get; set; }
         public ObitDto Obit { get; set; }

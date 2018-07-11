@@ -429,7 +429,10 @@ namespace SamAPI.Controllers
 
                 #region update fields:
                 if (model.ObitID > 0)
+                {
                     consolationToEdit.ObitID = model.ObitID;
+                    consolationToEdit.OtherObits = model.OtherObits;
+                }
 
                 if (model.TemplateID > 0)
                 {

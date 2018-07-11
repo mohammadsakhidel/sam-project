@@ -236,6 +236,9 @@
   <data name="PleaseFillSomeConditions" xml:space="preserve">
     <value>لطفاً یک یا چند شرط از موارد فوق را مشخص نمایید.</value>
   </data>
+  <data name="RelatedObitsSelectionMessage" xml:space="preserve">
+    <value>سایر مراسمات مورد نظر خود را جهت نمایش پیام تسلیت با تخفیف ویژه انتخاب نمایید:</value>
+  </data>
   <data name="RequiredPassword" xml:space="preserve">
     <value>لطفاً گذرواژه خود را وارد کنید.</value>
   </data>

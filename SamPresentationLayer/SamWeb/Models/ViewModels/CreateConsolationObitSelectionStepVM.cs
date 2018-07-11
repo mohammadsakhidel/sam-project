@@ -1,13 +1,16 @@
 ﻿using SamModels.DTOs;
 using SamUxLib.Resources.Values;
+using SamWeb.Code.MvcExtensions.ModelBinders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SamWeb.Models.ViewModels
 {
+    [ModelBinder(typeof(CreateConsolationObitSelectionModelBinder))]
     public class CreateConsolationObitSelectionStepVM
     {
         public int? ProvinceID { get; set; }
@@ -24,5 +27,9 @@ namespace SamWeb.Models.ViewModels
         public List<MosqueDto> Mosques { get; set; }
 
         public List<ObitDto> Obits { get; set; }
+
+        public List<ObitDto> AllRelatedObits { get; set; }
+
+        public List<int> RelatedObitIds { get; set; }
     }
 }

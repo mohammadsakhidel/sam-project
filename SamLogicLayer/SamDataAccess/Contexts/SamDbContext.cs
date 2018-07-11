@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using SamModels.Entities;
 using SamUtils.Enums;
-using SamModels.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SamDataAccess.Contexts
