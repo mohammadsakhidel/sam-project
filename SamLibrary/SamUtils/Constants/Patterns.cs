@@ -15,6 +15,8 @@ namespace SamUtils.Constants
         public const string rolename = @"^[a-zA-Z]{4,}$";
         public const string password = @"^.{6,}$";
         public const string comma_splitter = @"\s*,\s*";
-        
+        public const string comma_separated_numbers = @"^(\d+\s*,\s*)*(\d+)$";
+
+
     }
 }

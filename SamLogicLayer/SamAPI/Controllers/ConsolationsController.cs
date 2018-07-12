@@ -74,7 +74,7 @@ namespace SamAPI.Controllers
                 #endregion
 
                 #region Create Consolation & Payment:
-                var amountToPay = template.Price;
+                var amountToPay = CalculateAmountToPay((int)template.Price, model.OtherObits);
                 Consolation consolation;
                 Payment payment = null;
                 Customer customer;
@@ -86,18 +86,7 @@ namespace SamAPI.Controllers
                         #region epay:
                         if (!model.PayedByPOS)
                         {
-                            var paymentToken = _paymentService.GetToken((int)amountToPay);
-                            payment = new Payment()
-                            {
-                                ID = _paymentService.UniqueID,
-                                Amount = (int)amountToPay,
-                                Provider = _paymentService.ProviderName,
-                                Status = PaymentStatus.pending.ToString(),
-                                Token = paymentToken,
-                                Type = PaymentType.consolation.ToString(),
-                                CreationTime = DateTimeUtils.Now,
-                                LastUpdateTime = DateTimeUtils.Now
-                            };
+                            payment = GenerateTokenAndGetPayment((int)amountToPay);
                             _paymentRepo.Add(payment);
                             _paymentRepo.Save();
                         }
@@ -144,11 +133,11 @@ namespace SamAPI.Controllers
 
                 return Ok(new
                 {
-                    ID = consolation.ID,
-                    TrackingNumber = consolation.TrackingNumber,
+                    consolation.ID,
+                    consolation.TrackingNumber,
                     PaymentID = payment?.ID,
                     PaymentToken = payment?.Token,
-                    BankPageUrl = _paymentService.BankPageUrl
+                    _paymentService.BankPageUrl
                 });
             }
             catch (Exception ex)
@@ -345,6 +334,7 @@ namespace SamAPI.Controllers
 
         #region PUT ACTIONS:
         [HttpPut]
+        // This method is depreciated and is just for backward compatibility.
         public IHttpActionResult Update(int id, Dictionary<string, string> fields,
             string newStatus = "", int obitId = -1, int templateId = -1)
         {
@@ -427,87 +417,104 @@ namespace SamAPI.Controllers
                 if (consolationToEdit == null)
                     return NotFound();
 
-                #region update fields:
-                if (model.ObitID > 0)
+                using (var scope = new TransactionScope())
                 {
-                    consolationToEdit.ObitID = model.ObitID;
-                    consolationToEdit.OtherObits = model.OtherObits;
-                }
-
-                if (model.TemplateID > 0)
-                {
-                    var newTemplate = _templateRepo.Get(model.TemplateID);
-
-                    consolationToEdit.TemplateID = model.TemplateID;
-                    consolationToEdit.AmountToPay = newTemplate.Price;
-                }
-
-                if (!string.IsNullOrEmpty(model.TemplateInfo))
-                {
-                    var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.TemplateInfo);
-
-                    if (fields.ContainsKey("Audience"))
-                        consolationToEdit.Audience = fields["Audience"];
-                    if (fields.ContainsKey("From"))
-                        consolationToEdit.From = fields["From"];
-
-                    consolationToEdit.TemplateInfo = model.TemplateInfo;
-                }
-                #endregion
-
-                #region update customer:
-                if (model.Customer != null)
-                {
-                    var customer = _customerRepo.Find(model.Customer.CellPhoneNumber);
-                    if (customer != null)
+                    #region update fields:
+                    if (model.ObitID > 0)
                     {
-                        if (consolationToEdit.CustomerID != customer.ID)
-                            consolationToEdit.CustomerID = customer.ID;
+                        consolationToEdit.ObitID = model.ObitID;
+                        consolationToEdit.OtherObits = model.OtherObits;
                     }
-                    else
+
+                    if (model.TemplateID > 0)
                     {
-                        var newCustomer = Mapper.Map<CustomerDto, Customer>(model.Customer);
-                        newCustomer.IsMember = false;
+                        var newTemplate = _templateRepo.Get(model.TemplateID);
+                        var newAmountToPay = CalculateAmountToPay((int)newTemplate.Price, model.OtherObits);
+                        var oldAmountToPay = (int)consolationToEdit.AmountToPay;
 
-                        consolationToEdit.Customer = newCustomer;
-                    }
-                }
-                #endregion
+                        consolationToEdit.TemplateID = model.TemplateID;
+                        consolationToEdit.AmountToPay = newAmountToPay;
 
-                #region update status:
-                if (!string.IsNullOrEmpty(model.Status))
-                {
-                    var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
-                    if (newstatus == ConsolationStatus.confirmed)
-                    {
-                        if (consolationToEdit.PaymentStatus != PaymentStatus.verified.ToString())
-                            throw new Exception("Only consolations with verified payments can be confirmed.");
-
-                        if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                        #region create new payment token if needed:
+                        if (newAmountToPay != oldAmountToPay)
                         {
-                            var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
-                            consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                            if (!model.PayedByPOS)
+                            {
+                                var payment = GenerateTokenAndGetPayment(newAmountToPay);
+                                consolationToEdit.PaymentID = payment.ID;
+                                _paymentRepo.AddWithSave(payment);
+                            }
+                        }
+                        #endregion
+                    }
+
+                    if (!string.IsNullOrEmpty(model.TemplateInfo))
+                    {
+                        var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.TemplateInfo);
+
+                        if (fields.ContainsKey("Audience"))
+                            consolationToEdit.Audience = fields["Audience"];
+                        if (fields.ContainsKey("From"))
+                            consolationToEdit.From = fields["From"];
+
+                        consolationToEdit.TemplateInfo = model.TemplateInfo;
+                    }
+                    #endregion
+
+                    #region update customer:
+                    if (model.Customer != null)
+                    {
+                        var customer = _customerRepo.Find(model.Customer.CellPhoneNumber);
+                        if (customer != null)
+                        {
+                            if (consolationToEdit.CustomerID != customer.ID)
+                                consolationToEdit.CustomerID = customer.ID;
                         }
                         else
                         {
-                            consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
-                            #region Send SMS:
-                            string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
-                            SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
-                            #endregion
+                            var newCustomer = Mapper.Map<CustomerDto, Customer>(model.Customer);
+                            newCustomer.IsMember = false;
+
+                            consolationToEdit.Customer = newCustomer;
                         }
                     }
-                    else if (newstatus == ConsolationStatus.canceled)
+                    #endregion
+
+                    #region update status:
+                    if (!string.IsNullOrEmpty(model.Status))
                     {
-                        consolationToEdit.Status = newstatus.ToString();
+                        var newstatus = (ConsolationStatus)Enum.Parse(typeof(ConsolationStatus), model.Status);
+                        if (newstatus == ConsolationStatus.confirmed)
+                        {
+                            if (consolationToEdit.PaymentStatus != PaymentStatus.verified.ToString())
+                                throw new Exception("Only consolations with verified payments can be confirmed.");
+
+                            if (consolationToEdit.Status == ConsolationStatus.canceled.ToString())
+                            {
+                                var isDisplayed = _consolationRepo.IsDisplayed(consolationToEdit.ID);
+                                consolationToEdit.Status = (!isDisplayed ? ConsolationStatus.confirmed.ToString() : ConsolationStatus.displayed.ToString());
+                            }
+                            else
+                            {
+                                consolationToEdit.Status = ConsolationStatus.confirmed.ToString();
+                                #region Send SMS:
+                                string messageText = String.Format(SmsMessages.ConsolationConfirmSms, consolationToEdit.TrackingNumber);
+                                SmsUtil.Send(messageText, consolationToEdit.Customer.CellPhoneNumber);
+                                #endregion
+                            }
+                        }
+                        else if (newstatus == ConsolationStatus.canceled)
+                        {
+                            consolationToEdit.Status = newstatus.ToString();
+                        }
                     }
+                    #endregion
+
+                    consolationToEdit.LastUpdateTime = DateTimeUtils.Now;
+
+                    _consolationRepo.Save();
+                    scope.Complete();
                 }
-                #endregion
-
-                consolationToEdit.LastUpdateTime = DateTimeUtils.Now;
-
-                _consolationRepo.Save();
-
                 return Ok();
             }
             catch (Exception ex)
@@ -727,6 +734,52 @@ namespace SamAPI.Controllers
                 }
             }
             return dist;
+        }
+        private int CalculateAmountToPay(int templatePrice, string additionalObitIds)
+        {
+            var price = templatePrice;
+            var factor = 0.5;
+            var roundTo = 5000;
+
+            #region add other obit prices with a discount:
+            if (!string.IsNullOrEmpty(additionalObitIds))
+            {
+                if (Regex.IsMatch(additionalObitIds, Patterns.comma_separated_numbers))
+                {
+                    var otherObitIds = additionalObitIds.Trim().Replace(" ", "")
+                        .Split(',').Select(i => Convert.ToInt32(i)).ToArray();
+                    foreach (var otherObitId in otherObitIds)
+                    {
+                        price += (int)(templatePrice * factor);
+                    }
+                }
+            }
+            #endregion
+
+            #region round:
+            var m = price % roundTo;
+            if (m <= roundTo / 2)
+                price -= m;
+            else
+                price += roundTo - m;
+            #endregion
+
+            return price;
+        }
+        private Payment GenerateTokenAndGetPayment(int amountToPay)
+        {
+            var paymentToken = _paymentService.GetToken(amountToPay);
+            return new Payment()
+            {
+                ID = _paymentService.UniqueID,
+                Amount = (int)amountToPay,
+                Provider = _paymentService.ProviderName,
+                Status = PaymentStatus.pending.ToString(),
+                Token = paymentToken,
+                Type = PaymentType.consolation.ToString(),
+                CreationTime = DateTimeUtils.Now,
+                LastUpdateTime = DateTimeUtils.Now
+            };
         }
         #endregion
     }

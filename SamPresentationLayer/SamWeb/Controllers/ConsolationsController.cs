@@ -319,7 +319,7 @@ namespace SamWeb.Controllers
                     var dto = new ConsolationDto
                     {
                         ObitID = obitId,
-                        OtherObits = relatedObitIds.Select(i => i.ToString()).Aggregate<string>((a, b) => $"{a}, {b}"),
+                        OtherObits = relatedObitIds.Any() ? relatedObitIds.Select(i => i.ToString()).Aggregate<string>((a, b) => $"{a}, {b}") : "",
                         TemplateID = templateId,
                         Customer = new CustomerDto { FullName = fullName, CellPhoneNumber = cellphone },
                         Audience = model.Fields.SingleOrDefault(f => f.Name == "Audience")?.Value,
@@ -351,7 +351,7 @@ namespace SamWeb.Controllers
                         {
                             ID = consolationId,
                             ObitID = obitId,
-                            OtherObits = relatedObitIds.Select(i => i.ToString()).Aggregate<string>((a, b) => $"{a}, {b}"),
+                            OtherObits = relatedObitIds.Any() ? relatedObitIds.Select(i => i.ToString()).Aggregate<string>((a, b) => $"{a}, {b}") : "",
                             TemplateID = templateId,
                             TemplateInfo = templateInfo,
                             Customer = new CustomerDto { FullName = fullName, CellPhoneNumber = cellphone }
