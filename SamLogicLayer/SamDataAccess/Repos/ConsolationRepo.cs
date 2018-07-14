@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Data.Entity;
 using RamancoLibrary.Utilities;
+using System.Data.Entity.SqlServer;
 
 namespace SamDataAccess.Repos
 {
@@ -49,12 +50,17 @@ namespace SamDataAccess.Repos
             #endregion
 
             #region consolation updates:
+            var saloonCommingObitIds = (from o in context.Obits
+                                        join h in context.ObitHoldings on o.ID equals h.ObitID
+                                        where o.MosqueID == mosqueId && h.SaloonID == saloonId && h.EndTime > queryTime
+                                        select o.ID).Distinct().ToList();
+            var saloonCommingObitStringIds = saloonCommingObitIds.Select(oid => oid.ToString()).ToList();
+
             var consolations = from c in context.Consolations.Include(con => con.Template)
-                               join o in context.Obits
-                               on c.ObitID equals o.ID
-                               join h in context.ObitHoldings
-                               on o.ID equals h.ObitID
-                               where o.MosqueID == mosqueId && h.SaloonID == saloonId && h.EndTime > queryTime &&
+                               where (
+                                        saloonCommingObitIds.Contains(c.ObitID) ||
+                                        saloonCommingObitStringIds.Any(oid => c.OtherObits.Contains(oid + ",") || c.OtherObits.EndsWith(", " + oid) || c.OtherObits == oid)
+                                     ) &&
                                      (c.Status == confirmed || c.Status == canceled || c.Status == displayed) &&
                                      c.PaymentStatus == verified &&
                                      (clientLastUpdatetime == null
@@ -209,6 +215,24 @@ namespace SamDataAccess.Repos
                          select c
                 ).ToList();
             return items;
+        }
+
+        public List<Consolation> GetByObit(int obitId)
+        {
+            var confirmed = ConsolationStatus.confirmed.ToString();
+            var canceled = ConsolationStatus.canceled.ToString();
+            var displayed = ConsolationStatus.displayed.ToString();
+            var verified = PaymentStatus.verified.ToString();
+
+            var obitIdStr = obitId.ToString();
+            return context.Consolations.Where(c =>
+                (c.ObitID == obitId ||
+                 c.OtherObits.Contains(obitIdStr + ",") ||
+                 c.OtherObits.EndsWith(", " + obitIdStr) ||
+                 c.OtherObits == obitIdStr) &&
+                 (c.Status == confirmed || c.Status == canceled || c.Status == displayed) &&
+                 c.PaymentStatus == verified)
+                .ToList();
         }
     }
 }

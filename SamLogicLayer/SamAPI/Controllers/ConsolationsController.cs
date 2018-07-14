@@ -283,7 +283,7 @@ namespace SamAPI.Controllers
                 if (obit == null)
                     return NotFound();
 
-                var consolations = obit.Consolations.ToList();
+                var consolations = _consolationRepo.GetByObit(obit.ID);
                 var dtos = consolations.Select(c => Mapper.Map<Consolation, ConsolationDto>(c));
                 return Ok(dtos);
             }

@@ -28,5 +28,7 @@ namespace SamDataAccess.Repos.Interfaces
 
         List<Consolation> Query(DateTime beginDate, DateTime endDate, int? provinceId, int? cityId, 
             int? mosqueId, string status, string customerCellphone, string trackingNumber);
+
+        List<Consolation> GetByObit(int obitId);
     }
 }
