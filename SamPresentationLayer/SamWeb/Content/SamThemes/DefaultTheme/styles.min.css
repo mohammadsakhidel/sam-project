@@ -202,3 +202,11 @@ img.thumb {
         .template-category-header a:hover {
             text-decoration: none;
         }
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}

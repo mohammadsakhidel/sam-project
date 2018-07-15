@@ -136,6 +136,17 @@ namespace SamDataAccess.Repos
             return recs.ToList();
         }
 
+        public List<Obit> GetLatests(int count)
+        {
+            var maxDate = DateTimeUtils.Now.AddDays(7);
+            var q = from o in context.Obits
+                    join h in context.ObitHoldings on o.ID equals h.ObitID
+                    where h.BeginTime < maxDate
+                    orderby h.BeginTime descending
+                    select o;
+            return q.Take(count).ToList();
+        }
+
         public List<Obit> Search(string query, DateTime date)
         {
             var obits = from o in set

@@ -373,6 +373,8 @@
     <Content Include="Views\Consolations\Preview.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\CustomerPanel\Index.cshtml" />
+    <Content Include="Views\Obits\Details.cshtml" />
+    <Content Include="Views\Shared\Partials\_ObitsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

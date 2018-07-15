@@ -16,19 +16,32 @@ namespace SamWeb.Controllers
     {
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            #region Get Mosques from API:
-            try
+            using (var hc = HttpUtil.CreateClient())
             {
-                using (var hc = HttpUtil.CreateClient())
+
+                #region Get Mosques from API:
+                try
                 {
                     var response = await hc.GetAsync($"{ApiActions.mosques_getlatests}");
                     response.EnsureSuccessStatusCode();
                     var mosques = await response.Content.ReadAsAsync<List<MosqueDto>>();
                     ViewBag.Mosques = mosques;
                 }
+                catch { }
+                #endregion
+                #region Get Latest Obits from API:
+                try
+                {
+                    var response = await hc.GetAsync($"{ApiActions.obits_getlatests}");
+                    response.EnsureSuccessStatusCode();
+                    var obits = await response.Content.ReadAsAsync<List<ObitDto>>();
+                    ViewBag.Obits = obits;
+                }
+                catch { }
+                #endregion
+
             }
-            catch { }
-            #endregion
+
             return View();
         }
 

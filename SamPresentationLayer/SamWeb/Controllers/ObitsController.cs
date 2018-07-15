@@ -30,6 +30,19 @@ namespace SamWeb.Controllers
             //var filePath = Server.MapPath(url);
             //return File(filePath, "application/pdf", $"{tn}.pdf");
         }
+
+        public async Task<ActionResult> Details(string id)
+        {
+            #region Call Api:
+            using (var hc = HttpUtil.CreateClient())
+            {
+                var response = await hc.GetAsync($"{ApiActions.obits_find}?trackingNumber={id}");
+                HttpUtil.EnsureSuccessStatusCode(response);
+                var obit = await response.Content.ReadAsAsync<ObitDto>();
+                return View(obit);
+            }
+            #endregion
+        }
         #endregion
 
         #region POST:

@@ -929,4 +929,25 @@
   <data name="GenerateNewIdentifier" xml:space="preserve">
     <value>تولید شناسه جدید</value>
   </data>
+  <data name="ObitDetails" xml:space="preserve">
+    <value>مشخصات مراسم</value>
+  </data>
+  <data name="ObitTitle" xml:space="preserve">
+    <value>عنوان مراسم</value>
+  </data>
+  <data name="ObitPlace" xml:space="preserve">
+    <value>مکان مراسم</value>
+  </data>
+  <data name="FromHour" xml:space="preserve">
+    <value>از ساعت</value>
+  </data>
+  <data name="HoldingTime" xml:space="preserve">
+    <value>زمان برگزاری</value>
+  </data>
+  <data name="ToHour" xml:space="preserve">
+    <value>الی ساعت</value>
+  </data>
+  <data name="LatestObits" xml:space="preserve">
+    <value>آخرین مراسمات ثبت شده</value>
+  </data>
 </root>

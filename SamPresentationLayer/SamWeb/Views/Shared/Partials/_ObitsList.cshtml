@@ -1,0 +1,50 @@
+﻿@model List<SamModels.DTOs.ObitDto>
+
+@{
+    var total = Model != null ? Model.Count : 0;
+}
+
+@if (Model.Any())
+{
+<div class="row rtl-md">
+    <div class="col-md-6">
+        @for (var i = 0; i < total / 2; i++)
+        {
+            var obit = Model[i];
+
+            <div class="list-item">
+                <div class="float" style="margin-right: 10px;">
+                    <a href="@Url.Action("Details", "Obits", new { @id = obit.TrackingNumber })">@obit.Title</a>
+                    <br />
+                    <small>@obit.Mosque.Name (@obit.Mosque.Address)</small>
+                </div>
+                <div class="clear"></div>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-6">
+        @for (var i = total / 2; i < total; i++)
+        {
+            var obit = Model[i];
+
+            <div class="list-item">
+                <div class="float" style="margin-right: 10px;">
+                    <a href="@Url.Action("Details", "Obits", new { @id = obit.TrackingNumber })">@obit.Title</a>
+                    <br />
+                    <small>@obit.Mosque.Name (@obit.Mosque.Address)</small>
+                </div>
+                <div class="clear"></div>
+            </div>
+        }
+    </div>
+</div>
+
+}
+else
+{
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@Messages.NoItem</strong>
+    </div>
+}

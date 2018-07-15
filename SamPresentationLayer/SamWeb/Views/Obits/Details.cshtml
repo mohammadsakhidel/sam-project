@@ -1,0 +1,42 @@
+﻿@model SamModels.DTOs.ObitDto
+
+<div class="page-content">
+
+    <h2 class="step-title">@Strings.ObitDetails</h2>
+
+    <hr />
+
+    <div class="form-group">
+        <label class="text-muted small">
+            @Strings.ObitTitle:
+        </label>
+        <h4 class="no-margin no-padding">
+            @Model.Title (@SamUxLib.Resources.ResourceManager.GetValue($"ObitType_{Model.ObitType}", "Enums"))
+        </h4>
+    </div>
+
+    <div class="form-group" style="margin-top: 30px;">
+        <label class="text-muted small">
+            @Strings.ObitPlace:
+        </label>
+        <h4 class="no-margin no-padding">
+            <a href="@($"/Mosques/Details/{Model.MosqueID}")">@Model.Mosque.Name (@Model.Mosque.Address)</a>
+        </h4>
+    </div>
+
+    <div class="form-group" style="margin-top: 30px;">
+        <label class="text-muted small">
+            @Strings.HoldingTime:
+        </label>
+        <h4 class="no-margin no-padding">
+            @foreach (var h in Model.ObitHoldings)
+            {
+                var shamsi = RamancoLibrary.Utilities.DateTimeUtils.ToShamsi(h.BeginTime);
+                var timeStr = $"{shamsi.DayName} {shamsi.Day} {shamsi.MonthName} {shamsi.Year} {Strings.FromHour} {h.BeginTime.Hour.ToString("D2")}:{h.BeginTime.Minute.ToString("D2")} {Strings.ToHour} {h.EndTime.Hour.ToString("D2")}:{h.EndTime.Minute.ToString("D2")}";
+                <p>@(RamancoLibrary.Utilities.TextUtils.ToArabicDigits(timeStr))</p>
+            }
+        </h4>
+    </div>
+
+</div>
+

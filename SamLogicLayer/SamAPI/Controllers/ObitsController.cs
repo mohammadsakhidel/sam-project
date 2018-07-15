@@ -109,6 +109,21 @@ namespace SamAPI.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetLatests(int count = 10)
+        {
+            try
+            {
+                var obits = _obitRepo.GetLatests(count);
+                var dtos = obits.Select(o => Mapper.Map<Obit, ObitDto>(o));
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
         public IHttpActionResult GetHoldings(int mosqueId, DateTime date)
         {
             try
@@ -133,6 +148,24 @@ namespace SamAPI.Controllers
             try
             {
                 var obit = _obitRepo.FindByTrackingNumber(trackingNumber);
+                if (obit == null)
+                    return NotFound();
+
+                var dto = Mapper.Map<Obit, ObitDto>(obit);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(ExceptionManager.GetExceptionResponse(this, ex));
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            try
+            {
+                var obit = _obitRepo.Get(id);
                 if (obit == null)
                     return NotFound();
 

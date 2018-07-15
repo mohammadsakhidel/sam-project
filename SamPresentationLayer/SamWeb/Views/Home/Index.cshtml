@@ -10,3 +10,11 @@
             , true)
     </div>
 </div>
+
+<div class="row rtl-md">
+    <div class="col-md-12">
+        @Html.Frame(Strings.LatestObits,
+            (ViewBag.Mosques != null ? Html.Partial("Partials/_ObitsList", ViewBag.Obits as List<SamModels.DTOs.ObitDto>).ToString() : "")
+            , true)
+    </div>
+</div>

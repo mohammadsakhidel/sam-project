@@ -31,5 +31,7 @@ namespace SamDataAccess.Repos.Interfaces
         List<Obit> GetLastObitsWithDeceasedId(int days);
 
         List<Obit> GetFutureRelatedObits(int obitId);
+
+        List<Obit> GetLatests(int count);
     }
 }

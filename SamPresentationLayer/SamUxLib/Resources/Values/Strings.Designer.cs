@@ -944,6 +944,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to از ساعت.
+        /// </summary>
+        public static string FromHour {
+            get {
+                return ResourceManager.GetString("FromHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام و نام خانوادگی.
         /// </summary>
         public static string FullName {
@@ -967,6 +976,15 @@ namespace SamUxLib.Resources.Values {
         public static string GenerateNewIdentifier {
             get {
                 return ResourceManager.GetString("GenerateNewIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زمان برگزاری.
+        /// </summary>
+        public static string HoldingTime {
+            get {
+                return ResourceManager.GetString("HoldingTime", resourceCulture);
             }
         }
         
@@ -1093,6 +1111,15 @@ namespace SamUxLib.Resources.Values {
         public static string LatestMosques {
             get {
                 return ResourceManager.GetString("LatestMosques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آخرین مراسمات ثبت شده.
+        /// </summary>
+        public static string LatestObits {
+            get {
+                return ResourceManager.GetString("LatestObits", resourceCulture);
             }
         }
         
@@ -1376,6 +1403,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مشخصات مراسم.
+        /// </summary>
+        public static string ObitDetails {
+            get {
+                return ResourceManager.GetString("ObitDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to زمان برگزاری مراسم.
         /// </summary>
         public static string ObitHolding {
@@ -1394,6 +1430,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مکان مراسم.
+        /// </summary>
+        public static string ObitPlace {
+            get {
+                return ResourceManager.GetString("ObitPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مراسم ها.
         /// </summary>
         public static string Obits {
@@ -1408,6 +1453,15 @@ namespace SamUxLib.Resources.Values {
         public static string ObitSelectionStepTitle {
             get {
                 return ResourceManager.GetString("ObitSelectionStepTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان مراسم.
+        /// </summary>
+        public static string ObitTitle {
+            get {
+                return ResourceManager.GetString("ObitTitle", resourceCulture);
             }
         }
         
@@ -2326,6 +2380,15 @@ namespace SamUxLib.Resources.Values {
         public static string To {
             get {
                 return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الی ساعت.
+        /// </summary>
+        public static string ToHour {
+            get {
+                return ResourceManager.GetString("ToHour", resourceCulture);
             }
         }
         
