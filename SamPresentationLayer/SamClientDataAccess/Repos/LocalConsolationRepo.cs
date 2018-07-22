@@ -38,12 +38,18 @@ namespace SamClientDataAccess.Repos
             var displayed = ConsolationStatus.displayed.ToString();
             #endregion
 
+            var saloonCurrentObitIds = (from o in context.Obits
+                                        join h in context.ObitHoldings on o.ID equals h.ObitID
+                                        where o.MosqueID == setting.MosqueID && h.SaloonID == setting.SaloonID
+                                            && (now >= h.BeginTime && now <= h.EndTime)
+                                        select o.ID).Distinct().ToList();
+            var saloonCurrentObitStringIds = saloonCurrentObitIds.Select(oid => oid.ToString()).ToList();
+
             var all = from c in context.Consolations
-                      join o in context.Obits on c.ObitID equals o.ID
-                      join h in context.ObitHoldings on o.ID equals h.ObitID
-                      where o.MosqueID == setting.MosqueID
-                            && h.SaloonID == setting.SaloonID
-                            && (now >= h.BeginTime && now <= h.EndTime)
+                      where (
+                                saloonCurrentObitIds.Contains(c.ObitID) ||
+                                saloonCurrentObitStringIds.Any(oid => c.OtherObits.Contains(oid + ",") || c.OtherObits.EndsWith(", " + oid) || c.OtherObits == oid)
+                            )
                             && (c.Status == confirmed || c.Status == displayed)
                             && c.ImageBytes != null
                       orderby c.CreationTime ascending

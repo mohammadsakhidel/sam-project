@@ -37,6 +37,9 @@ namespace SamClientDataAccess.ClientModels
         public string ExtraData { get; set; }        
 
         public byte[] ImageBytes { get; set; }
+
+        [MaxLength(128)]
+        public string OtherObits { get; set; }
         #endregion
 
         #region Navigation Props:

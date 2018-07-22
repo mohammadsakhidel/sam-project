@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201802051837463_InitAfterMigratedToLocalEntities.Designer.cs">
       <DependentUpon>201802051837463_InitAfterMigratedToLocalEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807220303428_LocalConsolation_OtherObitsFieldAdded.cs" />
+    <Compile Include="Migrations\201807220303428_LocalConsolation_OtherObitsFieldAdded.Designer.cs">
+      <DependentUpon>201807220303428_LocalConsolation_OtherObitsFieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\LocalBannerRepo.cs" />
@@ -85,6 +89,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802051837463_InitAfterMigratedToLocalEntities.resx">
       <DependentUpon>201802051837463_InitAfterMigratedToLocalEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807220303428_LocalConsolation_OtherObitsFieldAdded.resx">
+      <DependentUpon>201807220303428_LocalConsolation_OtherObitsFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
