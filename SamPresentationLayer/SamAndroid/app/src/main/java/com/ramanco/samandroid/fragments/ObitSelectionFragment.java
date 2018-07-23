@@ -2,14 +2,19 @@ package com.ramanco.samandroid.fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +23,7 @@ import com.ramanco.samandroid.adapters.PairAdapter;
 import com.ramanco.samandroid.api.dtos.ObitDto;
 import com.ramanco.samandroid.api.dtos.ObitHoldingDto;
 import com.ramanco.samandroid.api.endpoints.ObitsApiEndpoint;
+import com.ramanco.samandroid.dialogs.OtherObitsAlertDialog;
 import com.ramanco.samandroid.enums.ObitType;
 import com.ramanco.samandroid.exceptions.CallServerException;
 import com.ramanco.samandroid.objects.KeyValuePair;
@@ -38,6 +44,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Response;
 
@@ -76,7 +88,9 @@ public class ObitSelectionFragment extends Fragment {
                         ObitDto obit = (ObitDto) pair.getTag();
                         if (parentView != null) {
                             parentView.setSelectedObit(obit);
-                            parentView.showTemplateSelectionStep();
+                            //region get related obits from api:
+                            selectRelatedObitsOrGo(obit.getId());
+                            //endregion
                         }
                     } catch (Exception ex) {
                         ExceptionManager.handle(getActivity(), ex);
@@ -168,8 +182,7 @@ public class ObitSelectionFragment extends Fragment {
                                     if (fragmentView != null) {
                                         fillListView(fragmentView, pairs);
                                     }
-                                }
-                                else {
+                                } else {
                                     Toast.makeText(getActivity(), getActivity().getString(R.string.msg_no_item_found), Toast.LENGTH_LONG).show();
                                 }
                                 progress.dismiss();
@@ -186,6 +199,46 @@ public class ObitSelectionFragment extends Fragment {
                 }
             }
         }).start();
+    }
+
+    private void selectRelatedObitsOrGo(final int obitId) throws InterruptedException, ExecutionException {
+        progress = UxUtil.showProgress(getActivity());
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ObitsApiEndpoint endpoint = ApiUtil.createEndpoint(ObitsApiEndpoint.class);
+                    Response<ObitDto[]> response = endpoint.getFutureRelatedObits(obitId).execute();
+                    if (!response.isSuccessful())
+                        throw new CallServerException(getActivity());
+                    final ObitDto[] relatedObits = response.body();
+                    //region UI for related obit selection:
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                progress.dismiss();
+                                if (relatedObits.length > 0) {
+
+                                    AlertDialog dialog = new OtherObitsAlertDialog(getActivity(), relatedObits, parentView);
+                                    dialog.show();
+
+                                } else {
+                                    parentView.showTemplateSelectionStep();
+                                }
+                            } catch (Exception ex) {
+                                ExceptionManager.handle(getActivity(), ex);
+                            }
+                        }
+                    });
+                    //endregion
+                } catch (Exception ex) {
+                    ExceptionManager.handle(getActivity(), ex);
+                }
+            }
+        });
+        service.shutdown();
     }
 
     private void searchObitsAsync(final String query) {

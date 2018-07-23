@@ -65,10 +65,10 @@
     <string name="msg_no_result_found">موردی یافت نشد</string>
     <string name="welcome_text">به اپلیکیشن سامانه اطلاع رسانی مساجد (سام) خوش آمدید.</string>
     <string name="city">شهر</string>
-    <string name="obit_type_chehelom">چهلم</string>
-    <string name="obit_type_haftom">هفتم</string>
+    <string name="obit_type_chehelom">روز چهلم</string>
+    <string name="obit_type_haftom">روز هفتم</string>
     <string name="obit_type_salgard">سالگرد</string>
-    <string name="obit_type_sevom">سوم</string>
+    <string name="obit_type_sevom">روز سوم</string>
     <string name="obit_type_tarhim">مجلس ترحیم</string>
     <string name="obit_type_yadbood">شام غریبان</string>
     <string name="obit_type_sayer">متفرقه</string>
@@ -87,4 +87,8 @@
     <string name="to_hour">الی</string>
     <string name="msg_no_item_found">موردی جهت نمایش یافت نشد.</string>
     <string name="back_again_to_exit">برای بستن برنامه، دکمه بازگشت را دوباره فشار دهید.</string>
+    <string name="related_obits_selection_title">مراسمات مرتبط</string>
+    <string name="related_obits_selection_message">در صورتی که تمایل دارید پیام شما در سایر مراسمات مرتبط، با تخفیف ویژه نمایش یابد، مراسمات مورد نظر خود را انتخاب نمایید:</string>
+    <string name="next_step">مرحله بعدی</string>
+    <string name="hour">ساعت</string>
 </resources>

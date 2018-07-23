@@ -42,6 +42,8 @@ import org.joda.time.DateTimeUtils;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -62,32 +64,57 @@ public class PreviewStepFragment extends Fragment {
     //region Overrides:
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.fragment_preview_step, container, false);
+        final View fragmentView = inflater.inflate(R.layout.fragment_preview_step, container, false);
 
         try {
 
-            double amountToPay = parentView.getSelectedTemplate().getPrice();
             loadPreviewImageAsync(fragmentView);
 
-            //region set description text:
-            TextView tvDescription = (TextView) fragmentView.findViewById(R.id.tv_preview_desc);
-            tvDescription.setText((amountToPay > 0
-                    ? getActivity().getResources().getString(R.string.step_preview_desc)
-                    : getActivity().getResources().getString(R.string.step_preview_desc_free)));
-            //endregion
-
-            //region set button text:
-            Button btnConfirm = (Button) fragmentView.findViewById(R.id.btn_confirm);
-            btnConfirm.setText(amountToPay > 0
-                    ? getResources().getString(R.string.confirm_and_pay)
-                    : getResources().getString(R.string.finish));
-            //endregion
-
-            //region set amount to pay text:
-            TextView tvAmountToPay = (TextView) fragmentView.findViewById(R.id.tv_amount_to_pay);
-            tvAmountToPay.setText(String.format(Locale.getDefault(), "%s: %,d",
-                    getResources().getString(R.string.amount_to_pay), (int) amountToPay));
-            tvAmountToPay.setVisibility((amountToPay > 0 ? View.VISIBLE : View.GONE));
+            //region set amount to pay text, button text, desc text:
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            executor.submit(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        ConsolationsApiEndpoint endpoint = ApiUtil.createEndpoint(ConsolationsApiEndpoint.class);
+                        Response<ConsolationDto> response = endpoint.findById(parentView.getCreatedConsolationId()).execute();
+                        if (!response.isSuccessful())
+                            throw new CallServerException(getActivity());
+                        ConsolationDto consolation = response.body();
+                        final int amountToPay = (int)consolation.getAmountToPay();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    //region set description text:
+                                    TextView tvDescription = (TextView) fragmentView.findViewById(R.id.tv_preview_desc);
+                                    tvDescription.setText((amountToPay > 0
+                                            ? getActivity().getResources().getString(R.string.step_preview_desc)
+                                            : getActivity().getResources().getString(R.string.step_preview_desc_free)));
+                                    //endregion
+                                    //region set button text:
+                                    Button btnConfirm = (Button) fragmentView.findViewById(R.id.btn_confirm);
+                                    btnConfirm.setText(amountToPay > 0
+                                            ? getResources().getString(R.string.confirm_and_pay)
+                                            : getResources().getString(R.string.finish));
+                                    //endregion
+                                    //region set amount to pay text:
+                                    TextView tvAmountToPay = (TextView) fragmentView.findViewById(R.id.tv_amount_to_pay);
+                                    tvAmountToPay.setText(String.format(Locale.getDefault(), "%s: %,d",
+                                            getResources().getString(R.string.amount_to_pay), (int) amountToPay));
+                                    tvAmountToPay.setVisibility((amountToPay > 0 ? View.VISIBLE : View.GONE));
+                                    //endregion
+                                } catch (Exception ex) {
+                                    ExceptionManager.handle(getActivity(), ex);
+                                }
+                            }
+                        });
+                    } catch (Exception ex) {
+                        ExceptionManager.handle(getActivity(), ex);
+                    }
+                }
+            });
+            executor.shutdown();
             //endregion
 
             //region nav buttons:
@@ -115,6 +142,7 @@ public class PreviewStepFragment extends Fragment {
             //endregion
 
             //region confirm button click:
+            Button btnConfirm = (Button) fragmentView.findViewById(R.id.btn_confirm);
             btnConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

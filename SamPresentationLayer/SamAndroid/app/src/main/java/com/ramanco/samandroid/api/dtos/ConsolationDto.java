@@ -57,6 +57,10 @@ public class ConsolationDto {
     @Expose
     @SerializedName("TrackingNumber")
     String trackingNumber;
+
+    @Expose
+    @SerializedName("OtherObits")
+    String otherObits;
     //endregion
 
     //region navigation:
@@ -202,6 +206,14 @@ public class ConsolationDto {
         this.amountToPay = amountToPay;
     }
 
+    public String getOtherObits() {
+        return otherObits;
+    }
+
+    public void setOtherObits(String otherObits) {
+        this.otherObits = otherObits;
+    }
+
     //endregion
-    
+
 }

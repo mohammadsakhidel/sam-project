@@ -227,10 +227,9 @@ public class TemplateFieldsFragment extends Fragment {
                         dto.setCustomer(customer);
                         dto.setTemplateID(parentView.getSelectedTemplate().getId());
                         dto.setTemplateInfo(templateInfo);
+                        dto.setOtherObits(parentView.getOtherObits());
                         dto.setAudience(nameValues.get("Audience"));
                         dto.setFrom(nameValues.get("From"));
-                        dto.setPaymentStatus(PaymentStatus.pending.toString());
-                        dto.setStatus(ConsolationStatus.pending.toString());
                         //endregion
                         //region call api:
                         ConsolationsApiEndpoint endpoint = ApiUtil.createEndpoint(ConsolationsApiEndpoint.class);
@@ -257,9 +256,8 @@ public class TemplateFieldsFragment extends Fragment {
                             //endregion
                         } else {
                             //region update:
-                            Response<Void> response = endpoint.update(parentView.getCreatedConsolationId(),
-                                    nameValues, "", parentView.getSelectedObit().getId(),
-                                    parentView.getSelectedTemplate().getId()).execute();
+                            dto.setId(parentView.getCreatedConsolationId());
+                            Response<Void> response = endpoint.updateV2(dto).execute();
                             if (!response.isSuccessful())
                                 throw new CallServerException(getActivity());
                             //endregion

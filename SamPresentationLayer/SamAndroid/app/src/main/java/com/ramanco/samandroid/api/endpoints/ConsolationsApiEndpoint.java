@@ -21,13 +21,14 @@ public interface ConsolationsApiEndpoint {
     @POST(ApiActions.consolations_find)
     Call<ConsolationDto[]> find(@Body String[] trackingNumbers);
 
-    @PUT(ApiActions.consolations_update + "/{id}")
-    Call<Void> update(@Path("id") int id, @Body Map<String, String> fields,
-                      @Query("newstatus") String newStatus, @Query("obitid") int obitId,
-                      @Query("templateid") int templateId);
+    @PUT(ApiActions.consolations_update_v2)
+    Call<Void> updateV2(@Body ConsolationDto dto);
 
     @GET(ApiActions.consolations_findbytrackingnumber)
     Call<ConsolationDto> findByTrackingNumber(@Query("tn") String tn);
+
+    @GET(ApiActions.consolations_findbyid + "/{id}")
+    Call<ConsolationDto> findById(@Path("id") int id);
 
 }
 

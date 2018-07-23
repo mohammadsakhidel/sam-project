@@ -31,6 +31,7 @@ public class SendConsolationFragment extends Fragment {
     private ObitDto selectedObit;
     private TemplateDto selectedTemplate;
     private String templateInfo;
+    private String otherObits;
     private int createdConsolationId;
     private String createdConsolationTN;
     private boolean nextVisible = false;
@@ -260,6 +261,13 @@ public class SendConsolationFragment extends Fragment {
         this.createdConsolationTN = createdConsolationTN;
     }
 
-    //endregion
+    public String getOtherObits() {
+        return otherObits;
+    }
+
+    public void setOtherObits(String otherObits) {
+        this.otherObits = otherObits;
+    }
+//endregion
 
 }
