@@ -8,7 +8,7 @@ public class Configs {
 
     public static String getApiBaseAddress() {
         try {
-            String str = TextUtility.bytesToString(ApiKeyGenerator3.getApiBaseAddressBytes());
+            String str = "aHR0cHM6Ly9hcGkuc2FhbXN5cy5jb20v";
             return TextUtility.fromBase64(str);
         } catch (Exception e) {
             return "";

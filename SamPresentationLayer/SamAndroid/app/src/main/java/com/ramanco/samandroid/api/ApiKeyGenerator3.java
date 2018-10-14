@@ -2,16 +2,6 @@ package com.ramanco.samandroid.api;
 
 public class ApiKeyGenerator3 {
 
-    public static byte[] getApiBaseAddressBytes() {
-        return new byte[] {
-                0b01100001, 0b01001000, 0b01010010, 0b00110000, 0b01100011, 0b01001000, 0b01001101,
-                0b00110110, 0b01001100, 0b01111001, 0b00111001, 0b01101000, 0b01100011, 0b01000111,
-                0b01101011, 0b01110101, 0b01100011, 0b00110010, 0b01000110, 0b01110100, 0b01100011,
-                0b00110011, 0b01101100, 0b01111010, 0b01001100, 0b01101101, 0b01101100, 0b01111001,
-                0b01001100, 0b01110111, 0b00111101, 0b00111101
-        };
-    }
-
     public static byte[] getPart3Bytes() {
         return new byte[]{
                 0b01001110, 0b01101100, 0b01100010, 0b01101100, 0b01011010,
