@@ -33,7 +33,7 @@ namespace SamAPI.Code.Payment
         }
         public string CallbackUrl
         {
-            get { return "https://www.samsys.ir/payment/mabnacallback"; }
+            get { return "https://www.saamsys.com/payment/mabnacallback"; }
         }
         public string ProviderName
         {
