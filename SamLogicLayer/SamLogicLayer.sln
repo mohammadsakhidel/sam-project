@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamAPI", "SamAPI\SamAPI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamDataAccess", "SamDataAccess\SamDataAccess.csproj", "{D20A02E3-FDEE-4C4B-A655-CC9B0AC1AAC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamSocialNetsAPI", "SamSocialNetsAPI\SamSocialNetsAPI.csproj", "{968AEDF9-AD13-4EA3-84E7-458225FD9B82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D20A02E3-FDEE-4C4B-A655-CC9B0AC1AAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D20A02E3-FDEE-4C4B-A655-CC9B0AC1AAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D20A02E3-FDEE-4C4B-A655-CC9B0AC1AAC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968AEDF9-AD13-4EA3-84E7-458225FD9B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968AEDF9-AD13-4EA3-84E7-458225FD9B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968AEDF9-AD13-4EA3-84E7-458225FD9B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968AEDF9-AD13-4EA3-84E7-458225FD9B82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

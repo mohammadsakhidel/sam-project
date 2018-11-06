@@ -63,6 +63,7 @@
     <Compile Include="DTOs\ProvinceDto.cs" />
     <Compile Include="DTOs\RemovedEntityDto.cs" />
     <Compile Include="DTOs\SaloonDto.cs" />
+    <Compile Include="DTOs\SendGifDto.cs" />
     <Compile Include="DTOs\SignInDto.cs" />
     <Compile Include="DTOs\TemplateCategoryDto.cs" />
     <Compile Include="DTOs\TemplateDto.cs" />
