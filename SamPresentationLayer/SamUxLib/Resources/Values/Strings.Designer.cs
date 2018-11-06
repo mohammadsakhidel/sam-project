@@ -89,6 +89,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to درباره ما.
+        /// </summary>
+        public static string AboutUs {
+            get {
+                return ResourceManager.GetString("AboutUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سطح دسترسی.
         /// </summary>
         public static string AccessLevel {
@@ -1934,6 +1943,15 @@ namespace SamUxLib.Resources.Values {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شرایط و قوانین استفاده از خدمات سامانه اطلاع رسانی مساجد.
+        /// </summary>
+        public static string RulesPageTitle {
+            get {
+                return ResourceManager.GetString("RulesPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سالن.
         /// </summary>
         public static string Saloon {
@@ -2515,6 +2533,15 @@ namespace SamUxLib.Resources.Values {
         public static string Visible {
             get {
                 return ResourceManager.GetString("Visible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to قوانین و مقررات.
+        /// </summary>
+        public static string WebsiteRules {
+            get {
+                return ResourceManager.GetString("WebsiteRules", resourceCulture);
             }
         }
         

@@ -7,6 +7,13 @@
         <strong>@Model.Message</strong>
     </div>
 }
+@*@if (Model is SamUtils.Objects.Exceptions.HttpException)
+{
+    var httpException = (SamUtils.Objects.Exceptions.HttpException)Model;
+    <div class="alert alert-warning">
+        <strong>@httpException.Response.Content.ReadAsStringAsync().Result</strong>
+    </div>
+}*@
 else
 {
     var message = (Model.InnerException != null ? Model.InnerException.Message : Model.Message);

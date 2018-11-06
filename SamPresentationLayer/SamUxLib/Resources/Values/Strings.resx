@@ -950,4 +950,13 @@
   <data name="LatestObits" xml:space="preserve">
     <value>آخرین مراسمات ثبت شده</value>
   </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>درباره ما</value>
+  </data>
+  <data name="WebsiteRules" xml:space="preserve">
+    <value>قوانین و مقررات</value>
+  </data>
+  <data name="RulesPageTitle" xml:space="preserve">
+    <value>شرایط و قوانین استفاده از خدمات سامانه اطلاع رسانی مساجد</value>
+  </data>
 </root>

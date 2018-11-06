@@ -375,6 +375,8 @@
     <Content Include="Views\CustomerPanel\Index.cshtml" />
     <Content Include="Views\Obits\Details.cshtml" />
     <Content Include="Views\Shared\Partials\_ObitsList.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Rules.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

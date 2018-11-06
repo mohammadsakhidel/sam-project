@@ -59,5 +59,15 @@ namespace SamWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Rules()
+        {
+            return View();
+        }
     }
 }
