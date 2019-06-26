@@ -20,6 +20,7 @@ namespace SamAPI.Code.Utils
     {
         public static HttpResponseMessage GetExceptionResponse(ApiController apiController, Exception ex)
         {
+            WriteToLog(ex);
             return apiController.Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
         }
 

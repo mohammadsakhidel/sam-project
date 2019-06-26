@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -15,34 +16,35 @@ namespace SamSocialNetsAPI.Controllers
 {
     public class TelegramController : ApiController
     {
-        #region Fields:
-        string _token;
-        TelegramBotClient _botClient;
-        #endregion
-
-        public TelegramController()
-        {
-            _token = ConfigurationManager.AppSettings["TelegramToken"];
-            _botClient = new TelegramBotClient(_token);
-        }
-
         [HttpPost]
         public async Task<IHttpActionResult> SendGif([FromBody]SendGifDto dto)
         {
-            var gifBytes = Convert.FromBase64String(dto.GifBase64);
-            using (var ms = new MemoryStream(gifBytes))
+            try
             {
-                var randomFileName = RamancoLibrary.Utilities.TextUtils.GetRandomString(8, true);
-                var fileToSend = new FileToSend($"{randomFileName}.gif", ms);
-                await _botClient.SendDocumentAsync(dto.ChatId, fileToSend, caption: dto.Caption);
-                return Ok();
+                var gifBytes = Convert.FromBase64String(dto.GifBase64);
+
+                using (var ms = new MemoryStream(gifBytes))
+                {
+                    var randomFileName = RamancoLibrary.Utilities.TextUtils.GetRandomString(8, true);
+                    var fileToSend = new FileToSend($"{randomFileName}.gif", ms);
+
+                    var token = ConfigurationManager.AppSettings["TelegramToken"];
+                    var botClient = new TelegramBotClient(token);
+                    await botClient.SendDocumentAsync(dto.ChatId, fileToSend, caption: dto.Caption);
+
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
             }
         }
 
         [HttpPost]
         public IHttpActionResult Test()
         {
-            return Ok();
+            return Ok(123);
         }
     }
 }
